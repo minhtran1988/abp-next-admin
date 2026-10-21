@@ -3,15 +3,15 @@ public static class AbpAIErrorCodes
 {
     public const string Namespace = "Abp.AI";
     /// <summary>
-    /// 工作区不可用: {Workspace}!
+    /// Workspace is not available: {Workspace}!
     /// </summary>
     public const string WorkspaceIsNotEnabled = Namespace + ":110001";
     /// <summary>
-    /// ApiKey缺失或无效!
+    /// ApiKey is missing or invalid!
     /// </summary>
     public const string MissingOrInvalidApiKey = Namespace + ":110002";
     /// <summary>
-    /// 对话已过期, 请重新创建会话!
+    /// The conversation has expired, please recreate the conversation!
     /// </summary>
     public const string ConversationHasExpired = Namespace + ":110101";
 }

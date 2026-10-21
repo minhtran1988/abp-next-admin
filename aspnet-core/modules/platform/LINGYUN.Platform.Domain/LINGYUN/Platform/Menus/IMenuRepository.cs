@@ -12,7 +12,7 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         IEnumerable<Guid> idList,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取最后一个菜单
+    /// Get the last menu
     /// </summary>
     /// <param name="parentId"></param>
     /// <param name="cancellationToken"></param>
@@ -21,7 +21,7 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         Guid? parentId = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 根据名称查询菜单
+    /// Query menu based on name
     /// </summary>
     /// <param name="menuName"></param>
     /// <param name="cancellationToken"></param>
@@ -30,7 +30,7 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         string menuName,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 查询主菜单,每一个布局页创建的时候都要创建路径为 / 的主菜单
+    /// Query the main menu. When each layout page is created, a main menu with the path / must be created.
     /// </summary>
     /// <param name="platformType"></param>
     /// <param name="cancellationToken"></param>
@@ -39,7 +39,7 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         string? framework = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取子节点
+    /// Get child nodes
     /// </summary>
     /// <param name="parentId"></param>
     /// <param name="cancellationToken"></param>
@@ -49,7 +49,7 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         CancellationToken cancellationToken = default
     );
     /// <summary>
-    /// 通过父菜单编码查询子菜单
+    /// Query the submenu through the parent menu encoding
     /// </summary>
     /// <param name="code"></param>
     /// <param name="parentId"></param>
@@ -61,11 +61,11 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         CancellationToken cancellationToken = default
     );
     /// <summary>
-    /// 查找用户可访问菜单
+    /// Find user-accessible menus
     /// </summary>
-    /// <param name="userId">用户标识</param>
-    /// <param name="roles">角色列表</param>
-    /// <param name="platformType">平台类型</param>
+    /// <param name="userId">User ID</param>
+    /// <param name="roles">Role list</param>
+    /// <param name="platformType">Platform type</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<List<Menu>> GetUserMenusAsync(
@@ -74,10 +74,10 @@ public interface IMenuRepository : IBasicRepository<Menu, Guid>
         string? framework = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 查找角色可访问菜单
+    /// Find the character access menu
     /// </summary>
-    /// <param name="roles">角色列表</param>
-    /// <param name="platformType">平台类型</param>
+    /// <param name="roles">Role list</param>
+    /// <param name="platformType">Platform type</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<List<Menu>> GetRoleMenusAsync(

@@ -19,7 +19,7 @@ export const downloadUrl = '/api/files/static/{bucket}/p/{path}/{name}';
 
 export function generateOssUrl(bucket: string, path: string, object: string) {
   if (path) {
-    // 对 Path部分的 URL 编码
+    // Encode the URL of the Path part
     path = encodeURIComponent(path);
     if (path !== '.%2F' && path.endsWith('%2F')) {
       path = path.substring(0, path.length - 3);
@@ -39,26 +39,26 @@ export const downloadBlob = (bucket: string, path: string, object: string) => {
 };
 
 /**
- * 分片上传文件
- * @param params 文件参数
- * @param event 事件参数
- * @returns 上传成功后响应
+ * Upload files in parts
+ * @param params file parameters
+ * @param event event parameters
+ * @returns Response after successful upload
  */
 export const uploadObject = (params: UploadFileParams, event: any) => {
-  // 常规块大小
+  // Regular block size
   const chunkSize: number = params.chunkSize ?? 2 * 1024 * 1024;
-  // 块总数
+  // Total number of blocks
   const totalChunks = Math.ceil(params.file.size / chunkSize);
-  // 总大小
+  // Total size
   const totalSize = params.file.size;
-  // 文件名
+  // file name
   const fileName = params.filename ?? (params.file as File).name;
-  // 已完成大小
+  // Completed size
   let loadedSize = 0;
-  // 返回包装的结果
+  // Return the wrapped result
   return new Promise<AxiosResponse<any>>(async (resolve, reject) => {
     function onPregress(progress: number, res: AxiosResponse) {
-      // 回调上传进度
+      // Callback upload progress
       if (isFunction(event)) {
         event({
           loaded: progress,
@@ -87,15 +87,15 @@ export const uploadObject = (params: UploadFileParams, event: any) => {
       }
     }
     function uploadFunc(num: number) {
-      // 计算分片索引
+      // Calculate shard index
       const nextSize = Math.min(num * chunkSize, params.file.size);
-      // 切割文件
+      // Cut file
       const fileData = params.file.slice((num - 1) * chunkSize, nextSize);
-      // 当前分片大小
+      // Current shard size
       const currentChunksSize = fileData.size;
       const requestConfig = {
         url: uploadUrl,
-        // 超时时间设置长时间
+        // Set the timeout to a long time
         timeout: 600000,
       };
       const requestData = {
@@ -115,7 +115,7 @@ export const uploadObject = (params: UploadFileParams, event: any) => {
           file: fileData,
         })
         .then((res) => {
-          // 当前进度
+          // current progress
           loadedSize += currentChunksSize;
           onPregress(loadedSize, res);
           return Promise.resolve(res);
@@ -124,10 +124,10 @@ export const uploadObject = (params: UploadFileParams, event: any) => {
           return Promise.reject(error);
         });
     }
-    // TODO: 支持一次上传多个分片文件
+    // TODO: Support uploading multiple fragmented files at one time
     for (let num = 1; num <= totalChunks; num++) {
       try {
-        // 上传第一个分片采用同步的方式，如果出现错误其他分片不再上传
+        // Upload the first fragment in a synchronous manner. If an error occurs, other fragments will not be uploaded.
         const res = await uploadFunc(num);
         onPregress(loadedSize, res);
       } catch (error) {

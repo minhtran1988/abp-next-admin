@@ -4,22 +4,22 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Response;
 /// <summary>
-/// 通过日程预定会议室响应参数
+/// Book conference room response parameters through schedule
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
 /// </remarks>
 public class WeChatWorkBookMeetingRoomByScheduleResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 会议室的预定id
+    /// Reservation id of the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("booking_id")]
     [JsonPropertyName("booking_id")]
     public string BookingId { get; set; } = default!;
     /// <summary>
-    /// 会议室冲突日期列表，为当天0点的时间戳；使用重复日程预定会议室，部分日期与会议室预定情况冲突时返回
+    /// Meeting room conflict date list, which is the timestamp of 0 o'clock on the day; use a repeated schedule to book a meeting room, and return when some dates conflict with the meeting room reservation status
     /// </summary>
     [NotNull]
     [JsonProperty("conflict_date")]

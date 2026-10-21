@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Identity.HttpApi
 
-身份认证HTTP API模块，提供身份认证相关的HTTP API接口。
+The identity authentication HTTP API module provides identity authentication-related HTTP API interfaces.
 
-## 功能特性
+## Features
 
-* 扩展Volo.Abp.Identity.AbpIdentityHttpApiModule模块
-* 提供身份认证相关的HTTP API接口
-* 支持本地化资源的MVC数据注解
-* 自动注册MVC应用程序部件
+* Extend the Volo.Abp.Identity.AbpIdentityHttpApiModule module
+* Provide HTTP API interface related to identity authentication
+* Support MVC data annotations for localized resources
+* Automatically register MVC application components
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -21,27 +21,27 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API控制器
+## API Controller
 
-* IdentityUserController - 用户管理API
-* IdentityRoleController - 角色管理API
-* IdentityClaimTypeController - 声明类型管理API
-* IdentitySecurityLogController - 安全日志API
-* IdentitySettingsController - 身份认证设置API
-* ProfileController - 用户配置文件API
+* IdentityUserController - User management API
+* IdentityRoleController - role management API
+* IdentityClaimTypeController - Claim type management API
+* IdentitySecurityLogController - Security Log API
+* IdentitySettingsController - Identity authentication settings API
+* ProfileController - User Profile API
 
-## API路由
+## API routing
 
-* `/api/identity/users` - 用户管理API路由
-* `/api/identity/roles` - 角色管理API路由
-* `/api/identity/claim-types` - 声明类型管理API路由
-* `/api/identity/security-logs` - 安全日志API路由
-* `/api/identity/settings` - 身份认证设置API路由
-* `/api/identity/my-profile` - 用户配置文件API路由
+* `/api/identity/users` - User management API route
+* `/api/identity/roles` - role management API routing
+* `/api/identity/claim-types` - Claim types manage API routing
+* `/api/identity/security-logs` - Security log API route
+* `/api/identity/settings` - Identity authentication settings API routing
+* `/api/identity/my-profile` - User profile API route
 
-## 基本用法
+## Basic usage
 
-1. 配置本地化
+1. Configure localization
 ```csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
 {
@@ -52,15 +52,15 @@ public override void PreConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-2. 使用API
+2. Use API
 ```csharp
-// 获取用户列表
+// Get user list
 GET /api/identity/users
 
-// 获取指定用户
+// Get the specified user
 GET /api/identity/users/{id}
 
-// 创建用户
+//Create user
 POST /api/identity/users
 {
     "userName": "admin",
@@ -68,18 +68,18 @@ POST /api/identity/users
     "password": "1q2w3E*"
 }
 
-// 更新用户
+// update user
 PUT /api/identity/users/{id}
 {
     "userName": "admin",
     "email": "admin@abp.io"
 }
 
-// 删除用户
+// delete user
 DELETE /api/identity/users/{id}
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
-* [ABP HTTP API文档](https://docs.abp.io/en/abp/latest/API/HTTP-API)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP HTTP API Documentation](https://docs.abp.io/en/abp/latest/API/HTTP-API)

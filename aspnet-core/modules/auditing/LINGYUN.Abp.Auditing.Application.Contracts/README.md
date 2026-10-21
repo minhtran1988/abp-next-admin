@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Auditing.Application.Contracts
 
-审计日志应用层契约模块，定义审计日志的应用服务接口和数据传输对象。
+The audit log application layer contract module defines the application service interface and data transmission object of the audit log.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 审计日志应用服务接口定义
-* 审计日志数据传输对象（DTO）定义
-* 审计日志权限定义
-* 审计日志查询参数定义
+* Audit log application service interface definition
+* Audit log data transfer object (DTO) definition
+* Audit log permission definition
+* Audit log query parameter definition
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuditingApplicationContractsModule))]
@@ -21,14 +21,14 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 权限定义
+## Permission definition
 
-* AuditLogging.AuditLogs - 审计日志管理
-  - AuditLogging.AuditLogs.Delete - 删除审计日志
-  - AuditLogging.SecurityLogs - 安全日志管理
-  - AuditLogging.SecurityLogs.Delete - 删除安全日志
+* AuditLogging.AuditLogs - Audit log management
+  - AuditLogging.AuditLogs.Delete - Delete audit logs
+  - AuditLogging.SecurityLogs - Security log management
+  - AuditLogging.SecurityLogs.Delete - Delete security logs
 
-## 服务接口
+## Service interface
 
 * IAuditLogAppService
   ```csharp
@@ -52,11 +52,11 @@ public class YouProjectModule : AbpModule
   }
   ```
 
-## 数据传输对象
+## Data transfer object
 
-* AuditLogDto - 审计日志DTO
-* SecurityLogDto - 安全日志DTO
-* GetAuditLogsInput - 获取审计日志输入参数
-* GetSecurityLogsInput - 获取安全日志输入参数
-* DeleteManyAuditLogsInput - 批量删除审计日志输入参数
-* DeleteManySecurityLogsInput - 批量删除安全日志输入参数
+* AuditLogDto - Audit log DTO
+* SecurityLogDto - Security log DTO
+* GetAuditLogsInput - Get audit log input parameters
+* GetSecurityLogsInput - Get security log input parameters
+* DeleteManyAuditLogsInput - batch delete audit log input parameters
+* DeleteManySecurityLogsInput - batch delete security log input parameters

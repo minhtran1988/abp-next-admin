@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.Rules.RulesEngine.Persistent;
 
 /// <summary>
-/// 实现此接口以用于从其他持久化存储中获取规则
+/// Implement this interface for retrieving rules from other persistent stores
 /// </summary>
 public interface IWorkflowStore
 {

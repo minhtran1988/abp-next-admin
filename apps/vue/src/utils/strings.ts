@@ -1,8 +1,8 @@
 /**
- * 格式化字符串
- * @param formatted 需要处理的字符串
- * @param args 参数列表，可以是数组，也可以是对象
- * @returns 返回格式化的字符串
+ * Format string
+ * @param formatted The string to be processed
+ * @param args parameter list, which can be an array or an object
+ * @returns returns a formatted string
  * @example format('Hello, {0}!', ['World'])
  * @example format('Hello, {name}!', {name: 'World'})
  */
@@ -21,9 +21,9 @@ export function format(formatted: string, args: object | any[]) {
   return formatted;
 }
 /**
- * 字符串转驼峰格式
- * @param str 字符串
- * @returns 字符串的驼峰表示法
+ * Convert string to camel case format
+ * @param str string
+ * @returns CamelCase notation of string
  * @example toCamelCase('hello-world')  =>  helloWorld
  * @example toCamelCase('my_variable_name')  =>  myVariableName
  */
@@ -34,7 +34,7 @@ export function toCamelCase(str: string) {
 }
 /**
  *
- * @param str 字符串是否为空或空格
+ * @param str Whether the string is empty or space
  * @returns
  */
 export function isNullOrWhiteSpace(str?: string) {

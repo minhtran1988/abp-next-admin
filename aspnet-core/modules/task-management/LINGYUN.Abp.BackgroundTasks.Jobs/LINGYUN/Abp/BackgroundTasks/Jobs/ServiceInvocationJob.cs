@@ -40,19 +40,19 @@ public class ServiceInvocationJob : IJobRunnable
 
     #endregion
 
-    // 必须, 接口类型
+    // Required, interface type
     public const string PropertyService = "service";
-    // 必须, 接口方法名称
+    // Required, interface method name
     public const string PropertyMethod = "method";
-    // 可选, 请求数据, 传递 Dictionary<string, object> 类型的字符串参数
+    // Optional, request data, pass string parameters of type Dictionary<string, object>
     public const string PropertyData = "data";
-    // 可选, 请求时指定区域性
+    // Optional, specify culture when requesting
     public const string PropertyCulture = "culture";
-    // 可选, 请求时指定租户
+    // Optional, specify the tenant when requesting
     public const string PropertyTenant = "tenant";
-    // 可选, 提供者名称, http、dapr, 无此参数默认 http
+    // Optional, provider name, http, dapr, without this parameter the default is http
     public const string PropertyProvider = "provider";
-    // Dapr 调用所必须的参数
+    // Necessary parameters for Dapr call
     public const string PropertyAppId = "appId";
 
     // TODO: support grpc
@@ -60,7 +60,7 @@ public class ServiceInvocationJob : IJobRunnable
 
     public async virtual Task ExecuteAsync(JobRunnableContext context)
     {
-        // 获取参数列表
+        // Get parameter list
         var type = context.GetString(PropertyService);
         var method = context.GetString(PropertyMethod);
         var serviceType = Type.GetType(type, true);
@@ -103,7 +103,7 @@ public class ServiceInvocationJob : IJobRunnable
                 {
                     case "http":
                     case "dapr":
-                        // 接口代理无差异
+                        // No difference in interface proxy
                         await ExecuteProxy(context, serviceType, serviceMethod);
                         break;
                 }
@@ -119,7 +119,7 @@ public class ServiceInvocationJob : IJobRunnable
     {
         var clientProxy = context.GetRequiredService(serviceType);
 
-        // 调用参数
+        // Call parameters
         var methodParamters = serviceMethod.GetParameters();
         var invokeParameters = new List<object>();
         if (context.TryGetString(PropertyData, out var data))
@@ -137,13 +137,13 @@ public class ServiceInvocationJob : IJobRunnable
 
         if (serviceMethod.ReturnType.GenericTypeArguments.IsNullOrEmpty())
         {
-            // 直接调用
+            // call directly
             var taskProxy = (Task)serviceMethod.Invoke(clientProxy, invokeParameters.ToArray())!;
             await taskProxy;
         }
         else
         {
-            // 有返回值的调用
+            // Call with return value
             var returnType = serviceMethod.ReturnType.GenericTypeArguments[0];
             var callResult = serviceMethod.Invoke(clientProxy, invokeParameters.ToArray())!;
             var result = (Task)callResult;
@@ -200,11 +200,11 @@ public class ServiceInvocationJob : IJobRunnable
                    $"Could not get DynamicHttpClientProxyConfig for {serviceType.FullName}.",
                    null);
 
-        // 反射所必须的参数
+        // Parameters required for reflection
         var clientProxyType = typeof(DynamicDaprProxyInterceptorClientProxy<>).MakeGenericType(serviceType);
         var clientProxy = context.GetRequiredService(clientProxyType);
 
-        // 调用远程服务发现端点
+        // Call the remote service discovery endpoint
         var actionApiDescription = await GetActionApiDescriptionModel(
             context, 
             clientConfig.RemoteServiceName, 
@@ -212,7 +212,7 @@ public class ServiceInvocationJob : IJobRunnable
             serviceType, 
             serviceMethod);
 
-        // 调用参数
+        // Call parameters
         var invokeParameters = new Dictionary<string, object?>();
         if (context.TryGetString(PropertyData, out var data))
         {
@@ -220,7 +220,7 @@ public class ServiceInvocationJob : IJobRunnable
             invokeParameters = jsonSerializer.Deserialize<Dictionary<string, object?>>(data);
         }
 
-        // 构造服务代理上下文
+        // Construct service proxy context
         var clientProxyRequestContext = new ClientProxyRequestContext(
            actionApiDescription,
            invokeParameters,
@@ -228,14 +228,14 @@ public class ServiceInvocationJob : IJobRunnable
 
         if (serviceMethod.ReturnType.GenericTypeArguments.IsNullOrEmpty())
         {
-            // 直接调用
+            // call directly
             var taskProxy = (Task)DaprClientProxyMethod
                 .Invoke(clientProxy, new object[] { clientProxyRequestContext })!;
             await taskProxy;
         }
         else
         {
-            // 有返回值的调用
+            // Call with return value
             var returnType = serviceMethod.ReturnType.GenericTypeArguments[0];
             var result = (Task)DaprCallRequestAsyncMethod
                 .MakeGenericMethod(returnType)

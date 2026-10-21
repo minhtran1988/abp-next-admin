@@ -1,27 +1,27 @@
 ﻿namespace LINGYUN.Abp.PushPlus.Channel;
 /// <summary>
-/// 发送渠道（channel）枚举
+/// Sending channel (channel) enumeration
 /// </summary>
 public enum PushPlusChannelType
 {
     /// <summary>
-    /// 微信公众号
+    /// WeChat public account
     /// </summary>
     WeChat = 0,
     /// <summary>
-    /// 第三方webhook
+    /// Third-party webhook
     /// </summary>
     Webhook = 1,
     /// <summary>
-    /// 企业微信应用
+    /// Enterprise WeChat application
     /// </summary>
     WeWork = 2,
     /// <summary>
-    /// 邮箱
+    /// Email
     /// </summary>
     Email = 3,
     /// <summary>
-    /// 短信
+    /// SMS
     /// </summary>
     Sms = 4
 }

@@ -2,88 +2,88 @@
 outline: deep
 ---
 
-# 快速开始 {#quick-start}
+# Quick start {#quick-start}
 
-## 前置准备
+## Preparation
 
-::: info 环境要求
+::: info Environmental requirements
 
-在启动项目前，你需要确保你的环境满足以下要求：
+Before starting your project, you need to ensure that your environment meets the following requirements:
 
-- [Node.js](https://nodejs.org/en) 20.15.0 及以上版本，推荐使用 [fnm](https://github.com/Schniz/fnm) 、 [nvm](https://github.com/nvm-sh/nvm) 或者直接使用[pnpm](https://pnpm.io/cli/env) 进行版本管理。
-- [Git](https://git-scm.com/) 任意版本。
+- [Node.js](https://nodejs.org/en) 20.15.0 and above, it is recommended to use [fnm](https://github.com/Schniz/fnm), [nvm](https://github.com/nvm-sh/nvm) or directly use [pnpm](https://pnpm.io/cli/env) for version management.
+- [Git](https://git-scm.com/) any version.
 
-验证你的环境是否满足以上要求，你可以通过以下命令查看版本：
+Verify that your environment meets the above requirements. You can check the version with the following command:
 
 ```bash
-# 出现相应 node LTS版本即可
+# The corresponding node LTS version will appear.
 node -v
-# 出现相应 git 版本即可
+#The corresponding git version will appear
 git -v
 ```
 
 :::
 
-## 启动项目
+## Start project
 
-### 获取源码
+### Get source code
 
 ::: code-group
 
 ```sh [GitHub]
-# clone 代码
+# clone code
 git clone https://github.com/vbenjs/vue-vben-admin.git
 ```
 
 ```sh [Gitee]
-# clone 代码
-# Gitee 的代码可能不是最新的
+# clone code
+# Gitee's code may not be up to date
 git clone https://gitee.com/annsion/vue-vben-admin.git
 ```
 
 :::
 
-::: danger 注意
+:::danger Attention
 
-注意存放代码的目录及所有父级目录不能存在中文、韩文、日文以及空格，否则安装依赖后启动会出错。
+Note that the directory where the code is stored and all parent directories cannot contain Chinese, Korean, Japanese, or spaces, otherwise a startup error will occur after installing dependencies.
 
 :::
 
-### 安装依赖
+### Install dependencies
 
-在你的代码目录内打开终端，并执行以下命令:
+Open a terminal in your code directory and execute the following command:
 
 ```bash
-# 进入项目目录
+# Enter the project directory
 cd vue-vben-admin
 
-# 使用项目指定的pnpm版本进行依赖安装
+# Use the pnpm version specified by the project for dependency installation
 npm i -g corepack
 
-# 安装依赖
+# Install dependencies
 pnpm install
 ```
 
-::: tip 注意
+::: tip note
 
-- 项目只支持使用 `pnpm` 进行依赖安装，默认会使用 `corepack` 来安装指定版本的 `pnpm`。:
-- 如果你的网络环境无法访问npm源，你可以设置系统的环境变量`COREPACK_NPM_REGISTRY=https://registry.npmmirror.com`，然后再执行`pnpm install`。
-- 如果你不想使用`corepack`，你需要禁用`corepack`，然后使用你自己的`pnpm`进行安装。
+- The project only supports using `pnpm` for dependency installation. By default, `corepack` will be used to install the specified version of `pnpm`. :
+- If your network environment cannot access the npm source, you can set the system environment variable `COREPACK_NPM_REGISTRY=https://registry.npmmirror.com` and then execute `pnpm install`.
+- If you don't want to use `corepack`, you need to disable `corepack` and then install it using your own `pnpm`.
 
 :::
 
-### 运行项目
+### Run the project
 
-#### 选择项目
+#### Select project
 
-执行以下命令运行项目:
+Execute the following command to run the project:
 
 ```bash
-# 启动项目
+# Start project
 pnpm dev
 ```
 
-此时，你会看到类似如下的输出，选择你需要运行的项目：
+At this point, you will see output similar to the following, select the project you want to run:
 
 ```bash
 │
@@ -97,11 +97,11 @@ pnpm dev
 └
 ```
 
-现在，你可以在浏览器访问 `http://localhost:5555` 查看项目。
+Now, you can visit `http://localhost:5555` in your browser to view the project.
 
-#### 运行指定项目
+#### Run the specified project
 
-如果你不想选择项目，可以直接运行以下命令运行你需要的应用：
+If you don't want to select a project, you can directly run the following command to run the application you need:
 
 ```bash
 pnpm run dev:antd

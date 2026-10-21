@@ -7,7 +7,7 @@ namespace LINGYUN.Abp.MessageService.Groups;
 public class GroupMessage : Message
 {
     /// <summary>
-    /// 群组标识
+    /// Group ID
     /// </summary>
     public virtual long GroupId { get; protected set; }
 

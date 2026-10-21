@@ -4,8 +4,8 @@ import type { EntityChangeGetWithUsernameInput, EntityChangeWithUsernameDto } fr
 import requestClient from "../../request";
 
 /**
- * 获取包含用户名称的实体变更列表
- * @param input 参数
+ * Get the entity change list containing the user name
+ * @param input parameter
  */
 export function getListWithUsernameApi(
 	input: EntityChangeGetWithUsernameInput,

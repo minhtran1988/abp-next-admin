@@ -13,19 +13,19 @@ type TenantConnectionStringSetInput = NameValue<string>;
 interface TenantDto
   extends ExtensibleAuditedEntityDto<string>,
     IHasConcurrencyStamp {
-  /** 禁用时间 */
+  /** Disable time */
   disableTime?: string;
-  /** 版本Id */
+  /** VersionId */
   editionId?: string;
-  /** 版本名称 */
+  /** Version name */
   editionName?: string;
-  /** 启用时间 */
+  /** Activation time */
   enableTime?: string;
-  /** 是否可用 */
+  /** Is it available */
   isActive: boolean;
-  /** 名称 */
+  /** name */
   name: string;
-  /** 名称 */
+  /** name */
   normalizedName: string;
 }
 
@@ -34,15 +34,15 @@ interface GetTenantPagedListInput extends PagedAndSortedResultRequestDto {
 }
 
 interface TenantCreateOrUpdateBase extends ExtensibleObject {
-  /** 禁用时间 */
+  /** Disable time */
   disableTime?: string;
-  /** 版本Id */
+  /** VersionId */
   editionId?: string;
-  /** 启用时间 */
+  /** Activation time */
   enableTime?: string;
-  /** 是否可用 */
+  /** Is it available */
   isActive: boolean;
-  /** 名称 */
+  /** name */
   name: string;
 }
 

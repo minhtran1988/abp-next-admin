@@ -1,24 +1,24 @@
 # LINGYUN.Abp.MultiTenancy.Editions
 
-多租户版本管理模块，提供租户版本（Edition）的基础功能支持。
+The multi-tenant version management module provides basic functional support for tenant versions (Editions).
 
-## 功能特性
+## Features
 
-- 版本管理
-  - 支持为租户分配不同版本
-  - 版本信息包含 ID 和显示名称
-  - 支持版本信息的存储和检索
-- 全局功能开关
-  - 支持通过全局功能开关控制版本功能
-  - 可灵活配置版本功能的启用/禁用
-- 身份认证集成
-  - 自动将版本信息添加到用户 Claims 中
-  - 支持在应用程序中获取当前租户的版本信息
-- 可扩展性
-  - 提供 IEditionStore 接口用于自定义版本存储
-  - 支持自定义版本配置提供程序
+- Version management
+  - Support assigning different versions to tenants
+  - Version information includes ID and display name
+  -Supports storage and retrieval of version information
+- Global function switch
+  - Support version control through global function switch
+  - Flexible configuration of enabling/disabling version functions
+- Identity authentication integration
+  - Automatically add version information to user Claims
+  - Supports obtaining the version information of the current tenant in the application
+- Scalability
+  - Provide IEditionStore interface for customized version storage
+  - Support custom version configuration provider
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpMultiTenancyEditionsModule))]
@@ -28,25 +28,25 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置说明
+## Configuration instructions
 
-### 1. 全局功能配置
+### 1. Global function configuration
 
 ```csharp
 GlobalFeatureManager.Instance.Modules.Editions(editions =>
 {
-    // 在这里配置版本相关的全局功能
+    // Configure version-related global functions here
 });
 ```
 
-### 2. 实现版本存储
+### 2. Implement version storage
 
 ```csharp
 public class YourEditionStore : IEditionStore
 {
     public async Task<EditionInfo> FindByTenantAsync(Guid tenantId)
     {
-        // 实现从存储中获取租户版本信息的逻辑
+        // Implement the logic to obtain tenant version information from storage
         return new EditionInfo(
             id: Guid.NewGuid(),
             displayName: "Standard Edition"
@@ -55,7 +55,7 @@ public class YourEditionStore : IEditionStore
 }
 ```
 
-### 3. 获取版本信息
+### 3. Get version information
 
 ```csharp
 public class YourService
@@ -74,9 +74,9 @@ public class YourService
 }
 ```
 
-## 版本信息在 Claims 中的使用
+## Use of version information in Claims
 
-当启用版本功能时，模块会自动将版本信息添加到用户的 Claims 中：
+When the version feature is enabled, the module automatically adds version information to the user's Claims:
 
 ```csharp
 public class YourController
@@ -84,18 +84,18 @@ public class YourController
     public async Task<IActionResult> GetEditionInfo()
     {
         var editionId = User.FindFirstValue(AbpClaimTypes.EditionId);
-        // 使用版本ID进行相关操作
+        // Use version ID to perform related operations
     }
 }
 ```
 
-## 注意事项
+## Notes
 
-1. 使用版本功能前需要确保已启用全局功能开关。
-2. 版本存储的实现需要考虑性能和并发访问的问题。
-3. 版本信息的变更可能会影响租户的功能访问权限。
-4. Claims 中的版本信息会在用户认证时自动更新。
+1. Before using the version function, you need to ensure that the global function switch is enabled.
+2. The implementation of version storage needs to consider performance and concurrent access issues.
+3. Changes in version information may affect tenants’ functional access rights.
+4. The version information in Claims will be automatically updated when the user authenticates.
 
-## 更多文档
+## More documentation
 
 - [English Documentation](README.EN.md)

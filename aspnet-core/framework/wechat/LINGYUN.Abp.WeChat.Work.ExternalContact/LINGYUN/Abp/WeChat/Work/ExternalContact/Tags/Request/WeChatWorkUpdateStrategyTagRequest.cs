@@ -7,21 +7,21 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Request;
 public class WeChatWorkUpdateStrategyTagRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 标签或标签组的id
+    /// The id of the label or label group
     /// </summary>
     [NotNull]
     [JsonProperty("id")]
     [JsonPropertyName("id")]
     public string Id { get; }
     /// <summary>
-    /// 新的标签或标签组名称，最长为30个字符
+    /// New label or label group name, up to 30 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string? Name { get; }
     /// <summary>
-    /// 标签/标签组的次序值。order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// The order value of the tag/tag group. The ones with larger order values ​​are sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]

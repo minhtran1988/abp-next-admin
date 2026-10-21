@@ -44,10 +44,10 @@ public class RulesEngineContributor : RuleContributorBase, ISingletonDependency
 
     protected async virtual Task ExecuteRulesAsync<T>(T input, Workflow[] workflows, object[]? @params = null) where T : notnull
     {
-        // TODO: 性能缺陷 规则文件每一次调用都会重复编译
+        // TODO: Performance defect. The rule file will be compiled repeatedly every time it is called.
         _ruleEngine.AddOrUpdateWorkflow(workflows);
 
-        // 传入参与验证的实体参数
+        // Pass in the entity parameters participating in the verification
         var inputs = new List<object>()
         {
             input
@@ -56,13 +56,13 @@ public class RulesEngineContributor : RuleContributorBase, ISingletonDependency
         {
             inputs.AddRange(@params);
         }
-        // 其他参数以此类推
+        // Other parameters can be deduced in the same way
 
         foreach (var workflow in workflows)
         {
-            // 执行当前的规则
+            // Execute current rules
             var ruleResult = await _ruleEngine.ExecuteAllRulesAsync(workflow.WorkflowName, inputs.ToArray());
-            // 用户自定义扩展方法,规则校验错误抛出异常
+            // User-defined extension method, rule verification error throws exception
             ruleResult.ThrowOfFaildExecute();
         }
     }

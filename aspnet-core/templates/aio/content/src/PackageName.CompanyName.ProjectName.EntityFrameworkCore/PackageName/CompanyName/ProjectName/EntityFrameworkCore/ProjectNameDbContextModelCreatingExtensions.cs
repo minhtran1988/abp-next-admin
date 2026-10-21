@@ -24,10 +24,10 @@ public static class ProjectNameDbContextModelCreatingExtensions
         {
             b.ToTable(ProjectNameDbProperties.DbTablePrefix + "Users", ProjectNameDbProperties.DbSchema);
             b.ConfigureByConvention();
-            b.Property(x => x.NickName).HasComment("用户名称");
-            b.Property(x => x.IdentityUserId).HasComment("Identity用户Id");
+            b.Property(x => x.NickName).HasComment("User Name");
+            b.Property(x => x.IdentityUserId).HasComment("IdentityUserId");
 
-            // 用户与IdentityUser的关系（一对一）
+            // The relationship between the user and IdentityUser (one-to-one)
             b.HasOne(x => x.IdentityUser)
                 .WithOne()
                 .HasForeignKey<User>(u => u.IdentityUserId)

@@ -3,60 +3,60 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcolinin%2Fabp-next-admin%2Fmaster%2Faspnet-core%2Fmodules%2FopenIddict%2FLINGYUN.Abp.OpenIddict.Portal%2FLINGYUN.Abp.OpenIddict.Portal.csproj)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/LINGYUN.Abp.OpenIddict.Portal.svg?style=flat-square)](https://www.nuget.org/packages/LINGYUN.Abp.OpenIddict.Portal)
 
-## 简介
+## Introduction
 
-`LINGYUN.Abp.OpenIddict.Portal` 是 OpenIddict 的门户认证扩展模块，提供了企业门户的认证功能，包括多租户选择、双因素认证、密码策略等特性。
+`LINGYUN.Abp.OpenIddict.Portal` is the portal authentication extension module of OpenIddict, which provides authentication functions for enterprise portals, including multi-tenant selection, two-factor authentication, password policy and other features.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 企业门户认证
-  * 支持企业列表选择
-  * 支持多租户认证
-  * 支持企业 Logo 显示
+* Enterprise Portal Certification
+  *Support enterprise list selection
+  * Support multi-tenant authentication
+  *Support corporate logo display
 
-* 密码认证增强
-  * 支持邮箱登录
-  * 支持外部登录提供程序
-  * 支持密码策略验证
-  * 支持强制修改密码
-  * 支持定期修改密码
+* Password authentication enhancement
+  *Support email login
+  * Support external login providers
+  * Support password policy verification
+  * Support forced password change
+  *Support regular password changes
 
-* 双因素认证
-  * 支持多种验证提供程序
-  * 支持验证码验证
-  * 支持认证器验证
+* Two-factor authentication
+  * Supports multiple authentication providers
+  *Support verification code verification
+  * Support authenticator verification
 
-* 安全日志
-  * 记录登录尝试
-  * 记录登录失败
-  * 记录密码修改
+* Security log
+  * Log login attempts
+  * Record login failure
+  * Record password changes
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenIddict.Portal
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpOpenIddictPortalModule))]` 到你的模块类。
+1. Add `[DependsOn(typeof(AbpOpenIddictPortalModule))]` to your module class.
 
-2. 配置 OpenIddict 服务器:
+2. Configure OpenIddict server:
 
 ```csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
 {
     PreConfigure<OpenIddictServerBuilder>(builder =>
     {
-        // 允许门户认证流程
+        // Allow portal authentication process
         builder.AllowPortalFlow();
     });
 }
 ```
 
-3. 使用示例:
+3. Usage example:
 
 ```http
 POST /connect/token
@@ -69,56 +69,56 @@ enterpriseId=your-enterprise-id&
 scope=openid profile
 ```
 
-## 认证流程
+## Certification process
 
-1. 企业选择
-   * 用户提供企业ID (enterpriseId)
-   * 如未提供或无效，返回可选企业列表
+1. Business selection
+   * User provides enterprise ID (enterpriseId)
+   * If not provided or invalid, return to the optional enterprise list
 
-2. 密码验证
-   * 支持用户名或邮箱登录
-   * 验证密码策略
-   * 检查账户状态
+2. Password verification
+   *Support username or email login
+   * Verify password policy
+   * Check account status
 
-3. 双因素认证 (如启用)
-   * 验证双因素认证码
-   * 支持多种验证提供程序
+3. Two-factor authentication (if enabled)
+   * Verify two-factor authentication code
+   * Supports multiple authentication providers
 
-4. 密码修改 (如需要)
-   * 首次登录强制修改密码
-   * 定期修改密码要求
+4. Password modification (if necessary)
+   * Forced password change when logging in for the first time
+   * Regularly change password requirements
 
-## 参数说明
+## Parameter description
 
-* username (必填)
-  * 用户名或邮箱地址
+* username (required)
+  *Username or email address
 
-* password (必填)
-  * 用户密码
+* password (required)
+  * User password
 
-* enterpriseId (必填)
-  * 企业ID，必须是有效的GUID格式
+* enterpriseId (required)
+  * Enterprise ID, must be in valid GUID format
 
-* TwoFactorProvider (可选)
-  * 双因素认证提供程序名称
-  * 仅在启用双因素认证时需要
+* TwoFactorProvider (optional)
+  * Two-factor authentication provider name
+  *Only required when two-factor authentication is enabled
 
-* TwoFactorCode (可选)
-  * 双因素认证码
-  * 仅在启用双因素认证时需要
+*TwoFactorCode (optional)
+  * Two-factor authentication code
+  *Only required when two-factor authentication is enabled
 
-* ChangePasswordToken (可选)
-  * 修改密码令牌
-  * 仅在需要修改密码时需要
+* ChangePasswordToken (optional)
+  * Modify password token
+  *Only required when changing password
 
-* NewPassword (可选)
-  * 新密码
-  * 仅在需要修改密码时需要
+* NewPassword (optional)
+  * New password
+  *Only required when changing password
 
-## 注意事项
+## Notes
 
-* 企业ID必须是有效的GUID格式
-* 密码必须符合系统配置的密码策略
-* 双因素认证码有效期有限
-* 所有认证操作都会记录安全日志
-* 建议在生产环境中使用 HTTPS
+* Enterprise ID must be in valid GUID format
+* The password must comply with the system configured password policy
+*Two-factor authentication codes are valid for a limited time
+* All authentication operations will be recorded in security logs
+* It is recommended to use HTTPS in production environments

@@ -1,18 +1,18 @@
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 文本消息载荷
+/// Text message payload
 /// </summary>
 /// <remarks>
-/// 不参与渠道解析: 文本消息由通知标准数据(title/message)推导,
-/// 生产者不需要为它准备任何渠道专属数据。
+/// Does not participate in channel analysis: text messages are derived from notification standard data (title/message),
+/// The producer does not need to prepare any channel-specific data for it.
 /// </remarks>
 public class WeChatWorkTextChannelData : WeChatWorkChannelData
 {
     public override WeChatWorkMessageKind Kind => WeChatWorkMessageKind.Text;
 
     /// <summary>
-    /// 消息内容, 为空时使用通知标准数据
+    /// Message content, if empty, use notification standard data
     /// </summary>
     public virtual string? Content { get; set; }
 }

@@ -5,7 +5,7 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 文本消息
+/// Text message
 /// </summary>
 public class TextMessage
 {
@@ -15,7 +15,7 @@ public class TextMessage
     }
 
     /// <summary>
-    /// 消息内容，最长不超过2048个字节，超过将截断（支持id转译）
+    /// Message content, up to 2048 bytes, will be truncated if exceeded (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("content")]

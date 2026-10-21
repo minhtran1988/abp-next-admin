@@ -8,7 +8,7 @@ namespace LINGYUN.Abp.IM.Groups;
 public interface IGroupStore
 {
     /// <summary>
-    /// 获取群组信息
+    /// Get group information
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="groupId"></param>
@@ -19,7 +19,7 @@ public interface IGroupStore
         string groupId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组数
+    /// Get the number of groups
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="filter"></param>
@@ -30,7 +30,7 @@ public interface IGroupStore
         string? filter = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组列表
+    /// Get the group list
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="filter"></param>

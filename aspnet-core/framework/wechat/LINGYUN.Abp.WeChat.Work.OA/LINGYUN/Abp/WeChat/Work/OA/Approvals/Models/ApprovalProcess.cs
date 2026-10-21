@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 流程
+/// Process
 /// </summary>
 public class ApprovalProcess
 {
     /// <summary>
-    /// 流程节点
+    /// Process node
     /// </summary>
     [NotNull]
     [JsonProperty("node_list")]

@@ -6,7 +6,7 @@ import { Button, Card, message } from 'ant-design-vue';
 import { useVbenForm } from '#/adapter/form';
 
 const [Form, formApi] = useVbenForm({
-  // 提交函数
+  // Submit function
   handleSubmit: onSubmit,
   schema: [
     {
@@ -14,35 +14,35 @@ const [Form, formApi] = useVbenForm({
       defaultValue: 'hidden value',
       dependencies: {
         show: false,
-        // 随意一个字段改变时，都会触发
+        // When any field changes, it will be triggered.
         triggerFields: ['field1Switch'],
       },
       fieldName: 'hiddenField',
-      label: '隐藏字段',
+      label: 'hidden field',
     },
     {
       component: 'Switch',
       defaultValue: true,
       fieldName: 'field1Switch',
-      help: '通过Dom控制销毁',
-      label: '显示字段1',
+      help: 'Control destruction through Dom',
+      label: 'Display field 1',
     },
     {
       component: 'Switch',
       defaultValue: true,
       fieldName: 'field2Switch',
-      help: '通过css控制隐藏',
-      label: '显示字段2',
+      help: 'Control hiding through css',
+      label: 'Display field 2',
     },
     {
       component: 'Switch',
       fieldName: 'field3Switch',
-      label: '禁用字段3',
+      label: 'Disabled field 3',
     },
     {
       component: 'Switch',
       fieldName: 'field4Switch',
-      label: '字段4必填',
+      label: 'Field 4 is required',
     },
     {
       component: 'Input',
@@ -50,13 +50,13 @@ const [Form, formApi] = useVbenForm({
         if(values) {
           return !!values.field1Switch;
         },
-        // 只有指定的字段改变时，才会触发
+        // This will only be triggered when the specified field changes.
         triggerFields: ['field1Switch'],
       },
-      // 字段名
+      // Field name
       fieldName: 'field1',
-      // 界面显示的label
-      label: '字段1',
+      // Label displayed on the interface
+      label: 'Field 1',
     },
     {
       component: 'Input',
@@ -67,7 +67,7 @@ const [Form, formApi] = useVbenForm({
         triggerFields: ['field2Switch'],
       },
       fieldName: 'field2',
-      label: '字段2',
+      label: 'Field 2',
     },
     {
       component: 'Input',
@@ -78,7 +78,7 @@ const [Form, formApi] = useVbenForm({
         triggerFields: ['field3Switch'],
       },
       fieldName: 'field3',
-      label: '字段3',
+      label: 'Field 3',
     },
     {
       component: 'Input',
@@ -89,7 +89,7 @@ const [Form, formApi] = useVbenForm({
         triggerFields: ['field4Switch'],
       },
       fieldName: 'field4',
-      label: '字段4',
+      label: 'Field 4',
     },
     {
       component: 'Input',
@@ -103,8 +103,8 @@ const [Form, formApi] = useVbenForm({
         triggerFields: ['field1'],
       },
       fieldName: 'field5',
-      help: '当字段1的值为`123`时，必填',
-      label: '动态rules',
+      help: 'Required when the value of field 1 is `123`',
+      label: 'dynamic rules',
     },
     {
       component: 'Select',
@@ -114,15 +114,15 @@ const [Form, formApi] = useVbenForm({
         filterOption: true,
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       dependencies: {
@@ -131,15 +131,15 @@ const [Form, formApi] = useVbenForm({
             return {
               options: [
                 {
-                  label: '选项1',
+                  label: 'Option 1',
                   value: '1',
                 },
                 {
-                  label: '选项2',
+                  label: 'Option 2',
                   value: '2',
                 },
                 {
-                  label: '选项3',
+                  label: 'Option 3',
                   value: '3',
                 },
               ],
@@ -150,16 +150,16 @@ const [Form, formApi] = useVbenForm({
         triggerFields: ['field2'],
       },
       fieldName: 'field6',
-      help: '当字段2的值为`123`时，更改下拉选项',
-      label: '动态配置',
+      help: 'Change the drop-down option when the value of field 2 is `123`',
+      label: 'dynamic configuration',
     },
     {
       component: 'Input',
       fieldName: 'field7',
-      label: '字段7',
+      label: 'Field 7',
     },
   ],
-  // 大屏一行显示3个，中屏一行显示2个，小屏一行显示1个
+  // The large screen displays 3 items in one line, the medium screen displays 2 items in one line, and the small screen displays 1 item in one line.
   wrapperClass: 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4',
 });
 
@@ -168,10 +168,10 @@ const [SyncForm] = useVbenForm({
   schema: [
     {
       component: 'Input',
-      // 字段名
+      // Field name
       fieldName: 'field1',
-      // 界面显示的label
-      label: '字段1',
+      // Label displayed on the interface
+      label: 'Field 1',
     },
     {
       component: 'Input',
@@ -182,16 +182,16 @@ const [SyncForm] = useVbenForm({
         trigger(values, form) {
           form.setFieldValue('field2', values.field1);
         },
-        // 只有指定的字段改变时，才会触发
+        // This will only be triggered when the specified field changes.
         triggerFields: ['field1'],
       },
-      // 字段名
+      // Field name
       fieldName: 'field2',
-      // 界面显示的label
-      label: '字段2',
+      // Label displayed on the interface
+      label: 'Field 2',
     },
   ],
-  // 大屏一行显示3个，中屏一行显示2个，小屏一行显示1个
+  // The large screen displays 3 items in one line, the medium screen displays 2 items in one line, and the small screen displays 1 item in one line.
   wrapperClass: 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4',
 });
 
@@ -217,7 +217,7 @@ function handleAdd() {
         {
           component: 'Input',
           fieldName: `field${Date.now()}`,
-          label: '字段+',
+          label: 'Field+',
         },
       ],
     };
@@ -231,7 +231,7 @@ function handleUpdate() {
         if (item.fieldName === 'field3') {
           return {
             ...item,
-            label: '字段3-修改',
+            label: 'Field 3-Modify',
           };
         }
         return item;
@@ -243,19 +243,19 @@ function handleUpdate() {
 
 <template>
   <Page
-    description="表单组件动态联动示例，包含了常用的场景。增删改，本质上是修改schema，你也可以通过 `setState` 动态修改schema。"
-    title="表单组件"
+    description="Examples of dynamic linkage of form components, including common scenarios. Addition, deletion, and modification are essentially modifications to the schema. You can also dynamically modify the schema through `setState`."
+    title="Form component"
   >
-    <Card title="表单动态联动示例">
+    <Card title="Form dynamic linkage example">
       <template #extra>
-        <Button class="mr-2" @click="handleUpdate">修改字段3</Button>
-        <Button class="mr-2" @click="handleDelete">删除字段7</Button>
-        <Button @click="handleAdd">添加字段</Button>
+        <Button class="mr-2" @click="handleUpdate">Modify field 3</Button>
+        <Button class="mr-2" @click="handleDelete">Delete field 7</Button>
+        <Button @click="handleAdd">Add field</Button>
       </template>
       <Form />
     </Card>
 
-    <Card class="mt-5" title="字段同步，字段1数据与字段2数据同步">
+    <Card class="mt-5" title="Field synchronization, field 1 data and field 2 data synchronization">
       <SyncForm />
     </Card>
   </Page>

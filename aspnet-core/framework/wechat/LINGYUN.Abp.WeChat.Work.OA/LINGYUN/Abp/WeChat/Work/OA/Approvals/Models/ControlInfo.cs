@@ -5,67 +5,67 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 模板控件属性
+/// Template control properties
 /// </summary>
 public class ControlInfo
 {
     /// <summary>
-    /// 控件id。1-模版内控件id必须唯一；2-控件id格式：control-数字，如"Text-01"
+    /// Control id. 1-The control ID in the template must be unique; 2-The control ID format: control-number, such as "Text-01"
     /// </summary>
     [NotNull]
     [JsonProperty("id")]
     [JsonPropertyName("id")]
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 控件类型
+    /// Control type
     /// </summary>
     /// <remarks>
-    /// Text-文本<br />
-    /// Textarea-多行文本<br />
-    /// Number-数字<br />
-    /// Money-金额<br />
-    /// Date-日期/日期+时间<br />
-    /// Selector-单选/多选<br />
-    /// Contact-成员/部门<br />
-    /// Tips-说明文字<br />
-    /// File-附件<br />
-    /// Table-明细<br />
-    /// Location-位置<br />
-    /// RelatedApproval-关联审批单<br />
-    /// DateRange-时长<br />
-    /// PhoneNumber-电话号码<br />
-    /// Vacation-假期<br />
-    /// Attendance-外出/出差/加班<br />
-    /// BankAccount-收款账户<br />
-    /// 以上为目前可支持的控件类型
+    /// Text-text<br />
+    /// Textarea-multiline text<br />
+    /// Number-Number<br />
+    /// Money-amount<br />
+    /// Date-date/date+time<br />
+    /// Selector-single selection/multiple selection<br />
+    /// Contact-Member/Department<br />
+    /// Tips-Explanation text<br />
+    /// File-Attachment<br />
+    /// Table-Details<br />
+    /// Location-location<br />
+    /// RelatedApproval-Related approval form<br />
+    /// DateRange-Duration<br />
+    /// PhoneNumber-phone number<br />
+    /// Vacation-vacation<br />
+    /// Attendance-outing/business trip/working overtime<br />
+    /// BankAccount-receiving account<br />
+    /// The above are the currently supported control types.
     /// </remarks>
     [NotNull]
     [JsonProperty("control")]
     [JsonPropertyName("control")]
     public string Control { get; set; } = default!;
     /// <summary>
-    /// 控件名称
+    /// Control name
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public List<ControlTtile> Title { get; set; } = default!;
     /// <summary>
-    /// 控件说明，假勤组件（Vacation、Attendance）暂不支持设置
+    /// Control description, vacation components (Vacation, Attendance) do not support setting yet
     /// </summary>
     [CanBeNull]
     [JsonProperty("placeholder")]
     [JsonPropertyName("placeholder")]
     public List<ControlPlaceholder>? Placeholder { get; set; }
     /// <summary>
-    /// 控件是否必填。0-非必填；1-必填；默认为0;假勤组件（Vacation、Attendance）不支持设置非必填
+    /// Whether the control is required. 0-non-required; 1-required; the default is 0; vacation components (Vacation, Attendance) do not support setting non-required
     /// </summary>
     [CanBeNull]
     [JsonProperty("require")]
     [JsonPropertyName("require")]
     public byte Require { get; set; }
     /// <summary>
-    /// 控件是否可打印。0-可打印；1-不可打印；默认为0；假勤组件（Vacation、Attendance）不支持设置不可打印
+    /// Whether the control is printable. 0-printable; 1-non-printable; the default is 0; vacation components (Vacation, Attendance) do not support the setting of non-printable
     /// </summary>
     [CanBeNull]
     [JsonProperty("un_print")]
@@ -86,7 +86,7 @@ public class ControlInfo
     [JsonPropertyName("inner_id")]
     public string? InnerId { get; set; }
     /// <summary>
-    /// 控件是否隐藏
+    /// Whether the control is hidden
     /// </summary>
     [CanBeNull]
     [JsonProperty("display")]

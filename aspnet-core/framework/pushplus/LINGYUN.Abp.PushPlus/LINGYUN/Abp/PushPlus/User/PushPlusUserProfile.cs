@@ -6,63 +6,63 @@ namespace LINGYUN.Abp.PushPlus.User;
 public class PushPlusUserProfile
 {
     /// <summary>
-    /// 用户微信的openId
+    /// The openId of user WeChat
     /// </summary>
     [JsonProperty("openId")]
     public string? OpenId { get; set; }
     /// <summary>
-    /// 用户微信的unionId
+    /// UnionId of user WeChat
     /// </summary>
     [JsonProperty("unionId")]
     public string? UnionId { get; set; }
     /// <summary>
-    /// 昵称
+    /// Nickname
     /// </summary>
     [JsonProperty("nickName")]
     public string? NickName { get; set; }
     /// <summary>
-    /// 头像
+    /// Avatar
     /// </summary>
     [JsonProperty("headImgUrl")]
     public string? HeadImgUrl { get; set; }
     /// <summary>
-    /// 性别；
-    /// 0-未设置，
-    /// 1-男，
-    /// 2-女
+    /// Gender;
+    /// 0 - not set,
+    /// 1-Male,
+    /// 2-Female
     /// </summary>
     [JsonProperty("userSex")]
     public PushPlusUserSex? Sex { get; set; }
     /// <summary>
-    /// 用户令牌
+    /// User token
     /// </summary>
     [JsonProperty("token")]
     public string? Token { get; set; }
     /// <summary>
-    /// 手机号
+    /// Mobile phone number
     /// </summary>
     [JsonProperty("phoneNumber")]
     public string? PhoneNumber { get; set; }
     /// <summary>
-    /// 邮箱
+    /// Email
     /// </summary>
     [JsonProperty("email")]
     public string? Email { get; set; }
     /// <summary>
-    /// 邮箱验证状态；
-    /// 0-未验证，
-    /// 1-待验证，
-    /// 2-已验证
+    /// Email verification status;
+    /// 0 - not verified,
+    /// 1-To be verified,
+    /// 2-Verified
     /// </summary>
     [JsonProperty("emailStatus")]
     public PushPlusUserEmailStatus? EmailStatus { get; set; }
     /// <summary>
-    /// 生日
+    /// birthday
     /// </summary>
     [JsonProperty("birthday")]
     public DateTime? Birthday { get; set; }
     /// <summary>
-    /// 用户积分
+    /// User points
     /// </summary>
     [JsonProperty("points")]
     public int? Points { get; set; }

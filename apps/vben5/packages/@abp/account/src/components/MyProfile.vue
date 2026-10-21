@@ -48,10 +48,10 @@ async function onGet() {
   formModel.value = profile;
 }
 function onAvatarChange(_param: UploadChangeParam) {
-  console.warn('等待oss模块集成完成...');
+  console.warn('Waiting for the oss module integration to be completed...');
 }
 function onBeforeUpload(_file: FileType) {
-  console.warn('等待oss模块集成完成...');
+  console.warn('Waiting for the oss module integration to be completed...');
   return false;
 }
 async function onSubmit() {

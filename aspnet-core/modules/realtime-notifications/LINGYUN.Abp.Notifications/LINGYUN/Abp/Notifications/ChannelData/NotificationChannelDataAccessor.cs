@@ -10,12 +10,12 @@ using Volo.Abp.DependencyInjection;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)存取器
+/// Notification channel data (load) accessor
 /// </summary>
 /// <remarks>
-/// 渠道数据"弱类型属性包 ↔ 强类型值"转换的唯一实现,
-/// 由 <see cref="INotificationChannelDataSerializer"/> 与
-/// <see cref="INotificationChannelDataResolver"/> 共用, 并保证与所用 JSON 实现无关。
+/// The only implementation of channel data "weak type attribute bag ↔ strong type value" conversion,
+/// By <see cref="INotificationChannelDataSerializer"/> and
+/// <see cref="INotificationChannelDataResolver"/> is shared and guaranteed to be independent of the JSON implementation used.
 /// </remarks>
 public class NotificationChannelDataAccessor : INotificationChannelDataAccessor, ISingletonDependency
 {
@@ -62,7 +62,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
             return true;
         }
 
-        // 精确匹配未命中时按大小写不敏感匹配, 兼容历史遗留键(如 TemplateId)
+        // Case-insensitive matching when exact match misses, compatible with historical keys (such as TemplateId)
         foreach (var property in notificationData.ExtraProperties)
         {
             if (string.Equals(property.Key, key, StringComparison.OrdinalIgnoreCase))
@@ -149,7 +149,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
             return rawValue;
         }
 
-        // 不同 JSON 实现留下的中间表示(JsonElement / JValue)先还原为 CLR 原始值
+        // The intermediate representation (JsonElement / JValue) left by different JSON implementations is first restored to the CLR original value
         var unwrapped = UnwrapJsonValue(rawValue);
         if (unwrapped == null)
         {
@@ -180,11 +180,11 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
     }
 
     /// <summary>
-    /// 还原 JSON 中间表示
+    /// Restore JSON intermediate representation
     /// </summary>
     /// <remarks>
-    /// System.Text.Json 产生 <c>JsonElement</c>, Newtonsoft 产生 <c>JValue</c>;
-    /// 两者都还原为 CLR 原始值, 使转换逻辑与 JSON 实现无关。
+    /// System.Text.Json produces <c>JsonElement</c>, Newtonsoft produces <c>JValue</c>;
+    /// Both revert to CLR raw values, making the conversion logic independent of the JSON implementation.
     /// </remarks>
     protected virtual object? UnwrapJsonValue(object rawValue)
     {
@@ -234,7 +234,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
                 return element.GetDouble();
 
             default:
-                // 数组/对象: 以原始 JSON 文本参与后续反序列化
+                // Array/Object: Use raw JSON text to participate in subsequent deserialization
                 return element.GetRawText();
         }
     }
@@ -273,7 +273,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
 
     protected virtual object? ConvertPrimitiveValue(object rawValue, Type underlyingType, string key)
     {
-        // JSON 往返后布尔值可能以数字或字符串形式出现, 而 Convert 只认 "True"/"False"
+        // After JSON round trip, the Boolean value may appear in the form of numbers or strings, while Convert only recognizes "True"/"False"
         if (underlyingType == typeof(bool) && TryConvertBoolean(rawValue, out var booleanValue))
         {
             return booleanValue;
@@ -285,7 +285,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
         }
         catch (Exception ex) when (ex is FormatException || ex is InvalidCastException || ex is OverflowException)
         {
-            // JSON 往返后字符串可能包裹了引号, 例如 "\"1\"", 再尝试一次去引号转换
+            // After JSON round trip, the string may be wrapped in quotation marks, such as "\"1\"", try again to remove quotation marks.
             if (rawValue is string text)
             {
                 var trimmed = text.Trim().Trim('"');
@@ -297,7 +297,7 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
                     }
                     catch (Exception inner) when (inner is FormatException || inner is InvalidCastException || inner is OverflowException)
                     {
-                        // 忽略, 统一在下方记录日志
+                        // Ignore, record the log below
                     }
                 }
             }
@@ -325,8 +325,8 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
         }
         catch (Exception ex)
         {
-            // 载荷非法时只记录日志并返回 null,
-            // 由调用方通过"已声明但解析失败"来明确报错
+            // When the payload is illegal, only log is logged and null is returned,
+            // The caller explicitly reports the error by "Declared but failed to parse"
             Logger.LogWarning(ex,
                 "Failed to deserialize the channel data '{Key}' to '{TargetType}', the value will be ignored.",
                 key, underlyingType.FullName);
@@ -335,11 +335,11 @@ public class NotificationChannelDataAccessor : INotificationChannelDataAccessor,
     }
 
     /// <summary>
-    /// 尝试把各种表示形式转换为布尔值
+    /// Attempt to convert various representations to boolean values
     /// </summary>
     /// <remarks>
-    /// 数值型 <c>0/1</c> 与字符串 <c>"0"/"1"</c> / <c>"true"/"false"</c> 都会被识别,
-    /// <c>Convert.ChangeType</c> 只接受 <c>"True"/"False"</c>, 因此需要单独处理。
+    /// Both numerical <c>0/1</c> and string <c>"0"/"1"</c> / <c>"true"/"false"</c> will be recognized,
+    /// <c>Convert.ChangeType</c> only accepts <c>"True"/"False"</c>, so it needs to be handled separately.
     /// </remarks>
     protected virtual bool TryConvertBoolean(object rawValue, out bool result)
     {

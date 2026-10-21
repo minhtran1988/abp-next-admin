@@ -1,14 +1,14 @@
 import type NProgress from 'nprogress';
 
-// 创建一个NProgress实例的变量，初始值为null
+// Create a variable of an NProgress instance with an initial value of null
 let nProgressInstance: null | typeof NProgress = null;
 
 /**
- * 动态加载NProgress库，并进行配置。
- * 此函数首先检查是否已经加载过NProgress库，如果已经加载过，则直接返回NProgress实例。
- * 否则，动态导入NProgress库，进行配置，然后返回NProgress实例。
+ * Dynamically load the NProgress library and configure it.
+ * This function first checks whether the NProgress library has been loaded. If it has been loaded, it returns the NProgress instance directly.
+ * Otherwise, dynamically import the NProgress library, configure it, and then return the NProgress instance.
  *
- * @returns  NProgress实例的Promise对象。
+ * @returns Promise object of NProgress instance.
  */
 async function loadNprogress() {
   if (nProgressInstance) {
@@ -23,8 +23,8 @@ async function loadNprogress() {
 }
 
 /**
- * 开始显示进度条。
- * 此函数首先加载NProgress库，然后调用NProgress的start方法开始显示进度条。
+ * Start displaying the progress bar.
+ * This function first loads the NProgress library, and then calls the start method of NProgress to start displaying the progress bar.
  */
 async function startProgress() {
   const nprogress = await loadNprogress();
@@ -32,8 +32,8 @@ async function startProgress() {
 }
 
 /**
- * 停止显示进度条，并隐藏进度条。
- * 此函数首先加载NProgress库，然后调用NProgress的done方法停止并隐藏进度条。
+ * Stop showing the progress bar and hide the progress bar.
+ * This function first loads the NProgress library, and then calls the done method of NProgress to stop and hide the progress bar.
  */
 async function stopProgress() {
   const nprogress = await loadNprogress();

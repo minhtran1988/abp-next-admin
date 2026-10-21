@@ -16,7 +16,7 @@ export default withPwa(
         ...en,
       },
       root: {
-        label: '简体中文',
+        label: 'Simplified Chinese',
         lang: 'zh-CN',
         ...zh,
       },

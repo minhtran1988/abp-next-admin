@@ -4,29 +4,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 图片样式
+/// Picture style
 /// </summary>
 public class WebhookTemplateCardImage
 {
     /// <summary>
-    /// 图片的url
+    /// URL of the image
     /// </summary>
     [NotNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string Url { get; set; }
     /// <summary>
-    /// 图片的宽高比，宽高比要小于2.25，大于1.3，不填该参数默认1.3
+    /// The aspect ratio of the picture. The aspect ratio should be less than 2.25 and greater than 1.3. If this parameter is not filled in, the default is 1.3.
     /// </summary>
     [CanBeNull]
     [JsonProperty("aspect_ratio")]
     [JsonPropertyName("aspect_ratio")]
     public float? AspectRatio { get; set; }
     /// <summary>
-    /// 创建一个图片样式
+    /// Create an image style
     /// </summary>
-    /// <param name="url">图片的url</param>
-    /// <param name="aspectRatio">图片的宽高比,不填该参数默认1.3</param>
+    /// <param name="url">URL of the image</param>
+    /// <param name="aspectRatio">The aspect ratio of the picture, if this parameter is not filled in, the default is 1.3</param>
     public WebhookTemplateCardImage(string url, float? aspectRatio = 1.3f)
     {
         Url = url;

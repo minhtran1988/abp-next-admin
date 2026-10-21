@@ -9,7 +9,7 @@ namespace LINGYUN.Platform.Menus;
 public interface IUserMenuRepository : IBasicRepository<UserMenu, Guid>
 {
     /// <summary>
-    /// 用户是否拥有菜单
+    /// Whether the user has a menu
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="menuName"></param>

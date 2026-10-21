@@ -9,7 +9,7 @@ import { getDeptList } from '#/api/system/dept';
 import { $t } from '#/locales';
 
 /**
- * 获取编辑表单的字段配置。如果没有使用多语言，可以直接export一个数组常量
+ * Get the field configuration of the edit form. If you are not using multiple languages, you can directly export an array constant.
  */
 export function useSchema(): VbenFormSchema[] {
   return [
@@ -70,9 +70,9 @@ export function useSchema(): VbenFormSchema[] {
 }
 
 /**
- * 获取表格列配置
- * @description 使用函数的形式返回列数据而不是直接export一个Array常量，是为了响应语言切换时重新翻译表头
- * @param onActionClick 表格操作按钮点击事件
+ * Get table column configuration
+ * @description Return column data in the form of a function instead of directly exporting an Array constant in order to re-translate the table header in response to language switching.
+ * @param onActionClick form action button click event
  */
 export function useColumns(
   onActionClick?: OnActionClickFn<SystemDeptApi.SystemDept>,
@@ -113,11 +113,11 @@ export function useColumns(
         options: [
           {
             code: 'append',
-            text: '新增下级',
+            text: 'Add subordinate',
           },
-          'edit', // 默认的编辑按钮
+          'edit', //Default edit button
           {
-            code: 'delete', // 默认的删除按钮
+            code: 'delete', //Default delete button
             disabled: (row: SystemDeptApi.SystemDept) => {
               return !!(row.children && row.children.length > 0);
             },

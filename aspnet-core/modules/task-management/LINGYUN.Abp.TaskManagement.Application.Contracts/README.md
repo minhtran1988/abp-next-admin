@@ -1,72 +1,72 @@
 # LINGYUN.Abp.TaskManagement.Application.Contracts
 
-任务管理模块的应用程序契约，定义应用服务的接口和DTO。
+The application contract of the task management module defines the interface and DTO of the application service.
 
-## 功能
+## Function
 
-### 应用服务接口
-- 后台作业信息服务：
-  - CRUD操作
-  - 作业控制操作
-  - 批量操作
-  - 查询操作
-- 后台作业行为服务：
-  - 行为管理
-  - 行为定义
-  - 参数处理
-- 后台作业日志服务：
-  - 日志检索
-  - 日志过滤
-  - 日志删除
+### Application service interface
+-Background job information service:
+  - CRUD operations
+  -Job control operations
+  - Batch operations
+  - Query operation
+- Background job behavior service:
+  - Behavior management
+  - Behavior definition
+  - Parameter handling
+- Background job log service:
+  - Log retrieval
+  - Log filtering
+  - Log deletion
 
-### 数据传输对象（DTOs）
-- 后台作业信息DTOs：
-  - 作业信息DTO
-  - 作业创建DTO
-  - 作业更新DTO
-  - 作业列表DTO
-  - 作业批量输入DTO
-- 后台作业行为DTOs：
-  - 行为DTO
-  - 行为创建DTO
-  - 行为更新DTO
-  - 行为定义DTO
-  - 行为参数DTO
-- 后台作业日志DTOs：
-  - 日志DTO
-  - 日志列表DTO
-  - 日志过滤DTO
+### Data Transfer Objects (DTOs)
+- Background job information DTOs:
+  - Job information DTO
+  -Job creation DTO
+  - Job update DTO
+  - Job list DTO
+  - Job batch input DTO
+- Background job behavior DTOs:
+  - Behavioral DTO
+  - Behavior creates DTO
+  - Behavior update DTO
+  - Behavior definition DTO
+  - Behavior parameter DTO
+- Background job log DTOs:
+  - Log DTO
+  - Log list DTO
+  - Log filtering DTO
 
-### 权限
-- 后台作业：
-  - 创建权限
-  - 更新权限
-  - 删除权限
-  - 触发权限
-  - 暂停权限
-  - 恢复权限
-  - 启动权限
-  - 停止权限
-- 后台作业日志：
-  - 查看权限
-  - 删除权限
+### Permissions
+- Background jobs:
+  -Create permissions
+  - Update permissions
+  - Delete permissions
+  - Trigger permissions
+  - Suspend permissions
+  - restore permissions
+  - Start permissions
+  - Stop permissions
+- Background job log:
+  - View permissions
+  - Delete permissions
 
-### 远程服务配置
-- 服务名称常量
-- 服务端点配置
-- 客户端代理设置
+### Remote service configuration
+- Service name constant
+- Service endpoint configuration
+- Client proxy settings
 
-### 验证
-- 输入验证
-- 数据注解
-- 自定义验证规则
+### Verify
+- Input validation
+- Data annotation
+- Custom validation rules
 
-### 集成功能
-- ABP框架集成
-- 动态查询支持
-- 应用服务层抽象
+### Integrated functions
+- ABP framework integration
+- Dynamic query support
+- Application service layer abstraction
 
-### 模块配置
-- 模块依赖
-- 服务注册
-- 功能管理
+### Module configuration
+- Module dependencies
+- Service registration
+- Function management

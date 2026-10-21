@@ -92,7 +92,7 @@ public class MySqlElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransientDepe
 
     public async virtual Task<string> CreateDataBaseIfNotExists(string dataBase, MySqlConnectionStringBuilder connectionStringBuilder)
     {
-        // 切换主数据库查询数据库是否存在
+        // Switch the main database to query whether the database exists
         connectionStringBuilder.Database = "mysql";
         using var mySqlConnection = new MySqlConnection(connectionStringBuilder.ConnectionString);
         if (mySqlConnection.State == ConnectionState.Closed)

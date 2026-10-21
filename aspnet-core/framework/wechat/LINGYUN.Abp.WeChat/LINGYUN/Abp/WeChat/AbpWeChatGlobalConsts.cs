@@ -3,19 +3,19 @@
 public class AbpWeChatGlobalConsts
 {
     /// <summary>
-    /// 微信授权名称
+    /// WeChat authorized name
     /// </summary>
     public static string AuthenticationScheme { get; set; }= "WeChat";
     /// <summary>
-    /// 微信个人信息标识
+    /// WeChat personal information identification
     /// </summary>
     public static string ProfileKey { get; set; } = "wechat.profile";
     /// <summary>
-    /// 微信授权Token参数名称
+    /// WeChat authorization Token parameter name
     /// </summary>
     public static string TokenName  { get; set; }= "code";
     /// <summary>
-    /// 微信授权显示名称
+    /// WeChat authorized display name
     /// </summary>
     public static string DisplayName { get; set; } = "WeChat";
 

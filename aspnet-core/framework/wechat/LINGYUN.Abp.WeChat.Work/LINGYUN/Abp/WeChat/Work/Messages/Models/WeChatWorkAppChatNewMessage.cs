@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信群聊文本图文消息
+/// Corporate WeChat group chat text and graphic messages
 /// </summary>
 public class WeChatWorkAppChatNewMessage : WeChatWorkAppChatMessage
 {
@@ -16,17 +16,17 @@ public class WeChatWorkAppChatNewMessage : WeChatWorkAppChatMessage
         News = news;
     }
     /// <summary>
-    /// 图文消息
+    /// Graphic message
     /// </summary>
     [NotNull]
     [JsonProperty("news")]
     [JsonPropertyName("news")]
     public NewMessagePayload News { get; set; }
     /// <summary>
-    /// 表示是否是保密消息，
-    /// 0不保密
-    /// 1保密
-    /// 默认为0
+    /// Indicates whether it is confidential information,
+    /// 0 is not confidential
+    /// 1Confidential
+    /// Default is 0
     /// </summary>
     [JsonProperty("safe")]
     [JsonPropertyName("safe")]

@@ -52,7 +52,7 @@ public abstract class AbstractTencentCloudClientFactory<TClient>
             {
                 SecretId = secretId,
                 SecretKey = secretKey,
-                // 连接区域
+                // Connect area
                 EndPoint = endpoint,
                 DurationSecond = durationSecond,
                 HttpMethod = method,
@@ -112,7 +112,7 @@ public abstract class AbstractTencentCloudClientFactory<TClient, TConfiguration>
             {
                 SecretId = secretId,
                 SecretKey = secretKey,
-                // 连接区域
+                // Connect area
                 EndPoint = endpoint,
                 DurationSecond = durationSecond,
                 HttpMethod = method,

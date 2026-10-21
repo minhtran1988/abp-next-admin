@@ -68,7 +68,7 @@ export function useWatermark() {
     }
   }
 
-  // 只在第一次调用时注册卸载钩子，防止重复注册以致于在路由切换时销毁了水印
+  // Only register the uninstall hook on the first call to prevent repeated registration from destroying the watermark when routing is switched.
   if (!unmountedHooked.value) {
     unmountedHooked.value = true;
     onUnmounted(() => {

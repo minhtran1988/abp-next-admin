@@ -1,27 +1,27 @@
 # LINGYUN.Abp.WxPusher
 
-集成WxPusher微信推送服务的ABP模块，实现WxPusher相关Api文档，拥有WxPusher开放能力。
+Integrate the ABP module of WxPusher WeChat push service, implement WxPusher related API documents, and have WxPusher open capabilities.
 
 [English](./README.EN.md)
 
-详情见WxPusher文档: https://wxpusher.dingliqc.com/docs/#/  
+For details, see the WxPusher documentation: https://wxpusher.dingliqc.com/docs/#/
 
-## 功能特性
+## Features
 
-* 集成WxPusher API
-* 支持消息推送到用户和Topic
-* 支持多种消息类型（文本、HTML、Markdown）
-* 支持消息发送限制和配额管理
-* 支持二维码生成
-* 支持用户订阅管理
+* Integrate WxPusher API
+* Support pushing messages to users and topics
+* Supports multiple message types (text, HTML, Markdown)
+* Support message sending limits and quota management
+* Support QR code generation
+* Support user subscription management
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.WxPusher
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWxPusherModule))]
@@ -31,24 +31,24 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置
+## Configuration
 
-### Settings配置
+### SettingsConfiguration
 
-* `WxPusher.Security.AppToken`: 应用的身份标志，拥有APP_TOKEN后可以给对应的应用的用户发送消息，请严格保密。
+* `WxPusher.Security.AppToken`: The identity token of the application. Once you have APP_TOKEN, you can send messages to the users of the corresponding application. Please keep it strictly confidential.
 
-### Features功能
+### Features
 
-* `WxPusher`: WxPusher特性分组
-* `WxPusher.Enable`: 全局启用WxPusher
-* `WxPusher.Message.Enable`: 全局启用WxPusher消息通道
-* `WxPusher.Message`: WxPusher消息推送
-* `WxPusher.Message.SendLimit`: WxPusher消息推送限制次数
-* `WxPusher.Message.SendLimitInterval`: WxPusher消息推送限制周期(天)
+* `WxPusher`: WxPusher feature grouping
+* `WxPusher.Enable`: Enable WxPusher globally
+* `WxPusher.Message.Enable`: Globally enable WxPusher message channel
+* `WxPusher.Message`: WxPusher message push
+* `WxPusher.Message.SendLimit`: WxPusher message push limit number of times
+* `WxPusher.Message.SendLimitInterval`: WxPusher message push limit period (days)
 
-## 使用方式
+## Usage
 
-### 发送消息
+### Send message
 
 ```csharp
 public class YourService
@@ -64,19 +64,19 @@ public class YourService
     {
         await _messageSender.SendAsync(
             content: "Hello, WxPusher!",
-            summary: "消息摘要",
+            summary: "Message summary",
             contentType: MessageContentType.Text,
-            topicIds: new List<int> { 1, 2 },  // 可选：发送到指定Topic
-            uids: new List<string> { "UID1", "UID2" },  // 可选：发送到指定用户
-            url: "https://example.com"  // 可选：点击消息跳转的URL
+            topicIds: new List<int> { 1, 2 }, // Optional: send to the specified Topic
+            uids: new List<string> { "UID1", "UID2" }, // Optional: send to specified user
+            url: "https://example.com" // Optional: Click the URL to jump to the message
         );
     }
 }
 ```
 
-### 用户订阅
+### User subscription
 
-实现 `IWxPusherUserStore` 接口来管理用户订阅:
+Implement the `IWxPusherUserStore` interface to manage user subscriptions:
 
 ```csharp
 public class YourWxPusherUserStore : IWxPusherUserStore
@@ -85,18 +85,18 @@ public class YourWxPusherUserStore : IWxPusherUserStore
         IEnumerable<Guid> userIds, 
         CancellationToken cancellationToken = default)
     {
-        // 实现获取用户绑定的WxPusher UID的逻辑
+        // Implement the logic of obtaining the WxPusher UID bound to the user
     }
 
     public async Task<List<int>> GetSubscribeTopicsAsync(
         IEnumerable<Guid> userIds, 
         CancellationToken cancellationToken = default)
     {
-        // 实现获取用户订阅的Topic列表的逻辑
+        //Implement the logic of obtaining the Topic list subscribed by the user
     }
 }
 ```
 
-## 源码位置
+## Source code location
 
 [LINGYUN.Abp.WxPusher](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/framework/wx-pusher/LINGYUN.Abp.WxPusher)

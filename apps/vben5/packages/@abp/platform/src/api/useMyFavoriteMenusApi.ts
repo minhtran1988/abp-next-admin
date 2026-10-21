@@ -11,9 +11,9 @@ export function useMyFavoriteMenusApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 新增常用菜单
-   * @param input 参数
-   * @returns 常用菜单
+   * Added common menu
+   * @param input parameter
+   * @returns Common menu
    */
   function createApi(
     input: UserFavoriteMenuCreateDto,
@@ -28,8 +28,8 @@ export function useMyFavoriteMenusApi() {
   }
 
   /**
-   * 删除常用菜单
-   * @param id 菜单Id
+   * Delete frequently used menus
+   * @param id menuId
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/platform/menus/favorites/my-favorite-menus/${id}`, {
@@ -38,9 +38,9 @@ export function useMyFavoriteMenusApi() {
   }
 
   /**
-   * 获取常用菜单列表
-   * @param framework ui框架
-   * @returns 菜单列表
+   * Get a list of frequently used menus
+   * @param framework ui framework
+   * @returns menu list
    */
   function getListApi(
     framework?: string,

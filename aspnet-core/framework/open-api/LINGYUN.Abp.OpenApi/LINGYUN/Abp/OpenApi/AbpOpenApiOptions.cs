@@ -5,17 +5,17 @@ namespace LINGYUN.Abp.OpenApi;
 public class AbpOpenApiOptions
 {
     /// <summary>
-    /// 启用Api签名检查
+    /// Enable Api signature checking
     /// </summary>
     /// <remarks>
-    /// 默认: true
+    /// Default: true
     /// </remarks>
     public bool IsEnabled { get; set; }
     /// <summary>
-    /// 请求随机数过期时间
+    /// Request random number expiration time
     /// </summary>
     /// <remarks>
-    /// 默认: 10分钟
+    /// Default: 10 minutes
     /// </remarks>
     public TimeSpan RequestNonceExpireIn { get; set; }
 

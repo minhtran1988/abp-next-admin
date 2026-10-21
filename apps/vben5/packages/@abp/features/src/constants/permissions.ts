@@ -1,20 +1,20 @@
-/** 分组权限 */
+/** Group permissions */
 export const GroupDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'FeatureManagement.GroupDefinitions.Create',
   Default: 'FeatureManagement.GroupDefinitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'FeatureManagement.GroupDefinitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'FeatureManagement.GroupDefinitions.Update',
 };
-/** 功能定义权限 */
+/** Function definition permissions */
 export const FeatureDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'FeatureManagement.Definitions.Create',
   Default: 'FeatureManagement.Definitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'FeatureManagement.Definitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'FeatureManagement.Definitions.Update',
 };

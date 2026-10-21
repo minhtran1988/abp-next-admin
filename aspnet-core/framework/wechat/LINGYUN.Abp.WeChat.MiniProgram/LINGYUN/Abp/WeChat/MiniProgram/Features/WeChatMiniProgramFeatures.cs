@@ -16,19 +16,19 @@ public static class WeChatMiniProgramFeatures
 
         public const string Enable = Default + ".Enable";
         /// <summary>
-        /// 发送次数上限
+        /// Maximum number of sending times
         /// </summary>
         public const string SendLimit = Default + ".SendLimit";
         /// <summary>
-        /// 发送次数上限时长
+        /// The upper limit of sending times
         /// </summary>
         public const string SendLimitInterval = Default + ".SendLimitInterval";
         /// <summary>
-        /// 默认发布次数上限
+        /// Default maximum number of releases
         /// </summary>
         public const int DefaultSendLimit = 1000;
         /// <summary>
-        /// 默认发布次数上限时长
+        /// Default maximum number of releases and duration
         /// </summary>
         public const int DefaultSendLimitInterval = 1;
     }

@@ -110,8 +110,8 @@
       }
 
       async function setModalHeight() {
-        // 解决在弹窗关闭的时候监听还存在,导致再次打开弹窗没有高度
-        // 加上这个,就必须在使用的时候传递父级的visible
+        // Solve the problem that the monitoring still exists when the pop-up window is closed, causing the pop-up window to have no height when it is opened again.
+        // Add this, you must pass the parent's visible when using it
         if (!props.visible) return;
         const wrapperRefDom = unref(wrapperRef);
         if (!wrapperRefDom) return;
@@ -134,7 +134,7 @@
             props.modalFooterHeight -
             props.modalHeaderHeight;
 
-          // 距离顶部过进会出现滚动条
+          // A scroll bar will appear if it is too far from the top
           if (modalTop < 40) {
             maxHeight -= 26;
           }

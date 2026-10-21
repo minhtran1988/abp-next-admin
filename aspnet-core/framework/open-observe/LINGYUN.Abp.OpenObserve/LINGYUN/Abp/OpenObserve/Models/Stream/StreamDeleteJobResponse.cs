@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 按时间范围删除数据响应
+/// Delete data response by time range
 /// </summary>
 public class StreamDeleteJobResponse
 {
     /// <summary>
-    /// 删除任务标识
+    /// Delete task ID
     /// </summary>
     /// <remarks>
-    /// 用于查询删除进度
+    /// Used to query deletion progress
     /// </remarks>
     [JsonPropertyName("id")]
     public string Id { get; set; } = default!;

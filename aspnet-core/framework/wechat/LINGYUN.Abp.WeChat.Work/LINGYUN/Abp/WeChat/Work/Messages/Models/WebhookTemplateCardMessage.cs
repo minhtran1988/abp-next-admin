@@ -7,69 +7,69 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook模板卡片消息体
+/// Webhook template card message body
 /// </summary>
 public abstract class WebhookTemplateCardMessage
 {
     /// <summary>
-    /// 模版卡片的模版类型
+    /// Template type of template card
     /// </summary>
     [CanBeNull]
     [JsonProperty("card_type")]
     [JsonPropertyName("card_type")]
     public string? CardType { get; set; }
     /// <summary>
-    /// 卡片来源样式信息，不需要来源样式可不填写
+    /// Card source style information, you don’t need to fill in the source style
     /// </summary>
     [CanBeNull]
     [JsonProperty("source")]
     [JsonPropertyName("source")]
     public WebhookTemplateCardSource? Source { get; set; }
     /// <summary>
-    /// 模版卡片的主要内容，包括一级标题和标题辅助信息
+    /// The main content of the template card, including first-level title and title auxiliary information
     /// </summary>
     [CanBeNull]
     [JsonProperty("main_title")]
     [JsonPropertyName("main_title")]
     public WebhookTemplateCardMainTitle? MainTitle { get; set; }
     /// <summary>
-    /// 引用文献样式，建议不与关键数据共用
+    /// Reference document style, it is recommended not to be shared with key data
     /// </summary>
     [CanBeNull]
     [JsonProperty("quote_area")]
     [JsonPropertyName("quote_area")]
     public WebhookTemplateCardQuoteArea? QuoteArea { get; set; }
     /// <summary>
-    /// 二级标题+文本列表，该字段可为空数组，但有数据的话需确认对应字段是否必填，列表长度不超过6
+    /// Second-level title + text list, this field can be an empty array, but if there is data, you need to confirm whether the corresponding field is required. The length of the list should not exceed 6
     /// </summary>
     [CanBeNull]
     [JsonProperty("horizontal_content_list")]
     [JsonPropertyName("horizontal_content_list")]
     public List<WebhookTemplateCardHorizontalContent>? HorizontalContents { get; set; }
     /// <summary>
-    /// 跳转指引样式的列表，该字段可为空数组，但有数据的话需确认对应字段是否必填，列表长度不超过3
+    /// A list of jump guide styles. This field can be an empty array, but if there is data, you need to confirm whether the corresponding field is required. The length of the list should not exceed 3
     /// </summary>
     [CanBeNull]
     [JsonProperty("jump_list")]
     [JsonPropertyName("jump_list")]
     public List<WebhookTemplateCardJump>? Jumps { get; set; }
     /// <summary>
-    /// 整体卡片的点击跳转事件，text_notice模版卡片中该字段为必填项
+    /// Click jump event of the overall card. This field in the text_notice template card is required.
     /// </summary>
     [CanBeNull]
     [JsonProperty("card_action")]
     [JsonPropertyName("card_action")]
     public WebhookTemplateCardAction? Action { get; set; }
     /// <summary>
-    /// 创建一个Webhook模板卡片消息体
+    /// Create a Webhook template card message body
     /// </summary>
-    /// <param name="cardType">模版卡片的模版类型</param>
-    /// <param name="action">整体卡片的点击跳转事件</param>
-    /// <param name="mainTitle">模版卡片的主要内容</param>
-    /// <param name="source">卡片来源样式信息</param>
-    /// <param name="quoteArea">引用文献样式</param>
-    /// <param name="horizontalContents">二级标题+文本列表,列表长度不超过6</param>
-    /// <param name="jumps">跳转指引样式的列表,列表长度不超过3</param>
+    /// <param name="cardType">Template type of template card</param>
+    /// <param name="action">Click jump event of the overall card</param>
+    /// <param name="mainTitle">The main content of the template card</param>
+    /// <param name="source">Card source style information</param>
+    /// <param name="quoteArea">Quotation style</param>
+    /// <param name="horizontalContents">Second-level title + text list, the list length does not exceed 6</param>
+    /// <param name="jumps">List of jump guide styles, the length of the list should not exceed 3</param>
     /// <exception cref="ArgumentException"></exception>
     protected WebhookTemplateCardMessage(
         string cardType,

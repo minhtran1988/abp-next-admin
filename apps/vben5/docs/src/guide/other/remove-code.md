@@ -1,8 +1,8 @@
-# 移除代码
+# Remove code
 
-## 移除百度统计代码
+## Remove Baidu statistics code
 
-在对应应用的 `index.html` 文件中，找到如下代码，删除即可：
+In the `index.html` file of the corresponding application, find the following code and delete it:
 
 ```html
 <!-- apps/web-antd -->

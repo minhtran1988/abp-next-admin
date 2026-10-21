@@ -6,43 +6,43 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Departments.Request;
 /// <summary>
-/// 创建部门请求参数
+/// Create department request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90205" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90205" />
 /// </remarks>
 public class WeChatWorkCreateDepartmentRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 部门名称。同一个层级的部门名称不能重复。长度限制为1~64个UTF-8字符
+    /// Department name. Department names at the same level cannot be repeated. Length limit is 1~64 UTF-8 characters
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; }
     /// <summary>
-    /// 英文名称。同一个层级的部门名称不能重复。需要在管理后台开启多语言支持才能生效。长度限制为1~64个字符
+    /// English name. Department names at the same level cannot be repeated. Multi-language support needs to be enabled in the management background to take effect. Length limit is 1~64 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("name_en")]
     [JsonPropertyName("name_en")]
     public string? NameEn { get; set; }
     /// <summary>
-    /// 父部门id，32位整型
+    /// Parent department id, 32-bit integer
     /// </summary>
     [NotNull]
     [JsonProperty("parentid")]
     [JsonPropertyName("parentid")]
     public int ParentId { get; }
     /// <summary>
-    /// 在父部门中的次序值。order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// The order value in the parent department. The ones with larger order values ​​are sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]
     [JsonPropertyName("order")]
     public int? Order { get; set; }
     /// <summary>
-    /// 部门id，32位整型，指定时必须大于1。若不填该参数，将自动生成id
+    /// Department id, 32-bit integer, must be greater than 1 when specified. If this parameter is not filled in, the ID will be automatically generated.
     /// </summary>
     [CanBeNull]
     [JsonProperty("id")]

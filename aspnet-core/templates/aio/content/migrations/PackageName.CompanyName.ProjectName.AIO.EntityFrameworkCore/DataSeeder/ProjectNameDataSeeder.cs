@@ -26,7 +26,7 @@ namespace PackageName.CompanyName.ProjectName.AIO.EntityFrameworkCore.DataSeeder
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         /// <summary>
-        /// 构造函数
+        /// Constructor
         /// </summary>
         public ProjectNameDataSeeder(
             ICurrentTenant currentTenant,
@@ -47,47 +47,47 @@ namespace PackageName.CompanyName.ProjectName.AIO.EntityFrameworkCore.DataSeeder
         }
 
         /// <summary>
-        /// 初始化数据
+        /// Initialize data
         /// </summary>
-        /// <param name="context">数据种子上下文</param>
-        /// <returns>任务</returns>
+        /// <param name="context">Data seed context</param>
+        /// <returns>Task</returns>
         public async Task SeedAsync(DataSeedContext context)
         {
             using (_currentTenant.Change(context.TenantId))
             {
-                _logger.LogInformation("开始初始化数据...");
+                _logger.LogInformation("Start initializing data...");
 
-                // 初始化角色
+                // Initialize role
                 using (var uow = _unitOfWorkManager.Begin(requiresNew: true))
                 {
                     await SeedRolesAsync();
                     await uow.CompleteAsync();
                 }
 
-                // 初始化用户数据
+                // Initialize user data
                 using (var uow = _unitOfWorkManager.Begin(requiresNew: true))
                 {
                     await SeedUsersAsync();
                     await uow.CompleteAsync();
                 }
 
-                _logger.LogInformation("数据初始化完成");
+                _logger.LogInformation("Data initialization completed");
             }
         }
 
         /// <summary>
-        /// 初始化角色数据
+        /// Initialize character data
         /// </summary>
         private async Task SeedRolesAsync()
         {
-            // 超级管理员
+            // super administrator
             await CreateRoleIfNotExistsAsync(
-                "超级管理员",
-                "系统超级管理员，拥有所有权限");
+                "Super Administrator",
+                "System super administrator, has all permissions");
         }
 
         /// <summary>
-        /// 创建角色（如果不存在）
+        /// Create the role (if it does not exist)
         /// </summary>
         private async Task CreateRoleIfNotExistsAsync(string roleName, string description)
         {
@@ -104,51 +104,51 @@ namespace PackageName.CompanyName.ProjectName.AIO.EntityFrameworkCore.DataSeeder
 
                 await _identityRoleManager.CreateAsync(role);
 
-                _logger.LogInformation($"创建角色：{roleName}");
+                _logger.LogInformation($"Create role: {roleName}");
             }
         }
 
         /// <summary>
-        /// 初始化用户数据
+        /// Initialize user data
         /// </summary>
         private async Task SeedUsersAsync()
         {
 
-            // 查找超级管理员角色
-            var superAdminRole = await _identityRoleManager.FindByNameAsync("超级管理员");
+            // Find the super administrator role
+            var superAdminRole = await _identityRoleManager.FindByNameAsync("Super Administrator");
             if (superAdminRole == null)
             {
-                _logger.LogError("未找到超级管理员角色，无法为用户分配角色");
+                _logger.LogError("The super administrator role was not found and the role cannot be assigned to the user");
                 return;
             }
 
-            // 创建用户数据（使用固定用户名避免生成问题）
-            await CreateUserIfNotExistsAsync("user1", "user1", "超级管理员");
-            await CreateUserIfNotExistsAsync("user2", "user2", "超级管理员");
-            await CreateUserIfNotExistsAsync("user3", "user3",  "超级管理员");
-            await CreateUserIfNotExistsAsync("user4", "user4", "超级管理员");
+            // Create user data (use fixed username to avoid generation problems)
+            await CreateUserIfNotExistsAsync("user1", "user1", "Super Administrator");
+            await CreateUserIfNotExistsAsync("user2", "user2", "Super Administrator");
+            await CreateUserIfNotExistsAsync("user3", "user3", "Super Administrator");
+            await CreateUserIfNotExistsAsync("user4", "user4", "Super Administrator");
         }
 
         /// <summary>
-        /// 创建用户（如果不存在）
+        /// Create user (if does not exist)
         /// </summary>
         private async Task CreateUserIfNotExistsAsync(
             string name,
             string userName,
             string roles)
         {
-            // 检查用户是否已存在
+            // Check if the user already exists
             var existingUser = await _userRepository.FindAsync(u => u.NickName == name);
             if (existingUser != null)
             {
-                _logger.LogInformation($"用户[{name}]已存在，跳过创建");
+                _logger.LogInformation($"User [{name}] already exists, skip creation");
                 return;
             }
 
             var identityUser = await _identityUserManager.FindByNameAsync(userName);
             if (identityUser == null)
             {
-                // 创建Identity用户
+                // Create Identity user
                 identityUser = new IdentityUser(
                     _guidGenerator.Create(),
                     userName,
@@ -159,15 +159,15 @@ namespace PackageName.CompanyName.ProjectName.AIO.EntityFrameworkCore.DataSeeder
                     Surname = ""
                 };
 
-                // 设置默认密码 123456
+                // Set default password 123456
                 var identityResult = await _identityUserManager.CreateAsync(identityUser, "123456");
                 if (!identityResult.Succeeded)
                 {
-                    _logger.LogError($"创建Identity用户[{name}]失败: {string.Join(", ", identityResult.Errors.Select(e => e.Description))}");
+                    _logger.LogError($"Failed to create Identity user [{name}]: {string.Join(", ", identityResult.Errors.Select(e => e.Description))}");
                     return;
                 }
 
-                // 分配角色
+                // Assign roles
                 if (!string.IsNullOrWhiteSpace(roles))
                 {
                     var roleNames = roles.Split(',', StringSplitOptions.RemoveEmptyEntries);
@@ -180,45 +180,45 @@ namespace PackageName.CompanyName.ProjectName.AIO.EntityFrameworkCore.DataSeeder
                             var roleResult = await _identityUserManager.AddToRoleAsync(identityUser, trimmedRoleName);
                             if (!roleResult.Succeeded)
                             {
-                                _logger.LogWarning($"为用户[{name}]分配角色[{trimmedRoleName}]失败: {string.Join(", ", roleResult.Errors.Select(e => e.Description))}");
+                                _logger.LogWarning($"Assigning role [{trimmedRoleName}] to user [{name}] failed: {string.Join(", ", roleResult.Errors.Select(e => e.Description))}");
                             }
                         }
                         else
                         {
-                            _logger.LogWarning($"角色[{trimmedRoleName}]不存在，无法为用户[{name}]分配");
+                            _logger.LogWarning($"The role [{trimmedRoleName}] does not exist and cannot be assigned to user [{name}]");
                         }
                     }
                 }
 
-                // 创建系统用户
+                // Create system user
                 var user = new User(
                     _guidGenerator.Create(),
                     name,
                     identityUser.Id);
 
-                // 保存用户
+                // Save user
                 await _userRepository.InsertAsync(user);
 
-                _logger.LogInformation($"创建用户：{name}，用户名：{userName}");
+                _logger.LogInformation($"Create user: {name}, user name: {userName}");
             }
             else
             {
-                _logger.LogInformation($"Identity用户[{userName}]已存在，检查是否需要创建业务用户");
+                _logger.LogInformation($"Identity user [{userName}] already exists, check whether you need to create a business user");
 
-                // 检查是否需要创建业务用户
+                // Check whether a business user needs to be created
                 var businessUser = await _userRepository.FindAsync(u => u.IdentityUserId == identityUser.Id);
                 if (businessUser == null)
                 {
-                    // 创建系统用户
+                    // Create system user
                     var user = new User(
                         _guidGenerator.Create(),
                         name,
                         identityUser.Id);
 
-                    // 保存用户
+                    // Save user
                     await _userRepository.InsertAsync(user);
 
-                    _logger.LogInformation($"为已存在的Identity用户创建业务用户：{name}");
+                    _logger.LogInformation($"Create a business user for the existing Identity user: {name}");
                 }
             }
         }

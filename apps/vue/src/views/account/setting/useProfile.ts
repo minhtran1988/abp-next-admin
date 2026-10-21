@@ -40,7 +40,7 @@ export function useProfile({ profile }: UseProfile) {
     }
     return profile.isExternal;
   });
-  // tab的list
+  // list of tabs
   function getSettingList() {
     return [
       {
@@ -66,7 +66,7 @@ export function useProfile({ profile }: UseProfile) {
     ];
   }
 
-  // 基础设置 form
+  // Basic settings form
   function getBaseSetschemas(): FormSchema[] {
     return [
       {
@@ -123,7 +123,7 @@ export function useProfile({ profile }: UseProfile) {
     ];
   }
 
-  // 安全设置 list
+  // security settings list
   async function getSecureSettingList() {
     const currentUserInfo = await getUserInfo();
     const phoneNumber = currentUserInfo['phone_number'] ?? '';
@@ -171,12 +171,12 @@ export function useProfile({ profile }: UseProfile) {
     ];
   }
 
-  // 账号绑定 list
+  // Account binding list
   function getAccountBindList(): ListItem[] {
     return [];
   }
 
-  // 订阅消息通知 list
+  // Subscribe to message notification list
   async function getMsgNotifyList() {
     const groupResult = await getAssignableNotifiers();
     const mySubResult = await getMySubscribes();

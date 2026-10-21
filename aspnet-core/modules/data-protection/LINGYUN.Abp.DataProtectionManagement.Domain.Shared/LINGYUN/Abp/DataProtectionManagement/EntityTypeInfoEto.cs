@@ -9,19 +9,19 @@ namespace LINGYUN.Abp.DataProtectionManagement;
 public class EntityTypeInfoEto : EntityEto<Guid>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public string DisplayName { get; set; } = default!;
     /// <summary>
-    /// 类型全名
+    /// Type full name
     /// </summary>
     public string TypeFullName { get; set; } = default!;
     /// <summary>
-    /// 是否启用数据审计
+    /// Whether to enable data auditing
     /// </summary>
     public bool IsAuditEnabled { get; set; }
 }

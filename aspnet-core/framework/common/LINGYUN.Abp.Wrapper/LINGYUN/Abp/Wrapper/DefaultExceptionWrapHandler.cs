@@ -28,7 +28,7 @@ public class DefaultExceptionWrapHandler : IExceptionWrapHandler
             }
         }
 
-        // 没有处理的异常代码统一用配置代码处理
+        // Exception codes that are not handled are handled with configuration code.
         if (context.ErrorInfo.Code.IsNullOrWhiteSpace())
         {
             if (context.StatusCode.HasValue)

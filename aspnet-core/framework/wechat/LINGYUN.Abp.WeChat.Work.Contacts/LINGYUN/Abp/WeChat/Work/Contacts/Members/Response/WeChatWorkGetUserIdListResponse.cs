@@ -5,22 +5,22 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Response;
 /// <summary>
-/// 获取成员ID列表响应参数
+/// Get member ID list response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/96067" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/96067" />
 /// </remarks>
 public class WeChatWorkGetUserIdListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 用户-部门关系列表
+    /// User-department relationship list
     /// </summary>
     [CanBeNull]
     [JsonProperty("next_cursor")]
     [JsonPropertyName("next_cursor")]
     public string? NextCursor { get; set; }
     /// <summary>
-    /// 分页游标，下次请求时填写以获取之后分页的记录。如果该字段返回空则表示已没有更多数据
+    /// Paging cursor, fill in the next request to obtain subsequent paging records. If this field returns empty it means there is no more data
     /// </summary>
     [NotNull]
     [JsonProperty("dept_user")]

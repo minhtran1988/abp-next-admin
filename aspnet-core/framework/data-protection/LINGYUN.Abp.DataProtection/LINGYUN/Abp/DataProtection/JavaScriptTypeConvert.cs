@@ -25,8 +25,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
 
         if (typeof(Enum).IsAssignableFrom(propertyType))
         {
-            // 枚举类型只支持如下操作符
-            // 小于、小于等于、大于、大于等于、等于、不等于、空、非空
+            // The enumeration type only supports the following operators
+            // Less than, less than or equal to, greater than, greater than or equal to, equal to, not equal to, empty, not empty
             availableComparator.AddRange(new[]
             {
                 DataAccessFilterOperate.Greater,
@@ -54,8 +54,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
             case "System.Byte":
             case "System.SByte":
             case "System.Decimal":
-                // 数值类型只支持如下操作符
-                // 小于、小于等于、大于、大于等于、等于、不等于、空、非空
+                // Numeric types only support the following operators
+                // Less than, less than or equal to, greater than, greater than or equal to, equal to, not equal to, empty, not empty
                 availableComparator.AddRange(new[]
                 {
                     DataAccessFilterOperate.Greater,
@@ -67,8 +67,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
                 });
                 return ("number", availableComparator.ToArray());
             case "System.Boolean":
-                // 布尔类型只支持如下操作符
-                // 等于、不等于、空、非空
+                // The Boolean type only supports the following operators
+                // Equal, not equal, empty, not empty
                 availableComparator.AddRange(new[]
                 {
                     DataAccessFilterOperate.Equal,
@@ -76,8 +76,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
                 });
                 return ("boolean", availableComparator.ToArray());
             case "System.Guid":
-                // Guid类型只支持如下操作符
-                // 等于、不等于、空、非空
+                // The Guid type only supports the following operators
+                // Equal, not equal, empty, not empty
                 availableComparator.AddRange(new[]
                 {
                     DataAccessFilterOperate.Equal,
@@ -86,11 +86,11 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
                 return ("string", availableComparator.ToArray());
             case "System.Char":
             case "System.String":
-                // 字符类型支持所有操作符
+                // Character type supports all operators
                 return ("string", availableComparator.ToArray());
             case "System.DateTime":
-                // 时间类型只支持如下操作符
-                // 小于、小于等于、大于、大于等于、等于、不等于、空、非空
+                // The time type only supports the following operators
+                // Less than, less than or equal to, greater than, greater than or equal to, equal to, not equal to, empty, not empty
                 availableComparator.AddRange(new[]
                 {
                     DataAccessFilterOperate.Greater,
@@ -106,8 +106,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
             case "System.DBNull":
                 if (propertyType.IsArray)
                 {
-                    // 数组类型只支持如下操作符
-                    // 包含、不包含、空、非空
+                    // Array type only supports the following operators
+                    // Contains, does not contain, empty, not empty
                     availableComparator.AddRange(new[]
                     {
                         DataAccessFilterOperate.Contains,
@@ -118,8 +118,8 @@ public class JavaScriptTypeConvert : IJavaScriptTypeConvert, ISingletonDependenc
                 }
                 else
                 {
-                    // 未知对象类型只支持如下操作符
-                    // 等于、不等于、空、非空
+                    // Unknown object types only support the following operators
+                    // Equal, not equal, empty, not empty
                     availableComparator.AddRange(new[]
                    {
                         DataAccessFilterOperate.Equal,

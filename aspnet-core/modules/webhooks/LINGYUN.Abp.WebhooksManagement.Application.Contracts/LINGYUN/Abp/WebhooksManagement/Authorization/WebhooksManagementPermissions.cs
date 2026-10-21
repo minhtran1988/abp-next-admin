@@ -5,7 +5,7 @@ public static class WebhooksManagementPermissions
     public const string GroupName = "AbpWebhooks";
 
     /// <summary>
-    /// 授权允许发布Webhooks事件, 建议客户端授权
+    /// Authorization allows publishing Webhooks events, it is recommended that the client authorize
     /// </summary>
     public const string Publish = GroupName + ".Publish";
 

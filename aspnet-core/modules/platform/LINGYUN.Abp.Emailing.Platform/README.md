@@ -1,12 +1,12 @@
 # LINGYUN.Abp.Emailing.Platform
 
-abp框架邮件发送接口**IEmailSender**的消息处理平台实现  
+Message processing platform implementation of abp framework email sending interface **IEmailSender**
 
-通过平台服务接口实现邮件消息管理,发送,查询等功能  
+Realize email message management, sending, query and other functions through platform service interface
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpEmailingPlatformModule))]
@@ -15,7 +15,7 @@ public class YouProjectModule : AbpModule
   // other
 }
 ```
-## 配置项说明
+## Configuration item description
 
 ```json
 
@@ -41,11 +41,11 @@ public class YouProjectModule : AbpModule
 
 ```
 
-## 相关链接
+## Related links
 
-* [平台服务模块](../README.md)
-* [邮件发送集成](https://abp.io/docs/latest/framework/infrastructure/emailing)
-* [动态接口代理](https://abp.io/docs/latest/framework/api-development/dynamic-csharp-clients)
+* [Platform Service Module](../README.md)
+* [Email sending integration](https://abp.io/docs/latest/framework/infrastructure/emailing)
+* [Dynamic Interface Proxy](https://abp.io/docs/latest/framework/api-development/dynamic-csharp-clients)
 
-## 其他
+## Others
 

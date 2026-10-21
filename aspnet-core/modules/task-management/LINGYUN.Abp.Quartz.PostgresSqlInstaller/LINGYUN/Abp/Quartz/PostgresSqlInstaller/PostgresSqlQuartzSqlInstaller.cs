@@ -77,7 +77,7 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
             await connection.OpenAsync();
         }
 
-        // 检查表是否存在
+        // Check if the table exists
         var tableParams = _installerOptions.InstallTables.Select((_, index) => $"@Table_{index}").JoinAsString(",");
         using (var command = new NpgsqlCommand($@"
             SELECT COUNT(*) FROM information_schema.tables 
@@ -102,10 +102,10 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
 
         var sqlScript = await GetInitSqlScript();
 
-        // 替换表前缀
+        // Replace table prefix
         sqlScript = sqlScript.Replace("${TablePrefix}", tablePrefix);
 
-        // 分割 SQL 脚本，PostgreSQL 需要逐条执行
+        // Split the SQL script, PostgreSQL needs to execute it one by one
         var sqlCommands = sqlScript.Split(';', StringSplitOptions.RemoveEmptyEntries);
 
         using var transaction = await connection.BeginTransactionAsync();
@@ -131,9 +131,9 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
 
     public async virtual Task<string> CreateDataBaseIfNotExists(string dataBase, NpgsqlConnectionStringBuilder connectionStringBuilder)
     {
-        // PostgreSQL 切换到 template1 数据库来创建新数据库
+        // PostgreSQL switches to template1 database to create a new database
         var originalDatabase = connectionStringBuilder.Database;
-        // 使用 postgres 系统数据库
+        // Use postgres system database
         connectionStringBuilder.Database = "postgres"; 
 
         using var connection = new NpgsqlConnection(connectionStringBuilder.ConnectionString);
@@ -142,7 +142,7 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
             await connection.OpenAsync();
         }
 
-        // 检查数据库是否存在
+        // Check if the database exists
         using (var command = new NpgsqlCommand(
             "SELECT 1 FROM pg_database WHERE datname = @DataBaseName;", connection))
         {
@@ -151,7 +151,7 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
 
             if (!exists)
             {
-                // 创建数据库
+                // Create database
                 using var createCommand = new NpgsqlCommand(
                     $"CREATE DATABASE \"{dataBase}\" ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8' TEMPLATE = template0;",
                     connection);
@@ -161,7 +161,7 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
             }
         }
 
-        // 恢复原始数据库连接
+        // Restore the original database connection
         connectionStringBuilder.Database = originalDatabase;
 
         return dataBase;
@@ -169,7 +169,7 @@ public class PostgresSqlQuartzSqlInstaller : IQuartzSqlInstaller
 
     public async virtual Task<string> GetInitSqlScript()
     {
-        // 获取数据库初始化脚本
+        // Get the database initialization script
         var sqlScriptFileInfo = _virtualFileProvider.GetFileInfo("/LINGYUN/Abp/Quartz/PostgresSqlInstaller/Scripts/Initial.sql");
         if (!sqlScriptFileInfo.Exists || sqlScriptFileInfo.IsDirectory)
         {

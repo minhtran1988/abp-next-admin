@@ -5,9 +5,9 @@ import type { SmsMessageDto, SmsMessageGetListInput } from "#/platform/messages"
 import requestClient from "../request";
 
 /**
- * 获取短信消息分页列表
- * @param {EmailMessageGetListInput} input 参数
- * @returns {Promise<PagedResultDto<EmailMessageDto>>} 短信消息列表
+ * Get the paging list of SMS messages
+ * @param {EmailMessageGetListInput} input parameter
+ * @returns {Promise<PagedResultDto<EmailMessageDto>>} SMS message list
  */
 export function getPagedListApi(input?: SmsMessageGetListInput): Promise<PagedResultDto<SmsMessageDto>> {
 	return requestClient.get<PagedResultDto<SmsMessageDto>>("/api/platform/messages/sms", {
@@ -16,16 +16,16 @@ export function getPagedListApi(input?: SmsMessageGetListInput): Promise<PagedRe
 }
 
 /**
- * 获取短信消息
+ * Get SMS messages
  * @param id Id
- * @returns {SmsMessageDto} 短信消息
+ * @returns {SmsMessageDto} SMS message
  */
 export function getApi(id: string): Promise<SmsMessageDto> {
 	return requestClient.get<SmsMessageDto>(`/api/platform/messages/sms/${id}`);
 }
 
 /**
- * 删除短信消息
+ * Delete SMS messages
  * @param id Id
  * @returns {void}
  */
@@ -34,7 +34,7 @@ export function deleteApi(id: string): Promise<void> {
 }
 
 /**
- * 发送短信消息
+ * Send SMS messages
  * @param id Id
  * @returns {void}
  */

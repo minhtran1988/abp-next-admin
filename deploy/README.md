@@ -1,11 +1,11 @@
-### 注意事项
-> 仅作为演示部署,不建议用作生产环境,由此产生的任何问题,请自行负责.
+### Notes
+> Deployed only as a demonstration and not recommended for use in a production environment. Please be responsible for any problems arising therefrom.
 
-- 请修改本机hosts文件,加入如下条目
+- Please modify the local hosts file and add the following entries
 
 ```shell
-本机IP地址 auth-server
+Local IP address auth-server
 ```
 
-- 身份认证端点:http://auth-server:44385
-- 浏览器访问:http://localhost:40080
+- Authentication endpoint: http://auth-server:44385
+- Browser access: http://localhost:40080

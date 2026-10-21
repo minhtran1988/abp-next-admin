@@ -97,11 +97,11 @@ public class ThemeSettingAppService : ApplicationService, IThemeSettingAppServic
         theme.ProjectConfig.TransitionSetting.OpenPageLoading = GetSettingValue(settings, VueVbenAdminSettingNames.ProjectConfig.TransitionSetting.OpenPageLoading, true);
         theme.ProjectConfig.TransitionSetting.OpenNProgress = GetSettingValue(settings, VueVbenAdminSettingNames.ProjectConfig.TransitionSetting.OpenNProgress, false);
 
-        // 忽略
-        //theme.BeforeMiniInfo.MenuCollapsed = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuCollapsed)?.To<bool>();
-        //theme.BeforeMiniInfo.MenuSplit = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuSplit)?.To<bool>();
-        //theme.BeforeMiniInfo.MenuMode = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuMode);
-        //theme.BeforeMiniInfo.MenuType = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuType);
+        // ignore
+        // theme.BeforeMiniInfo.MenuCollapsed = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuCollapsed)?.To<bool>();
+        // theme.BeforeMiniInfo.MenuSplit = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuSplit)?.To<bool>();
+        // theme.BeforeMiniInfo.MenuMode = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuMode);
+        // theme.BeforeMiniInfo.MenuType = GetSettingValue(settings, VueVbenAdminSettingNames.BeforeMiniInfo.MenuType);
 
         return theme;
     }

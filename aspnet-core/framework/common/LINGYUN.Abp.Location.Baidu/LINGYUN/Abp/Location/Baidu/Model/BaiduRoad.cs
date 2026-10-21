@@ -1,13 +1,13 @@
 ﻿namespace LINGYUN.Abp.Location.Baidu.Model;
 
 /// <summary>
-/// 道路
+/// road
 /// </summary>
 public class BaiduRoad 
 {
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 传入的坐标点距离道路的大概距离
+    /// The approximate distance between the incoming coordinate point and the road
     /// </summary>
     public string? Distance { get; set; }
 }

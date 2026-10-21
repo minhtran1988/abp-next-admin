@@ -9,10 +9,10 @@ public static class MenuConsts
     } = 255;
 
     /// <summary>
-    /// 最大深度
+    /// Maximum depth
     /// </summary>
     /// <remarks>
-    /// 默认为4,仅支持四级子菜单
+    /// The default is 4, only four-level submenus are supported.
     /// </remarks>
     public const int MaxDepth = 4;
 

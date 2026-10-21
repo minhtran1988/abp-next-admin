@@ -1,16 +1,16 @@
-/** 数据访问策略 */
+/** Data access policy */
 enum DataAccessStrategy {
-  /** 可以访问所有数据 */
+  /** All data can be accessed */
   All = 0,
-  /** 仅当前用户组织机构及下级机构 */
+  /** Only the current user organization and subordinate organizations */
   CurrentAndSubOrganizationUnits = 5,
-  /** 仅当前用户组织机构 */
+  /** Only the current user organization */
   CurrentOrganizationUnits = 4,
-  /** 仅当前用户角色 */
+  /** Current user role only */
   CurrentRoles = 3,
-  /** 仅当前用户 */
+  /** Current user only */
   CurrentUser = 2,
-  /** 自定义规则 */
+  /** Custom rules */
   Custom = 1,
 }
 

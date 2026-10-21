@@ -5,9 +5,9 @@ import type { EmailMessageDto, EmailMessageGetListInput } from "#/platform/messa
 import requestClient from "../request";
 
 /**
- * 获取邮件消息分页列表
- * @param {EmailMessageGetListInput} input 参数
- * @returns {Promise<PagedResultDto<EmailMessageDto>>} 邮件消息列表
+ * Get the paging list of email messages
+ * @param {EmailMessageGetListInput} input parameter
+ * @returns {Promise<PagedResultDto<EmailMessageDto>>} email message list
  */
 export function getPagedListApi(input?: EmailMessageGetListInput): Promise<PagedResultDto<EmailMessageDto>> {
 	return requestClient.get<PagedResultDto<EmailMessageDto>>("/api/platform/messages/email", {
@@ -16,16 +16,16 @@ export function getPagedListApi(input?: EmailMessageGetListInput): Promise<Paged
 }
 
 /**
- * 获取邮件消息
+ * Get email messages
  * @param id Id
- * @returns {EmailMessageDto} 邮件消息
+ * @returns {EmailMessageDto} email message
  */
 export function getApi(id: string): Promise<EmailMessageDto> {
 	return requestClient.get<EmailMessageDto>(`/api/platform/messages/email/${id}`);
 }
 
 /**
- * 删除邮件消息
+ * Delete email message
  * @param id Id
  * @returns {void}
  */
@@ -34,7 +34,7 @@ export function deleteApi(id: string): Promise<void> {
 }
 
 /**
- * 发送邮件消息
+ * Send email message
  * @param id Id
  * @returns {void}
  */

@@ -1,23 +1,23 @@
 ﻿namespace LINGYUN.Abp.Identity;
 /// <summary>
-/// 重复登录策略
+/// Repeat login strategy
 /// </summary>
 public enum ConcurrentLoginStrategy
 {
     /// <summary>
-    /// 未定义
+    /// undefined
     /// </summary>
     None,
     /// <summary>
-    /// 限制相同设备登录数量
+    /// Limit the number of logins from the same device
     /// </summary>
     LogoutFromSameTypeDevicesLimit,
     /// <summary>
-    /// 其他相同设备端退出
+    /// Other identical devices exit
     /// </summary>
     LogoutFromSameTypeDevices,
     /// <summary>
-    /// 其他所有设备退出
+    /// All other devices exit
     /// </summary>
     LogoutFromAllDevices
 }

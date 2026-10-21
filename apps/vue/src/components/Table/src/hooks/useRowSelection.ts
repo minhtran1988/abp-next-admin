@@ -25,37 +25,37 @@ export function useRowSelection(
       selectedRowKeys: unref(selectedRowKeysRef),
       onChange: (selectedRowKeys: Key[], selectedRows: any[], isClickCustomRow?: boolean) => {
         if (isClickCustomRow) {
-          // 点击行触发
+          // Triggered by clicking row
 
-          // 维持外部定义的 onChange 回调
+          // Maintain externally defined onChange callback
           rowSelection.onChange?.(selectedRowKeys, selectedRows);
         } else {
-          // 点击 checkbox/radiobox 触发
+          // Click checkbox/radiobox to trigger
 
-          // 取出【当前页】所有 keyValues
+          // Get all keyValues of [current page]
           const currentPageKeys = tableData.value.map((o) => parseRowKeyValue(unref(getRowKey), o));
 
-          // 从【所有分页】已选的 keyValues，且属于【当前页】的部分
+          // Selected keyValues from [All Pages] and belong to [Current Page]
           for (const selectedKey of selectedRowKeysRef.value.filter((k) =>
             currentPageKeys.includes(k),
           )) {
-            // 判断是否已经不存在于【当前页】
+            // Determine whether it no longer exists in [current page]
             if (selectedRowKeys.findIndex((k) => k === selectedKey) < 0) {
-              // 不存在 = 取消勾选
+              // Does not exist = Uncheck
               const removeIndex = selectedRowKeysRef.value.findIndex((k) => k === selectedKey);
               if (removeIndex > -1) {
-                // 取消勾选
+                // Uncheck
                 selectedRowKeysRef.value.splice(removeIndex, 1);
                 selectedRowRef.value.splice(removeIndex, 1);
               }
             }
           }
 
-          // 存在于【当前页】，但不存在于【所有分页】，则认为是新增的
+          // If it exists in [Current Page] but does not exist in [All Pages], it is considered to be new.
           for (const selectedKey of selectedRowKeys) {
             const existIndex = selectedRowKeysRef.value.findIndex((k) => k === selectedKey);
             if (existIndex < 0) {
-              // 新增勾选
+              // Add new check
               selectedRowKeysRef.value.push(selectedKey);
               const record = selectedRows.find(
                 (o) => parseRowKeyValue(unref(getRowKey), o) === selectedKey,
@@ -66,10 +66,10 @@ export function useRowSelection(
             }
           }
 
-          // 赋值调整过的值
+          // Assign the adjusted value
           setSelectedRowKeys(selectedRowKeysRef.value);
 
-          // 维持外部定义的onChange回调
+          // Maintain externally defined onChange callback
           rowSelection.onChange?.(selectedRowKeysRef.value, selectedRowRef.value);
         }
       },
@@ -129,8 +129,8 @@ export function useRowSelection(
       if (found) {
         trueSelectedRows.push(found);
       } else {
-        // 跨页的时候，非本页数据无法得到，暂如此处理
-        // tableData or selectedRowRef 总有数据
+        // When crossing pages, non-page data cannot be obtained. This is the case for the time being.
+        // tableData or selectedRowRef always has data
         if (rows[0]) {
           trueSelectedRows.push({ [parseRowKey(unref(getRowKey), rows[0])]: keyValue });
         }

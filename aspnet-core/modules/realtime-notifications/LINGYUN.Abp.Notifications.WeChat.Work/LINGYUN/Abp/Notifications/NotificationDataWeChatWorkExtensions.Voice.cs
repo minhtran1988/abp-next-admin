@@ -8,10 +8,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string VoiceMessage = Prefix + "voice_message";
 
     /// <summary>
-    /// 语言消息通知
+    /// Language message notification
     /// </summary>
-    /// <param name="notificationData">通知内容</param>
-    /// <param name="voiceMessage">语言消息</param>
+    /// <param name="notificationData">Notification content</param>
+    /// <param name="voiceMessage">Language message</param>
     public static void WithVoiceMessage(
         this NotificationData notificationData,
         MediaMessage voiceMessage)
@@ -20,7 +20,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试获取语言消息
+    /// Try to get the language message
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="voiceMessage"></param>

@@ -6,14 +6,14 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Models;
 public class CropTagGroup : TagGroup
 {
     /// <summary>
-    /// 标签组是否已经被删除，只在指定tag_id进行查询时返回
+    /// Whether the tag group has been deleted will only be returned when querying by specifying tag_id.
     /// </summary>
     [NotNull]
     [JsonProperty("deleted")]
     [JsonPropertyName("deleted")]
     public bool Deleted { get; set; }
     /// <summary>
-    /// 标签列表
+    /// Tag list
     /// </summary>
     [NotNull]
     [JsonProperty("tag")]

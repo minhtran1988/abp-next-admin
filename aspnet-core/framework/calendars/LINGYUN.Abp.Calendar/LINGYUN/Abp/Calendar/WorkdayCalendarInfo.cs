@@ -3,32 +3,32 @@
 namespace LINGYUN.Abp.Calendar;
 
 /// <summary>
-/// 工作日历信息
+/// Work calendar information
 /// </summary>
 public class WorkdayCalendarInfo
 {
     /// <summary>
-    /// 日历名称
+    /// Calendar name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 默认日历
+    /// Default calendar
     /// </summary>
     public bool IsDefault { get; set; }
     /// <summary>
-    /// 工作日范围
+    /// Working day range
     /// </summary>
     public DayOfWeek[] Workdays { get; set; } = default!;
     /// <summary>
-    /// 工作时间范围
+    /// Working time range
     /// </summary>
     public WorkTimeRange[]? WorkTimes { get; set; }
     /// <summary>
-    /// 是否启用工作时间限制
+    /// Whether to enable working time limits
     /// </summary>
     public bool EnableWorkTimeRestriction { get; set; }
     /// <summary>
-    /// 特殊日期列表
+    /// Special date list
     /// </summary>
     public SpecialDateInfo[]? SpecialDates { get; set; }
 }

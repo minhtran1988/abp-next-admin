@@ -2,24 +2,24 @@
 
 namespace LINGYUN.Abp.Identity.Session;
 /// <summary>
-/// 用于会话管理的配置
+/// Configuration for session management
 /// </summary>
 public class IdentitySessionCheckOptions
 {
     /// <summary>
-    /// 保持访问时长
-    /// 默认: 1分钟
+    /// Keep access duration
+    /// Default: 1 minute
     /// </summary>
     /// <remarks>
-    /// 刷新缓存会话间隔时长
+    /// Refresh cache session interval length
     /// </remarks>
     public TimeSpan KeepAccessTimeSpan { get; set; }
     /// <summary>
-    /// 会话同步间隔（ms）
-    /// 默认: 10分钟
+    /// Session synchronization interval (ms)
+    /// Default: 10 minutes
     /// </summary>
     /// <remarks>
-    /// 从缓存同步到持久化的间隔时长
+    /// The interval between cache synchronization and persistence
     /// </remarks>
     public TimeSpan SessionSyncTimeSpan { get; set; }
     public IdentitySessionCheckOptions()

@@ -44,9 +44,9 @@ public class AbpWeChatWorkCommonModule : AbpModule
             options.MapMessage("location", context => context.GetWeChatMessage<GeoLocationMessage>());
             options.MapMessage("link", context => context.GetWeChatMessage<LinkMessage>());
 
-            // 事件处理器
+            // event handler
             options.MessageResolvers.AddIfNotContains(new WeChatWorkEventResolveContributor());
-            // 消息处理器
+            // message handler
             options.MessageResolvers.AddIfNotContains(new WeChatWorkMessageResolveContributor());
         });
     }

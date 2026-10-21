@@ -5,97 +5,97 @@ public static class AliyunSettingNames
     public const string Prefix = "Abp.Aliyun";
 
     /// <summary>
-    /// 认证方式
+    /// Authentication method
     /// </summary>
     public class Authorization
     {
         public const string Prefix = AliyunSettingNames.Prefix + ".Authorization";
         /// <summary>
-        /// 地域ID
+        /// Region ID
         /// </summary>
         public const string RegionId = Prefix + ".RegionId";
         /// <summary>
-        /// RAM账号的AccessKey ID
+        /// AccessKey ID of RAM account
         /// </summary>
         public const string AccessKeyId = Prefix + ".AccessKeyId";
         /// <summary>
-        /// RAM账号的AccessKey Secret
+        /// AccessKey Secret of RAM account
         /// </summary>
         public const string AccessKeySecret = Prefix + ".AccessKeySecret";
         /// <summary>
-        /// 使用STS Token访问
+        /// Use STS Token to access
         /// </summary>
         public const string UseSecurityTokenService = Prefix + ".UseSecurityTokenService";
         /// <summary>
-        /// 使用RAM子账号的AssumeRole方式访问
+        /// Access using AssumeRole method of RAM sub-account
         /// </summary>
         public const string RamRoleArn = Prefix + ".RamRoleArn";
         /// <summary>
-        /// 用户自定义参数。此参数用来区分不同的令牌，可用于用户级别的访问审计
+        /// User-defined parameters. This parameter is used to distinguish different tokens and can be used for user-level access auditing.
         /// </summary>
         public const string RoleSessionName = Prefix + ".RoleSessionName";
         /// <summary>
-        /// 过期时间，单位为秒。
+        /// Expiration time, unit is seconds.
         /// </summary>
         public const string DurationSeconds = Prefix + ".DurationSeconds";
         /// <summary>
-        /// 权限策略。
+        /// Permission policy.
         /// </summary>
         public const string Policy = Prefix + ".Policy";
     }
 
     /// <summary>
-    /// 短信服务
+    /// SMS service
     /// </summary>
     public class Sms
     {
         public const string Prefix = AliyunSettingNames.Prefix + ".Sms";
         /// <summary>
-        /// 阿里云sms服务域名
+        /// Alibaba Cloud SMS service domain name
         /// </summary>
         public const string Domain = Prefix + ".Domain";
         /// <summary>
-        /// 调用方法名称
+        /// Calling method name
         /// </summary>
         public const string ActionName = Prefix + ".ActionName";
         /// <summary>
-        /// 默认版本号
+        /// Default version number
         /// </summary>
         public const string Version = Prefix + ".Version";
         /// <summary>
-        /// 默认签名
+        /// Default signature
         /// </summary>
         public const string DefaultSignName = Prefix + ".DefaultSignName";
         /// <summary>
-        /// 默认短信模板号
+        /// Default SMS template number
         /// </summary>
         public const string DefaultTemplateCode = Prefix + ".DefaultTemplateCode";
         /// <summary>
-        /// 默认号码
+        /// Default number
         /// </summary>
         public const string DefaultPhoneNumber = Prefix + ".DefaultPhoneNumber";
         /// <summary>
-        /// 展示错误给客户端
+        /// Display errors to the client
         /// </summary>
         public const string VisableErrorToClient = Prefix + ".VisableErrorToClient";
     }
 
     /// <summary>
-    /// 云通信号码认证服务
+    /// Cloud communication number authentication service
     /// </summary>
     public class SmsVerifyCode
     {
         public const string Prefix = AliyunSettingNames.Prefix + ".SmsVerifyCode";
         /// <summary>
-        /// 阿里云号码认证服务域名
+        /// Alibaba Cloud number authentication service domain name
         /// </summary>
         public const string Domain = Prefix + ".Domain";
         /// <summary>
-        /// 默认签名
+        /// Default signature
         /// </summary>
         public const string DefaultSignName = Prefix + ".DefaultSignName";
         /// <summary>
-        /// 默认短信模板号
+        /// Default SMS template number
         /// </summary>
         public const string DefaultTemplateCode = Prefix + ".DefaultTemplateCode";
     }

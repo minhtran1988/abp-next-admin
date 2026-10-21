@@ -3,36 +3,36 @@
 namespace LINGYUN.Abp.Location;
 
 /// <summary>
-/// 逆地址
+/// Reverse address
 /// </summary>
 public class ReGeocodeLocation
 {
     /// <summary>
-    /// 详细地址
+    /// Detailed address
     /// </summary>
     public string? Address { get; set; }
     /// <summary>
-    /// 格式化的地址描述
+    /// Formatted address description
     /// </summary>
     public string? FormattedAddress { get; set; }
     /// <summary>
-    /// 国家
+    /// Country
     /// </summary>
     public string? Country { get; set; }
     /// <summary>
-    /// 省份
+    /// Province
     /// </summary>
     public string? Province { get; set; }
     /// <summary>
-    /// 城市
+    /// city
     /// </summary>
     public string? City { get; set; }
     /// <summary>
-    /// 区县
+    /// Districts and counties
     /// </summary>
     public string? District { get; set; }
     /// <summary>
-    /// 街道
+    /// street
     /// </summary>
     public string? Street { get; set; }
     /// <summary>
@@ -40,23 +40,23 @@ public class ReGeocodeLocation
     /// </summary>
     public string? AdCode { get; set; }
     /// <summary>
-    /// 乡镇
+    /// Township
     /// </summary>
     public string? Town { get; set; }
     /// <summary>
-    /// 门牌号
+    /// House number
     /// </summary>
     public string? Number { get; set; }
     /// <summary>
-    /// Poi信息列表
+    /// Poi information list
     /// </summary>
     public IEnumerable<Poi> Pois { get; set; }
     /// <summary>
-    /// 道路信息列表
+    /// Road information list
     /// </summary>
     public IEnumerable<Road> Roads { get; set; }
     /// <summary>
-    /// 附加信息
+    /// Additional information
     /// </summary>
     public IDictionary<string, object> Additionals { get; }
 

@@ -1,25 +1,25 @@
 # LINGYUN.Abp.OpenApi.Authorization
 
-OpenApi 认证授权中间件模块，为 ABP 应用程序提供基于 AppKey/AppSecret 的 API 签名认证中间件功能。
+The OpenApi authentication and authorization middleware module provides AppKey/AppSecret-based API signature authentication middleware functions for ABP applications.
 
-## 功能特性
+## Features
 
-* 提供 OpenApi 认证中间件
-* 支持请求签名验证
-* 支持防重放攻击（Nonce随机数验证）
-* 支持请求时间戳验证
-* 支持客户端白名单验证
-* 支持IP地址白名单验证
-* 支持自定义认证逻辑
-* 支持异常处理和错误信息包装
+* Provide OpenApi authentication middleware
+* Support request signature verification
+* Supports anti-replay attacks (Nonce random number verification)
+* Support request timestamp verification
+* Support client whitelist verification
+* Support IP address whitelist verification
+* Support custom authentication logic
+* Support exception handling and error message packaging
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenApi.Authorization
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpOpenApiAuthorizationModule))]
@@ -29,18 +29,18 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 启用 OpenApi 认证中间件
+1. Enable OpenApi authentication middleware
    ```csharp
    public void Configure(IApplicationBuilder app)
    {
-       // 添加 OpenApi 认证中间件
+       //Add OpenApi authentication middleware
        app.UseOpenApiAuthorization();
    }
    ```
 
-2. 自定义认证服务（可选）
+2. Custom authentication service (optional)
    ```csharp
    public class CustomOpenApiAuthorizationService : OpenApiAuthorizationService
    {
@@ -57,48 +57,48 @@ public class YouProjectModule : AbpModule
        {
        }
 
-       // 重写认证逻辑
+       // Rewrite authentication logic
        public override async Task<bool> AuthorizeAsync(HttpContext httpContext)
        {
-           // 实现自定义认证逻辑
+           // Implement custom authentication logic
            return await base.AuthorizeAsync(httpContext);
        }
    }
    ```
 
-## 认证流程
+## Certification process
 
-1. 验证客户端IP地址
-   * 通过 `IIpAddressChecker` 接口验证客户端IP地址是否在允许范围内
+1. Verify client IP address
+   * Verify whether the client IP address is within the allowed range through the `IIpAddressChecker` interface
 
-2. 验证应用凭证
-   * 验证请求头中的 AppKey、签名、随机数和时间戳
-   * 通过 `IAppKeyStore` 接口获取应用信息
-   * 通过 `IClientChecker` 接口验证客户端是否允许访问
-   * 验证签名的有效性和时效性
+2. Verify application credentials
+   * Verify the AppKey, signature, nonce and timestamp in the request header
+   * Obtain application information through the `IAppKeyStore` interface
+   * Verify whether the client allows access through the `IClientChecker` interface
+   * Verify the validity and timeliness of the signature
 
-## 签名规则
+## Signature rules
 
-1. 请求参数按照参数名ASCII码从小到大排序
-2. 使用URL编码（UTF-8）将排序后的参数转换为查询字符串
-3. 将请求路径和查询字符串拼接后进行MD5加密得到签名
+1. The request parameters are sorted from small to large according to the ASCII code of the parameter name.
+2. Convert the sorted parameters into a query string using URL encoding (UTF-8)
+3. Concatenate the request path and query string and perform MD5 encryption to obtain the signature.
 
-示例：
+Example:
 ```
-请求路径：/api/test
-参数：
+Request path:/api/test
+Parameters:
   appKey=test
   appSecret=123456
   nonce=abc
   t=1577808000000
 
-签名计算：
-1. 参数排序并拼接：appKey=test&appSecret=123456&nonce=abc&t=1577808000000
-2. 拼接请求路径：/api/test?appKey=test&appSecret=123456&nonce=abc&t=1577808000000
-3. URL编码并MD5加密得到最终签名
+Signature calculation:
+1. Parameter sorting and splicing: appKey=test&appSecret=123456&nonce=abc&t=1577808000000
+2. Splicing request path:/api/test?appKey=test&appSecret=123456&nonce=abc&t=1577808000000
+3. URL encoding and MD5 encryption to obtain the final signature
 ```
 
-## 更多信息
+## More information
 
 * [LINGYUN.Abp.OpenApi](../LINGYUN.Abp.OpenApi/README.md)
-* [ABP框架](https://abp.io/)
+* [ABP Framework](https://abp.io/)

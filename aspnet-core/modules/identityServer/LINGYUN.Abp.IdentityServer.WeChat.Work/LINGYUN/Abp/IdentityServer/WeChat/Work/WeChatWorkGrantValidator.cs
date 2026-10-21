@@ -91,7 +91,7 @@ public abstract class WeChatWorkGrantValidator : IExtensionGrantValidator
 
             if (currentUser == null)
             {
-                // TODO 检查启用用户注册是否有必要引用账户模块
+                // TODO Check whether it is necessary to reference the account module to enable user registration
                 if (!await SettingProvider.IsTrueAsync("Abp.Account.IsSelfRegistrationEnabled") ||
                     !await SettingProvider.IsTrueAsync(WeChatWorkSettingNames.EnabledQuickLogin))
                 {

@@ -16,7 +16,7 @@ namespace LINGYUN.Abp.MicroService.AllInOne.EventBus.Distributed
             _localEventBus = localEventBus;
         }
         /// <summary>
-        /// 接收添加用户事件,发布本地事件
+        /// Receive add user events and publish local events
         /// </summary>
         /// <param name="eventData"></param>
         /// <returns></returns>

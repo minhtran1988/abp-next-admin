@@ -1,10 +1,10 @@
 # LINGYUN.Abp.Notifications.TuiJuhe
 
-通知模块的TuiJuhe实现  
+TuiJuhe implementation of notification module
 
-使应用可通过TuiJuhe发布实时通知  
+Enable applications to publish real-time notifications through TuiJuhe
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsTuiJuheModule))]

@@ -7,21 +7,21 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Request;
 public class WeChatWorkGetStrategyTagListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 规则组id
+    /// Rule group id
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_id")]
     [JsonPropertyName("strategy_id")]
     public int StrategyId { get; }
     /// <summary>
-    /// 要查询的标签id
+    /// The tag id to be queried
     /// </summary>
     [CanBeNull]
     [JsonProperty("tag_id")]
     [JsonPropertyName("tag_id")]
     public string[]? TagId { get; }
     /// <summary>
-    /// 要查询的标签组id，返回该标签组以及其下的所有标签信息
+    /// The tag group id to be queried returns the tag group and all tag information under it.
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_id")]

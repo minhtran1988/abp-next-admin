@@ -4,13 +4,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages.Models;
 /// <summary>
-/// 文本消息
+/// Text message
 /// </summary>
 [EventName("text")]
 public class TextMessage : WeChatOfficialGeneralMessage
 {
     /// <summary>
-    /// 文本消息内容
+    /// Text message content
     /// </summary>
     [XmlElement("Content")]
     public string Content { get; set; } = default!;

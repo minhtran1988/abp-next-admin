@@ -6,21 +6,21 @@ namespace LINGYUN.Abp.PushPlus.Message;
 public class SendPushPlusMessageResult
 {
     /// <summary>
-    /// 消息投递状态
-    /// 0-未投递，
-    /// 1-发送中，
-    /// 2-已发送，
-    /// 3-发送失败
+    /// Message delivery status
+    /// 0 - not delivered,
+    /// 1-Sending,
+    /// 2-Sent,
+    /// 3-Sending failed
     /// </summary>
     [JsonProperty("status")] 
     public PushPlusMessageStatus Status { get; set; }
     /// <summary>
-    /// 发送失败原因
+    /// Reason for sending failure
     /// </summary>
     [JsonProperty("errorMessage")]
     public string? ErrorMessage { get; set; }
     /// <summary>
-    /// 更新时间
+    /// Update time
     /// </summary>
     [JsonProperty("updateTime")]
     public DateTime UpdateTime { get; set; }

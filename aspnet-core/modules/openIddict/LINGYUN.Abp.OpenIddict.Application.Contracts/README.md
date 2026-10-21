@@ -3,48 +3,48 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcolinin%2Fabp-next-admin%2Fmaster%2Faspnet-core%2Fmodules%2FopenIddict%2FLINGYUN.Abp.OpenIddict.Application.Contracts%2FLINGYUN.Abp.OpenIddict.Application.Contracts.csproj)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/LINGYUN.Abp.OpenIddict.Application.Contracts.svg?style=flat-square)](https://www.nuget.org/packages/LINGYUN.Abp.OpenIddict.Application.Contracts)
 
-## 简介
+## Introduction
 
-`LINGYUN.Abp.OpenIddict.Application.Contracts` 是 OpenIddict 应用服务的契约层，定义了 OpenIddict 管理所需的接口、DTO和权限。
+`LINGYUN.Abp.OpenIddict.Application.Contracts` is the contract layer of the OpenIddict application service and defines the interfaces, DTOs and permissions required for OpenIddict management.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 定义 OpenIddict 应用服务接口
+* Define OpenIddict application service interface
   * IOpenIddictApplicationAppService
   * IOpenIddictAuthorizationAppService
   * IOpenIddictTokenAppService
   * IOpenIddictScopeAppService
 
-* 提供标准化的 DTO 对象
+* Provide standardized DTO objects
   * OpenIddictApplicationDto
   * OpenIddictAuthorizationDto
   * OpenIddictTokenDto
   * OpenIddictScopeDto
-  * 以及相应的创建和更新 DTO
+  * And the corresponding creation and update DTO
 
-* 权限定义
+* Permission definition
   * OpenIddict.Applications
   * OpenIddict.Authorizations
   * OpenIddict.Tokens
   * OpenIddict.Scopes
 
-* 多语言支持
-  * 内置中文和英文本地化资源
-  * 支持自定义语言扩展
+*Multi-language support
+  * Built-in Chinese and English localization resources
+  * Support custom language extensions
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenIddict.Application.Contracts
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpOpenIddictApplicationContractsModule))]` 到你的模块类。
+1. Add `[DependsOn(typeof(AbpOpenIddictApplicationContractsModule))]` to your module class.
 
-2. 注入并使用相应的应用服务接口：
+2. Inject and use the corresponding application service interface:
 
 ```csharp
 public class YourService
@@ -65,9 +65,9 @@ public class YourService
 }
 ```
 
-## 权限
+## Permissions
 
-模块定义了以下权限：
+The module defines the following permissions:
 
 * OpenIddict.Applications
   * OpenIddict.Applications.Create
@@ -84,14 +84,14 @@ public class YourService
 * OpenIddict.Tokens
   * OpenIddict.Tokens.Delete
 
-## 本地化
+## Localization
 
-模块支持多语言，内置了以下语言：
+The module supports multiple languages and has the following built-in languages:
 
-* 英文 (en)
-* 简体中文 (zh-Hans)
+* English (en)
+* Simplified Chinese (zh-Hans)
 
-可以通过以下方式扩展新的语言：
+New languages can be extended in the following ways:
 
 ```csharp
 Configure<AbpLocalizationOptions>(options =>

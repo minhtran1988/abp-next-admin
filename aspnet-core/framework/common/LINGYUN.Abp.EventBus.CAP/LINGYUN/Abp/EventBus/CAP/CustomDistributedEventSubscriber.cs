@@ -41,7 +41,7 @@ internal class CustomDistributedEventSubscriber : ICustomDistributedEventSubscri
                 if (!factories.Contains(factory))
                 {
                     factories.Add(factory);
-                    // TODO 客户端订阅
+                    // TODO client subscription
                 }
             });
     }
@@ -54,7 +54,7 @@ internal class CustomDistributedEventSubscriber : ICustomDistributedEventSubscri
                 if (factories.Contains(factory))
                 {
                     factories.Remove(factory);
-                    // TODO 客户端退订
+                    // TODO client unsubscribes
                 }
             });
     }

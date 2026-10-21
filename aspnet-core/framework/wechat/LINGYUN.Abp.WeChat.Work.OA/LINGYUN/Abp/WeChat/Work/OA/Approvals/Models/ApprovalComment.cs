@@ -5,40 +5,40 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 审批申请备注信息
+/// Approval application remark information
 /// </summary>
 public class ApprovalComment
 {
     /// <summary>
-    /// 备注人信息
+    /// Note person information
     /// </summary>
     [CanBeNull]
     [JsonProperty("commentUserInfo")]
     [JsonPropertyName("commentUserInfo")]
     public ApprovalUser? CommentUserInfo { get; set; }
     /// <summary>
-    /// 审批申请提交时间,Unix时间戳
+    /// Approval application submission time, Unix timestamp
     /// </summary>
     [NotNull]
     [JsonProperty("commenttime")]
     [JsonPropertyName("commenttime")]
     public long CommentTime { get; set; }
     /// <summary>
-    /// 备注文本内容
+    /// Remark text content
     /// </summary>
     [NotNull]
     [JsonProperty("commentcontent")]
     [JsonPropertyName("commentcontent")]
     public string CommentContent { get; set; } = default!;
     /// <summary>
-    /// 备注id
+    /// Remark id
     /// </summary>
     [NotNull]
     [JsonProperty("commentid")]
     [JsonPropertyName("commentid")]
     public string CommentId { get; set; } = default!;
     /// <summary>
-    /// 备注附件id，可能有多个，微盘文件无法获取
+    /// Note attachment id, there may be multiple, the microdisk file cannot be obtained
     /// </summary>
     [CanBeNull]
     [JsonProperty("media_id")]

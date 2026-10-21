@@ -8,7 +8,7 @@ import { getResources } from "@/utils/abp/localzations/get-resources";
 /*
 	const { t: $t } = useTranslation();
 	const { L } = useLocalizer();
-  console.log(L('DisplayName:ClaimValue')) //和getI18nLocales()获取的不同，这个是没有前缀key的
+  console.log(L('DisplayName:ClaimValue')) //Different from getI18nLocales(), this one does not have a prefix key
   console.log($t('AbpIdentity.DisplayName:ClaimValue'))
 */
 export function useLocalizer(resourceNames?: string | string[], callback?: () => void) {
@@ -24,7 +24,7 @@ export function useLocalizer(resourceNames?: string | string[], callback?: () =>
 	}, [locale, callback]);
 
 	/**
-	 * 注意，使用react hook 来存储 key
+	 * Note, use react hook to store key
 	 * @param key
 	 * @param args
 	 * @returns
@@ -34,7 +34,7 @@ export function useLocalizer(resourceNames?: string | string[], callback?: () =>
 		return mergedResources[key] ? format(mergedResources[key], args ?? []) : key;
 	}
 	/**
-	 * 实际没调用国react hook,可以在很多地方调用
+	 * The national react hook is not actually called, it can be called in many places
 	 * @param resource
 	 * @param key
 	 * @param args

@@ -1,18 +1,18 @@
 # LINGYUN.Abp.WeChat.Work.Application.Contracts
 
-企业微信应用服务契约模块，提供企业微信应用开发的应用层服务接口定义。
+The enterprise WeChat application service contract module provides application layer service interface definitions for enterprise WeChat application development.
 
-## 功能特性
+## Features
 
-* 通讯录管理服务接口
-* 应用管理服务接口
-* 消息推送服务接口
-* 客户联系服务接口
-* 身份验证服务接口
-* 企业支付服务接口
-* 电子发票服务接口
+* Address book management service interface
+* Application management service interface
+* Message push service interface
+* Customer contact service interface
+* Authentication service interface
+* Enterprise payment service interface
+* Electronic invoice service interface
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkApplicationContractsModule))]
@@ -22,50 +22,50 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 服务接口
+## Service interface
 
-### 通讯录管理
+### Address book management
 
 * `IWeChatWorkContactService`
-  * `CreateDepartmentAsync`: 创建部门
-  * `UpdateDepartmentAsync`: 更新部门
-  * `DeleteDepartmentAsync`: 删除部门
-  * `CreateUserAsync`: 创建成员
-  * `UpdateUserAsync`: 更新成员
-  * `DeleteUserAsync`: 删除成员
-  * `CreateTagAsync`: 创建标签
-  * `UpdateTagAsync`: 更新标签
-  * `DeleteTagAsync`: 删除标签
+  * `CreateDepartmentAsync`: Create department
+  * `UpdateDepartmentAsync`: update department
+  * `DeleteDepartmentAsync`: delete department
+  * `CreateUserAsync`: Create members
+  * `UpdateUserAsync`: Update members
+  * `DeleteUserAsync`: delete members
+  * `CreateTagAsync`: Create a tag
+  * `UpdateTagAsync`: Update tag
+  * `DeleteTagAsync`: delete tag
 
-### 应用管理
+### Application Management
 
 * `IWeChatWorkAgentService`
-  * `GetAgentAsync`: 获取应用
-  * `SetAgentAsync`: 设置应用
-  * `GetAgentListAsync`: 获取应用列表
-  * `SetWorkbenchTemplateAsync`: 设置工作台模板
+  * `GetAgentAsync`: Get the application
+  * `SetAgentAsync`: Set application
+  * `GetAgentListAsync`: Get the application list
+  * `SetWorkbenchTemplateAsync`: Set the workbench template
 
-### 消息推送
+### Message push
 
 * `IWeChatWorkMessageService`
-  * `SendTextAsync`: 发送文本消息
-  * `SendImageAsync`: 发送图片消息
-  * `SendVoiceAsync`: 发送语音消息
-  * `SendVideoAsync`: 发送视频消息
-  * `SendFileAsync`: 发送文件消息
-  * `SendTextCardAsync`: 发送文本卡片消息
-  * `SendNewsAsync`: 发送图文消息
-  * `SendTemplateCardAsync`: 发送模板卡片消息
+  * `SendTextAsync`: Send text message
+  * `SendImageAsync`: Send image message
+  * `SendVoiceAsync`: Send voice message
+  * `SendVideoAsync`: Send video message
+  * `SendFileAsync`: Send file message
+  * `SendTextCardAsync`: Send text card message
+  * `SendNewsAsync`: Send graphic messages
+  * `SendTemplateCardAsync`: Send template card message
 
-## 权限
+## Permissions
 
-* `WeChatWork.Contact`: 通讯录管理
-* `WeChatWork.Agent`: 应用管理
-* `WeChatWork.Message`: 消息管理
-* `WeChatWork.Customer`: 客户管理
-* `WeChatWork.Payment`: 企业支付
-* `WeChatWork.Invoice`: 电子发票
+* `WeChatWork.Contact`: Address book management
+* `WeChatWork.Agent`: Application management
+* `WeChatWork.Message`: Message management
+* `WeChatWork.Customer`: customer management
+* `WeChatWork.Payment`: Enterprise payment
+* `WeChatWork.Invoice`: electronic invoice
 
-## 更多文档
+## More documentation
 
-* [企业微信应用服务契约模块文档](README.EN.md)
+* [Enterprise WeChat Application Service Contract Module Document](README.EN.md)

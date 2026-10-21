@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 属性类型
+/// Property type
 /// </summary>
-[Description("属性类型")]
+[Description("Property Type")]
 public enum AttributeType
 {
     /// <summary>
-    /// 文本
+    /// text
     /// </summary>
-    [Description("文本")]
+    [Description("text")]
     Text = 0,
     /// <summary>
-    /// 网页
+    /// Web page
     /// </summary>
-    [Description("网页")]
+    [Description("Webpage")]
     Web = 1
 }

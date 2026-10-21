@@ -117,7 +117,7 @@ const showRefresh = computed(() => {
 
 const { push } = useRouter();
 
-// 返回首页
+// Return to home page
 function back() {
   push(props.homePath);
 }

@@ -67,7 +67,7 @@ class MainModule extends Module {
       dio.interceptors.add(LoggerInterceptor());
       dio.interceptors.add(ApiAuthorizationInterceptor());
       dio.interceptors.add(AppendHeaderInterceptor());
-      //dio.interceptors.add(AbpWrapperRemoteServiceErrorInterceptor());
+      // dio.interceptors.add(AbpWrapperRemoteServiceErrorInterceptor());
       dio.interceptors.add(WrapperResultInterceptor());
       dio.interceptors.add(ExceptionInterceptor(get()));
 
@@ -76,11 +76,11 @@ class MainModule extends Module {
     lazyInject<TranslationService>((ioc) {
       var environmentService = get<EnvironmentService>();
       var environment = environmentService.getEnvironment();
-      // 使用资源文件中的本地化文档
+      // Use localized documents in resource files
       if (environment.localization.useLocalResources == true) {
         return TranslationResService(ioc);
       }
-      // 使用本地化服务提供的本地化支持
+      // Use the localization support provided by the localization service
       return ioc.get<LocalizationService>();
     }, fenix: true);
   }
@@ -97,7 +97,7 @@ class MainModule extends Module {
     await InitialUtils.initialState(get<Injector>());
 
     InitialUtils.initComponent(get<Injector>());
-    //InitialUtils.initThemeData();
+    // InitialUtils.initThemeData();
 
     return moduleRoutes;
   }

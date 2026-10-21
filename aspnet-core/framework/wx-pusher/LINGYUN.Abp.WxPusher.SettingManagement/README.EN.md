@@ -2,7 +2,7 @@
 
 WxPusher setting management module, providing management functionality for WxPusher-related settings.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

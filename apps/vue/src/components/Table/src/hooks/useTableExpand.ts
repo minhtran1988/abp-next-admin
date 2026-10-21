@@ -72,7 +72,7 @@ export function useTableExpand(
     return keyValues;
   }
 
-  // 获取展开路径 keyValues
+  // Get the expansion path keyValues
   function getKeyPaths(
     records: Recordable[],
     childrenColumnName: string,
@@ -96,7 +96,7 @@ export function useTableExpand(
     return false;
   }
 
-  // 手风琴展开
+  // Accordion expansion
   function expandRowAccordion(keyValue: Key) {
     const { childrenColumnName } = unref(propsRef);
     const paths: Array<Key> = [];
@@ -104,11 +104,11 @@ export function useTableExpand(
     expandedRowKeys.value = paths;
   }
 
-  // 监听展开事件，用于支持手风琴展开效果
+  // Listen to the expansion event to support the accordion expansion effect
   function handleTableExpand(expanded, record) {
-    // 手风琴开关
-    // isTreeTable 或 expandRowByClick 时支持
-    // 展开操作
+    // accordion switch
+    // Supported when isTreeTable or expandRowByClick
+    // Expand operation
     if (
       propsRef.value.accordion &&
       (propsRef.value.isTreeTable || propsRef.value.expandRowByClick) &&

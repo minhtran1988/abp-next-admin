@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Elsa.Activities.IM
 
-Elsa工作流的即时消息活动集成模块
+Instant messaging activity integration module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供 **SendMessage** 活动用于发送即时消息
-  * 支持发送用户消息和群组消息
-  * 集成ABP框架的 `IMessageSender` 接口
-  * 支持多租户
+* Provide **SendMessage** activity for sending instant messages
+  * Support sending user messages and group messages
+  * Integrate the `IMessageSender` interface of the ABP framework
+  *Support multi-tenancy
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -25,21 +25,21 @@ public class YouProjectModule : AbpModule
 ```json
 {
     "Elsa": {
-        "IM": true    // 启用即时消息活动
+        "IM": true // Enable instant messaging activity
     }
 }
 ```
 
-## 活动参数
+## Activity parameters
 
-* **Content**: 消息内容
-* **FormUser**: 发送者用户ID
-* **FormUserName**: 发送者用户名
-* **To**: 接收用户ID（用户消息）
-* **GroupId**: 接收群组ID（群组消息）
+* **Content**: message content
+* **FormUser**: Sender user ID
+* **FormUserName**: Sender user name
+* **To**: Receive user ID (user message)
+* **GroupId**: Receive group ID (group message)
 
-## 输出参数
+## Output parameters
 
-* **MessageId**: 发送的消息ID
+* **MessageId**: sent message ID
 
 [English](./README.EN.md)

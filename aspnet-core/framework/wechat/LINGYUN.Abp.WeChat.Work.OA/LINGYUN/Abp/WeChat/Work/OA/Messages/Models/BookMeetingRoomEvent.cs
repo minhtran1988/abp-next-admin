@@ -5,21 +5,21 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Messages.Models;
 /// <summary>
-/// 会议室预定事件
+/// Meeting room reservation event
 /// </summary>
 /// <remarks>
-/// 当用户在企业微信预定会议室时，会触发该事件回调给会议室系统应用。
+/// When a user reserves a conference room on Enterprise WeChat, this event will be triggered to call back to the conference room system application.
 /// </remarks>
 [EventName("book_meeting_room")]
 public class BookMeetingRoomEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [XmlElement("MeetingRoomId")]
     public int MeetingRoomId { get; set; }
     /// <summary>
-    /// 预定id，可根据该ID查询具体的会议预定情况
+    /// Booking id, you can query the specific meeting booking status based on this ID
     /// </summary>
     [XmlElement("BookingId")]
     public string BookingId { get; set; } = default!;

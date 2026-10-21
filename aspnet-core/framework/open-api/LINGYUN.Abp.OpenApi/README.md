@@ -1,24 +1,24 @@
 # LINGYUN.Abp.OpenApi
 
-OpenApi 认证模块，为 ABP 应用程序提供基于 AppKey/AppSecret 的 API 签名认证功能。
+OpenApi authentication module provides AppKey/AppSecret-based API signature authentication function for ABP applications.
 
-## 功能特性
+## Features
 
-* 支持 AppKey/AppSecret 认证
-* 支持请求签名验证
-* 支持防重放攻击（Nonce随机数验证）
-* 支持请求时间戳验证
-* 支持客户端白名单
-* 支持IP地址白名单
-* 支持多语言错误消息
+* Support AppKey/AppSecret authentication
+* Support request signature verification
+* Supports anti-replay attacks (Nonce random number verification)
+* Support request timestamp verification
+* Support client whitelist
+* Support IP address whitelist
+* Support multi-language error messages
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenApi
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpOpenApiModule))]
@@ -28,33 +28,33 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "OpenApi": {
-    "IsEnabled": true,                   // 是否启用API签名检查，默认: true
-    "RequestNonceExpireIn": "00:10:00",  // 请求随机数过期时间，默认: 10分钟
-    "AppDescriptors": [                  // AppKey配置列表
+    "IsEnabled": true, // Whether to enable API signature checking, default: true
+    "RequestNonceExpireIn": "00:10:00", //Request random number expiration time, default: 10 minutes
+    "AppDescriptors": [ // AppKey configuration list
       {
-        "AppName": "测试应用",           // 应用名称
-        "AppKey": "你的AppKey",          // 应用标识
-        "AppSecret": "你的AppSecret",     // 应用密钥
-        "AppToken": "可选的Token",       // 可选的应用令牌
-        "SignLifetime": 300              // 签名有效期（秒）
+        "AppName": "Test Application", // Application name
+        "AppKey": "Your AppKey", // Application ID
+        "AppSecret": "Your AppSecret", // Application secret
+        "AppToken": "Optional Token", // Optional application token
+        "SignLifetime": 300 // Signature validity period (seconds)
       }
     ]
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置 AppKey/AppSecret
-   * 在配置文件中添加 AppKey 和 AppSecret
-   * 或者实现自定义的 `IAppKeyStore` 接口来管理 AppKey
+1. Configure AppKey/AppSecret
+   * Add AppKey and AppSecret to the configuration file
+   * Or implement a custom `IAppKeyStore` interface to manage AppKey
 
-2. 启用 OpenApi 认证
+2. Enable OpenApi authentication
    ```csharp
    public override void ConfigureServices(ServiceConfigurationContext context)
    {
@@ -63,43 +63,43 @@ public class YouProjectModule : AbpModule
    }
    ```
 
-3. 自定义客户端验证（可选）
+3. Custom client verification (optional)
    ```csharp
    public class CustomClientChecker : IClientChecker
    {
        public Task<bool> IsGrantAsync(string clientId, CancellationToken cancellationToken = default)
        {
-           // 实现自定义的客户端验证逻辑
+           // Implement custom client verification logic
            return Task.FromResult(true);
        }
    }
    ```
 
-4. 自定义IP地址验证（可选）
+4. Custom IP address verification (optional)
    ```csharp
    public class CustomIpAddressChecker : IIpAddressChecker
    {
        public Task<bool> IsGrantAsync(string ipAddress, CancellationToken cancellationToken = default)
        {
-           // 实现自定义的IP地址验证逻辑
+           // Implement customized IP address verification logic
            return Task.FromResult(true);
        }
    }
    ```
 
-## 错误代码
+## Error code
 
-* AbpOpenApi:9100 - 无效的应用标识
-* AbpOpenApi:9101 - 未携带应用标识
-* AbpOpenApi:9110 - 无效的签名
-* AbpOpenApi:9111 - 未携带签名
-* AbpOpenApi:9210 - 请求超时或会话已过期
-* AbpOpenApi:9211 - 未携带时间戳标识
-* AbpOpenApi:9220 - 重复发起的请求
-* AbpOpenApi:9221 - 未携带随机数
-* AbpOpenApi:9300 - 客户端不在允许的范围内
-* AbpOpenApi:9400 - 客户端IP不在允许的范围内
+* AbpOpenApi:9100 - Invalid application identifier
+* AbpOpenApi:9101 - No application identifier is carried
+*AbpOpenApi:9110 - Invalid signature
+* AbpOpenApi:9111 - No signature carried
+* AbpOpenApi:9210 - Request timed out or session has expired
+* AbpOpenApi:9211 - No timestamp identifier is carried
+* AbpOpenApi:9220 - Duplicate request
+* AbpOpenApi:9221 - No random number is carried
+* AbpOpenApi:9300 - Client is not within allowed range
+* AbpOpenApi:9400 - Client IP is not within the allowed range
 
-## 更多信息
+## More information
 
-* [ABP框架](https://abp.io/)
+* [ABP Framework](https://abp.io/)

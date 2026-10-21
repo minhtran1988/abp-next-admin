@@ -1,20 +1,20 @@
 # LINGYUN.Abp.UI.Navigation
 
-简体中文 | [English](./README.EN.md)
+Simplified Chinese | [English](./README.EN.md)
 
-菜单导航模块，提供可扩展自定义的菜单项  
+Menu navigation module, providing scalable and customizable menu items
 
-## 功能特性
+## Features
 
-* 支持自定义菜单项定义和扩展
-* 支持多租户
-* 支持菜单项的层级结构
-* 支持菜单项的排序
-* 支持菜单项的可见性和禁用状态
-* 支持菜单项的图标和重定向
-* 支持菜单种子数据的初始化
+* Support custom menu item definition and expansion
+*Support multi-tenancy
+* Support hierarchical structure of menu items
+* Supports sorting of menu items
+* Support the visibility and disabled state of menu items
+* Support icons and redirection of menu items
+* Support initialization of menu seed data
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpUINavigationModule))]
@@ -24,11 +24,11 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-### 1. 定义菜单提供者
+### 1. Define menu provider
 
-通过实现 `INavigationDefinitionProvider` 接口来定义菜单项：
+Menu items are defined by implementing the `INavigationDefinitionProvider` interface:
 
 ```csharp
 public class FakeNavigationDefinitionProvider : NavigationDefinitionProvider
@@ -42,68 +42,68 @@ public class FakeNavigationDefinitionProvider : NavigationDefinitionProvider
     {
         var dashboard = new ApplicationMenu(
             name: "Vben Dashboard",
-            displayName: "仪表盘",
+            displayName: "Dashboard",
             url: "/dashboard",
             component: "",
-            description: "仪表盘",
+            description: "Dashboard",
             icon: "ion:grid-outline",
             redirect: "/dashboard/analysis");
 
          dashboard.AddItem(
             new ApplicationMenu(
             name: "Analysis",
-            displayName: "分析页",
+            displayName: "Analysis Page",
             url: "/dashboard/analysis",
             component: "/dashboard/analysis/index",
-            description: "分析页"));
+            description: "Analysis page"));
 
          return new NavigationDefinition(dashboard);
     }
 }
 ```
 
-### 2. 初始化菜单数据
+### 2. Initialize menu data
 
-通过实现 `INavigationSeedContributor` 接口来初始化菜单种子数据：
+Initialize menu seed data by implementing the `INavigationSeedContributor` interface:
 
 ```csharp
 public class YourNavigationDataSeeder : INavigationSeedContributor
 {
     public async Task SeedAsync(NavigationSeedContext context)
     {
-        // 在这里初始化菜单数据
+        //Initialize menu data here
     }
 }
 ```
 
-## 菜单项属性说明
+## Menu item attribute description
 
-* Name - 菜单项名称（唯一标识）
-* DisplayName - 显示名称
-* Description - 说明
-* Url - 路径
-* Component - 组件路径
-* Redirect - 重定向路径
-* Icon - 图标
-* Order - 排序（默认1000）
-* IsDisabled - 是否禁用
-* IsVisible - 是否可见
-* Items - 子菜单项集合
-* ExtraProperties - 扩展属性
-* MultiTenancySides - 多租户选项
+* Name - menu item name (unique identifier)
+* DisplayName - display name
+* Description - description
+* Url - path
+* Component - component path
+* Redirect - redirect path
+* Icon - icon
+* Order - sorting (default 1000)
+* IsDisabled - whether it is disabled
+* IsVisible - whether it is visible
+* Items - collection of submenu items
+* ExtraProperties - extended properties
+*MultiTenancySides - multi-tenant options
 
-## 最佳实践
+## Best Practices
 
-1. 菜单项命名建议使用有意义的名称，便于管理和维护
-2. 合理使用菜单项的排序，保持界面的整洁
-3. 使用图标增强用户体验
-4. 适当使用重定向功能优化导航体验
-5. 根据实际需求控制菜单项的可见性和禁用状态
+1. It is recommended to use meaningful names for menu items to facilitate management and maintenance.
+2. Use the order of menu items rationally to keep the interface clean and tidy
+3. Use icons to enhance user experience
+4. Appropriate use of redirection function to optimize navigation experience
+5. Control the visibility and disabled status of menu items according to actual needs
 
-## 注意事项
+## Notes
 
-1. 菜单项的Name必须唯一
-2. 子菜单项会继承父菜单项的多租户设置
-3. 菜单项的排序值越小越靠前
-4. 禁用的菜单项仍然可见，但无法点击
-5. 组件路径应与前端路由配置保持一致
+1. The name of the menu item must be unique
+2. Submenu items will inherit the multi-tenant settings of the parent menu item.
+3. The smaller the sorting value of the menu item, the higher it is.
+4. Disabled menu items are still visible but cannot be clicked
+5. The component path should be consistent with the front-end routing configuration

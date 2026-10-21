@@ -7,50 +7,50 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Request;
 /// <summary>
-/// 编辑规则组及其管理范围请求参数
+/// Edit rule group and its management scope request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E7%BC%96%E8%BE%91%E8%A7%84%E5%88%99%E7%BB%84%E5%8F%8A%E5%85%B6%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E7%BC%96%E8%BE%91 %E8%A7%84%E5%88%99%E7%BB%84%E5%8F%8A%E5%85%B6%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4" />
 /// </remarks>
 public class WeChatWorkUpdateCustomerStrategyRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 规则组id
+    /// Rule group id
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_id")]
     [JsonPropertyName("strategy_id")]
     public int StrategyId { get; }
     /// <summary>
-    /// 规则组名称
+    /// Rule group name
     /// </summary>
     [CanBeNull]
     [JsonProperty("strategy_name")]
     [JsonPropertyName("strategy_name")]
     public string? StrategyName { get; set; }
     /// <summary>
-    /// 规则组管理员userid列表
+    /// Rule group administrator userid list
     /// </summary>
     [CanBeNull]
     [JsonProperty("admin_list")]
     [JsonPropertyName("admin_list")]
     public string[]? AdminList { get; set; }
     /// <summary>
-    /// 规则组权限
+    /// Rule group permissions
     /// </summary>
     [CanBeNull]
     [JsonProperty("privilege")]
     [JsonPropertyName("privilege")]
     public CustomerStrategyPrivilege? Privilege { get; set; }
     /// <summary>
-    /// 新增管理范围
+    /// Add new management scope
     /// </summary>
     [NotNull]
     [JsonProperty("range_add")]
     [JsonPropertyName("range_add")]
     public List<CustomerStrategyRange> CreateRange { get; private set; }
     /// <summary>
-    /// 删除管理范围
+    /// Delete management scope
     /// </summary>
     [NotNull]
     [JsonProperty("range_del")]

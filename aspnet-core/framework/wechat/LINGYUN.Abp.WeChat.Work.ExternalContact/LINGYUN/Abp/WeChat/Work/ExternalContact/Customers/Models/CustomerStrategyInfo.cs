@@ -4,40 +4,40 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 规则组详情
+/// Rule group details
 /// </summary>
 public class CustomerStrategyInfo : CustomerStrategy
 {
     /// <summary>
-    /// 父规则组id， 如果当前规则组没父规则组，则为0
+    /// Parent rule group id, if the current rule group has no parent rule group, it is 0
     /// </summary>
     [NotNull]
     [JsonProperty("parent_id")]
     [JsonPropertyName("parent_id")]
     public int ParentId { get; set; }
     /// <summary>
-    /// 规则组名称
+    /// Rule group name
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_name")]
     [JsonPropertyName("strategy_name")]
     public string StrategyName { get; set; } = default!;
     /// <summary>
-    /// 规则组创建时间戳
+    /// Rule group creation timestamp
     /// </summary>
     [NotNull]
     [JsonProperty("create_time")]
     [JsonPropertyName("create_time")]
     public long CreateTime { get; set; }
     /// <summary>
-    /// 规则组管理员userid列表
+    /// Rule group administrator userid list
     /// </summary>
     [NotNull]
     [JsonProperty("admin_list")]
     [JsonPropertyName("admin_list")]
     public string[] AdminList { get; set; } = default!;
     /// <summary>
-    /// 规则组权限
+    /// Rule group permissions
     /// </summary>
     [NotNull]
     [JsonProperty("privilege")]

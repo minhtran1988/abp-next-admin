@@ -18,7 +18,7 @@ namespace LINGYUN.Abp.Encryption.Console
 
             while (true)
             {
-                WriteLine("D:解密 E:加密 Q: 退出");
+                WriteLine("D: Decrypt E: Encrypt Q: Exit");
 
                 var opt = ReadLine();
                 var en = false;
@@ -31,18 +31,18 @@ namespace LINGYUN.Abp.Encryption.Console
                 if ("E".Equals(opt, StringComparison.InvariantCultureIgnoreCase))
                 {
                     en = true;
-                    WriteLine("请输入需要加密的字符串");
+                    WriteLine("Please enter the string that needs to be encrypted");
                 }
                 else
                 {
-                    WriteLine("请输入需要解密的字符串");
+                    WriteLine("Please enter the string to be decrypted");
                 }
 
                 var sourceChr = ReadLine();
                 var encryptionService = application.ServiceProvider.GetRequiredService<IStringEncryptionService>();
                 WriteLine(en ? encryptionService.Encrypt(sourceChr) : encryptionService.Decrypt(sourceChr));
 
-                WriteLine("按任意键继续");
+                WriteLine("Press any key to continue");
 
                 ReadKey();
 

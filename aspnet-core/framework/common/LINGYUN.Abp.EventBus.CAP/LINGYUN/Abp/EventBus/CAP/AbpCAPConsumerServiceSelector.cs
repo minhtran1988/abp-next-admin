@@ -14,7 +14,7 @@ using Volo.Abp.EventBus.Distributed;
 namespace LINGYUN.Abp.EventBus.CAP;
 
 /// <summary>
-/// 消费者查找器
+/// Consumer finder
 /// </summary>
 [Dependency(ServiceLifetime.Singleton, ReplaceServices = true)]
 [ExposeServices(typeof(IConsumerServiceSelector), typeof(AbpCAPConsumerServiceSelector))]
@@ -22,15 +22,15 @@ namespace LINGYUN.Abp.EventBus.CAP;
 public class AbpCAPConsumerServiceSelector : ConsumerServiceSelector
 {
     /// <summary>
-    /// CAP配置
+    /// CAP configuration
     /// </summary>
     protected CapOptions CapOptions { get; }
     /// <summary>
-    /// Abp分布式事件配置
+    /// Abp distributed event configuration
     /// </summary>
     protected AbpDistributedEventBusOptions AbpDistributedEventBusOptions { get; }
     /// <summary>
-    /// 服务提供者
+    /// Service provider
     /// </summary>
     protected IServiceProvider ServiceProvider { get; }
 
@@ -47,14 +47,14 @@ public class AbpCAPConsumerServiceSelector : ConsumerServiceSelector
         AbpDistributedEventBusOptions = distributedEventBusOptions.Value;
     }
     /// <summary>
-    /// 查找消费者集合
+    /// Find consumer collection
     /// </summary>
     /// <param name="provider"></param>
     /// <returns></returns>
     protected override IEnumerable<ConsumerExecutorDescriptor> FindConsumersFromInterfaceTypes(IServiceProvider provider)
     {
         var executorDescriptorList = base.FindConsumersFromInterfaceTypes(provider).ToList();
-        //handlers
+        // handlers
         var handlers = AbpDistributedEventBusOptions.Handlers;
         var logger = provider.GetRequiredService<ILogger<AbpCAPConsumerServiceSelector>>();
         var consumerExecutorDescriptorComparer = new ConsumerExecutorDescriptorComparer(logger);
@@ -77,26 +77,26 @@ public class AbpCAPConsumerServiceSelector : ConsumerServiceSelector
                     {
                         if (executorDescriptorList.Any(x => consumerExecutorDescriptorComparer.Equals(x, consumerExecutorDescriptor)))
                         {
-                            // 如果存在多个消费者,后续的消费者需要重新定义分组才能不被 CAP 框架过滤掉
+                            // If there are multiple consumers, subsequent consumers need to redefine the group in order not to be filtered out by the CAP framework
                             var groupAliaName = handler.IsGenericType
                                 ? handler.GetGenericTypeDefinition().Name
                                 : handler.Name;
 
-                            // TODO: 2021-05-21 直接使用类型全名作为GroupName会引起用户困惑,加上组别名称在前
+                            // TODO: 2021-05-21 Directly using the full name of the type as GroupName will cause confusion for users. Add the group name first.
                             consumerExecutorDescriptor.Attribute.Group = $"{CapOptions.DefaultGroupName}.{groupAliaName}";
                             SetSubscribeAttribute(consumerExecutorDescriptor.Attribute);
 
                         }
                         executorDescriptorList.Add(consumerExecutorDescriptor);
                     }
-                    //Subscribe(genericArgs[0], new IocEventHandlerFactory(ServiceScopeFactory, handler));
+                    // Subscribe(genericArgs[0], new IocEventHandlerFactory(ServiceScopeFactory, handler));
                 }
             }
         }
         return executorDescriptorList;
     }
     /// <summary>
-    /// 获取事件处理器集合
+    /// Get the event handler collection
     /// </summary>
     /// <param name="eventType"></param>
     /// <param name="typeInfo"></param>
@@ -110,7 +110,7 @@ public class AbpCAPConsumerServiceSelector : ConsumerServiceSelector
                 nameof(IDistributedEventHandler<object>.HandleEventAsync),
                 new[] { eventType }
             );
-        // TODO: 事件名称定义在事件参数类型,就无法创建多个订阅者类了,增加可选配置,让用户决定事件名称定义在哪里
+        // TODO: If the event name is defined in the event parameter type, multiple subscriber classes cannot be created. Add optional configuration to let the user decide where the event name is defined.
         var eventName = EventNameAttribute.GetNameOrDefault(eventType);
         var topicAttr = method!.GetCustomAttributes<TopicAttribute>(true);
         var topicAttributes = topicAttr.ToList();

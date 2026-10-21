@@ -1,10 +1,10 @@
 # LINGYUN.Abp.BackgroundTasks.Notifications
 
-后台作业执行后通知事件    
+Notification events after background job execution
 
-## 配置使用
+## Configuration usage
 
-模块按需引用  
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksNotificationsModule))]
@@ -14,11 +14,11 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## Action参数
+## Action parameters
 
-** 通知内容格式化参数,在作业后将发送实时通知  
+** Notification content formatting parameters, real-time notification will be sent after the job
 
-* push-provider		可选, 用户指定消息推送提供程序;  
-* use-template		可选, 用于格式化通知内容的模板名称  
-* content			可选, 通知内容（未指定模板名称则为必须参数）  
-* culture			可选, 使用模板时的模板区域性  
+* push-provider optional, user-specified message push provider;
+* use-template optional, the name of the template used to format notification content
+* content optional, notification content (required parameter if template name is not specified)
+* culture optional, template culture when using templates

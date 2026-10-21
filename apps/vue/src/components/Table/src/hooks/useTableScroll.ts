@@ -49,7 +49,7 @@ export function useTableScroll(
   watch(
     () => [unref(getFullContent)],
     async () => {
-      // 等待动画结束后200毫秒
+      // Wait 200 milliseconds after the animation ends
       await promiseTimeout(layoutMultipleHeadePlaceholderTime * 1000 + 200);
       debounceRedoHeight();
     },
@@ -76,8 +76,8 @@ export function useTableScroll(
   let bodyEl: HTMLElement | null;
 
   /**
-   * table wrapper padding 的高度
-   * @description 来自于 .vben-basic-table .ant-table-wrapper
+   * Height of table wrapper padding
+   * @description from .vben-basic-table .ant-table-wrapper
    */
   const tableWrapperPadding = 6;
 
@@ -101,7 +101,7 @@ export function useTableScroll(
   }
 
   /**
-   * 计算分页器高度
+   * Calculate pager height
    * @param tableEl table element
    * @returns number
    */
@@ -110,22 +110,22 @@ export function useTableScroll(
 
     let paginationHeight = 0;
     if (!isBoolean(pagination)) {
-      // 从 Dom 获取
+      // Get from Dom
       if (!paginationEl) {
         paginationEl = tableEl.querySelector('.ant-pagination') as HTMLElement;
       }
       if (paginationEl) {
-        // 分页 margin-top
+        // paging margin-top
         const paginationElMarginTop = parseInt(getComputedStyle(paginationEl).marginTop);
-        // 分页高度
+        // Page height
         const offsetHeight = paginationEl.offsetHeight;
         paginationHeight = offsetHeight + paginationElMarginTop;
       } else {
-        // 找不到分页组件，缺省给予默认分页 margin-top + 高度
+        // The paging component cannot be found, and the default paging margin-top + height is given by default.
         paginationHeight = 10 + 24;
       }
     } else {
-      // 不显示分页，pagination 为 false 的时候
+      // Do not display pagination when pagination is false
       paginationHeight = 0;
     }
     return paginationHeight;
@@ -154,27 +154,27 @@ export function useTableScroll(
   }
 
   /**
-   * 计算从表头一直到body底部的总高度
+   * Calculate the total height from the header to the bottom of the body
    * @param tableEl table element
-   * @param headEl table 页头 element
+   * @param headEl table page header element
    * @returns number
    */
   function calcBottomAndPaddingHeight(tableEl: Element, headEl: Element) {
     const { isCanResizeParent } = unref(propsRef);
     let bottomIncludeBody = 0;
     if (unref(wrapRef) && isCanResizeParent) {
-      // 继承父元素高度
+      // Inherit the height of the parent element
       const wrapHeight = unref(wrapRef)?.offsetHeight ?? 0;
 
       let formHeight = unref(formRef)?.$el.offsetHeight ?? 0;
       if (formHeight) {
-        // 来自于 .vben-basic-table-form-container .ant-form 以及 .vben-basic-table-form-container
+        // From .vben-basic-table-form-container .ant-form and .vben-basic-table-form-container
         formHeight += 16 + 16 * 2;
       }
 
       bottomIncludeBody = wrapHeight - tableWrapperPadding - formHeight;
     } else {
-      // 缺省 wrapRef 情况下
+      // Default wrapRef case
       bottomIncludeBody = getViewportOffset(headEl).bottomIncludeBody;
     }
 
@@ -182,12 +182,12 @@ export function useTableScroll(
   }
 
   /**
-   * 计算 table 在 modal 内 modal 所占用的高度
+   * Calculate the height occupied by the modal within the modal of the table
    * @param tableEl table element
    * @returns number
    */
   function calcModalHeight(tableEl: Element) {
-    // 找一下 table 是否在 modal 内，获得 modal、wrap、footer，并考虑 fullscreen 的情况
+    // Find if the table is in modal, obtain modal, wrap, footer, and consider the fullscreen situation
     let modalEl: Nullable<HTMLElement> = null;
     let modalWrapEl: Nullable<HTMLElement> = null;
     let modalFooterEl: Nullable<HTMLElement> = null;
@@ -205,25 +205,25 @@ export function useTableScroll(
     }
 
     if (modalEl) {
-      // table 在 modal 内
+      // table inside modal
 
       // modal top
       const { top: modalTop = 0 } = modalEl ? getViewportOffset(modalEl) : {};
 
-      // 来自于 .ant-modal，非全屏为 24，全屏为 0
+      // From .ant-modal, non-full screen is 24, full screen is 0
       const modalBottom = modalIsFullscreen ? 0 : 24;
 
-      //  modal footer 高度
+      // modal footer height
       const modalFooterHeight = modalFooterEl?.offsetHeight ?? 0;
 
-      // modal footer 边距，来自于 .ant-modal .ant-modal-footer
+      // modal footer margin, comes from .ant-modal .ant-modal-footer
       const modalFooterMarginTop = modalFooterEl
         ? modalIsFullscreen
           ? 0
           : parseInt(getComputedStyle(modalFooterEl).marginTop)
         : 0;
 
-      // 来自于 .ant-modal .ant-modal-body > .scrollbar
+      // From .ant-modal .ant-modal-body > .scrollbar
       const modalScrollBarHeight = 14;
 
       return (
@@ -234,23 +234,23 @@ export function useTableScroll(
       );
     }
 
-    // table 不住 modal 内
+    // table does not live in modal
     return 0;
   }
 
   /**
-   * 根据样式返回一些间距高度
+   * Return some spacing height based on style
    * @returns number
    */
   function getMarginPaddingHeight() {
     const { isCanResizeParent } = unref(propsRef);
 
     if (unref(wrapRef) && isCanResizeParent) {
-      // 继承父元素高度
+      // Inherit the height of the parent element
       return tableWrapperPadding;
     }
     return (
-      tableWrapperPadding + 16 // 来自于 .vben-basic-table-form-container 或是 .p-4
+      tableWrapperPadding + 16 // from .vben-basic-table-form-container or .p-4
     );
   }
 
@@ -291,20 +291,20 @@ export function useTableScroll(
 
     const marginPaddingHeight = getMarginPaddingHeight();
 
-    // Math.floor 宁愿小1px，也不溢出
+    // Math.floor would rather be 1px smaller than overflow
     let height = Math.floor(
       bottomIncludeBody -
         (resizeHeightOffset || 0) -
         paginationHeight -
         footerHeight -
         headerHeight -
-        // 弹窗（如果有）相关高度
+        // Relevant height of pop-up window (if any)
         modalHeight -
-        // 页面 footer 高度（非弹窗的时候）
+        // Page footer height (when not pop-up window)
         (getShowFooter.value && modalHeight <= 0 ? layoutFooterHeight : 0) -
-        // 样式间距高度
+        // style spacing height
         marginPaddingHeight -
-        // 预留非整数高度溢出（如实际高度为100.5，offsetHeight 的值为101）
+        // Reserve non-integer height overflow (for example, the actual height is 100.5, the value of offsetHeight is 101)
         1,
     );
 

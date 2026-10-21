@@ -46,42 +46,42 @@
 
   defineEmits(['delNode', 'insertNode', 'selected']);
   defineProps({
-    //是否为根节点
+    // Whether it is the root node
     isRoot: {
       type: Boolean,
       default: false,
     },
-    //是否显示节点体
+    // Whether to display the node body
     show: {
       type: Boolean,
       default: true,
     },
-    //节点内容区域文字
+    // Node content area text
     content: {
       type: String,
       default: '',
     },
     title: {
       type: String,
-      default: '标题',
+      default: 'Title',
     },
     placeholder: {
       type: String,
-      default: '请设置',
+      default: 'Please set',
     },
-    //头部背景色
+    // head background color
     headerBgc: {
       type: String,
       default: '#576a95',
     },
-    //是否显示错误状态
+    // Whether to display error status
     showError: {
       type: Boolean,
       default: false,
     },
     errorInfo: {
       type: String,
-      default: '无信息',
+      default: 'No information',
     },
   });
 </script>
@@ -101,7 +101,7 @@
 
   .node {
     padding: 0 10px;
-    //width: 220px;
+    // width: 220px;
     position: relative;
 
     &:before {

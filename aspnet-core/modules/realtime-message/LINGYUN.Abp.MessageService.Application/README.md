@@ -1,27 +1,27 @@
 # LINGYUN.Abp.MessageService.Application
 
-消息服务应用层模块。
+Message service application layer module.
 
-## 功能特性
+## Features
 
-* 实现消息服务的应用层接口
-* 实现消息服务的业务逻辑
-* 支持自动对象映射
+* Implement the application layer interface of the message service
+* Implement business logic of message service
+* Support automatic object mapping
 
-## 依赖模块
+## Dependent modules
 
 * [LINGYUN.Abp.MessageService.Application.Contracts](../LINGYUN.Abp.MessageService.Application.Contracts/README.md)
 * [LINGYUN.Abp.MessageService.Domain](../LINGYUN.Abp.MessageService.Domain/README.md)
 
-## 配置使用
+## Configuration usage
 
-1. 首先，需要安装 LINGYUN.Abp.MessageService.Application 到你的项目中：
+1. First, you need to install LINGYUN.Abp.MessageService.Application into your project:
 
 ```bash
 dotnet add package LINGYUN.Abp.MessageService.Application
 ```
 
-2. 添加 `AbpMessageServiceApplicationModule` 到你的模块的依赖列表：
+2. Add `AbpMessageServiceApplicationModule` to your module’s dependency list:
 
 ```csharp
 [DependsOn(typeof(AbpMessageServiceApplicationModule))]
@@ -30,6 +30,6 @@ public class YourModule : AbpModule
 }
 ```
 
-## 更多
+## More
 
 [English document](README.EN.md)

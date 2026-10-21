@@ -7,27 +7,27 @@ namespace LINGYUN.Platform.Routes;
 public class RouteDto : EntityDto<Guid>
 {
     /// <summary>
-    /// 路径
+    /// path
     /// </summary>
     public string Path { get; set; } = default!;
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public string DisplayName { get; set; } = default!;
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     public string? Description { get; set; }
     /// <summary>
-    /// 重定向路径
+    /// Redirect path
     /// </summary>
     public string? Redirect { get; set; }
     /// <summary>
-    /// 路由的一些辅助元素,取决于数据字典的设计
+    /// Some auxiliary elements of routing depend on the design of the data dictionary
     /// </summary>
     public Dictionary<string, object> Meta { get; set; } = new Dictionary<string, object>();
 }

@@ -4,33 +4,33 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Departments.Models;
 /// <summary>
-/// 部门详情
+/// Department details
 /// </summary>
 public class DepartmentInfo : Department
 {
     /// <summary>
-    /// 部门英文名称
+    /// Department English name
     /// </summary>
     [CanBeNull]
     [JsonProperty("name_en")]
     [JsonPropertyName("name_en")]
     public string? NameEn { get; set; }
     /// <summary>
-    /// 部门负责人的UserID，返回在应用可见范围内的部门负责人列表
+    /// The UserID of the department head, returns the list of department heads within the visible range of the application
     /// </summary>
     [NotNull]
     [JsonProperty("department_leader")]
     [JsonPropertyName("department_leader")]
     public string[] DepartmentLeader { get; set; } = default!;
     /// <summary>
-    /// 父部门id。根部门为1
+    /// Parent department id. The root department is 1
     /// </summary>
     [NotNull]
     [JsonProperty("parentid")]
     [JsonPropertyName("parentid")]
     public int ParentId { get; set; }
     /// <summary>
-    /// 在父部门中的次序值。order值大的排序靠前。值范围是[0, 2^32)
+    /// The order value in the parent department. The ones with larger order values ​​are sorted first. The value range is [0, 2^32)
     /// </summary>
     [NotNull]
     [JsonProperty("order")]

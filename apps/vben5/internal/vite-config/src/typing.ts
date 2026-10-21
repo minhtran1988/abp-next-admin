@@ -9,8 +9,8 @@ import type { PluginOptions } from 'vite-plugin-dts';
 import type { Options as PwaPluginOptions } from 'vite-plugin-pwa';
 
 /**
- * ImportMap 配置接口
- * @description 用于配置模块导入映射，支持自定义导入路径和范围
+ *ImportMap configuration interface
+ * @description is used to configure module import mapping and supports custom import paths and scopes.
  * @example
  * ```typescript
  * {
@@ -26,22 +26,22 @@ import type { Options as PwaPluginOptions } from 'vite-plugin-pwa';
  * ```
  */
 interface IImportMap {
-  /** 模块导入映射 */
+  /** Module import mapping */
   imports?: Record<string, string>;
-  /** 作用域特定的导入映射 */
+  /** Scope-specific import mapping */
   scopes?: {
     [scope: string]: Record<string, string>;
   };
 }
 
 /**
- * 打印插件配置选项
- * @description 用于配置控制台打印信息
+ *Print plug-in configuration options
+ * @description is used to configure console printing information
  */
 interface PrintPluginOptions {
   /**
-   * 打印的数据映射
-   * @description 键值对形式的数据，将在控制台打印
+   * Printed data mapping
+   * @description Data in the form of key-value pairs, which will be printed on the console
    * @example
    * ```typescript
    * {
@@ -54,60 +54,60 @@ interface PrintPluginOptions {
 }
 
 /**
- * Nitro Mock 插件配置选项
- * @description 用于配置 Nitro Mock 服务器的行为
+ * Nitro Mock plug-in configuration options
+ * @description used to configure the behavior of the Nitro Mock server
  */
 interface NitroMockPluginOptions {
   /**
-   * Mock 服务器包名
+   * Mock server package name
    * @default '@vbenjs/nitro-mock'
    */
   mockServerPackage?: string;
 
   /**
-   * Mock 服务端口
+   * Mock service port
    * @default 3000
    */
   port?: number;
 
   /**
-   * 是否打印 Mock 日志
+   * Whether to print Mock logs
    * @default false
    */
   verbose?: boolean;
 }
 
 /**
- * 归档插件配置选项
- * @description 用于配置构建产物的压缩归档
+ * Archive plug-in configuration options
+ * @description Compressed archive used to configure build products
  */
 interface ArchiverPluginOptions {
   /**
-   * 输出文件名
+   * Output file name
    * @default 'dist'
    */
   name?: string;
   /**
-   * 输出目录
+   * Output directory
    * @default '.'
    */
   outputDir?: string;
 }
 
 /**
- * ImportMap 插件配置
- * @description 用于配置模块的 CDN 导入
+ *ImportMap plug-in configuration
+ * @description CDN import for configuring modules
  */
 interface ImportmapPluginOptions {
   /**
-   * CDN 供应商
+   * CDN provider
    * @default 'jspm.io'
-   * @description 支持 esm.sh 和 jspm.io 两种 CDN 供应商
+   * @description supports both esm.sh and jspm.io CDN providers
    */
   defaultProvider?: 'esm.sh' | 'jspm.io';
   /**
-   * ImportMap 配置数组
-   * @description 配置需要从 CDN 导入的包
+   *ImportMap configuration array
+   * @description Configure the packages that need to be imported from CDN
    * @example
    * ```typescript
    * [
@@ -118,217 +118,217 @@ interface ImportmapPluginOptions {
    */
   importmap?: Array<{ name: string; range?: string }>;
   /**
-   * 手动配置 ImportMap
-   * @description 自定义 ImportMap 配置
+   * Manually configure ImportMap
+   * @description Custom ImportMap configuration
    */
   inputMap?: IImportMap;
 }
 
 /**
- * 条件插件配置
- * @description 用于根据条件动态加载插件
+ *Conditional plug-in configuration
+ * @description is used to dynamically load plug-ins based on conditions
  */
 interface ConditionPlugin {
   /**
-   * 判断条件
-   * @description 当条件为 true 时加载插件
+   * Judgment conditions
+   * @description Load the plug-in when the condition is true
    */
   condition?: boolean;
   /**
-   * 插件对象
-   * @description 返回插件数组或 Promise
+   * Plug-in object
+   * @description Returns the plugin array or Promise
    */
   plugins: () => PluginOption[] | PromiseLike<PluginOption[]>;
 }
 
 /**
- * 通用插件配置选项
- * @description 所有插件共用的基础配置
+ * Common plug-in configuration options
+ * @description Basic configuration common to all plugins
  */
 interface CommonPluginOptions {
   /**
-   * 是否开启开发工具
+   * Whether to enable development tools
    * @default false
    */
   devtools?: boolean;
   /**
-   * 环境变量
-   * @description 自定义环境变量
+   * Environment variables
+   * @description Custom environment variables
    */
   env?: Record<string, any>;
   /**
-   * 是否注入元数据
+   * Whether to inject metadata
    * @default true
    */
   injectMetadata?: boolean;
   /**
-   * 是否为构建模式
+   * Whether it is build mode
    * @default false
    */
   isBuild?: boolean;
   /**
-   * 构建模式
+   * Build mode
    * @default 'development'
    */
   mode?: string;
   /**
-   * 是否开启依赖分析
+   * Whether to enable dependency analysis
    * @default false
-   * @description 使用 rollup-plugin-visualizer 分析依赖
+   * @description Use rollup-plugin-visualizer to analyze dependencies
    */
   visualizer?: boolean | PluginVisualizerOptions;
 }
 
 /**
- * 应用插件配置选项
- * @description 用于配置应用构建时的插件选项
+ * Apply plug-in configuration options
+ * @description used to configure plug-in options when building the application
  */
 interface ApplicationPluginOptions extends CommonPluginOptions {
   /**
-   * 是否开启压缩归档
+   * Whether to enable compressed archiving
    * @default false
-   * @description 开启后会在打包目录生成 zip 文件
+   * @description When enabled, a zip file will be generated in the packaging directory.
    */
   archiver?: boolean;
   /**
-   * 压缩归档插件配置
-   * @description 配置压缩归档的行为
+   * Compression archive plug-in configuration
+   * @description Configure the behavior of compressed archives
    */
   archiverPluginOptions?: ArchiverPluginOptions;
   /**
-   * 是否开启压缩
+   * Whether to enable compression
    * @default false
-   * @description 支持 gzip 和 brotli 压缩
+   * @description supports gzip and brotli compression
    */
   compress?: boolean;
   /**
-   * 压缩类型
+   * Compression type
    * @default ['gzip']
-   * @description 可选的压缩类型
+   * @description Optional compression type
    */
   compressTypes?: ('brotli' | 'gzip')[];
   /**
-   * 是否抽离配置文件
+   * Whether to extract the configuration file
    * @default false
-   * @description 在构建时抽离配置文件
+   * @description Extract configuration files when building
    */
   extraAppConfig?: boolean;
   /**
-   * 是否开启 HTML 插件
+   * Whether to enable HTML plug-in
    * @default true
    */
   html?: boolean;
   /**
-   * 是否开启国际化
+   * Whether to enable internationalization
    * @default false
    */
   i18n?: boolean;
   /**
-   * 是否开启 ImportMap CDN
+   * Whether to enable ImportMap CDN
    * @default false
    */
   importmap?: boolean;
   /**
-   * ImportMap 插件配置
+   *ImportMap plug-in configuration
    */
   importmapOptions?: ImportmapPluginOptions;
   /**
-   * 是否注入应用加载动画
+   * Whether to inject application loading animation
    * @default true
    */
   injectAppLoading?: boolean;
   /**
-   * 是否注入全局 SCSS
+   * Whether to inject global SCSS
    * @default true
    */
   injectGlobalScss?: boolean;
   /**
-   * 是否注入版权信息
+   * Whether to inject copyright information
    * @default true
    */
   license?: boolean;
   /**
-   * 是否开启 Nitro Mock
+   * Whether to enable Nitro Mock
    * @default false
    */
   nitroMock?: boolean;
   /**
-   * Nitro Mock 插件配置
+   * Nitro Mock plug-in configuration
    */
   nitroMockOptions?: NitroMockPluginOptions;
   /**
-   * 是否开启控制台打印
+   * Whether to enable console printing
    * @default false
    */
   print?: boolean;
   /**
-   * 打印插件配置
+   *Print plug-in configuration
    */
   printInfoMap?: PrintPluginOptions['infoMap'];
   /**
-   * 是否开启 PWA
+   * Whether to enable PWA
    * @default false
    */
   pwa?: boolean;
   /**
-   * PWA 插件配置
+   * PWA plug-in configuration
    */
   pwaOptions?: Partial<PwaPluginOptions>;
   /**
-   * 是否开启 VXE Table 懒加载
+   * Whether to enable VXE Table lazy loading
    * @default false
    */
   vxeTableLazyImport?: boolean;
 }
 
 /**
- * 库插件配置选项
- * @description 用于配置库构建时的插件选项
+ * Library plug-in configuration options
+ * @description used to configure plug-in options when building the library
  */
 interface LibraryPluginOptions extends CommonPluginOptions {
   /**
-   * 是否开启 DTS 输出
+   * Whether to enable DTS output
    * @default true
-   * @description 生成 TypeScript 类型声明文件
+   * @description Generate TypeScript type declaration file
    */
   dts?: boolean | PluginOptions;
 }
 
 /**
- * 应用配置选项类型
+ * Application configuration option type
  */
 type ApplicationOptions = ApplicationPluginOptions;
 
 /**
- * 库配置选项类型
+ * Library configuration option type
  */
 type LibraryOptions = LibraryPluginOptions;
 
 /**
- * 应用配置定义函数类型
- * @description 用于定义应用构建配置
+ * Application configuration definition function type
+ * @description is used to define the application build configuration
  */
 type DefineApplicationOptions = (config?: ConfigEnv) => Promise<{
-  /** 应用插件配置 */
+  /** Application plug-in configuration */
   application?: ApplicationOptions;
-  /** Vite 配置 */
+  /** Vite configuration */
   vite?: UserConfig;
 }>;
 
 /**
- * 库配置定义函数类型
- * @description 用于定义库构建配置
+ * Library configuration defines function type
+ * @description is used to define the library build configuration
  */
 type DefineLibraryOptions = (config?: ConfigEnv) => Promise<{
-  /** 库插件配置 */
+  /** Library plug-in configuration */
   library?: LibraryOptions;
-  /** Vite 配置 */
+  /** Vite configuration */
   vite?: UserConfig;
 }>;
 
 /**
- * 配置定义类型
- * @description 应用或库的配置定义
+ * Configuration definition type
+ * @description Configuration definition for application or library
  */
 type DefineConfig = DefineApplicationOptions | DefineLibraryOptions;
 

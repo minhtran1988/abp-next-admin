@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日程状态
+/// Schedule status
 /// </summary>
-[Description("日程状态")]
+[Description("Schedule Status")]
 public enum ScheduleStatus : uint
 {
     /// <summary>
-    /// 正常
+    /// normal
     /// </summary>
-    [Description("正常")]
+    [Description("normal")]
     Normal = 0,
     /// <summary>
-    /// 已取消
+    /// Canceled
     /// </summary>
-    [Description("已取消")]
+    [Description("Cancelled")]
     Cancelled = 1,
 }

@@ -52,7 +52,7 @@ export function useFormInitial(
       if (Reflect.has(item, 'defaultValue')) {
         set(initialValues, item.fieldName, item.defaultValue);
       } else if (item.rules && !isString(item.rules)) {
-        // 检查规则是否适合提取默认值
+        // Check whether the rule is suitable for extracting the default value
         const customDefaultValue = getCustomDefaultValue(item.rules);
         zodObject[item.fieldName] = item.rules;
         if (customDefaultValue !== undefined) {
@@ -69,25 +69,25 @@ export function useFormInitial(
     }
     return mergeWithArrayOverride(initialValues, zodDefaults);
   }
-  // 自定义默认值提取逻辑
+  // Customize default value extraction logic
   function getCustomDefaultValue(rule: any): any {
     if (rule instanceof ZodString) {
-      return ''; // 默认为空字符串
+      return ''; // Default is empty string
     } else if (rule instanceof ZodNumber) {
-      return null; // 默认为 null（避免显示 0）
+      return null; // Defaults to null (avoids displaying 0)
     } else if (rule instanceof ZodObject) {
-      // 递归提取嵌套对象的默认值
+      // Recursively extract the default value of the nested object
       const defaultValues: Record<string, any> = {};
       for (const [key, valueSchema] of Object.entries(rule.shape)) {
         defaultValues[key] = getCustomDefaultValue(valueSchema);
       }
       return defaultValues;
     } else if (rule instanceof ZodIntersection) {
-      // 对于交集类型，从schema 提取默认值
+      // For intersection types, extract the default value from the schema
       const leftDefaultValue = getCustomDefaultValue(rule._def.left);
       const rightDefaultValue = getCustomDefaultValue(rule._def.right);
 
-      // 如果左右两边都能提取默认值，合并它们
+      // If both left and right sides can extract default values, merge them
       if (
         typeof leftDefaultValue === 'object' &&
         typeof rightDefaultValue === 'object'
@@ -95,10 +95,10 @@ export function useFormInitial(
         return { ...leftDefaultValue, ...rightDefaultValue };
       }
 
-      // 否则优先使用左边的默认值
+      // Otherwise, the default value on the left will be used first.
       return leftDefaultValue ?? rightDefaultValue;
     } else {
-      return undefined; // 其他类型不提供默认值
+      return undefined; // Other types do not provide default values
     }
   }
 

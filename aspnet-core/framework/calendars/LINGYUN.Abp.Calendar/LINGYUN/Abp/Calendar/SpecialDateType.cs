@@ -2,23 +2,23 @@
 
 namespace LINGYUN.Abp.Calendar;
 /// <summary>
-/// 特殊日期类型
+/// Special date type
 /// </summary>
 public enum SpecialDateType
 {
     /// <summary>
-    /// 法定节假日
+    /// Legal holidays
     /// </summary>
-    [Description("法定节假日")]
+    [Description("Legal Holidays")]
     Holiday = 0,
     /// <summary>
-    /// 特殊工作日
+    /// Special working days
     /// </summary>
-    [Description("特殊工作日")]
+    [Description("Special working day")]
     SpecialWorkday = 1,
     /// <summary>
-    /// 自定义假期
+    /// Custom holidays
     /// </summary>
-    [Description("自定义假期")]
+    [Description("Customized holidays")]
     CustomHoliday = 2
 }

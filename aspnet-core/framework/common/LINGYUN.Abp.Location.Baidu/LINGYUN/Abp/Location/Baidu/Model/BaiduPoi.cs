@@ -6,55 +6,55 @@ namespace LINGYUN.Abp.Location.Baidu.Model;
 public class BaiduPoi
 {
     /// <summary>
-    /// 地址信息
+    /// Address information
     /// </summary>
     [JsonProperty("addr")]
     [JsonPropertyName("addr")]
     public string Address { get; set; } = default!;
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 标记
+    /// mark
     /// </summary>
     public string? Tag { get; set; }
     /// <summary>
-    /// 和当前坐标点的方向
+    /// and the direction of the current coordinate point
     /// </summary>
     public string? Direction { get; set; }
     /// <summary>
-    /// 离坐标点距离
+    /// Distance from coordinate point
     /// </summary>
     public string? Distance { get; set; }
     /// <summary>
-    /// poi坐标{x,y}
+    /// poi coordinates {x,y}
     /// </summary>
     public Point Point { get; set; } = new Point();
 
     /// <summary>
-    /// 坐标类型
+    /// Coordinate type
     /// </summary>
     public string? PoiType { get; set; }
     /// <summary>
-    /// 电话
+    /// Phone
     /// </summary>
     [JsonProperty("tel")]
     [JsonPropertyName("tel")]
     public string? TelPhone { get; set; }
     /// <summary>
-    /// poi唯一标识
+    /// poi unique identifier
     /// </summary>
     public string Uid { get; set; } = default!;
     /// <summary>
-    /// 邮编
+    /// Zip code
     /// </summary>
     [JsonProperty("zip")]
     [JsonPropertyName("zip")]
     public string? Post { get; set; }
     /// <summary>
-    /// poi对应的主点poi（如，海底捞的主点为上地华联，该字段则为上地华联的poi信息。
-    /// 如无，该字段为空），包含子字段和pois基础召回字段相同。
+    /// The main point poi corresponding to poi (for example, the main point of Haidilao is Shangdi Hualian, this field is the poi information of Shangdi Hualian.
+    /// If none, this field is empty), and the subfields included are the same as the pois basic recall field.
     /// </summary>
     [JsonProperty("parent_poi")]
     [JsonPropertyName("parent_poi")]

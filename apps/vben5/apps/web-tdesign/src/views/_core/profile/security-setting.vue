@@ -8,32 +8,32 @@ const formSchema = computed(() => {
     {
       value: true,
       fieldName: 'accountPassword',
-      label: '账户密码',
-      description: '当前密码强度：强',
+      label: 'account password',
+      description: 'Current password strength: strong',
     },
     {
       value: true,
       fieldName: 'securityPhone',
-      label: '密保手机',
-      description: '已绑定手机：138****8293',
+      label: 'Secret mobile phone',
+      description: 'Bound mobile phone: 138****8293',
     },
     {
       value: true,
       fieldName: 'securityQuestion',
-      label: '密保问题',
-      description: '未设置密保问题，密保问题可有效保护账户安全',
+      label: 'Security issue',
+      description: 'No security questions are set, security questions can effectively protect account security',
     },
     {
       value: true,
       fieldName: 'securityEmail',
-      label: '备用邮箱',
-      description: '已绑定邮箱：ant***sign.com',
+      label: 'Alternate email',
+      description: 'Binded email address: ant***sign.com',
     },
     {
       value: false,
       fieldName: 'securityMfa',
-      label: 'MFA 设备',
-      description: '未绑定 MFA 设备，绑定后，可以进行二次确认',
+      label: 'MFA device',
+      description: 'The MFA device is not bound. After binding, you can confirm again',
     },
   ];
 });

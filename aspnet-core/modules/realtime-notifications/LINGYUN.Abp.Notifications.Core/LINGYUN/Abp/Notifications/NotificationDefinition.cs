@@ -6,8 +6,8 @@ using Volo.Abp.Localization;
 using Volo.Abp.TextTemplating;
 
 /*
- * 2020-10-29 重构通知
- * INotificationSender指定接收者,未指定才会查询所有订阅用户,已指定发布者,直接发布(检验是否订阅)
+ * 2020-10-29 Reconstruction Notice
+ * INotificationSender specifies the receiver. If not specified, all subscriber users will be queried. If the publisher is specified, publish directly (check whether to subscribe)
  */
 
 namespace LINGYUN.Abp.Notifications;
@@ -15,12 +15,12 @@ namespace LINGYUN.Abp.Notifications;
 public class NotificationDefinition
 {
     /// <summary>
-    /// 通知名称
+    /// Notification name
     /// </summary>
     [NotNull]
     public string Name { get; set; }
     /// <summary>
-    /// 通知显示名称
+    /// Notification display name
     /// </summary>
     [NotNull]
     public ILocalizableString DisplayName
@@ -30,36 +30,36 @@ public class NotificationDefinition
     }
     private ILocalizableString _displayName = default!;
     /// <summary>
-    /// 通知说明
+    /// Notification description
     /// </summary>
     [CanBeNull]
     public ILocalizableString? Description { get; set; }
     /// <summary>
-    /// 允许客户端显示订阅
+    /// Allow clients to display subscriptions
     /// </summary>
     public bool AllowSubscriptionToClients { get; set; }
     /// <summary>
-    /// 存活类型
+    /// Survival type
     /// </summary>
     public NotificationLifetime NotificationLifetime { get; set; }
     /// <summary>
-    /// 通知类型
+    /// Notification type
     /// </summary>
     public NotificationType NotificationType { get; set; }
     /// <summary>
-    /// 通知内容类型
+    /// Notification content type
     /// </summary>
     public NotificationContentType ContentType { get; set; }
     /// <summary>
-    /// 通知提供者
+    /// Notify provider
     /// </summary>
     public List<string> Providers { get; }
     /// <summary>
-    /// 通知模板
+    /// Notification template
     /// </summary>
     public TemplateDefinition? Template { get; private set; }
     /// <summary>
-    /// 额外属性
+    /// Additional attributes
     /// </summary>
     [NotNull]
     public Dictionary<string, object?> Properties { get; }

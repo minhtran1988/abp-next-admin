@@ -2,53 +2,53 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 节点状态
+/// Node status
 /// </summary>
 public enum ApprovalProcessNodeStatus : byte
 {
     /// <summary>
-    /// 审批中
+    /// Under approval
     /// </summary>
-    [Description("审批中")]
+    [Description("Under Approval")]
     UnderApproval = 1,
     /// <summary>
-    /// 同意
+    /// Agree
     /// </summary>
-    [Description("同意")]
+    [Description("Agree")]
     Agree = 2,
     /// <summary>
-    /// 驳回
+    /// Reject
     /// </summary>
-    [Description("驳回")]
+    [Description("Reject")]
     Rejection = 3,
     /// <summary>
-    /// 转审
+    /// Transfer
     /// </summary>
-    [Description("转审")]
+    [Description("Transfer")]
     TransferForReview = 4,
     /// <summary>
-    /// 退回给指定审批人
+    /// Return to designated approver
     /// </summary>
-    [Description("退回给指定审批人")]
+    [Description("Return to designated approver")]
     ReturnToApprover = 11,
     /// <summary>
-    /// 加签
+    /// Add signature
     /// </summary>
-    [Description("加签")]
+    [Description("signature")]
     Additional = 12,
     /// <summary>
-    /// 同意并加签
+    /// Agree and sign
     /// </summary>
-    [Description("同意并加签")]
+    [Description("Agree and sign")]
     AgreeAndSign = 13,
     /// <summary>
-    /// 办理
+    /// Process
     /// </summary>
-    [Description("办理")]
+    [Description("handle")]
     Processing = 14,
     /// <summary>
-    /// 转交
+    /// Transfer
     /// </summary>
-    [Description("转交")]
+    [Description("transfer")]
     Transfer = 15,
 }

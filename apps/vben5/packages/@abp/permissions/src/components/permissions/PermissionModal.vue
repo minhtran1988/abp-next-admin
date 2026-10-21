@@ -163,7 +163,7 @@ const [PermissionGrantedModal, grantedModalApi] = useVbenModal({
   ),
 });
 
-/** 全选所有节点权限 */
+/** Select all node permissions */
 function onCheckAll(e: CheckboxChangeEvent) {
   checkedNodeKeys.value = [];
   permissionTree.value.forEach((current) => {
@@ -178,7 +178,7 @@ function onCheckAll(e: CheckboxChangeEvent) {
   });
 }
 
-/** 全选当前节点权限 */
+/** Select all current node permissions */
 function onCheckNodeAll(e: CheckboxChangeEvent, permission: PermissionTree) {
   const children = getChildren(permission.children ?? []);
   children.forEach((permission) => {
@@ -223,17 +223,17 @@ function onCheckNode(permission: PermissionTree, _keys: any, info: CheckInfo) {
       ? [...checkedNodeKeys.value, nodeKey]
       : checkedNodeKeys.value.filter((key) => key !== nodeKey);
   const currentPermission = info.node.dataRef as unknown as PermissionTree;
-  // 上级权限联动
+  // Linkage with superior authority
   checkParentGrant(permission, currentPermission, info.checked);
-  // 下级权限联动
+  // Linkage with lower-level permissions
   checkChildrenGrant(currentPermission, info.checked);
-  // 自身授权
+  // self authorization
   currentPermission.isGranted = info.checked;
 }
 
 function checkChildrenGrant(current: PermissionTree, isGranted: boolean) {
   const children = getChildren(current.children);
-  // 应取消子权限的所有授权
+  // All authorizations for sub-permissions should be canceled
   if (!isGranted) {
     const childKeys: string[] = [];
     children.forEach((node) => {

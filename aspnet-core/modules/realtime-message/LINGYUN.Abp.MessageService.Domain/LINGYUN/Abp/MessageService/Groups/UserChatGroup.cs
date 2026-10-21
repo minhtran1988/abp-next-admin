@@ -5,12 +5,12 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Abp.MessageService.Groups;
 
 /// <summary>
-/// 用户群组
+/// User group
 /// </summary>
 public class UserChatGroup : CreationAuditedEntity<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     public virtual Guid UserId { get; protected set; }

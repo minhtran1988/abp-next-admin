@@ -3,19 +3,19 @@
 namespace LINGYUN.Abp.BlobManagement;
 
 /// <summary>
-/// 对象类型
+/// Object type
 /// </summary>
-[Description("对象类型")]
+[Description("Object Type")]
 public enum BlobType
 {
     /// <summary>
-    /// 目录
+    /// Directory
     /// </summary>
-    [Description("目录")]
+    [Description("Directory")]
     Folder = 0,
     /// <summary>
-    /// 文件
+    /// File
     /// </summary>
-    [Description("文件")]
+    [Description("File")]
     File = 1
 }

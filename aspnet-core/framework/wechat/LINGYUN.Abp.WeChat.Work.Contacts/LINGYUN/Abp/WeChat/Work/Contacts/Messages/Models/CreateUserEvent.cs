@@ -4,7 +4,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 新增成员事件
+/// Add member event
 /// </summary>
 [EventName("create_user")]
 public class CreateUserEvent : UserChangeEvent

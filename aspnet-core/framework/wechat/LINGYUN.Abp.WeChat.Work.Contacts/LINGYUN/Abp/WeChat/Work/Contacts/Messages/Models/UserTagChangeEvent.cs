@@ -5,33 +5,33 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 标签成员变更事件
+/// Tag member change event
 /// </summary>
 [EventName("update_tag")]
 public class UserTagChangeEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 标签Id
+    /// TagId
     /// </summary>
     [XmlElement("TagId")]
     public string TagId { get; set; } = default!;
     /// <summary>
-    /// 标签中新增的成员userid列表，用逗号分隔
+    /// List of new member userids in the tag, separated by commas
     /// </summary>
     [XmlElement("AddUserItems", IsNullable = true)]
     public string? AddUserItems { get; set; }
     /// <summary>
-    /// 标签中删除的成员userid列表，用逗号分隔
+    /// List of member userids to be deleted in the tag, separated by commas
     /// </summary>
     [XmlElement("DelUserItems", IsNullable = true)]
     public string? DelUserItems { get; set; }
     /// <summary>
-    /// 标签中新增的部门id列表，用逗号分隔
+    /// List of new department IDs in the tag, separated by commas
     /// </summary>
     [XmlElement("AddPartyItems", IsNullable = true)]
     public string? AddPartyItems { get; set; }
     /// <summary>
-    /// 标签中删除的部门id列表，用逗号分隔
+    /// List of department IDs to be deleted in the tag, separated by commas
     /// </summary>
     [XmlElement("DelPartyItems", IsNullable = true)]
     public string? DelPartyItems { get; set; }

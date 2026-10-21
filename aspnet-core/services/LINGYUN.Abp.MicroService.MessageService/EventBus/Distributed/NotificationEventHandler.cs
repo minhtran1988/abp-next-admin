@@ -24,11 +24,11 @@ using Volo.Abp.Uow;
 namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 {
     /// <summary>
-    /// 订阅通知发布事件,统一发布消息
+    /// Subscribe to notification publishing events and publish messages uniformly
     /// </summary>
     /// <remarks>
-    /// 作用在于SignalR客户端只会与一台服务器建立连接,
-    /// 只有启用了SignlR服务端的才能真正将消息发布到客户端
+    /// The purpose is that the SignalR client will only establish a connection with one server.
+    /// Only the SignlR server can actually publish messages to the client.
     /// </remarks>
     public class NotificationEventHandler :
         IDistributedEventHandler<NotificationEto<NotificationData>>,
@@ -228,7 +228,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
             {
                 var providers = Enumerable.Reverse(NotificationPublishProviderManager.Providers);
 
-                // 过滤用户指定提供者
+                // Filter user-specified providers
                 if (eventData.UseProviders.Any())
                 {
                     providers = providers.Where(p => eventData.UseProviders.Contains(p.Name));
@@ -255,15 +255,15 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 
                 try
                 {
-                    // 由于模板通知受租户影响, 格式化失败的消息将被丢弃.
+                    // Since template notifications are affected by the tenant, messages that fail to be formatted will be discarded.
                     message = await TemplateRenderer.RenderAsync(
                         templateName: eventData.Data.Name,
-                        // 解决序列化后的数据无法渲染模板
+                        // Solve the problem that serialized data cannot render templates
                         model: templateResolveResult.Model ?? eventData.Data.ExtraProperties,
                         cultureName: eventData.Data.Culture,
                         globalContext: new Dictionary<string, object>
                         {
-                            // 模板不支持 $ 字符, 改为普通关键字
+                            // The template does not support the $ character, change it to a normal keyword
                             { NotificationKeywords.Name, notification.Name },
                             { NotificationKeywords.FormUser, eventData.Data.FormUser },
                             { NotificationKeywords.Id, eventData.Id },
@@ -299,7 +299,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 
                 if (subscriptionUsers.Any())
                 {
-                    // 发布通知
+                    // Publish notification
                     foreach (var provider in providers)
                     {
                         await PublishToSubscriberAsync(provider, notificationInfo, subscriptionUsers);
@@ -317,7 +317,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
             {
                 var providers = Enumerable.Reverse(NotificationPublishProviderManager.Providers);
 
-                // 过滤用户指定提供者
+                // Filter user-specified providers
                 if (eventData.UseProviders.Any())
                 {
                     providers = providers.Where(p => eventData.UseProviders.Contains(p.Name));
@@ -342,13 +342,13 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 
                 notificationInfo.Data = NotificationDataSerializer.Serialize(notificationInfo.Data);
 
-                // 获取用户订阅
+                // Get user subscription
                 var subscriptionUsers = await GerSubscriptionUsersAsync(
                     notificationInfo.Name,
                     eventData.Users,
                     tenantId);
 
-                // 持久化通知
+                // Persistence notification
                 await PersistentNotificationAsync(
                     notificationInfo,
                     subscriptionUsers,
@@ -356,7 +356,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 
                 if (subscriptionUsers.Any())
                 {
-                    // 发布订阅通知
+                    // Publish subscription notification
                     foreach (var provider in providers)
                     {
                         await PublishToSubscriberAsync(provider, notificationInfo, subscriptionUsers);
@@ -365,12 +365,12 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
             }
         }
         /// <summary>
-        /// 获取用户订阅列表
+        /// Get user subscription list
         /// </summary>
-        /// <param name="notificationName">通知名称</param>
-        /// <param name="sendToUsers">接收用户列表</param>
-        /// <param name="tenantId">租户标识</param>
-        /// <returns>用户订阅列表</returns>
+        /// <param name="notificationName">Notification name</param>
+        /// <param name="sendToUsers">Receive user list</param>
+        /// <param name="tenantId">Tenant ID</param>
+        /// <returns>User subscription list</returns>
         protected async Task<IEnumerable<UserIdentifier>> GerSubscriptionUsersAsync(
             string notificationName,
             IEnumerable<UserIdentifier> sendToUsers,
@@ -378,7 +378,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
         {
             try
             {
-                // 获取用户订阅列表
+                // Get user subscription list
                 var userSubscriptions = await NotificationSubscriptionManager.GetUsersSubscriptionsAsync(
                     tenantId,
                     notificationName,
@@ -394,12 +394,12 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
             return new List<UserIdentifier>();
         }
         /// <summary>
-        /// 持久化通知并返回订阅用户列表
+        /// Persist the notification and return the subscriber list
         /// </summary>
-        /// <param name="notificationInfo">通知实体</param>
-        /// <param name="subscriptionUsers">订阅用户列表</param>
-        /// <param name="sendToProviders">通知发送提供者</param>
-        /// <returns>返回订阅者列表</returns>
+        /// <param name="notificationInfo">Notification entity</param>
+        /// <param name="subscriptionUsers">Subscription user list</param>
+        /// <param name="sendToProviders">Notify sending providers</param>
+        /// <returns>Return the subscriber list</returns>
         protected async Task PersistentNotificationAsync(
             NotificationInfo notificationInfo,
             IEnumerable<UserIdentifier> subscriptionUsers,
@@ -407,7 +407,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
         {
             try
             {
-                // 持久化通知
+                // Persistence notification
                 await NotificationStore.InsertNotificationAsync(notificationInfo);
 
                 if (!subscriptionUsers.Any())
@@ -415,12 +415,12 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
                     return;
                 }
 
-                // 持久化用户通知
+                // Persistent user notification
                 await NotificationStore.InsertUserNotificationsAsync(notificationInfo, subscriptionUsers.Select(u => u.UserId));
 
                 if (notificationInfo.Lifetime == NotificationLifetime.OnlyOne)
                 {
-                    // 一次性通知取消用户订阅
+                    // One-time notification to cancel user subscription
                     await NotificationStore.DeleteUserSubscriptionAsync(
                         notificationInfo.TenantId,
                         subscriptionUsers,
@@ -433,17 +433,17 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
 
                 foreach (var provider in sendToProviders)
                 {
-                    // 处理持久化失败进入后台队列
+                    // Process persistence failure and enter the background queue
                     await ProcessingFailedToQueueAsync(provider, notificationInfo, subscriptionUsers);
                 }
             }
         }
         /// <summary>
-        /// 发布订阅者通知
+        /// Publish subscriber notification
         /// </summary>
-        /// <param name="provider">通知发布者</param>
-        /// <param name="notificationInfo">通知信息</param>
-        /// <param name="subscriptionUsers">订阅用户列表</param>
+        /// <param name="provider">Notify publisher</param>
+        /// <param name="notificationInfo">Notification information</param>
+        /// <param name="subscriptionUsers">Subscription user list</param>
         /// <returns></returns>
         protected async Task PublishToSubscriberAsync(
             INotificationPublishProvider provider,
@@ -459,7 +459,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
                 if (await provider.CanPublishAsync(notificationInfo))
                 {
                     var context = new NotificationPublishContext(notificationInfo, subscriptionUsers);
-                    // 发布
+                    // publish
                     await provider.PublishAsync(context);
 
                     sendInfo.Sent(context.Exception);
@@ -483,7 +483,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
                 Logger.LogWarning($"Send notification error with provider {provider.Name}");
                 Logger.LogWarning($"Error message:{ex.Message}");
                 Logger.LogDebug($"Failed to send notification {notificationInfo.Name}. Try to push notification to background job");
-                // 发送失败的消息进入后台队列
+                // Messages that failed to be sent enter the background queue
                 await ProcessingFailedToQueueAsync(provider, notificationInfo, subscriptionUsers);
 
                 try
@@ -495,10 +495,10 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
             }
         }
         /// <summary>
-        /// 处理失败的消息进入后台队列
+        /// Messages that failed to be processed enter the background queue
         /// </summary>
         /// <remarks>
-        /// 注: 如果入队失败,消息将被丢弃.
+        /// Note: If enqueueing fails, the message will be discarded.
         /// </remarks>
         /// <param name="provider"></param>
         /// <param name="notificationInfo"></param>
@@ -511,7 +511,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.EventBus.Distributed
         {
             try
             {
-                // 发送失败的消息进入后台队列
+                // Messages that failed to be sent enter the background queue
                 await BackgroundJobManager.EnqueueAsync(
                     new NotificationPublishJobArgs(
                         notificationInfo.GetId(),

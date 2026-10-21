@@ -6,12 +6,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 说明文字控件配置
+/// Description text control configuration
 /// </summary>
 public class TipsControlConfig : ControlConfig
 {
     /// <summary>
-    /// 说明文字控件
+    /// Description text control
     /// </summary>
     [NotNull]
     [JsonProperty("tips")]
@@ -31,7 +31,7 @@ public class TipsControlConfig : ControlConfig
 public class TipsConfig
 {
     /// <summary>
-    /// 说明文字数组，元素为不同语言的富文本说明文字
+    /// Description array, the elements are rich text descriptions in different languages
     /// </summary>
     [NotNull]
     [JsonProperty("tips_content")]
@@ -51,14 +51,14 @@ public class TipsConfig
 public class TipsContent
 {
     /// <summary>
-    /// 某个语言的富文本说明
+    /// Rich text description in a certain language
     /// </summary>
     [NotNull]
     [JsonProperty("text")]
     [JsonPropertyName("text")]
     public TipsContentText Text { get; set; } = default!;
     /// <summary>
-    /// 多语言名称
+    /// Multi-language name
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]
@@ -79,7 +79,7 @@ public class TipsContent
 public class TipsContentText
 {
     /// <summary>
-    /// 说明文字分段
+    /// Description text segmentation
     /// </summary>
     [NotNull]
     [JsonProperty("sub_text")]
@@ -99,14 +99,14 @@ public class TipsContentText
 public class TipsContentSubText
 {
     /// <summary>
-    /// 文本类型 1:纯文本 2:链接，每个说明文字中只支持包含一个链接
+    /// Text type 1: plain text 2: link, each description text only supports one link.
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 内容
+    /// Content
     /// </summary>
     [NotNull]
     [JsonProperty("content")]
@@ -141,7 +141,7 @@ public abstract class SubTextContent
 public class TipsContentPlainText : SubTextContent
 {
     /// <summary>
-    /// 纯文本文字
+    /// Plain text text
     /// </summary>
     [NotNull]
     [JsonProperty("content")]
@@ -152,14 +152,14 @@ public class TipsContentPlainText : SubTextContent
 public class TipsContentLinkText : SubTextContent
 {
     /// <summary>
-    /// 链接标题
+    /// Link title
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 链接url，不能超过600个字符
+    /// Link url, cannot exceed 600 characters
     /// </summary>
     [NotNull]
     [StringLength(600)]

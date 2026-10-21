@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Notifications.WeChat.MiniProgram
 
-微信小程序消息通知模块，提供通过微信小程序向用户发送订阅消息的功能。
+The WeChat applet message notification module provides the function of sending subscription messages to users through the WeChat applet.
 
-## 功能特性
+## Features
 
-* 支持微信小程序订阅消息发送
-* 支持消息模板管理
-* 支持动态消息数据配置
-* 集成ABP通知系统
+* Support WeChat applet subscription message sending
+* Support message template management
+* Support dynamic message data configuration
+* Integrated ABP notification system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWeChatMiniProgramModule))]
@@ -19,23 +19,23 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "MiniProgram": {
       "Notifications": {
-        "DefaultTemplateId": "",           // 默认模板ID
-        "DefaultPage": "pages/index/index", // 默认跳转页面
-        "DefaultState": "formal",          // 默认跳转小程序类型，developer为开发版；trial为体验版；formal为正式版
-        "DefaultLang": "zh_CN"             // 默认语言
+        "DefaultTemplateId": "", //Default template ID
+        "DefaultPage": "pages/index/index", // Default jump page
+        "DefaultState": "formal", //The default jump applet type, developer is the development version; trial is the experience version; formal is the official version
+        "DefaultLang": "zh_CN" //Default language
       }
     }
   }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [微信小程序消息通知文档](README.EN.md)
+* [WeChat Mini Program Message Notification Document](README.EN.md)

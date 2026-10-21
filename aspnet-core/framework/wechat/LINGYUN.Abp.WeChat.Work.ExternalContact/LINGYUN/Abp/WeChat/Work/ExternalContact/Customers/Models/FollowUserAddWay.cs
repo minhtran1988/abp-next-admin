@@ -2,124 +2,124 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 客户来源
+/// Customer source
 /// </summary>
-[Description("客户来源")]
+[Description("Customer Source")]
 public enum FollowUserAddWay
 {
     /// <summary>
-    /// 未知来源
+    /// Unknown source
     /// </summary>
-    [Description("未知来源")]
+    [Description("Unknown Source")]
     None = 0,
     /// <summary>
-    /// 扫描二维码
+    /// Scan the QR code
     /// </summary>
-    [Description("扫描二维码")]
+    [Description("Scan QR code")]
     ScanQrCode = 1,
     /// <summary>
-    /// 搜索手机号
+    /// Search for mobile phone number
     /// </summary>
-    [Description("搜索手机号")]
+    [Description("Search mobile phone number")]
     SearchPhoneNumber = 2,
     /// <summary>
-    /// 名片分享
+    /// Business card sharing
     /// </summary>
-    [Description("名片分享")]
+    [Description("Business Card Sharing")]
     SharedCard = 3,
     /// <summary>
-    /// 群聊
+    /// Group chat
     /// </summary>
-    [Description("群聊")]
+    [Description("Group Chat")]
     GroupChat = 4,
     /// <summary>
-    /// 手机通讯录
+    /// Mobile phone address book
     /// </summary>
-    [Description("手机通讯录")]
+    [Description("Mobile Address Book")]
     PhoneBook = 5,
     /// <summary>
-    /// 微信联系人
+    /// WeChat contact
     /// </summary>
-    [Description("微信联系人")]
+    [Description("WeChat Contact")]
     WeChatContact = 6,
     /// <summary>
-    /// 安装第三方应用时自动添加的客服人员
+    /// Customer service personnel automatically added when installing third-party applications
     /// </summary>
-    [Description("安装第三方应用时自动添加的客服人员")]
+    [Description("Customer service personnel automatically added when installing third-party applications")]
     InstallThirdPartyApp = 8,
     /// <summary>
-    /// 搜索邮箱
+    /// Search mailbox
     /// </summary>
-    [Description("搜索邮箱")]
+    [Description("Search mailbox")]
     SearchEmail = 9,
     /// <summary>
-    /// 视频号添加
+    /// Add video number
     /// </summary>
-    [Description("视频号添加")]
+    [Description("Video number added")]
     WechatChannel = 10,
     /// <summary>
-    /// 通过日程参与人添加
+    /// Add through schedule participants
     /// </summary>
-    [Description("通过日程参与人添加")]
+    [Description("Add by schedule participant")]
     SchedulePart = 11,
     /// <summary>
-    /// 通过会议参与人添加
+    /// Added by meeting participants
     /// </summary>
-    [Description("通过会议参与人添加")]
+    [Description("Add by meeting participant")]
     MeetPart = 12,
     /// <summary>
-    /// 添加微信好友对应的企业微信
+    /// Add the corporate WeChat corresponding to WeChat friends
     /// </summary>
-    [Description("添加微信好友对应的企业微信")]
+    [Description("Add corporate WeChat corresponding to WeChat friends")]
     WeChatFriend = 13,
     /// <summary>
-    /// 通过智慧硬件专属客服添加
+    /// Add through smart hardware dedicated customer service
     /// </summary>
-    [Description("通过智慧硬件专属客服添加")]
+    [Description("Add through smart hardware dedicated customer service")]
     SmartHardware = 14,
     /// <summary>
-    /// 通过上门服务客服添加
+    /// Add through door-to-door service customer service
     /// </summary>
-    [Description("通过上门服务客服添加")]
+    [Description("Add through on-site customer service")]
     DoorService = 15,
     /// <summary>
-    /// 通过获客链接添加
+    /// Add through customer acquisition link
     /// </summary>
-    [Description("通过获客链接添加")]
+    [Description("Add through customer acquisition link")]
     CustomerAcqLink = 16,
     /// <summary>
-    /// 通过定制开发添加
+    /// Added through custom development
     /// </summary>
-    [Description("通过定制开发添加")]
+    [Description("Added through custom development")]
     CustomDevelopment = 17,
     /// <summary>
-    /// 通过需求回复添加
+    /// Added by request reply
     /// </summary>
-    [Description("通过需求回复添加")]
+    [Description("Add via request reply")]
     DemandResponse = 18,
     /// <summary>
-    /// 通过第三方售前客服添加
+    /// Added through third-party pre-sales customer service
     /// </summary>
-    [Description("通过第三方售前客服添加")]
+    [Description("Added through third-party pre-sales customer service")]
     ThirdPartyPreSales = 21,
     /// <summary>
-    /// 通过可能的商务伙伴添加
+    /// Add via possible business partners
     /// </summary>
-    [Description("通过可能的商务伙伴添加")]
+    [Description("Add via possible business partners")]
     PotentialBusPart = 22,
     /// <summary>
-    /// 通过接受微信账号收到的好友申请添加
+    /// Add by accepting the friend request received from the WeChat account
     /// </summary>
-    [Description("通过接受微信账号收到的好友申请添加")]
+    [Description("Add friend request received by accepting WeChat account")]
     WeChatFriendRequest = 24,
     /// <summary>
-    /// 内部成员共享
+    /// Shared by internal members
     /// </summary>
-    [Description("内部成员共享")]
+    [Description("Internal member sharing")]
     SharedByInternalMembers = 201,
     /// <summary>
-    /// 管理员/负责人分配
+    /// Administrator/responsible person assignment
     /// </summary>
-    [Description("管理员/负责人分配")]
+    [Description("Administrator/Responsible Person Assignment")]
     AllocationByAdmin = 202
 }

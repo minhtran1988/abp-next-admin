@@ -24,7 +24,7 @@ const { cancel, changePasswordApi } = useUsersApi();
 
 const [Form, formApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },

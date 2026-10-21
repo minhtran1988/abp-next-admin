@@ -4,52 +4,52 @@ import type { MenuRecordBadgeRaw, ThemeModeType } from '@vben-core/typings';
 
 interface MenuProps {
   /**
-   * @zh_CN 是否开启手风琴模式
+   * @zh_CN Whether to enable accordion mode
    * @default true
    */
   accordion?: boolean;
   /**
-   * @zh_CN 菜单是否折叠
+   * @zh_CN Whether the menu is collapsed
    * @default false
    */
   collapse?: boolean;
 
   /**
-   * @zh_CN 菜单折叠时是否显示菜单名称
+   * @zh_CN Whether to display the menu name when the menu is collapsed
    * @default false
    */
   collapseShowTitle?: boolean;
 
   /**
-   * @zh_CN 默认激活的菜单
+   * @zh_CN Default activated menu
    */
   defaultActive?: string;
 
   /**
-   * @zh_CN 默认展开的菜单
+   * @zh_CN Default expanded menu
    */
   defaultOpeneds?: string[];
 
   /**
-   * @zh_CN 菜单模式
+   * @zh_CN Menu mode
    * @default vertical
    */
   mode?: 'horizontal' | 'vertical';
 
   /**
-   * @zh_CN 是否圆润风格
+   * @zh_CN Is it round style?
    * @default true
    */
   rounded?: boolean;
 
   /**
-   * @zh_CN 是否自动滚动到激活的菜单项
+   * @zh_CN Whether to automatically scroll to the activated menu item
    * @default false
    */
   scrollToActive?: boolean;
 
   /**
-   * @zh_CN 菜单主题
+   * @zh_CN Menu theme
    * @default dark
    */
   theme?: ThemeModeType;
@@ -57,38 +57,38 @@ interface MenuProps {
 
 interface SubMenuProps extends MenuRecordBadgeRaw {
   /**
-   * @zh_CN 激活图标
+   * @zh_CN activation icon
    */
   activeIcon?: string;
   /**
-   * @zh_CN 是否禁用
+   * @zh_CN Whether to disable
    */
   disabled?: boolean;
   /**
-   * @zh_CN 图标
+   * @zh_CN icon
    */
   icon?: Component | string;
   /**
-   * @zh_CN submenu 名称
+   * @zh_CN submenu name
    */
   path: string;
 }
 
 interface MenuItemProps extends MenuRecordBadgeRaw {
   /**
-   * @zh_CN 图标
+   * @zh_CN icon
    */
   activeIcon?: string;
   /**
-   * @zh_CN 是否禁用
+   * @zh_CN Whether to disable
    */
   disabled?: boolean;
   /**
-   * @zh_CN 图标
+   * @zh_CN icon
    */
   icon?: Component | string;
   /**
-   * @zh_CN menuitem 名称
+   * @zh_CN menuitem name
    */
   path: string;
 }

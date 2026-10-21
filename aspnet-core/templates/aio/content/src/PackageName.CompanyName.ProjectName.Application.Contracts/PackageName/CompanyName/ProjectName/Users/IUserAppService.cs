@@ -7,48 +7,48 @@ using Volo.Abp.Application.Services;
 namespace PackageName.CompanyName.ProjectName.Users
 {
     /// <summary>
-    /// 用户应用服务接口
+    /// User application service interface
     /// </summary>
     public interface IUserAppService : 
         IApplicationService
     {
         /// <summary>
-        /// 创建用户
+        /// Create user
         /// </summary>
         Task<UserDto> CreateAsync(CreateUpdateUserDto input);
 
         /// <summary>
-        /// 更新用户
+        /// Update user
         /// </summary>
         Task<UserDto> UpdateAsync(Guid id, CreateUpdateUserDto input);
 
         /// <summary>
-        /// 删除用户
+        /// Delete user
         /// </summary>
         Task DeleteAsync(Guid id);
 
         /// <summary>
-        /// 获取用户
+        /// Get user
         /// </summary>
         Task<UserDto> GetAsync(Guid id);
 
         /// <summary>
-        /// 获取用户列表
+        /// Get user list
         /// </summary>
         Task<PagedResultDto<UserItemDto>> GetListAsync(UserPagedAndSortedResultRequestDto input);
 
         /// <summary>
-        /// 修改用户密码
+        /// Modify user password
         /// </summary>
         Task ChangePasswordAsync(Guid id, string currentPassword, string newPassword);
 
         /// <summary>
-        /// 重置用户密码（管理员操作）
+        /// Reset user password (administrator operation)
         /// </summary>
         Task ResetPasswordAsync(Guid id, string newPassword);
 
         /// <summary>
-        /// 启用或禁用用户
+        /// Enable or disable user
         /// </summary>
         Task SetUserActiveStatusAsync(Guid id, bool isActive);
     }

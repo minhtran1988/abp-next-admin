@@ -3,15 +3,15 @@
 public enum PackageLevel
 {
     /// <summary>
-    /// 无需更新
+    /// No update required
     /// </summary>
     None = -1,
     /// <summary>
-    /// 资源
+    /// Resources
     /// </summary>
     Resource = 0,
     /// <summary>
-    /// 整体
+    /// Overall
     /// </summary>
     Full = 1
 }

@@ -76,7 +76,7 @@ public class AccountController : AbpController
         {
             throw new UserFriendlyException("Operation failed: " + identityResult.Errors.Select(e => $"[{e.Code}] {e.Description}").JoinAsString(", "));
         }
-        // 解绑的是当前身份认证方案则退出登录
+        // If the current identity authentication scheme is unbound, log out.
         var amr = CurrentUser.FindClaimValue(ClaimTypes.AuthenticationMethod);
         if (!amr.IsNullOrWhiteSpace() && string.Equals(amr, input.LoginProvider, StringComparison.InvariantCultureIgnoreCase))
         {

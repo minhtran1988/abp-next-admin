@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信markdown消息
+/// Enterprise WeChat markdown message
 /// </summary>
 public class WeChatWorkMarkdownMessage : WeChatWorkMessage
 {
@@ -15,20 +15,20 @@ public class WeChatWorkMarkdownMessage : WeChatWorkMessage
         Markdown = markdown;
     }
     /// <summary>
-    /// markdown消息
+    /// markdown message
     /// </summary>
     [NotNull]
     [JsonProperty("markdown")]
     [JsonPropertyName("markdown")]
     public MarkdownMessage Markdown { get; set; }
     /// <summary>
-    /// 表示是否开启重复消息检查，0表示否，1表示是，默认0
+    /// Indicates whether to enable duplicate message checking, 0 means no, 1 means yes, the default is 0
     /// </summary>
     [JsonProperty("enable_duplicate_check")]
     [JsonPropertyName("enable_duplicate_check")]
     public byte EnableDuplicateCheck { get; set; }
     /// <summary>
-    /// 表示是否重复消息检查的时间间隔，默认1800s，最大不超过4小时
+    /// Indicates whether to repeat the message check time interval, the default is 1800s, the maximum is no more than 4 hours
     /// </summary>
     [JsonProperty("duplicate_check_interval")]
     [JsonPropertyName("duplicate_check_interval")]

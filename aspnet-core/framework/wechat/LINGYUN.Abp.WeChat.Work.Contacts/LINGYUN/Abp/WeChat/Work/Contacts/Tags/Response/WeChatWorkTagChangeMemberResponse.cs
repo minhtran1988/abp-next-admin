@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Tags.Response;
 /// <summary>
-/// 标签成员变更响应参数
+/// Tag member change response parameters
 /// </summary>
 public class WeChatWorkTagChangeMemberResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 若部分userid非法，则返回
+    /// If part of the userid is illegal, return
     /// </summary>
     [CanBeNull]
     [JsonProperty("invalidlist")]
     [JsonPropertyName("invalidlist")]
     public string? InvalidList { get; set; }
     /// <summary>
-    /// 若部分partylist非法，则返回
+    /// If part of the partylist is illegal, return
     /// </summary>
     [CanBeNull]
     [JsonProperty("invalidparty")]

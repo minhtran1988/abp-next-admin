@@ -7,7 +7,7 @@ using Volo.Abp.EventBus;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知模板消息
+/// Notification template message
 /// </summary>
 [Serializable]
 [EventName("notifications.template")]

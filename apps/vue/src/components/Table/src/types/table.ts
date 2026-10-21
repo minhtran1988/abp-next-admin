@@ -25,9 +25,9 @@ export interface TableCurrentDataSource<T = Recordable> {
 export interface TableRowSelection<T = any> extends ITableRowSelection {
   /**
    * Callback executed when selected rows change
-   * @param selectedRowKeys 已选的 keyValues
-   * @param selectedRows 已选的 records
-   * @param isClickCustomRow 是否是点击行触发（反之，就是点击checkbox/radiobox）
+   * @param selectedRowKeys selected keyValues
+   * @param selectedRows selected records
+   * @param isClickCustomRow Whether it is triggered by clicking on the row (on the contrary, it is triggered by clicking on checkbox/radiobox)
    * @returns void
    */
   onChange?: (selectedRowKeys: Key[], selectedRows: T[], isClickCustomRow?: boolean) => void;
@@ -132,13 +132,13 @@ export interface TableActionType {
 }
 
 export interface FetchSetting {
-  // 请求接口当前页数
+  // Request the current page number of the interface
   pageField: string;
-  // 每页显示多少条
+  // How many items to display on each page
   sizeField: string;
-  // 请求结果列表字段  支持 a.b.c
+  // Request result list field supports a.b.c
   listField: string;
-  // 请求结果总数字段  支持 a.b.c
+  // Request result total field supports a.b.c
   totalField: string;
 }
 
@@ -152,90 +152,90 @@ export interface TableSetting {
 }
 
 export interface BasicTableProps<T = any> {
-  // 点击行选中
+  // Click on row to select
   clickToRowSelect?: boolean;
   isTreeTable?: boolean;
-  accordion?: boolean; // isTreeTable 或 expandRowByClick 时支持
-  // 自定义排序方法
+  accordion?: boolean; // Supported when isTreeTable or expandRowByClick
+  // Custom sorting method
   sortFn?: (sortInfo: SorterResult) => any;
-  // 排序方法
+  // Sorting method
   filterFn?: (data: Partial<Recordable<string[]>>) => any;
-  // 取消表格的默认padding
+  // Cancel the default padding of the table
   inset?: boolean;
-  // 显示表格设置
+  // Display table settings
   showTableSetting?: boolean;
   tableSetting?: TableSetting;
-  // 斑马纹
+  // zebra print
   striped?: boolean;
-  // 是否自动生成key
+  // Whether to automatically generate key
   autoCreateKey?: boolean;
-  // 计算合计行的方法
+  // Method to calculate total rows
   summaryFunc?: (...arg: any) => Recordable[];
-  // 自定义合计表格内容
+  // Customize the total table content
   summaryData?: Recordable[];
-  // 是否显示合计行
+  // Whether to display the total row
   showSummary?: boolean;
-  // 是否可拖拽列
+  // Whether the column can be dragged
   canColDrag?: boolean;
-  // 接口请求对象
+  // Interface request object
   api?: (...arg: any) => Promise<any>;
-  // 请求之前处理参数
+  // Process parameters before requesting
   beforeFetch?: Fn;
-  // 响应之前处理结果
+  // Process results before responding
   beforeResponse?: Fn;
-  // 自定义处理接口返回参数
+  // Custom processing interface return parameters
   afterFetch?: Fn;
-  // 查询条件请求之前处理
+  // Process before query condition request
   handleSearchInfoFn?: Fn;
-  // 请求接口配置
+  // Request interface configuration
   fetchSetting?: Partial<FetchSetting>;
-  // 立即请求接口
+  // Request the interface immediately
   immediate?: boolean;
-  // 在开起搜索表单的时候，如果没有数据是否显示表格
+  // When opening the search form, whether to display the table if there is no data
   emptyDataIsShowTable?: boolean;
-  // 额外的请求参数
+  // Additional request parameters
   searchInfo?: Recordable;
-  // 默认的排序参数
+  // Default sorting parameters
   defSort?: Recordable;
-  // 使用搜索表单
+  // Use the search form
   useSearchForm?: boolean;
-  // 表单配置
+  // form configuration
   formConfig?: Partial<FormProps>;
-  // 高级查询配置
+  // Advanced query configuration
   advancedSearchConfig?: Partial<AdvanceSearchProps>;
-  // 使用已选择提示
+  // Use selected prompt
   useSelectedAlert?: boolean;
-  // 列配置
+  // column configuration
   columns: BasicColumn[];
-  // 是否显示序号列
+  // Whether to display the serial number column
   showIndexColumn?: boolean;
-  // 序号列配置
+  // Serial number column configuration
   indexColumnProps?: BasicColumn;
   actionColumn?: BasicColumn;
-  // 文本超过宽度是否显示。。。
+  // Whether the text exceeds the width to be displayed. . .
   ellipsis?: boolean;
-  // 是否继承父级高度（父级高度-表单高度-padding高度）
+  // Whether to inherit the parent height (parent height-form height-padding height)
   isCanResizeParent?: boolean;
-  // 是否可以自适应高度
+  // Is it possible to adjust the height?
   canResize?: boolean;
-  // 自适应高度偏移， 计算结果-偏移量
+  // Adaptive height offset, calculation result-offset
   resizeHeightOffset?: number;
 
-  // 在分页改变的时候清空选项
+  // Clear options when pagination changes
   clearSelectOnPageChange?: boolean;
   //
   rowKey?: InstanceType<typeof AntDesignVueTable>['$props']['rowKey'];
-  // 数据
+  // data
   dataSource?: Recordable[];
-  // 标题右侧提示
+  // Tips on the right side of the title
   titleHelpMessage?: string | string[];
-  // 表格滚动最大高度
+  // Maximum height of table scrolling
   maxHeight?: number;
-  // 是否显示边框
+  // Whether to display the border
   bordered?: boolean;
-  // 分页配置
+  // Paging configuration
   pagination?: PaginationProps | boolean;
-  // loading加载
+  // loading loading
   loading?: boolean;
 
   /**
@@ -327,7 +327,7 @@ export interface BasicTableProps<T = any> {
   rowSelection?: TableRowSelection;
 
   /**
-   * Show table selection bar（显示多选状态栏）
+   * Show table selection bar (show multiple selection status bar)
    * @type boolean
    */
   showSelectionBar?: boolean;
@@ -457,7 +457,7 @@ export interface BasicColumn extends ColumnProps<Recordable> {
 
   slots?: Recordable;
 
-  // 自定义header渲染
+  // Custom header rendering
   customHeaderRender?: (column: BasicColumn) => string | VNodeChild | JSX.Element;
   // Whether to hide the column by default, it can be displayed in the column configuration
   defaultHidden?: boolean;
@@ -483,11 +483,11 @@ export interface BasicColumn extends ColumnProps<Recordable> {
   editRule?: boolean | ((text: string, record: Recordable) => Promise<string>);
   editValueMap?: (value: any) => string;
   onEditRow?: () => void;
-  // 权限编码控制是否显示
+  // Permission encoding controls whether to display
   auth?: RoleEnum | RoleEnum[] | string | string[];
-  // 业务控制是否显示
+  // Whether business control is displayed
   ifShow?: boolean | ((column: BasicColumn) => boolean);
-  // 自定义修改后显示的内容
+  // Customize the content displayed after modification
   editRender?: (opt: {
     text: string | number | boolean | Recordable;
     record: Recordable;
@@ -495,7 +495,7 @@ export interface BasicColumn extends ColumnProps<Recordable> {
     index: number;
     currentValue: string | number | boolean | Recordable;
   }) => VNodeChild | JSX.Element;
-  // 动态 Disabled
+  // Dynamic Disabled
   editDynamicDisabled?: boolean | ((record: Recordable) => boolean);
 }
 

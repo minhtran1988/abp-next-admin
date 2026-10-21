@@ -5,19 +5,19 @@ using Volo.Abp.Data;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 写入 OpenObserve 的审计日志文档
+/// Write the audit log document of OpenObserve
 /// </summary>
 /// <remarks>
-/// 继承 <see cref="AuditLog"/> 并追加 <c>_timestamp</c> 列(由 <see cref="AuditLog.ExecutionTime"/> 覆盖);
-/// 实体变更与操作写入由 AuditLogStream 计算出的独立数据流
+/// Inherit <see cref="AuditLog"/> and append <c>_timestamp</c> column (overridden by <see cref="AuditLog.ExecutionTime"/>);
+/// Entity changes and operations are written to independent data streams calculated by AuditLogStream
 /// </remarks>
 public class OpenObserveAuditLog : AuditLog
 {
     /// <summary>
-    /// OpenObserve 文档时间(微秒)
+    /// OpenObserve document time (microseconds)
     /// </summary>
     /// <remarks>
-    /// 由 <see cref="AuditLog.ExecutionTime"/> 覆盖; 为 null 时使用服务端写入时间
+    /// Overridden by <see cref="AuditLog.ExecutionTime"/>; when null, use the server-side write time
     /// </remarks>
     [JsonPropertyName("_timestamp")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -49,11 +49,11 @@ public class OpenObserveAuditLog : AuditLog
             Exceptions = auditLog.Exceptions,
             Comments = auditLog.Comments,
             HttpStatusCode = auditLog.HttpStatusCode,
-            // 实体变更与操作写入独立数据流(见 GetEntityChangeStream / GetActionStream), 主文档不再冗余保存, 详情按需从子流获取
+            // Entity changes and operations are written to independent data streams (see GetEntityChangeStream / GetActionStream). The main document is no longer saved redundantly. Details are obtained from substreams on demand.
             EntityChanges = new List<EntityChange>(),
             Actions = new List<AuditLogAction>(),
             ExtraProperties = auditLog.ExtraProperties ?? new ExtraPropertyDictionary(),
-            // _timestamp 由写入器按 AuditLog.ExecutionTime 覆盖(见 OpenObserveTimestampHelper)
+            // _timestamp is overridden by the writer by AuditLog.ExecutionTime (see OpenObserveTimestampHelper)
             Timestamp = null,
         };
     }

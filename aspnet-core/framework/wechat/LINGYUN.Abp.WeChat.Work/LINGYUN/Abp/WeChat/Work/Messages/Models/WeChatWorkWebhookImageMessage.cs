@@ -4,21 +4,21 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信Webhook图片消息
+/// Enterprise WeChat Webhook picture message
 /// </summary>
 public class WeChatWorkWebhookImageMessage : WeChatWorkWebhookMessage
 {
     /// <summary>
-    /// 图片消息体
+    /// Image message body
     /// </summary>
     [NotNull]
     [JsonProperty("image")]
     [JsonPropertyName("image")]
     public WebhookImageMessage Image { get; set; }
     /// <summary>
-    /// 创建一个企业微信Webhook图片消息
+    /// Create an enterprise WeChat Webhook picture message
     /// </summary>
-    /// <param name="image">图片消息体</param>
+    /// <param name="image">Image message body</param>
     public WeChatWorkWebhookImageMessage(WebhookImageMessage image)
         : base("image")
     {

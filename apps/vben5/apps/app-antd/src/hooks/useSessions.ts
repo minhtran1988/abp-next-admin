@@ -24,7 +24,7 @@ export function useSessions() {
     release();
   }
 
-  /** 处理会话过期事件 */
+  /** Handle session expiration events */
   function _onSessionExpired(event?: NotificationInfo) {
     if (!event) {
       return;

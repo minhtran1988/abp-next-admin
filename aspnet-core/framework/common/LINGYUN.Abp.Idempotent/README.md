@@ -1,23 +1,23 @@
 # LINGYUN.Abp.Idempotent
 
-接口幂等性检查模块，用于防止接口重复提交和确保接口调用的幂等性。
+The interface idempotence checking module is used to prevent repeated submission of interfaces and ensure the idempotence of interface calls.
 
-## 功能
+## Function
 
-* 自动幂等性检查
-* 支持自定义幂等键生成
-* 灵活的超时配置
-* 支持分布式锁
-* 支持多语言错误消息
-* 支持忽略特定接口或方法
+* Automatic idempotence check
+* Support custom idempotent key generation
+* Flexible timeout configuration
+* Support distributed locks
+* Support multi-language error messages
+* Support ignoring specific interfaces or methods
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Idempotent
 ```
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpIdempotentModule))]
@@ -27,29 +27,29 @@ public class YouProjectModule : AbpModule
     {
         Configure<AbpIdempotentOptions>(options =>
         {
-            // 全局启用幂等检查
+            // Enable idempotent checking globally
             options.IsEnabled = true;
-            // 默认每个接口提供5秒超时
+            // Each interface provides a 5 second timeout by default
             options.DefaultTimeout = 5000;
-            // 幂等token名称, 通过HttpHeader传递
+            // Idempotent token name, passed through HttpHeader
             options.IdempotentTokenName = "X-With-Idempotent-Token";
-            // 幂等校验失败时Http响应代码
+            //Http response code when idempotent verification fails
             options.HttpStatusCode = 429;
         });
     }
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-* `IsEnabled` - 是否启用幂等检查，默认：false
-* `DefaultTimeout` - 默认幂等性检查超时时间（毫秒），默认：5000
-* `IdempotentTokenName` - 幂等性Token的HTTP头名称，默认：X-With-Idempotent-Token
-* `HttpStatusCode` - 幂等性检查失败时的HTTP状态码，默认：429 (Too Many Requests)
+* `IsEnabled` - Whether to enable idempotent checking, default: false
+* `DefaultTimeout` - Default idempotence check timeout (milliseconds), default: 5000
+* `IdempotentTokenName` - HTTP header name of idempotent Token, default: X-With-Idempotent-Token
+* `HttpStatusCode` - HTTP status code when idempotence check fails, default: 429 (Too Many Requests)
 
-## 使用示例
+## Usage example
 
-### 1. 基本使用
+### 1. Basic usage
 
 ```csharp
 [Idempotent]
@@ -57,13 +57,13 @@ public class OrderAppService : ApplicationService
 {
     public async Task<OrderDto> CreateAsync(CreateOrderDto input)
     {
-        // 方法会自动进行幂等性检查
+        // The method will automatically check for idempotence
         return await _orderRepository.CreateAsync(input);
     }
 }
 ```
 
-### 2. 自定义幂等键
+### 2. Custom idempotent keys
 
 ```csharp
 [Idempotent(
@@ -76,7 +76,7 @@ public async Task<OrderDto> UpdateAsync(UpdateOrderDto input)
 }
 ```
 
-### 3. 忽略幂等性检查
+### 3. Ignore idempotence checks
 
 ```csharp
 [IgnoreIdempotent]
@@ -86,13 +86,13 @@ public async Task<OrderDto> QueryAsync(string orderId)
 }
 ```
 
-## 注意事项
+## Notes
 
-1. 默认对所有继承自 `ICreateAppService`、`IUpdateAppService` 和 `IDeleteAppService` 的服务启用幂等性检查
-2. 可以通过 `[IgnoreIdempotent]` 特性来忽略特定方法的幂等性检查
-3. 幂等性检查基于分布式锁实现，确保在分布式环境中的正确性
-4. 建议在所有修改数据的接口上启用幂等性检查
+1. Idempotence checking is enabled by default for all services inherited from `ICreateAppService`, `IUpdateAppService` and `IDeleteAppService`
+2. You can ignore the idempotence check of a specific method through the `[IgnoreIdempotent]` attribute
+3. Idempotence check is implemented based on distributed locks to ensure correctness in a distributed environment
+4. It is recommended to enable idempotence checking on all interfaces that modify data.
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)

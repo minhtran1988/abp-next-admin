@@ -6,12 +6,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 单选/多选控件值
+/// Radio/multi-select control value
 /// </summary>
 public class SelectorControlValue : ControlValue
 {
     /// <summary>
-    /// 单选/多选内容
+    /// Single selection/multiple selection content
     /// </summary>
     [NotNull]
     [JsonProperty("selector")]
@@ -31,14 +31,14 @@ public class SelectorControlValue : ControlValue
 public class SelectorValue
 {
     /// <summary>
-    /// 选择方式：single-单选；multi-多选
+    /// Selection method: single-radio selection; multi-multiple selection
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 多选选项，多选属性的选择控件允许输入多个
+    /// Multi-select option, the selection control of multi-select attribute allows multiple input
     /// </summary>
     [NotNull]
     [JsonProperty("options")]
@@ -55,7 +55,7 @@ public class SelectorValue
         Options = options;
     }
     /// <summary>
-    /// 创建一个单选选项
+    /// Create a radio option
     /// </summary>
     /// <param name="option"></param>
     /// <returns></returns>
@@ -65,7 +65,7 @@ public class SelectorValue
     }
 
     /// <summary>
-    /// 创建一个多选选项
+    /// Create a multi-select option
     /// </summary>
     /// <param name="options"></param>
     /// <returns></returns>
@@ -78,14 +78,14 @@ public class SelectorValue
 public class SelectorValueOption
 {
     /// <summary>
-    /// 选项key，可通过“获取审批模板详情”接口获得
+    /// Option key can be obtained through the "Get Approval Template Details" interface
     /// </summary>
     [NotNull]
     [JsonProperty("key")]
     [JsonPropertyName("key")]
     public string Key { get; set; } = default!;
     /// <summary>
-    /// 选项值，若配置了多语言则会包含中英文的选项值
+    /// Option value, if multiple languages are configured, it will include Chinese and English option values.
     /// </summary>
     [NotNull]
     [JsonProperty("value")]
@@ -106,7 +106,7 @@ public class SelectorValueOption
 public class SelectorValueOptionValue
 {
     /// <summary>
-    /// 选项值
+    /// option value
     /// </summary>
     [NotNull]
     [StringLength(40)]
@@ -114,7 +114,7 @@ public class SelectorValueOptionValue
     [JsonPropertyName("text")]
     public string Text { get; set; } = default!;
     /// <summary>
-    /// 多语言名称
+    /// Multi-language name
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]

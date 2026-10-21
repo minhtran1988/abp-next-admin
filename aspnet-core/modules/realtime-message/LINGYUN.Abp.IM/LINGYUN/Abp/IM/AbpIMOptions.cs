@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.IM;
 public class AbpIMOptions
 {
     /// <summary>
-    ///  消息发送者
+    /// Message sender
     /// </summary>
     public ITypeList<IMessageSenderProvider> Providers { get; }
 

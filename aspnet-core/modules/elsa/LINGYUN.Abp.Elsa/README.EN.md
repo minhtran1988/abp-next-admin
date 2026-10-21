@@ -27,4 +27,4 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-[中文文档](./README.md)
+[Chinese document](./README.md)

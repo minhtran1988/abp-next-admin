@@ -13,7 +13,7 @@ using Volo.Abp.DependencyInjection;
 namespace LINGYUN.Abp.Elasticsearch;
 
 /// <summary>
-/// 表达式查询转换器 - 将 LINQ 表达式转换为 Elasticsearch Query
+/// Expression Query Converter - Converts LINQ expressions to Elasticsearch Query
 /// </summary>
 public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISingletonDependency
 {
@@ -26,7 +26,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 翻译表达式
+    /// Translation expression
     /// </summary>
     public async virtual Task<Query> TranslateAsync<TDocument>(string indexName, Expression<Func<TDocument, bool>> expression)
     {
@@ -38,10 +38,10 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
         return TranslateNode(expression.Body, prefix: null, indexMapping);
     }
 
-    #region 节点翻译
+    #region node translation
 
     /// <summary>
-    /// 翻译表达式节点
+    /// Translation expression node
     /// </summary>
     protected virtual Query TranslateNode(Expression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -77,10 +77,10 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
     #endregion
 
-    #region 二元表达式翻译
+    #region binary expression translation
 
     /// <summary>
-    /// 翻译二元表达式
+    /// Translate binary expressions
     /// </summary>
     protected virtual Query TranslateBinary(BinaryExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -103,16 +103,16 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
 
 
     /// <summary>
-    /// 构建 And 查询（展平 BoolQuery）
+    /// Build And query (flatten BoolQuery)
     /// </summary>
     private Query TranslateAndAlso(BinaryExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
         var filters = new List<Query>();
 
-        // 收集左侧所有 Filter
+        // Collect all Filters on the left
         CollectFilters(node.Left, prefix, mappingInfo, filters);
 
-        // 收集右侧 Filter
+        // Collect the right Filter
         CollectFilters(node.Right, prefix, mappingInfo, filters);
 
         return new BoolQuery
@@ -122,23 +122,23 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 递归收集 Filter 查询
+    /// Recursive collection Filter query
     /// </summary>
     private void CollectFilters(Expression node, string? prefix, IndexMappingInfo? mappingInfo, List<Query> filters)
     {
         if (node is BinaryExpression binary &&
             (binary.NodeType == ExpressionType.AndAlso || binary.NodeType == ExpressionType.And))
         {
-            // 递归收集左右子节点
+            // Recursively collect left and right child nodes
             CollectFilters(binary.Left, prefix, mappingInfo, filters);
             CollectFilters(binary.Right, prefix, mappingInfo, filters);
         }
         else
         {
-            // 非 And 表达式，直接翻译并添加到列表
+            // Non-And expressions, translated directly and added to the list
             var query = TranslateNode(node, prefix, mappingInfo);
 
-            // 如果翻译结果是 BoolQuery 且有 Filter，展平它
+            // If the translation result is a BoolQuery and there is a Filter, flatten it
             if (query.Bool != null && query.Bool.Filter != null && query.Bool.Filter.Count > 0)
             {
                 foreach (var subQuery in query.Bool.Filter)
@@ -161,7 +161,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 构建 Or 查询（展平 BoolQuery）
+    /// Build Or query (flatten BoolQuery)
     /// </summary>
     private Query TranslateOrElse(BinaryExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -178,7 +178,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 递归收集 Should 查询
+    /// Recursive collection Should query
     /// </summary>
     private void CollectShouldQueries(Expression node, string? prefix, IndexMappingInfo? mappingInfo, List<Query> shouldQueries)
     {
@@ -192,7 +192,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
         {
             var query = TranslateNode(node, prefix, mappingInfo);
 
-            // 如果翻译结果是 BoolQuery 且有 Should，展平它
+            // If the translation result is a BoolQuery and has Should, flatten it
             if (query.Bool != null && query.Bool.Should != null && query.Bool.Should.Count > 0)
             {
                 foreach (var subQuery in query.Bool.Should)
@@ -208,7 +208,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 翻译比较表达式
+    /// Translate comparison expressions
     /// </summary>
     protected virtual Query TranslateComparison(BinaryExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -221,7 +221,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
         var (fieldExpression, valueExpression) = ResolveOperands(node);
         var field = ResolveField(fieldExpression, prefix, mappingInfo);
 
-        // 处理 null 比较
+        // handle null comparisons
         if (IsNullConstant(valueExpression))
         {
             return node.NodeType == ExpressionType.NotEqual
@@ -239,7 +239,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             throw new NotSupportedException("The null value is only supported for the == null / != null comparison.");
         }
 
-        // 处理集合包含
+        // Process collection contains
         if (field.Type.IsArray || (field.Type.IsGenericType && typeof(IEnumerable).IsAssignableFrom(field.Type)))
         {
             return BuildTermsQuery(field, value);
@@ -258,7 +258,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 解析操作数，确定字段和值
+    /// Parse the operand and determine the field and value
     /// </summary>
     private static (Expression Field, Expression Value) ResolveOperands(BinaryExpression node)
     {
@@ -274,7 +274,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 判断表达式是否为字段
+    /// Determine whether the expression is a field
     /// </summary>
     private static bool IsFieldLike(Expression expression)
     {
@@ -293,7 +293,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 判断表达式是否为 null 常量
+    /// Determine whether the expression is a null constant
     /// </summary>
     private static bool IsNullConstant(Expression expression)
     {
@@ -307,14 +307,14 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
 
     #endregion
 
-    #region 方法调用翻译
+    #region method call translation
 
     /// <summary>
-    /// 取反查询
+    /// Negation query
     /// </summary>
     private static Query Negate(Query query)
     {
-        // 检查是否为 BoolQuery（通过 Bool 属性）
+        // Check if it's a BoolQuery (via Bool property)
         if (query.Bool != null)
         {
             var boolQuery = query.Bool;
@@ -348,11 +348,11 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
                 return newBool;
             }
 
-            // 空 BoolQuery -> MatchAll
+            // empty BoolQuery -> MatchAll
             return new MatchAllQuery();
         }
 
-        // 对于 ExistsQuery，取反后变成 MustNot + Exists
+        // For ExistsQuery, the negation becomes MustNot + Exists
         if (query.Exists != null)
         {
             return new BoolQuery
@@ -361,19 +361,19 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 MatchAllQuery，取反后变成 MatchNoneQuery
+        // For MatchAllQuery, it becomes MatchNoneQuery after negation
         if (query.MatchAll != null)
         {
             return new MatchNoneQuery();
         }
 
-        // 对于 MatchNoneQuery，取反后变成 MatchAllQuery
+        // For MatchNoneQuery, it becomes MatchAllQuery after negation
         if (query.MatchNone != null)
         {
             return new MatchAllQuery();
         }
 
-        // 对于 TermQuery，取反后变成 MustNot + Term
+        // For TermQuery, it becomes MustNot + Term after negation
         if (query.Term != null)
         {
             if (query.Term.Value.IsBool && query.Term.Value.TryGetBool(out var boolValue))
@@ -390,7 +390,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 WildcardQuery，取反后变成 MustNot + Wildcard
+        // For WildcardQuery, the inversion becomes MustNot + Wildcard
         if (query.Wildcard != null)
         {
             return new BoolQuery
@@ -399,7 +399,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 MatchQuery，取反后变成 MustNot + Match
+        // For MatchQuery, the inversion becomes MustNot + Match
         if (query.Match != null)
         {
             return new BoolQuery
@@ -408,7 +408,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 MatchPhraseQuery，取反后变成 MustNot + MatchPhrase
+        // For MatchPhraseQuery, the negation becomes MustNot + MatchPhrase
         if (query.MatchPhrase != null)
         {
             return new BoolQuery
@@ -417,7 +417,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 MatchPhrasePrefixQuery，取反后变成 MustNot + MatchPhrasePrefix
+        // For MatchPhrasePrefixQuery, the inversion becomes MustNot + MatchPhrasePrefix
         if (query.MatchPhrasePrefix != null)
         {
             return new BoolQuery
@@ -426,7 +426,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 NumberRangeQuery
+        // for NumberRangeQuery
         if (query.Range != null && query.Range is NumberRangeQuery numberRange)
         {
             return new BoolQuery
@@ -435,7 +435,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 DateRangeQuery
+        // for DateRangeQuery
         if (query.Range != null && query.Range is DateRangeQuery dateRange)
         {
             return new BoolQuery
@@ -444,7 +444,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 TermsQuery
+        // for TermsQuery
         if (query.Terms != null)
         {
             return new BoolQuery
@@ -453,7 +453,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 NestedQuery
+        // for NestedQuery
         if (query.Nested != null)
         {
             return new BoolQuery
@@ -462,7 +462,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 对于 ScriptQuery
+        // for ScriptQuery
         if (query.Script != null)
         {
             return new BoolQuery
@@ -471,7 +471,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 默认：对于未知类型，使用 MustNot 包装
+        // Default: For unknown types, use MustNot wrapper
         return new BoolQuery
         {
             MustNot = new Query[] { query }
@@ -479,7 +479,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 翻译方法调用表达式
+    /// Translation method call expression
     /// </summary>
     protected virtual Query TranslateMethodCall(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -489,7 +489,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             return TranslateEnumerableMethod(node, prefix, mappingInfo);
         }
 
-        // 字符串方法
+        // string method
         if (node.Method.DeclaringType == typeof(string))
         {
             return TranslateStringMethod(node, prefix, mappingInfo);
@@ -501,7 +501,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             return TranslateEnumHasFlag(node, prefix, mappingInfo);
         }
 
-        // List/Collection.Contains (实例方法)
+        // List/Collection.Contains (instance method)
         if (node.Method.Name == nameof(ICollection<>.Contains) && node.Object != null)
         {
             return TranslateCollectionContains(node, prefix, mappingInfo);
@@ -513,16 +513,16 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
 
     #endregion
 
-    #region 查询构建
+    #region Query Building
 
     /// <summary>
-    /// 构建相等查询
+    /// Construct an equality query
     /// </summary>
     protected virtual Query BuildEquality(FieldInfo field, object value)
     {
         var fieldName = field.Path;
 
-        // 1. Wildcard 字段 - 使用 Term 查询
+        // 1. Wildcard field - use Term query
         if (field.IsWildcard)
         {
             return new TermQuery
@@ -532,17 +532,17 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 2. Keyword 字段或字符串
+        // 2. Keyword field or string
         if (field.IsKeyword || field.Type == typeof(string))
         {
-            // 如果是枚举类型作为字符串存储,需要转换一下
+            // If the enumeration type is stored as a string, it needs to be converted.
             var stringValue = field.Type.IsEnum
                 ? NormalizeEnumName(field.Type, value)
                 : value.ToString()!;
             return new TermQuery { Field = fieldName, Value = stringValue };
         }
 
-        // 3. 日期字段
+        // 3. Date field
         if (field.IsDate || field.Type == typeof(DateTime) || field.Type == typeof(DateTime?))
         {
             var date = (DateTime)value;
@@ -555,31 +555,31 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 4. 数值字段
+        // 4. Numeric field
         if (field.IsNumeric || IsNumericType(field.Type))
         {
             return new TermQuery { Field = fieldName, Value = NormalizeValue(value) };
         }
 
-        // 5. 布尔字段
+        // 5. Boolean field
         if (field.IsBoolean || field.Type == typeof(bool) || field.Type == typeof(bool?))
         {
             return new TermQuery { Field = fieldName, Value = (bool)value };
         }
 
-        // 6. 枚举（值作为数值）
+        // 6. Enumeration (value as numeric value)
         if (field.Type.IsEnum)
         {
             return new TermQuery { Field = fieldName, Value = Convert.ToInt64(value) };
         }
 
-        // 7. 如果值是枚举但字段类型不是枚举
+        // 7. If the value is an enumeration but the field type is not an enumeration
         if (value.GetType().IsEnum)
         {
             return new TermQuery { Field = fieldName, Value = Convert.ToInt64(value) };
         }
 
-        // 8. Text 字段 - 使用 MatchQuery
+        // 8. Text field - using MatchQuery
         if (field.IsText)
         {
             return new MatchQuery
@@ -589,22 +589,22 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             };
         }
 
-        // 9. 默认
+        // 9. Default
         return new TermQuery { Field = fieldName, Value = NormalizeValue(value) };
     }
 
     /// <summary>
-    /// 构建 NotEqual 查询
+    /// Build NotEqual query
     /// </summary>
     private Query BuildNotEqualQuery(FieldInfo field, object value)
     {
-        // 对于布尔值，直接取反值（更简洁）
+        // For Boolean values, directly negate the value (more concise)
         if (value is bool boolValue)
         {
             return new TermQuery { Field = field.Path, Value = !boolValue };
         }
 
-        // 对于其他类型，使用 must_not 包装
+        // For other types, use the must_not wrapper
         return new BoolQuery
         {
             MustNot = new Query[] { BuildEquality(field, value) }
@@ -612,7 +612,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 构建 Terms 查询（用于集合包含）
+    /// Build Terms query (for collection inclusion)
     /// </summary>
     protected virtual Query BuildTermsQuery(FieldInfo field, object value)
     {
@@ -636,7 +636,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 构建范围查询
+    /// Build range query
     /// </summary>
     protected virtual Query BuildRange(
         FieldInfo field,
@@ -647,7 +647,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     {
         var fieldName = field.Path;
 
-        // 日期范围
+        // date range
         if (field.IsDate || field.Type == typeof(DateTime) || field.Type == typeof(DateTime?))
         {
             var range = new DateRangeQuery
@@ -676,7 +676,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             return range;
         }
 
-        // 数值范围
+        // Number range
         var numberRange = new NumberRangeQuery { Field = fieldName };
 
         if (greaterThan != null)
@@ -702,10 +702,10 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
 
     #endregion
 
-    #region 辅助方法
+    #region helper method
 
     /// <summary>
-    /// 解包 Lambda 表达式
+    /// Unpack the lambda expression
     /// </summary>
     private static LambdaExpression UnwrapLambda(Expression expression)
     {
@@ -717,35 +717,35 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 求值表达式
+    /// Evaluate expression
     /// </summary>
     private static object? Evaluate(Expression expression)
     {
-        // 如果是常量表达式，直接返回值
+        // If it is a constant expression, return the value directly
         if (expression is ConstantExpression constant)
         {
             return constant.Value;
         }
 
-        // 如果是参数表达式，无法求值
+        // If it is a parameter expression, it cannot be evaluated
         if (expression is ParameterExpression)
         {
             throw new InvalidOperationException($"Cannot evaluate parameter expression: {expression}");
         }
 
-        // 处理成员访问（捕获外部变量）
+        // Handle member access (capture external variables)
         if (expression is MemberExpression memberExpr)
         {
-            // 检查是否是字段或属性访问
+            // Check if it is a field or attribute access
             if (memberExpr.Member is System.Reflection.FieldInfo fieldInfo)
             {
-                // 如果是静态字段
+                // If it is a static field
                 if (fieldInfo.IsStatic)
                 {
                     return fieldInfo.GetValue(null);
                 }
 
-                // 如果是实例字段，需要先求值实例
+                // If it is an instance field, the instance needs to be evaluated first
                 if (memberExpr.Expression != null)
                 {
                     var obj = Evaluate(memberExpr.Expression);
@@ -755,7 +755,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
                     }
                 }
 
-                // 如果无法求值，尝试编译整个表达式
+                // If it cannot be evaluated, try to compile the entire expression
                 try
                 {
                     return Expression.Lambda(memberExpr).Compile().DynamicInvoke();
@@ -768,14 +768,14 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
 
             if (memberExpr.Member is PropertyInfo propertyInfo)
             {
-                // 如果是静态属性
+                // If it is a static property
                 var getMethod = propertyInfo.GetGetMethod();
                 if (getMethod != null && getMethod.IsStatic)
                 {
                     return propertyInfo.GetValue(null);
                 }
 
-                // 如果是实例属性，需要先求值实例
+                // If it is an instance attribute, the instance needs to be evaluated first
                 if (memberExpr.Expression != null)
                 {
                     var obj = Evaluate(memberExpr.Expression);
@@ -785,7 +785,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
                     }
                 }
 
-                // 如果无法求值，尝试编译整个表达式
+                // If it cannot be evaluated, try to compile the entire expression
                 try
                 {
                     return Expression.Lambda(memberExpr).Compile().DynamicInvoke();
@@ -797,7 +797,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             }
         }
 
-        // 处理数组索引
+        // handle array index
         if (expression is IndexExpression indexExpr)
         {
             var obj = Evaluate(indexExpr.Object!);
@@ -808,18 +808,18 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             }
         }
 
-        // 处理方法调用
+        // Handle method calls
         if (expression is MethodCallExpression methodCall)
         {
             try
             {
-                // 尝试编译并执行
+                // Try to compile and execute
                 var lambda = Expression.Lambda(methodCall);
                 return lambda.Compile().DynamicInvoke();
             }
             catch (InvalidOperationException)
             {
-                // 如果包含参数引用，无法编译
+                // If it contains parameter references, it cannot be compiled
                 throw;
             }
             catch (Exception ex)
@@ -828,20 +828,20 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
             }
         }
 
-        // 处理 NewArrayExpression
+        // Process NewArrayExpression
         if (expression is NewArrayExpression newArray)
         {
             var values = newArray.Expressions.Select(Evaluate).ToArray();
             return values;
         }
 
-        // 默认尝试编译执行
+        // Try to compile and execute by default
 
         return Expression.Lambda(expression).Compile().DynamicInvoke();
     }
 
     /// <summary>
-    /// 转义通配符
+    /// Escape wildcard characters
     /// </summary>
     private static string EscapeWildcard(string value)
     {
@@ -849,7 +849,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 标准化值
+    /// Normalized value
     /// </summary>
     private static FieldValue NormalizeValue(object value)
     {
@@ -871,13 +871,13 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 规范化日期值
+    /// Normalized date value
     /// </summary>
     private static string NormalizeDate(object value)
     {
         if (value is DateTime dateTime)
         {
-            // 格式化为 Elasticsearch 支持的格式（不带时区）
+            // Format to a format supported by Elasticsearch (without time zone)
             return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
@@ -889,7 +889,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
         return value.ToString()!;
     }
     /// <summary>
-    /// 转换为 Number
+    /// Convert to Number
     /// </summary>
     private static Number? ToNumber(object? value)
     {
@@ -914,7 +914,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 规范化枚举名称
+    /// Normalized enumeration name
     /// </summary>
     private static string NormalizeEnumName(Type enumType, object value)
     {
@@ -925,7 +925,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 判断是否为数值类型
+    /// Determine whether it is a numeric type
     /// </summary>
     private static bool IsNumericType(Type type)
     {
@@ -939,7 +939,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 判断是否为 Nullable.HasValue 访问
+    /// Determine whether it is Nullable.HasValue access
     /// </summary>
     private static bool IsNullableHasValue(MemberExpression member)
     {
@@ -950,7 +950,7 @@ public partial class ExpressionQueryTranslator : IExpressionQueryTranslator, ISi
     }
 
     /// <summary>
-    /// 判断是否为 Nullable.Value 访问
+    /// Determine whether it is Nullable.Value access
     /// </summary>
     private static bool IsNullableValueAccess(MemberExpression member)
     {

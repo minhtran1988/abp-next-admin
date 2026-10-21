@@ -3,45 +3,45 @@ using System;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信通知数据键
+/// Enterprise WeChat notification data key
 /// </summary>
 /// <remarks>
-/// 键名与历史实现保持一致(<c>wx-work:</c> 前缀), 保证已上线的生产者不受影响。
+/// The key name is consistent with the historical implementation (<c>wx-work:</c> prefix) to ensure that online producers are not affected.
 /// </remarks>
 public static class WeChatWorkNotificationDataKeys
 {
     public const string Prefix = "wx-work:";
 
     /// <summary>
-    /// 指定接收消息的成员
+    /// Specify the member to receive the message
     /// </summary>
     public const string ToUser = Prefix + "to_user";
     /// <summary>
-    /// 指定接收消息的部门
+    /// Specify the department to receive the message
     /// </summary>
     public const string ToParty = Prefix + "to_party";
     /// <summary>
-    /// 指定接收消息的标签
+    /// Specify the label to receive the message
     /// </summary>
     public const string ToTag = Prefix + "to_tag";
     /// <summary>
-    /// 应用标识
+    /// Application ID
     /// </summary>
     public const string AgentId = Prefix + "agent_id";
     /// <summary>
-    /// 是否是保密消息
+    /// Is it confidential information?
     /// </summary>
     public const string Safe = Prefix + "safe";
     /// <summary>
-    /// 是否开启id转译
+    /// Whether to enable id translation
     /// </summary>
     public const string EnableIdTrans = Prefix + "enable_id_trans";
     /// <summary>
-    /// 是否开启重复消息检查
+    /// Whether to enable duplicate message checking
     /// </summary>
     public const string EnableDuplicateCheck = Prefix + "enable_duplicate_check";
     /// <summary>
-    /// 重复消息检查的时间间隔
+    /// The time interval for repeated message checking
     /// </summary>
     public const string DuplicateCheckInterval = Prefix + "duplicate_check_interval";
 

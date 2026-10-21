@@ -10,9 +10,9 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 查询资源列表
- * @param input 参数
- * @returns 资源列表
+ * Query resource list
+ * @param input parameter
+ * @returns resource list
  */
 export function getListApi(input?: ResourceGetListInput): Promise<ListResultDto<ResourceDto>> {
 	return requestClient.get<ListResultDto<ResourceDto>>("/api/abp/localization/resources", {
@@ -21,36 +21,36 @@ export function getListApi(input?: ResourceGetListInput): Promise<ListResultDto<
 }
 
 /**
- * 查询资源
- * @param name 资源名称
- * @returns 查询的资源
+ * Query resources
+ * @param name resource name
+ * @returns queried resources
  */
 export function getApi(name: string): Promise<ResourceDto> {
 	return requestClient.get<ResourceDto>(`/api/localization/resources/${name}`);
 }
 
 /**
- * 删除资源
- * @param name 资源名称
+ * Delete resources
+ * @param name resource name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/localization/resources/${name}`);
 }
 
 /**
- * 创建资源
- * @param input 参数
- * @returns 创建的资源
+ * Create resources
+ * @param input parameter
+ * @returns created resources
  */
 export function createApi(input: ResourceCreateDto): Promise<ResourceDto> {
 	return requestClient.post<ResourceDto>("/api/localization/resources", input);
 }
 
 /**
- * 编辑资源
- * @param name 资源名称
- * @param input 参数
- * @returns 编辑的资源
+ * Edit resources
+ * @param name resource name
+ * @param input parameter
+ * @returns edited resources
  */
 export function updateApi(name: string, input: ResourceUpdateDto): Promise<ResourceDto> {
 	return requestClient.put<ResourceDto>(`/api/localization/resources/${name}`, input);

@@ -1,5 +1,5 @@
 <!--
- * @Description: 拖拽节点控件
+ * @Description: Drag and drop node control
 -->
 <template>
   <div
@@ -38,9 +38,9 @@
     setup(props) {
       const { formConfig, formDesignMethods } = useFormDesignState();
       const state = reactive({});
-      // 获取 formDesignMethods
+      // Get formDesignMethods
       const handleSelectItem = () => {
-        // 调用 formDesignMethods
+        // Call formDesignMethods
         formDesignMethods.handleSetSelectItem(props.schema);
       };
       return {

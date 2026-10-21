@@ -65,7 +65,7 @@ async function resolveMonorepoDependencies() {
 }
 
 /**
- * 用于注入项目信息
+ * Used to inject project information
  */
 async function viteMetadataPlugin(
   root = process.cwd(),

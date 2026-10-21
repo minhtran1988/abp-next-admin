@@ -90,7 +90,7 @@
           compProps = compProps({ text: val, record, column, index }) ?? {};
         }
 
-        // 用临时变量存储 onChange方法 用于 handleChange方法 获取，并删除原始onChange, 防止存在两个 onChange
+        // Use temporary variables to store the onChange method for the handleChange method to obtain and delete the original onChange to prevent the existence of two onChanges.
         compProps.onChangeTemp = compProps.onChange;
         delete compProps.onChange;
 
@@ -290,7 +290,7 @@
         }
         set(record, dataKey, value);
         defaultValueRef.value = value;
-        //const record = await table.updateTableData(index, dataKey, value);
+        // const record = await table.updateTableData(index, dataKey, value);
         needEmit && table.emit?.('edit-end', { record, index, key: dataKey, value });
         isEdit.value = false;
       }
@@ -506,7 +506,7 @@
   }
   .@{prefix-cls} {
     position: relative;
-    min-height: 24px; //设置高度让其始终可被hover
+    min-height: 24px; //Set the height so that it can always be hovered
 
     &__wrapper {
       display: flex;

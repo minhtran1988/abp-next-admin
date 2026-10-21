@@ -47,7 +47,7 @@
       type: String as PropType<MODE>,
       default: MODE.JSON,
       validator(value: any) {
-        // 这个值必须匹配下列字符串中的一个
+        // This value must match one of the following strings
         return Object.values(MODE).includes(value);
       },
     },
@@ -112,20 +112,20 @@
       value: '',
       autoRefresh: true,
       mode: props.mode,
-      indentWithTabs: false, // 在缩进时，是否需要把 n*tab宽度个空格替换成n个tab字符，默认为false
-      smartIndent: true, // 自动缩进，设置是否根据上下文自动缩进（和上一行相同的缩进量）。默认为true
-      lineNumbers: true, // 是否在编辑器左侧显示行号
-      matchBrackets: true, // 括号匹配
+      indentWithTabs: false, // When indenting, do you need to replace n*tab width spaces with n tab characters? The default is false
+      smartIndent: true, // Automatic indentation, set whether to automatically indent according to the context (the same indentation amount as the previous line). Default is true
+      lineNumbers: true, // Whether to display line numbers on the left side of the editor
+      matchBrackets: true, // bracket matching
       readOnly: props.readonly,
-      // 启用代码折叠相关功能:开始
+      // Enable code folding related functions: Start
       foldGutter: true,
       lineWrapping: true,
-      // 启用代码折叠相关功能:结束
-      styleActiveLine: true, // 光标行高亮
+      // Enable code folding related functions: End
+      styleActiveLine: true, // Highlight the cursor line
     });
-    // 监听编辑器的change事件
+    // Listen to the editor's change event
     editor.on('change', () => {
-      // 触发v-model的双向绑定
+      // Trigger the two-way binding of v-model
       emits('update:modelValue', editor!.getValue());
     });
     useWindowSizeFn(editor.refresh);

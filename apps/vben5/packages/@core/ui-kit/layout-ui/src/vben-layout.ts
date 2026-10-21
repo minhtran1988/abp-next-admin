@@ -7,12 +7,12 @@ import type {
 
 interface VbenLayoutProps {
   /**
-   * 内容区域定宽
+   *Content area fixed width
    * @default 'wide'
    */
   contentCompact?: ContentCompactType;
   /**
-   * 定宽布局宽度
+   * Fixed width layout width
    * @default 1200
    */
   contentCompactWidth?: number;
@@ -42,132 +42,132 @@ interface VbenLayoutProps {
    */
   contentPaddingTop?: number;
   /**
-   * footer 是否可见
+   * Is footer visible?
    * @default false
    */
   footerEnable?: boolean;
   /**
-   * footer 是否固定
+   * Is footer fixed?
    * @default true
    */
   footerFixed?: boolean;
   /**
-   * footer 高度
+   * footer height
    * @default 32
    */
   footerHeight?: number;
 
   /**
-   * header高度
+   * header height
    * @default 48
    */
   headerHeight?: number;
   /**
-   * 顶栏是否隐藏
+   * Whether the top bar is hidden
    * @default false
    */
   headerHidden?: boolean;
   /**
-   * header 显示模式
+   * header display mode
    * @default 'fixed'
    */
   headerMode?: LayoutHeaderModeType;
   /**
-   * header 顶栏主题
+   * header top bar theme
    */
   headerTheme?: ThemeModeType;
   /**
-   * 是否显示header切换侧边栏按钮
+   * Whether to display the header switching sidebar button
    * @default
    */
   headerToggleSidebarButton?: boolean;
   /**
-   * header是否显示
+   * Whether the header is displayed
    * @default true
    */
   headerVisible?: boolean;
   /**
-   * 是否移动端显示
+   * Whether to display on mobile terminal
    * @default false
    */
   isMobile?: boolean;
   /**
-   * 布局方式
-   * sidebar-nav 侧边菜单布局
-   * header-nav 顶部菜单布局
-   * mixed-nav 侧边&顶部菜单布局
-   * sidebar-mixed-nav 侧边混合菜单布局
-   * full-content 全屏内容布局
+   * Layout method
+   * sidebar-nav side menu layout
+   * header-nav top menu layout
+   * mixed-nav side & top menu layout
+   * sidebar-mixed-nav side mixed menu layout
+   * full-content full-screen content layout
    * @default sidebar-nav
    */
   layout?: LayoutType;
   /**
-   * 侧边菜单折叠状态
+   * Side menu collapsed state
    * @default false
    */
   sidebarCollapse?: boolean;
   /**
-   * 侧边菜单折叠按钮
+   * Side menu collapse button
    * @default true
    */
   sidebarCollapsedButton?: boolean;
   /**
-   * 侧边菜单是否折叠时，是否显示title
+   * Whether to display the title when the side menu is collapsed or not
    * @default true
    */
   sidebarCollapseShowTitle?: boolean;
   /**
-   * 侧边栏是否可见
+   * Whether the sidebar is visible
    * @default true
    */
   sidebarEnable?: boolean;
   /**
-   * 侧边菜单折叠额外宽度
+   * Extra width for side menu collapse
    * @default 48
    */
   sidebarExtraCollapsedWidth?: number;
   /**
-   * 侧边菜单折叠按钮是否固定
+   * Whether the side menu fold button is fixed
    * @default true
    */
   sidebarFixedButton?: boolean;
   /**
-   * 侧边栏是否隐藏
+   * Whether the sidebar is hidden
    * @default false
    */
   sidebarHidden?: boolean;
   /**
-   * 混合侧边栏宽度
+   * Mixed sidebar widths
    * @default 80
    */
   sidebarMixedWidth?: number;
   /**
-   * 侧边栏
+   * Sidebar
    * @default dark
    */
   sidebarTheme?: ThemeModeType;
   /**
-   * 侧边栏子栏
+   * Sidebar sub-bar
    * @default dark
    */
   sidebarThemeSub?: ThemeModeType;
   /**
-   * 侧边栏宽度
+   * Sidebar width
    * @default 210
    */
   sidebarWidth?: number;
   /**
-   *  侧边菜单折叠宽度
+   * Side menu collapse width
    * @default 48
    */
   sideCollapseWidth?: number;
   /**
-   * tab是否可见
+   * Is the tab visible?
    * @default true
    */
   tabbarEnable?: boolean;
   /**
-   * tab高度
+   *tab height
    * @default 30
    */
   tabbarHeight?: number;

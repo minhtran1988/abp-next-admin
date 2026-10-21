@@ -1,22 +1,22 @@
 # LINGYUN.Abp.MicroService.MessageService.DbMigrator
 
-实时消息数据库迁移控制台应用程序，用于执行实时消息系统的数据库迁移和初始化种子数据。
+Real-time messaging database migration console application, used to perform database migration and initialize seed data for real-time messaging systems.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 初始化系统必要的种子数据
-* 支持命令行参数配置
-* 集成Autofac依赖注入容器
-* 继承实时消息系统的所有迁移功能
-* 支持SignalR消息管理
-* 支持消息分组管理
-* 支持消息订阅管理
-* 支持消息历史记录
+* Automatically perform database migration
+* Initialize the necessary seed data for the system
+* Support command line parameter configuration
+* Integrate Autofac dependency injection container
+* Inherit all migration functions of real-time messaging system
+* Support SignalR message management
+* Support message group management
+* Support message subscription management
+* Support message history
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -25,45 +25,45 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "RealtimeMessageDbMigrator": "你的数据库连接字符串"
+    "RealtimeMessageDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置RealtimeMessageDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the RealtimeMessageDbMigrator connection string in appsettings.json
 
-2. 运行迁移程序
+2. Run the migration program
    ```bash
    dotnet run
    ```
 
-## 命令行参数
+## Command line parameters
 
 * --database-provider
-  * 指定数据库提供程序 (默认: MySQL)
+  * Specify database provider (default: MySQL)
 * --connection-string
-  * 指定数据库连接字符串
+  * Specify database connection string
 * --skip-db-migrations
-  * 跳过数据库迁移
+  * Skip database migration
 * --skip-seed-data
-  * 跳过种子数据初始化
+  * Skip seed data initialization
 
-## 种子数据
+## Seed data
 
-* 默认消息组配置
-* 基础消息订阅配置
-* 系统消息模板
-* 默认权限配置
+*Default message group configuration
+*Basic message subscription configuration
+* System message template
+*Default permission configuration
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [SignalR文档](https://docs.microsoft.com/aspnet/core/signalr/introduction)
+* [ABP Documentation](https://docs.abp.io)
+* [SignalR Documentation](https://docs.microsoft.com/aspnet/core/signalr/introduction)

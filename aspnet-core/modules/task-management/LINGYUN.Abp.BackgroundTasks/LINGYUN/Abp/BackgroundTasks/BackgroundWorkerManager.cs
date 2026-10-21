@@ -48,8 +48,8 @@ public class BackgroundWorkerManager : IBackgroundWorkerManager
             return;
         }
 
-        // 如果通过远程接口发布作业, 可能会造成Group与Name重复
-        // 重新设定Name为唯一Id
+        // If the job is published through the remote interface, the Group and Name may be duplicated.
+        // Reset Name to unique Id
         var jobId = GuidGenerator.Create();
         jobInfo.Id = jobId.ToString();
         jobInfo.Name = jobId.ToString();
@@ -81,10 +81,10 @@ public class BackgroundWorkerManager : IBackgroundWorkerManager
             }
         }
 
-        // 存储状态
+        // store state
         await JobStore.StoreAsync(jobInfo, cancellationToken);
 
-        // 发布作业
+        // Publish job
         await JobPublisher.PublishAsync(jobInfo, cancellationToken);
     }
 

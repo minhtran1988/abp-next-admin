@@ -1,27 +1,27 @@
 # LINGYUN.Abp.MessageService.Application.Contracts
 
-消息服务应用层契约模块。
+Message service application layer contract module.
 
-## 功能特性
+## Features
 
-* 定义消息服务的应用层接口
-* 定义消息服务的 DTO
-* 提供多语言资源
-* 支持虚拟文件系统
+* Define the application layer interface of the message service
+* Define the DTO of the message service
+* Provide multi-language resources
+* Support virtual file system
 
-## 依赖模块
+## Dependent modules
 
 * [LINGYUN.Abp.MessageService.Domain.Shared](../LINGYUN.Abp.MessageService.Domain.Shared/README.md)
 
-## 配置使用
+## Configuration usage
 
-1. 首先，需要安装 LINGYUN.Abp.MessageService.Application.Contracts 到你的项目中：
+1. First, you need to install LINGYUN.Abp.MessageService.Application.Contracts into your project:
 
 ```bash
 dotnet add package LINGYUN.Abp.MessageService.Application.Contracts
 ```
 
-2. 添加 `AbpMessageServiceApplicationContractsModule` 到你的模块的依赖列表：
+2. Add `AbpMessageServiceApplicationContractsModule` to your module’s dependency list:
 
 ```csharp
 [DependsOn(typeof(AbpMessageServiceApplicationContractsModule))]
@@ -30,6 +30,6 @@ public class YourModule : AbpModule
 }
 ```
 
-## 更多
+## More
 
 [English document](README.EN.md)

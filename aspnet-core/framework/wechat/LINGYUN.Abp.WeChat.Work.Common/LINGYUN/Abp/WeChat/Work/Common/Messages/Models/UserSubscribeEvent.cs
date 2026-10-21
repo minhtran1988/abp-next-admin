@@ -3,7 +3,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 用户关注事件
+/// User attention event
 /// </summary>
 [EventName("user_subscribe")]
 public class UserSubscribeEvent : WeChatWorkEventMessage

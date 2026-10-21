@@ -1,14 +1,14 @@
 # LINGYUN.Abp.Identity.Domain.Shared
 
-身份认证领域共享模块，提供身份认证相关的基础定义。
+The shared module in the identity authentication field provides basic definitions related to identity authentication.
 
-## 功能特性
+## Features
 
-* 提供身份认证相关的本地化资源
-* 提供身份认证相关的虚拟文件系统配置
-* 扩展Volo.Abp.Identity.AbpIdentityDomainSharedModule模块
+* Provide localized resources related to identity authentication
+* Provide virtual file system configuration related to identity authentication
+* Extend the Volo.Abp.Identity.AbpIdentityDomainSharedModule module
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpIdentityDomainSharedModule))]
@@ -18,13 +18,13 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-无需额外配置。
+No additional configuration is required.
 
-## 基本用法
+## Basic usage
 
-1. 引用模块
+1. Reference module
 ```csharp
 [DependsOn(typeof(AbpIdentityDomainSharedModule))]
 public class YouProjectModule : AbpModule
@@ -32,7 +32,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用本地化资源
+2. Use localized resources
 ```csharp
 public class YourClass
 {
@@ -50,6 +50,6 @@ public class YourClass
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)

@@ -4,7 +4,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 更新部门事件
+/// Update department events
 /// </summary>
 [EventName("update_party")]
 public class UpdateDepartmentEvent : DepartmentUpdateEvent

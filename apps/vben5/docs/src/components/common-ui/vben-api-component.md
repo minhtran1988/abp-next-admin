@@ -2,21 +2,21 @@
 outline: deep
 ---
 
-# Vben ApiComponent Api组件包装器
+# Vben ApiComponent Api component wrapper
 
-框架提供的API“包装器”，它一般不独立使用，主要用于包装其它组件，为目标组件提供自动获取远程数据的能力，但仍然保持了目标组件的原始用法。
+The API "wrapper" provided by the framework is generally not used independently. It is mainly used to wrap other components and provide the target component with the ability to automatically obtain remote data, but still maintains the original usage of the target component.
 
-::: info 写在前面
+::: info is written in front
 
-我们在各个应用的组件适配器中，使用ApiComponent包装了Select、TreeSelect组件，使得这些组件可以自动获取远程数据并生成选项。其它类似的组件（比如Cascader）如有需要也可以参考示例代码自行进行包装。
+We use ApiComponent to wrap the Select and TreeSelect components in the component adapters of each application, so that these components can automatically obtain remote data and generate options. If necessary, other similar components (such as Cascader) can be packaged by themselves by referring to the sample code.
 
 :::
 
-## 基础用法
+## Basic usage
 
-通过 `component` 传入其它组件的定义，并配置相关的其它属性（主要是一些名称映射）。包装组件将通过`api`获取数据（`beforerFetch`、`afterFetch`将分别在`api`运行前、运行后被调用），使用`resultField`从中提取数组，使用`valueField`、`labelField`等来从数据中提取value和label（如果提供了`childrenField`，会将其作为树形结构递归处理每一级数据），之后将处理好的数据通过`optionsPropName`指定的属性传递给目标组件。
+Pass in the definition of other components through `component` and configure other related properties (mainly some name mapping). The packaging component will obtain data through `api` (`beforerFetch` and `afterFetch` will be called before and after `api` is run respectively), use `resultField` to extract the array from it, and use `valueField` and `label Field` and so on to extract value and label from the data (if `childrenField` is provided, each level of data will be processed recursively as a tree structure), and then the processed data will be passed to the target component through the properties specified by `optionsPropName`.
 
-::: details 包装级联选择器,点击下拉时开始加载远程数据
+::: details wraps the cascading selector and starts loading remote data when the drop-down is clicked.
 
 ```vue
 <script lang="ts" setup>
@@ -26,72 +26,72 @@ import { Cascader } from 'ant-design-vue';
 
 const treeData: Record<string, any> = [
   {
-    label: '浙江',
+    label: 'Zhejiang',
     value: 'zhejiang',
     children: [
       {
         value: 'hangzhou',
-        label: '杭州',
+        label: 'Hangzhou',
         children: [
           {
             value: 'xihu',
-            label: '西湖',
+            label: 'West Lake',
           },
           {
             value: 'sudi',
-            label: '苏堤',
+            label: 'Sudi',
           },
         ],
       },
       {
         value: 'jiaxing',
-        label: '嘉兴',
+        label: 'Jiaxing',
         children: [
           {
             value: 'wuzhen',
-            label: '乌镇',
+            label: 'Wuzhen',
           },
           {
             value: 'meihuazhou',
-            label: '梅花洲',
+            label: 'Meihuazhou',
           },
         ],
       },
       {
         value: 'zhoushan',
-        label: '舟山',
+        label: 'Zhoushan',
         children: [
           {
             value: 'putuoshan',
-            label: '普陀山',
+            label: 'Putuo Mountain',
           },
           {
             value: 'taohuadao',
-            label: '桃花岛',
+            label: 'Peach Blossom Island',
           },
         ],
       },
     ],
   },
   {
-    label: '江苏',
+    label: 'Jiangsu',
     value: 'jiangsu',
     children: [
       {
         value: 'nanjing',
-        label: '南京',
+        label: 'Nanjing',
         children: [
           {
             value: 'zhonghuamen',
-            label: '中华门',
+            label: 'China Gate',
           },
           {
             value: 'zijinshan',
-            label: '紫金山',
+            label: 'Purple Mountain',
           },
           {
             value: 'yuhuatai',
-            label: '雨花台',
+            label: 'Yuhuatai',
           },
         ],
       },
@@ -99,7 +99,7 @@ const treeData: Record<string, any> = [
   },
 ];
 /**
- * 模拟请求接口
+ * Simulate request interface
  */
 function fetchApi(): Promise<Record<string, any>> {
   return new Promise((resolve) => {
@@ -123,51 +123,51 @@ function fetchApi(): Promise<Record<string, any>> {
 
 :::
 
-## 并发和缓存
+## Concurrency and caching
 
-有些场景下可能需要使用多个ApiComponent，它们使用了相同的远程数据源（例如用在可编辑的表格中）。如果直接将请求后端接口的函数传递给api属性，则每一个实例都会访问一次接口，这会造成资源浪费，是完全没有必要的。Tanstack Query提供了并发控制、缓存、重试等诸多特性，我们可以将接口请求函数用useQuery包装一下再传递给ApiComponent，这样的话无论页面有多少个使用相同数据源的ApiComponent实例，都只会发起一次远程请求。演示效果请参考 [Playground vue-query](https://www.vben.pro/#/demos/features/vue-query)，具体代码请查看项目文件[concurrency-caching](https://github.com/vbenjs/vue-vben-admin/blob/main/playground/src/views/demos/features/vue-query/concurrency-caching.vue)
+In some scenarios, you may need to use multiple ApiComponents, which use the same remote data source (for example, used in editable tables). If you directly pass the function that requests the backend interface to the api attribute, each instance will access the interface once, which will cause a waste of resources and is completely unnecessary. Tanstack Query provides many features such as concurrency control, caching, and retry. We can wrap the interface request function with useQuery and then pass it to ApiComponent. In this way, no matter how many ApiComponent instances use the same data source on the page, only one remote request will be initiated. For the demonstration effect, please refer to [Playground vue-query](https://www.vben.pro/#/demos/features/vue-query). For the specific code, please refer to the project file [concurrency-caching](https://github.com/vbenjs/vue-vben-admin/blob/main/playground/src/views/demos/features/vue-query/concurrency-caching.vue)
 
 ## API
 
 ### Props
 
-| 属性名 | 描述 | 类型 | 默认值 | 版本要求 |
+| Property name | Description | Type | Default value | Version requirements |
 | --- | --- | --- | --- | --- |
-| modelValue(v-model) | 当前值 | `any` | - | - |
-| component | 欲包装的组件（以下称为目标组件） | `Component` | - | - |
-| numberToString | 是否将value从数字转为string | `boolean` | `false` | - |
-| api | 获取数据的函数 | `(arg?: any) => Promise<OptionsItem[] \| Record<string, any>>` | - | - |
-| params | 传递给api的参数 | `Record<string, any>` | - | - |
-| resultField | 从api返回的结果中提取options数组的字段名 | `string` | - | - |
-| labelField | label字段名 | `string` | `label` | - |
-| childrenField | 子级数据字段名，需要层级数据的组件可用 | `string` | `` | - |
-| valueField | value字段名 | `string` | `value` | - |
-| optionsPropName | 目标组件接收options数据的属性名称 | `string` | `options` | - |
-| modelPropName | 目标组件的双向绑定属性名，默认为modelValue。部分组件可能为value | `string` | `modelValue` | - |
-| immediate | 是否立即调用api | `boolean` | `true` | - |
-| alwaysLoad | 每次`visibleEvent`事件发生时都重新请求数据 | `boolean` | `false` | - |
-| beforeFetch | 在api请求之前的回调函数 | `AnyPromiseFunction<any, any>` | - | - |
-| afterFetch | 在api请求之后的回调函数 | `AnyPromiseFunction<any, any>` | - | - |
-| options | 直接传入选项数据，也作为api返回空数据时的后备数据 | `OptionsItem[]` | - | - |
-| visibleEvent | 触发重新请求数据的事件名 | `string` | - | - |
-| loadingSlot | 目标组件的插槽名称，用来显示一个"加载中"的图标 | `string` | - | - |
-| autoSelect | 自动设置选项 | `'first' \| 'last' \| 'one'\| ((item: OptionsItem[]) => OptionsItem) \| false` | `false` | >5.5.4 |
+| modelValue(v-model) | current value | `any` | - | - |
+| component | The component to be packaged (hereinafter referred to as the target component) | `Component` | - | - |
+| numberToString | Whether to convert value from number to string | `boolean` | `false` | - |
+| api | Function to get data | `(arg?: any) => Promise<OptionsItem[] \| Record<string, any>>` | - | - |
+| params | Parameters passed to api | `Record<string, any>` | - | - |
+| resultField | Extract the field name of the options array from the results returned by the api | `string` | - | - |
+| labelField | label field name | `string` | `label` | - |
+| childrenField | Child data field name, available for components that require hierarchical data | `string` | `` | - |
+| valueField | value field name | `string` | `value` | - |
+| optionsPropName | The property name of the target component to receive options data | `string` | `options` | - |
+| modelPropName | The two-way binding property name of the target component, the default is modelValue. Some components may be value | `string` | `modelValue` | - |
+| immediate | Whether to call the api immediately | `boolean` | `true` | - |
+| alwaysLoad | Request data every time a `visibleEvent` event occurs | `boolean` | `false` | - |
+| beforeFetch | The callback function before the api request | `AnyPromiseFunction<any, any>` | - | - |
+| afterFetch | callback function after api request | `AnyPromiseFunction<any, any>` | - | - |
+| options | Pass in option data directly, and also serve as backup data when the api returns empty data | `OptionsItem[]` | - | - |
+| visibleEvent | The name of the event that triggers re-requesting data | `string` | - | - |
+| loadingSlot | The slot name of the target component, used to display a "loading" icon | `string` | - | - |
+| autoSelect | Automatically set options | `'first' \| 'last' \| 'one'\| ((item: OptionsItem[]) => OptionsItem) \| false` | `false` | >5.5.4 |
 
-#### autoSelect 自动设置选项
+#### autoSelect automatically set options
 
-如果当前值为undefined，在选项数据成功加载之后，自动从备选项中选择一个作为当前值。默认值为`false`，即不自动选择选项。注意：该属性不应用于多选组件。可选值有：
+If the current value is undefined, after the option data is successfully loaded, one of the alternatives is automatically selected as the current value. The default value is `false`, which means no options are automatically selected. Note: This property should not be applied to multi-select components. Optional values are:
 
-- `"first"`：自动选择第一个选项
-- `"last"`：自动选择最后一个选项
-- `"one"`：有且仅有一个选项时，自动选择它
-- `自定义函数`：自定义选择逻辑，函数的参数为options，返回值为选择的选项
-- `false`：不自动选择选项
+- `"first"`: automatically select the first option
+- `"last"`: automatically select the last option
+- `"one"`: When there is and is only one option, automatically select it
+- `Custom function`: Custom selection logic, the parameters of the function are options, and the return value is the selected option
+- `false`: Do not automatically select options
 
 ### Methods
 
-| 方法 | 描述 | 类型 | 版本要求 |
+| Method | Description | Type | Version Requirements |
 | --- | --- | --- | --- |
-| getComponentRef | 获取被包装的组件的实例 | ()=>T | >5.5.4 |
-| updateParam | 设置接口请求参数（将与params属性合并） | (newParams: Record<string, any>)=>void | >5.5.4 |
-| getOptions | 获取已加载的选项数据 | ()=>OptionsItem[] | >5.5.4 |
-| getValue | 获取当前值 | ()=>any | >5.5.4 |
+| getComponentRef | Get the instance of the wrapped component | ()=>T | >5.5.4 |
+| updateParam | Set interface request parameters (will be merged with params attribute) | (newParams: Record<string, any>)=>void | >5.5.4 |
+| getOptions | Get loaded option data | ()=>OptionsItem[] | >5.5.4 |
+| getValue | Get the current value | ()=>any | >5.5.4 |

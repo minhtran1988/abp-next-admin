@@ -14,10 +14,10 @@ export default function MultiLanguagePage() {
 	// 	locale,
 	// 	language: { icon, label },
 	// } = useLocale();
-	const locale = useLocale(); // 当前语言标识
-	const { icon, label } = useLanguage(); // 当前语言对象
+	const locale = useLocale(); // Current language identifier
+	const { icon, label } = useLanguage(); // Current language object
 	const { i18n } = useTranslation();
-	const setLocale = useSetLocale(); // 切换语言的方法
+	const setLocale = useSetLocale(); // Method to switch languages
 
 	return (
 		<Space direction="vertical" size="middle" style={{ display: "flex" }}>

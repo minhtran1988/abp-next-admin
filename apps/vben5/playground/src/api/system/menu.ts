@@ -3,7 +3,7 @@ import type { Recordable } from '@vben/types';
 import { requestClient } from '#/api/request';
 
 export namespace SystemMenuApi {
-  /** 徽标颜色集合 */
+  /** Logo color collection */
   export const BadgeVariants = [
     'default',
     'destructive',
@@ -11,9 +11,9 @@ export namespace SystemMenuApi {
     'success',
     'warning',
   ] as const;
-  /** 徽标类型集合 */
+  /** Logo type collection */
   export const BadgeTypes = ['dot', 'normal'] as const;
-  /** 菜单类型集合 */
+  /** Menu type collection */
   export const MenuTypes = [
     'catalog',
     'menu',
@@ -21,77 +21,77 @@ export namespace SystemMenuApi {
     'link',
     'button',
   ] as const;
-  /** 系统菜单 */
+  /** System menu */
   export interface SystemMenu {
     [key: string]: any;
-    /** 后端权限标识 */
+    /** Backend permission identification */
     authCode: string;
-    /** 子级 */
+    /** Child */
     children?: SystemMenu[];
-    /** 组件 */
+    /** Components */
     component?: string;
-    /** 菜单ID */
+    /** Menu ID */
     id: string;
-    /** 菜单元数据 */
+    /** Menu metadata */
     meta?: {
-      /** 激活时显示的图标 */
+      /** The icon displayed when activated */
       activeIcon?: string;
-      /** 作为路由时，需要激活的菜单的Path */
+      /** When used as a route, the Path of the menu that needs to be activated */
       activePath?: string;
-      /** 固定在标签栏 */
+      /** Fixed in tab bar */
       affixTab?: boolean;
-      /** 在标签栏固定的顺序 */
+      /** Fixed order in tab bar */
       affixTabOrder?: number;
-      /** 徽标内容(当徽标类型为normal时有效) */
+      /** Logo content (valid when the logo type is normal) */
       badge?: string;
-      /** 徽标类型 */
+      /** Logo type */
       badgeType?: (typeof BadgeTypes)[number];
-      /** 徽标颜色 */
+      /** Logo color */
       badgeVariants?: (typeof BadgeVariants)[number];
-      /** 在菜单中隐藏下级 */
+      /** Hide subordinates in menu */
       hideChildrenInMenu?: boolean;
-      /** 在面包屑中隐藏 */
+      /** Hide in breadcrumbs */
       hideInBreadcrumb?: boolean;
-      /** 在菜单中隐藏 */
+      /** Hide in menu */
       hideInMenu?: boolean;
-      /** 在标签栏中隐藏 */
+      /** Hide in tab bar */
       hideInTab?: boolean;
-      /** 菜单图标 */
+      /** Menu icon */
       icon?: string;
-      /** 内嵌Iframe的URL */
+      /** URL of embedded Iframe */
       iframeSrc?: string;
-      /** 是否缓存页面 */
+      /** Whether to cache the page */
       keepAlive?: boolean;
-      /** 外链页面的URL */
+      /** URL of external link page */
       link?: string;
-      /** 同一个路由最大打开的标签数 */
+      /** The maximum number of open tags for the same route */
       maxNumOfOpenTab?: number;
-      /** 无需基础布局 */
+      /** No basic layout required */
       noBasicLayout?: boolean;
-      /** 是否在新窗口打开 */
+      /** Whether to open in a new window */
       openInNewWindow?: boolean;
-      /** 菜单排序 */
+      /** Menu sorting */
       order?: number;
-      /** 额外的路由参数 */
+      /** Additional routing parameters */
       query?: Recordable<any>;
-      /** 菜单标题 */
+      /** Menu title */
       title?: string;
     };
-    /** 菜单名称 */
+    /** Menu name */
     name: string;
-    /** 路由路径 */
+    /** Routing path */
     path: string;
-    /** 父级ID */
+    /** Parent ID */
     pid: string;
-    /** 重定向 */
+    /** Redirect */
     redirect?: string;
-    /** 菜单类型 */
+    /** Menu type */
     type: (typeof MenuTypes)[number];
   }
 }
 
 /**
- * 获取菜单数据列表
+ * Get menu data list
  */
 async function getMenuList() {
   return requestClient.get<Array<SystemMenuApi.SystemMenu>>(
@@ -118,8 +118,8 @@ async function isMenuPathExists(
 }
 
 /**
- * 创建菜单
- * @param data 菜单数据
+ * Create menu
+ * @param data menu data
  */
 async function createMenu(
   data: Omit<SystemMenuApi.SystemMenu, 'children' | 'id'>,
@@ -128,10 +128,10 @@ async function createMenu(
 }
 
 /**
- * 更新菜单
+ * Update menu
  *
- * @param id 菜单 ID
- * @param data 菜单数据
+ * @param id menu ID
+ * @param data menu data
  */
 async function updateMenu(
   id: string,
@@ -141,8 +141,8 @@ async function updateMenu(
 }
 
 /**
- * 删除菜单
- * @param id 菜单 ID
+ * Delete menu
+ * @param id menu ID
  */
 async function deleteMenu(id: string) {
   return requestClient.delete(`/system/menu/${id}`);

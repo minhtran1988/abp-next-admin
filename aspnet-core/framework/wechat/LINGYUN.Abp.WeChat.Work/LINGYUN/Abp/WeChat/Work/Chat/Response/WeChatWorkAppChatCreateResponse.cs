@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.WeChat.Work.Chat.Response;
 public class WeChatWorkAppChatCreateResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 群聊的唯一标志
+    /// The only sign of group chat
     /// </summary>
     [JsonProperty("chatid")]
     [JsonPropertyName("chatid")]

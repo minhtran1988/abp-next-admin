@@ -1,11 +1,11 @@
 # LINGYUN.Abp.BackgroundTasks.Quartz
 
-后台任务（队列）模块的Quartz实现.  
-并添加一个监听器用于通知管理者任务状态  
+Quartz implementation of background task (queue) module.
+And add a listener to notify the manager of the task status
 
-## 配置使用
+## Configuration usage
 
-模块按需引用,具体配置参考Volo.Abp.Quartz模块  
+The module is referenced on demand. For specific configuration, please refer to the Volo.Abp.Quartz module.
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksQuartzModule))]

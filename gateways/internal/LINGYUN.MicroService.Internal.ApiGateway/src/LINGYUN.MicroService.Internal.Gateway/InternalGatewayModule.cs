@@ -56,7 +56,7 @@ public class InternalGatewayModule : AbpModule
 
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别
+            // Difference by open port
             options.SnowflakeIdOptions.WorkerId = 0;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -185,11 +185,11 @@ public class InternalGatewayModule : AbpModule
         app.UseCorrelationId();
         app.UseCors();
 
-        // 认证
+        // Authentication
         app.UseAuthentication();
         // jwt
         app.UseDynamicClaims();
-        // 授权
+        // Authorize
         app.UseAuthorization();
 
         if (env.IsDevelopment())

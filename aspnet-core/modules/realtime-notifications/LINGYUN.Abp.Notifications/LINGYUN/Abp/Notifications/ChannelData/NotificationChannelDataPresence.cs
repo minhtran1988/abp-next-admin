@@ -7,7 +7,7 @@ using System.Reflection;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据存在性判定
+/// Determine the existence of channel data
 /// </summary>
 /// <remarks>
 public static class NotificationChannelDataPresence
@@ -16,7 +16,7 @@ public static class NotificationChannelDataPresence
     private static readonly object SyncLock = new();
 
     /// <summary>
-    /// 获取载荷声明的存在性判定模式
+    /// Get the existence determination mode of the payload declaration
     /// </summary>
     public static NotificationChannelDataPresenceMode GetPresenceMode(Type channelDataType)
     {
@@ -26,7 +26,7 @@ public static class NotificationChannelDataPresence
     }
 
     /// <summary>
-    /// 获取参与匹配的属性键
+    /// Get the attribute keys participating in the match
     /// </summary>
     public static IReadOnlyList<string> GetMatchingKeys(Type channelDataType)
     {
@@ -44,10 +44,10 @@ public static class NotificationChannelDataPresence
     }
 
     /// <summary>
-    /// 校验载荷的存在性声明
+    /// Verify the existence statement of the payload
     /// </summary>
     /// <exception cref="AbpNotificationChannelDataConfigurationException">
-    /// 声明了按键判定, 却没有任何可参与匹配的属性
+    /// The key press determination is declared, but there are no attributes that can participate in the matching.
     /// </exception>
     public static void Validate(Type channelDataType)
     {
@@ -66,7 +66,7 @@ public static class NotificationChannelDataPresence
     }
 
     /// <summary>
-    /// 创建存在性判定委托
+    /// Create an existence determination delegate
     /// </summary>
     public static Func<NotificationData, bool> Create(Type channelDataType)
     {
@@ -93,11 +93,11 @@ public static class NotificationChannelDataPresence
     }
 
     /// <summary>
-    /// 判断通知数据中是否存在该键(大小写不敏感)
+    /// Determine whether the key exists in the notification data (case insensitive)
     /// </summary>
     /// <remarks>
-    /// 精确匹配优先, 未命中时按大小写不敏感匹配,
-    /// 与 <see cref="INotificationChannelDataAccessor.TryGetRawValue"/> 的规则保持一致。
+    /// Exact matching takes precedence, and case-insensitive matching is used when missing.
+    /// Consistent with the rules of <see cref="INotificationChannelDataAccessor.TryGetRawValue"/>.
     /// </remarks>
     public static bool ContainsKey(NotificationData notificationData, string key)
     {

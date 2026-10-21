@@ -23,7 +23,7 @@ public class AliyunAccountSmsSecurityCodeSender : IAccountSmsSecurityCodeSender
         string templateCode,
         CancellationToken cancellation = default)
     {
-        // TODO: 传递验证码有效期
+        // TODO: Pass the verification code validity period
         await SmsVerifyCodeSender.SendAsync(
             new SmsVerifyCodeMessage(phone, 
                 new SmsVerifyCodeMessageParam(code, "5"),

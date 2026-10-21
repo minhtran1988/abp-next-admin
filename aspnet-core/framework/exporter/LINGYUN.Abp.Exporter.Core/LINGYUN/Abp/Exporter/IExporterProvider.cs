@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Exporter;
 /// <summary>
-/// 数据导出提供者
+/// Data export provider
 /// </summary>
 [Obsolete("This interface will be deprecated in future versions. Please use IExcelExporterProvider instead.")]
 public interface IExporterProvider
 {
     /// <summary>
-    /// 数据导出
+    /// Data export
     /// </summary>
-    /// <param name="data">导出数据</param>
+    /// <param name="data">Export data</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<Stream> ExportAsync<T>(ICollection<T> data, CancellationToken cancellationToken = default)

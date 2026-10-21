@@ -7,7 +7,7 @@
 
 `LINGYUN.Abp.OpenIddict.Sms` is an SMS verification extension module for OpenIddict, providing authentication functionality based on phone numbers and SMS verification codes.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

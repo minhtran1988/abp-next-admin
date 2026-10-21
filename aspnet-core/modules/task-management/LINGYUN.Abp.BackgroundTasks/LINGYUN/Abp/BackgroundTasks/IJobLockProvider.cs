@@ -3,7 +3,7 @@
 namespace LINGYUN.Abp.BackgroundTasks;
 
 /// <summary>
-/// 作业锁定提供者
+/// Job lock provider
 /// </summary>
 public interface IJobLockProvider
 {

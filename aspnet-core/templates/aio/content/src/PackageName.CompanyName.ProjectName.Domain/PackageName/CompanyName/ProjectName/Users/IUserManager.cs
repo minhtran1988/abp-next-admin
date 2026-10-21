@@ -5,12 +5,12 @@ using Volo.Abp.Domain.Services;
 namespace PackageName.CompanyName.ProjectName.Users
 {
     /// <summary>
-    /// 用户管理服务接口
+    /// User management service interface
     /// </summary>
     public interface IUserManager : IDomainService
     {
         /// <summary>
-        /// 创建新用户
+        /// Create new user
         /// </summary>
         Task<User> CreateAsync(
             string nickName,
@@ -21,7 +21,7 @@ namespace PackageName.CompanyName.ProjectName.Users
             );
 
         /// <summary>
-        /// 更新用户信息
+        /// Update user information
         /// </summary>
         Task<User> UpdateAsync(
             Guid id,
@@ -32,37 +32,37 @@ namespace PackageName.CompanyName.ProjectName.Users
             bool isActive = true);
 
         /// <summary>
-        /// 删除用户
+        /// Delete user
         /// </summary>
         Task DeleteAsync(Guid id);
 
         /// <summary>
-        /// 修改用户密码
+        /// Modify user password
         /// </summary>
         Task ChangePasswordAsync(Guid id, string currentPassword, string newPassword);
 
         /// <summary>
-        /// 重置用户密码
+        /// Reset user password
         /// </summary>
         Task ResetPasswordAsync(Guid id, string newPassword);
 
         /// <summary>
-        /// 获取用户信息
+        /// Get user information
         /// </summary>
         Task<User> GetAsync(Guid id);
 
         /// <summary>
-        /// 根据Identity用户ID获取用户
+        /// Get the user based on the Identity user ID
         /// </summary>
         Task<User> FindByIdentityUserIdAsync(Guid identityUserId);
 
         /// <summary>
-        /// 根据用户昵称查找用户
+        /// Find users based on their nicknames
         /// </summary>
         Task<User> FindByNickNameAsync(string nickName);
 
         /// <summary>
-        /// 禁用或启用用户
+        /// Disable or enable user
         /// </summary>
         Task SetUserActiveStatusAsync(Guid id, bool isActive);
     }

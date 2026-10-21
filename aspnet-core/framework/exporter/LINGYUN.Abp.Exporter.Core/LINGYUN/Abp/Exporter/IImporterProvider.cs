@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Exporter;
 /// <summary>
-/// 数据导入提供者
+/// Data import provider
 /// </summary>
 [Obsolete("This interface will be deprecated in future versions. Please use IExcelImporterProvider instead.")]
 public interface IImporterProvider
 {
     /// <summary>
-    /// 数据导入
+    /// Data import
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="stream"></param>

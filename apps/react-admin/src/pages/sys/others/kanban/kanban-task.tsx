@@ -124,7 +124,7 @@ function KanbanTask({ index, task }: Props) {
 	);
 }
 
-// 在这里使用memo很重要，因为drag column时，不应该重复渲染内部的task
+// It is important to use memo here, because when drag column, the internal task should not be repeatedly rendered.
 export default memo(KanbanTask);
 
 type TaskPrioritySvgProps = {

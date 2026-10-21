@@ -8,35 +8,35 @@ public class UserCard
 
     public Guid UserId { get; set; }
 
-    #region 细粒度的用户资料
+    #region Fine-grained user profiles
 
     public string UserName { get; set; } = default!;
     /// <summary>
-    /// 头像
+    /// Avatar
     /// </summary>
     public string? AvatarUrl { get; set; }
     /// <summary>
-    /// 昵称
+    /// Nickname
     /// </summary>
     public string? NickName { get; set; }
     /// <summary>
-    /// 年龄
+    /// age
     /// </summary>
     public int Age { get; set; }
     /// <summary>
-    /// 性别
+    /// Gender
     /// </summary>
     public Sex Sex { get; set; }
     /// <summary>
-    /// 签名
+    /// Signature
     /// </summary>
     public string? Sign { get; set; }
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     public string? Description { get; set; }
     /// <summary>
-    /// 生日
+    /// birthday
     /// </summary>
     public DateTime? Birthday { get; set; }
 

@@ -1,30 +1,30 @@
 # LINGYUN.Abp.Rules.RulesEngine
 
-## 模块说明
+## Module description
 
-集成微软规则引擎的实现  
+Integrated implementation of Microsoft rules engine
 
-默认实现一个本地文件系统规则提供者,根据用户配置的 **AbpRulesEnginePthsicalFileResolveOptions.PhysicalPath** 路径检索规则文件  
+By default, a local file system rule provider is implemented to retrieve rule files according to the user-configured **AbpRulesEnginePthsicalFileResolveOptions.PhysicalPath** path.
 
-文件名如下:
+The file names are as follows:
 
-PhysicalPath/CurrentTenant.Id[如果存在]/验证规则实体类型名称[typeof(Input).Name].json  
+PhysicalPath/CurrentTenant.Id[if exists]/Validation rule entity type name[typeof(Input).Name].json
 
-自定义的规则提供者需要实现 **IWorkflowRulesResolveContributor** 接口,可能不需要实现初始化与释放资源,因此提供了一个抽象的 **WorkflowRulesResolveContributorBase**  
+Custom rule providers need to implement the **IWorkflowRulesResolveContributor** interface and may not need to implement initialization and release resources, so an abstract **WorkflowRulesResolveContributorBase** is provided.
 
-并添加到 **AbpRulesEngineResolveOptions.WorkflowRulesResolvers** 中  
+and added to **AbpRulesEngineResolveOptions.WorkflowRulesResolvers**
 
-### 基础模块  
+### Basic module
 
-### 高阶模块  
+### High-level modules
 
-### 权限定义  
+### Permission definition
 
-### 功能定义  
+### Function definition
 
-### 配置定义  
+### Configuration definition
 
-### 如何使用
+### How to use
 
 
 ```csharp
@@ -37,13 +37,13 @@ PhysicalPath/CurrentTenant.Id[如果存在]/验证规则实体类型名称[typeo
         {
             Configure<AbpRulesEngineResolveOptions>(options =>
             {
-                // 添加自行实现的规则解析提供者
+                //Add a self-implemented rule parsing provider
                 options.WorkflowRulesResolvers.Add(new FakeWorkflowRulesResolveContributor());
             });
 
             Configure<AbpRulesEnginePhysicalFileResolveOptions>(options =>
             {
-                // 指定真实存在的本地文件路径, 否则将不会检索本地规则文件
+                //Specify the real local file path, otherwise the local rule file will not be retrieved
                 options.PhysicalPath = Path.Combine(Directory.GetCurrentDirectory(), "Rules");
             });
         }
@@ -51,4 +51,4 @@ PhysicalPath/CurrentTenant.Id[如果存在]/验证规则实体类型名称[typeo
 
 ```
 
-### 更新日志 
+### Update log

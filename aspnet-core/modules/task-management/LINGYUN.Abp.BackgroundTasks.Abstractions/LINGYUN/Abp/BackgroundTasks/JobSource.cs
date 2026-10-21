@@ -1,19 +1,19 @@
 ﻿namespace LINGYUN.Abp.BackgroundTasks;
 /// <summary>
-/// 作业来源
+/// Job source
 /// </summary>
 public enum JobSource
 {
     /// <summary>
-    /// 未定义
+    /// undefined
     /// </summary>
     None = -1,
     /// <summary>
-    /// 用户
+    /// User
     /// </summary>
     User = 0,
     /// <summary>
-    /// 系统内置
+    /// Built-in system
     /// </summary>
     System = 10,
 }

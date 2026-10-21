@@ -8,7 +8,7 @@ public class AbpExporterPdfLibreOfficeModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 解决单元测试问题
+        // Solve unit testing issues
         if (context.Services.IsAdded<LibreOfficeTestEnvironment>())
         {
             return;

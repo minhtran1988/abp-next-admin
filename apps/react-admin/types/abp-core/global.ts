@@ -1,8 +1,8 @@
-/** 名称/值键值对 */
+/** Name/value key-value pair */
 interface NameValue<T> {
-	/** 名称 */
+	/** name */
 	name: string;
-	/** 值 */
+	/** value */
 	value: T;
 }
 interface AuthConfig {
@@ -16,194 +16,194 @@ interface Environment {
 	dev: boolean;
 	prod: boolean;
 }
-/** 本地化文本数据对象 */
+/** Localized text data object */
 interface LocalizableStringInfo {
-	/** 文本名称 */
+	/** Text name */
 	name: string;
-	/** 资源名称 */
+	/** Resource name */
 	resourceName: string;
 }
-/** 键值对字典对象 */
+/** Key-value pair dictionary object */
 type Dictionary<TKey extends number | string | symbol = any, KValue = any> = {
 	[key in TKey]: KValue;
 };
-/** 扩展属性字典 */
+/** Extended attribute dictionary */
 interface ExtraPropertyDictionary {
 	[key: string]: any;
 }
-/** 并发接口 */
+/** Concurrency interface */
 interface IHasConcurrencyStamp {
-	/** 并发令牌，更新数据时需携带 */
+	/** Concurrency token, required when updating data */
 	concurrencyStamp?: string;
 }
-/** 扩展属性接口 */
+/** Extended attribute interface */
 interface IHasExtraProperties {
-	/** 扩展属性 */
+	/** Extended attributes */
 	extraProperties: ExtraPropertyDictionary;
 }
-/** 选择项 */
+/** Selections */
 interface ISelectionStringValueItem {
 	[key: string]: any;
-	/** 选择项显示文本多语言对象 */
+	/** Select items to display text multilingual objects */
 	displayText: LocalizableStringInfo;
-	/** 选择项值 */
+	/** Selection value */
 	value: string;
 }
-/** 选择项数据源 */
+/** Selection data source */
 interface ISelectionStringValueItemSource {
-	/** 选择项列表 */
+	/** Selection list */
 	items: ISelectionStringValueItem[];
 }
-/** 验证器 */
+/** validator */
 interface Validator {
-	/** 名称 */
+	/** name */
 	name: string;
-	/** 属性 */
+	/** Properties */
 	properties: { [key: string]: string };
 }
-/** 值类型 */
+/** Value type */
 interface ValueType {
-	/** 名称 */
+	/** name */
 	name: string;
-	/** 属性 */
+	/** Properties */
 	properties: { [key: string]: string };
-	/** 验证器 */
+	/** validator */
 	validator: Validator;
 }
-/** 选择项值类型 */
+/** Select item value type */
 interface SelectionStringValueType extends ValueType {
-	/** 选择项数据源 */
+	/** Selection data source */
 	itemSource: ISelectionStringValueItemSource;
 }
-/** 多语言描述 */
+/** Multi-language description */
 interface LanguageInfo {
 	/**
-	 * 文化名称
-	 * @summary 简体中文：zh-Hans
+	 *Culture name
+	 * @summary Simplified Chinese: zh-Hans
 	 * @summary English：en-Us
 	 */
 	cultureName: string;
-	/** 显示名称 */
+	/** display name */
 	displayName: string;
 	/**
-	 * 两个字符描述名称
-	 * @summary 简体中文：zh
+	 * Two characters describing the name
+	 * @summary Simplified Chinese: zh
 	 * @summary English：en
 	 */
 	twoLetterISOLanguageName: string;
-	/** 用于UI的文化名称（仅后端） */
+	/** Culture name used for UI (backend only) */
 	uiCultureName: string;
 }
-/** 时间日期格式化描述 */
+/** Time and date formatting description */
 interface DateTimeFormat {
-	/** 日历算法类型 */
+	/** Calendar algorithm type */
 	calendarAlgorithmType: string;
-	/** 日期分隔符 */
+	/** Date separator */
 	dateSeparator: string;
-	/** 长时间日期格式 */
+	/** Long time date format */
 	dateTimeFormatLong: string;
-	/** 完整时间日期格式 */
+	/** Complete time and date format */
 	fullDateTimePattern: string;
-	/** 长时间格式 */
+	/** Long time format */
 	longTimePattern: string;
-	/** 短日期格式 */
+	/** Short date format */
 	shortDatePattern: string;
-	/** 短时间格式 */
+	/** Short time format */
 	shortTimePattern: string;
 }
-/** 当前语言描述 */
+/** Current language description */
 interface CurrentCulture {
-	/** 文化名称 */
+	/** Culture name */
 	cultureName: string;
-	/** 时间日期格式化配置 */
+	/** Time and date formatting configuration */
 	dateTimeFormat: DateTimeFormat;
-	/** 显示名称 */
+	/** display name */
 	displayName: string;
-	/** 英文名称 */
+	/** English name */
 	englishName: string;
-	/** 是否从右到左书写习惯 */
+	/** Whether to write from right to left */
 	isRightToLeft: boolean;
-	/** 名称 */
+	/** name */
 	name: string;
-	/** 本地名称 */
+	/** local name */
 	nativeName: string;
-	/** 三个字符描述名称 */
+	/** Three character description name */
 	threeLetterIsoLanguageName: string;
-	/** 两个字符描述名称 */
+	/** Two character description name */
 	twoLetterIsoLanguageName: string;
 }
-/** Windows时区 */
+/** Windows time zone */
 interface WindowsTimeZone {
-	/** 时区标识 */
+	/** Time zone identifier */
 	timeZoneId: string;
 }
-/** IANA时区 */
+/** IANA time zone */
 interface IanaTimeZone {
-	/** 时区名称 */
+	/** Time zone name */
 	timeZoneName: string;
 }
-/** 时区描述 */
+/** Time zone description */
 interface TimeZone {
-	/** IANA时区配置 */
+	/** IANA time zone configuration */
 	iana: IanaTimeZone;
-	/** Windows时区配置 */
+	/** Windows time zone configuration */
 	windows: WindowsTimeZone;
 }
-/** 时钟描述 */
+/** Clock description */
 interface Clock {
-	/** 时钟类型
-	 * @summary UTC 格林威治时间
-	 * @summary Local 本地时间
+	/** Clock type
+	 * @summary UTC Greenwich Time
+	 * @summary Local local time
 	 */
 	kind: string;
 }
-/** 多语言描述 */
+/** Multi-language description */
 interface MultiTenancyInfo {
-	/** 是否启用多租户 */
+	/** Whether to enable multi-tenancy */
 	isEnabled: boolean;
 }
-/** 当前租户 */
+/** Current tenant */
 interface CurrentTenant {
-	/** 租户标识 */
+	/** Tenant ID */
 	id?: string;
-	/** 租户是否可用 */
+	/** Whether the tenant is available */
 	isAvailable: boolean;
-	/** 租户名称 */
+	/** Tenant name */
 	name?: string;
 }
-/** 当前用户 */
+/** Current user */
 interface CurrentUser {
-	/** 邮件地址 */
+	/** Email address */
 	email: string;
-	/** 邮件是否已确认 */
+	/** Whether the email has been confirmed */
 	emailVerified: boolean;
-	/** 用户标识 */
+	/** User ID */
 	id?: string;
-	/** 模拟租户标识 */
+	/** Simulate tenant ID */
 	impersonatorTenantId?: string;
-	/** 模拟租户名称 */
+	/** Simulated tenant name */
 	impersonatorTenantName?: string;
-	/** 模拟用户标识 */
+	/** Impersonate user ID */
 	impersonatorUserId?: string;
-	/** 模拟用户名称 */
+	/** Impersonated user name */
 	impersonatorUserName?: string;
-	/** 是否已认证 */
+	/** Whether it has been authenticated */
 	isAuthenticated: boolean;
-	/** 名称 */
+	/** name */
 	name?: string;
-	/** 手机号 */
+	/** Mobile phone number */
 	phoneNumber?: string;
-	/** 手机号是否已确认 */
+	/** Whether the mobile phone number has been confirmed */
 	phoneNumberVerified: boolean;
-	/** 角色列表 */
+	/** Role list */
 	roles: string[];
-	/** 会话标识 */
+	/** Session ID */
 	sessionId?: string;
-	/** 姓氏 */
+	/** Last name */
 	surName?: string;
-	/** 租户标识 */
+	/** Tenant ID */
 	tenantId?: string;
-	/** 用户名 */
+	/** Username */
 	userName: string;
 }
 

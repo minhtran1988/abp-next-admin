@@ -1,31 +1,31 @@
 # LINGYUN.Abp.TextTemplating.HttpApi.Client
 
-## 模块说明
+## Module description
 
-文本模板 HTTP API 客户端模块，提供文本模板管理的 HTTP 客户端代理实现。
+The text template HTTP API client module provides an HTTP client proxy implementation for text template management.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.TextTemplating.Application.Contracts
 * Volo.Abp.Http.Client
 
-### 功能定义
+### Function definition
 
-* 提供文本模板管理的 HTTP 客户端代理
-  * TextTemplateDefinitionClientProxy - 模板定义管理客户端代理
-  * TextTemplateContentClientProxy - 模板内容管理客户端代理
-* 实现以下应用服务接口
+* HTTP client proxy that provides text template management
+  * TextTemplateDefinitionClientProxy - template definition management client proxy
+  * TextTemplateContentClientProxy - Template content management client proxy
+* Implement the following application service interfaces
   * ITextTemplateDefinitionAppService
   * ITextTemplateContentAppService
 
-### 配置项
+### Configuration items
 
 * AbpTextTemplatingRemoteServiceConsts
-  * RemoteServiceName - 远程服务名称 (默认: "AbpTextTemplating")
+  * RemoteServiceName - remote service name (default: "AbpTextTemplating")
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingHttpApiClientModule` 依赖
+1. Add `AbpTextTemplatingHttpApiClientModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingHttpApiClientModule))]
@@ -33,7 +33,7 @@ public class YouProjectModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 配置远程服务
+        //Configure remote service
         Configure<AbpRemoteServiceOptions>(options =>
         {
             options.RemoteServices.Default.BaseUrl = "http://localhost:44315/";
@@ -42,7 +42,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 注入并使用客户端代理
+2. Inject and use client proxy
 
 ```csharp
 public class YourService
@@ -56,11 +56,11 @@ public class YourService
 
     public async Task ManageTemplateAsync()
     {
-        // 获取模板定义列表
+        // Get the template definition list
         var templates = await _templateDefinitionAppService.GetListAsync(
             new TextTemplateDefinitionGetListInput());
     }
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

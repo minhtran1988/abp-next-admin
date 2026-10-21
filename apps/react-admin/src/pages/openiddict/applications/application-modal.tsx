@@ -73,7 +73,7 @@ const endpoints = [
 	{ label: "introspection", value: "introspection" },
 ];
 
-// Token Tabs 相关表单配置
+// Token Tabs related form configuration
 const tokenFormItems = [
 	{
 		name: ["settings", "tokenLifetime", "accessToken"],
@@ -144,7 +144,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 	useEffect(() => {
 		if (applicationData) {
 			if (applicationData.id === applicationId) {
-				setFormModel(applicationData); //将OpenIddictApplicationDto 转到 OpenIddictApplicationUpdateDto,注意这里的特殊，formModal的展示值和最后的请求值数据结构非常相似
+				setFormModel(applicationData); //Transfer OpenIddictApplicationDto to OpenIddictApplicationUpdateDto. Note the specialness here. The display value of formModal is very similar to the final request value data structure.
 				form.setFieldsValue(applicationData);
 			}
 		}
@@ -261,7 +261,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 				onClose();
 				form.resetFields();
 				setFormModel(defaultModel);
-				form.setFieldsValue(defaultModel); //两个同时设置，保持没有applicationId时，handleSubmit调用createApplication时的表单状态和请求数据一致
+				form.setFieldsValue(defaultModel); //Set both at the same time and keep the form status consistent with the request data when handleSubmit calls createApplication when there is no applicationId.
 			}}
 			onOk={handleSubmit}
 			onClose={() => {
@@ -388,7 +388,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 							/>
 						</Tabs.TabPane>
 
-						{/* Tokens Tab  //！！！注意这个name的数组语法赋值*/}
+						{/* Tokens Tab //! ! ! Note the array syntax assignment of this name*/}
 						<Tabs.TabPane key="tokens" tab={$t("AbpOpenIddict.Tokens")}>
 							{tokenFormItems.map((item) => (
 								<Form.Item key={item.name.join(".")} label={$t(item.label)} name={item.name} extra={$t(item.extra)}>
@@ -406,7 +406,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 								}))}
 								targetKeys={formModel.scopes || []}
 								onChange={(targetKeys) => {
-									const stringTargetKeys = targetKeys.map(String); // 转换成 string[]
+									const stringTargetKeys = targetKeys.map(String); // Convert to string[]
 									setFormModel((prev) => ({
 										...prev,
 										scopes: stringTargetKeys,
@@ -425,7 +425,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 						<Tabs.TabPane key="authorize" tab={$t("AbpOpenIddict.Authorizations")}>
 							<Form.Item
 								label={$t("AbpOpenIddict.Requirements:PKCE")}
-								name={["requirements", "features", "requirePkce"]} //antd数组赋值语法
+								name={["requirements", "features", "requirePkce"]} //antd array assignment syntax
 								valuePropName="checked"
 							>
 								<Checkbox checked={formModel.requirements?.features.requirePkce}>
@@ -472,7 +472,7 @@ const ApplicationModal: React.FC<Props> = ({ visible, applicationId, onClose, on
 
 						{/* Properties Tab */}
 						<Tabs.TabPane key="props" tab={$t("AbpOpenIddict.DisplayName:Properties")}>
-							<PropertyTable //openiddict的自带Properties,不是abp的ExtraProperties,但还是用这个组件
+							<PropertyTable //openiddict's own Properties, not abp's ExtraProperties, but still use this component
 								data={formModel.properties}
 								onChange={handlePropertyChange}
 								onDelete={handlePropertyDelete}

@@ -7,9 +7,9 @@ import { useRequest } from '@abp/request';
 export function useSmsMessagesApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取短信消息分页列表
-   * @param {EmailMessageGetListInput} input 参数
-   * @returns {Promise<PagedResultDto<EmailMessageDto>>} 短信消息列表
+   * Get the paging list of SMS messages
+   * @param {EmailMessageGetListInput} input parameter
+   * @returns {Promise<PagedResultDto<EmailMessageDto>>} SMS message list
    */
   function getPagedListApi(
     input?: SmsMessageGetListInput,
@@ -23,9 +23,9 @@ export function useSmsMessagesApi() {
     );
   }
   /**
-   * 获取短信消息
+   * Get SMS messages
    * @param id Id
-   * @returns {SmsMessageDto} 短信消息
+   * @returns {SmsMessageDto} SMS message
    */
   function getApi(id: string): Promise<SmsMessageDto> {
     return request<SmsMessageDto>(`/api/platform/messages/sms/${id}`, {
@@ -33,7 +33,7 @@ export function useSmsMessagesApi() {
     });
   }
   /**
-   * 删除短信消息
+   * Delete SMS messages
    * @param id Id
    * @returns {void}
    */
@@ -43,7 +43,7 @@ export function useSmsMessagesApi() {
     });
   }
   /**
-   * 发送短信消息
+   * Send SMS messages
    * @param id Id
    * @returns {void}
    */

@@ -1,18 +1,18 @@
 ﻿//using IdentityServer4.Events;
-//using LINGYUN.Abp.Identity.Session;
-//using System;
-//using System.Security.Claims;
-//using System.Threading.Tasks;
-//using Volo.Abp.DependencyInjection;
-//using Volo.Abp.MultiTenancy;
-//using Volo.Abp.Security.Claims;
-//using Volo.Abp.Uow;
+// using LINGYUN.Abp.Identity.Session;
+// using System;
+// using System.Security.Claims;
+// using System.Threading.Tasks;
+// using Volo.Abp.DependencyInjection;
+// using Volo.Abp.MultiTenancy;
+// using Volo.Abp.Security.Claims;
+// using Volo.Abp.Uow;
 
-//namespace LINGYUN.Abp.IdentityServer.Session;
+// namespace LINGYUN.Abp.IdentityServer.Session;
 ///// <summary>
-///// 持久化用户会话
+///// Persistent user session
 ///// </summary>
-//public class AbpIdentitySessionEventServiceHandler : IAbpIdentityServerEventServiceHandler, ITransientDependency
+// public class AbpIdentitySessionEventServiceHandler : IAbpIdentityServerEventServiceHandler, ITransientDependency
 //{
 //    protected ICurrentTenant CurrentTenant { get; }
 //    protected ISessionInfoProvider SessionInfoProvider { get; }
@@ -41,17 +41,17 @@
 //    {
 //        if (evt is UserLoginSuccessEvent loginEvent)
 //        {
-//            // 用户登录事件
+// //User login event
 //            return RaiseUserLoginSuccessEventAsync(loginEvent);
 //        }
 //        if (evt is UserLogoutSuccessEvent logoutEvent)
 //        {
-//            // 用户退出事件
+// //User exit event
 //            return RaiseUserLogoutSuccessEventAsync(logoutEvent);
 //        }
 //        if (evt is TokenRevokedSuccessEvent revokeEvent)
 //        {
-//            // 撤销令牌事件
+// //Revoke token event
 //            return RaiseTokenRevokedSuccessEventAsync(revokeEvent);
 //        }
 //        return Task.CompletedTask;

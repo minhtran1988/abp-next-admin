@@ -4,18 +4,18 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Token;
 /// <summary>
-/// 通讯录应用Token提供者
+/// Address book application token provider
 /// </summary>
 /// <remarks>
-/// 企业微信部分接口需要使用通讯录应用Token
+/// Some interfaces of Enterprise WeChat require the use of address book application token.
 /// </remarks>
 public interface IWeChatWorkContactTokenProvider
 {
     /// <summary>
-    /// 获取通讯录应用Token
+    /// Get the address book application token
     /// </summary>
     /// <remarks>
-    /// 参考：https://developer.work.weixin.qq.com/document/path/91039
+    /// Reference: https://developer.work.weixin.qq.com/document/path/91039
     /// </remarks>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>

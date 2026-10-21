@@ -1,22 +1,22 @@
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)基类
+/// Notification channel data (load) base class
 /// </summary>
 /// <remarks>
 /// <para>
-/// 渠道数据是"发布渠道能理解的强类型数据结构", 生产者用它表达渠道专属语义,
-/// 渠道实现用它解析出具体的消息载体。
+/// Channel data is a "strongly typed data structure that the publishing channel can understand". Producers use it to express channel-specific semantics.
+/// The channel implementation uses it to parse out the specific message carrier.
 /// </para>
 /// <para>
-/// 派生类需要做两件事:
+/// Derived classes need to do two things:
 /// <list type="number">
 /// <item>
-/// 用 <see cref="NotificationChannelDataAttribute"/> 声明渠道、匹配顺序与
-/// <see cref="NotificationChannelDataAttribute.Presence"/> 存在性判定模式;
+/// Use <see cref="NotificationChannelDataAttribute"/> to declare the channel, matching order and
+/// <see cref="NotificationChannelDataAttribute.Presence"/> Existence determination mode;
 /// </item>
 /// <item>
-/// 用 <see cref="NotificationChannelPropertyAttribute"/> 标注参与读写的属性。
+/// Use <see cref="NotificationChannelPropertyAttribute"/> to mark the attributes involved in reading and writing.
 /// </item>
 /// </list>
 /// </para>

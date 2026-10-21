@@ -7,22 +7,22 @@ public class AbpAuditLoggingElasticsearchOptions
     public const string DefaultIndexPrefix = "auditlogging";
     public string IndexPrefix { get; set; }
     /// <summary>
-    /// 索引滚动间隔
+    /// Index scrolling interval
     /// </summary>
     public RollingInterval RollingInterval { get; set; }
     /// <summary>
-    /// 索引初始化失败抛出异常
+    /// Index initialization failed and an exception was thrown.
     /// </summary>
     /// <remarks>
-    /// 默认为: true, 索引初始化失败后应用程序停止运行
+    /// Default: true, the application stops running after index initialization fails
     /// </remarks>
     public bool ThrowIfIndexInitFailed { get; set; }
     /// <summary>
-    /// 审计日志索引设置
+    /// Audit log index settings
     /// </summary>
     public IndexSettings AuditLogSettings { get; set; }
     /// <summary>
-    /// 安全日志索引设置
+    /// Security log index settings
     /// </summary>
     public IndexSettings SecurityLogSettings { get; set; }
 

@@ -10,26 +10,26 @@ import type {
 import requestClient from "../request";
 
 /**
- * 删除Webhook分组定义
- * @param name Webhook分组名称
+ * Delete Webhook group definition
+ * @param name Webhook group name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/webhooks/definitions/groups/${name}`);
 }
 
 /**
- * 查询Webhook分组定义
- * @param name Webhook分组名称
- * @returns Webhook分组定义数据传输对象
+ * Query Webhook group definition
+ * @param name Webhook group name
+ * @returns Webhook grouping defines data transfer object
  */
 export function getApi(name: string): Promise<WebhookGroupDefinitionDto> {
 	return requestClient.get<WebhookGroupDefinitionDto>(`/api/webhooks/definitions/groups/${name}`);
 }
 
 /**
- * 查询Webhook分组定义列表
- * @param input Webhook分组过滤条件
- * @returns Webhook分组定义数据传输对象列表
+ * Query the Webhook group definition list
+ * @param input Webhook grouping filter conditions
+ * @returns Webhook group definition data transfer object list
  */
 export function getListApi(
 	input?: WebhookGroupDefinitionGetListInput,
@@ -40,19 +40,19 @@ export function getListApi(
 }
 
 /**
- * 创建Webhook分组定义
- * @param input Webhook分组定义参数
- * @returns Webhook分组定义数据传输对象
+ * Create Webhook group definition
+ * @param input Webhook group definition parameters
+ * @returns Webhook grouping defines data transfer object
  */
 export function createApi(input: WebhookGroupDefinitionCreateDto): Promise<WebhookGroupDefinitionDto> {
 	return requestClient.post<WebhookGroupDefinitionDto>("/api/webhooks/definitions/groups", input);
 }
 
 /**
- * 更新Webhook分组定义
- * @param name Webhook分组名称
- * @param input Webhook分组定义参数
- * @returns Webhook分组定义数据传输对象
+ * Update Webhook group definition
+ * @param name Webhook group name
+ * @param input Webhook group definition parameters
+ * @returns Webhook grouping defines data transfer object
  */
 export function updateApi(name: string, input: WebhookGroupDefinitionUpdateDto): Promise<WebhookGroupDefinitionDto> {
 	return requestClient.put<WebhookGroupDefinitionDto>(`/api/webhooks/definitions/groups/${name}`, input);

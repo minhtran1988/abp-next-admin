@@ -1,13 +1,13 @@
 # LINGYUN.Abp.AuditLogging.Elasticsearch
 
-简体中文 | [English](./README.EN.md)
+Simplified Chinese | [English](./README.EN.md)
 
-审计模块 Elasticsearch 实现
+Audit module Elasticsearch implementation
 
-ElasticsearchAuditLogManager    实现了 IAuditLogManager, 审计日志由ES管理  
-ElasticsearchSecurityLogManager 实现了 ISecurityLogManager, 安全日志由ES管理  
+ElasticsearchAuditLogManager implements IAuditLogManager, and the audit log is managed by ES
+ElasticsearchSecurityLogManager implements ISecurityLogManager, and security logs are managed by ES
 
-## 模块引用
+## Module reference
 
 
 ```csharp
@@ -18,13 +18,13 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-*	AbpAuditLoggingElasticsearchOptions.IndexPrefix      索引前缀, 默认 auditlogging
+* AbpAuditLoggingElasticsearchOptions.IndexPrefix index prefix, default auditlogging
 
-## 注意事项
+## Notes
 
-与租户模块集成, 跨租户时将会切换索引
+Integrated with the tenant module, the index will be switched when crossing tenants
 
 ## appsettings.json
 

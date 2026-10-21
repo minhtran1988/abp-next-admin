@@ -3,29 +3,29 @@ using System.Xml.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Common.Messages;
 /// <summary>
-/// 微信消息
+/// WeChat message
 /// </summary>
 [Serializable]
 [XmlRoot("xml")]
 public abstract class WeChatMessage
 {
     /// <summary>
-    /// 开发者微信号
+    /// Developer WeChat ID
     /// </summary>
     [XmlElement("ToUserName")]
     public string ToUserName { get; set; } = default!;
     /// <summary>
-    /// 发送方账号（一个OpenID）
+    /// Sender account (an OpenID)
     /// </summary>
     [XmlElement("FromUserName")]
     public string FromUserName { get; set; } = default!;
     /// <summary>
-    /// 消息创建时间 （整型）
+    /// Message creation time (integer)
     /// </summary>
     [XmlElement("CreateTime")]
     public int CreateTime { get; set; }
     /// <summary>
-    /// 消息类型，event
+    /// Message type, event
     /// </summary>
     [XmlElement("MsgType")]
     public string MsgType { get; set; } = default!;

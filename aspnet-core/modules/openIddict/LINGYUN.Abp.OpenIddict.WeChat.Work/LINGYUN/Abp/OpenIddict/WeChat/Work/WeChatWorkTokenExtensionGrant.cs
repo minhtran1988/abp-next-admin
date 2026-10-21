@@ -72,7 +72,7 @@ public abstract class WeChatWorkTokenExtensionGrant : ITokenExtensionGrant
                 var currentTenant = GetRequiredService<ICurrentTenant>(context);
                 var settingProvider = GetRequiredService<ISettingProvider>(context);
                 var guidGenerator = GetRequiredService<IGuidGenerator>(context);
-                // TODO 检查启用用户注册是否有必要引用账户模块
+                // TODO Check whether it is necessary to reference the account module to enable user registration
                 if (!await settingProvider.IsTrueAsync("Abp.Account.IsSelfRegistrationEnabled") ||
                     !await settingProvider.IsTrueAsync(WeChatWorkSettingNames.EnabledQuickLogin))
                 {
@@ -100,7 +100,7 @@ public abstract class WeChatWorkTokenExtensionGrant : ITokenExtensionGrant
                         AbpWeChatWorkGlobalConsts.DisplayName))).CheckErrors();
             }
 
-            // 检查是否已锁定
+            // Check if locked
             if (await userManager.IsLockedOutAsync(currentUser))
             {
                 var identityLocalizer = GetRequiredService<IStringLocalizer<IdentityResource>>(context);

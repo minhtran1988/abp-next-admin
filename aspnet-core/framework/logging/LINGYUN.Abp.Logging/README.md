@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Logging
 
-日志基础模块
+Log basic module
 
-定义 ILoggingManager 接口, 实现日志信息查询  
+Define the ILoggingManager interface to implement log information query
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 提供统一的日志查询接口 ILoggingManager
-* 支持多种日志字段查询，包括时间戳、日志级别、消息等
-* 支持异常信息记录和查询
-* 支持丰富的日志字段信息，如机器名称、环境名称、应用名称等
-* 支持分页查询和计数统计
+* Provide unified log query interface ILoggingManager
+* Supports multiple log field queries, including timestamp, log level, message, etc.
+* Support exception information recording and query
+* Supports rich log field information, such as machine name, environment name, application name, etc.
+* Support paging query and counting statistics
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpLoggingModule))]
@@ -24,22 +24,22 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-在 `appsettings.json` 中配置：
+Configure in `appsettings.json`:
 
 ```json
 {
   "Logging": {
-    "MachineName": "你的机器名称",
-    "EnvironmentName": "环境名称"
+    "MachineName": "Your machine name",
+    "EnvironmentName": "Environment Name"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 注入 ILoggingManager 接口：
+1. Inject the ILoggingManager interface:
 ```csharp
 public class YourService
 {
@@ -52,9 +52,9 @@ public class YourService
 }
 ```
 
-2. 查询日志：
+2. Query log:
 ```csharp
-// 获取日志列表
+// Get the log list
 var logs = await _loggingManager.GetListAsync(
     startTime: DateTime.Now.AddDays(-1),
     maxResultCount: 10,
@@ -62,35 +62,35 @@ var logs = await _loggingManager.GetListAsync(
     level: LogLevel.Error
 );
 
-// 获取日志总数
+// Get the total number of logs
 var count = await _loggingManager.GetCountAsync(
     startTime: DateTime.Now.AddDays(-1),
     level: LogLevel.Error
 );
 
-// 获取单条日志
+// Get a single log
 var log = await _loggingManager.GetAsync(id);
 ```
 
-## 日志字段说明
+## Log field description
 
-* TimeStamp - 日志时间戳
-* Level - 日志级别
-* Message - 日志消息
-* Fields - 日志字段信息
-  * Id - 日志唯一标识
-  * MachineName - 机器名称
-  * Environment - 环境名称
-  * Application - 应用名称
-  * Context - 上下文
-  * ActionId - 操作ID
-  * ActionName - 操作名称
-  * RequestId - 请求ID
-  * RequestPath - 请求路径
-  * ConnectionId - 连接ID
-  * CorrelationId - 关联ID
-  * ClientId - 客户端ID
-  * UserId - 用户ID
-  * ProcessId - 进程ID
-  * ThreadId - 线程ID
-* Exceptions - 异常信息列表
+* TimeStamp - log timestamp
+* Level - log level
+* Message - log message
+* Fields - log field information
+  *Id - the unique identifier of the log
+  * MachineName - machine name
+  * Environment - environment name
+  *Application - application name
+  * Context - context
+  * ActionId - Action ID
+  * ActionName - action name
+  * RequestId - request ID
+  * RequestPath - request path
+  * ConnectionId - connection ID
+  * CorrelationId - Correlation ID
+  * ClientId - client ID
+  *UserId - User ID
+  * ProcessId - Process ID
+  * ThreadId - Thread ID
+* Exceptions - Exception information list

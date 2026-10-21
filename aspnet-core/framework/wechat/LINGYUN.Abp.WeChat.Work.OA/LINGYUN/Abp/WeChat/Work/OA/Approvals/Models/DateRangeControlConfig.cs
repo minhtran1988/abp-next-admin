@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 时长组件配置
+/// Duration component configuration
 /// </summary>
 public class DateRangeControlConfig : ControlConfig
 {
     /// <summary>
-    /// 时长组件
+    /// Duration component
     /// </summary>
     [NotNull]
     [JsonProperty("date_range")]

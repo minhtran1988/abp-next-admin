@@ -1,31 +1,31 @@
 # LINGYUN.Abp.Notifications.WxPusher
 
-通过WxPusher实现的ABP通知模块，提供通过WxPusher发送实时通知的功能。
+The ABP notification module implemented through WxPusher provides the function of sending real-time notifications through WxPusher.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 支持多种消息类型
-  * 文本消息
-  * HTML消息
-  * Markdown消息
-* 灵活的消息发送目标
-  * 支持发送到指定用户
-  * 支持发送到指定Topic
-* 多语言支持
-  * 支持本地化消息内容
-  * 支持多语言标题和描述
-* 特性开关控制
-  * 支持通过功能开关控制消息发送
+* Support multiple message types
+  * Text message
+  * HTML message
+  * Markdown message
+* Flexible message sending destination
+  *Support sending to designated users
+  * Support sending to specified Topic
+*Multi-language support
+  * Support localized message content
+  * Supports multi-language titles and descriptions
+* Feature switch control
+  * Supports controlling message sending through function switch
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Notifications.WxPusher
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWxPusherModule))]
@@ -35,9 +35,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置说明
+## Configuration instructions
 
-### 1. 通知定义配置
+### 1. Notification definition configuration
 
 ```csharp
 public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
@@ -47,14 +47,14 @@ public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
         var notification = context.Create(
             name: "App.Notification.Test",
             displayName: L("TestNotification"))
-            .WithContentType(MessageContentType.Text)  // 设置消息类型
-            .WithTopics(new List<int> { 1, 2 })       // 设置消息Topic
-            .WithUrl("https://example.com");          // 设置点击消息跳转的URL
+            .WithContentType(MessageContentType.Text) //Set message type
+            .WithTopics(new List<int> { 1, 2 }) // Set message Topic
+            .WithUrl("https://example.com"); // Set the URL to jump to when clicking on the message
     }
 }
 ```
 
-### 2. 发送通知
+### 2. Send notification
 
 ```csharp
 public class YourService
@@ -70,28 +70,28 @@ public class YourService
     {
         var notificationData = new NotificationData();
         
-        // 设置消息内容
-        notificationData.TrySetData("title", "消息标题");
-        notificationData.TrySetData("message", "消息内容");
-        notificationData.SetUrl("https://example.com");  // 设置点击消息跳转的URL
+        //Set message content
+        notificationData.TrySetData("title", "Message title");
+        notificationData.TrySetData("message", "Message content");
+        notificationData.SetUrl("https://example.com"); // Set the URL to jump to when clicking on the message
 
         await _notificationPublisher.PublishAsync(
-            "App.Notification.Test",              // 通知名称
-            notificationData,                     // 通知数据
-            userIds: new[] { "userId" },          // 接收用户ID列表
-            tenantIds: new[] { "tenantId" }       // 租户ID列表
+            "App.Notification.Test", // notification name
+            notificationData, // notification data
+            userIds: new[] { "userId" }, // Receive user ID list
+            tenantIds: new[] { "tenantId" } // Tenant ID list
         );
     }
 }
 ```
 
-## 注意事项
+## Notes
 
-1. 需要实现 `IWxPusherUserStore` 接口来管理用户与WxPusher的关联关系。
-2. 消息发送依赖于WxPusher API，需要确保网络连接正常。
-3. 请合理设置消息内容长度，避免超过WxPusher的限制。
-4. 使用多语言功能时，需要确保已正确配置本地化资源。
+1. The `IWxPusherUserStore` interface needs to be implemented to manage the association between users and WxPusher.
+2. Message sending relies on WxPusher API, and you need to ensure that the network connection is normal.
+3. Please set the message content length appropriately to avoid exceeding the WxPusher limit.
+4. When using the multi-language feature, you need to ensure that localization resources are configured correctly.
 
-## 源码位置
+## Source code location
 
 [LINGYUN.Abp.Notifications.WxPusher](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/modules/realtime-notifications/LINGYUN.Abp.Notifications.WxPusher)

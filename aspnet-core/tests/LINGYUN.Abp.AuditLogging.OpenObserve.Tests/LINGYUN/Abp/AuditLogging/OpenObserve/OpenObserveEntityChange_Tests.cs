@@ -9,10 +9,10 @@ using Xunit;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 实体变更往返测试
+/// Entity change round trip test
 /// </summary>
 /// <remarks>
-/// OpenObserve 会把嵌套数组保存为 JSON 字符串列, 因此实体变更明细需要在写入前序列化、读取后反序列化
+/// OpenObserve will save nested arrays as JSON string columns, so entity change details need to be serialized before writing and deserialized after reading.
 /// </remarks>
 public class OpenObserveEntityChange_Tests : AbpAuditLoggingOpenObserveTestBase
 {
@@ -57,7 +57,7 @@ public class OpenObserveEntityChange_Tests : AbpAuditLoggingOpenObserveTestBase
 
         var id = Guid.Parse(await _writer.WriteAsync(auditLogInfo));
 
-        // OpenObserve 写入到可检索存在延迟, 轮询等待实体变更可见
+        // There is a delay in OpenObserve writing to retrieval, polling and waiting for entity changes to be visible
         var auditLog = await WaitUntilAsync(
             () => _manager.GetAsync(id, includeDetails: true),
             log => log?.EntityChanges.Count > 0);
@@ -73,14 +73,14 @@ public class OpenObserveEntityChange_Tests : AbpAuditLoggingOpenObserveTestBase
         change.PropertyChanges[0].PropertyName.ShouldBe("Name");
         change.PropertyChanges[0].NewValue.ShouldBe("_new_value");
 
-        // IEntityChangeStore 走独立数据流
+        // IEntityChangeStore takes independent data flow
         var storedChanges = await _entityChangeStore.GetListAsync(auditLogId: id);
         storedChanges.Count.ShouldBe(1);
         storedChanges[0].PropertyChanges.Count.ShouldBe(1);
     }
 
     /// <summary>
-    /// 轮询直到满足条件(OpenObserve 写入到可检索存在延迟)
+    /// Poll until the condition is met (there is a delay in OpenObserve writing to retrieval)
     /// </summary>
     private async Task<AuditLog?> WaitUntilAsync(
         Func<Task<AuditLog?>> query,

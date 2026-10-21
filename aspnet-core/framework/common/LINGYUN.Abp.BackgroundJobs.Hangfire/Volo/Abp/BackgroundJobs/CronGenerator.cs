@@ -6,9 +6,9 @@ namespace Volo.Abp.BackgroundJobs;
 public class CronGenerator
 {
     /// <summary>
-    /// 周期性为分钟的任务
+    /// Tasks with a periodicity of minutes
     /// </summary>
-    /// <param name="interval">执行周期的间隔，默认为每分钟一次</param>
+    /// <param name="interval">The interval between execution cycles, the default is once per minute</param>
     /// <returns></returns>
     public static string Minute(int interval = 1)
     {
@@ -16,10 +16,10 @@ public class CronGenerator
     }
 
     /// <summary>
-    /// 周期性为小时的任务
+    /// Tasks with hourly periodicity
     /// </summary>
-    /// <param name="minute">第几分钟开始，默认为第一分钟</param>
-    /// <param name="interval">执行周期的间隔，默认为每小时一次</param>
+    /// <param name="minute">Start at the minute, the default is the first minute</param>
+    /// <param name="interval">The interval between execution cycles, the default is once an hour</param>
     /// <returns></returns>
     public static string Hour(int minute = 1, int interval = 1)
     {
@@ -27,11 +27,11 @@ public class CronGenerator
     }
 
     /// <summary>
-    /// 周期性为天的任务
+    /// Tasks with daily periodicity
     /// </summary>
-    /// <param name="hour">第几小时开始，默认从1点开始</param>
-    /// <param name="minute">第几分钟开始，默认从第1分钟开始</param>
-    /// <param name="interval">执行周期的间隔，默认为每天一次</param>
+    /// <param name="hour">What hour does it start, default starts at 1 o'clock</param>
+    /// <param name="minute">Start at the minute, the default is from the 1st minute</param>
+    /// <param name="interval">Interval of execution cycle, default is once a day</param>
     /// <returns></returns>
     public static string Day(int hour = 1, int minute = 1, int interval = 1)
     {
@@ -39,11 +39,11 @@ public class CronGenerator
     }
 
     /// <summary>
-    /// 周期性为周的任务
+    /// Weekly tasks
     /// </summary>
-    /// <param name="dayOfWeek">星期几开始，默认从星期一点开始</param>
-    /// <param name="hour">第几小时开始，默认从1点开始</param>
-    /// <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+    /// <param name="dayOfWeek">The day of the week starts, default starts at Monday o'clock</param>
+    /// <param name="hour">What hour does it start, default starts at 1 o'clock</param>
+    /// <param name="minute">Start at the minute, the default is from the 1st minute</param>
     /// <returns></returns>
     public static string Week(DayOfWeek dayOfWeek = DayOfWeek.Monday, int hour = 1, int minute = 1)
     {
@@ -51,11 +51,11 @@ public class CronGenerator
     }
 
     /// <summary>
-    /// 周期性为月的任务
+    /// Tasks with monthly periodicity
     /// </summary>
-    /// <param name="day">几号开始，默认从一号开始</param>
-    /// <param name="hour">第几小时开始，默认从1点开始</param>
-    /// <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+    /// <param name="day">What day does it start, default starts from the 1st</param>
+    /// <param name="hour">What hour does it start, default starts at 1 o'clock</param>
+    /// <param name="minute">Start at the minute, the default is from the 1st minute</param>
     /// <returns></returns>
     public static string Month(int day = 1, int hour = 1, int minute = 1)
     {
@@ -63,12 +63,12 @@ public class CronGenerator
     }
 
     /// <summary>
-    /// 周期性为年的任务
+    /// Tasks with annual periodicity
     /// </summary>
-    /// <param name="month">几月开始，默认从一月开始</param>
-    /// <param name="day">几号开始，默认从一号开始</param>
-    /// <param name="hour">第几小时开始，默认从1点开始</param>
-    /// <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+    /// <param name="month">The month to start, the default is January</param>
+    /// <param name="day">What day does it start, default starts from the 1st</param>
+    /// <param name="hour">What hour does it start, default starts at 1 o'clock</param>
+    /// <param name="minute">Start at the minute, the default is from the 1st minute</param>
     /// <returns></returns>
     public static string Year(int month = 1, int day = 1, int hour = 1, int minute = 1)
     {

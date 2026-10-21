@@ -12,8 +12,8 @@ export function useAuditLogsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取审计日志
-   * @param id 日志id
+   * Get audit logs
+   * @param id log id
    */
   function getApi(id: string): Promise<AuditLogDto> {
     return request<AuditLogDto>(`/api/auditing/audit-log/${id}`, {
@@ -22,8 +22,8 @@ export function useAuditLogsApi() {
   }
 
   /**
-   * 获取审计日志分页列表
-   * @param input 参数
+   * Get the audit log paging list
+   * @param input parameter
    */
   function getPagedListApi(
     input: AuditLogGetListInput,
@@ -35,8 +35,8 @@ export function useAuditLogsApi() {
   }
 
   /**
-   * 删除审计日志
-   * @param id 日志id
+   * Delete audit log
+   * @param id log id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/auditing/audit-log/${id}`, {
@@ -45,8 +45,8 @@ export function useAuditLogsApi() {
   }
 
   /**
-   * 批量删除审计日志
-   * @param input 参数
+   * Delete audit logs in batches
+   * @param input parameter
    */
   function deleteManyApi(input: AuditLogDeleteManyInput): Promise<void> {
     return request(`/api/auditing/audit-log/bulk`, {

@@ -1,15 +1,15 @@
 ﻿namespace LINGYUN.Abp.PushPlus.Setting;
 /// <summary>
-/// 接收限制；0-接收全部，1-不接收消息
+/// Reception limit; 0-receive all, 1-do not receive messages
 /// </summary>
 public enum PushPlusChannelRecevieLimit
 {
     /// <summary>
-    /// 接收全部
+    /// Receive all
     /// </summary>
     RecevieAll = 0,
     /// <summary>
-    /// 不接收消息
+    /// Do not receive messages
     /// </summary>
     DontRecevied = 1
 }

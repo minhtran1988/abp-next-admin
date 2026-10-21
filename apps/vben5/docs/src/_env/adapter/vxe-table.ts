@@ -18,7 +18,7 @@ if (!import.meta.env.SSR) {
           },
 
           formConfig: {
-            // 全局禁用vxe-table的表单配置，使用formOptions
+            // Globally disable vxe-table form configuration, use formOptions
             enabled: false,
           },
           minHeight: 180,
@@ -38,7 +38,7 @@ if (!import.meta.env.SSR) {
         },
       });
 
-      // 表格配置项可以用 cellRender: { name: 'CellImage' },
+      // Table configuration items can be used cellRender: { name: 'CellImage' },
       vxeUI.renderer.add('CellImage', {
         renderTableDefault(renderOpts, params) {
           const { props } = renderOpts;
@@ -47,7 +47,7 @@ if (!import.meta.env.SSR) {
         },
       });
 
-      // 表格配置项可以用 cellRender: { name: 'CellLink' },
+      // Table configuration items can be used cellRender: { name: 'CellLink' },
       vxeUI.renderer.add('CellLink', {
         renderTableDefault(renderOpts) {
           const { props } = renderOpts;
@@ -59,7 +59,7 @@ if (!import.meta.env.SSR) {
         },
       });
 
-      // 这里可以自行扩展 vxe-table 的全局配置，比如自定义格式化
+      // Here you can extend the global configuration of vxe-table by yourself, such as custom formatting
       // vxeUI.formats.add
     },
     useVbenForm,

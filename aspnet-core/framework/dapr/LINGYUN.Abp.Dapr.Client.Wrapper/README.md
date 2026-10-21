@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Dapr.Client.Wrapper
 
-Dapr服务间调用，对包装后的响应结果解包  
+Call between Dapr services and unpack the packaged response results
 
-## 功能特性
+## Features
 
-* 自动响应结果包装/解包
-* 与ABP包装系统集成
-* 自定义包装响应的错误处理
-* 支持成功/错误代码配置
-* HTTP状态码映射
-* 支持自定义响应包装格式
-* 灵活的包装控制选项
+* Automatic response result packaging/unpacking
+* Integrated with ABP packaging system
+* Error handling of custom packaged responses
+* Support success/error code configuration
+* HTTP status code mapping
+* Support custom response packaging format
+* Flexible packaging control options
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpDaprClientModule))]
@@ -23,25 +23,25 @@ public class AbpDaprClientWrapperModule : AbpModule
 }
 ```
 
-## 配置选项
+## Configuration options
 
-模块使用来自`LINGYUN.Abp.Wrapper`包的`AbpWrapperOptions`进行配置：
+Modules are configured using `AbpWrapperOptions` from the `LINGYUN.Abp.Wrapper` package:
 
 ```json
 {
     "Wrapper": {
-        "IsEnabled": true,  // 启用/禁用响应包装
-        "CodeWithSuccess": "0",  // 包装响应中的成功代码
-        "HttpStatusCode": 200,  // 包装响应的默认HTTP状态码
-        "WrapOnError": true,  // 是否包装错误响应
-        "WrapOnSuccess": true  // 是否包装成功响应
+        "IsEnabled": true, // Enable/disable response wrapping
+        "CodeWithSuccess": "0", // Wrap the success code in the response
+        "HttpStatusCode": 200, //Default HTTP status code for wrapped responses
+        "WrapOnError": true, // Whether to wrap error response
+        "WrapOnSuccess": true // Whether to wrap a successful response
     }
 }
 ```
 
-## 实现示例
+## Implementation example
 
-1. 服务定义
+1. Service definition
 
 ```csharp
 public interface IProductService
@@ -52,7 +52,7 @@ public interface IProductService
 }
 ```
 
-2. 服务实现
+2. Service implementation
 
 ```csharp
 public class ProductService : IProductService
@@ -66,10 +66,10 @@ public class ProductService : IProductService
 
     public async Task<ProductDto> GetAsync(string id)
     {
-        // 调用会自动处理响应包装
+        // The call will automatically handle response packaging
         return await _daprClient.InvokeMethodAsync<ProductDto>(
-            "product-service",  // 目标服务ID
-            $"api/products/{id}",  // 方法路径
+            "product-service", // Target service ID
+            $"api/products/{id}", // method path
             HttpMethod.Get
         );
     }
@@ -95,58 +95,58 @@ public class ProductService : IProductService
 }
 ```
 
-## 响应格式
+## Response format
 
-当启用包装时，响应将采用以下格式：
+When wrapping is enabled, the response will be in the following format:
 
 ```json
 {
-    "code": "0",  // 响应代码，默认"0"表示成功
-    "message": "Success",  // 响应消息
-    "details": null,  // 附加详情（可选）
-    "result": {  // 实际响应数据
-        // ... 响应内容
+    "code": "0", //Response code, default "0" means success
+    "message": "Success", // response message
+    "details": null, // Additional details (optional)
+    "result": { // actual response data
+        // ...response content
     }
 }
 ```
 
-## 错误处理
+## Error handling
 
-模块自动处理错误响应：
-* 对于包装的响应（带有`AbpWrapResult`头）：
-  * 解包响应并检查代码
-  * 如果代码与`CodeWithSuccess`不匹配，抛出`AbpRemoteCallException`
-  * 在异常中包含错误消息、详情和代码
-  * 支持自定义错误代码映射
-* 对于未包装的响应：
-  * 传递原始响应
-  * 使用标准HTTP错误处理
-  * 保持原始错误信息
+The module handles error responses automatically:
+* For wrapped responses (with `AbpWrapResult` header):
+  * Unpack the response and inspect the code
+  * If the code does not match `CodeWithSuccess`, throw `AbpRemoteCallException`
+  * Include error message, details and code in exception
+  * Support custom error code mapping
+* For unwrapped responses:
+  * Pass the original response
+  * Use standard HTTP error handling
+  * Keep original error message
 
-### 错误响应示例
+### Error response example
 
 ```json
 {
     "code": "ERROR_001",
-    "message": "产品未找到",
-    "details": "ID为'123'的产品不存在",
+    "message": "Product not found",
+    "details": "The product with ID '123' does not exist",
     "result": null
 }
 ```
 
-## 高级用法
+## Advanced usage
 
-### 1. 控制响应包装
+### 1. Control response packaging
 
-可以通过HTTP头控制单个请求的响应包装：
+Response packaging for individual requests can be controlled via HTTP headers:
 
 ```csharp
-// 在请求头中添加
+//Add in request header
 var headers = new Dictionary<string, string>
 {
-    { "X-Abp-Wrap-Result", "true" },  // 强制启用包装
-    // 或
-    { "X-Abp-Dont-Wrap-Result", "true" }  // 强制禁用包装
+    { "X-Abp-Wrap-Result", "true" }, // Force wrapping to be enabled
+    // or
+    { "X-Abp-Dont-Wrap-Result", "true" } // Forcefully disable wrapping
 };
 
 await _daprClient.InvokeMethodAsync<ProductDto>(
@@ -158,32 +158,32 @@ await _daprClient.InvokeMethodAsync<ProductDto>(
 );
 ```
 
-### 2. 自定义错误处理
+### 2. Custom error handling
 
 ```csharp
 public class CustomErrorHandler : IAbpWrapperErrorHandler
 {
     public Task HandleAsync(AbpWrapperErrorContext context)
     {
-        // 自定义错误处理逻辑
+        // Custom error handling logic
         if (context.Response.Code == "CUSTOM_ERROR")
         {
-            // 特殊处理
+            //Special handling
         }
         return Task.CompletedTask;
     }
 }
 ```
 
-## 注意事项
+## Notes
 
-* 响应包装可以通过以下方式控制：
-  * 配置文件中的全局设置
-  * HTTP头控制单个请求
-  * 代码中的动态控制
-* 错误响应尽可能保持原始错误结构
-* 模块与ABP的远程服务错误处理系统集成
-* 建议在微服务架构中统一使用响应包装
-* 包装格式可以通过继承`IAbpWrapperResponseBuilder`自定义
+* Response wrapping can be controlled via:
+  * Global settings in configuration files
+  * HTTP headers control individual requests
+  * Dynamic control in code
+* Error responses keep the original error structure as much as possible
+* The module is integrated with ABP's remote service error handling system
+* It is recommended to use response packaging uniformly in microservice architecture
+* The packaging format can be customized by inheriting `IAbpWrapperResponseBuilder`
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

@@ -36,7 +36,7 @@ public class JobRunnableContext
         Result = result;
     }
     /// <summary>
-    /// 设置缓存
+    /// Set cache
     /// </summary>
     /// <param name="key"></param>
     /// <param name="value"></param>
@@ -46,7 +46,7 @@ public class JobRunnableContext
     }
 
     /// <summary>
-    /// 获取缓存数据
+    /// Get cache data
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>

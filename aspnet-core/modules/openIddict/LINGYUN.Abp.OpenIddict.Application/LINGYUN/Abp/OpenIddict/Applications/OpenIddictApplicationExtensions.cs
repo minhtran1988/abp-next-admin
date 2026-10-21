@@ -27,7 +27,7 @@ internal static class OpenIddictApplicationExtensions
         entity.ClientType = dto.ClientType;
         entity.LogoUri = dto.LogoUri;
         entity.FrontChannelLogoutUri = dto.FrontChannelLogoutUri;
-        //entity.JsonWebKeySet = dto.JsonWebKeySet;
+        // entity.JsonWebKeySet = dto.JsonWebKeySet;
 
         TrySetSettings(jsonSerializer, dto, entity);
         TrySetRequirements(jsonSerializer, dto, entity);
@@ -155,7 +155,7 @@ internal static class OpenIddictApplicationExtensions
         return p => p.RemovePreFix(prefix);
     }
     /// <summary>
-    /// 尝试获取应用要求
+    /// Try to get application requirements
     /// </summary>
     /// <param name="requirements"></param>
     /// <param name="dto"></param>
@@ -173,7 +173,7 @@ internal static class OpenIddictApplicationExtensions
         entity.Requirements = jsonSerializer.Serialize(requirements);
     }
     /// <summary>
-    /// 尝试获取应用要求
+    /// Try to get application requirements
     /// </summary>
     /// <param name="requirements"></param>
     /// <param name="dto"></param>
@@ -217,7 +217,7 @@ internal static class OpenIddictApplicationExtensions
         }
     }
     /// <summary>
-    /// 尝试获取应用设置
+    /// Try to get application settings
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="dto"></param>

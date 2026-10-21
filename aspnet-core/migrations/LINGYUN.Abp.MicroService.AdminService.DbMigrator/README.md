@@ -1,33 +1,33 @@
 # LINGYUN.Abp.MicroService.AdminService.DbMigrator
 
-后台管理系统数据库迁移控制台应用程序，用于执行后台管理系统的数据库迁移和初始化种子数据。
+The backend management system database migration console application is used to perform database migration and initialize seed data of the backend management system.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 初始化系统必要的种子数据
-* 支持命令行参数配置
-* 集成Autofac依赖注入容器
-* 集成特性管理功能
-* 集成设置管理功能
-* 集成权限管理功能
-* 集成本地化管理功能
-* 集成缓存管理功能
-* 集成审计日志功能
-* 集成文本模板功能
-* 集成身份认证功能
-* 集成IdentityServer功能
-* 集成OpenIddict功能
-* 集成平台管理功能
-* 集成对象存储功能
-* 集成通知系统功能
-* 集成消息服务功能
-* 集成任务管理功能
-* 集成Webhooks管理功能
+* Automatically perform database migration
+* Initialize the necessary seed data for the system
+* Support command line parameter configuration
+* Integrate Autofac dependency injection container
+* Integrated feature management function
+* Integrated settings management function
+* Integrated rights management function
+* Integrated localization management functions
+* Integrated cache management function
+* Integrated audit log function
+* Integrated text template function
+* Integrated identity authentication function
+* Integrate IdentityServer function
+* Integrate OpenIddict function
+* Integrated platform management functions
+* Integrated object storage function
+* Integrated notification system function
+* Integrated messaging service function
+* Integrated task management function
+* Integrated Webhooks management function
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -52,12 +52,12 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "BackendAdminDbMigrator": "你的数据库连接字符串"
+    "BackendAdminDbMigrator": "Your database connection string"
   },
   "IdentityServer": {
     "Clients": {
@@ -69,30 +69,30 @@
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置BackendAdminDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the BackendAdminDbMigrator connection string in appsettings.json
 
-2. 运行迁移程序
+2. Run the migration program
    ```bash
    dotnet run
    ```
 
-## 命令行参数
+## Command line parameters
 
 * --database-provider
-  * 指定数据库提供程序 (默认: MySQL)
+  * Specify database provider (default: MySQL)
 * --connection-string
-  * 指定数据库连接字符串
+  * Specify database connection string
 * --skip-db-migrations
-  * 跳过数据库迁移
+  * Skip database migration
 * --skip-seed-data
-  * 跳过种子数据初始化
+  * Skip seed data initialization
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [EF Core迁移文档](https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/)
-* [IdentityServer4文档](https://identityserver4.readthedocs.io)
-* [OpenIddict文档](https://documentation.openiddict.com)
+* [ABP Documentation](https://docs.abp.io)
+* [EF Core Migration Document](https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/)
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io)
+* [OpenIddict Documentation](https://documentation.openiddict.com)

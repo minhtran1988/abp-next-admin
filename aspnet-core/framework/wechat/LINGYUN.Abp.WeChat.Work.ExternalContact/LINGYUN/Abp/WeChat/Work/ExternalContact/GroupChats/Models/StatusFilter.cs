@@ -2,29 +2,29 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.GroupChats.Models;
 /// <summary>
-/// 客户群跟进状态过滤
+/// Customer group follow-up status filtering
 /// </summary>
-[Description("客户群跟进状态过滤")]
+[Description("Customer group follow-up status filtering")]
 public enum StatusFilter
 {
     /// <summary>
-    /// 所有列表
+    /// All lists
     /// </summary>
-    [Description("所有列表")]
+    [Description("All Lists")]
     All = 0,
     /// <summary>
-    /// 跟进人离职
+    /// Follow up on the person’s resignation
     /// </summary>
-    [Description("跟进人离职")]
+    [Description("Follow up person's resignation")]
     Leaves = 1,
     /// <summary>
-    /// 离职继承中
+    /// Inheritance after resignation
     /// </summary>
-    [Description("离职继承中")]
+    [Description("Resignation and inheritance")]
     Resiging = 2,
     /// <summary>
-    /// 离职继承完成
+    /// Resignation inheritance completed
     /// </summary>
-    [Description(" 离职继承完成")]
+    [Description("Resignation inheritance completed")]
     ResignCompleted = 3,
 }

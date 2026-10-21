@@ -84,7 +84,7 @@ const sidebarExpandOnHover = defineModel<boolean>('sidebarExpandOnHover', {
 });
 const sidebarEnable = defineModel<boolean>('sidebarEnable', { default: true });
 
-// side是否处于hover状态展开菜单中
+// Is side in the hover state to expand the menu?
 const sidebarExpandOnHovering = ref(false);
 const headerIsHidden = ref(false);
 const contentRef = ref();
@@ -111,7 +111,7 @@ const {
 } = useLayout(props);
 
 /**
- * 顶栏是否自动隐藏
+ * Whether the top bar is automatically hidden
  */
 const isHeaderAutoMode = computed(() => props.headerMode === 'auto');
 
@@ -141,14 +141,14 @@ const getSideCollapseWidth = computed(() => {
 });
 
 /**
- * 动态获取侧边区域是否可见
+ * Dynamically obtain whether the side area is visible
  */
 const sidebarEnableState = computed(() => {
   return !isHeaderNav.value && sidebarEnable.value;
 });
 
 /**
- * 侧边区域离顶部高度
+ * Height of side area from top
  */
 const sidebarMarginTop = computed(() => {
   const { headerHeight, isMobile } = props;
@@ -156,7 +156,7 @@ const sidebarMarginTop = computed(() => {
 });
 
 /**
- * 动态获取侧边宽度
+ * Dynamically obtain side width
  */
 const getSidebarWidth = computed(() => {
   const { isMobile, sidebarHidden, sidebarMixedWidth, sidebarWidth } = props;
@@ -187,7 +187,7 @@ const getSidebarWidth = computed(() => {
 });
 
 /**
- * 获取扩展区域宽度
+ * Get the width of the extended area
  */
 const sidebarExtraWidth = computed(() => {
   const { sidebarExtraCollapsedWidth, sidebarWidth } = props;
@@ -196,7 +196,7 @@ const sidebarExtraWidth = computed(() => {
 });
 
 /**
- * 是否侧边栏模式，包含混合侧边
+ * Whether sidebar mode includes hybrid side
  */
 const isSideMode = computed(
   () =>
@@ -208,7 +208,7 @@ const isSideMode = computed(
 );
 
 /**
- * header fixed值
+ * header fixed value
  */
 const headerFixed = computed(() => {
   const { headerMode } = props;
@@ -225,7 +225,7 @@ const showSidebar = computed(() => {
 });
 
 /**
- * 遮罩可见性
+ * Mask visibility
  */
 const maskVisible = computed(() => !sidebarCollapse.value && props.isMobile);
 
@@ -240,7 +240,7 @@ const mainStyle = computed(() => {
     showSidebar.value &&
     !props.isMobile
   ) {
-    // fixed模式下生效
+    // Valid in fixed mode
     const isSideNavEffective =
       (isSidebarMixedNav.value || isHeaderMixedNav.value) &&
       sidebarExpandOnHover.value &&
@@ -252,7 +252,7 @@ const mainStyle = computed(() => {
         ? props.sidebarExtraCollapsedWidth
         : props.sidebarWidth;
 
-      // 100% - 侧边菜单混合宽度 - 菜单宽度
+      // 100% - side menu blend width - menu width
       sidebarAndExtraWidth = `${sideCollapseWidth + sideWidth}px`;
       width = `calc(100% - ${sidebarAndExtraWidth})`;
     } else {
@@ -273,29 +273,29 @@ const mainStyle = computed(() => {
   };
 });
 
-// 计算 tabbar 的样式
+// Calculate tabbar style
 const tabbarStyle = computed((): CSSProperties => {
   let width = '';
   let marginLeft = 0;
 
-  // 如果不是混合导航，tabbar 的宽度为 100%
+  // If it is not hybrid navigation, the width of the tabbar is 100%
   if (!isMixedNav.value || props.sidebarHidden) {
     width = '100%';
   } else if (sidebarEnable.value) {
-    // 鼠标在侧边栏上时，且侧边栏展开时的宽度
+    // When the mouse is on the sidebar and the width of the sidebar is expanded
     const onHoveringWidth = sidebarExpandOnHover.value
       ? props.sidebarWidth
       : getSideCollapseWidth.value;
 
-    // 设置 marginLeft，根据侧边栏是否折叠来决定
+    // Set marginLeft, determined based on whether the sidebar is folded or not
     marginLeft = sidebarCollapse.value
       ? getSideCollapseWidth.value
       : onHoveringWidth;
 
-    // 设置 tabbar 的宽度，计算方式为 100% 减去侧边栏的宽度
+    // Set the width of the tabbar, calculated as 100% minus the width of the sidebar
     width = `calc(100% - ${sidebarCollapse.value ? getSidebarWidth.value : onHoveringWidth}px)`;
   } else {
-    // 默认情况下，tabbar 的宽度为 100%
+    // By default, the width of the tabbar is 100%
     width = '100%';
   }
 
@@ -343,7 +343,7 @@ const headerWrapperStyle = computed((): CSSProperties => {
 });
 
 /**
- * 侧边栏z-index
+ * Sidebar z-index
  */
 const sidebarZIndex = computed(() => {
   const { isMobile, zIndex } = props;

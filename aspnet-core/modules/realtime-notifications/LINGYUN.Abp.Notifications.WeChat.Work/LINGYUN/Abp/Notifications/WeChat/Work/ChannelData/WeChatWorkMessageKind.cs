@@ -1,52 +1,52 @@
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信消息载体类型
+/// Enterprise WeChat message carrier type
 /// </summary>
 /// <remarks>
-/// 显式声明渠道数据的形态, 替代旧实现中"按字段逐个探测"的隐式优先级,
-/// 生产者也因此可以明确表达自己的意图。
+/// Explicitly declare the form of channel data, replacing the implicit priority of "probe one by field by field" in the old implementation.
+/// Producers can therefore clearly express their intentions.
 /// </remarks>
 public enum WeChatWorkMessageKind
 {
     /// <summary>
-    /// 未指定, 由渠道按内容类型推导
+    /// Unspecified, inferred by channel based on content type
     /// </summary>
     None = 0,
     /// <summary>
-    /// 小程序通知消息
+    /// Mini program notification message
     /// </summary>
     MiniProgramNotice = 1,
     /// <summary>
-    /// 图文消息(mpnews)
+    /// Graphic news (mpnews)
     /// </summary>
     MpNews = 2,
     /// <summary>
-    /// 模板卡片消息
+    /// Template card message
     /// </summary>
     TemplateCard = 3,
     /// <summary>
-    /// 文本卡片消息
+    /// Text card message
     /// </summary>
     TextCard = 4,
     /// <summary>
-    /// 视频消息
+    /// Video message
     /// </summary>
     Video = 5,
     /// <summary>
-    /// 语音消息
+    /// Voice message
     /// </summary>
     Voice = 6,
     /// <summary>
-    /// 文件消息
+    /// File message
     /// </summary>
     File = 7,
     /// <summary>
-    /// 文本消息
+    /// Text message
     /// </summary>
     Text = 8,
     /// <summary>
-    /// markdown消息
+    /// markdown message
     /// </summary>
     Markdown = 9
 }

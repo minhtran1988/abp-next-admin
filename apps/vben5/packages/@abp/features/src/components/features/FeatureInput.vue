@@ -96,7 +96,7 @@ const isSelection = computed(
     :extra="feature.description"
     :rules="createRules(feature.displayName, feature.valueType.validator)"
   >
-    <!-- 复选框类型 -->
+    <!-- Checkbox type -->
     <Checkbox
       v-if="isCheckbox"
       v-model:checked="feature.value"
@@ -105,7 +105,7 @@ const isSelection = computed(
       {{ feature.displayName }}
     </Checkbox>
 
-    <!-- 文本/数字类型 -->
+    <!-- Text/numeric type -->
     <div v-else-if="isFreeText">
       <InputNumber
         v-if="isNumeric"
@@ -121,7 +121,7 @@ const isSelection = computed(
       />
     </div>
 
-    <!-- 选择类型 -->
+    <!-- Select type -->
     <Select
       v-else-if="isSelection"
       v-model:value="feature.value"

@@ -2,7 +2,7 @@ import type { Component } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 
 /**
- * 扩展路由原始对象
+ * Extend the routing original object
  */
 type ExRouteRecordRaw = RouteRecordRaw & {
   parent?: string;
@@ -12,62 +12,62 @@ type ExRouteRecordRaw = RouteRecordRaw & {
 
 interface MenuRecordBadgeRaw {
   /**
-   * 徽标
+   * Logo
    */
   badge?: string;
   /**
-   * 徽标类型
+   * Logo type
    */
   badgeType?: 'dot' | 'normal';
   /**
-   * 徽标颜色
+   * Logo color
    */
   badgeVariants?: 'destructive' | 'primary' | string;
 }
 
 /**
- * 菜单原始对象
+ * Menu original object
  */
 interface MenuRecordRaw extends MenuRecordBadgeRaw {
   /**
-   * 激活时的图标名
+   * Icon name when activated
    */
   activeIcon?: string;
   /**
-   * 子菜单
+   * Submenu
    */
   children?: MenuRecordRaw[];
   /**
-   * 是否禁用菜单
+   * Whether to disable the menu
    * @default false
    */
   disabled?: boolean;
   /**
-   * 图标名
+   * Icon name
    */
   icon?: Component | string;
   /**
-   * 菜单名
+   *Menu name
    */
   name: string;
   /**
-   * 排序号
+   *Sequence number
    */
   order?: number;
   /**
-   * 父级路径
+   * Parent path
    */
   parent?: string;
   /**
-   * 所有父级路径
+   * All parent paths
    */
   parents?: string[];
   /**
-   * 菜单路径，唯一，可当作key
+   * Menu path, unique, can be used as key
    */
   path: string;
   /**
-   * 是否显示菜单
+   * Whether to display the menu
    * @default true
    */
   show?: boolean;

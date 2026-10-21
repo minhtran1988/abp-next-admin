@@ -32,13 +32,13 @@ public class AbpNotificationsWeChatWorkModule : AbpModule
             options.PublishProviders.Add<WeChatWorkNotificationPublishProvider>();
         });
 
-        // 模板卡片是抽象类型: 注册类型转换器, 使其能在渠道数据(JSON)中往返
+        // The template card is an abstract type: register a type converter to enable it to and from channel data (JSON)
         Configure<AbpSystemTextJsonSerializerOptions>(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new TemplateCardSystemTextJsonConverter());
         });
 
-        // 声明本渠道支持的载荷形态(注册期即校验存在性契约)
+        // Declare the payload formats supported by this platform (the registration period is to verify the existence contract)
         Configure<AbpNotificationChannelDataOptions>(options =>
         {
             options.Add<WeChatWorkMiniProgramNoticeChannelData>();
@@ -50,7 +50,7 @@ public class AbpNotificationsWeChatWorkModule : AbpModule
             options.Add<WeChatWorkFileChannelData>();
         });
 
-        // 消息载体工厂分派
+        // Message carrier factory dispatch
         Configure<AbpWeChatWorkNotificationMessageOptions>(options =>
         {
             options.MapDefaultMessageFactories();

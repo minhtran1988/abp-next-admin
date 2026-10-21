@@ -22,16 +22,16 @@ namespace LINGYUN.Abp.Location.Baidu
             var location = await _provider.ReGeocodeAsync(lat, lng, radius);
 
             location.ShouldNotBeNull();
-            location.Address.ShouldBe("北京市西城区煤市街与前门西后河沿街交叉路口往西北约50米");
-            location.FormattedAddress.ShouldBe("西城区正阳市场");
+            location.Address.ShouldBe("\u5317\u4eac\u5e02\u897f\u57ce\u533a\u7164\u5e02\u8857\u4e0e\u524d\u95e8\u897f\u540e\u6cb3\u6cbf\u8857\u4ea4\u53c9\u8def\u53e3\u5f80\u897f\u5317\u7ea650\u7c73");
+            location.FormattedAddress.ShouldBe("\u897f\u57ce\u533a\u6b63\u9633\u5e02\u573a");
 
             // TODO
         }
 
         [Theory]
-        [InlineData("北京市东城区广场东侧路", "北京", 39.9102810304917, 116.40588509187855, "道路")]
-        [InlineData("天安门-城楼检票处(入口)", "北京", 39.91573869262374, 116.40366250438577, "NoClass")]
-        [InlineData("国家图书馆(古籍馆)", "北京", 39.92968852456012, 116.39170686652291, "教育")]
+        [InlineData("\u5317\u4eac\u5e02\u4e1c\u57ce\u533a\u5e7f\u573a\u4e1c\u4fa7\u8def", "\u5317\u4eac", 39.9102810304917, 116.40588509187855, "\u9053\u8def")]
+        [InlineData("\u5929\u5b89\u95e8-\u57ce\u697c\u68c0\u7968\u5904(\u5165\u53e3)", "\u5317\u4eac", 39.91573869262374, 116.40366250438577, "NoClass")]
+        [InlineData("\u56fd\u5bb6\u56fe\u4e66\u9986(\u53e4\u7c4d\u9986)", "\u5317\u4eac", 39.92968852456012, 116.39170686652291, "\u6559\u80b2")]
         public async Task Geocode_Test(string address, string city, double lat, double lng, string level)
         {
             var location = await _provider.GeocodeAsync(address, city);

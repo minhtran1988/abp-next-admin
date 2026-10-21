@@ -44,7 +44,7 @@ public class AbpDaprActorsAspNetCoreModule : AbpModule
                 actorRegistrations.Add(actorRegistration);
             }
         });
-        // 使Actor Runtime可配置
+        // Make Actor Runtime configurable
         var preActions = services.GetPreConfigureActions<ActorRuntimeOptions>();
         services.AddActors(options =>
         {

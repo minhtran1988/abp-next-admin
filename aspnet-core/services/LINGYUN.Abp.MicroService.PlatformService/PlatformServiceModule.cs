@@ -71,10 +71,10 @@ namespace LINGYUN.Abp.MicroService.PlatformService;
     typeof(AbpIP2RegionModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
     typeof(AbpUINavigationVueVbenAdmin5Module),
-    typeof(AbpBlobManagementAliyunModule),    // 阿里云存储提供者模块
-    typeof(AbpBlobManagementTencentModule),   // 腾讯云存储提供者模块
-    typeof(AbpBlobManagementMinioModule),     // Minio存储提供者模块
-    typeof(AbpBlobManagementFileSystemModule),// 本地文件系统提供者模块
+    typeof(AbpBlobManagementAliyunModule), // Alibaba Cloud storage provider module
+    typeof(AbpBlobManagementTencentModule), // Tencent cloud storage provider module
+    typeof(AbpBlobManagementMinioModule), // Minio storage provider module
+    typeof(AbpBlobManagementFileSystemModule),//Local file system provider module
     typeof(AbpBlobManagementMimeCheckModule),
     typeof(AbpBlobManagementApplicationModule),
     typeof(AbpBlobManagementHttpApiModule),
@@ -100,8 +100,8 @@ namespace LINGYUN.Abp.MicroService.PlatformService;
     typeof(AbpEmailingExceptionHandlingModule),
     typeof(AbpCAPEventBusModule),
     typeof(AbpFeaturesValidationRedisModule),
-    // typeof(AbpFeaturesClientModule),// 当需要客户端特性限制时取消注释此模块
-    // typeof(AbpFeaturesValidationRedisClientModule),// 当需要客户端特性限制时取消注释此模块
+    // typeof(AbpFeaturesClientModule), // Uncomment this module when client feature restrictions are required
+    // typeof(AbpFeaturesValidationRedisClientModule), // Uncomment this module when client feature restrictions are required
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpLocalizationCultureMapModule),
     typeof(AbpTelemetryOpenTelemetryModule),
@@ -180,30 +180,30 @@ public partial class PlatformServiceModule : AbpModule
         var env = context.GetEnvironment();
 
         app.UseForwardedHeaders();
-        // 本地化
+        // localization
         app.UseMapRequestLocalization();
-        // http调用链
+        // http call chain
         app.UseCorrelationId();
-        // 虚拟文件系统
+        // virtual file system
         app.MapAbpStaticAssets();
-        // 路由
+        // routing
         app.UseRouting();
-        // 跨域
+        // cross domain
         app.UseCors();
-        // 认证
+        // Authentication
         app.UseAuthentication();
         app.UseJwtTokenMiddleware();
-        // 多租户
+        // Multi-tenant
         app.UseMultiTenancy();
-        // 会话
+        // session
         app.UseDynamicClaims();
-        // 授权
+        // Authorize
         app.UseAuthorization();
         if (env.IsDevelopment())
         {
             // Swagger
             app.UseSwagger();
-            // Swagger可视化界面
+            // Swagger visual interface
             app.UseAbpSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support Platform Service API");
@@ -213,11 +213,11 @@ public partial class PlatformServiceModule : AbpModule
                 options.OAuthScopes(configuration["AuthServer:Audience"]);
             });
         }
-        // 审计日志
+        // Audit log
         app.UseAuditing();
-        // 记录请求信息
+        // Record request information
         app.UseAbpSerilogEnrichers();
-        // 路由
+        // routing
         app.UseConfiguredEndpoints();
     }
 }

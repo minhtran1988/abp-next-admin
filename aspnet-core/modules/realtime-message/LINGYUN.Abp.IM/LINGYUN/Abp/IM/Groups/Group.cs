@@ -3,31 +3,31 @@
 public class Group
 {
     /// <summary>
-    /// 群组标识
+    /// Group ID
     /// </summary>
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 群组名称
+    /// Group name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 群组头像
+    /// Group avatar
     /// </summary>
     public string? AvatarUrl { get; set; }
     /// <summary>
-    /// 允许匿名聊天
+    /// Allow anonymous chat
     /// </summary>
     public bool AllowAnonymous { get; set; }
     /// <summary>
-    /// 允许发送消息
+    /// Allow sending messages
     /// </summary>
     public bool AllowSendMessage { get; set; }
     /// <summary>
-    /// 最大用户数
+    /// Maximum number of users
     /// </summary>
     public int MaxUserLength { get; set; }
     /// <summary>
-    /// 群组用户数
+    /// Number of group users
     /// </summary>
     public int GroupUserCount { get; set; }
 }

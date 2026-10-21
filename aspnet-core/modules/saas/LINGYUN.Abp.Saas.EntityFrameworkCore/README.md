@@ -1,38 +1,38 @@
 # LINGYUN.Abp.Saas.EntityFrameworkCore
 
-SaaS EntityFrameworkCore模块，实现了租户和版本的数据访问层。
+The SaaS EntityFrameworkCore module implements the data access layer for tenants and versions.
 
-## 功能特性
+## Features
 
-* 实体映射配置
-  * 租户实体映射
-  * 版本实体映射
-  * 租户连接字符串实体映射
+* Entity mapping configuration
+  * Tenant entity mapping
+  * Version entity mapping
+  * Tenant connection string entity mapping
 
-* 仓储实现
-  * EfCoreTenantRepository：租户仓储实现
-  * EfCoreEditionRepository：版本仓储实现
+* Warehousing implementation
+  * EfCoreTenantRepository: tenant storage implementation
+  * EfCoreEditionRepository: version storage implementation
 
-* 数据库表
-  * AbpEditions：版本表
-  * AbpTenants：租户表
-  * AbpTenantConnectionStrings：租户连接字符串表
+* Database table
+  * AbpEditions: version table
+  * AbpTenants: tenant table
+  * AbpTenantConnectionStrings: Tenant connection string table
 
-## 配置说明
+## Configuration instructions
 
-可以通过配置修改数据库表前缀和Schema：
+The database table prefix and Schema can be modified through configuration:
 
 ```json
 {
   "AbpSaas": {
     "EntityFrameworkCore": {
-      "TablePrefix": "Abp",  // 数据库表前缀
-      "Schema": null         // 数据库Schema
+      "TablePrefix": "Abp", // Database table prefix
+      "Schema": null // Database Schema
     }
   }
 }
 ```
 
-## 更多
+## More
 
 [English](README.EN.md)

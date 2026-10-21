@@ -5,85 +5,85 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 添加了外部联系人的企业成员
+/// Enterprise members who have added external contacts
 /// </summary>
 public class FollowUser
 {
     /// <summary>
-    /// 添加了此外部联系人的企业成员userid
+    /// The userid of the enterprise member who added this external contact
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 发起添加的userid<br />
-    /// 如果成员主动添加，为成员的userid；<br />
-    /// 如果是客户主动添加，则为客户的外部联系人userid；<br />
-    /// 如果是内部成员共享/管理员分配，则为对应的成员/管理员userid
+    /// Initiate the added userid<br />
+    /// If the member is added actively, it is the userid of the member;<br />
+    /// If the customer actively adds it, it is the customer’s external contact userid;<br />
+    /// If it is shared by an internal member/assigned by an administrator, it is the corresponding member/administrator userid.
     /// </summary>
     [NotNull]
     [JsonProperty("oper_userid")]
     [JsonPropertyName("oper_userid")]
     public string OperUserId { get; set; } = default!;
     /// <summary>
-    /// 企业自定义的state参数，用于区分客户具体是通过哪个「联系我」或获客链接添加
+    /// Enterprise-defined state parameters are used to distinguish which "Contact Me" or customer acquisition link the customer was added through.
     /// </summary>
     [CanBeNull]
     [JsonProperty("state")]
     [JsonPropertyName("state")]
     public string? State { get; set; }
     /// <summary>
-    /// 该成员对此外部联系人的备注
+    /// The member's remarks about this external contact
     /// </summary>
     [CanBeNull]
     [JsonProperty("remark")]
     [JsonPropertyName("remark")]
     public string? Remark { get; set; }
     /// <summary>
-    /// 该成员对此外部联系人的描述
+    /// The member's description of this external contact
     /// </summary>
     [CanBeNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 该成员添加此外部联系人的时间
+    /// The time the member added this external contact
     /// </summary>
     [NotNull]
     [JsonProperty("createtime")]
     [JsonPropertyName("createtime")]
     public long Createtime { get; set; }
     /// <summary>
-    /// 外部联系人所打标签列表
+    /// List of labels tagged by external contacts
     /// </summary>
     [CanBeNull]
     [JsonProperty("tags")]
     [JsonPropertyName("tags")]
     public List<FollowUserTag>? Tags { get; set; }
     /// <summary>
-    /// 该成员对此微信客户备注的企业名称（仅微信客户有该字段）
+    /// The company name that the member noted for this WeChat customer (only WeChat customers have this field)
     /// </summary>
     [CanBeNull]
     [JsonProperty("remark_corp_name")]
     [JsonPropertyName("remark_corp_name")]
     public string? RemarkCorpName { get; set; }
     /// <summary>
-    /// 该成员对此客户备注的手机号码，代开发自建应用需要管理员授权才可以获取
+    /// The mobile phone number that the member noted for this customer can only be obtained by authorizing the administrator to develop self-built applications.
     /// </summary>
     [CanBeNull]
     [JsonProperty("remark_mobiles")]
     [JsonPropertyName("remark_mobiles")]
     public List<string>? RemarkMobiles { get; set; }
     /// <summary>
-    /// 该成员添加此客户的来源
+    /// The member adds the source of this customer
     /// </summary>
     [NotNull]
     [JsonProperty("add_way")]
     [JsonPropertyName("add_way")]
     public FollowUserAddWay AddWay { get; set; }
     /// <summary>
-    /// 该成员添加此客户的来源add_way为10时，对应的视频号信息
+    /// When the source add_way of this member adds this customer is 10, the corresponding video number information
     /// </summary>
     [CanBeNull]
     [JsonProperty("wechat_channels")]

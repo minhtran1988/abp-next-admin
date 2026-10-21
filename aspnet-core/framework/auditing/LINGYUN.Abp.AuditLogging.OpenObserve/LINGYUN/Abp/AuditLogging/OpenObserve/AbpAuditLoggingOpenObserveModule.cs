@@ -10,11 +10,11 @@ using Volo.Abp.VirtualFileSystem;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 审计日志 OpenObserve 模块
+/// Audit log OpenObserve module
 /// </summary>
 /// <remarks>
-/// 模块不对数据流做任何处理(不探测、不创建、不修改设置):
-/// OpenObserve 会在首次写入时自动创建数据流, 保留策略等设置请在 OpenObserve 侧配置
+/// The module does not do any processing on the data stream (no detection, no creation, no modification of settings):
+/// OpenObserve will automatically create a data stream when writing for the first time. Please configure the retention policy and other settings on the OpenObserve side.
 /// </remarks>
 [DependsOn(
     typeof(AbpAuditLoggingModule),

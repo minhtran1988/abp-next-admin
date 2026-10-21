@@ -15,8 +15,8 @@ export function useAccountApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取可用的二次认证验证器
-   * @param input 参数
+   * Get available two-factor authentication verifiers
+   * @param input parameter
    */
   function getTwoFactorProvidersApi(
     input: GetTwoFactorProvidersInput,
@@ -31,8 +31,8 @@ export function useAccountApi() {
   }
 
   /**
-   * 发送登陆验证邮件
-   * @param input 参数
+   *Send login verification email
+   * @param input parameter
    */
   function sendEmailSigninCodeApi(
     input: SendEmailSigninCodeDto,
@@ -44,8 +44,8 @@ export function useAccountApi() {
   }
 
   /**
-   * 发送登陆验证短信
-   * @param input 参数
+   *Send login verification SMS
+   * @param input parameter
    */
   function sendPhoneSigninCodeApi(
     input: SendPhoneSigninCodeDto,
@@ -57,8 +57,8 @@ export function useAccountApi() {
   }
 
   /**
-   * 发送重置密码验证短信
-   * @param input 参数
+   *Send password reset verification SMS
+   * @param input parameter
    */
   function sendPhoneResetPasswordCodeApi(
     input: SendPhoneResetPasswordCodeDto,
@@ -70,8 +70,8 @@ export function useAccountApi() {
   }
 
   /**
-   * 重置密码
-   * @param input 参数
+   *Reset password
+   * @param input parameter
    */
   function resetPasswordApi(input: PhoneResetPasswordDto): Promise<void> {
     return request('/api/account/phone/reset-password', {

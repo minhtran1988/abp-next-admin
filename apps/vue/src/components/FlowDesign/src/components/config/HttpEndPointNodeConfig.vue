@@ -2,22 +2,22 @@
   <div class="end-point">
     <Form layout="vertical">
       <Tabs v-model:activeKey="state.activeKey">
-        <TabPane key="common" tab="常用">
-          <FormItem label="名称" extra="活动的名称。" name="name">
+        <TabPane key="common" tab="Common">
+          <FormItem label="name" extra="Name of the activity." name="name">
             <Input v-model:value="nodeProps.name" />
           </FormItem>
-          <FormItem label="显示名称" extra="活动的显示名称。" name="displayName">
+          <FormItem label="Display Name" extra="Display name of the activity." name="displayName">
             <Input v-model:value="nodeProps.displayName" />
           </FormItem>
-          <FormItem label="描述" extra="活动的描述。" name="description">
+          <FormItem label="Description" extra="Description of the activity." name="description">
             <TextArea v-model:value="nodeProps.description" show-count :autoSize="{ minRows: 3 }" />
           </FormItem>
         </TabPane>
-        <TabPane key="properties" tab="属性">
-          <FormItem label="路径" extra="触发此活动的相对路径" name="path">
+        <TabPane key="properties" tab="Properties">
+          <FormItem label="path" extra="The relative path that triggered this activity" name="path">
             <Input v-model:value="nodeProps.path" />
           </FormItem>
-          <FormItem label="请求方法" extra="触发此活动的HTTP方法。" name="methods">
+          <FormItem label="Request Method" extra="HTTP method that triggered this activity." name="methods">
             <Select v-model:value="nodeProps.methods" mode="multiple">
               <SelectOption value="GET">GET</SelectOption>
               <SelectOption value="POST">POST</SelectOption>
@@ -29,29 +29,29 @@
             </Select>
           </FormItem>
           <FormItem
-            label="读取内容"
-            extra="指示是否应将HTTP请求内容体作为HTTP请求模型的一部分读取和存储。存储的格式取决于内容类型头。"
+            label="read content"
+            extra="Indicates whether the HTTP request content body should be read and stored as part of the HTTP request model. The format of storage depends on the content-type header."
             name="readContent"
             class="user-type"
           >
             <Checkbox v-model:checked="nodeProps.readContent" />
           </FormItem>
         </TabPane>
-        <TabPane key="advanced" tab="高级">
-          <FormItem label="数据类型" extra="表单数据类型" name="targetType">
+        <TabPane key="advanced" tab="Advanced">
+          <FormItem label="data type" extra="form data type" name="targetType">
             <Input v-model:value="nodeProps.targetType" />
           </FormItem>
-          <FormItem label="架构" extra="Json格式数据架构" name="schema">
+          <FormItem label="Schema" extra="Json format data schema" name="schema">
             <CodeEditor v-model:value="nodeProps.schema" />
           </FormItem>
         </TabPane>
-        <TabPane key="security" tab="安全">
-          <FormItem label="身份认证" extra="选中以只允许经过身份验证的请求" name="authorize">
+        <TabPane key="security" tab="Security">
+          <FormItem label="Authentication" extra="Check to allow only authenticated requests" name="authorize">
             <Checkbox v-model:checked="nodeProps.authorize" />
           </FormItem>
           <FormItem
-            label="策略"
-            extra="提供一个要评估的策略。如果策略失败，请求将被禁止。"
+            label="strategy"
+            extra="Provide a policy to be evaluated. If the policy fails, the request will be denied."
             name="policy"
           >
             <Input v-model:value="nodeProps.policy" />

@@ -13,9 +13,9 @@ export function useConversationsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取会话详情
-   * @param id 会话id
-   * @returns 会话详情
+   * Get session details
+   * @param id session id
+   * @returns session details
    */
   function getApi(id: string): Promise<ConversationDto> {
     return request<ConversationDto>(
@@ -27,9 +27,9 @@ export function useConversationsApi() {
   }
 
   /**
-   * 获取会话分页列表
-   * @param input 查询过滤参数
-   * @returns 会话分页列表
+   * Get the session paging list
+   * @param input query filter parameters
+   * @returns Session paging list
    */
   function getPagedListApi(
     input?: ConversationGetPagedListInput,
@@ -44,8 +44,8 @@ export function useConversationsApi() {
   }
 
   /**
-   * 删除会话
-   * @param id 会话id
+   * Delete session
+   * @param id session id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/ai-management/chats/conversations/${id}`, {
@@ -54,9 +54,9 @@ export function useConversationsApi() {
   }
 
   /**
-   * 新增会话
-   * @param input 参数
-   * @returns 会话详情
+   * Add session
+   * @param input parameter
+   * @returns session details
    */
   function createApi(input: ConversationCreateDto): Promise<ConversationDto> {
     return request<ConversationDto>(`/api/ai-management/chats/conversations`, {
@@ -66,10 +66,10 @@ export function useConversationsApi() {
   }
 
   /**
-   * 编辑会话
-   * @param id 会话id
-   * @param input 参数
-   * @returns 会话详情
+   * Edit session
+   * @param id session id
+   * @param input parameter
+   * @returns session details
    */
   function updateApi(
     id: string,

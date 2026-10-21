@@ -9,7 +9,7 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.Notifications.Calendar;
 
 /// <summary>
-/// 工作日通知发布拦截器
+/// Weekday notification release interceptor
 /// </summary>
 public class WorkdayCalendarPublishInterceptor : INotificationPublishInterceptor
 {

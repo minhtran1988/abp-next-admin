@@ -15,10 +15,10 @@ namespace LINGYUN.Abp.MicroService.AllInOne.EntityFrameworkCore.MySql;
 
 [DependsOn(
     typeof(AbpEntityFrameworkCoreMySQLMicrotingModule),
-    // Quartz MySql数据库初始化模块
+    // Quartz MySql database initialization module
     typeof(AbpQuartzMySqlInstallerModule),
-    // Elsa工作流模块 MySql集成
-    //typeof(AbpElsaEntityFrameworkCoreMySqlModule),
+    // Elsa workflow module MySql integration
+    // typeof(AbpElsaEntityFrameworkCoreMySqlModule),
     typeof(SingleMigrationsEntityFrameworkCoreModule)
     )]
 public class SingleMigrationsEntityFrameworkCoreMySqlModule : AbpModule

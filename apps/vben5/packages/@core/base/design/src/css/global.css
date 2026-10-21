@@ -94,7 +94,7 @@
     @apply m-0 appearance-none;
   }
 
-  /* 只有非mac下才进行调整，mac下使用默认滚动条 */
+  /* Adjustments are only made under non-mac computers, and the default scroll bars are used under mac computers */
   html:not([data-platform='macOs']) {
     ::-webkit-scrollbar {
       @apply h-[10px] w-[10px];

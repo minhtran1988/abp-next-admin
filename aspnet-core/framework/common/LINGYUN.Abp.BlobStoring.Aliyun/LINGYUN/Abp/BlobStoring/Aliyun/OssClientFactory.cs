@@ -19,7 +19,7 @@ public class OssClientFactory : AliyunClientFactory<Client, AliyunBlobProviderCo
     }
 
     /// <summary>
-    /// 普通方式构建Oss客户端
+    /// Build Oss client in normal way
     /// </summary>
     /// <param name="regionId"></param>
     /// <param name="accessKeyId"></param>
@@ -37,14 +37,14 @@ public class OssClientFactory : AliyunClientFactory<Client, AliyunBlobProviderCo
                 CredentialsProvider = new StaticCredentialsProvider(accessKeyId, accessKeySecret),
                 HttpTransport = HttpTransport.Shared,
             });
-        //return new OssClient(
+        // return new OssClient(
         //    regionId,
         //    accessKeyId,
         //    accessKeySecret);
     }
 
     /// <summary>
-    /// 普通方式构建Oss客户端
+    /// Build Oss client in normal way
     /// </summary>
     /// <param name="configuration"></param>
     /// <param name="regionId"></param>
@@ -73,7 +73,7 @@ public class OssClientFactory : AliyunClientFactory<Client, AliyunBlobProviderCo
     }
 
     /// <summary>
-    /// 通过用户安全令牌构建Oss客户端
+    /// Build Oss client through user security token
     /// </summary>
     /// <param name="regionId"></param>
     /// <param name="accessKeyId"></param>
@@ -98,7 +98,7 @@ public class OssClientFactory : AliyunClientFactory<Client, AliyunBlobProviderCo
             });
     }
     /// <summary>
-    /// 通过用户安全令牌构建Oss客户端
+    /// Build Oss client through user security token
     /// </summary>
     /// <param name="configuration"></param>
     /// <param name="regionId"></param>

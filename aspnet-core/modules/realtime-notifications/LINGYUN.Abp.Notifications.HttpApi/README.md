@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.HttpApi
 
-通知系统的HTTP API模块，提供了通知系统的REST API接口。
+The HTTP API module of the notification system provides the REST API interface of the notification system.
 
-## 功能特性
+## Features
 
-* 通知管理API
-* 通知订阅API
-* 通知状态管理API
-* 支持API版本控制
-* 支持Swagger文档
+* Notification management API
+* Notification subscription API
+* Notification status management API
+* Support API version control
+* Support Swagger documentation
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsHttpApiModule))]
@@ -20,26 +20,26 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API接口
+## API interface
 
 ### NotificationController
 
-* GET /api/notifications/{id} - 获取通知详情
-* GET /api/notifications - 获取通知列表
-* DELETE /api/notifications/{id} - 删除通知
-* PUT /api/notifications/{id}/read - 标记通知为已读
-* PUT /api/notifications/read - 标记所有通知为已读
+* GET /api/notifications/{id} - Get notification details
+* GET /api/notifications - Get notification list
+* DELETE /api/notifications/{id} - delete notifications
+* PUT /api/notifications/{id}/read - Mark notification as read
+* PUT /api/notifications/read - Mark all notifications as read
 
 ### NotificationSubscriptionController
 
-* POST /api/notifications/subscriptions - 订阅通知
-* DELETE /api/notifications/subscriptions - 取消订阅通知
-* GET /api/notifications/subscribers - 获取可分配的订阅者列表
-* GET /api/notifications/subscriptions - 获取已订阅的通知列表
+* POST /api/notifications/subscriptions - Subscription notifications
+* DELETE /api/notifications/subscriptions - Unsubscribe from notifications
+* GET /api/notifications/subscribers - Get the list of assignable subscribers
+* GET /api/notifications/subscriptions - Get a list of subscribed notifications
 
-## 基本用法
+## Basic usage
 
-1. 配置Startup
+1. Configure Startup
 ```csharp
 public class Startup
 {
@@ -55,18 +55,18 @@ public class Startup
 }
 ```
 
-2. 调用API示例
+2. API call example
 ```bash
-# 获取通知列表
+# Get notification list
 curl -X GET "https://localhost:44300/api/notifications"
 
-# 订阅通知
+# Subscribe to notifications
 curl -X POST "https://localhost:44300/api/notifications/subscriptions" \
      -H "Content-Type: application/json" \
      -d '{"notificationName":"YourNotification"}'
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [ASP.NET Core文档](https://docs.microsoft.com/aspnet/core)
+* [ABP Documentation](https://docs.abp.io)
+* [ASP.NET Core Documentation](https://docs.microsoft.com/aspnet/core)

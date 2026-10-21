@@ -33,11 +33,11 @@ const abpStore = useAbpStore();
 
 const users = ref<IdentityUserDto[]>([]);
 
-/** 获取登录用户会话Id */
+/** Get the login user session ID */
 const getMySessionId = computed(() => {
   return abpStore.application?.currentUser.sessionId;
 });
-/** 获取是否允许撤销会话 */
+/** Get whether the session is allowed to be revoked */
 const getAllowRevokeSession = computed(() => {
   return (session: IdentitySessionDto) => {
     return getMySessionId.value !== session.sessionId;
@@ -45,7 +45,7 @@ const getAllowRevokeSession = computed(() => {
 });
 
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   schema: [
     {
@@ -70,9 +70,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpUi.Search'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
 };
 

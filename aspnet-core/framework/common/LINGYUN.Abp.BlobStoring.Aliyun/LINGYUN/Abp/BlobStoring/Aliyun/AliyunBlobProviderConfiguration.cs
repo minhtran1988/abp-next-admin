@@ -7,23 +7,23 @@ namespace LINGYUN.Abp.BlobStoring.Aliyun;
 public class AliyunBlobProviderConfiguration
 {
     /// <summary>
-    /// 默认签名版本
+    /// Default signature version
     /// </summary>
-    public const string DefaultSignatureVersion = "v1"; //TODO: 阿里云 OSS SDKv2 SignerV4.ResourcePath存在缺陷, 临时使用v1签名
+    public const string DefaultSignatureVersion = "v1"; //TODO: Alibaba Cloud OSS SDKv2 SignerV4.ResourcePath is defective, v1 signature is temporarily used
     /// <summary>
-    /// 默认跳过服务器证书验证
+    /// Skip server certificate verification by default
     /// </summary>
     public const bool DefaultInsecureSkipVerify = false;
     /// <summary>
-    /// 默认命名空间不存在是否创建
+    /// Whether to create the default namespace if it does not exist
     /// </summary>
     public const bool DefaultCreateBucketIfNotExists = false;
     /// <summary>
-    /// 默认预签名链接过期时间
+    /// Default pre-signed link expiration time
     /// </summary>
     public const int DefaultPresignedGetExpirySeconds = 600;
     /// <summary>
-    /// 命名空间
+    /// namespace
     /// </summary>
     public string BucketName
     {
@@ -31,22 +31,22 @@ public class AliyunBlobProviderConfiguration
         set => _containerConfiguration.SetConfiguration(AliyunBlobProviderConfigurationNames.BucketName, value);
     }
     /// <summary>
-    /// 签名版本（可选项：v1、v4）
-    /// 默认: v1
+    /// Signature version (optional: v1, v4)
+    /// Default: v1
     /// </summary>
     public string? SignatureVersion {
         get => _containerConfiguration.GetConfigurationOrDefault(AliyunBlobProviderConfigurationNames.SignatureVersion, DefaultSignatureVersion);
         set => _containerConfiguration.SetConfiguration(AliyunBlobProviderConfigurationNames.SignatureVersion, value);
     }
     /// <summary>
-    /// 跳过服务器证书验证
+    /// Skip server certificate verification
     /// </summary>
     public bool InsecureSkipVerify {
         get => _containerConfiguration.GetConfigurationOrDefault(AliyunBlobProviderConfigurationNames.InsecureSkipVerify, DefaultInsecureSkipVerify);
         set => _containerConfiguration.SetConfiguration(AliyunBlobProviderConfigurationNames.InsecureSkipVerify, value);
     }
     /// <summary>
-    /// 命名空间不存在是否创建
+    /// Whether to create the namespace if it does not exist
     /// </summary>
     public bool CreateBucketIfNotExists
     {
@@ -54,14 +54,14 @@ public class AliyunBlobProviderConfiguration
         set => _containerConfiguration.SetConfiguration(AliyunBlobProviderConfigurationNames.CreateBucketIfNotExists, value);
     }
     /// <summary>
-    /// 创建命名空间时的Acl
+    /// Acl when creating namespace
     /// </summary>
     public BucketAclType? CreateBucketAcl {
         get => _containerConfiguration.GetConfigurationOrDefault<BucketAclType?>(AliyunBlobProviderConfigurationNames.CreateBucketAcl);
         set => _containerConfiguration.SetConfiguration(AliyunBlobProviderConfigurationNames.CreateBucketAcl, value);
     }
     /// <summary>
-    /// 创建命名空间时防盗链列表
+    /// Anti-hotlink list when creating namespace
     /// </summary>
     public List<string>? CreateBucketReferer
     {

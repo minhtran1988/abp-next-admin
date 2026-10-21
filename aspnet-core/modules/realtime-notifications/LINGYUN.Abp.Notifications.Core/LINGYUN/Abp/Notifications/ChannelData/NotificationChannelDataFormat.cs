@@ -1,20 +1,20 @@
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)属性的存储格式
+/// Storage format of notification channel data (load) attribute
 /// </summary>
 public enum NotificationChannelDataFormat
 {
     /// <summary>
-    /// 自动识别(默认)
+    /// Automatic recognition (default)
     /// </summary>
     /// <remarks>
-    /// 简单类型直接转换, 复杂类型序列化为 JSON 字符串,
-    /// 读取时同样兼容"对象实例"与"JSON 字符串"两种形态。
+    /// Direct conversion of simple types, serialization of complex types into JSON strings,
+    /// When reading, it is also compatible with the two forms of "object instance" and "JSON string".
     /// </remarks>
     Auto = 0,
     /// <summary>
-    /// 始终以 JSON 字符串存储
+    /// Always stored as JSON string
     /// </summary>
     Json = 1
 }

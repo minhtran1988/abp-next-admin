@@ -23,7 +23,7 @@ public class AbpNotificationsExceptionSubscriber : AbpExceptionSubscriberBase
     protected override async Task SendErrorNotifierAsync(ExceptionSendNotifierContext context)
     {
         var notificationSender = context.ServiceProvider.GetRequiredService<INotificationSender>();
-        // 发送错误模板消息
+        // Send error template message
         await notificationSender.SendNofiterAsync(
             NotificationsCommonNotificationNames.ExceptionHandling,
             new NotificationTemplate(

@@ -12,11 +12,11 @@ import { Button, Card, Radio, RadioGroup } from 'ant-design-vue';
 import { useVbenForm } from '#/adapter/form';
 
 const colors = [
-  { label: '预设：默认', value: 'default' },
-  { label: '预设：关键', value: 'destructive' },
-  { label: '预设：主要', value: 'primary' },
-  { label: '预设：成功', value: 'success' },
-  { label: '自定义', value: 'bg-gray-200 text-black' },
+  { label: 'Default: default', value: 'default' },
+  { label: 'Default: key', value: 'destructive' },
+  { label: 'Default: primary', value: 'primary' },
+  { label: 'Default: success', value: 'success' },
+  { label: 'custom', value: 'bg-gray-200 text-black' },
 ];
 
 const route = useRoute();
@@ -40,31 +40,31 @@ const [Form] = useVbenForm({
       componentProps: {
         buttonStyle: 'solid',
         options: [
-          { label: '点徽标', value: 'dot' },
-          { label: '文字徽标', value: 'normal' },
+          { label: 'dot logo', value: 'dot' },
+          { label: 'text logo', value: 'normal' },
         ],
         optionType: 'button',
       },
       defaultValue: badgeProps.badgeType,
       fieldName: 'badgeType',
-      label: '类型',
+      label: 'type',
     },
     {
       component: 'Input',
       componentProps: {
         maxLength: 4,
-        placeholder: '请输入徽标内容',
+        placeholder: 'Please enter logo content',
         style: { width: '200px' },
       },
       defaultValue: badgeProps.badge,
       fieldName: 'badge',
-      label: '徽标内容',
+      label: 'Logo content',
     },
     {
       component: 'RadioGroup',
       defaultValue: badgeProps.badgeVariants,
       fieldName: 'badgeVariants',
-      label: '颜色',
+      label: 'color',
     },
     {
       component: 'Input',
@@ -85,10 +85,10 @@ function updateMenuBadge() {
 
 <template>
   <Page
-    description="菜单项上可以显示徽标，这些徽标可以主动更新"
-    title="菜单徽标"
+    description="Logos can be displayed on menu items, and these logos can be actively updated"
+    title="menu logo"
   >
-    <Card title="徽标更新">
+    <Card title="Logo Update">
       <Form>
         <template #badgeVariants="slotProps">
           <RadioGroup v-bind="slotProps">
@@ -109,7 +109,7 @@ function updateMenuBadge() {
           </RadioGroup>
         </template>
         <template #action>
-          <Button type="primary" @click="updateMenuBadge">更新徽标</Button>
+          <Button type="primary" @click="updateMenuBadge">Update logo</Button>
         </template>
       </Form>
     </Card>

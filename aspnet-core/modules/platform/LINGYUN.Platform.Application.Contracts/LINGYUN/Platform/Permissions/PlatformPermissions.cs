@@ -49,9 +49,9 @@ public static class PlatformPermissions
         public const string ManageUserFavorites = Default + ".ManageUserFavorites";
     }
 
-    // 如果abp后期提供对象存储的目录管理接口,则启用此权限
+    // If abp later provides a directory management interface for object storage, enable this permission
     /// <summary>
-    /// 文件系统
+    /// file system
     /// </summary>
     public static class FileSystem
     {

@@ -5,21 +5,21 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Messages.Models;
 /// <summary>
-/// 日程回执事件
+/// Schedule receipt event
 /// </summary>
 /// <remarks>
-/// 当应用创建的日程，参与人进行回执操作（接受、待定、拒绝）时，触发该事件。
+/// This event is triggered when the participant performs a receipt operation (accept, pending, reject) in the schedule created by the application.
 /// </remarks>
 [EventName("respond_schedule")]
 public class RespondScheduleEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 日历ID
+    /// Calendar ID
     /// </summary>
     [XmlElement("CalId")]
     public string? CalId { get; set; }
     /// <summary>
-    /// 日程ID
+    /// Schedule ID
     /// </summary>
     [XmlElement("ScheduleId")]
     public string ScheduleId { get; set; } = default!;

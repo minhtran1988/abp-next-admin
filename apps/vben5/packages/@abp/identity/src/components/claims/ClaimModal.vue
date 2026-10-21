@@ -18,7 +18,7 @@ const emits = defineEmits<{
 const { cancel, getAssignableClaimsApi } = useClaimTypesApi();
 const [Form, formApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
@@ -58,14 +58,14 @@ const [Modal, modalApi] = useVbenModal({
           ...claimDto,
           newClaimValue: claimDto.claimValue,
         });
-        // 新增可选, 修改不可选
+        // Add optional, modify non-optional
         formApi.updateSchema([
           {
             disabled: !!claimDto.id,
             fieldName: 'claimType',
           },
         ]);
-        // 新增时初始化可选声明
+        // Initialize optional declaration when adding
         !claimDto.id && (await initAssignableClaims());
       } finally {
         modalApi.setState({ loading: false });
@@ -74,7 +74,7 @@ const [Modal, modalApi] = useVbenModal({
   },
   title: $t('AbpIdentity.ManageClaim'),
 });
-/** 初始化可用声明类型 */
+/** Initialize available declaration types */
 async function initAssignableClaims() {
   const { items } = await getAssignableClaimsApi();
   formApi.updateSchema([
@@ -90,7 +90,7 @@ async function initAssignableClaims() {
     },
   ]);
 }
-/** 提交声明类型变更 */
+/** Submit statement type change */
 async function onSubmit(values: Record<string, any>) {
   try {
     modalApi.setState({ submitting: true });

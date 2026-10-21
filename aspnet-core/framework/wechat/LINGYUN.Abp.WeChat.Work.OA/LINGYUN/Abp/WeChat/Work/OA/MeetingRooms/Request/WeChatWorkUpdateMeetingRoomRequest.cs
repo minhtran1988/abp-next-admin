@@ -7,75 +7,75 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Request;
 /// <summary>
-/// 编辑会议室请求参数
+/// Edit conference room request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93619#%E7%BC%96%E8%BE%91%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93619#%E7%BC%96%E8%BE%91%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
 /// </remarks>
 public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [NotNull]
     [JsonProperty("meetingroom_id")]
     [JsonPropertyName("meetingroom_id")]
     public int MeetingRoomId { get; }
     /// <summary>
-    /// 会议室名称
+    /// Conference room name
     /// </summary>
     [CanBeNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string? Name { get; set; }
     /// <summary>
-    /// 会议室容纳人数
+    /// Meeting room capacity
     /// </summary>
     [CanBeNull]
     [JsonProperty("capacity")]
     [JsonPropertyName("capacity")]
     public int Capacity { get; set; }
     /// <summary>
-    /// 会议室所在城市
+    /// The city where the meeting room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("city")]
     [JsonPropertyName("city")]
     public string? City { get; private set; }
     /// <summary>
-    /// 会议室所在楼宇
+    /// The building where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("building")]
     [JsonPropertyName("building")]
     public string? Building { get; private set; }
     /// <summary>
-    /// 会议室所在楼层
+    /// The floor where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("floor")]
     [JsonPropertyName("floor")]
     public string? Floor { get; private set; }
     /// <summary>
-    /// 会议室支持的设备列表
+    /// List of devices supported by the conference room
     /// </summary>
     private readonly List<int> _equipment;
     /// <summary>
-    /// 会议室支持的设备列表
+    /// List of devices supported by the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("equipment")]
     [JsonPropertyName("equipment")]
     public int[] Equipment => _equipment.ToArray();
     /// <summary>
-    /// 会议室坐标
+    /// Conference room coordinates
     /// </summary>
     [CanBeNull]
     [JsonProperty("coordinate")]
     [JsonPropertyName("coordinate")]
     public MeetingRoomCoordinate? Coordinate { get; set; }
     /// <summary>
-    /// 会议室使用范围
+    /// Meeting room usage range
     /// </summary>
     [CanBeNull]
     [JsonProperty("range")]
@@ -88,7 +88,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
         _equipment = new List<int>();
     }
     /// <summary>
-    /// 设置位置信息
+    /// Set location information
     /// </summary>
     /// <param name="city"></param>
     /// <param name="building"></param>
@@ -100,7 +100,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
         Floor = Check.NotNullOrWhiteSpace(floor, nameof(floor));
     }
     /// <summary>
-    /// 允许电视设备
+    /// Allow TV devices
     /// </summary>
     /// <returns></returns>
     public void WithTv()
@@ -108,7 +108,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(1);
     }
     /// <summary>
-    /// 允许电话设备
+    /// Allow phone devices
     /// </summary>
     /// <returns></returns>
     public void WithPhone()
@@ -117,7 +117,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
 
     }
     /// <summary>
-    /// 允许投影设备
+    /// Allow projection devices
     /// </summary>
     /// <returns></returns>
     public void WithProjection()
@@ -125,7 +125,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(3);
     }
     /// <summary>
-    /// 允许白板设备
+    /// Allow whiteboard devices
     /// </summary>
     /// <returns></returns>
     public void WithWhiteboard()
@@ -133,7 +133,7 @@ public class WeChatWorkUpdateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(4);
     }
     /// <summary>
-    /// 允许视频设备
+    /// Allow video devices
     /// </summary>
     /// <returns></returns>
     public void WithVideo()

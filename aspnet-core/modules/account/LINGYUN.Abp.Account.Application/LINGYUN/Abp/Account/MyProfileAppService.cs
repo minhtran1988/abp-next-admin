@@ -152,7 +152,7 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
                 Volo.Abp.Identity.IdentityErrorCodes.UsersCanNotChangeTwoFactor,
                 "You can't change your two factor setting!");
         }
-        // TODO: Abp官方移除了双因素的设置,不排除以后会增加,如果在用户接口中启用了双因素认证,可能造成登录失败!
+        // TODO: Abp has officially removed the two-factor setting. It is not ruled out that it will be added in the future. If two-factor authentication is enabled in the user interface, it may cause login failure!
         var user = await GetCurrentUserAsync();
 
         (await UserManager.SetTwoFactorEnabledWithAccountConfirmedAsync(user, input.Enabled)).CheckErrors();
@@ -179,7 +179,7 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
             throw new UserFriendlyException(L["SendRepeatSmsVerifyCode", interval]);
         }
 
-        // 是否已有用户使用手机号绑定
+        // Whether there is already a user bound with a mobile phone number
         if (await UserRepository.IsPhoneNumberConfirmedAsync(input.NewPhoneNumber))
         {
             throw new BusinessException(Identity.IdentityErrorCodes.DuplicatePhoneNumber);
@@ -188,7 +188,7 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
 
         var template = await SettingProvider.GetOrNullAsync(Identity.Settings.IdentitySettingNames.User.SmsPhoneNumberConfirmed);
         var token = await UserManager.GenerateChangePhoneNumberTokenAsync(user, input.NewPhoneNumber);
-        // 发送验证码
+        // Send verification code
         await SmsSecurityCodeSender.SendAsync(input.NewPhoneNumber, token, template!);
 
         securityTokenCacheItem = new SecurityTokenCacheItem(token, user.Id, user.ConcurrencyStamp);
@@ -202,13 +202,13 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
 
     public async virtual Task ChangePhoneNumberAsync(ChangePhoneNumberInput input)
     {
-        // 是否已有用户使用手机号绑定
+        // Whether there is already a user bound with a mobile phone number
         if (await UserRepository.IsPhoneNumberConfirmedAsync(input.NewPhoneNumber))
         {
             throw new BusinessException(Identity.IdentityErrorCodes.DuplicatePhoneNumber);
         }
         var user = await GetCurrentUserAsync();
-        // 更换手机号
+        // Change mobile phone number
         (await UserManager.ChangePhoneNumberAsync(user, input.NewPhoneNumber, input.Code)).CheckErrors();
 
         await CurrentUnitOfWork!.SaveChangesAsync();
@@ -257,7 +257,7 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
 
         var user = await UserManager.GetByIdAsync(CurrentUser.GetId());
 
-        // 字符编码错误
+        // Character encoding error
         var confirmToken = HttpUtility.UrlDecode(input.ConfirmToken); ;
         (await UserManager.ConfirmEmailAsync(user, confirmToken)).CheckErrors();
 
@@ -353,7 +353,7 @@ public class MyProfileAppService : AccountApplicationServiceBase, IMyProfileAppS
             .Where(provider => provider != UserManager.Options.Tokens.AuthenticatorTokenProvider)
             .Any())
         {
-            // 如果用户没有任何双因素认证提供程序,则禁用二次认证,否则将造成无法登录
+            // If the user does not have any two-factor authentication provider, disable two-factor authentication, otherwise it will cause the user to be unable to log in
             await UserManager.SetTwoFactorEnabledAsync(user, false);
         }
 

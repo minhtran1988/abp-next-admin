@@ -6,57 +6,57 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Request;
 /// <summary>
-/// 提交审批申请请求参数
+/// Submit approval application request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91853"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91853"/>
 /// </remarks>
 public class WeChatWorkApplyEventRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 流程
+    /// Process
     /// </summary>
     /// <remarks>
-    /// use_template_approver = 0 时必填
+    /// Required when use_template_approver = 0
     /// </remarks>
     [CanBeNull]
     [JsonProperty("process")]
     [JsonPropertyName("process")]
     public ApprovalApplyProcess? Process { get; set; }
     /// <summary>
-    /// 摘要信息，用于显示在审批通知卡片、审批列表的摘要信息，最多3行
+    /// Summary information, used to display summary information on the approval notification card and approval list, up to 3 lines
     /// </summary>
     [CanBeNull]
     [JsonProperty("summary_list")]
     [JsonPropertyName("summary_list")]
     public List<ApprovalSummary>? Summaries { get; set; }
     /// <summary>
-    /// 审批申请数据，可定义审批申请中各个控件的值，其中必填项必须有值，选填项可为空，数据结构同“获取审批申请详情”接口返回值中同名参数“apply_data”
+    /// Approval application data can define the values of each control in the approval application. The required items must have values, and the optional items can be empty. The data structure is the same as the parameter "apply_data" with the same name in the return value of the "Get Approval Application Details" interface.
     /// </summary>
     [NotNull]
     [JsonProperty("apply_data")]
     [JsonPropertyName("apply_data")]
     public ApprovalApplyData ApplyData { get; set; }
     /// <summary>
-    /// 模板id。可在“获取审批申请详情”、“审批状态变化回调通知”中获得，也可在审批模板的模板编辑页面链接中获得。暂不支持通过接口提交[打卡补卡][调班]模板审批单。
+    /// Template id. It can be obtained in "Get Approval Application Details", "Approval Status Change Callback Notification", or in the template editing page link of the approval template. Submitting the [Punch-in and Replacement of Cards] [Shift Adjustment] template approval forms through the interface is currently not supported.
     /// </summary>
     [NotNull]
     [JsonProperty("template_id")]
     [JsonPropertyName("template_id")]
     public string TemplateId { get; set; }
     /// <summary>
-    /// 申请人userid，此审批申请将以此员工身份提交，申请人需在应用可见范围内
+    /// Applicant userid, this approval application will be submitted as this employee, the applicant must be within the visible range of the application
     /// </summary>
     [NotNull]
     [JsonProperty("creator_userid")]
     [JsonPropertyName("creator_userid")]
     public string CreatorUserId { get; set; }
     /// <summary>
-    /// 审批人模式
+    /// Approver mode
     /// </summary>
     /// <remarks>
-    /// 0-通过接口指定审批人、抄送人（此时process参数必填）; <br />
-    /// 1-使用此模板在管理后台设置的审批流程(需要保证审批流程中没有“申请人自选”节点)，支持条件审批。默认为0
+    /// 0-Specify the approver and carbon copy person through the interface (the process parameter is required at this time); <br />
+    /// 1-Use this template to set up the approval process in the management background (you need to ensure that there is no "applicant self-selected" node in the approval process), which supports conditional approval. Default is 0
     /// </remarks>
     [NotNull]
     [JsonProperty("use_template_approver")]
@@ -72,7 +72,7 @@ public class WeChatWorkApplyEventRequest : WeChatWorkRequest
         }
     }
     /// <summary>
-    /// 提单者提单部门id，不填默认为主部门
+    /// The id of the bill of lading department of the bill of lader. If not filled in, the default is the main department.
     /// </summary>
     [CanBeNull]
     [JsonProperty("choose_department")]

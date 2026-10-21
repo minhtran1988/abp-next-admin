@@ -6,11 +6,11 @@ using Xunit;
 namespace LINGYUN.Abp.Notifications.WxPusher;
 
 /// <summary>
-/// WxPusher 渠道数据测试
+/// WxPusher channel data test
 /// </summary>
 /// <remarks>
-/// 统一写法: 先 new 渠道数据 → 通过 <c>IJsonSerializer</c> 序列化写入通知数据 →
-/// 再让渠道实际发布, 断言捕获到的消息参数。
+/// Unified writing method: first new channel data → serialize and write notification data through <c>IJsonSerializer</c> →
+/// Let the channel actually publish and assert the captured message parameters.
 /// </remarks>
 public class WxPusherChannelData_Tests : AbpNotificationsWxPusherTestBase
 {
@@ -65,14 +65,14 @@ public class WxPusherChannelData_Tests : AbpNotificationsWxPusherTestBase
         {
             Url = "https://example.com/from-channel-data"
         });
-        data.WriteStandardData("标题", "内容", DateTime.Now, "system");
+        data.WriteStandardData("title", "content", DateTime.Now, "system");
 
         await PublishAsync(data);
 
         Sender.SentMessages.Count.ShouldBe(1);
         Sender.SentMessages[0].Url.ShouldBe("https://example.com/from-channel-data");
-        Sender.SentMessages[0].Content.ShouldBe("内容");
-        Sender.SentMessages[0].Summary.ShouldBe("标题");
+        Sender.SentMessages[0].Content.ShouldBe("content");
+        Sender.SentMessages[0].Summary.ShouldBe("title");
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class WxPusherChannelData_Tests : AbpNotificationsWxPusherTestBase
         Sender.Clear();
 
         var data = new NotificationData();
-        data.WriteStandardData("标题", "内容", DateTime.Now, "system");
+        data.WriteStandardData("title", "content", DateTime.Now, "system");
 
         await PublishAsync(data);
 

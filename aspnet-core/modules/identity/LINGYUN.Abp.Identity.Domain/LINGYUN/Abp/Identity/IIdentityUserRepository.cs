@@ -9,7 +9,7 @@ namespace LINGYUN.Abp.Identity;
 public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserRepository
 {
     /// <summary>
-    /// 手机号是否已被使用
+    /// Is the mobile phone number already in use?
     /// </summary>
     /// <param name="phoneNumber"></param>
     /// <param name="cancellationToken"></param>
@@ -18,7 +18,7 @@ public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserReposi
         string phoneNumber,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 手机号是否已确认(绑定)
+    /// Whether the mobile phone number has been confirmed (bound)
     /// </summary>
     /// <param name="phoneNumber"></param>
     /// <param name="cancellationToken"></param>
@@ -27,7 +27,7 @@ public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserReposi
         string phoneNumber,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 邮件地址是否已确认(绑定)
+    /// Whether the email address has been confirmed (binding)
     /// </summary>
     /// <param name="normalizedEmail"></param>
     /// <param name="cancellationToken"></param>
@@ -36,10 +36,10 @@ public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserReposi
        string normalizedEmail,
        CancellationToken cancellationToken = default);
     /// <summary>
-    /// 通过手机号查询用户
+    /// Query users by mobile phone number
     /// </summary>
-    /// <param name="phoneNumber">手机号码</param>
-    /// <param name="isConfirmed">是否已确认过</param>
+    /// <param name="phoneNumber">Mobile phone number</param>
+    /// <param name="isConfirmed">Has it been confirmed</param>
     /// <param name="includeDetails"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
@@ -49,7 +49,7 @@ public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserReposi
         bool includeDetails = false,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 通过用户主键列表获取用户
+    /// Get users through user primary key list
     /// </summary>
     /// <param name="userIds"></param>
     /// <param name="includeDetails"></param>
@@ -61,7 +61,7 @@ public interface IIdentityUserRepository : Volo.Abp.Identity.IIdentityUserReposi
         CancellationToken cancellationToken = default
     );
     /// <summary>
-    /// 获取用户所有的组织机构列表
+    /// Get the list of all organizations of the user
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="filter"></param>

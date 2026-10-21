@@ -3,87 +3,87 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Search;
 
 /// <summary>
-/// 搜索请求
+/// Search request
 /// </summary>
 public class SearchRequest
 {
     /// <summary>
-    /// 查询条件
+    /// Query conditions
     /// </summary>
     [JsonPropertyName("query")]
     public SearchQuery Query { get; }
 
     /// <summary>
-    /// 搜索来源
+    /// Search source
     /// </summary>
     /// <remarks>
-    /// 支持 ui / dashboards / reports / alerts 等, 请求体中的值优先于查询字符串
+    /// Supports ui / dashboards / reports / alerts, etc., the value in the request body takes precedence over the query string
     /// </remarks>
     [JsonPropertyName("search_type")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? SearchTypeString { get; set; }
 
     /// <summary>
-    /// 超时时间(秒)
+    /// Timeout (seconds)
     /// </summary>
     /// <remarks>
-    /// 默认值由服务端 ZO_QUERY_TIMEOUT=600 决定
+    /// The default value is determined by the server ZO_QUERY_TIMEOUT=600
     /// </remarks>
     [JsonPropertyName("timeout")]
     public int? Timeout { get; }
 
     /// <summary>
-    /// agent/MCP 客户端选项
+    /// agent/MCP client options
     /// </summary>
     [JsonPropertyName("agent_options")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public SearchAgentOptions? AgentOptions { get; }
 
     /// <summary>
-    /// SQL 编码方式
+    /// SQL encoding method
     /// </summary>
     /// <remarks>
-    /// 为空或 base64, 为 base64 时 query.sql 需 URL Base64 编码, 服务端解码后置空
+    /// It is empty or base64. When it is base64, query.sql needs URL Base64 encoding, and the server decodes it and sets it empty.
     /// </remarks>
     [JsonPropertyName("encoding")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Encoding { get; set; }
 
     /// <summary>
-    /// 查询的区域
+    /// Query area
     /// </summary>
     /// <remarks>
-    /// 默认查询所有区域, local 表示仅本地区域
+    /// Query all areas by default, local means only the local area
     /// </remarks>
     [JsonPropertyName("regions")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string[]? Regions { get; set; }
 
     /// <summary>
-    /// 查询的集群
+    /// Query cluster
     /// </summary>
     /// <remarks>
-    /// local 表示仅本地集群
+    /// local means only the local cluster
     /// </remarks>
     [JsonPropertyName("clusters")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string[]? Clusters { get; set; }
 
     /// <summary>
-    /// 是否使用缓存
+    /// Whether to use cache
     /// </summary>
     /// <remarks>
-    /// 查询字符串中的 use_cache 会覆盖该值
+    /// use_cache in the query string will overwrite this value
     /// </remarks>
     [JsonPropertyName("use_cache")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? UseCache { get; set; }
 
     /// <summary>
-    /// 是否清理缓存
+    /// Whether to clear cache
     /// </summary>
     /// <remarks>
-    /// 查询字符串中的 clear_cache 会覆盖该值
+    /// clear_cache in the query string will overwrite this value
     /// </remarks>
     [JsonPropertyName("clear_cache")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

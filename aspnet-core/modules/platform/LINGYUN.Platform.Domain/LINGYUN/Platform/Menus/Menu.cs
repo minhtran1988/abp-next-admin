@@ -6,32 +6,32 @@ using Volo.Abp;
 namespace LINGYUN.Platform.Menus;
 
 /// <summary>
-/// 菜单
+/// Menu
 /// </summary>
 public class Menu : Route
 {
     /// <summary>
-    /// 框架
+    /// frame
     /// </summary>
     public virtual string Framework { get; set; } = default!;
     /// <summary>
-    /// 菜单编号
+    /// Menu number
     /// </summary>
     public virtual string Code { get; set; } = default!;
     /// <summary>
-    /// 菜单布局页,Layout的路径
+    /// Menu layout page, Layout path
     /// </summary>
     public virtual string Component { get; set; } = default!;
     /// <summary>
-    /// 所属的父菜单
+    /// The parent menu it belongs to
     /// </summary>
     public virtual Guid? ParentId { get; set; }
     /// <summary>
-    /// 所属布局标识
+    /// The layout identifier to which it belongs
     /// </summary>
     public virtual Guid LayoutId { get; set; }
     /// <summary>
-    /// 公共菜单
+    /// Public menu
     /// </summary>
     public virtual bool IsPublic { get; set; }
     protected Menu() 
@@ -57,7 +57,7 @@ public class Menu : Route
 
         LayoutId = layoutId;
         Code = code;
-        Component = component;// 下属的一级菜单的Component应该是布局页, 例如vue-admin中的 component: Layout, 其他前端框架雷同, 此处应传递布局页的路径让前端import
+        Component = component; // The Component of the subordinate first-level menu should be the layout page, such as component: Layout in vue-admin. It is the same with other front-end frameworks. The path of the layout page should be passed here for the front-end to import.
         Framework = framework;
         ParentId = parentId;
 

@@ -8,25 +8,25 @@ namespace LINGYUN.Abp.Notifications;
 public class NotificationDefinitionGroupRecord : BasicAggregateRoot<Guid>, IHasExtraProperties
 {
     /// <summary>
-    /// 分组名称
+    /// Group name
     /// </summary>
     public virtual string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     /// <remarks>
-    /// 如果为空,回退到Name
+    /// If it is empty, fall back to Name
     /// </remarks>
     public virtual string? DisplayName { get; set; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     /// <remarks>
-    /// 如果为空,回退到Name
+    /// If it is empty, fall back to Name
     /// </remarks>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 允许客户端订阅
+    /// Allow clients to subscribe
     /// </summary>
     public virtual bool AllowSubscriptionToClients { get; set; }
 

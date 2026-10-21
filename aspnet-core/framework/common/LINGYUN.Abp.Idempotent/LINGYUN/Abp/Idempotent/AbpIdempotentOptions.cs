@@ -9,7 +9,7 @@ public class AbpIdempotentOptions
     {
         DefaultTimeout = 5000;
         IdempotentTokenName = "X-With-Idempotent-Token";
-        // 默认使用 TooManyRequests(429)代码
+        // Use TooManyRequests(429) code by default
         HttpStatusCode = 429;
     }
 }

@@ -4,26 +4,26 @@ import type { OpenIddictAuthorizationDto, OpenIddictAuthorizationGetListInput } 
 import requestClient from "../request";
 
 /**
- * 删除授权
- * @param id 授权id
+ * Delete authorization
+ * @param id authorization id
  */
 export function deleteApi(id: string): Promise<void> {
 	return requestClient.delete(`/api/openiddict/authorizations/${id}`);
 }
 
 /**
- * 查询授权
- * @param id 授权id
- * @returns 授权实体数据传输对象
+ * Query authorization
+ * @param id authorization id
+ * @returns Authorization entity data transfer object
  */
 export function getApi(id: string): Promise<OpenIddictAuthorizationDto> {
 	return requestClient.get<OpenIddictAuthorizationDto>(`/api/openiddict/authorizations/${id}`);
 }
 
 /**
- * 查询授权分页列表
- * @param input 过滤参数
- * @returns 授权实体数据传输对象分页列表
+ * Query the authorized paging list
+ * @param input filter parameter
+ * @returns Authorized entity data transfer object paginated list
  */
 export function getPagedListApi(
 	input?: OpenIddictAuthorizationGetListInput,

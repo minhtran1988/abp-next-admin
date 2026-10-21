@@ -4,7 +4,7 @@ import { useVbenDrawer, VbenButton } from '@vben/common-ui';
 import ExtraDrawer from './drawer.vue';
 
 const [Drawer, drawerApi] = useVbenDrawer({
-  // 连接抽离的组件
+  // Connect the detached components
   connectedComponent: ExtraDrawer,
 });
 
@@ -13,7 +13,7 @@ function open() {
 }
 
 function handleUpdateTitle() {
-  drawerApi.setState({ title: '外部动态标题' }).open();
+  drawerApi.setState({ title: 'External dynamic title' }).open();
 }
 </script>
 
@@ -23,7 +23,7 @@ function handleUpdateTitle() {
 
     <VbenButton @click="open">Open</VbenButton>
     <VbenButton class="ml-2" type="primary" @click="handleUpdateTitle">
-      从外部修改标题并打开
+      Modify title externally and open
     </VbenButton>
   </div>
 </template>

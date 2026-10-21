@@ -4,59 +4,59 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 审批申请单控件数据
+/// Approval application form control data
 /// </summary>
 public class ApprovalControlData
 {
     /// <summary>
-    /// 控件类型
+    /// Control type
     /// </summary>
     /// <remarks>
-    /// Text-文本<br />
-    /// Textarea-多行文本<br />
-    /// Number-数字<br />
-    /// Money-金额<br />
-    /// Date-日期/日期+时间<br />
-    /// Selector-单选/多选<br />
-    /// Contact-成员/部门<br />
-    /// Tips-说明文字<br />
-    /// File-附件<br />
-    /// Table-明细<br />
-    /// Location-位置<br />
-    /// RelatedApproval-关联审批单<br />
-    /// Formula-公式<br />
-    /// DateRange-时长
+    /// Text-text<br />
+    /// Textarea-multiline text<br />
+    /// Number-Number<br />
+    /// Money-amount<br />
+    /// Date-date/date+time<br />
+    /// Selector-single selection/multiple selection<br />
+    /// Contact-Member/Department<br />
+    /// Tips-Explanation text<br />
+    /// File-Attachment<br />
+    /// Table-Details<br />
+    /// Location-location<br />
+    /// RelatedApproval-Related approval form<br />
+    /// Formula-formula<br />
+    /// DateRange-Duration
     /// </remarks>
     [NotNull]
     [JsonProperty("control")]
     [JsonPropertyName("control")]
     public string Control { get; set; } = default!;
     /// <summary>
-    /// 控件id：控件的唯一id，可通过“获取审批模板详情”接口获取
+    /// Control id: The unique id of the control, which can be obtained through the "Get Approval Template Details" interface
     /// </summary>
     [NotNull]
     [JsonProperty("id")]
     [JsonPropertyName("id")]
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 控件值 ，需在此为申请人在各个控件中填写内容不同控件有不同的赋值参数
+    /// Control value, the applicant needs to fill in the content in each control here. Different controls have different assignment parameters.
     /// </summary>
     /// <remarks>
-    /// 模板配置的控件属性为必填时，对应value值需要有值。
+    /// When the control attribute configured in the template is required, the corresponding value must have a value.
     /// </remarks>
     [NotNull]
     [JsonProperty("value")]
     [JsonPropertyName("value")]
     public ApprovalControlValue Value { get; set; } = default!;
     /// <summary>
-    /// 控件隐藏标识，为1表示控件被隐藏
+    /// Control hidden flag, 1 means the control is hidden
     /// </summary>
     [CanBeNull]
     [JsonProperty("display")]
     [JsonPropertyName("display")]
     public int? Display { get; set; }
     /// <summary>
-    /// 控件必输标识，为1表示控件必输
+    /// The control must lose the flag. If it is 1, it means the control must lose.
     /// </summary>
     [CanBeNull]
     [JsonProperty("require")]

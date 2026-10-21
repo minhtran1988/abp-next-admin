@@ -241,10 +241,10 @@
   const getAvailableParams = computed(() => {
     const { allowDuplicateFieldSearch } = props;
     if (allowDuplicateFieldSearch) {
-      // 允许字段出现多次, 直接返回原数据
+      // Allow fields to appear multiple times and return the original data directly
       return defineParamsRef.value;
     }
-    // 每个字段只允许出现一次，已选择字段不再出现在可选列表
+    // Each field is only allowed to appear once, the selected field will no longer appear in the optional list
     const defineParams = unref(defineParamsRef);
     if (!defineParams.length) return[];
     return defineParams.filter(dp => !formMdel.paramters.some(fp => fp.field === dp.name));
@@ -274,7 +274,7 @@
       if (availableComparator.length === 0) {
         return comparisonOptions;
       }
-      // 过滤可用比较符
+      // Filter available comparison operators
       return comparisonOptions
         .filter(c => availableComparator.includes(c.value));
     }

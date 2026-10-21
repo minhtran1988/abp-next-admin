@@ -2,7 +2,7 @@
 
 Webhook client proxy module that provides proxy implementation for webhook clients.
 
-[简体中文](README.md)
+[Simplified Chinese](README.md)
 
 ## Features
 

@@ -3,42 +3,42 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// POI对象
+/// POI object
 /// </summary>
 public class Poi
 {
     /// <summary>
-    /// 地点唯一标识
+    /// Unique identifier of location
     /// </summary>
     [JsonProperty("id")]
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 名称/标题
+    /// name/title
     /// </summary>
     [JsonProperty("title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 地址
+    /// address
     /// </summary>
     [JsonProperty("address")]
     public string Address { get; set; } = default!;
     /// <summary>
-    /// POI分类
+    /// POI classification
     /// </summary>
     [JsonProperty("category")]
     public string CateGory { get; set; } = default!;
     /// <summary>
-    /// 坐标
+    /// coordinates
     /// </summary>
     [JsonProperty("location")]
     public Location Location { get; set; } = new Location();
     /// <summary>
-    /// 该POI到逆地址解析传入的坐标的直线距离
+    /// The straight-line distance from the POI to the coordinates passed in by reverse address analysis
     /// </summary>
     [JsonProperty("_distance")]
     public double Distance { get; set; }
     /// <summary>
-    /// 行政区划信息
+    /// Administrative division information
     /// </summary>
     [JsonProperty("ad_info")]
     public AddressInfo AddressInfo { get; set; } = new AddressInfo();

@@ -3,27 +3,27 @@ using System;
 namespace LINGYUN.Abp.OpenObserve.Models;
 
 /// <summary>
-/// OpenObserve 业务异常基类
+/// OpenObserve business exception base class
 /// </summary>
 public class OpenObserveException : Exception
 {
     /// <summary>
-    /// 错误码
+    /// Error code
     /// </summary>
     /// <remarks>
-    /// 业务错误取 OpenObserve 响应中的 code, 否则取 HTTP 状态码
+    /// For business errors, take the code in the OpenObserve response, otherwise take the HTTP status code
     /// </remarks>
     public int Code => Error?.Code ?? StatusCode;
     /// <summary>
-    /// HTTP 状态码
+    /// HTTP status code
     /// </summary>
     public int StatusCode { get; }
     /// <summary>
-    /// OpenObserve 错误响应
+    /// OpenObserve error response
     /// </summary>
     public OpenObserveErrorResponse? Error { get; }
     /// <summary>
-    /// 原始响应内容
+    /// Original response content
     /// </summary>
     public string? ResponseBody { get; }
 

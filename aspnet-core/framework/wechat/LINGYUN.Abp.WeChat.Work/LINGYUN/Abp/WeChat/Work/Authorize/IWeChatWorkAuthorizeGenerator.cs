@@ -4,10 +4,10 @@ namespace LINGYUN.Abp.WeChat.Work.Authorize;
 public interface IWeChatWorkAuthorizeGenerator
 {
     /// <summary>
-    /// 构造网页授权链接
+    /// Construct web page authorization link
     /// </summary>
     /// <remarks>
-    /// 参考：<see href="https://developer.work.weixin.qq.com/document/path/91022"/>
+    /// Reference: <see href="https://developer.work.weixin.qq.com/document/path/91022"/>
     /// </remarks>
     /// <param name="redirectUri"></param>
     /// <param name="state"></param>
@@ -20,7 +20,7 @@ public interface IWeChatWorkAuthorizeGenerator
         string? responseType = "code",
         string? scope = "snsapi_base");
     /// <summary>
-    /// 构建网页登录链接
+    /// Build web page login link
     /// </summary>
     /// <param name="redirectUri"></param>
     /// <param name="state"></param>

@@ -42,7 +42,7 @@ public class IdentityUserNotificationDataSeeder : ITransientDependency
         }
         Logger.LogInformation("User {UserId} has subscribed to default notifications.", user.Id);
         var userIdentifer = new UserIdentifier(user.Id, user.UserName);
-        // 订阅内置通知
+        // Subscribe to built-in notifications
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
@@ -59,13 +59,13 @@ public class IdentityUserNotificationDataSeeder : ITransientDependency
                 userIdentifer,
                 DefaultNotifications.ActivityNotice);
 
-        // 新用户订阅会话过期通知
+        // New user subscription session expiration notification
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
                 userIdentifer,
                 IdentityNotificationNames.Session.ExpirationSession);
-        // 新用户订阅不活跃用户相关通知
+        // New users subscribe to notifications related to inactive users
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
@@ -77,7 +77,7 @@ public class IdentityUserNotificationDataSeeder : ITransientDependency
                 userIdentifer,
                 IdentityNotificationNames.IdentityUser.InactiveUserDeactivationNotifier);
 
-        // 订阅用户欢迎消息
+        // Subscribe to user welcome message
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,

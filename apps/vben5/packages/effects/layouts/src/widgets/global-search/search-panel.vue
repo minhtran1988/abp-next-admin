@@ -37,40 +37,40 @@ const searchResults = ref<MenuRecordRaw[]>([]);
 
 const handleSearch = useThrottleFn(search, 200);
 
-// 搜索函数，用于根据搜索关键词查找匹配的菜单项
+// Search function, used to find matching menu items based on search keywords
 function search(searchKey: string) {
-  // 去除搜索关键词的前后空格
+  // Remove spaces before and after search keywords
   searchKey = searchKey.trim();
 
-  // 如果搜索关键词为空，清空搜索结果并返回
+  // If the search keyword is empty, clear the search results and return
   if (!searchKey) {
     searchResults.value = [];
     return;
   }
 
-  // 使用搜索关键词创建正则表达式
+  // Create a regular expression using search keywords
   const reg = createSearchReg(searchKey);
 
-  // 初始化结果数组
+  // Initialize the result array
   const results: MenuRecordRaw[] = [];
 
-  // 遍历搜索项
+  // Loop through search terms
   traverseTreeValues(searchItems.value, (item) => {
-    // 如果菜单项的名称匹配正则表达式，将其添加到结果数组中
+    // If the menu item's name matches the regular expression, add it to the result array
     if (reg.test(item.name?.toLowerCase())) {
       results.push(item);
     }
   });
 
-  // 更新搜索结果
+  // Update search results
   searchResults.value = results;
 
-  // 如果有搜索结果，设置索引为 0
+  // If there are search results, set the index to 0
   if (results.length > 0) {
     activeIndex.value = 0;
   }
 
-  // 赋值索引为 0
+  // Assign the index to 0
   activeIndex.value = 0;
 }
 
@@ -155,7 +155,7 @@ function removeItem(index: number) {
   scrollIntoView();
 }
 
-// 存储所有需要转义的特殊字符
+// Store all special characters that need to be escaped
 const code = new Set([
   '$',
   '(',
@@ -173,20 +173,20 @@ const code = new Set([
   '}',
 ]);
 
-// 转换函数，用于转义特殊字符
+// Conversion function, used to escape special characters
 function transform(c: string) {
-  // 如果字符在特殊字符列表中，返回转义后的字符
-  // 如果不在，返回字符本身
+  // If the character is in the special character list, return the escaped character
+  // If not, return the character itself
   return code.has(c) ? `\\${c}` : c;
 }
 
-// 创建搜索正则表达式
+// Create search regular expression
 function createSearchReg(key: string) {
-  // 将输入的字符串拆分为单个字符
-  // 对每个字符进行转义
-  // 然后用'.*'连接所有字符，创建正则表达式
+  // Split the input string into individual characters
+  // Escape each character
+  // Then use '.*' to connect all characters to create a regular expression
   const keys = [...key].map((item) => transform(item)).join('.*');
-  // 返回创建的正则表达式
+  // Return the created regular expression
   return new RegExp(`.*${keys}.*`);
 }
 
@@ -224,7 +224,7 @@ onMounted(() => {
 <template>
   <VbenScrollbar>
     <div class="!flex h-full justify-center px-2 sm:max-h-[450px]">
-      <!-- 无搜索结果 -->
+      <!-- No search results -->
       <div
         v-if="keyword && searchResults.length === 0"
         class="text-muted-foreground text-center"
@@ -237,7 +237,7 @@ onMounted(() => {
           </span>
         </p>
       </div>
-      <!-- 历史搜索记录 & 没有搜索结果 -->
+      <!-- Historical search records & no search results -->
       <div
         v-if="!keyword && searchResults.length === 0"
         class="text-muted-foreground text-center"

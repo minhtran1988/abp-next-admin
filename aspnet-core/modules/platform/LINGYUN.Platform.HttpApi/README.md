@@ -1,30 +1,30 @@
 # LINGYUN.Platform.HttpApi
 
-平台管理模块的HTTP API层，提供了RESTful风格的API接口。
+The HTTP API layer of the platform management module provides a RESTful style API interface.
 
-## 功能特性
+## Features
 
-* 菜单管理API
-  * 获取当前用户菜单
-  * 获取用户菜单列表
-  * 获取角色菜单列表
-  * 菜单CRUD操作
-  * 用户收藏菜单管理
+* Menu management API
+  * Get the current user menu
+  * Get user menu list
+  * Get character menu list
+  * Menu CRUD operation
+  * User favorite menu management
 
-* 布局管理API
-  * 布局CRUD操作
-  * 获取所有布局列表
+* Layout management API
+  * Layout CRUD operations
+  * Get a list of all layouts
 
-* 数据字典API
-  * 数据字典CRUD操作
-  * 数据字典项管理
+* Data Dictionary API
+  * Data dictionary CRUD operations
+  * Data dictionary item management
 
-* 包管理API
-  * 包CRUD操作
-  * 包文件上传下载
-  * 获取最新版本包
+* Package management API
+  * Includes CRUD operations
+  * Package file upload and download
+  * Get the latest version package
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(PlatformHttpApiModule))]
@@ -34,29 +34,29 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API控制器
+## API Controller
 
-* `MenuController`: 菜单管理控制器
-  * `GET /api/platform/menus/by-current-user`: 获取当前用户菜单
-  * `GET /api/platform/menus/by-user`: 获取指定用户菜单
-  * `GET /api/platform/menus/by-role`: 获取角色菜单
-  * `POST /api/platform/menus`: 创建菜单
-  * `PUT /api/platform/menus/{id}`: 更新菜单
-  * `DELETE /api/platform/menus/{id}`: 删除菜单
+* `MenuController`: menu management controller
+  * `GET /api/platform/menus/by-current-user`: Get the current user menu
+  * `GET /api/platform/menus/by-user`: Get the specified user menu
+  * `GET /api/platform/menus/by-role`: Get the role menu
+  * `POST /api/platform/menus`: Create menu
+  * `PUT /api/platform/menus/{id}`: update menu
+  * `DELETE /api/platform/menus/{id}`: delete menu
 
-* `UserFavoriteMenuController`: 用户收藏菜单控制器
-  * `GET /api/platform/menus/favorites/my-favorite-menus`: 获取我的收藏菜单
-  * `POST /api/platform/menus/favorites/my-favorite-menus`: 创建收藏菜单
-  * `PUT /api/platform/menus/favorites/my-favorite-menus/{MenuId}`: 更新收藏菜单
-  * `DELETE /api/platform/menus/favorites/my-favorite-menus`: 删除收藏菜单
+* `UserFavoriteMenuController`: User favorite menu controller
+  * `GET /api/platform/menus/favorites/my-favorite-menus`: Get my favorite menu
+  * `POST /api/platform/menus/favorites/my-favorite-menus`: Create a favorite menu
+  * `PUT /api/platform/menus/favorites/my-favorite-menus/{MenuId}`: Update favorite menu
+  * `DELETE /api/platform/menus/favorites/my-favorite-menus`: delete favorite menu
 
-* `PackageController`: 包管理控制器
-  * `GET /api/platform/packages/{Name}/latest`: 获取最新版本包
-  * `POST /api/platform/packages/{id}/blob`: 上传包文件
-  * `GET /api/platform/packages/{id}/blob/{Name}`: 下载包文件
-  * `DELETE /api/platform/packages/{id}/blob/{Name}`: 删除包文件
+* `PackageController`: package management controller
+  * `GET /api/platform/packages/{Name}/latest`: Get the latest version package
+  * `POST /api/platform/packages/{id}/blob`: Upload package file
+  * `GET /api/platform/packages/{id}/blob/{Name}`: Download package file
+  * `DELETE /api/platform/packages/{id}/blob/{Name}`: Delete package files
 
-## 配置项
+## Configuration items
 
 ```json
 {
@@ -66,6 +66,6 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 更多
+## More
 
-更多信息请参考 [Platform](../README.md)
+For more information please refer to [Platform](../README.md)

@@ -15,12 +15,12 @@ defineOptions({ name: 'Fallback404Demo' });
 const authStore = useAuthStore();
 const { push } = useRouter();
 
-// 返回首页
+// Return to home page
 function back() {
   push(preferences.app.defaultHomePath);
 }
 
-// 退出登录
+// Log out
 function logout() {
   Modal.confirm({
     centered: true,

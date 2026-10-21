@@ -15,19 +15,19 @@ const tabsValue = ref<string>('basic');
 
 const tabs = ref([
   {
-    label: '基本设置',
+    label: 'Basic settings',
     value: 'basic',
   },
   {
-    label: '安全设置',
+    label: 'security settings',
     value: 'security',
   },
   {
-    label: '修改密码',
+    label: 'Change password',
     value: 'password',
   },
   {
-    label: '新消息提醒',
+    label: 'New message reminder',
     value: 'notice',
   },
 ]);
@@ -35,7 +35,7 @@ const tabs = ref([
 <template>
   <Profile
     v-model:model-value="tabsValue"
-    title="个人中心"
+    title="Personal Center"
     :user-info="userStore.userInfo"
     :tabs="tabs"
   >

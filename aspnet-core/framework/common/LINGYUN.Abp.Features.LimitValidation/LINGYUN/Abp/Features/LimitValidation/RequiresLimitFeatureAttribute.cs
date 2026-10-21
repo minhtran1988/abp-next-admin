@@ -5,32 +5,32 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Features.LimitValidation;
 
 /// <summary>
-/// 单个功能的调用量限制
+/// Limit on the number of calls to a single function
 /// </summary>
 /// <remarks>
-/// 需要对于限制时长和限制上限功能区分,以便于更细粒度的限制
+/// It is necessary to distinguish between the limit duration and limit upper limit functions to facilitate more fine-grained restrictions.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
 public class RequiresLimitFeatureAttribute : Attribute
 {
     /// <summary>
-    /// 功能限制策略
+    /// Function restriction strategy
     /// </summary>
     public LimitPolicy Policy { get; }
     /// <summary>
-    /// 默认限制时长
+    /// Default limit duration
     /// </summary>
     public int DefaultLimit { get; }
     /// <summary>
-    /// 限制上限名称
+    /// Limit upper limit name
     /// </summary>
     public string LimitFeature { get; }
     /// <summary>
-    /// 默认限制时长
+    /// Default limit duration
     /// </summary>
     public int DefaultInterval { get; }
     /// <summary>
-    /// 限制时长名称
+    /// Limit duration name
     /// </summary>
     public string IntervalFeature { get; }
 

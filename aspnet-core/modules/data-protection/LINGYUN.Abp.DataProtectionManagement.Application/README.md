@@ -1,39 +1,39 @@
 # LINGYUN.Abp.DataProtectionManagement.Application
 
-数据权限管理应用服务模块，提供数据权限管理的应用服务实现。
+The data rights management application service module provides application service implementation of data rights management.
 
-## 功能
+## Function
 
-* 数据权限管理应用服务
-  * 创建数据权限
-  * 更新数据权限
-  * 删除数据权限
-  * 查询数据权限
-* 自动映射配置
-* 权限验证
+* Data rights management application service
+  * Create data permissions
+  * Update data permissions
+  * Delete data permission
+  * Query data permissions
+* Automatic mapping configuration
+* Permission verification
 
-## 应用服务实现
+## Application service implementation
 
-* `DataProtectionAppService` - 数据权限应用服务
-  * 实现 `IDataProtectionAppService` 接口
-  * 提供数据权限的CRUD操作
-  * 包含权限验证
-  * 包含数据验证
+* `DataProtectionAppService` - Data permission application service
+  * Implement the `IDataProtectionAppService` interface
+  * Provide CRUD operations for data permissions
+  * Contains permission verification
+  * Contains data validation
 
-## 自动映射配置
+## Automatic mapping configuration
 
-* `DataProtectionManagementApplicationAutoMapperProfile` - 自动映射配置文件
+* `DataProtectionManagementApplicationAutoMapperProfile` - automatic mapping configuration file
   * `DataProtection` -> `DataProtectionDto`
   * `DataProtectionCreateDto` -> `DataProtection`
   * `DataProtectionUpdateDto` -> `DataProtection`
 
-## 权限验证
+## Permission verification
 
-* 创建数据权限需要 `DataProtectionManagement.DataProtection.Create` 权限
-* 更新数据权限需要 `DataProtectionManagement.DataProtection.Update` 权限
-* 删除数据权限需要 `DataProtectionManagement.DataProtection.Delete` 权限
-* 查询数据权限需要 `DataProtectionManagement.DataProtection` 权限
+* Creating data permissions requires the `DataProtectionManagement.DataProtection.Create` permission
+*Updating data permission requires `DataProtectionManagement.DataProtection.Update` permission
+* Delete data permission requires `DataProtectionManagement.DataProtection.Delete` permission
+* Querying data permission requires `DataProtectionManagement.DataProtection` permission
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

@@ -1,13 +1,13 @@
-# 外部模块
+#External modules
 
-除了项目默认引入的外部模块，有时我们还需要引入其他外部模块。我们以 [ant-design-vue](https://antdv.com/components/overview) 为例：
+In addition to the external modules introduced by default in the project, sometimes we need to introduce other external modules. Let’s take [ant-design-vue](https://antdv.com/components/overview) as an example:
 
-## 安装依赖
+## Install dependencies
 
-::: tip 安装依赖到指定包
+::: tip Install dependencies to the specified package
 
-- 由于项目采用了 [pnpm](https://pnpm.io/) 作为包管理工具，所以我们需要使用 `pnpm` 命令来安装依赖。
-- 通过采用了 Monorepo 模块来管理项目，所以我们需要在指定包下安装依赖。安装依赖前请确保已经进入到指定包目录下。
+- Since the project uses [pnpm](https://pnpm.io/) as the package management tool, we need to use the `pnpm` command to install dependencies.
+- The Monorepo module is used to manage projects, so we need to install dependencies under the specified package. Please make sure you have entered the specified package directory before installing dependencies.
 
 :::
 
@@ -16,9 +16,9 @@
 pnpm add ant-design-vue
 ```
 
-## 使用
+## Use
 
-### 全局引入
+### Global introduction
 
 ```ts
 import { createApp } from 'vue';
@@ -31,7 +31,7 @@ const app = createApp(App);
 app.use(Antd).mount('#app');
 ```
 
-#### 使用
+#### Use
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ app.use(Antd).mount('#app');
 </template>
 ```
 
-### 局部引入
+### Local introduction
 
 ```vue
 <script setup lang="ts">
@@ -51,8 +51,8 @@ import { Button } from 'ant-design-vue';
 </template>
 ```
 
-::: warning 注意
+::: warning note
 
-- 如果组件有依赖样式，则需要再引入样式文件
+- If the component has dependent styles, you need to introduce the style file again
 
 :::

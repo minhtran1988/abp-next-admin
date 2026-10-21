@@ -8,7 +8,7 @@ namespace LINGYUN.Abp.Elasticsearch;
 public partial class ExpressionQueryTranslator
 {
     /// <summary>
-    /// 翻译 Enumerable 方法
+    /// Translate Enumerable methods
     /// </summary>
     private Query TranslateEnumerableMethod(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -29,7 +29,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 Enumerable.Any
+    /// Translation Enumerable.Any
     /// </summary>
     private Query TranslateEnumerableAny(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -38,7 +38,7 @@ public partial class ExpressionQueryTranslator
         Query inner;
         if (node.Arguments.Count == 1)
         {
-            // .Any() 检查集合是否存在
+            // .Any() checks whether the collection exists
             inner = new ExistsQuery { Field = collectionField.Path };
         }
         else
@@ -56,7 +56,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 Enumerable.Contains
+    /// Translation Enumerable.Contains
     /// </summary>
     private Query TranslateEnumerableContains(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -83,7 +83,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 Enumerable.All
+    /// Translation Enumerable.All
     /// </summary>
     private Query TranslateEnumerableAll(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {

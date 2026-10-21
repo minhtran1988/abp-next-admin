@@ -195,7 +195,7 @@ async function onInit() {
   }
   const dto = await getApi(editMenu!.id);
   await basicFormApi.setValues(dto);
-  // 编辑模式无需使用前缀
+  // No need to use prefix in edit mode
   await onParentIdChange(undefined);
   onInitMetaFormValues(dto.meta);
   drawerApi.setState({ title: `${$t('AppPlatform.Menu:Edit')} - ${dto.name}` });
@@ -305,7 +305,7 @@ function onInitMetaFormSchemas() {
           break;
         }
         case ValueType.String: {
-          // 约定名称包含icon时使用IconPicker组件
+          // Use the IconPicker component when the agreed name contains icon
           const itemNameLowerCase = dataItem.name.toLocaleLowerCase();
           if (itemNameLowerCase.includes('icon')) {
             component = 'IconPicker';

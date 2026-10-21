@@ -9,7 +9,7 @@ defineOptions({ name: 'FullScreen' });
 
 const { isFullscreen, toggle } = useFullscreen();
 
-// 重新检查全屏状态
+// Recheck full screen status
 isFullscreen.value = !!(
   document.fullscreenElement ||
   // @ts-ignore

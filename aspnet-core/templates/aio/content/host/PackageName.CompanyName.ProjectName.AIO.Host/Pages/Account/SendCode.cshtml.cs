@@ -100,7 +100,7 @@ namespace PackageName.CompanyName.ProjectName.AIO.Host.Pages.Account
                 var templateCode = await SettingProvider.GetOrNullAsync(IdentitySettingNames.User.SmsUserSignin);
                 Check.NotNullOrWhiteSpace(templateCode, nameof(IdentitySettingNames.User.SmsUserSignin));
 
-                // TODO: �Ժ���չ����ģ�巢��
+                // TODO: �պ���չ����ģ� Nest��
                 var smsMessage = new SmsMessage(phoneNumber, code);
                 smsMessage.Properties.Add("code", code);
                 smsMessage.Properties.Add("TemplateCode", templateCode);

@@ -7,117 +7,117 @@ namespace LINGYUN.Abp.BackgroundTasks;
 public class AbpBackgroundTasksOptions
 {
     /// <summary>
-    /// 作业异常类型转换
+    /// Job exception type conversion
     /// </summary>
     public IDictionary<string, JobExceptionType> ErrorCodeToExceptionTypeMappings { get; }
     /// <summary>
-    /// 任务监听类型列表
+    /// Task monitoring type list
     /// </summary>
     /// <remarks>
-    /// 用户可以实现事件监听实现自定义逻辑
+    /// Users can implement event monitoring to implement custom logic
     /// </remarks>
     public ITypeList<IJobEvent> JobMonitors { get; }
     /// <summary>
-    /// 作业提供者列表
+    /// Job provider list
     /// </summary>
     /// <remarks>
-    /// 用户实现的作业可以添加在集合中
+    /// User-implemented jobs can be added to the collection
     /// </remarks>
     public ITypeList<IJobDefinitionProvider> DefinitionProviders { get; }
     /// <summary>
-    /// 作业发布预配置
+    /// Job release pre-configuration
     /// </summary>
     /// <remarks>
     /// Tips: <br />
-    /// 仅作用于适用于 IBackgroundJobManager与IBackgroundWorker 适配器接口的作业预配置
+    /// Only applies to job preconfiguration applicable to the IBackgroundJobManager and IBackgroundWorker adapter interfaces
     /// <br />
-    /// <see cref="IJobRunnable"/> 标准实现的作业参数请通过接口直接管理
+    /// <see cref="IJobRunnable"/> Please manage the job parameters of standard implementation directly through the interface.
     /// </remarks>
     public IJobDispatcherSelectorList JobDispatcherSelectors { get; }
     /// <summary>
-    /// 启用清理任务
+    /// Enable cleanup tasks
     /// </summary>
     /// <remarks>
-    /// 主节点启用
+    /// Master node enabled
     /// </remarks>
     public bool JobCleanEnabled { get; set; }
     /// <summary>
-    /// 任务过期时间
-    /// 默认: 15 days
+    /// Task expiration time
+    /// Default: 15 days
     /// </summary>
     /// <remarks>
-    /// 任务过期时间,超出时间段清理
+    /// Task expiration time, clean up after exceeding the time period
     /// </remarks>
     public TimeSpan JobExpiratime { get; set; }
     /// <summary>
-    /// 每次清理任务批次大小
-    /// 默认: 1000
+    /// Batch size of each cleaning task
+    /// Default: 1000
     /// </summary>
     public int MaxJobCleanCount { get; set; }
     /// <summary>
-    /// 清理过期任务批次Cron表达式
-    /// 默认: 600秒（0 0/10 * * * ? * ）
+    /// Clean up expired task batch Cron expression
+    /// Default: 600 seconds (0 0/10 * * * ? * )
     /// </summary>
     /// <remarks>
-    /// Cron表达式
+    /// Cron expression
     /// </remarks>
     public string JobCleanCronExpression { get; set; }
     /// <summary>
-    /// 启用轮询任务
+    /// Enable polling task
     /// </summary>
     /// <remarks>
-    /// 主节点启用
+    /// Master node enabled
     /// </remarks>
     public bool JobFetchEnabled { get; set; }
     /// <summary>
-    /// 每次轮询任务批次大小
-    /// 默认: 1000
+    /// Each polling task batch size
+    /// Default: 1000
     /// </summary>
     public int MaxJobFetchCount { get; set; }
     /// <summary>
-    /// 轮询任务批次Cron表达式
-    /// 默认: 30秒（0/30 * * * * ? ）
+    /// Polling task batch Cron expression
+    /// Default: 30 seconds (0/30 * * * * ? )
     /// </summary>
     /// <remarks>
-    /// Cron表达式
+    /// Cron expression
     /// </remarks>
     public string JobFetchCronExpression { get; set; }
     /// <summary>
-    /// 轮询任务批次时锁定任务超时时长（秒）
-    /// 默认：120
+    /// Lock task timeout (seconds) when polling task batches
+    /// Default: 120
     /// </summary>
     /// <remarks>
-    /// 轮询任务也属于一个后台任务, 需要对每一次轮询加锁，防止重复任务入库
+    /// The polling task is also a background task, and each polling needs to be locked to prevent repeated tasks from being stored in the database.
     /// </remarks>
     public int JobFetchLockTimeOut { get; set; }
 
     /// <summary>
-    /// 启用检查任务
+    /// Enable inspection tasks
     /// </summary>
     /// <remarks>
-    /// 主节点启用
+    /// Master node enabled
     /// </remarks>
     public bool JobCheckEnabled { get; set; }
     /// <summary>
-    /// 每次检查任务批次大小
-    /// 默认: 100
+    /// Check the task batch size each time
+    /// Default: 100
     /// </summary>
     public int MaxJobCheckCount { get; set; }
     /// <summary>
-    /// 检查任务批次Cron表达式
-    /// 默认: 每2小时执行一次（0 0 0/2 * * ? ）
+    /// Check task batch Cron expression
+    /// Default: Execute every 2 hours (0 0 0/2 * * ? )
     /// </summary>
     /// <remarks>
-    /// Cron表达式
+    /// Cron expression
     /// </remarks>
     public string JobCheckCronExpression { get; set; }
     /// <summary>
-    /// 检查任务批次时锁定任务超时时长（秒）
-    /// 默认：120
+    /// Lock task timeout (seconds) when checking task batches
+    /// Default: 120
     /// </summary>
     public int JobCheckLockTimeOut { get; set; }
     /// <summary>
-    /// 指定运行节点
+    /// Specify the running node
     /// </summary>
     public string? NodeName { get; set; }
     public AbpBackgroundTasksOptions()

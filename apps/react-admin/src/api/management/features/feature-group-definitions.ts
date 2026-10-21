@@ -10,26 +10,26 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 删除功能定义
- * @param name 功能名称
+ * Delete function definition
+ * @param name function name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/feature-management/definitions/groups/${name}`);
 }
 
 /**
- * 查询功能定义
- * @param name 功能名称
- * @returns 功能定义数据传输对象
+ * Query function definition
+ * @param name function name
+ * @returns function definition data transfer object
  */
 export function getApi(name: string): Promise<FeatureGroupDefinitionDto> {
 	return requestClient.get<FeatureGroupDefinitionDto>(`/api/feature-management/definitions/groups/${name}`);
 }
 
 /**
- * 查询功能定义列表
- * @param input 功能过滤条件
- * @returns 功能定义数据传输对象列表
+ * Query function definition list
+ * @param input function filter conditions
+ * @returns function definition data transfer object list
  */
 export function getListApi(
 	input?: FeatureGroupDefinitionGetListInput,
@@ -40,19 +40,19 @@ export function getListApi(
 }
 
 /**
- * 创建功能定义
- * @param input 功能定义参数
- * @returns 功能定义数据传输对象
+ * Create function definition
+ * @param input function definition parameters
+ * @returns function definition data transfer object
  */
 export function createApi(input: FeatureGroupDefinitionCreateDto): Promise<FeatureGroupDefinitionDto> {
 	return requestClient.post<FeatureGroupDefinitionDto>("/api/feature-management/definitions/groups", input);
 }
 
 /**
- * 更新功能定义
- * @param name 功能名称
- * @param input 功能定义参数
- * @returns 功能定义数据传输对象
+ * Update function definition
+ * @param name function name
+ * @param input function definition parameters
+ * @returns function definition data transfer object
  */
 export function updateApi(name: string, input: FeatureGroupDefinitionUpdateDto): Promise<FeatureGroupDefinitionDto> {
 	return requestClient.put<FeatureGroupDefinitionDto>(`/api/feature-management/definitions/groups/${name}`, input);

@@ -5,37 +5,37 @@ import { $t } from '@vben/locales';
 export function useOAuthError() {
   function formatError(error: OAuthError) {
     switch (error.error_description) {
-      // 用户名或密码无效
+      // Invalid username or password
       case 'Invalid username or password!': {
         return $t('abp.oauth.errors.invalidUserNameOrPassword');
       }
-      // 需要更改密码
+      // Need to change password
       case 'PeriodicallyChangePassword':
       case 'ShouldChangePasswordOnNextLogin': {
         return $t('abp.oauth.errors.shouldChangePassword');
       }
-      // 需要二次认证
+      // requires secondary authentication
       case 'RequiresTwoFactor': {
         return $t('abp.oauth.errors.requiresTwoFactor');
       }
-      // 用户拒绝授权
+      // User refuses authorization
       case 'The authorization was denied by the end user.': {
         return $t('abp.oauth.errors.accessDenied');
       }
-      // Token已失效
+      // Token has expired
       case 'The token is no longer valid.':
       case 'The user is no longer allowed to sign in.': {
         return $t('abp.oauth.errors.tokenHasExpired');
       }
-      // 用户尝试登录次数太多,用户被锁定
+      // The user attempts to log in too many times and the user is locked out
       case 'The user account has been locked out due to invalid login attempts. Please wait a while and try again.': {
         return $t('abp.oauth.errors.accountLockedByInvalidLoginAttempts');
       }
-      // 用户未启用
+      // User is not enabled
       case 'You are not allowed to login! Your account is inactive.': {
         return $t('abp.oauth.errors.accountInactive');
       }
-      // 其他不常用的错误信息返回原始字符串
+      // Other uncommon error messages return the original string
       default: {
         return error.error_description;
       }

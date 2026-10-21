@@ -1,10 +1,10 @@
-/** 模板定义权限 */
+/** Template definition permissions */
 export const TextTemplatePermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpTextTemplating.TextTemplateDefinitions.Create",
 	Default: "AbpTextTemplating.TextTemplateDefinitions",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpTextTemplating.TextTemplateDefinitions.Delete",
-	/** 更新 */
+	/** Update */
 	Update: "AbpTextTemplating.TextTemplateDefinitions.Update",
 };

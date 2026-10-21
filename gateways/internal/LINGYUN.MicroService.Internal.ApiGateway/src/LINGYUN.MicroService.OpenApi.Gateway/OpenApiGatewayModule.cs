@@ -52,7 +52,7 @@ public class OpenApiGatewayModule : AbpModule
 
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别
+            // Difference by open port
             options.SnowflakeIdOptions.WorkerId = 0;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -91,7 +91,7 @@ public class OpenApiGatewayModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
         });
 
         context.Services.AddAbpSwaggerGenWithOAuth(
@@ -188,13 +188,13 @@ public class OpenApiGatewayModule : AbpModule
         app.UseCors();
 
         app.UseMapRequestLocalization();
-        // api签名
+        // api signature
         app.UseOpenApiAuthorization();
-        // 认证
+        // Authentication
         app.UseAuthentication();
-        // 令牌
+        // token
         app.UseDynamicClaims();
-        // 授权
+        // Authorize
         app.UseAuthorization();
 
         app.UseSwagger();

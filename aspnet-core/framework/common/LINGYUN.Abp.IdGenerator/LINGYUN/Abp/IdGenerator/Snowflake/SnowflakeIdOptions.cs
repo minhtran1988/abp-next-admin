@@ -3,29 +3,29 @@
 public class SnowflakeIdOptions
 {
     /// <summary>
-    /// 机器Id
+    /// Machine ID
     /// </summary>
     public int WorkerId { get; set; }
     /// <summary>
-    /// 机器Id长度
+    /// Machine ID length
     /// </summary>
     public int WorkerIdBits { get; set; }
     /// <summary>
-    /// 数据中心Id
+    /// Data center ID
     /// </summary>
     public int DatacenterId { get; set; }
     /// <summary>
-    /// 数据中心Id长度
+    /// Data center ID length
     /// </summary>
     public int DatacenterIdBits { get; set; }
     /// <summary>
-    /// 12bit 的序号
+    /// 12bit serial number
     /// </summary>
     public long Sequence { get; set; }
 
     public int SequenceBits { get; set; }
     /// <summary>
-    /// 发生时间回退时使用上一个ID
+    /// Use the previous ID when time rollback occurs
     /// </summary>
     public bool UsePreviousInTimeRollback { get; set; }
 

@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Webhooks.EventBus
 
-Webhook事件总线集成模块，提供与ABP事件总线的集成支持。
+Webhook event bus integration module provides integration support with the ABP event bus.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 支持将Webhook事件发布到事件总线
-* 与ABP事件总线无缝集成
-* 支持分布式事件总线
+* Support publishing Webhook events to the event bus
+* Seamless integration with ABP event bus
+* Support distributed event bus
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksEventBusModule))]
@@ -20,9 +20,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 定义Webhook事件处理器
+1. Define Webhook event handler
 ```csharp
 public class YourWebhookEventHandler : 
     IDistributedEventHandler<WebhookEventData>,
@@ -30,12 +30,12 @@ public class YourWebhookEventHandler :
 {
     public async Task HandleEventAsync(WebhookEventData eventData)
     {
-        // 处理webhook事件
+        // Handle webhook events
     }
 }
 ```
 
-2. 发布Webhook事件
+2. Publish Webhook events
 ```csharp
 public class YourService
 {

@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Account.Web.AliyunCaptcha
 
-阿里云验证码组件集成模块,可使用阿里云验证码能力  
+Alibaba Cloud verification code component integration module, which can use Alibaba Cloud verification code capabilities
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAccountWebAliyunCaptchaModule))]
@@ -12,25 +12,25 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 注意事项
+## Notes
 
-` 请在启动项目或系统设置中配置阿里云相关参数,否则造成登录页验证码组件无法加载  
+` Please configure Alibaba Cloud related parameters in the startup project or system settings, otherwise the login page verification code component cannot be loaded.
 
-*	Abp.Aliyun.Authorization.RegionId      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.AccessKeyId      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.AccessKeySecret      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.UseSecurityTokenService      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.RamRoleArn      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.RoleSessionName      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.DurationSeconds      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Authorization.Policy      阿里云访问控制相关配置,具体参考AbpAliyunModule模块
-*	Abp.Aliyun.Captcha.SceneId     验证码场景的唯一标识, 需加密
-*	Abp.Aliyun.Captcha.Prefix     控制台获取的身份标, 需加密
-*	Abp.Aliyun.Captcha.UseEncryptedSceneId    使用加密验证码场景标识
-*	Abp.Aliyun.Captcha.EKey    控制台获取的ekey, 需加密
-*	Abp.Aliyun.Captcha.EncryptedExpireTimeSec   密文过期时间，单位秒，范围 1~86400
+* Abp.Aliyun.Authorization.RegionId Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.AccessKeyId Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.AccessKeySecret Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.UseSecurityTokenService Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.RamRoleArn Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.RoleSessionName Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.DurationSeconds Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Authorization.Policy Alibaba Cloud access control related configuration, please refer to the AbpAliyunModule module for details
+* Abp.Aliyun.Captcha.SceneId The unique identifier of the verification code scene, which needs to be encrypted
+* Abp.Aliyun.Captcha.Prefix The identity obtained by the console needs to be encrypted
+* Abp.Aliyun.Captcha.UseEncryptedSceneId Use encrypted verification code scene identification
+* Abp.Aliyun.Captcha.EKey The ekey obtained by the console needs to be encrypted
+* Abp.Aliyun.Captcha.EncryptedExpireTimeSec ciphertext expiration time, unit seconds, range 1~86400
 
-示例配置：
+Example configuration:
 
 ```json
 {

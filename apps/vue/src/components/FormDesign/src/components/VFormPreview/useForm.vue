@@ -1,14 +1,14 @@
 <!--
- * @Description: 使用vbenForm的功能进行渲染
+ * @Description: Use vbenForm functions for rendering
 -->
 <template>
   <Modal
-    title="预览(不支持布局)"
+    title="Preview (layout not supported)"
     :visible="state.visible"
     @ok="handleGetData"
     @cancel="handleCancel"
-    okText="获取数据"
-    cancelText="关闭"
+    okText="Get data"
+    cancelText="Close"
     style="top: 20px"
     :destroyOnClose="true"
     :width="900"
@@ -41,20 +41,20 @@
     } as Recordable;
   });
   /**
-   * 显示Json数据弹框
+   * Display Json data pop-up box
    * @param jsonData
    */
   const showModal = (jsonData: IFormConfig) => {
     state.formConfig = jsonData;
     state.visible = true;
   };
-  //表单
+  // form
   const [registerForm, { validate }] = useForm();
   const handleCancel = () => {
     state.visible = false;
   };
   /**
-   * 获取表单数据
+   * Get form data
    * @return {Promise<void>}
    */
   const handleGetData = async () => {

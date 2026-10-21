@@ -25,25 +25,25 @@ async function generateAccessible(
   const { router } = options;
 
   options.routes = cloneDeep(options.routes);
-  // 生成路由
+  // Generate route
   const accessibleRoutes = await generateRoutes(mode, options);
 
   const root = router.getRoutes().find((item) => item.path === '/');
 
-  // 获取已有的路由名称列表
+  // Get the list of existing route names
   const names = root?.children?.map((item) => item.name) ?? [];
 
-  // 动态添加到router实例内
+  // Dynamically added to the router instance
   accessibleRoutes.forEach((route) => {
     if (root && !route.meta?.noBasicLayout) {
-      // 为了兼容之前的版本用法，如果包含子路由，则将component移除，以免出现多层BasicLayout
-      // 如果你的项目已经跟进了本次修改，移除了所有自定义菜单首级的BasicLayout，可以将这段if代码删除
+      // In order to be compatible with the previous version usage, if it contains sub-routes, remove the component to avoid multi-layer BasicLayout
+      // If your project has followed this modification and removed the BasicLayout at the first level of all custom menus, you can delete this if code
       if (route.children && route.children.length > 0) {
         delete route.component;
       }
-      // 根据router name判断，如果路由已经存在，则不再添加
+      // Based on the router name, if the route already exists, it will not be added again.
       if (names?.includes(route.name)) {
-        // 找到已存在的路由索引并更新，不更新会造成切换用户时，一级目录未更新，homePath 在二级目录导致的404问题
+        // Find the existing routing index and update it. Failure to update will cause 404 problems caused by the first-level directory not being updated when switching users, and homePath being in the second-level directory.
         const index = root.children?.findIndex(
           (item) => item.name === route.name,
         );
@@ -65,7 +65,7 @@ async function generateAccessible(
     router.addRoute(root);
   }
 
-  // 生成菜单
+  // Generate menu
   const accessibleMenus = generateMenus(accessibleRoutes, options.router);
 
   return { accessibleMenus, accessibleRoutes };
@@ -108,12 +108,12 @@ async function generateRoutes(
   }
 
   /**
-   * 调整路由树，做以下处理：
-   * 1. 对未添加redirect的路由添加redirect
-   * 2. 将懒加载的组件名称修改为当前路由的名称（如果启用了keep-alive的话）
+   * Adjust the routing tree and do the following:
+   * 1. Add redirect to routes that have not been redirected
+   * 2. Change the name of the lazy loaded component to the name of the current route (if keep-alive is enabled)
    */
   resultRoutes = mapTree(resultRoutes, (route) => {
-    // 重新包装component，使用与路由名称相同的name以支持keep-alive的条件缓存。
+    // Repackage the component and use the same name as the route name to support keep-alive conditional caching.
     if (
       route.meta?.keepAlive &&
       isFunction(route.component) &&
@@ -135,13 +135,13 @@ async function generateRoutes(
       };
     }
 
-    // 如果有redirect或者没有子路由，则直接返回
+    // If there is a redirect or no sub-route, return directly
     if (route.redirect || !route.children || route.children.length === 0) {
       return route;
     }
     const firstChild = route.children[0];
 
-    // 如果子路由不是以/开头，则直接返回,这种情况需要计算全部父级的path才能得出正确的path，这里不做处理
+    // If the child route does not start with /, return directly. In this case, you need to calculate the paths of all parents to get the correct path, which is not processed here.
     if (!firstChild?.path || !firstChild.path.startsWith('/')) {
       return route;
     }

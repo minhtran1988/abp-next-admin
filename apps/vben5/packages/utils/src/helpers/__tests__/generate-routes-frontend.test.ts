@@ -7,7 +7,7 @@ import {
   hasAuthority,
 } from '../generate-routes-frontend';
 
-// Mock 路由数据
+// Mock routing data
 const mockRoutes = [
   {
     meta: {

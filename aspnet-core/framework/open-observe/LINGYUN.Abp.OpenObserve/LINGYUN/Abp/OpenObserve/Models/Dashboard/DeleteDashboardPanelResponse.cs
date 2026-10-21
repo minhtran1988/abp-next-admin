@@ -4,18 +4,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Dashboard;
 
 /// <summary>
-/// 删除仪表盘面板响应
+/// Delete dashboard panel response
 /// </summary>
 public class DeleteDashboardPanelResponse
 {
     /// <summary>
-    /// 新的仪表盘哈希
+    /// New dashboard hash
     /// </summary>
     [JsonPropertyName("hash")]
     public string? Hash { get; set; }
 
     /// <summary>
-    /// 已删除的面板标识
+    /// Deleted panel identifier
     /// </summary>
     [JsonPropertyName("panelId")]
     public string? PanelId { get; set; }

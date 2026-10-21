@@ -3,18 +3,18 @@
 namespace LINGYUN.Abp.BackgroundTasks;
 
 /// <summary>
-/// 挂载任务事件接口
+/// Mount task event interface
 /// </summary>
 public interface IJobEvent
 {
     /// <summary>
-    /// 任务启动前事件
+    /// Event before task start
     /// </summary>
     /// <param name="jobEventData"></param>
     /// <returns></returns>
     Task OnJobBeforeExecuted(JobEventContext context);
     /// <summary>
-    /// 任务完成后事件
+    /// Event after task completion
     /// </summary>
     /// <param name="jobEventData"></param>
     /// <returns></returns>

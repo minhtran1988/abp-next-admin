@@ -6,7 +6,7 @@ using Xunit;
 namespace LINGYUN.Abp.BlobManagement;
 
 /// <summary>
-/// 存储对象
+/// Storage object
 /// </summary>
 public class Blob_Tests : AbpBlobManagementDomainTestBase
 {
@@ -31,7 +31,7 @@ public class Blob_Tests : AbpBlobManagementDomainTestBase
     [Theory]
     [InlineData("file.txt")]
     [InlineData("file name.txt")]
-    [InlineData("目录")]
+    [InlineData("Directory")]
     [InlineData(".hidden")]
     public void Should_Allow_Legitimate_Names(string name)
     {
@@ -60,7 +60,7 @@ public class Blob_Tests : AbpBlobManagementDomainTestBase
     [Theory]
     [InlineData("/file.txt")]
     [InlineData("/folder/file.txt")]
-    [InlineData("/folder/sub/目录/文件.txt")]
+    [InlineData("/folder/sub/directory/file.txt")]
     [InlineData("/folder with space/file.txt")]
     public void Should_Allow_Legitimate_Full_Names(string fullName)
     {
@@ -88,7 +88,7 @@ public class Blob_Tests : AbpBlobManagementDomainTestBase
     }
 
     /// <summary>
-    /// 实体构造函数为 internal, 测试用子类暴露受保护构造函数
+    /// The entity constructor is internal, and the test subclass exposes the protected constructor
     /// </summary>
     private sealed class TestBlob : Blob
     {

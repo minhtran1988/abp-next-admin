@@ -136,7 +136,7 @@ function onUploadProgress(_: any, file: any) {
 
 function onUploadError(_rootFile: any, file: any, message: any, chunk: any) {
   if (chunk?.xhr?.status === 401) {
-    // 401 错误代码刷新页面, 由axios拦截器刷新token
+    // 401 error code refreshes the page, and the token is refreshed by the axios interceptor
     refresh();
   } else {
     file.errorMsg = message;

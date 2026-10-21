@@ -7,12 +7,12 @@ import type {
 interface EditionDto
   extends ExtensibleAuditedEntityDto<string>,
     IHasConcurrencyStamp {
-  /** 显示名称 */
+  /** display name */
   displayName: string;
 }
 
 interface EditionCreateOrUpdateBase {
-  /** 显示名称 */
+  /** display name */
   displayName: string;
 }
 

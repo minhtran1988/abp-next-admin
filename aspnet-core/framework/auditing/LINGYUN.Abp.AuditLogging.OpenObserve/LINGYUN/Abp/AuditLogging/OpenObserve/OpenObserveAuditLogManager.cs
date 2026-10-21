@@ -17,19 +17,19 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 审计日志 OpenObserve 管理器
+/// Audit log OpenObserve manager
 /// </summary>
 /// <remarks>
-/// OpenObserve 的限制与处理方式参见 <see cref="OpenObserveAuditLoggingManagerBase"/>;
-/// 实体变更与操作保存在由 AuditLogStream 计算出的独立数据流中:
-/// * <c>Actions.*</c> 条件先到操作数据流匹配出 <c>auditlogid</c>, 再回主数据流按 id 过滤(两段式查询);
-/// * <c>includeDetails</c> 时按 <c>auditlogid in (...)</c> 从子数据流装配详情。
+/// For the limitations and processing methods of OpenObserve, please refer to <see cref="OpenObserveAuditLoggingManagerBase"/>;
+/// Entity changes and operations are saved in separate data streams calculated by AuditLogStream:
+/// * <c>Actions.*</c> If the condition is reached first, the operation data stream matches <c>auditlogid</c>, and then returns to the main data stream to filter by id (two-stage query);
+/// * Assemble details from a subdataflow by pressing <c>auditlogid in (...)</c> when <c>includeDetails</c> is pressed.
 /// </remarks>
 [Dependency(ReplaceServices = true)]
 public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IAuditLogManager, ITransientDependency
 {
     /// <summary>
-    /// 表达式成员名 -> 数据流列名(数据流列名一律小写)
+    /// Expression member name -> Data flow column name (data flow column names must be lowercase)
     /// </summary>
     protected readonly static Dictionary<string, string> MapedFields = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -58,7 +58,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     };
 
     /// <summary>
-    /// 操作数据流的字段映射(Actions.* 条件在子数据流中执行)
+    /// Field mapping of operation data flow (Actions.* conditions are executed in sub-data flow)
     /// </summary>
     protected readonly static Dictionary<string, string> ActionMapedFields = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -78,7 +78,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     };
 
     /// <summary>
-    /// 操作条件前缀
+    /// Operation condition prefix
     /// </summary>
     protected const string ActionFieldPrefix = "Actions.";
 
@@ -127,7 +127,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// OpenObserve 不支持删除记录
+    /// OpenObserve does not support deleting records
     /// </summary>
     protected virtual BusinessException CreateDeleteNotSupportedException()
     {
@@ -291,7 +291,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 查询审计日志
+    /// Query audit log
     /// </summary>
     protected async virtual Task<List<AuditLog>> FindAsync(
         string condition,
@@ -311,7 +311,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 装配实体变更与操作详情
+    /// Assembly entity changes and operation details
     /// </summary>
     protected async virtual Task FillDetailsAsync(
         List<AuditLog> auditLogs,
@@ -375,7 +375,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 先在操作数据流匹配, 再返回关联的审计日志 Id(两段式查询)
+    /// First match the operation data flow, and then return the associated audit log ID (two-stage query)
     /// </summary>
     protected async virtual Task<List<string>> ResolveAuditLogIdsByActionsAsync(
         List<Condition> actionConditions,
@@ -407,7 +407,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 拆分操作条件与主数据流条件
+    /// Split operation conditions and main data flow conditions
     /// </summary>
     protected virtual (List<Condition> ActionConditions, List<Condition> OtherConditions) SplitConditions(
         List<Condition> conditions)
@@ -431,7 +431,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 构建 Id 集合条件
+    /// Construct Id collection conditions
     /// </summary>
     protected virtual string BuildIdCondition(string field, IEnumerable<string> ids)
     {
@@ -439,7 +439,7 @@ public class OpenObserveAuditLogManager : OpenObserveAuditLoggingManagerBase, IA
     }
 
     /// <summary>
-    /// 由查询参数构建条件
+    /// Construct conditions from query parameters
     /// </summary>
     protected virtual List<Condition> BuildConditions(
         string? httpMethod = null,

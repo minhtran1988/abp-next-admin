@@ -8,8 +8,8 @@ export function useLoggingsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取系统日志
-   * @param id 日志id
+   * Get system logs
+   * @param id log id
    */
   function getApi(id: string): Promise<LogDto> {
     return request<LogDto>(`/api/auditing/logging/${id}`, {
@@ -18,8 +18,8 @@ export function useLoggingsApi() {
   }
 
   /**
-   * 获取系统日志分页列表
-   * @param input 参数
+   * Get the system log paging list
+   * @param input parameter
    */
   function getPagedListApi(
     input: LogGetListInput,

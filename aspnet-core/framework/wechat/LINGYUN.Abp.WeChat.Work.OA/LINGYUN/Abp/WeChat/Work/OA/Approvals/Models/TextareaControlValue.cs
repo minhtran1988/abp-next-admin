@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 多行文本控件值
+/// Multi-line text control value
 /// </summary>
 public class TextareaControlValue : ControlValue
 {
     /// <summary>
-    /// 文本内容，在此填写文本/多行文本控件的输入值。文本控件Text内容不支持包含换行符。
+    /// Text content, fill in the input value of the text/multiline text control here. The Text content of the text control does not support line breaks.
     /// </summary>
     [NotNull]
     [JsonProperty("text")]

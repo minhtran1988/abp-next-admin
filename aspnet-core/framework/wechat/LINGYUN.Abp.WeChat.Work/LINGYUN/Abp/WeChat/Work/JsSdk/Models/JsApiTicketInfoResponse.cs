@@ -6,13 +6,13 @@ namespace LINGYUN.Abp.WeChat.Work.JsSdk.Models;
 public class JsApiTicketInfoResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 生成签名所需的 jsapi_ticket，最长为512字节
+    /// jsapi_ticket required to generate signature, up to 512 bytes
     /// </summary>
     [JsonProperty("ticket")]
     [JsonPropertyName("ticket")]
     public string Ticket { get; set; } = default!;
     /// <summary>
-    /// 凭证的有效时间（秒）
+    /// Validity time of the voucher (seconds)
     /// </summary>
     [JsonProperty("expires_in")]
     [JsonPropertyName("expires_in")]

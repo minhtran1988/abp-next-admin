@@ -98,9 +98,9 @@ public class WeChatWorkScheduleProvider_Tests : AbpWeChatWorkOATestBase
                 DateTime.Now.AddHours(2),
                 DateTime.Now.AddHours(5)));
 
-        req.Schedule.Summary = "需求评审会议";
-        req.Schedule.Description = "2.0版本需求初步评审";
-        req.Schedule.Location = "广州国际媒体港10楼1005会议室";
+        req.Schedule.Summary = "Requirements Review Meeting";
+        req.Schedule.Description = "Preliminary review of requirements for version 2.0";
+        req.Schedule.Location = "Conference Room 1005, 10th Floor, Guangzhou International Media Port";
         req.Schedule.IsWholeDay = true;
         req.Schedule.Reminders = new Models.ScheduleReminder
         {

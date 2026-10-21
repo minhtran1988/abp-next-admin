@@ -1,29 +1,29 @@
 # LINGYUN.Abp.Saas.Domain.Shared
 
-SaaS领域共享层模块，定义了租户和版本的常量、枚举、事件等共享内容。
+The shared layer module in the SaaS domain defines shared content such as constants, enumerations, and events for tenants and versions.
 
-## 功能特性
+## Features
 
-* 常量定义
-  * EditionConsts：版本相关常量
-  * TenantConsts：租户相关常量
-  * TenantConnectionStringConsts：租户连接字符串相关常量
+* Constant definition
+  * EditionConsts: version-related constants
+  * TenantConsts: Tenant related constants
+  * TenantConnectionStringConsts: Tenant connection string related constants
 
-* 枚举定义
-  * RecycleStrategy：资源回收策略
-    * Reserve：保留
-    * Recycle：回收
+* Enumeration definition
+  * RecycleStrategy: Resource recycling strategy
+    * Reserve: Reserve
+    * Recycle: recycling
 
-* 事件定义
-  * EditionEto：版本事件传输对象
-  * TenantEto：租户事件传输对象
+* Event definition
+  * EditionEto: Edition event transfer object
+  * TenantEto: Tenant event transmission object
 
-* 本地化资源
-  * 多语言支持(en/zh-Hans)
-  * 错误消息
-  * 权限描述
-  * 功能描述
+* Localized resources
+  * Multi-language support (en/zh-Hans)
+  * Error message
+  *Permission description
+  * Function description
 
-## 更多
+## More
 
 [English](README.EN.md)

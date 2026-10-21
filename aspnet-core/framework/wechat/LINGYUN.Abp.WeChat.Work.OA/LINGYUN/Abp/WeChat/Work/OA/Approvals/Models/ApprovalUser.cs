@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 审批节点关联人员
+/// Approval node associated personnel
 /// </summary>
 public class ApprovalUser
 {
     /// <summary>
-    /// 人员Id
+    /// Personnel ID
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]

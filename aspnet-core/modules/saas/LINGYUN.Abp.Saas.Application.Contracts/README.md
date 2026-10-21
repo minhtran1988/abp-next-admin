@@ -1,29 +1,29 @@
 # LINGYUN.Abp.Saas.Application.Contracts
 
-SaaS应用服务契约模块，定义了租户和版本管理的应用服务接口、DTO对象和权限定义。
+The SaaS application service contract module defines the application service interface, DTO object and permission definition for tenant and version management.
 
-## 功能特性
+## Features
 
-* 租户管理接口(ITenantAppService)
-  * 定义了租户管理的所有服务接口
-  * 包含租户相关的DTO对象定义
-  * 租户连接字符串管理接口
+* Tenant management interface (ITenantAppService)
+  * Defines all service interfaces managed by tenants
+  * Contains tenant-related DTO object definitions
+  * Tenant connection string management interface
 
-* 版本管理接口(IEditionAppService)
-  * 定义了版本管理的所有服务接口
-  * 包含版本相关的DTO对象定义
+* Version management interface (IEditionAppService)
+  * Defines all service interfaces for version management
+  * Contains version-related DTO object definitions
 
-* 权限定义(AbpSaasPermissions)
-  * 版本管理权限
-  * 租户管理权限
-  * 功能管理权限
-  * 连接字符串管理权限
+* Permission definition (AbpSaasPermissions)
+  * Version management permissions
+  * Tenant management rights
+  * Function management permissions
+  * Connection string management permissions
 
-* DTO对象
+*DTO object
   * EditionCreateDto/EditionUpdateDto
   * TenantCreateDto/TenantUpdateDto
   * TenantConnectionStringCreateDto/TenantConnectionStringUpdateDto
 
-## 更多
+## More
 
 [English](README.EN.md)

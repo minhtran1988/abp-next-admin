@@ -12,33 +12,33 @@ const needHidden = (role: string) => {
 const contextMenus = () => {
   return [
     {
-      text: '刷新',
+      text: 'Refresh',
       key: 'refresh',
       handler: (data: any) => {
-        message.success('刷新成功', data);
+        message.success('Refresh successful', data);
       },
       hidden: needHidden('admin'),
     },
     {
-      text: '关闭当前',
+      text: 'Close current',
       key: 'close-current',
       handler: (data: any) => {
-        message.success('关闭当前', data);
+        message.success('Close current', data);
       },
       hidden: needHidden('user'),
     },
     {
-      text: '关闭其他',
+      text: 'Close others',
       key: 'close-other',
       handler: (data: any) => {
-        message.success('关闭其他', data);
+        message.success('Close others', data);
       },
     },
     {
-      text: '关闭所有',
+      text: 'Close all',
       key: 'close-all',
       handler: (data: any) => {
-        message.success('关闭所有', data);
+        message.success('Close all', data);
       },
     },
   ];
@@ -46,13 +46,13 @@ const contextMenus = () => {
 </script>
 
 <template>
-  <Page title="Context Menu 上下文菜单">
-    <Card title="基本使用">
-      <div>一共四个菜单（刷新、关闭当前、关闭其他、关闭所有）</div>
+  <Page title="Context Menu context menu">
+    <Card title="Basic use">
+      <div>A total of four menus (refresh, close current, close other, close all)</div>
       <br />
       <br />
       <VbenContextMenu :menus="contextMenus" :modal="true" item-class="pr-6">
-        <Button> 右键点击我打开上下文菜单(有隐藏项) </Button>
+        <Button> Right-click me to open the context menu (with hidden items) </Button>
       </VbenContextMenu>
     </Card>
   </Page>

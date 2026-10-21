@@ -6,19 +6,19 @@ namespace LINGYUN.Abp.Features.LimitValidation;
 public class RequiresLimitFeatureContext
 {
     /// <summary>
-    /// 功能限制策略
+    /// Function restriction strategy
     /// </summary>
     public LimitPolicy Policy { get; }
     /// <summary>
-    /// 限制时长
+    /// Limit duration
     /// </summary>
     public int Interval { get; }
     /// <summary>
-    /// 功能限制次数
+    /// Function limit times
     /// </summary>
     public int Limit { get; }
     /// <summary>
-    /// 功能限制次数名称
+    /// Function limit number name
     /// </summary>
     public string LimitFeature { get; }
 
@@ -38,7 +38,7 @@ public class RequiresLimitFeatureContext
     }
 
     /// <summary>
-    /// 获取生效时间跨度,单位:s
+    /// Get the effective time span, unit: s
     /// </summary>
     /// <returns></returns>
     public long GetEffectTicks(DateTime now)

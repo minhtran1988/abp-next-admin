@@ -1,56 +1,56 @@
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 通知数据键
+/// Enterprise WeChat Webhook notification data key
 /// </summary>
 /// <remarks>
 /// <para>
-/// 前缀 <c>wx-work-hook:</c> 归属 Webhook 渠道自身。
-/// 企业微信**应用消息**渠道使用 <c>wx-work:</c> 前缀 —— 两者是不同传输方式,
-/// 键空间必须分开, 否则同一个通知被两个渠道同时订阅时,
-/// 载荷会被两边都解析并各发一条。
+/// The prefix <c>wx-work-hook:</c> belongs to the Webhook channel itself.
+/// Enterprise WeChat **Application Message** channel uses <c>wx-work:</c> prefix - the two are different transmission methods,
+/// The key spaces must be separated, otherwise when the same notification is subscribed by two channels at the same time,
+/// The payload will be parsed by both sides and one will be sent each.
 /// </para>
 /// <para>
-/// 读取过程大小写不敏感(精确匹配优先)。
+/// The reading process is case-insensitive (exact matching takes precedence).
 /// </para>
 /// </remarks>
 public static class WeChatWorkWebhookNotificationDataKeys
 {
     /// <summary>
-    /// 本渠道的数据键前缀
+    /// The data key prefix of this channel
     /// </summary>
     public const string Prefix = "wx-work-hook:";
 
     /// <summary>
-    /// 文本消息
+    /// Text message
     /// </summary>
     public const string Text = Prefix + "text";
     /// <summary>
-    /// markdown 消息
+    /// markdown message
     /// </summary>
     public const string Markdown = Prefix + "markdown";
     /// <summary>
-    /// markdown_v2 消息
+    /// markdown_v2 message
     /// </summary>
     public const string MarkdownV2 = Prefix + "markdown_v2";
     /// <summary>
-    /// 图片消息(base64 + md5)
+    /// Picture message (base64 + md5)
     /// </summary>
     public const string Image = Prefix + "image";
     /// <summary>
-    /// 图文消息
+    /// Graphic message
     /// </summary>
     public const string News = Prefix + "news";
     /// <summary>
-    /// 文件消息
+    /// File message
     /// </summary>
     public const string File = Prefix + "file";
     /// <summary>
-    /// 语音消息
+    /// Voice message
     /// </summary>
     public const string Voice = Prefix + "voice";
     /// <summary>
-    /// 模板卡片消息
+    /// Template card message
     /// </summary>
     public const string TemplateCard = Prefix + "template_card";
 }

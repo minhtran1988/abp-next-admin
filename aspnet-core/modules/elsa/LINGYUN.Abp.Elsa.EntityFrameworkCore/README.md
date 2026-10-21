@@ -1,13 +1,13 @@
 # LINGYUN.Abp.Elsa.EntityFrameworkCore
 
-Elsa工作流的EntityFrameworkCore集成模块
+EntityFrameworkCore integration module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供Elsa工作流的EntityFrameworkCore集成
-* 依赖于 `AbpElsaModule` 和 `AbpEntityFrameworkCoreModule`
+* Provides EntityFrameworkCore integration for Elsa workflow
+* Depends on `AbpElsaModule` and `AbpEntityFrameworkCoreModule`
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -18,9 +18,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 数据库提供程序
+## Database provider
 
-本模块是数据库提供程序无关的基础模块，你需要根据实际使用的数据库选择以下对应的模块：
+This module is a basic module that is independent of the database provider. You need to select the following corresponding modules according to the actual database used:
 
 * [SqlServer](../LINGYUN.Abp.Elsa.EntityFrameworkCore.SqlServer/README.md)
 * [PostgreSql](../LINGYUN.Abp.Elsa.EntityFrameworkCore.PostgreSql/README.md)

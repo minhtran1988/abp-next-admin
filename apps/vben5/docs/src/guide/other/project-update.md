@@ -1,55 +1,55 @@
-# 项目更新
+# Project updates
 
-## 为什么无法像 npm 插件一样更新
+## Why can't it be updated like npm plugin?
 
-因为项目是一个完整的项目模版，不是一个插件或者安装包，无法像插件一样更新，你使用代码后，会根据业务需求，进行二次开发，需要自行手动合并升级。
+Because the project is a complete project template, not a plug-in or installation package, it cannot be updated like a plug-in. After you use the code, it will be re-developed according to business needs, and you need to manually merge and upgrade it yourself.
 
-## 我需要怎么做
+## What do I need to do?
 
-项目采用了 `Monorepo` 的方式进行管理，并将一些比较核心的代码进行了抽离，比如 `packages/@core`、`packages/effects`，只要业务代码没有修改这部分代码，那么你可以直接拉取最新代码，然后合并到你的分支上，只需要简单的处理部分冲突即可。其余文件夹只会进行一些小的调整，不会对业务代码产生影响。
+The project is managed using the `Monorepo` method, and some core codes are separated, such as `packages/@core` and `packages/effects`. As long as the business code does not modify this part of the code, you can directly pull the latest code and merge it into your branch. You only need to simply handle some conflicts. The remaining folders will only undergo some minor adjustments and will not have an impact on the business code.
 
-::: tip 推荐
+::: tip recommendation
 
-建议关注仓库动态，积极去合并，不要长时间积累，否则将会导致合并冲突过多，增加合并难度。
+It is recommended to pay attention to warehouse dynamics, actively merge, and do not accumulate for a long time, otherwise it will cause too many merge conflicts and increase the difficulty of merge.
 
 :::
 
-## 使用 Git 更新代码
+## Use Git to update code
 
-1. 克隆代码
+1. Clone the code
 
 ```bash
 git clone https://github.com/vbenjs/vue-vben-admin.git
 ```
 
-2. 添加自己的公司 git 源地址
+2. Add your own company git source address
 
 ```bash
-# up 为源名称,可以随意设置
-# gitUrl为开源最新代码
+# up is the source name, which can be set at will
+#gitUrl is the latest open source code
 git remote add up gitUrl;
 ```
 
-3. 提交代码到自己公司 git
+3. Submit the code to your company’s git
 
 ```bash
-# 提交代码到自己公司
-# main为分支名 需要自行根据情况修改
+# Submit code to your own company
+# main is the branch name and needs to be modified according to the situation.
 git push up main
 
-# 同步公司的代码
-# main为分支名 需要自行根据情况修改
+# Synchronize company code
+# main is the branch name and needs to be modified according to the situation.
 git pull up main
 ```
 
-4. 如何同步开源最新代码
+4. How to synchronize the latest open source code
 
 ```bash
 git pull origin main
 ```
 
-::: tip 提示
+::: tip tip
 
-同步代码的时候会出现冲突。只需要把冲突解决即可
+Conflicts may occur when synchronizing code. Just resolve the conflict
 
 :::

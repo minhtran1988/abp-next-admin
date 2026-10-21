@@ -1,31 +1,31 @@
 # LINGYUN.Abp.Notifications.PushPlus
 
-通知模块的PushPlus实现  
+PushPlus implementation of notification module
 
-使应用可通过PushPlus发布实时通知  
+Enable apps to publish real-time notifications via PushPlus
 
-## 功能特性
+## Features
 
-* 支持多种消息类型
-  * 文本消息
-  * HTML消息
-  * Markdown消息
-  * 图片消息
-  * 自定义模板消息
-* 支持消息回调
-  * 支持自定义回调URL
-  * 支持消息发送状态回调
-* 支持多渠道推送
-  * 微信公众号
-  * 企业微信
-  * 邮件
-  * 短信
+* Support multiple message types
+  * Text message
+  * HTML message
+  * Markdown message
+  * Picture message
+  * Custom template message
+* Support message callback
+  * Support custom callback URL
+  * Support message sending status callback
+*Support multi-channel push
+  * WeChat public account
+  * Enterprise WeChat
+  * Email
+  * SMS
   * WebHook
-* 支持群组消息
-  * 支持群组推送
-  * 支持群组管理
+* Support group messages
+  * Support group push
+  * Support group management
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsPushPlusModule))]
@@ -35,36 +35,36 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "PushPlus": {
-    "Token": "你的PushPlus Token",
-    "DefaultChannel": "wechat",          // 默认推送渠道：wechat/webhook/mail/sms
-    "DefaultTemplate": "html",           // 默认消息模板：html/json/markdown/txt
-    "DefaultWebhook": "",               // 默认Webhook地址
-    "DefaultCallbackUrl": ""            // 默认回调地址
+    "Token": "Your PushPlus Token",
+    "DefaultChannel": "wechat", //Default push channel: wechat/webhook/mail/sms
+    "DefaultTemplate": "html", //Default message template: html/json/markdown/txt
+    "DefaultWebhook": "", //Default Webhook address
+    "DefaultCallbackUrl": "" //Default callback address
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置PushPlus服务
+1. Configure PushPlus service
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
     Configure<AbpNotificationsPushPlusOptions>(options =>
     {
-        options.Token = "你的PushPlus Token";
+        options.Token = "Your PushPlus Token";
         options.DefaultChannel = "wechat";
         options.DefaultTemplate = "html";
     });
 }
 ```
 
-2. 发送通知
+2. Send notification
 ```csharp
 public class YourService
 {
@@ -78,8 +78,8 @@ public class YourService
     public async Task SendNotificationAsync()
     {
         var notificationData = new NotificationData();
-        notificationData.TrySetData("title", "消息标题");
-        notificationData.TrySetData("content", "消息内容");
+        notificationData.TrySetData("title", "Message title");
+        notificationData.TrySetData("content", "Message content");
         notificationData.SetWebhook("https://your-webhook.com");
         notificationData.SetCallbackUrl("https://your-callback.com");
 
@@ -92,15 +92,15 @@ public class YourService
 }
 ```
 
-## 注意事项
+## Notes
 
-1. 使用前需要在PushPlus平台注册并获取Token。
-2. 确保配置的Token有效且具有足够的权限。
-3. 回调URL必须是可以公网访问的地址。
-4. 不同渠道可能有不同的消息格式要求。
-5. 消息发送依赖于PushPlus API，需要确保网络连接正常。
+1. You need to register on the PushPlus platform and obtain a Token before use.
+2. Make sure the configured Token is valid and has sufficient permissions.
+3. The callback URL must be an address accessible from the public network.
+4. Different channels may have different message format requirements.
+5. Message sending relies on PushPlus API, and you need to ensure that the network connection is normal.
 
-## 更多信息
+## More information
 
-* [PushPlus官方文档](http://www.pushplus.plus/doc/)
-* [ABP文档](https://docs.abp.io)
+* [PushPlus official document](http://www.pushplus.plus/doc/)
+* [ABP Documentation](https://docs.abp.io)

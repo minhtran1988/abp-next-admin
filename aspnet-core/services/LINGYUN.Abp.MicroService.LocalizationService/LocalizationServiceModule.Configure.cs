@@ -68,7 +68,7 @@ public partial class LocalizationServiceModule
 
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别，应在0-31之间
+            // Differenced by open ports, should be between 0-31
             options.SnowflakeIdOptions.WorkerId = 30;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -107,7 +107,7 @@ public partial class LocalizationServiceModule
 
     private void ConfigureJsonSerializer(IConfiguration configuration)
     {
-        // 统一时间日期格式
+        // Unify time and date format
         Configure<AbpJsonOptions>(options =>
         {
             var jsonConfiguration = configuration.GetSection("Json");
@@ -116,7 +116,7 @@ public partial class LocalizationServiceModule
                 jsonConfiguration.Bind(options);
             }
         });
-        // 中文序列化的编码问题
+        // Encoding issues for Chinese serialization
         Configure<AbpSystemTextJsonSerializerOptions>(options =>
         {
             options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
@@ -125,10 +125,10 @@ public partial class LocalizationServiceModule
 
     private void ConfigureExceptionHandling()
     {
-        // 自定义需要处理的异常
+        // Customize the exceptions that need to be handled
         Configure<AbpExceptionHandlingOptions>(options =>
         {
-            //  加入需要处理的异常类型
+            // Add the exception types that need to be handled
             options.Handlers.Add<Volo.Abp.Data.AbpDbConcurrencyException>();
             options.Handlers.Add<AbpInitializationException>();
             options.Handlers.Add<ObjectDisposedException>();
@@ -138,10 +138,10 @@ public partial class LocalizationServiceModule
             options.Handlers.Add<Microsoft.EntityFrameworkCore.DbUpdateException>();
             options.Handlers.Add<System.Data.DBConcurrencyException>();
         });
-        // 自定义需要发送邮件通知的异常类型
+        // Customize the exception types that need to send email notifications
         Configure<AbpEmailExceptionHandlingOptions>(options =>
         {
-            // 是否发送堆栈信息
+            // Whether to send stack information
             options.SendStackTrace = true;
         });
     }
@@ -151,7 +151,7 @@ public partial class LocalizationServiceModule
         Configure<AbpAuditingOptions>(options =>
         {
             options.ApplicationName = ApplicationName;
-            // 是否启用实体变更记录
+            // Whether to enable entity change recording
             var allEntitiesSelectorIsEnabled = configuration["Auditing:AllEntitiesSelector"];
             if (allEntitiesSelectorIsEnabled.IsNullOrWhiteSpace() ||
                 (bool.TryParse(allEntitiesSelectorIsEnabled, out var enabled) && enabled))
@@ -224,7 +224,7 @@ public partial class LocalizationServiceModule
 
     private void ConfigureMultiTenancy(IConfiguration configuration)
     {
-        // 多租户
+        // Multi-tenant
         Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = false;
@@ -285,11 +285,11 @@ public partial class LocalizationServiceModule
 
     private void ConfigureLocalization()
     {
-        // 默认支持的本地化语言类型
+        // Default supported localized language types
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
         });
 
         Configure<AbpLocalizationCultureMapOptions>(options =>
@@ -385,7 +385,7 @@ public partial class LocalizationServiceModule
 
     private void PreConfigureWrapper()
     {
-        //PreConfigure<AbpDaprClientProxyOptions>(options =>
+        // PreConfigure<AbpDaprClientProxyOptions>(options =>
         //{
         //    options.ProxyRequestActions.Add(
         //        (appid, httprequestmessage) =>
@@ -393,7 +393,7 @@ public partial class LocalizationServiceModule
         //            httprequestmessage.Headers.TryAddWithoutValidation(AbpHttpWrapConsts.AbpDontWrapResult, "true");
         //        });
         //});
-        // 服务间调用不包装
+        // Calls between services are not wrapped
         PreConfigure<AbpHttpClientBuilderOptions>(options =>
         {
             options.ProxyClientActions.Add(

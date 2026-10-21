@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.Domain
 
-通知系统的领域层模块，提供了通知系统的领域模型和业务逻辑。
+The domain layer module of the notification system provides the domain model and business logic of the notification system.
 
-## 功能特性
+## Features
 
-* 通知实体定义
-* 通知订阅管理
-* 通知状态管理
-* 通知数据扩展支持
-* 支持自定义通知数据
+* Notification entity definition
+* Notification subscription management
+* Notification status management
+* Notification data extension support
+* Support custom notification data
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsDomainModule))]
@@ -20,27 +20,27 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 领域模型
+## Domain Model
 
 ### Notification
 
-* Id - 通知唯一标识
-* Name - 通知名称
-* NotificationData - 通知数据
-* CreationTime - 创建时间
-* Type - 通知类型
-* Severity - 通知严重程度
-* ExtraProperties - 扩展属性
+*Id - notification unique identifier
+* Name - notification name
+* NotificationData - notification data
+* CreationTime - Creation time
+* Type - notification type
+*Severity - Notification severity
+* ExtraProperties - extended properties
 
 ### NotificationSubscription
 
-* UserId - 用户标识
-* NotificationName - 通知名称
-* CreationTime - 创建时间
+* UserId - User ID
+* NotificationName - notification name
+* CreationTime - Creation time
 
-## 基本用法
+## Basic usage
 
-1. 创建通知
+1. Create a notification
 ```csharp
 var notification = new Notification(
     id: GuidGenerator.Create(),
@@ -49,13 +49,13 @@ var notification = new Notification(
     tenantId: CurrentTenant.Id);
 ```
 
-2. 管理通知订阅
+2. Manage notification subscriptions
 ```csharp
 await NotificationSubscriptionManager.SubscribeAsync(
     userId: CurrentUser.Id,
     notificationName: "YourNotification");
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
+* [ABP Documentation](https://docs.abp.io)

@@ -8,18 +8,18 @@ using System.Reflection;
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 
 /// <summary>
-/// 模板卡片消息序列化
+/// Template card message serialization
 /// </summary>
 /// <remarks>
 /// <para>
-/// <see cref="TemplateCard"/> 是抽象类型, Newtonsoft.Json 无法直接实例化它,
-/// 导致模板卡片一经序列化(例如作为通知数据持久化、或进入失败重试队列)就再也无法还原:
+/// <see cref="TemplateCard"/> is an abstract type, Newtonsoft.Json cannot instantiate it directly,
+/// As a result, once the template card is serialized (for example, persisted as notification data, or entered the failure retry queue), it can no longer be restored:
 /// <c>Could not create an instance of type ... Type is an interface or abstract class</c>。
 /// </para>
 /// <para>
-/// 这里按 <c>card_type</c> 判别符还原具体的卡片类型。判别符在构造函数中传递给基类
-/// (例如 <c>base("template_card", taskId)</c>), 通过读取构造函数 IL 中的字符串常量获得,
-/// 因此新增卡片类型无需修改本转换器。
+/// Here press the <c>card_type</c> discriminator to restore the specific card type. The discriminator is passed to the base class in the constructor
+/// (for example <c>base("template_card", taskId)</c>), obtained by reading the string constant in the constructor IL,
+/// Therefore, adding a new card type does not require modifying this converter.
 /// </para>
 /// </remarks>
 public class TemplateCardJsonConverter : JsonConverter
@@ -33,11 +33,11 @@ public class TemplateCardJsonConverter : JsonConverter
     private static bool _initialized;
 
     /// <summary>
-    /// 仅接管抽象卡片类型
+    /// Only take over the abstract card type
     /// </summary>
     /// <remarks>
-    /// 具体卡片类型由本转换器显式指定目标类型后递归解析,
-    /// 若这里对具体类型也返回 true 会造成无限递归。
+    /// The specific card type is parsed recursively after the converter explicitly specifies the target type.
+    /// If true is returned here for specific types, infinite recursion will occur.
     /// </remarks>
     public override bool CanConvert(Type objectType)
     {
@@ -79,7 +79,7 @@ public class TemplateCardJsonConverter : JsonConverter
     }
 
     /// <summary>
-    /// 解析卡片的具体类型
+    /// Parse the specific type of card
     /// </summary>
     private static Type? ResolveCardType(string? cardType, Type targetType)
     {
@@ -102,13 +102,13 @@ public class TemplateCardJsonConverter : JsonConverter
             return mappedType;
         }
 
-        // 缺少判别符时, 目标是具体类型则直接使用它
+        // When the discriminator is missing, use it directly if the target is a specific type
         if (!targetType.IsAbstract)
         {
             return targetType;
         }
 
-        // 抽象目标且判别符缺失时, 按历史行为回退到文本模板卡片
+        // When the abstract target is missing and the discriminator is missing, fall back to the text template card based on historical behavior
         return CardTypes.TryGetValue(nameof(TextTemplateCard), out var fallbackType) ? fallbackType : null;
     }
 
@@ -144,11 +144,11 @@ public class TemplateCardJsonConverter : JsonConverter
     }
 
     /// <summary>
-    /// 获取卡片类型的判别符
+    /// Get the discriminator of the card type
     /// </summary>
     /// <remarks>
-    /// 判别符由构造函数传递给基类, 因此读取构造函数 IL 中的字符串常量。
-    /// 同时以类型名作为兜底键。
+    /// The discriminator is passed to the base class by the constructor, so the string constant in the constructor IL is read.
+    /// At the same time, the type name is used as the key.
     /// </remarks>
     private static IEnumerable<string> GetDiscriminators(Type cardType)
     {
@@ -172,7 +172,7 @@ public class TemplateCardJsonConverter : JsonConverter
             }
             catch
             {
-                // 读取 IL 失败不影响兜底判别符
+                // Failure to read IL does not affect the bottom discriminator
             }
         }
 
@@ -203,7 +203,7 @@ public class TemplateCardJsonConverter : JsonConverter
             }
             catch
             {
-                // 不是字符串元数据标记, 继续扫描
+                // Not a string metadata tag, continue scanning
             }
         }
 

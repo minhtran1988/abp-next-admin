@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Calendar
 
-日历模块, 定义系统日历参数, 用于特定场景.  
+Calendar module defines system calendar parameters for specific scenarios.
 
-#### 注意
-
-
-## 功能特性
+#### NOTE
 
 
-## 配置使用
+## Features
 
 
-## 更多信息
+## Configuration usage
+
+
+## More information
 

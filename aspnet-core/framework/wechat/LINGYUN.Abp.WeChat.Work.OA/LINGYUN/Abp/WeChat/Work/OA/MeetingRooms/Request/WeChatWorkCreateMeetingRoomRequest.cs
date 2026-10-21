@@ -8,68 +8,68 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Request;
 /// <summary>
-/// 添加会议室请求参数
+/// Add conference room request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93619#%E6%B7%BB%E5%8A%A0%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93619#%E6%B7%BB%E5%8A%A0%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
 /// </remarks>
 public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 会议室名称
+    /// Conference room name
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; }
     /// <summary>
-    /// 会议室容纳人数
+    /// Meeting room capacity
     /// </summary>
     [NotNull]
     [JsonProperty("capacity")]
     [JsonPropertyName("capacity")]
     public int Capacity { get; }
     /// <summary>
-    /// 会议室所在城市
+    /// The city where the meeting room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("city")]
     [JsonPropertyName("city")]
     public string? City { get; private set; }
     /// <summary>
-    /// 会议室所在楼宇
+    /// The building where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("building")]
     [JsonPropertyName("building")]
     public string? Building { get; private set; }
     /// <summary>
-    /// 会议室所在楼层
+    /// The floor where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("floor")]
     [JsonPropertyName("floor")]
     public string? Floor { get; private set; }
     /// <summary>
-    /// 会议室支持的设备列表
+    /// List of devices supported by the conference room
     /// </summary>
     private readonly List<int> _equipment;
     /// <summary>
-    /// 会议室支持的设备列表
+    /// List of devices supported by the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("equipment")]
     [JsonPropertyName("equipment")]
     public int[] Equipment => _equipment.ToArray();
     /// <summary>
-    /// 会议室坐标
+    /// Conference room coordinates
     /// </summary>
     [CanBeNull]
     [JsonProperty("coordinate")]
     [JsonPropertyName("coordinate")]
     public MeetingRoomCoordinate? Coordinate { get; set; }
     /// <summary>
-    /// 会议室使用范围
+    /// Meeting room usage range
     /// </summary>
     [CanBeNull]
     [JsonProperty("range")]
@@ -83,7 +83,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
         _equipment = new List<int>();
     }
     /// <summary>
-    /// 设置位置信息
+    /// Set location information
     /// </summary>
     /// <param name="city"></param>
     /// <param name="building"></param>
@@ -95,7 +95,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
         Floor = Check.NotNullOrWhiteSpace(floor, nameof(floor));
     }
     /// <summary>
-    /// 允许电视设备
+    /// Allow TV devices
     /// </summary>
     /// <returns></returns>
     public void WithTv()
@@ -103,7 +103,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(1);
     }
     /// <summary>
-    /// 允许电话设备
+    /// Allow phone devices
     /// </summary>
     /// <returns></returns>
     public void WithPhone()
@@ -112,7 +112,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
 
     }
     /// <summary>
-    /// 允许投影设备
+    /// Allow projection devices
     /// </summary>
     /// <returns></returns>
     public void WithProjection()
@@ -120,7 +120,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(3);
     }
     /// <summary>
-    /// 允许白板设备
+    /// Allow whiteboard devices
     /// </summary>
     /// <returns></returns>
     public void WithWhiteboard()
@@ -128,7 +128,7 @@ public class WeChatWorkCreateMeetingRoomRequest : WeChatWorkRequest
         _equipment.AddIfNotContains(4);
     }
     /// <summary>
-    /// 允许视频设备
+    /// Allow video devices
     /// </summary>
     /// <returns></returns>
     public void WithVideo()

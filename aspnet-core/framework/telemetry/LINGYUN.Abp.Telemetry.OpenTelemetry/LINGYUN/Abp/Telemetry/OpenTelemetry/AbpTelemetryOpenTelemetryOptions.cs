@@ -6,19 +6,19 @@ namespace LINGYUN.Abp.Telemetry.OpenTelemetry;
 public class AbpTelemetryOpenTelemetryOptions
 {
     /// <summary>
-    /// 是否忽略CAP仪表板请求, 默认: true
+    /// Whether to ignore CAP dashboard requests, default: true
     /// </summary>
     public bool IgnoreCapDashboardUrls { get; set; }
     /// <summary>
-    /// 是否忽略ES请求, 默认: true
+    /// Whether to ignore ES requests, default: true
     /// </summary>
     public bool IgnoreElasticsearchUrls { get; set; }
     /// <summary>
-    /// 忽略本地请求路径
+    /// Ignore local request paths
     /// </summary>
     public List<string> IgnoreLocalRequestUrls { get; set; }
     /// <summary>
-    /// 忽略远程请求路径
+    /// Ignore the remote request path
     /// </summary>
     public List<string> IgnoreRemoteRequestUrls { get; set; }
 
@@ -26,7 +26,7 @@ public class AbpTelemetryOpenTelemetryOptions
     {
         IgnoreLocalRequestUrls = new List<string>
         {
-             "/healthz",    // 服务健康状态请求不记录
+             "/healthz", // Service health status request is not recorded
         };
         IgnoreRemoteRequestUrls = new List<string>();
         IgnoreCapDashboardUrls = true;
@@ -35,7 +35,7 @@ public class AbpTelemetryOpenTelemetryOptions
 
     public bool IsIgnureLocalRequestUrl(string url)
     {
-        // 忽略CAP仪表板请求
+        // Ignore CAP dashboard requests
         if (IgnoreCapDashboardUrls && url.StartsWith("/cap"))
         {
             return true;
@@ -46,7 +46,7 @@ public class AbpTelemetryOpenTelemetryOptions
 
     public bool IsIgnureRemoteRequestUrl(string url)
     {
-        // 忽略向es推送数据请求
+        // Ignore requests to push data to es
         if (IgnoreElasticsearchUrls && url.EndsWith("/_bulk"))
         {
             return true;

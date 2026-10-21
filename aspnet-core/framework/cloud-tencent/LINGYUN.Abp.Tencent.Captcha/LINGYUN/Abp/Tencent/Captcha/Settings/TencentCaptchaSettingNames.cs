@@ -6,19 +6,19 @@ public static class TencentCaptchaSettingNames
 {
     private const string Prefix = TencentCloudSettingNames.Prefix + ".Captcha";
     /// <summary>
-    /// 验证码业务ID
+    /// Verification code business ID
     /// </summary>
     public const string CaptchaAppId = Prefix + ".CaptchaAppId";
     /// <summary>
-    /// 原始密钥
+    /// Original key
     /// </summary>
     public const string AppSecretKey = Prefix + ".AppSecretKey";
     /// <summary>
-    /// 加密方式
+    /// Encryption method
     /// </summary>
     public const string CaptchaAppIdEncryptedType = Prefix + ".CaptchaAppIdEncryptedType";
     /// <summary>
-    /// 过期时间（秒），最大值 86400 秒
+    /// Expiration time (seconds), maximum value 86400 seconds
     /// </summary>
     public const string CaptchaAppIdEncryptedExpireTime = Prefix + ".CaptchaAppIdEncryptedExpireTime";
 }

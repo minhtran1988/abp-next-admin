@@ -15,15 +15,15 @@ enum LockType {
 	Minutes = 60,
 	Hours = 3600,
 	Days = 86400,
-	Months = 2678400, // 按31天计算
-	Years = 32140800, // 按31*12天计算
+	Months = 2678400, // Calculated based on 31 days
+	Years = 32140800, // Calculated based on 31*12 days
 }
 
 const UserLockModal: React.FC<Props> = ({ visible, onClose, onChange, userId }) => {
 	const { t: $t } = useTranslation();
 	const [form] = Form.useForm();
 
-	// 锁定用户
+	// Lock user
 	const { mutateAsync: lockUser, isPending } = useMutation({
 		mutationFn: ({ id, seconds }: { id: string; seconds: number }) => lockApi(id, seconds),
 		onSuccess: () => {

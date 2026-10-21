@@ -32,7 +32,7 @@ const { deleteApi, getPagedListApi } = useResourcesApi();
 const { getLocalizationApi } = useLocalizationsApi();
 
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   schema: [
     {
@@ -42,9 +42,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpUi.Search'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
 };
 
@@ -141,7 +141,7 @@ function onDelete(row: ResourceDto) {
 }
 
 async function onChange() {
-  // 资源变化刷新本地多语言缓存
+  // Resource changes refresh the local multi-language cache
   const cultureName = abpStore.localization!.currentCulture.cultureName;
   const localization = await getLocalizationApi({
     cultureName,

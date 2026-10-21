@@ -1,30 +1,30 @@
 # LINGYUN.Abp.Saas.HttpApi
 
-SaaS HTTP API模块，实现了租户和版本管理的HTTP API接口。
+The SaaS HTTP API module implements the HTTP API interface for tenant and version management.
 
-## 功能特性
+## Features
 
-* 租户管理Controller(TenantController)
-  * GET /api/saas/tenants：获取租户列表
-  * GET /api/saas/tenants/{id}：获取租户详情
-  * POST /api/saas/tenants：创建租户
-  * PUT /api/saas/tenants/{id}：更新租户
-  * DELETE /api/saas/tenants/{id}：删除租户
-  * GET /api/saas/tenants/{id}/connection-strings：获取租户连接字符串
-  * PUT /api/saas/tenants/{id}/connection-strings：更新租户连接字符串
-  * DELETE /api/saas/tenants/{id}/connection-strings/{name}：删除租户连接字符串
+* Tenant management Controller (TenantController)
+  * GET /api/saas/tenants: Get the tenant list
+  * GET /api/saas/tenants/{id}: Get tenant details
+  * POST /api/saas/tenants: Create tenants
+  * PUT /api/saas/tenants/{id}: update tenant
+  * DELETE /api/saas/tenants/{id}: delete tenant
+  * GET /api/saas/tenants/{id}/connection-strings: Get the tenant connection string
+  * PUT /api/saas/tenants/{id}/connection-strings: Update tenant connection strings
+  * DELETE /api/saas/tenants/{id}/connection-strings/{name}: Delete tenant connection string
 
-* 版本管理Controller(EditionController)
-  * GET /api/saas/editions：获取版本列表
-  * GET /api/saas/editions/{id}：获取版本详情
-  * POST /api/saas/editions：创建版本
-  * PUT /api/saas/editions/{id}：更新版本
-  * DELETE /api/saas/editions/{id}：删除版本
+* Version management Controller (EditionController)
+  * GET /api/saas/editions: Get the version list
+  * GET /api/saas/editions/{id}: Get version details
+  * POST /api/saas/editions: Create version
+  * PUT /api/saas/editions/{id}: updated version
+  * DELETE /api/saas/editions/{id}: delete edition
 
-## API文档
+## API documentation
 
-所有API接口都支持Swagger文档，启动应用后可以通过Swagger UI查看详细的API文档。
+All API interfaces support Swagger documentation. After starting the application, you can view detailed API documentation through the Swagger UI.
 
-## 更多
+## More
 
 [English](README.EN.md)

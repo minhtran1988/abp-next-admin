@@ -8,7 +8,7 @@ public static class NotificationDefinitionExtensions
     private const string ServiceIdKey = Prefix + "serviceId";
 
     /// <summary>
-    /// 获取消息内容类型
+    /// Get the message content type
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="defaultContentType"></param>
@@ -27,10 +27,10 @@ public static class NotificationDefinitionExtensions
         };
     }
     /// <summary>
-    /// 指定服务编号
+    /// Specify service number
     /// </summary>
-    /// <param name="notification">群组编码</param>
-    /// <param name="serviceId">服务编号，在服务创建后自动生成ServiceID，是服务的唯一标识，可在每个服务的详情页中查看</param>
+    /// <param name="notification">Group encoding</param>
+    /// <param name="serviceId">Service number, ServiceID is automatically generated after the service is created. It is the unique identifier of the service and can be viewed in the details page of each service</param>
     /// <returns>
     /// <see cref="NotificationDefinition"/>
     /// </returns>
@@ -41,7 +41,7 @@ public static class NotificationDefinitionExtensions
         return notification.WithProperty(ServiceIdKey, serviceId);
     }
     /// <summary>
-    /// 获取服务编号
+    /// Get service number
     /// </summary>
     /// <param name="notification"></param>
     public static string GetServiceIdOrNull(

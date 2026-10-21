@@ -17,19 +17,19 @@ public class UserCreateSubscribeIdentityNotificationsEventHandler : ILocalEventH
     public async virtual Task HandleEventAsync(EntityCreatedEventData<UserEto> eventData)
     {
         var userIdentifer = new UserIdentifier(eventData.Entity.Id, eventData.Entity.UserName);
-        // 订阅用户会话过期通知
+        // Subscribe to user session expiration notifications
         await _notificationSubscriptionManager
             .SubscribeAsync(
                 eventData.Entity.TenantId,
                 userIdentifer,
                 IdentityNotificationNames.Session.ExpirationSession);
-        // 订阅用户账号不活跃通知
+        // Subscribe to user account inactivity notification
         await _notificationSubscriptionManager
             .SubscribeAsync(
                 eventData.Entity.TenantId,
                 userIdentifer,
                 IdentityNotificationNames.IdentityUser.InactiveUserReminderNotifier);
-        // 订阅用户账号停用通知
+        // Subscribe to user account deactivation notification
         await _notificationSubscriptionManager
             .SubscribeAsync(
                 eventData.Entity.TenantId,

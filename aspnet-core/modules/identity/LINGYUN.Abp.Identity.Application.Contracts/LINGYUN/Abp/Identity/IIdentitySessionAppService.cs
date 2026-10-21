@@ -5,15 +5,15 @@ namespace LINGYUN.Abp.Identity;
 public interface IIdentitySessionAppService
 {
     /// <summary>
-    /// 获取用户会话列表
+    /// Get user session list
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<PagedResultDto<IdentitySessionDto>> GetSessionsAsync(GetUserSessionsInput input);
     /// <summary>
-    /// 撤销用户会话
+    /// Cancel user session
     /// </summary>
-    /// <param name="sessionId">会话id</param>
+    /// <param name="sessionId">session id</param>
     /// <returns></returns>
     Task RevokeSessionAsync(string sessionId);
 }

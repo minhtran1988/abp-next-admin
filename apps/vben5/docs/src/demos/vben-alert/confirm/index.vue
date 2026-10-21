@@ -25,10 +25,10 @@ function showIconConfirm() {
 function showfooterConfirm() {
   const checked = ref(false);
   confirm({
-    cancelText: '不要虾扯蛋',
-    confirmText: '是的，我们都是NPC',
+    cancelText: 'Do not be ridiculous',
+    confirmText: 'Yes, we are all NPC',
     content:
-      '刚才发生的事情，为什么我似乎早就经历过一般？\n我甚至能在事情发生过程中潜意识里预知到接下来会发生什么。\n\n听起来挺玄乎的，你有过这种感觉吗？',
+      'Why does it seem like I have experienced what just happened before? \nI can even subconsciously predict what will happen next as it happens. \n\nIt sounds weird. Have you ever felt this way? ',
     footer: () =>
       h(
         Checkbox,
@@ -37,15 +37,15 @@ function showfooterConfirm() {
           class: 'flex-1',
           'onUpdate:checked': (v) => (checked.value = v),
         },
-        '不再提示',
+        'Do not prompt again',
       ),
     icon: 'question',
-    title: '未解之谜',
+    title: 'Unsolved Mystery',
   }).then(() => {
     if (checked.value) {
-      message.success('我不会再拿这个问题烦你了');
+      message.success('I will not bother you with this problem anymore');
     } else {
-      message.info('下次还要继续问你哟');
+      message.info('I will continue to ask you next time');
     }
   });
 }
@@ -54,7 +54,7 @@ function showAsyncConfirm() {
   confirm({
     beforeClose({ isConfirm }) {
       if (isConfirm) {
-        // 这里可以执行一些异步操作。如果最终返回了false，将阻止关闭弹窗
+        // Some asynchronous operations can be performed here. If false is eventually returned, the pop-up window will be prevented from closing.
         return new Promise((resolve) => setTimeout(resolve, 2000));
       }
     },

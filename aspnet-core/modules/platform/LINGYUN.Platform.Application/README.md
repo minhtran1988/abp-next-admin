@@ -1,27 +1,27 @@
 # LINGYUN.Platform.Application
 
-平台管理模块的应用服务实现层，实现了应用服务接口定义的所有功能。
+The application service implementation layer of the platform management module implements all functions defined by the application service interface.
 
-## 功能特性
+## Features
 
-* 用户收藏菜单服务
-  * 创建收藏菜单
-  * 更新收藏菜单
-  * 删除收藏菜单
-  * 查询收藏菜单列表
-  * 管理其他用户的收藏菜单
+* User favorite menu service
+  * Create favorite menu
+  * Update collection menu
+  * Delete favorite menu
+  * Query favorite menu list
+  * Manage other users' favorite menus
 
-* 对象映射配置
-  * 实体到DTO的自动映射
-  * 支持自定义映射规则
-  * 支持额外属性映射
+* Object mapping configuration
+  * Automatic mapping of entities to DTO
+  * Support custom mapping rules
+  * Support additional attribute mapping
 
-* 权限验证
-  * 基于策略的权限验证
-  * 集成ABP授权系统
-  * 细粒度的权限控制
+* Permission verification
+  * Policy-based permission verification
+  * Integrated ABP authorization system
+  * Fine-grained permission control
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(PlatformApplicationModule))]
@@ -31,15 +31,15 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 应用服务实现
+## Application service implementation
 
-* `UserFavoriteMenuAppService`: 用户收藏菜单服务实现
-  * 支持用户自定义菜单图标
-  * 支持用户自定义菜单颜色
-  * 支持用户自定义菜单别名
-  * 支持多框架菜单管理
+* `UserFavoriteMenuAppService`: Implementation of user favorite menu service
+  * Support user-defined menu icons
+  * Support user-defined menu color
+  * Support user-defined menu aliases
+  * Support multi-frame menu management
 
-## 对象映射
+## Object mapping
 
 ```csharp
 public class PlatformApplicationMappingProfile : Profile
@@ -57,13 +57,13 @@ public class PlatformApplicationMappingProfile : Profile
 }
 ```
 
-## 基础服务
+## Basic services
 
-* `PlatformApplicationServiceBase`: 平台管理应用服务基类
-  * 提供通用功能和帮助方法
-  * 统一异常处理
-  * 统一权限验证
+* `PlatformApplicationServiceBase`: Platform management application service base class
+  * Provide common functions and help methods
+  * Unified exception handling
+  * Unified permission verification
 
-## 更多
+## More
 
-更多信息请参考 [Platform](../README.md)
+For more information please refer to [Platform](../README.md)

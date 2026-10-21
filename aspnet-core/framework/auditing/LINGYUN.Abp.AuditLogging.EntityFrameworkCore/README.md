@@ -1,11 +1,11 @@
 # LINGYUN.Abp.AuditLogging.EntityFrameworkCore
 
-审计模块 EntityFrameworkCore 实现, 此模块仅作为桥梁, 具体实现交给abp官方模块  
+The audit module is implemented by EntityFrameworkCore. This module is only used as a bridge. The specific implementation is left to the abp official module.
 
-AuditLogManager    实现了 IAuditLogManager, 审计日志由Volo.Abp.AuditLogging模块管理  
-SecurityLogManager 实现了 ISecurityLogManager, 安全日志由Volo.Abp.Identity模块管理  
+AuditLogManager implements IAuditLogManager, and audit logs are managed by the Volo.Abp.AuditLogging module
+SecurityLogManager implements ISecurityLogManager, and security logs are managed by the Volo.Abp.Identity module
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingEntityFrameworkCoreModule))]
@@ -15,9 +15,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-请遵循 Volo.Abp.AuditLogging、Volo.Abp.Identity模块中的配置  
+Please follow the configuration in Volo.Abp.AuditLogging, Volo.Abp.Identity modules
 
 ## appsettings.json
 

@@ -12,17 +12,17 @@ public class WebhooksManagementOptions
     /// </summary>
     public bool IsDynamicWebhookStoreEnabled { get; set; }
     /// <summary>
-    /// 缓存刷新时间
+    /// Cache refresh time
     /// default: 30 seconds
     /// </summary>
     public TimeSpan WebhooksCacheRefreshInterval { get; set; }
     /// <summary>
-    /// 申请时间戳超时时间
+    /// Application timestamp timeout
     /// default: 2 minutes
     /// </summary>
     public TimeSpan WebhooksCacheStampTimeOut { get; set; }
     /// <summary>
-    /// 时间戳过期时间
+    /// Timestamp expiration time
     /// default: 30 minutes
     /// </summary>
     public TimeSpan WebhooksCacheStampExpiration { get; set; }
@@ -32,7 +32,7 @@ public class WebhooksManagementOptions
 
         WebhooksCacheRefreshInterval = TimeSpan.FromSeconds(30);
         WebhooksCacheStampTimeOut = TimeSpan.FromMinutes(2);
-        // 30分钟过期重新刷新缓存
+        // Refresh the cache after 30 minutes expiration
         WebhooksCacheStampExpiration = TimeSpan.FromMinutes(30);
     }
 }

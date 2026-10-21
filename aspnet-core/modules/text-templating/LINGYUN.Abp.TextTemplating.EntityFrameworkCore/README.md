@@ -1,46 +1,46 @@
 # LINGYUN.Abp.TextTemplating.EntityFrameworkCore
 
-## 模块说明
+## Module description
 
-文本模板 EntityFrameworkCore 模块，提供文本模板的数据访问实现。
+Text template EntityFrameworkCore module provides data access implementation of text templates.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.TextTemplating.Domain
 * Volo.Abp.EntityFrameworkCore
 
-### 功能定义
+### Function definition
 
-* 实现文本模板的仓储接口
-  * EfCoreTextTemplateDefinitionRepository - 模板定义仓储实现
-  * EfCoreTextTemplateContentRepository - 模板内容仓储实现
-* 提供数据库上下文和配置
-  * ITextTemplatingDbContext - 文本模板数据库上下文接口
-  * TextTemplatingDbContext - 文本模板数据库上下文
-  * TextTemplatingDbContextModelCreatingExtensions - 数据库模型配置扩展
+* Implement the warehousing interface of text templates
+  * EfCoreTextTemplateDefinitionRepository - template definition repository implementation
+  * EfCoreTextTemplateContentRepository - Template content storage implementation
+* Provide database context and configuration
+  * ITextTemplatingDbContext - text template database context interface
+  * TextTemplatingDbContext - text template database context
+  * TextTemplatingDbContextModelCreatingExtensions - database model configuration extensions
 
-### 数据库表
+### Database table
 
-* AbpTextTemplateDefinitions - 模板定义表
-  * Id - 主键
-  * Name - 模板名称
-  * DisplayName - 显示名称
-  * IsLayout - 是否为布局模板
-  * Layout - 布局名称
-  * IsInlineLocalized - 是否内联本地化
-  * DefaultCultureName - 默认文化名称
-  * LocalizationResourceName - 本地化资源名称
-  * RenderEngine - 渲染引擎
-  * IsStatic - 是否为静态模板
-* AbpTextTemplateContents - 模板内容表
-  * Id - 主键
-  * Name - 模板名称
-  * CultureName - 文化名称
-  * Content - 模板内容
+* AbpTextTemplateDefinitions - template definition table
+  *Id - primary key
+  * Name - Template name
+  * DisplayName - display name
+  * IsLayout - whether it is a layout template
+  * Layout - layout name
+  * IsInlineLocalized - whether to inline localize
+  * DefaultCultureName - the default culture name
+  * LocalizationResourceName - localization resource name
+  * RenderEngine - rendering engine
+  * IsStatic - whether it is a static template
+* AbpTextTemplateContents - template content table
+  *Id - primary key
+  * Name - Template name
+  * CultureName - culture name
+  * Content - template content
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingEntityFrameworkCoreModule` 依赖
+1. Add `AbpTextTemplatingEntityFrameworkCoreModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingEntityFrameworkCoreModule))]
@@ -49,7 +49,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置数据库上下文
+2. Configure database context
 
 ```csharp
 public class YourDbContext : AbpDbContext<YourDbContext>, ITextTemplatingDbContext
@@ -71,4 +71,4 @@ public class YourDbContext : AbpDbContext<YourDbContext>, ITextTemplatingDbConte
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

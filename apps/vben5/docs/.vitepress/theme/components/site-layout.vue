@@ -39,7 +39,7 @@ onMounted(() => {
   initZoom();
 });
 
-// 使用该函数
+// use this function
 const observer = watchDarkModeChange((dark) => {
   isDark.value = dark;
 });

@@ -26,16 +26,16 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 解析组织名称
+    /// Parse organization name
     /// </summary>
-    /// <param name="organization">未指定时使用 AbpOpenObserveOptions.Organization</param>
+    /// <param name="organization">Used when not specified AbpOpenObserveOptions.Organization</param>
     protected virtual string ResolveOrganization(string? organization = null)
     {
         return !organization.IsNullOrWhiteSpace() ? organization! : Options.Organization;
     }
 
     /// <summary>
-    /// 创建 JSON 请求内容
+    /// Create JSON request content
     /// </summary>
     protected virtual StringContent CreateJsonContent<T>(T value)
     {
@@ -46,10 +46,10 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 尝试解析错误响应
+    /// Try to parse the error response
     /// </summary>
     /// <remarks>
-    /// 响应体不是标准错误结构时返回 null, 由调用方抛出 <see cref="OpenObserveRequestException"/>
+    /// Returns null when the response body is not a standard error structure, and is thrown by the caller <see cref="OpenObserveRequestException"/>
     /// </remarks>
     protected virtual OpenObserveErrorResponse? TryDeserializeErrorResponse(string? responseContent)
     {
@@ -64,10 +64,10 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 处理 OpenObserve 统一错误响应
+    /// Handle OpenObserve unified error response
     /// </summary>
     /// <remarks>
-    /// 4xx/5xx 响应体为 OpenObserve 标准错误结构: {"code":..,"message":..,"error_detail":..,"hint":..,"suggestions":[..]}
+    /// The 4xx/5xx response body is the OpenObserve standard error structure: {"code":..,"message":..,"error_detail":..,"hint":..,"suggestions":[..]}
     /// </remarks>
     protected async virtual Task<HttpResponseMessage> EnsureSuccessStatusCode(
         HttpResponseMessage httpResponse,

@@ -92,49 +92,49 @@ namespace LINGYUN.Abp.DataProtection
                     await _repository.InsertManyAsync(values, true);
                 }
 
-                // role2规则
+                // role2 rules
                 var rule2FilterGroup = new DataAccessFilterGroup();
-                // 只允许查询Num3小于等于400
+                // Only allowed to query Num3 less than or equal to 400
                 rule2FilterGroup.AddRule(new DataAccessFilterRule(nameof(FakeProtectionObject.Num3), 400, typeof(int).FullName, "number", DataAccessFilterOperate.LessOrEqual));
                 await _store.SetAsync(new DataAccessResource(RolePermissionValueProvider.ProviderName, "role2", typeof(FakeProtectionObject).FullName, DataAccessOperation.Read, rule2FilterGroup));
 
-                // role3编辑规则
+                // role3 editing rules
                 var rule3WriteAccess = new DataAccessFilterGroup();
-                // 只允许编辑自己提交的数据
+                // Only allowed to edit the data submitted by yourself
                 rule3WriteAccess.AddRule(new DataAccessFilterRule(nameof(FakeProtectionObject.CreatorId), DataAccessCurrentUserContributor.Name, typeof(Guid?).FullName, "string", DataAccessFilterOperate.Equal));
                 var rule3WriteAccessCacheItem = new DataAccessResource(RolePermissionValueProvider.ProviderName, "role3", typeof(FakeProtectionObject).FullName, DataAccessOperation.Write, rule3WriteAccess);
-                // 只允许编辑Num3字段
+                // Only allow editing of Num3 fields
                 rule3WriteAccessCacheItem.AccessedProperties.AddRange(new string[] { nameof(FakeProtectionObject.Num3) });
                 await _store.SetAsync(rule3WriteAccessCacheItem);
 
-                // role1读取规则
+                // role1 reading rules
                 var rule1ReadAccess = new DataAccessFilterGroup();
-                // 只允许读取自己提交的数据
+                // Only allowed to read the data submitted by yourself
                 rule1ReadAccess.AddRule(new DataAccessFilterRule(nameof(FakeProtectionObject.CreatorId), DataAccessCurrentUserContributor.Name, typeof(Guid?).FullName, "string", DataAccessFilterOperate.Equal));
                 var rule1ReadAccessCacheItem = new DataAccessResource(RolePermissionValueProvider.ProviderName, "role1", typeof(FakeProtectionObject).FullName, DataAccessOperation.Read, rule1ReadAccess);
-                // 只允许读取Num3字段
+                // Only allowed to read Num3 field
                 rule1ReadAccessCacheItem.AccessedProperties.AddRange(new string[] { nameof(FakeProtectionObject.Id), nameof(FakeProtectionObject.Num3) });
                 await _store.SetAsync(rule1ReadAccessCacheItem);
 
 
-                // ou1读取规则
+                // ou1 reading rules
                 var ou1ReadAccess = new DataAccessFilterGroup();
-                // 允许读本部门及下级部门数据
-                // 获取部门树结构列表, 便利增加多个部门条件集
+                // Allow reading data of this department and subordinate departments
+                // Get the department tree structure list to facilitate adding multiple department condition sets
                 ou1ReadAccess.AddRule(new DataAccessFilterRule($"{nameof(FakeProtectionObject.CreatorId)}", new List<Guid?>() { validUser, Guid.NewGuid() }, typeof(Guid?).FullName, "string", DataAccessFilterOperate.Contains, true));
-                //ou1ReadAccess.AddRule(new DataAccessFilterRule($"{nameof(FakeProtectionObject.ExtraProperties)}.{DataAccessKeywords.AUTH_ORGS}", "[00001]", DataAccessFilterOperate.Contains));
-                //ou1ReadAccess.AddRule(new DataAccessFilterRule($"{nameof(FakeProtectionObject.ExtraProperties)}.{DataAccessKeywords.AUTH_ORGS}", "[00001.00002]", DataAccessFilterOperate.Contains));
+                // ou1ReadAccess.AddRule(new DataAccessFilterRule($"{nameof(FakeProtectionObject.ExtraProperties)}.{DataAccessKeywords.AUTH_ORGS}", "[00001]", DataAccessFilterOperate.Contains));
+                // ou1ReadAccess.AddRule(new DataAccessFilterRule($"{nameof(FakeProtectionObject.ExtraProperties)}.{DataAccessKeywords.AUTH_ORGS}", "[00001.00002]", DataAccessFilterOperate.Contains));
 
                 var ou1ReadAccessCacheItem = new DataAccessResource(OrganizationUnitPermissionValueProvider.ProviderName, "00001", typeof(FakeProtectionObject).FullName, DataAccessOperation.Read, ou1ReadAccess);
 
-                // 只允许读取Num3字段
+                // Only allowed to read Num3 field
                 ou1ReadAccessCacheItem.AccessedProperties.AddRange(new string[] { nameof(FakeProtectionObject.Id), nameof(FakeProtectionObject.Num3) });
                 await _store.SetAsync(ou1ReadAccessCacheItem);
             });
 
             await WithUnitOfWorkAsync(async () =>
             {
-                // 标记不启用数据过滤器应该能获取全部数据
+                // Marking without enabling the data filter should be able to get all the data
                 var result = await _repository.GetAllListAsync();
                 result.Count.ShouldBe(4);
             });
@@ -148,7 +148,7 @@ namespace LINGYUN.Abp.DataProtection
                 identity2.AddClaim(new Claim(AbpClaimTypes.Role, "role2"));
                 using (_accessor.Change(identity2))
                 {
-                    // 应该只能读取到 Num3小于等于400的数据，只有3条
+                    // Should only be able to read data with Num3 less than or equal to 400, only 3 items
                     var result = await _repository.GetListAsync();
                     result.Count.ShouldBe(3);
                 }
@@ -162,7 +162,7 @@ namespace LINGYUN.Abp.DataProtection
                 identity3.AddClaim(new Claim(AbpOrganizationUnitClaimTypes.OrganizationUnit, "00001"));
                 using (_accessor.Change(identity3))
                 {
-                    // 应该能获取4条数据
+                    // Should be able to get 4 pieces of data
                     var result = await _repository.GetListAsync();
                     result.Count.ShouldBe(4);
                 }
@@ -179,11 +179,11 @@ namespace LINGYUN.Abp.DataProtection
                     var entity = await _repository.FindAsync(1);
                     entity.Protect1 = "New Protect1";
                     entity.Num3 = 100;
-                    // 切换为授权用户应该可以保存数据
+                    // Switching to an authorized user should be able to save data
                     var resultEntity = await _repository.UpdateAsync(entity, true);
-                    // 授权字段应该会保存成功
+                    // The authorization field should be saved successfully
                     resultEntity.Num3.ShouldBe(100);
-                    // 未授权字段应该不会保存成功
+                    // Unauthorized fields should not be saved successfully
                     resultEntity.Protect1.ShouldBe("Protect1");
                 }
             });
@@ -198,22 +198,22 @@ namespace LINGYUN.Abp.DataProtection
                 using (_accessor.Change(identity3))
                 {
 
-                    //var filterBuilder = GetRequiredService<IEntityTypeFilterBuilder>();
-                    //var group = new DataAccessFilterGroup();
-                    //group.AddRule(new DataAccessFilterRule(nameof(FakeProtectionObject.Num3), 300, DataAccessFilterOperate.LessOrEqual));
+                    // var filterBuilder = GetRequiredService<IEntityTypeFilterBuilder>();
+                    // var group = new DataAccessFilterGroup();
+                    // group.AddRule(new DataAccessFilterRule(nameof(FakeProtectionObject.Num3), 300, DataAccessFilterOperate.LessOrEqual));
 
-                    //var exp1 = await filterBuilder.BuildAsync(typeof(FakeProtectionObject), DataAccessOperation.Read, group);
-                    //var queryable = await _repository.GetQueryableAsync();
-                    //var entities = queryable.Where(exp1.Compile().As<Func<FakeProtectionObject, bool>>()).ToList();
+                    // var exp1 = await filterBuilder.BuildAsync(typeof(FakeProtectionObject), DataAccessOperation.Read, group);
+                    // var queryable = await _repository.GetQueryableAsync();
+                    // var entities = queryable.Where(exp1.Compile().As<Func<FakeProtectionObject, bool>>()).ToList();
 
                     var entity = await _repository.FindAsync(1);
 
                     var resultBuilder = GetRequiredService<IEntityPropertyResultBuilder>();
                     var exp = await resultBuilder.Build(typeof(FakeProtectionObject), DataAccessOperation.Read);
                     var comp = exp.Compile();
-                    // 使用非泛型接口编译表达式树，对返回结果进行替换
+                    // Use non-generic interface to compile expression tree and replace the returned result
                     var resultEntity = comp.DynamicInvoke(entity).As<FakeProtectionObject>();
-                    // 未授权字段应返回默认值
+                    // Unauthorized fields should return default values
                     resultEntity.Protect1.ShouldBeNullOrWhiteSpace();
                 }
             });
@@ -229,7 +229,7 @@ namespace LINGYUN.Abp.DataProtection
                     var entity = await _repository.FindAsync(1);
 
                     entity.Num3 = 300;
-                    // 对未授权实体的操作应该抛出未授权异常
+                    // Operations on unauthorized entities should throw an unauthorized exception
                     await Assert.ThrowsAsync<AbpAuthorizationException>(async () => await _repository.UpdateAsync(entity, true));
                 }
             });
@@ -240,7 +240,7 @@ namespace LINGYUN.Abp.DataProtection
                 entity.Num3 = 200;
                 using (_dataFilter.Disable<IDataProtected>())
                 {
-                    // 禁用数据保护过滤器之后应可保存数据
+                    // Data should be saved after disabling the data protection filter
                     var resultEntity = await _repository.UpdateAsync(entity);
                     resultEntity.Num3.ShouldBe(200);
                 }

@@ -50,27 +50,27 @@ try
     app.MapDefaultEndpoints();
 
     app.UseForwardedHeaders();
-    // 本地化
+    // localization
     app.UseMapRequestLocalization();
-    // http调用链
+    // http call chain
     app.UseCorrelationId();
-    // 虚拟文件系统
+    // virtual file system
     app.MapAbpStaticAssets();
-    // 路由
+    // routing
     app.UseRouting();
-    // 跨域
+    // cross domain
     app.UseCors();
-    // 认证
+    // Authentication
     app.UseAuthentication();
-    // 多租户
+    // Multi-tenant
     app.UseMultiTenancy();
-    // 动态身份
+    // dynamic identity
     app.UseDynamicClaims();
-    // 授权
+    // Authorize
     app.UseAuthorization();
     // Swagger
     app.UseSwagger();
-    // Swagger可视化界面
+    // Swagger visual interface
     app.UseAbpSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support Identity Service API");
@@ -79,10 +79,10 @@ try
         options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
         options.OAuthScopes(configuration["AuthServer:Audience"]);
     });
-    // 审计日志
+    // Audit log
     app.UseAuditing();
     app.UseAbpSerilogEnrichers();
-    // 路由
+    // routing
     app.UseConfiguredEndpoints();
 
     await app.RunAsync();

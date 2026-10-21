@@ -18,23 +18,23 @@ type ISet = <T extends keyof IVFormComponent>(
   key: T,
   value: IVFormComponent[T],
 ) => void;
-// 获取当前field绑定的表单项
+// Get the form item bound to the current field
 type IGet = (field: string) => IVFormComponent | undefined;
-// 获取field在formData中的值
+// Get the value of field in formData
 type IGetValue = (field: string) => any;
-// 设置field在formData中的值并且触发校验
+// Set the field value in formData and trigger verification
 type ISetValue = (field: string | IAnyObject, value?: any) => void;
-// 隐藏field对应的表单项
+// Hide the form item corresponding to the field
 type IHidden = (field: string) => void;
-// 显示field对应的表单项
+// Display the form items corresponding to the field
 type IShow = (field: string) => void;
-// 设置field对应的表单项绑定的props属性
+// Set the props attribute bound to the form item corresponding to the field
 type ISetProps = (field: string, key: string, value: any) => void;
-// 获取formData中的值
+// Get the value in formData
 type IGetData = () => Promise<IAnyObject>;
-// 禁用表单，如果field为空，则禁用整个表单
+// Disable the form. If the field is empty, the entire form is disabled.
 type IDisable = (field?: string | boolean) => void;
-// 设置表单配置方法
+// Set form configuration method
 type ISetFormConfig = (key: string, value: any) => void;
 interface ILinkOn {
   [key: string]: Set<IVFormComponent>;
@@ -59,7 +59,7 @@ export function useVFormMethods(
   formInstanceMethods: Partial<IFormInstanceMethods>,
 ): IVFormMethods {
   /**
-   * 根据field获取表单项
+   * Get form items based on field
    * @param {string} field
    * @return {IVFormComponent | undefined}
    */
@@ -67,7 +67,7 @@ export function useVFormMethods(
     findFormItem(props.formConfig.schemas, (item) => item.field === field);
 
   /**
-   * 根据表单field设置表单项字段值
+   * Set form item field value based on form field
    * @param {string} field
    * @param {keyof IVFormComponent} key
    * @param {never} value
@@ -78,10 +78,10 @@ export function useVFormMethods(
   };
 
   /**
-   * 设置表单项的props
-   * @param {string} field 需要设置的表单项field
-   * @param {string} key 需要设置的key
-   * @param value 需要设置的值
+   * Set the props of the form item
+   * @param {string} field The form item field that needs to be set
+   * @param {string} key The key that needs to be set
+   * @param value The value that needs to be set
    */
   const setProps: ISetProps = (field, key, value) => {
     const formItem = get(field);
@@ -92,9 +92,9 @@ export function useVFormMethods(
     }
   };
   /**
-   * 设置字段的值，设置后触发校验
-   * @param {string} field  需要设置的字段
-   * @param value  需要设置的值
+   * Set the value of the field and trigger verification after setting
+   * @param {string} field The field that needs to be set
+   * @param value The value that needs to be set
    */
   const setValue: ISetValue = (field, value) => {
     if (typeof field === 'string') {
@@ -110,7 +110,7 @@ export function useVFormMethods(
     }
   };
   /**
-   * 设置表单配置方法
+   * Set form configuration method
    * @param {string} key
    * @param value
    */
@@ -118,8 +118,8 @@ export function useVFormMethods(
     props.formConfig[key] = value;
   };
   /**
-   * 根据表单项field获取字段值，如果field为空，则
-   * @param {string} field  需要设置的字段
+   * Get the field value based on the form item field, if the field is empty, then
+   * @param {string} field The field that needs to be set
    */
   const getValue: IGetValue = (field) => {
     const formData = cloneDeep(props.formModel);
@@ -127,22 +127,22 @@ export function useVFormMethods(
   };
 
   /**
-   * 获取formData中的值
+   * Get the value in formData
    * @return {Promise<IAnyObject<any>>}
    */
   const getData: IGetData = async () => {
     return cloneDeep(props.formModel);
   };
   /**
-   * 隐藏指定表单项
-   * @param {string} field 需要隐藏的表单项的field
+   * Hide specified form items
+   * @param {string} field The field of the form item that needs to be hidden
    */
   const hidden: IHidden = (field) => {
     set(field, 'hidden', true);
   };
 
   /**
-   * 禁用表单
+   * Disable form
    * @param {string | undefined} field
    */
   const disable: IDisable = (field) => {
@@ -152,22 +152,22 @@ export function useVFormMethods(
   };
 
   /**
-   * 显示表单项
-   * @param {string} field 需要显示的表单项的field
+   * Show form items
+   * @param {string} field The field of the form item that needs to be displayed
    */
   const show: IShow = (field) => {
     set(field, 'hidden', false);
   };
 
   /**
-   * 监听表单字段联动时触发
+   * Triggered when monitoring form field linkage
    * @type {ILinkOn}
    */
   const linkOn: ILinkOn = {};
   const initLink = (schemas: IVFormComponent[]) => {
-    // 首次遍历，查找需要关联字段的表单
+    // First traverse to find the form that requires associated fields
     formItemsForEach(schemas, (formItem) => {
-      // 如果需要关联，则进行第二层遍历，查找表单中关联的字段，存到Set中
+      // If association is required, perform a second level traversal, find the associated fields in the form, and store them in Set.
       formItemsForEach(schemas, (item) => {
         if (!linkOn[item.field!]) linkOn[item.field!] = new Set<IVFormComponent>();
         if (formItem.link?.includes(item.field!) && isFunction(formItem.update)) {

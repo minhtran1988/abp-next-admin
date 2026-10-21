@@ -44,7 +44,7 @@ public abstract class DataAccessStrategyFilterBuilderBase : IDataAccessStrategyF
 
     protected virtual bool ShouldApplyFilter(Type entityType, DataAccessOperation operation)
     {
-        // TODO: 使用一个范围标志来确定当前需要禁用的数据权限操作
+        // TODO: Use a scope flag to determine which data permission operations currently need to be disabled
         if (!_dataFilter.IsEnabled<IDataProtected>())
         {
             return false;

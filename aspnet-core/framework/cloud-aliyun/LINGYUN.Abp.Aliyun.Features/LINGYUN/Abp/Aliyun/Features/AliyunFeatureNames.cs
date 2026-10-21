@@ -12,19 +12,19 @@ public static class AliyunFeatureNames
         public const string IsEnabled = Default + ".IsEnabled";
 
         /// <summary>
-        /// 发送次数上限
+        /// Maximum number of sending times
         /// </summary>
         public const string SendLimit = Default + ".SendLimit";
         /// <summary>
-        /// 发送次数上限时长
+        /// The upper limit of sending times
         /// </summary>
         public const string SendLimitInterval = Default + ".SendLimitInterval";
         /// <summary>
-        /// 默认发送次数上限
+        /// Default sending limit
         /// </summary>
         public const int DefaultSendLimit = 1000;
         /// <summary>
-        /// 默认发送次数上限时长
+        /// Default maximum sending times
         /// </summary>
         public const int DefaultSendLimitInterval = 1;
     }

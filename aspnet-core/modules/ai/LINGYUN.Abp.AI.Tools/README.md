@@ -1,13 +1,13 @@
 # LINGYUN.Abp.AI.Tools
 
-AI 工具模块. 
+AI tool module.
 
-参考: [AI 工具调用](https://learn.microsoft.com/zh-cn/dotnet/ai/conceptual/ai-tools)  
+Reference: [AI tool call](https://learn.microsoft.com/zh-cn/dotnet/ai/conceptual/ai-tools)
 
-## 功能特性
+## Features
 
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAIToolsModule))]
@@ -17,13 +17,13 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
 * [AbpAICoreModule](../LINGYUN.Abp.AI.Core)  
 
-## 自定义函数
+## Custom function
 
-> 注意: 自定义函数遵循一个约定: 同步工具需要定义一个名为 `Invoke` 的函数; 异步工具需要定义一个名为 `InvokeAsync` 的函数, 如需使用DI容器, 需要将工具注入到容器  
+> Note: Custom functions follow a convention: synchronous tools need to define a function named `Invoke`; asynchronous tools need to define a function named `InvokeAsync`. If you want to use a DI container, you need to inject the tool into the container
 
 ```csharp
 
@@ -51,17 +51,17 @@ public class NowTimeAIToolDefinitionProvider : AIToolDefinitionProvider
 }
 ```
 
-## 扩展
+## Extension
 
-实现 `IAIToolProvider` 接口, 以增加其他工具调用  
-实现 `IDynamicAIToolDefinitionStore` 接口, 以增加动态AI工具管理  
+Implement the `IAIToolProvider` interface to add other tool calls
+Implement the `IDynamicAIToolDefinitionStore` interface to add dynamic AI tool management
 
 ```csharp
 public class McpAIToolProvider : IAIToolProvider, ITransientDependency
 {
     public virtual Task<AITool[]> CreateToolsAsync(AIToolDefinition definition)
     {
-        // 你的具体实现
+        //Your specific implementation
     }
 }
 

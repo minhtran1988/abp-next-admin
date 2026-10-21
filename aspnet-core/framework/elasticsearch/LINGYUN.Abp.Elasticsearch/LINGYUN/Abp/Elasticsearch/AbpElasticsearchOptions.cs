@@ -10,10 +10,10 @@ namespace LINGYUN.Abp.Elasticsearch
     public class AbpElasticsearchOptions
     {
         /// <summary>
-        /// 字段名称 是否为 camelCase 格式
-        /// 如果为true, 在ES中为 camelCase
-        /// 如果为false，在ES中为 CamelCase
-        /// 默认：false
+        /// Is the field name in camelCase format?
+        /// If true, it is camelCase in ES
+        /// If false, it is CamelCase in ES
+        /// Default: false
         /// </summary>
         public bool FieldCamelCase { get; set; }
         /// <summary>

@@ -1,47 +1,47 @@
 # LINGYUN.Abp.TextTemplating.HttpApi
 
-## 模块说明
+## Module description
 
-文本模板 HTTP API 模块，提供文本模板管理的 RESTful API 接口。
+Text template HTTP API module provides a RESTful API interface for text template management.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.TextTemplating.Application.Contracts
 * Volo.Abp.AspNetCore.Mvc
 
-### 功能定义
+### Function definition
 
-* 提供文本模板管理的 API 控制器
-  * TextTemplateDefinitionController - 模板定义管理控制器
-  * TextTemplateContentController - 模板内容管理控制器
+* API controller that provides text template management
+  * TextTemplateDefinitionController - template definition management controller
+  * TextTemplateContentController - Template content management controller
 
-### API 接口
+### API interface
 
 * /api/text-templating/template-definitions
-  * GET - 获取模板定义列表
-  * POST - 创建模板定义
-  * PUT - 更新模板定义
-  * DELETE - 删除模板定义
-  * GET /{name} - 获取指定模板定义
+  * GET - Get a list of template definitions
+  * POST - Create template definition
+  * PUT - Update template definition
+  * DELETE - delete template definition
+  * GET /{name} - Get the specified template definition
 * /api/text-templating/template-contents
-  * GET - 获取模板内容
-  * PUT - 更新模板内容
-  * DELETE - 删除模板内容
-  * POST /restore - 恢复模板内容
+  * GET - Get template content
+  * PUT - update template content
+  * DELETE - delete template content
+  * POST /restore - restore template content
 
-### 权限要求
+### Permission requirements
 
 * AbpTextTemplating.TextTemplateDefinitions
-  * Create - 创建模板定义
-  * Update - 更新模板定义
-  * Delete - 删除模板定义
+  * Create - Create a template definition
+  * Update - Update template definition
+  * Delete - delete template definition
 * AbpTextTemplating.TextTemplateContents
-  * Update - 更新模板内容
-  * Delete - 删除模板内容
+  * Update - update template content
+  * Delete - delete template content
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingHttpApiModule` 依赖
+1. Add `AbpTextTemplatingHttpApiModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingHttpApiModule))]
@@ -50,7 +50,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用 API 接口
+2. Use API interface
 
 ```csharp
 public class YourService
@@ -64,11 +64,11 @@ public class YourService
 
     public async Task ManageTemplateAsync()
     {
-        // 获取模板定义列表
+        // Get the template definition list
         var response = await _httpClient.GetAsync("/api/text-templating/template-definitions");
         var templates = await response.Content.ReadFromJsonAsync<ListResultDto<TextTemplateDefinitionDto>>();
     }
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

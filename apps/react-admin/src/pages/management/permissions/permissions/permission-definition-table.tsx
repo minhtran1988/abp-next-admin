@@ -62,7 +62,7 @@ const PermissionDefinitionTable: React.FC = () => {
 	const { deserialize } = localizationSerializer();
 	const { multiTenancySidesMap, providersMap } = useTypesMap($t);
 
-	// 删除权限操作
+	// Delete permission operation
 	const { mutateAsync: deletePermission } = useMutation({
 		mutationFn: deleteApi,
 		onSuccess: () => {
@@ -71,7 +71,7 @@ const PermissionDefinitionTable: React.FC = () => {
 		},
 	});
 
-	// 获取权限数据
+	// Get permission data
 	const { data, isLoading } = useQuery({
 		queryKey: ["permissions", "permissionGroups", searchParams],
 		queryFn: async () => {
@@ -215,13 +215,13 @@ const PermissionDefinitionTable: React.FC = () => {
 				indentSize={30}
 				expandable={{
 					defaultExpandAllRows: false,
-					childrenColumnName: "children", // 指定子项字段
+					childrenColumnName: "children", //Specify the child field
 				}}
 			/>
 		);
 	};
 
-	// 工具栏
+	// toolbar
 	const toolBarRender = () => [
 		hasAccessByCodes([GroupDefinitionsPermissions.Create]) && (
 			<Button
@@ -263,7 +263,7 @@ const PermissionDefinitionTable: React.FC = () => {
 					request={async (params) => {
 						const { filter } = params;
 						setSearchParams({ filter: filter });
-						//强制重新请求数据（用于table的刷新按钮）
+						// Force to re-request data (for table refresh button)
 						await queryClient.invalidateQueries({ queryKey: ["permissions", "permissionGroups"] });
 						return { data, success: true, total: data?.length };
 					}}

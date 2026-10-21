@@ -5,21 +5,21 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Messages.Models;
 /// <summary>
-/// 修改日程事件
+/// Modify schedule events
 /// </summary>
 /// <remarks>
-/// 应用通过API创建日程后，当日程管理员修改了日程时，触发该事件。
+/// After the application creates a schedule through the API, this event is triggered when the schedule administrator modifies the schedule.
 /// </remarks>
 [EventName("modify_schedule")]
 public class UpdateScheduleEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 日历ID
+    /// Calendar ID
     /// </summary>
     [XmlElement("CalId")]
     public string? CalId { get; set; }
     /// <summary>
-    /// 日程ID
+    /// Schedule ID
     /// </summary>
     [XmlElement("ScheduleId")]
     public string ScheduleId { get; set; } = default!;

@@ -2,7 +2,7 @@
 // import requestClient from '../request';
 
 /**
- * 获取用户所有菜单
+ * Get all menus of the user
  */
 // export async function getAllMenusApi() {
 //   return requestClient.get<RouteRecordStringComponent[]>('/menu/all');

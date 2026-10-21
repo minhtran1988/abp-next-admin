@@ -5,36 +5,36 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Request;
 /// <summary>
-/// 分配在职成员的客户请求参数
+/// Assign client request parameters to active members
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92125" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92125" />
 /// </remarks>
 public class WeChatWorkTransferCustomerRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 原跟进成员的userid
+    /// The userid of the original follow-up member
     /// </summary>
     [NotNull]
     [JsonProperty("handover_userid")]
     [JsonPropertyName("handover_userid")]
     public string HandoverUserId { get; }
     /// <summary>
-    /// 接替成员的userid
+    /// The userid of the replacement member
     /// </summary>
     [NotNull]
     [JsonProperty("takeover_userid")]
     [JsonPropertyName("takeover_userid")]
     public string TakeoverUserId { get; }
     /// <summary>
-    /// 客户的external_userid列表，每次最多分配100个客户
+    /// Customer's external_userid list, up to 100 customers can be allocated each time
     /// </summary>
     [NotNull]
     [JsonProperty("external_userid")]
     [JsonPropertyName("external_userid")]
     public string[] ExternalUserId { get; }
     /// <summary>
-    /// 转移成功后发给客户的消息，最多200个字符，不填则使用默认文案
+    /// The message sent to the customer after the transfer is successful, up to 200 characters, if not filled in, the default copy will be used
     /// </summary>
     [CanBeNull]
     [JsonProperty("transfer_success_msg")]

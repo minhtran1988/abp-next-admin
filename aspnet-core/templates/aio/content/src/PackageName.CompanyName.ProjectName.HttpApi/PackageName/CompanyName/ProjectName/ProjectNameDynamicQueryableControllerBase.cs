@@ -3,9 +3,9 @@ using PackageName.CompanyName.ProjectName.Localization;
 
 namespace PackageName.CompanyName.ProjectName;
 /// <summary>
-/// 提供动态查询控制器实现
+/// Provide dynamic query controller implementation
 /// </summary>
-/// <typeparam name="TEntityDto">实体dto类型</typeparam>
+/// <typeparam name="TEntityDto">Entity dto type</typeparam>
 public abstract class ProjectNameDynamicQueryableControllerBase<TEntityDto> : DynamicQueryableControllerBase<TEntityDto>
 {
     protected ProjectNameDynamicQueryableControllerBase(

@@ -9,10 +9,10 @@ using Xunit;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 数据流不存在时的处理
+/// Processing when the data stream does not exist
 /// </summary>
 /// <remarks>
-/// OpenObserve 未写入过数据时数据流尚未创建, 查询按空结果处理并记录警告日志
+/// When OpenObserve has not written data, the data stream has not yet been created. The query will be processed as an empty result and a warning log will be recorded.
 /// </remarks>
 public class OpenObserveStreamNotFound_Tests : AbpAuditLoggingOpenObserveTestBase
 {
@@ -32,7 +32,7 @@ public class OpenObserveStreamNotFound_Tests : AbpAuditLoggingOpenObserveTestBas
 
         var tenantId = Guid.NewGuid();
 
-        // 该租户从未写入过数据, 其数据流尚未创建
+        // This tenant has never written data, and its data stream has not been created yet
         using (_currentTenant.Change(tenantId))
         {
             (await _manager.GetCountAsync()).ShouldBe(0);
@@ -43,7 +43,7 @@ public class OpenObserveStreamNotFound_Tests : AbpAuditLoggingOpenObserveTestBas
                                      entry.Message.Contains("does not exist yet", StringComparison.OrdinalIgnoreCase));
 
         warning.ShouldNotBeNull();
-        // 日志类别为管理器类型(由子类注入的 ILogger<T> 决定)
+        // The log category is the manager type (determined by the ILogger<T> injected by the subclass)
         warning!.Category.ShouldContain("OpenObserveAuditLogManager");
     }
 }

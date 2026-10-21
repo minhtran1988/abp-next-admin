@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 摘要信息
+/// Summary information
 /// </summary>
 public class ApprovalSummaryInfo
 {
     /// <summary>
-    /// 摘要行显示文字，用于记录列表和消息通知的显示，不要超过20个字符
+    /// The summary line displays text, which is used to display record lists and message notifications. It should not exceed 20 characters.
     /// </summary>
     [NotNull]
     [StringLength(20)]
@@ -18,7 +18,7 @@ public class ApprovalSummaryInfo
     [JsonPropertyName("text")]
     public string Text { get; set; } = default!;
     /// <summary>
-    /// 摘要行显示语言，中文：zh_CN（注意不是zh-CN），英文：en。
+    /// Summary line display language, Chinese: zh_CN (note not zh-CN), English: en.
     /// </summary>
     [NotNull]
     [StringLength(30)]

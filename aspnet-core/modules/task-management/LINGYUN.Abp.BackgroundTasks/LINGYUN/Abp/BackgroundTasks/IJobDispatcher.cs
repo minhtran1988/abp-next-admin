@@ -5,26 +5,26 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.BackgroundTasks;
 /// <summary>
-/// 作业调度接口
+/// Job scheduling interface
 /// </summary>
 /// <remarks>
-/// 使用场景: 调度作业到作业调度器(调度到指定运行节点作业)
+/// Usage scenario: Scheduling jobs to the job scheduler (scheduling jobs to the specified running node)
 /// </remarks>
 public interface IJobDispatcher
 {
     /// <summary>
-    /// 调度单个作业
+    /// Schedule a single job
     /// </summary>
-    /// <param name="job">作业明细</param>
+    /// <param name="job">Job details</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<bool> DispatchAsync(JobInfo job, CancellationToken cancellationToken = default);
     /// <summary>
-    /// 调度多个作业
+    /// Schedule multiple jobs
     /// </summary>
-    /// <param name="jobs">作业列表</param>
-    /// <param name="nodeName">运行节点</param>
-    /// <param name="tenantId">租户标识</param>
+    /// <param name="jobs">Job list</param>
+    /// <param name="nodeName">Run node</param>
+    /// <param name="tenantId">Tenant ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<bool> DispatchAsync(
@@ -33,24 +33,24 @@ public interface IJobDispatcher
         Guid? tenantId = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 通知清理过期作业
+    /// Notify to clean up expired jobs
     /// </summary>
     /// <remarks>
-    /// 通知各节点清理当前节点中过期作业
+    /// Notify each node to clean up expired jobs in the current node
     /// </remarks>
-    /// <param name="tenantId">租户标识</param>
+    /// <param name="tenantId">Tenant ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task CleanExpiredJobAsync(
         Guid? tenantId = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 检查运行中的作业
+    /// Check running jobs
     /// </summary>
     /// <remarks>
-    /// 通知各节点检查当前节点中运行中作业
+    /// Notify each node to check the running jobs on the current node
     /// </remarks>
-    /// <param name="tenantId">租户标识</param>
+    /// <param name="tenantId">Tenant ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task CheckRuningJobAsync(

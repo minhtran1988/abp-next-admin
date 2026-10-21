@@ -18,7 +18,7 @@ namespace LINGYUN.Abp.Sms.Aliyun
         }
 
         /// <summary>
-        /// 阿里云短信测试
+        /// Alibaba Cloud SMS test
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

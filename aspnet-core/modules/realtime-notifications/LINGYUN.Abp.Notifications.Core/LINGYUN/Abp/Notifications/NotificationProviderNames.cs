@@ -1,28 +1,28 @@
 ﻿namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 内置通知提供者
+/// Built-in notification provider
 /// </summary>
 public static class NotificationProviderNames
 {
     /// <summary>
-    /// SignalR 实时通知
+    /// SignalR real-time notification
     /// </summary>
     public const string SignalR = "SignalR";
     /// <summary>
-    /// 短信通知
+    /// SMS notification
     /// </summary>
     public const string Sms = "Sms";
     /// <summary>
-    /// 邮件通知
+    /// Email notification
     /// </summary>
     public const string Emailing = "Emailing";
     /// <summary>
-    /// 微信小程序模板通知
+    /// WeChat mini program template notification
     /// </summary>
     public const string WechatMiniProgram = "WeChat.MiniProgram";
     /// <summary>
-    /// 企业微信应用消息
+    /// Enterprise WeChat application message
     /// </summary>
     public const string WechatWork = "WeChat.Work";
 }

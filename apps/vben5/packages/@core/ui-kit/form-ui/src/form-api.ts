@@ -61,11 +61,11 @@ export class FormApi {
   public store: Store<VbenFormProps>;
 
   /**
-   * 组件实例映射
+   * Component instance mapping
    */
   private componentRefMap: Map<string, unknown> = new Map();
 
-  // 最后一次点击提交时的表单值
+  // The form value when the last click was submitted
   private latestSubmissionValues: null | Recordable<any> = null;
 
   private prevState: null | VbenFormProps = null;
@@ -95,9 +95,9 @@ export class FormApi {
   }
 
   /**
-   * 获取字段组件实例
-   * @param fieldName 字段名
-   * @returns 组件实例
+   * Get field component instance
+   * @param fieldName field name
+   * @returns component instance
    */
   getFieldComponentRef<T = ComponentPublicInstance>(
     fieldName: string,
@@ -125,7 +125,7 @@ export class FormApi {
   }
 
   /**
-   * 获取当前聚焦的字段，如果没有聚焦的字段则返回undefined
+   * Get the currently focused field, if there is no focused field, return undefined
    */
   getFocusedField() {
     for (const fieldName of this.componentRefMap.keys()) {
@@ -222,7 +222,7 @@ export class FormApi {
   }
 
   /**
-   * 根据字段名移除表单项
+   * Remove form items based on field name
    * @param fields
    */
   async removeSchemaByFields(fields: string[]) {
@@ -237,7 +237,7 @@ export class FormApi {
   }
 
   /**
-   * 重置表单
+   * Reset form
    */
   async resetForm(
     state?: Partial<FormState<GenericObject>> | undefined,
@@ -256,8 +256,8 @@ export class FormApi {
   }
 
   /**
-   * 滚动到第一个错误字段
-   * @param errors 验证错误对象
+   * Scroll to first error field
+   * @param errors validation error object
    */
   scrollToFirstError(errors: Record<string, any> | string) {
     // https://github.com/logaretm/vee-validate/discussions/3835
@@ -272,7 +272,7 @@ export class FormApi {
       `[name="${firstErrorFieldName}"]`,
     ) as HTMLElement;
 
-    // 如果通过 name 属性找不到，尝试通过组件引用查找, 正常情况下不会走到这，怕哪天 vee-validate 改了 name 属性有个兜底的
+    // If you can't find it through the name attribute, try to find it through the component reference. Normally you won't reach this point. I'm afraid that one day vee-validate changes the name attribute and there is no clue.
     if (!el) {
       const componentRef = this.getFieldComponentRef(firstErrorFieldName);
       if (componentRef && componentRef.$el instanceof HTMLElement) {
@@ -281,7 +281,7 @@ export class FormApi {
     }
 
     if (el) {
-      // 滚动到错误字段，添加一些偏移量以确保字段完全可见
+      // Scroll to the error field, add some offset to make sure the field is fully visible
       el.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
@@ -314,9 +314,9 @@ export class FormApi {
   }
 
   /**
-   * 设置表单值
+   * Set form values
    * @param fields record
-   * @param filterFields 过滤不在schema中定义的字段 默认为true
+   * @param filterFields filters fields not defined in the schema. The default is true.
    * @param shouldValidate
    */
   async setValues(
@@ -331,10 +331,10 @@ export class FormApi {
     }
 
     /**
-     * 合并算法有待改进，目前的算法不支持object类型的值。
-     * antd的日期时间相关组件的值类型为dayjs对象
-     * element-plus的日期时间相关组件的值类型可能为Date对象
-     * 以上两种类型需要排除深度合并
+     * The merging algorithm needs to be improved. The current algorithm does not support object type values.
+     * The value type of antd's date and time related components is dayjs object
+     * The value type of element-plus' date and time related components may be Date object
+     * The above two types need to exclude deep merging
      */
     const fieldMergeFn = createMerge((obj, key, value) => {
       if (key in obj) {
@@ -448,7 +448,7 @@ export class FormApi {
 
   private async getForm() {
     if (!this.isMounted) {
-      // 等待form挂载
+      // Wait for the form to be mounted
       await this.stateHandler.waitForCondition();
     }
     if (!this.form?.meta) {
@@ -468,11 +468,11 @@ export class FormApi {
         if (Array.isArray(value)) {
           return value.join(sep);
         } else if (typeof value === 'string') {
-          // 处理空字符串的情况
+          // Handle the case of empty string
           if (value === '') {
             return [];
           }
-          // 处理复杂分隔符的情况
+          // Handle the case of complex delimiters
           const escapedSeparator = sep.replaceAll(
             /[.*+?^${}()|[\]\\]/g,
             String.raw`\$&`,
@@ -484,7 +484,7 @@ export class FormApi {
       });
     };
 
-    // 处理简单数组格式 ['field1', 'field2', ';'] 或 ['field1', 'field2']
+    // Handle simple array format ['field1', 'field2', ';'] or ['field1', 'field2']
     if (arrayToStringFields.every((item) => typeof item === 'string')) {
       const lastItem =
         arrayToStringFields[arrayToStringFields.length - 1] || '';
@@ -497,11 +497,11 @@ export class FormApi {
       return;
     }
 
-    // 处理嵌套数组格式 [['field1'], ';']
+    // Handle nested array format [['field1'], ';']
     arrayToStringFields.forEach((fieldConfig) => {
       if (Array.isArray(fieldConfig)) {
         const [fields, separator = ','] = fieldConfig;
-        // 根据类型定义，fields 应该始终是字符串数组
+        // According to the type definition, fields should always be an array of strings
         if (!Array.isArray(fields)) {
           console.warn(
             `Invalid field configuration: fields should be an array of strings, got ${typeof fields}`,
@@ -581,7 +581,7 @@ export class FormApi {
   private updateState() {
     const currentSchema = this.state?.schema ?? [];
     const prevSchema = this.prevState?.schema ?? [];
-    // 进行了删除schema操作
+    // The schema operation was deleted
     if (currentSchema.length < prevSchema.length) {
       const currentFields = new Set(
         currentSchema.map((item) => item.fieldName),

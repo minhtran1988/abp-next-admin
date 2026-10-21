@@ -6,12 +6,12 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 消息构造选项
+/// Enterprise WeChat Webhook message construction options
 /// </summary>
 /// <remarks>
 /// <para>
-/// 渠道数据的形态到消息载体的转换集中注册在这里, 新增一种消息类型只需要
-/// <c>options.Map(kind, factory)</c>, 不需要修改贡献者的发布逻辑。
+/// The conversion of channel data form to message carrier is centrally registered here. To add a new message type, you only need to
+/// <c>options.Map(kind, factory)</c>, there is no need to modify the contributor's publishing logic.
 /// </para>
 /// </remarks>
 public class AbpNotificationsWebhookWeChatWorkMessageOptions
@@ -20,12 +20,12 @@ public class AbpNotificationsWebhookWeChatWorkMessageOptions
         = new Dictionary<WeChatWorkWebhookMessageKind, Func<WeChatWorkWebhookMessageFactoryContext, WeChatWorkWebhookMessageFactoryResult>>();
 
     /// <summary>
-    /// 已注册的消息类型
+    /// Registered message type
     /// </summary>
     public IReadOnlyCollection<WeChatWorkWebhookMessageKind> MessageKinds => _factories.Keys;
 
     /// <summary>
-    /// 注册消息构造工厂
+    /// Register message construction factory
     /// </summary>
     public AbpNotificationsWebhookWeChatWorkMessageOptions Map(
         WeChatWorkWebhookMessageKind kind,
@@ -39,7 +39,7 @@ public class AbpNotificationsWebhookWeChatWorkMessageOptions
     }
 
     /// <summary>
-    /// 构造消息载体
+    /// Construct message carrier
     /// </summary>
     public WeChatWorkWebhookMessageFactoryResult Create(WeChatWorkWebhookMessageFactoryContext context)
     {
@@ -64,7 +64,7 @@ public class AbpNotificationsWebhookWeChatWorkMessageOptions
     }
 
     /// <summary>
-    /// 获取已注册的工厂
+    /// Get the registered factory
     /// </summary>
     public bool TryGetFactory(
         WeChatWorkWebhookMessageKind kind,

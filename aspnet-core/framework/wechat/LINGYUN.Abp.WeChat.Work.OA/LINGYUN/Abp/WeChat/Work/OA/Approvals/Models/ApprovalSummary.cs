@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 摘要信息
+/// Summary information
 /// </summary>
 public class ApprovalSummary
 {
     /// <summary>
-    /// 摘要行信息，用于定义某一行摘要显示的内容
+    /// Summary line information, used to define the content displayed in a certain line summary
     /// </summary>
     [NotNull]
     [JsonProperty("summary_info")]

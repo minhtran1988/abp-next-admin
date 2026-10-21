@@ -5,51 +5,51 @@ using Volo.Abp.Application.Services;
 
 namespace LINGYUN.Abp.Account;
 /// <summary>
-/// 关联用户应用服务接口
+/// Associated user application service interface
 /// </summary>
 public interface IIdentityLinkUserAppService : IApplicationService
 {
     /// <summary>
-    /// 关联用户
+    /// Associated users
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task LinkAsync(LinkUserInput input);
     /// <summary>
-    /// 取消关联用户
+    /// Unassociate user
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task UnlinkAsync(UnLinkUserInput input);
     /// <summary>
-    /// 生成关联用户Token
+    /// Generate associated user Token
     /// </summary>
     /// <returns></returns>
     Task<string> GenerateLinkTokenAsync();
     /// <summary>
-    /// 生成关联用户登录Token
+    /// Generate associated user login Token
     /// </summary>
     /// <returns></returns>
     Task<string> GenerateLinkLoginTokenAsync();
     /// <summary>
-    /// 获取已关联用户列表
+    /// Get the list of associated users
     /// </summary>
     /// <returns></returns>
     Task<ListResultDto<LinkUserDto>> GetListAsync();
     /// <summary>
-    /// 验证关联用户
+    /// Verify associated users
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<VerifyLinkUserDto> VerifyLinkUserAsync(VerifyLinkUserInput input);
     /// <summary>
-    /// 验证关联用户Token
+    /// Verify associated user Token
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<bool> VerifyLinkTokenAsync(VerifyLinkTokenInput input);
     /// <summary>
-    /// 验证关联用户登录Token
+    /// Verify associated user login token
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>

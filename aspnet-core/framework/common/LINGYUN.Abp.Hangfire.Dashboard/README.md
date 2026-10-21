@@ -1,28 +1,28 @@
 # LINGYUN.Abp.Hangfire.Dashboard
 
-[English](README.EN.md) | 简体中文
+[English](README.EN.md) | Simplified Chinese
 
-## 1. 介绍
+## 1. Introduction
 
-`LINGYUN.Abp.Hangfire.Dashboard` 是一个用于集成Hangfire仪表板的ABP模块，它提供了一个用户友好的Web界面来监控和管理Hangfire后台作业。该模块支持权限控制和认证，确保仪表板的安全访问。
+`LINGYUN.Abp.Hangfire.Dashboard` is an ABP module for integrating Hangfire dashboard, which provides a user-friendly web interface to monitor and manage Hangfire background jobs. This module supports permission control and authentication to ensure secure access to the dashboard.
 
-## 2. 功能特性
+## 2. Features
 
-* 集成Hangfire仪表板
-* 基于ABP权限系统的访问控制
-* 支持通过iframe加载仪表板
-* 支持访问令牌认证
-* 仪表板权限缓存机制
+* Integrated Hangfire dashboard
+*Access control based on ABP permission system
+* Support loading dashboard through iframe
+* Support access token authentication
+* Dashboard permission caching mechanism
 
-## 3. 安装
+## 3. Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Hangfire.Dashboard
 ```
 
-## 4. 使用方法
+## 4. How to use
 
-1. 添加 `AbpHangfireDashboardModule` 到模块依赖中:
+1. Add `AbpHangfireDashboardModule` to module dependencies:
 
 ```csharp
 [DependsOn(typeof(AbpHangfireDashboardModule))]
@@ -31,19 +31,19 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置中间件:
+2. Configure middleware:
 
 ```csharp
 public override void OnApplicationInitialization(ApplicationInitializationContext context)
 {
     var app = context.GetApplicationBuilder();
     
-    // 添加Hangfire认证中间件
+    //Add Hangfire authentication middleware
     app.UseHangfireAuthorication();
 }
 ```
 
-3. 配置仪表板选项:
+3. Configure dashboard options:
 
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
@@ -58,26 +58,26 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-## 5. 认证和授权
+## 5. Authentication and Authorization
 
-### 5.1 认证方式
+### 5.1 Authentication method
 
-模块支持以下认证方式：
-* 通过URL参数传递访问令牌: `?access_token=your_token`
-* 通过Cookie传递访问令牌
-* 通过Authorization Header传递访问令牌
+The module supports the following authentication methods:
+* Pass the access token via URL parameter: `?access_token=your_token`
+* Pass access token via cookie
+* Pass the access token through the Authorization Header
 
-### 5.2 权限缓存
+### 5.2 Permission cache
 
-权限检查结果会被缓存5分钟，以提高性能。
+Permission check results are cached for 5 minutes to improve performance.
 
-## 6. 依赖项
+## 6. Dependencies
 
 * Volo.Abp.Authorization
 * Volo.Abp.Hangfire
 * Microsoft.Extensions.Caching.Memory
 
-## 7. 文档和资源
+## 7. Documentation and Resources
 
-* [Hangfire官方文档](https://docs.hangfire.io/)
-* [ABP框架文档](https://docs.abp.io/)
+* [Hangfire official documentation](https://docs.hangfire.io/)
+* [ABP Framework Documentation](https://docs.abp.io/)

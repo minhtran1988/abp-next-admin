@@ -5,47 +5,47 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 引用文献
+/// Cited documents
 /// </summary>
 public class WebhookTemplateCardQuoteArea
 {
     /// <summary>
-    /// 引用文献样式区域点击事件，0或不填代表没有点击事件，1 代表跳转url，2 代表跳转小程序
+    /// Click event in the cited document style area, 0 or not filled in means there is no click event, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public int? Type { get; set; }
     /// <summary>
-    /// 点击跳转的url，type是1时必填
+    /// Click to jump to the url, required when type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的appid，type是2时必填
+    /// The appid of the mini program that you click to jump to. Required when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的pagepath，type是2时选填
+    /// Click to jump to the pagepath of the applet. Optional when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]
     [JsonPropertyName("pagepath")]
     public string? PagePath { get; set; }
     /// <summary>
-    /// 引用文献样式的标题
+    /// Citation document style title
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 引用文献样式的引用文案
+    /// Citation copy in citation style
     /// </summary>
     [CanBeNull]
     [JsonProperty("quote_text")]
@@ -68,10 +68,10 @@ public class WebhookTemplateCardQuoteArea
         PagePath = pagePath;
     }
     /// <summary>
-    /// 创建一个默认引用文献
+    /// Create a default citation
     /// </summary>
-    /// <param name="title">引用文献样式的标题</param>
-    /// <param name="quoteText">引用文献样式的引用文案</param>
+    /// <param name="title">Citation document style title</param>
+    /// <param name="quoteText">Quotation copy in citation style</param>
     /// <returns></returns>
     public static WebhookTemplateCardQuoteArea Default(string title, string? quoteText = null)
     {
@@ -80,11 +80,11 @@ public class WebhookTemplateCardQuoteArea
         return new WebhookTemplateCardQuoteArea(title, quoteText: quoteText);
     }
     /// <summary>
-    /// 创建一个跳转链接的引用文献
+    /// Create a citation for a jump link
     /// </summary>
-    /// <param name="title">引用文献样式的标题</param>
-    /// <param name="url">点击跳转的url</param>
-    /// <param name="quoteText">引用文献样式的引用文案</param>
+    /// <param name="title">Citation document style title</param>
+    /// <param name="url">Click to jump to the url</param>
+    /// <param name="quoteText">Quotation copy in citation style</param>
     /// <returns></returns>
     public static WebhookTemplateCardQuoteArea Link(string title, string url, string? quoteText = null)
     {
@@ -94,12 +94,12 @@ public class WebhookTemplateCardQuoteArea
         return new WebhookTemplateCardQuoteArea(title, 1, url, quoteText: quoteText);
     }
     /// <summary>
-    /// 创建一个跳转小程序的引用文献
+    /// Create a reference document for the jump applet
     /// </summary>
-    /// <param name="title">引用文献样式的标题</param>
-    /// <param name="appId">跳转链接的小程序的appid</param>
-    /// <param name="pagePath">跳转链接的小程序的pagepath</param>
-    /// <param name="quoteText">引用文献样式的引用文案</param>
+    /// <param name="title">Citation document style title</param>
+    /// <param name="appId">The appid of the mini program that jumps to the link</param>
+    /// <param name="pagePath">The pagepath of the mini program for the jump link</param>
+    /// <param name="quoteText">Quotation copy in citation style</param>
     /// <returns></returns>
     public static WebhookTemplateCardQuoteArea MiniProgram(string title, string appId, string pagePath, string? quoteText = null)
     {

@@ -26,7 +26,7 @@ public class Program
                 .UseAutofac()
                 .ConfigureAppConfiguration((context, config) =>
                 {
-                    // AgileConfig 分布式配置平台, 顺序排在最后可覆盖所有本地配置文件
+                    // AgileConfig distributed configuration platform, ranked last can cover all local configuration files
                     if (context.Configuration.GetValue("AgileConfig:IsEnabled", false))
                     {
                         config.AddAgileConfig(new AgileConfig.Client.ConfigClient(context.Configuration));
@@ -41,12 +41,12 @@ public class Program
                 TaskServiceModule.ApplicationName = Environment.GetEnvironmentVariable("APPLICATION_NAME")
                     ?? TaskServiceModule.ApplicationName;
                 options.ApplicationName = TaskServiceModule.ApplicationName;
-                // 从环境变量取用户机密配置, 适用于容器测试
+                // Get user secret configuration from environment variables, suitable for container testing
                 options.Configuration.UserSecretsId = Environment.GetEnvironmentVariable("APPLICATION_USER_SECRETS_ID");
-                // 如果容器没有指定用户机密, 从项目读取
+                // If the container does not specify a user secret, read from the project
                 options.Configuration.UserSecretsAssembly = typeof(TaskServiceModule).Assembly;
-                // 搜索 Modules 目录下所有文件作为插件
-                // 取消显示引用所有其他项目的模块，改为通过插件的形式引用
+                // Search all files in the Modules directory as plug-ins
+                // Cancel the display of modules that reference all other projects and instead reference them through plug-ins.
                 var pluginFolder = Path.Combine(
                         Directory.GetCurrentDirectory(), "Modules");
                 DirectoryHelper.CreateIfNotExists(pluginFolder);

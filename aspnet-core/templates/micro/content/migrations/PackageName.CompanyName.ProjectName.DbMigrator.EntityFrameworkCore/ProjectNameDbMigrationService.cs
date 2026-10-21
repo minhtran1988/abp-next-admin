@@ -32,7 +32,7 @@ public class ProjectNameDbMigrationService : EfCoreRuntimeDbMigratorBase<Project
 
     protected async override Task SeedAsync()
     {
-        // DbMigrator迁移数据种子
+        // DbMigrator migration data seed
         await DataSeeder.SeedAsync(new DataSeedContext());
     }
 }

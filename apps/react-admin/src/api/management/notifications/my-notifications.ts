@@ -8,9 +8,9 @@ import type {
 
 import requestClient from "@/api/request";
 /**
- * 获取我的通知列表
- * @param {GetMyNotifilerPagedListInput} input 参数
- * @returns {Promise<PagedResultDto<UserNotificationDto>>} 通知分页列表
+ * Get my notification list
+ * @param {GetMyNotifilerPagedListInput} input parameter
+ * @returns {Promise<PagedResultDto<UserNotificationDto>>} notification paging list
  */
 export function getMyNotifilersApi(input?: GetMyNotifilerPagedListInput): Promise<PagedResultDto<UserNotificationDto>> {
 	return requestClient.get<PagedResultDto<UserNotificationDto>>("/api/notifications/my-notifilers", {
@@ -18,16 +18,16 @@ export function getMyNotifilersApi(input?: GetMyNotifilerPagedListInput): Promis
 	});
 }
 /**
- * 删除我的通知
- * @param {string} id 通知id
+ * Delete my notification
+ * @param {string} id notification id
  * @returns {void}
  */
 export function deleteMyNotifilerApi(id: string): Promise<void> {
 	return requestClient.delete(`/api/notifications/my-notifilers/${id}`);
 }
 /**
- * 设置通知已读状态
- * @param {MarkReadStateInput} input 参数
+ * Set notification read status
+ * @param {MarkReadStateInput} input parameter
  * @returns {void}
  */
 export function markReadStateApi(input: MarkReadStateInput): Promise<void> {

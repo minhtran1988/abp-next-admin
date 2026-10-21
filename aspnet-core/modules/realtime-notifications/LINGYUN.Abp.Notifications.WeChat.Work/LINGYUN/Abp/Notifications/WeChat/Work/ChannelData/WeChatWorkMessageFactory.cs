@@ -6,22 +6,22 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信默认消息构造工厂
+/// Enterprise WeChat default message construction factory
 /// </summary>
 /// <remarks>
 /// <para>
-/// 每一种渠道数据(载荷)与消息载体的映射都是显式的, 新增消息类型只需追加一个
-/// <c>Map</c> 调用, 不需要修改 Provider 的发布逻辑。
+/// The mapping between each channel data (payload) and the message carrier is explicit. To add a new message type, you only need to add one
+/// Called by <c>Map</c>, there is no need to modify the provider's publishing logic.
 /// </para>
 /// <para>
-/// 企业微信各消息载体支持的选项并不一致, 因此按具体载体类型分别重载,
-/// 由编译器保证只设置载体真正支持的字段, 而不是像旧实现那样无差别赋值。
+/// The options supported by each message carrier of Enterprise WeChat are not consistent, so they are overloaded separately according to the specific carrier type.
+/// The compiler guarantees that only fields truly supported by the vector are set, rather than indiscriminate assignment like the old implementation.
 /// </para>
 /// </remarks>
 public static class WeChatWorkMessageFactoryExtensions
 {
     /// <summary>
-    /// 注册内置的消息构造工厂
+    /// Register the built-in message construction factory
     /// </summary>
     public static AbpWeChatWorkNotificationMessageOptions MapDefaultMessageFactories(
         this AbpWeChatWorkNotificationMessageOptions options)
@@ -165,7 +165,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 应用接收者
+    /// Apply receiver
     /// </summary>
     private static TMessage ApplyContact<TMessage>(TMessage message, WeChatWorkMessageFactoryContext context)
         where TMessage : WeChatWorkMessage
@@ -181,7 +181,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 文本消息: 支持 safe、enable_id_trans、enable_duplicate_check
+    /// Text message: supports safe, enable_id_trans, enable_duplicate_check
     /// </summary>
     private static WeChatWorkTextMessage Apply(
         WeChatWorkTextMessage message,
@@ -198,7 +198,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 图文消息: 支持 safe、enable_id_trans、enable_duplicate_check
+    /// Graphic message: supports safe, enable_id_trans, enable_duplicate_check
     /// </summary>
     private static WeChatWorkMpNewMessage Apply(
         WeChatWorkMpNewMessage message,
@@ -215,7 +215,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 文件消息: 支持 safe、enable_duplicate_check, 不支持 enable_id_trans
+    /// File message: safe, enable_duplicate_check is supported, enable_id_trans is not supported
     /// </summary>
     private static WeChatWorkFileMessage Apply(
         WeChatWorkFileMessage message,
@@ -231,7 +231,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 视频消息: 支持 safe、enable_duplicate_check, 不支持 enable_id_trans
+    /// Video message: supports safe, enable_duplicate_check, does not support enable_id_trans
     /// </summary>
     private static WeChatWorkVideoMessage Apply(
         WeChatWorkVideoMessage message,
@@ -247,7 +247,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 语音消息: 不支持 safe, 也不支持 enable_id_trans
+    /// Voice message: does not support safe, nor enable_id_trans
     /// </summary>
     private static WeChatWorkVoiceMessage Apply(
         WeChatWorkVoiceMessage message,
@@ -262,7 +262,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// markdown消息: 支持 enable_duplicate_check, 不支持 safe
+    /// markdown message: enable_duplicate_check is supported, safe is not supported
     /// </summary>
     private static WeChatWorkMarkdownMessage Apply(
         WeChatWorkMarkdownMessage message,
@@ -277,7 +277,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 文本卡片消息: 不支持 safe
+    /// Text card message: safe is not supported
     /// </summary>
     private static WeChatWorkTextCardMessage Apply(
         WeChatWorkTextCardMessage message,
@@ -293,7 +293,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 模板卡片消息: 不支持 safe
+    /// Template card message: safe is not supported
     /// </summary>
     private static WeChatWorkTemplateCardMessage Apply(
         WeChatWorkTemplateCardMessage message,
@@ -309,7 +309,7 @@ public static class WeChatWorkMessageFactoryExtensions
     }
 
     /// <summary>
-    /// 小程序通知消息: 不支持 safe
+    /// Mini program notification message: safe is not supported
     /// </summary>
     private static WeChatWorkMiniProgramMessage Apply(
         WeChatWorkMiniProgramMessage message,

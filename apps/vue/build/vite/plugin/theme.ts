@@ -20,7 +20,7 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
     mixLighten,
     tinycolor,
   });
-  // 抽取出viteThemePlugin插件，下方会根据不同环境设置enforce
+  // Extract the viteThemePlugin plug-in, and enforce will be set according to different environments below.
   const vite_theme_plugin = viteThemePlugin({
     resolveSelector: (s) => {
       s = s.trim();
@@ -37,7 +37,7 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
           return s;
         default:
           if (s.indexOf('.ant-btn') >= -1) {
-            // 按钮被重新定制过，需要过滤掉class防止覆盖
+            // The button has been recustomized and needs to be filtered out to prevent overwriting.
             return s;
           }
       }
@@ -46,9 +46,9 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
     colorVariables: [...getThemeColors(), ...colors],
   });
   vite_theme_plugin.forEach(function (item) {
-    //对vite:theme插件特殊配置
+    // Special configuration for vite:theme plug-in
     if ('vite:theme' === item.name) {
-      // 打包时去除enforce: "post"，vite 2.6.x适配，否则生成app-theme-style为空，因为async transform(code, id) {的code没有正确获取
+      // Remove enforce: "post" when packaging, adapt to vite 2.6.x, otherwise the generated app-theme-style will be empty because the code of async transform(code, id) { is not obtained correctly
       if (isBuild) {
         delete item.enforce;
       }
@@ -59,7 +59,7 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
     antdDarkThemePlugin({
       preloadFiles: [
         path.resolve(process.cwd(), 'node_modules/ant-design-vue/dist/antd.less'),
-        //path.resolve(process.cwd(), 'node_modules/ant-design-vue/dist/antd.dark.less'),
+        // path.resolve(process.cwd(), 'node_modules/ant-design-vue/dist/antd.dark.less'),
         path.resolve(process.cwd(), 'src/design/index.less'),
       ],
       filter: (id) => (isBuild ? !id.endsWith('antd.less') : true),

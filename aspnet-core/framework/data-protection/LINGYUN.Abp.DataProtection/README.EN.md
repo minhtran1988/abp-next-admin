@@ -100,4 +100,4 @@ public class YourService
 
 ## Related Links
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

@@ -3,17 +3,17 @@ using Volo.Abp.Content;
 
 namespace LINGYUN.Abp.Exporter;
 /// <summary>
-/// 数据导出服务接口
+/// Data export service interface
 /// </summary>
-/// <typeparam name="TEntityExportDto">导出的实体数据传输对象</typeparam>
-/// <typeparam name="TEntityListGetInput">实体数据过滤数据对象</typeparam>
+/// <typeparam name="TEntityExportDto">Exported entity data transfer object</typeparam>
+/// <typeparam name="TEntityListGetInput">Entity data filter data object</typeparam>
 public interface IExporterAppService<TEntityExportDto, TEntityListGetInput>
      where TEntityExportDto : class, new()
 {
     /// <summary>
-    /// 导出数据（默认实现Excel）
+    /// Export data (Excel is implemented by default)
     /// </summary>
-    /// <param name="input">数据过滤条件</param>
+    /// <param name="input">Data filter conditions</param>
     /// <returns></returns>
     Task<IRemoteStreamContent> ExportAsync(TEntityListGetInput input);
 }

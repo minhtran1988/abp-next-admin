@@ -9,30 +9,30 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Platform.Routes;
 
 /// <summary>
-/// 不管是布局还是视图或者页面，都作为路由的实现，因此抽象一个路由实体<br/> 
-/// 注意:这是基于 Vue Router 的路由规则设计的实体,详情:https://router.vuejs.org/zh/api/#routes
+/// Whether it is layout, view or page, they all serve as the implementation of routing, so a routing entity is abstracted<br/>
+/// Note: This is an entity designed based on the routing rules of Vue Router. Details: https://router.vuejs.org/zh/api/#routes
 /// </summary>
 public abstract class Route : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 路径
+    /// path
     /// </summary>
     public virtual string? Path { get; set; }
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public virtual string DisplayName { get; set; } = default!;
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 重定向路径
+    /// Redirect path
     /// </summary>
     public virtual string? Redirect { get; set; }
 

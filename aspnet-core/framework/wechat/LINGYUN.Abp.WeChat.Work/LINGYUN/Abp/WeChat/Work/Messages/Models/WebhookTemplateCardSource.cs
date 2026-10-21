@@ -4,26 +4,26 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 卡片来源样式信息
+/// Card source style information
 /// </summary>
 public class WebhookTemplateCardSource
 {
     /// <summary>
-    /// 来源图片的url
+    /// URL of the source image
     /// </summary>
     [CanBeNull]
     [JsonProperty("icon_url")]
     [JsonPropertyName("icon_url")]
     public string? IconUrl { get; set; }
     /// <summary>
-    /// 来源图片的描述，建议不超过13个字
+    /// The description of the source image is recommended to be no more than 13 words.
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]
     [JsonPropertyName("desc")]
     public string? Description { get; set; }
     /// <summary>
-    /// 来源文字的颜色，目前支持：0(默认) 灰色，1 黑色，2 红色，3 绿色
+    /// The color of the source text, currently supported: 0 (default) gray, 1 black, 2 red, 3 green
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc_color")]
@@ -40,40 +40,40 @@ public class WebhookTemplateCardSource
         DescriptionColor = descriptionColor;
     }
     /// <summary>
-    /// 创建一个灰色卡片来源样式
+    /// Create a gray card source style
     /// </summary>
-    /// <param name="iconUrl">来源图片的url</param>
-    /// <param name="description">来源图片的描述</param>
+    /// <param name="iconUrl">URL of the source image</param>
+    /// <param name="description">Description of the source image</param>
     /// <returns></returns>
     public static WebhookTemplateCardSource Grey(string iconUrl, string? description = null)
     {
         return new WebhookTemplateCardSource(iconUrl, description, 0);
     }
     /// <summary>
-    /// 创建一个黑色卡片来源样式
+    /// Create a black card source style
     /// </summary>
-    /// <param name="iconUrl">来源图片的url</param>
-    /// <param name="description">来源图片的描述</param>
+    /// <param name="iconUrl">URL of the source image</param>
+    /// <param name="description">Description of the source image</param>
     /// <returns></returns>
     public static WebhookTemplateCardSource Black(string iconUrl, string? description = null)
     {
         return new WebhookTemplateCardSource(iconUrl, description, 1);
     }
     /// <summary>
-    /// 创建一个红色卡片来源样式
+    /// Create a red card source style
     /// </summary>
-    /// <param name="iconUrl">来源图片的url</param>
-    /// <param name="description">来源图片的描述</param>
+    /// <param name="iconUrl">URL of the source image</param>
+    /// <param name="description">Description of the source image</param>
     /// <returns></returns>
     public static WebhookTemplateCardSource Red(string iconUrl, string? description = null)
     {
         return new WebhookTemplateCardSource(iconUrl, description, 2);
     }
     /// <summary>
-    /// 创建一个绿色卡片来源样式
+    /// Create a green card source style
     /// </summary>
-    /// <param name="iconUrl">来源图片的url</param>
-    /// <param name="description">来源图片的描述</param>
+    /// <param name="iconUrl">URL of the source image</param>
+    /// <param name="description">Description of the source image</param>
     /// <returns></returns>
     public static WebhookTemplateCardSource Green(string iconUrl, string? description = null)
     {

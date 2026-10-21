@@ -74,13 +74,13 @@ public class PortalGrantValidator : IExtensionGrantValidator
     {
         /*  ************************************
          * 
-         * 启用平台登录后，需要管理员在宿主端定义企业信息, 并关联到某个租户
+         * After enabling platform login, the administrator needs to define enterprise information on the host side and associate it with a tenant
          * 
-         *  1、用户使用protal发起登录请求
-         *  2、检查是否携带企业标识字段 EnterpriseId
-         *  2.1、未携带 EnterpriseId 字段, 检索关联了租户信息的企业列表, 通过自定义标头反馈给用户端
-         *  2.2、检索关联 EnterpriseId 的租户信息, 切换指定租户, 通过 password 方式来进行登录验证
-         *  3、登录成功返回token
+         * 1. The user uses protal to initiate a login request
+         * 2. Check whether the enterprise identification field EnterpriseId is carried
+         * 2.1. If the EnterpriseId field is not carried, the enterprise list associated with the tenant information is retrieved and fed back to the user through a custom header.
+         * 2.2. Retrieve the tenant information associated with EnterpriseId, switch the specified tenant, and perform login verification through password.
+         * 3. Return token after successful login
          * 
          *  *************************************/
 
@@ -99,7 +99,7 @@ public class PortalGrantValidator : IExtensionGrantValidator
                     TokenRequestErrors.InvalidGrant,
                     customResponse: new Dictionary<string, object>
                     {
-                        // 是否可直接选择的模式
+                        // Whether the mode can be directly selected
                         { "Enterprises", JsonConvert.SerializeObject(enterprises.Select(x => new { Id = x.Id, Name = x.Name, Logo = x.Logo })) },
                     });
                 return;

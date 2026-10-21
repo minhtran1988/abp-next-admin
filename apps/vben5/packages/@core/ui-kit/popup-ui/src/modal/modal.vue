@@ -160,10 +160,10 @@ watch(
 // );
 
 /**
- * 在开启keepAlive情况下 直接通过浏览器按钮/手势等返回 不会关闭弹窗
+ * When keepAlive is turned on, return directly through browser buttons/gestures, etc., and the pop-up window will not be closed.
  */
 onDeactivated(() => {
-  // 如果弹窗没有被挂载到内容区域，则关闭弹窗
+  // If the pop-up window is not mounted to the content area, close the pop-up window
   if (!appendToMain.value) {
     props.modalApi?.close();
   }

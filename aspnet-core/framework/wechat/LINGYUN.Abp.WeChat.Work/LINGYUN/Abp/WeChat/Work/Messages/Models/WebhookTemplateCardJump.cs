@@ -5,40 +5,40 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 跳转指引样式
+/// Jump guide style
 /// </summary>
 public class WebhookTemplateCardJump
 {
     /// <summary>
-    /// 跳转链接类型，0或不填代表不是链接，1 代表跳转url，2 代表跳转小程序
+    /// Jump link type, 0 or not filled in means it is not a link, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public int? Type { get; set; }
     /// <summary>
-    /// 跳转链接样式的文案内容，建议不超过13个字
+    /// It is recommended that the copy content of the jump link style should not exceed 13 words.
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; }
     /// <summary>
-    /// 跳转链接的url，type是1时必填
+    /// The url of the jump link, required when type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的appid，type是2时必填
+    /// The appid of the mini program that you click to jump to. Required when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的pagepath，type是2时选填
+    /// Click to jump to the pagepath of the applet. Optional when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]
@@ -59,9 +59,9 @@ public class WebhookTemplateCardJump
         PagePath = pagePath;
     }
     /// <summary>
-    /// 创建一个默认指引样式
+    /// Create a default guide style
     /// </summary>
-    /// <param name="title">跳转链接样式的文案内容</param>
+    /// <param name="title">Copy content of jump link style</param>
     /// <returns></returns>
     public static WebhookTemplateCardJump Default(string title)
     {
@@ -70,10 +70,10 @@ public class WebhookTemplateCardJump
         return new WebhookTemplateCardJump(title);
     }
     /// <summary>
-    /// 创建一个跳转链接的指引样式
+    /// Create a guide style for jump links
     /// </summary>
-    /// <param name="title">跳转链接样式的文案内容</param>
-    /// <param name="url">跳转链接的url</param>
+    /// <param name="title">Copy content of jump link style</param>
+    /// <param name="url">URL of jump link</param>
     /// <returns></returns>
     public static WebhookTemplateCardJump Link(string title, string url)
     {
@@ -83,11 +83,11 @@ public class WebhookTemplateCardJump
         return new WebhookTemplateCardJump(title, 1, url);
     }
     /// <summary>
-    /// 创建一个跳转小程序的指引样式
+    /// Create a guide style for jumping applet
     /// </summary>
-    /// <param name="title">跳转链接样式的文案内容</param>
-    /// <param name="appId">跳转链接的小程序的appid</param>
-    /// <param name="pagePath">跳转链接的小程序的pagepath</param>
+    /// <param name="title">Copy content of jump link style</param>
+    /// <param name="appId">The appid of the mini program that jumps to the link</param>
+    /// <param name="pagePath">The pagepath of the mini program for the jump link</param>
     /// <returns></returns>
     public static WebhookTemplateCardJump MiniProgram(string title, string appId, string pagePath)
     {

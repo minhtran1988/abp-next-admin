@@ -7,39 +7,39 @@ namespace LINGYUN.Abp.Notifications;
 public class NotificationEventData : IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public Guid? TenantId { get; set; }
     /// <summary>
-    /// 通知名称
+    /// Notification name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 用来标识一个应用程序
+    /// Used to identify an application
     /// </summary>
     /// <remarks>
-    /// tips: 可以通过它来特定于应用程序的边界
+    /// tips: You can use this to specify application boundaries
     /// </remarks>
     public string Application { get; set; }
     /// <summary>
-    /// 数据
+    /// data
     /// </summary>
     public NotificationData Data { get; set; } = default!;
     /// <summary>
-    /// 创建时间
+    /// Creation time
     /// </summary>
     public DateTime CreationTime { get; set; }
     /// <summary>
-    /// 紧急级别
+    /// Emergency level
     /// </summary>
     public NotificationSeverity Severity { get; set; }
     /// <summary>
-    /// 指定的接收用户信息集合
+    /// Specified receiving user information collection
     /// </summary>
     /// <remarks>
-    /// 注:<br/>
-    /// 如果指定了用户列表,应该在事件订阅程序中通过此集合过滤订阅用户<br/>
-    /// 如果未指定用户列表,应该在事件订阅程序中过滤所有订阅此通知的用户
+    /// Note:<br/>
+    /// If a user list is specified, subscribed users should be filtered through this collection in the event subscriber<br/>
+    /// If no user list is specified, all users who subscribe to this notification should be filtered in the event subscriber
     /// </remarks>
     public List<UserIdentifier> Users { get; set; }
     public NotificationEventData()

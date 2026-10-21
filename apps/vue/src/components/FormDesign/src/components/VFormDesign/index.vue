@@ -11,7 +11,7 @@
       }"
       breakpoint="md"
     >
-      <CollapseContainer title="基础控件">
+      <CollapseContainer title="Basic Control">
         <CollapseItem
           :list="baseComponents"
           :handleListPush="handleListPushDrag"
@@ -19,7 +19,7 @@
           @handle-list-push="handleListPush"
         />
       </CollapseContainer>
-      <CollapseContainer title="自定义控件">
+      <CollapseContainer title="Custom control">
         <CollapseItem
           :list="customComponents"
           @add-attrs="handleAddAttrs"
@@ -27,7 +27,7 @@
           @handle-list-push="handleListPush"
         />
       </CollapseContainer>
-      <CollapseContainer title="布局控件">
+      <CollapseContainer title="Layout Control">
         <CollapseItem
           :list="layoutComponents"
           :handleListPush="handleListPushDrag"
@@ -103,11 +103,11 @@
   defineProps({
     title: {
       type: String,
-      default: 'v-form-antd表单设计器',
+      default: 'v-form-antd form designer',
     },
   });
   const { prefixCls } = useDesign('form-design');
-  // 子组件实例
+  // Subcomponent instance
   const propsPanel = ref<null | IPropsPanel>(null);
   const jsonModal = ref<null | IToolbarMethods>(null);
   const importJsonModal = ref<null | IToolbarMethods>(null);
@@ -117,7 +117,7 @@
   const formModel = ref({});
   // endregion
   const formConfig = ref<IFormConfig>({
-    // 表单配置
+    // form configuration
     schemas: [],
     layout: 'horizontal',
     labelLayout: 'flex',
@@ -131,7 +131,7 @@
     activeKey: 1,
   });
   const setFormConfig = (config: IFormConfig) => {
-    //外部导入时，可能会缺少必要的信息。
+    // When importing externally, necessary information may be missing.
     config.schemas = config.schemas || [];
     config.schemas.forEach((item) => {
       item.colProps = item.colProps || { span: 24 };
@@ -140,17 +140,17 @@
     });
     formConfig.value = config;
   };
-  // 获取历史记录，用于撤销和重构
+  // Get history records for undo and reconstruction
   const historyReturn = useRefHistory(formConfig, {
     deep: true,
     capacity: 20,
     parse: (val: IFormConfig) => {
-      // 使用lodash.cloneDeep重新拷贝数据，把currentItem指向选中项
+      // Use lodash.cloneDeep to re-copy the data and point currentItem to the selected item
       const formConfig = cloneDeep(val);
       const { currentItem, schemas } = formConfig;
-      // 从formItems中查找选中项
+      // Find the selected item from formItems
       const item = schemas && schemas.find((item) => item.key === currentItem?.key);
-      // 如果有，则赋值给当前项，如果没有，则切换属性面板
+      // If there is, assign the value to the current item, if not, switch the property panel
       if (item) {
         formConfig.currentItem = item;
       }
@@ -158,8 +158,8 @@
     },
   });
   /**
-   * 选中表单项
-   * @param schema 当前选中的表单项
+   * Select form item
+   * @param schema The currently selected form item
    */
   const handleSetSelectItem = (schema: IVFormComponent) => {
     formConfig.value.currentItem = schema;
@@ -173,7 +173,7 @@
     // console.log('setGlobalConfigState', formItem);
   };
   /**
-   * 添加属性
+   * Add attributes
    * @param schemas
    * @param index
    */
@@ -185,8 +185,8 @@
     return formItem;
   };
   /**
-   * 单击控件时添加到面板中
-   * @param item {IVFormComponent} 当前点击的组件
+   * Added to the panel when the control is clicked
+   * @param item {IVFormComponent} currently clicked component
    */
   const handleListPush = (item: IVFormComponent) => {
     // console.log('handleListPush', item);
@@ -201,7 +201,7 @@
     handleCopy(formItem, false);
   };
   /**
-   * 复制表单项，如果表单项为栅格布局，则遍历所有自表单项重新生成key
+   * Copy the form item. If the form item is in grid layout, traverse all self-form items to regenerate the key.
    * @param {IVFormComponent} formItem
    * @return {IVFormComponent}
    */
@@ -215,9 +215,9 @@
     return newFormItem;
   };
   /**
-   * 复制或者添加表单，isCopy为true时则复制表单
-   * @param item {IVFormComponent} 当前点击的组件
-   * @param isCopy {boolean} 是否复制
+   * Copy or add a form, copy the form when isCopy is true
+   * @param item {IVFormComponent} currently clicked component
+   * @param isCopy {boolean} whether to copy
    */
   const handleCopy = (
     item: IVFormComponent = formConfig.value.currentItem as IVFormComponent,
@@ -225,26 +225,26 @@
   ) => {
     const key = formConfig.value.currentItem?.key;
     /**
-     * 遍历当表单项配置，如果是复制，则复制一份表单项，如果不是复制，则直接添加到表单项中
+     * Traverse the form item configuration. If it is a copy, copy the form item. If it is not a copy, add it directly to the form item.
      * @param schemas
      */
     const traverse = (schemas: IVFormComponent[]) => {
-      // 使用some遍历，找到目标后停止遍历
+      // Use some traversal, stop traversing after finding the target
       schemas.some((formItem: IVFormComponent, index: number) => {
         if (formItem.key === key) {
-          // 判断是不是复制
+          // Determine whether it is copied
           isCopy
             ? schemas.splice(index, 0, copyFormItem(formItem))
             : schemas.splice(index + 1, 0, item);
           const event = {
             newIndex: index + 1,
           };
-          // 添加到表单项中
+          // Add to form item
           handleBeforeColAdd(event, schemas, isCopy);
           return true;
         }
         if (['Grid', 'Tabs'].includes(formItem.component)) {
-          // 栅格布局
+          // Grid layout
           formItem.columns?.forEach((item) => {
             traverse(item.children);
           });
@@ -256,10 +256,10 @@
     }
   };
   /**
-   * 添加到表单中
-   * @param newIndex {object} 事件对象
-   * @param schemas {IVFormComponent[]} 表单项列表
-   * @param isCopy {boolean} 是否复制
+   * Add to form
+   * @param newIndex {object} event object
+   * @param schemas {IVFormComponent[]} form item list
+   * @param isCopy {boolean} whether to copy
    */
   const handleBeforeColAdd = ({ newIndex }: any, schemas: IVFormComponent[], isCopy = false) => {
     const item = schemas[newIndex];
@@ -267,7 +267,7 @@
     handleSetSelectItem(item);
   };
   /**
-   * 打开模态框
+   * Open modal box
    * @param Modal {IToolbarMethods}
    */
   const handleOpenModal = (Modal: IToolbarMethods) => {
@@ -275,14 +275,14 @@
     Modal?.showModal(config);
   };
   /**
-   * 切换属性面板
+   * Switch property panel
    * @param key
    */
   const handleChangePropsTabs = (key: PropsTabKey) => {
     formConfig.value.activeKey = key;
   };
   /**
-   * 清空表单项列表
+   * Clear the form item list
    */
   const handleClearFormItems = () => {
     formConfig.value.schemas = [];
@@ -290,15 +290,15 @@
   };
   const setFormModel = (key, value) => (formModel.value[key] = value);
   provide('formModel', formModel);
-  // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
+  // Inject the method items of the ancestor component into the subcomponent. The subcomponent can be obtained through inject.
   provide<(key: String, value: any) => void>('setFormModelMethod', setFormModel);
-  // region 注入给子组件的属性
+  // region attributes injected into subcomponents
   // provide('currentItem', formConfig.value.currentItem)
-  // 把表单配置项注入到子组件中，子组件可通过inject获取，获取到的数据为响应式
+  // Inject the form configuration items into the subcomponent. The subcomponent can be obtained through inject. The obtained data is responsive.
   provide<Ref<IFormConfig>>('formConfig', formConfig);
-  // 注入历史记录
+  // Inject history
   provide<UseRefHistoryReturn<any, any>>('historyReturn', historyReturn);
-  // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
+  // Inject the method items of the ancestor component into the subcomponent. The subcomponent can be obtained through inject.
   provide<IFormDesignMethods>('formDesignMethods', {
     handleBeforeColAdd,
     handleCopy,

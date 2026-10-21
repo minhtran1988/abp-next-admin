@@ -14,7 +14,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string DuplicateCheckIntervalKey = Prefix + "duplicate_check_interval";
 
     /// <summary>
-    /// 设定发送到所有应用
+    /// Set to send to all applications
     /// </summary>
     /// <param name="notificationData"></param>
     /// <returns></returns>
@@ -25,7 +25,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设定消息应用标识
+    /// Set message application ID
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="agentId"></param>
@@ -37,7 +37,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         notificationData.TrySetData(AgentIdKey, agentId);
     }
     /// <summary>
-    /// 获取消息应用标识
+    /// Get the message application ID
     /// </summary>
     /// <param name="notificationData"></param>
     public static string? GetAgentIdOrNull(
@@ -46,7 +46,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         return notificationData.TryGetData(AgentIdKey)?.ToString();
     }
     /// <summary>
-    /// 指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。
+    /// Specify the tag to receive the message, tag ID list, multiple receivers separated by '|', up to 100 are supported.
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="tag"></param>
@@ -58,7 +58,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         notificationData.TrySetData(ToTagKey, tag);
     }
     /// <summary>
-    /// 获取接收消息的标签
+    /// Get the label of the received message
     /// </summary>
     /// <param name="notificationData"></param>
     public static string? GetTagOrNull(
@@ -67,7 +67,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         return notificationData.TryGetData(ToTagKey)?.ToString();
     }
     /// <summary>
-    /// 指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。
+    /// Specify the department to receive the message, department ID list, multiple recipients separated by '|', up to 100 are supported.
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="party"></param>
@@ -79,7 +79,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         notificationData.TrySetData(ToPartyKey, party);
     }
     /// <summary>
-    /// 获取接收消息的部门
+    /// Get the department that received the message
     /// </summary>
     /// <param name="notificationData"></param>
     public static string? GetPartyOrNull(
@@ -89,7 +89,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设置是否保密消息(仅文本消息支持)
+    /// Set whether to keep the message confidential (only supported by text messages)
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="safe"></param>
@@ -101,10 +101,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取是否保密消息, 默认 0(不保密)
+    /// Get whether the message is confidential, default 0 (not confidential)
     /// </summary>
     /// <remarks>
-    /// 企业微信要求 int: 0 表示否, 1 表示是
+    /// Enterprise WeChat requirements int: 0 means no, 1 means yes
     /// </remarks>
     /// <param name="notificationData"></param>
     public static int GetSafe(
@@ -116,7 +116,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设置是否开启id转译
+    /// Set whether to enable id translation
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="enableIdTrans"></param>
@@ -128,10 +128,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取是否开启id转译, 默认 0(不开启)
+    /// Get whether ID translation is enabled, default 0 (not enabled)
     /// </summary>
     /// <remarks>
-    /// 企业微信要求 byte: 0 表示否, 1 表示是
+    /// Enterprise WeChat requires byte: 0 means no, 1 means yes
     /// </remarks>
     /// <param name="notificationData"></param>
     public static byte GetEnableIdTrans(
@@ -143,7 +143,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设置是否开启重复消息检查
+    /// Set whether to enable duplicate message checking
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="enableDuplicateCheck"></param>
@@ -155,10 +155,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取是否开启重复消息检查, 默认 0(不开启)
+    /// Get whether duplicate message checking is enabled, default 0 (not enabled)
     /// </summary>
     /// <remarks>
-    /// 企业微信要求 byte: 0 表示否, 1 表示是
+    /// Enterprise WeChat requires byte: 0 means no, 1 means yes
     /// </remarks>
     /// <param name="notificationData"></param>
     public static byte GetEnableDuplicateCheck(
@@ -170,7 +170,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设置重复消息检查的时间间隔(秒)
+    /// Set the time interval (seconds) for duplicate message checking
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="interval"></param>
@@ -182,7 +182,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取重复消息检查的时间间隔(秒), 默认 1800
+    /// Get the time interval (seconds) for duplicate message checking, default 1800
     /// </summary>
     /// <param name="notificationData"></param>
     public static int GetDuplicateCheckInterval(
@@ -194,16 +194,16 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试获取消息载荷
+    /// Try to get the message payload
     /// </summary>
     /// <remarks>
-    /// 消息载荷以 JSON 字符串写入属性包(见各 <c>With*Message</c> 方法),
-    /// 因此这里按 JSON 反序列化还原。<c>TMessage</c> 若为具体类型可直接还原;
-    /// 抽象类型(如 <c>TemplateCard</c>)需要 JSON 转换器参与类型判别。
+    /// The message payload is written into the property bag as a JSON string (see each <c>With*Message</c> method),
+    /// Therefore, it is deserialized and restored according to JSON. <c>TMessage</c> can be restored directly if it is a specific type;
+    /// Abstract types (such as <c>TemplateCard</c>) require a JSON converter to participate in type determination.
     /// </remarks>
     /// <param name="notificationData"></param>
-    /// <param name="messageKey">消息键</param>
-    /// <param name="message">消息载荷</param>
+    /// <param name="messageKey">Message key</param>
+    /// <param name="message">Message payload</param>
     /// <returns></returns>
     public static bool TryGetMessagePayload<TMessage>(
         this NotificationData notificationData,
@@ -219,7 +219,7 @@ public static partial class NotificationDataWeChatWorkExtensions
             return false;
         }
 
-        // 属性包中的值可能是 JSON 字符串, 也可能已被反序列化为 JSON 节点
+        // The value in the property bag may be a JSON string, or it may have been deserialized into a JSON node
         var json = payload as string ?? payload.ToString();
 
         if (string.IsNullOrWhiteSpace(json))
@@ -233,7 +233,7 @@ public static partial class NotificationDataWeChatWorkExtensions
         }
         catch (JsonException)
         {
-            // 载荷非法时返回 false, 由调用方决定是否回退
+            // Return false when the payload is illegal, and it is up to the caller to decide whether to fall back
             return false;
         }
 

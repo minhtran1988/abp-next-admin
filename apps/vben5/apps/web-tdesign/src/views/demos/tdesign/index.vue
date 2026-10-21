@@ -28,17 +28,17 @@ function success() {
 function notify(type: NotificationType) {
   notification[type]({
     duration: 2500,
-    title: '说点啥呢',
+    title: 'What are you talking about',
   });
 }
 </script>
 
 <template>
   <Page
-    description="支持多语言，主题功能集成切换等"
-    title="TDesign Vue组件使用演示"
+    description="Supports multiple languages, integrated theme function switching, etc."
+    title="TDesign Vue component usage demonstration"
   >
-    <Card class="!mb-5" title="按钮">
+    <Card class="!mb-5" title="Button">
       <Space>
         <Button>Default</Button>
         <Button theme="primary"> Primary </Button>
@@ -48,19 +48,19 @@ function notify(type: NotificationType) {
     </Card>
     <Card class="!mb-5" title="Message">
       <Space>
-        <Button @click="info"> 信息 </Button>
-        <Button theme="danger" @click="error"> 错误 </Button>
-        <Button @click="warning"> 警告 </Button>
-        <Button @click="success"> 成功 </Button>
+        <Button @click="info"> Information </Button>
+        <Button theme="danger" @click="error"> Error </Button>
+        <Button @click="warning"> Warning </Button>
+        <Button @click="success"> Success </Button>
       </Space>
     </Card>
 
     <Card class="!mb-5" title="Notification">
       <Space>
-        <Button @click="notify('info')"> 信息 </Button>
-        <Button theme="danger" @click="notify('error')"> 错误 </Button>
-        <Button @click="notify('warning')"> 警告 </Button>
-        <Button @click="notify('success')"> 成功 </Button>
+        <Button @click="notify('info')"> Information </Button>
+        <Button theme="danger" @click="notify('error')"> Error </Button>
+        <Button @click="notify('warning')"> Warning </Button>
+        <Button @click="notify('success')"> Success </Button>
       </Space>
     </Card>
   </Page>

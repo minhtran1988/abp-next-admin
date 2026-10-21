@@ -1,30 +1,30 @@
-# 主题
+# Topic
 
-框架基于 [shadcn-vue](https://www.shadcn-vue.com/themes.html) 和 [tailwindcss](https://tailwindcss.com/) 构建，提供了丰富的主题配置，可以通过简单的配置实现各种主题切换，满足个性化需求。您可以选择使用 CSS 变量或 Tailwind CSS 实用程序类进行主题设置。
+The framework is built based on [shadcn-vue](https://www.shadcn-vue.com/themes.html) and [tailwindcss](https://tailwindcss.com/). It provides rich theme configurations and can realize various theme switching through simple configuration to meet personalized needs. You can choose to use CSS variables or the Tailwind CSS utility classes for theming.
 
-## Css 变量
+## Css variables
 
-项目遵循 [shadcn-vue](https://www.shadcn-vue.com/themes.html) 的主题配置，示例：
+The project follows the theme configuration of [shadcn-vue](https://www.shadcn-vue.com/themes.html), example:
 
 ```html
 <div class="bg-background text-foreground" />
 ```
 
-我们对颜色使用一个简单的约定。`background`变量用于组件的背景颜色，`foreground`变量用于文本颜色。
+We use a simple convention for colors. The `background` variable is used for the background color of the component, and the `foreground` variable is used for the text color.
 
-以下组件的`background`将为`hsl(var(--primary))`，`foreground`将为`hsl(var(--primary-foreground))`。
+The `background` of the following components will be `hsl(var(--primary))` and the `foreground` will be `hsl(var(--primary-foreground))`.
 
-## 详细的CSS变量列表
+## Detailed CSS variable list
 
-::: warning 注意
+::: warning note
 
-css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要加 `hsl()`和 `，`。
+The color in the css variable must use `hsl` format, such as `0 0% 100%`, and there is no need to add `hsl()` and `,`.
 
 :::
 
-你可以查看下面的CSS变量列表，以了解所有可用的变量。
+You can view the list of CSS variables below to see all available variables.
 
-::: details 默认主题 css 变量
+::: details default theme css variable
 
 ```css
 :root {
@@ -36,7 +36,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   /* Default background color of <body />...etc */
   --background: 0 0% 100%;
 
-  /* 主体区域背景色 */
+  /* Main area background color */
   --background-deep: 216 20.11% 95.47%;
   --foreground: 210 6% 21%;
 
@@ -52,7 +52,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
 
-  /* 主题颜色 */
+  /* theme color */
 
   --primary: 212 100% 45%;
   --primary-foreground: 0 0% 98%;
@@ -102,10 +102,10 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
 
   /* ============= custom ============= */
 
-  /* 遮罩颜色 */
+  /* Mask color */
   --overlay: 0deg 0% 0% / 30%;
 
-  /* 基本文字大小 */
+  /* Basic text size */
   --font-size-base: 16px;
 
   /* =============component & UI============= */
@@ -125,7 +125,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
 
 :::
 
-::: details 默认主题黑暗模式 css 变量
+::: details Default theme dark mode css variable
 
 ```css
 .dark,
@@ -134,7 +134,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   /* Default background color of <body />...etc */
   --background: 222.34deg 10.43% 12.27%;
 
-  /* 主体区域背景色 */
+  /* Main area background color */
   --background-deep: 220deg 13.06% 9%;
   --foreground: 0 0% 95%;
 
@@ -152,7 +152,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   --muted: 220deg 6.82% 17.25%;
   --muted-foreground: 215 20.2% 65.1%;
 
-  /* 主题颜色 */
+  /* theme color */
 
   /* --primary: 245 82% 67%; */
   --primary-foreground: 0 0% 98%;
@@ -172,7 +172,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   --warning: 42 84% 61%;
   --warning-foreground: 0 0% 98%;
 
-  /* 颜色次要 */
+  /* Color secondary */
   --secondary: 240 5% 17%;
   --secondary-foreground: 0 0% 98%;
 
@@ -196,15 +196,15 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
   /* Used for focus ring */
   --ring: 222.2 84% 4.9%;
 
-  /* 基本圆角大小 */
+  /* Basic fillet size */
   --radius: 0.5rem;
 
   /* ============= Custom ============= */
 
-  /* 遮罩颜色 */
+  /* Mask color */
   --overlay: 0deg 0% 0% / 40%;
 
-  /* 基本文字大小 */
+  /* Basic text size */
   --font-size-base: 16px;
 
   /* =============component & UI============= */
@@ -220,11 +220,11 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
 
 :::
 
-## 覆盖默认的 CSS 变量
+## Override default CSS variables
 
-你只需要在你的项目中覆盖你想要修改的 CSS 变量即可。例如，要更改默认卡片背景色，你可以在你的 CSS 文件中添加以下内容进行覆盖：
+You just need to override the CSS variables you want to modify in your project. For example, to change the default card background color, you can override it by adding the following to your CSS file:
 
-### 默认主题下
+### Under the default theme
 
 ```css
 :root {
@@ -233,7 +233,7 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
 }
 ```
 
-### 黑暗模式下
+### In dark mode
 
 ```css
 .dark,
@@ -244,17 +244,17 @@ css 变量内的颜色，必须使用 `hsl` 格式，如 `0 0% 100%`，不需要
 }
 ```
 
-## 更改品牌主色
+## Change the main brand color
 
 ::: tip
 
-- 需要使用 `hsl` 格式颜色格式。
-- 修改后需要清空缓存才可生效。
-- 你可以借助 [第三方工具](https://www.w3schools.com/colors/colors_hsl.asp)来转换颜色。
+- Requires use of `hsl` format color format.
+- After modification, you need to clear the cache to take effect.
+- You can use [Third Party Tool](https://www.w3schools.com/colors/colors_hsl.asp) to convert colors.
 
 :::
 
-只需要在应用目录下的`preferences.ts`，自定义配置主色即可：
+You only need to customize the main color in `preferences.ts` in the application directory:
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -262,21 +262,21 @@ import { defineOverridesPreferences } from '@vben/preferences';
 export const overridesPreferences = defineOverridesPreferences({
   // overrides
   theme: {
-    // 错误色
+    //wrong color
     colorDestructive: 'hsl(348 100% 61%)',
-    // 主题色
+    // theme color
     colorPrimary: 'hsl(212 100% 45%)',
-    // 成功色
+    // success color
     colorSuccess: 'hsl(144 57% 58%)',
-    // 警告色
+    // warning color
     colorWarning: 'hsl(42 84% 61%)',
   },
 });
 ```
 
-## 内置主题
+## Built-in themes
 
-框架中内置了多种主题，你可以在`preferences.ts`中进行配置：
+There are a variety of themes built into the framework, which you can configure in `preferences.ts`:
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -289,11 +289,11 @@ export const overridesPreferences = defineOverridesPreferences({
 });
 ```
 
-### 内置主题列表
+### Built-in theme list
 
-框架内置了 16种主题，且还支持自定义主题。理论上，你可以无限制的扩展主题。
+The framework has 16 built-in themes and also supports custom themes. In theory, you can expand the theme unlimitedly.
 
-::: details 内置主题类型列表
+::: details List of built-in theme types
 
 ```ts
 type BuiltinThemeType =
@@ -319,7 +319,7 @@ type BuiltinThemeType =
 
 :::
 
-::: details 内置主题css变量 - light
+::: details built-in theme css variables - light
 
 ```css
 :root {
@@ -331,7 +331,7 @@ type BuiltinThemeType =
   /* Default background color of <body />...etc */
   --background: 0 0% 100%;
 
-  /* 主体区域背景色 */
+  /* Main area background color */
   --background-deep: 216 20.11% 95.47%;
   --foreground: 222 84% 5%;
 
@@ -351,7 +351,7 @@ type BuiltinThemeType =
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
-  /* 主题颜色 */
+  /* theme color */
 
   --primary: 212 100% 45%;
   --primary-foreground: 0 0% 98%;
@@ -401,10 +401,10 @@ type BuiltinThemeType =
 
   /* ============= custom ============= */
 
-  /* 遮罩颜色 */
+  /* Mask color */
   --overlay: 0deg 0% 0% / 30%;
 
-  /* 基本文字大小 */
+  /* Basic text size */
   --font-size-base: 16px;
 
   /* =============component & UI============= */
@@ -697,7 +697,7 @@ type BuiltinThemeType =
 
 :::
 
-::: details 内置主题css变量 - dark
+::: details built-in theme css variables - dark
 
 ```css
 .dark,
@@ -706,7 +706,7 @@ type BuiltinThemeType =
   /* Default background color of <body />...etc */
   --background: 222.34deg 10.43% 12.27%;
 
-  /* 主体区域背景色 */
+  /* Main area background color */
   --background-deep: 220deg 13.06% 9%;
   --foreground: 0 0% 95%;
 
@@ -729,7 +729,7 @@ type BuiltinThemeType =
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
 
-  /* 主题颜色 */
+  /* theme color */
 
   /* --primary: 245 82% 67%; */
   --primary-foreground: 0 0% 98%;
@@ -749,7 +749,7 @@ type BuiltinThemeType =
   --warning: 42 84% 61%;
   --warning-foreground: 0 0% 98%;
 
-  /* 颜色次要 */
+  /* Color secondary */
   --secondary: 240 5% 17%;
   --secondary-foreground: 0 0% 98%;
 
@@ -773,15 +773,15 @@ type BuiltinThemeType =
   /* Used for focus ring */
   --ring: 222.2 84% 4.9%;
 
-  /* 基本圆角大小 */
+  /* Basic fillet size */
   --radius: 0.5rem;
 
   /* ============= Custom ============= */
 
-  /* 遮罩颜色 */
+  /* Mask color */
   --overlay: 0deg 0% 0% / 40%;
 
-  /* 基本文字大小 */
+  /* Basic text size */
   --font-size-base: 16px;
 
   /* =============component & UI============= */
@@ -1137,11 +1137,11 @@ type BuiltinThemeType =
 
 :::
 
-## 新增主题
+## Add topic
 
-想要新增主题，只需按照以下步骤进行：
+To add a new theme, just follow these steps:
 
-- 在应用的 `src/preferences.ts`内新增一个主题配置。
+- Add a theme configuration in the application's `src/preferences.ts`.
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -1154,7 +1154,7 @@ export const overridesPreferences = defineOverridesPreferences({
 });
 ```
 
-- 在你的css文件中，新增主题的css变量。
+- In your css file, add the theme's css variables.
 
 ```css
 /* light */
@@ -1205,9 +1205,9 @@ export const overridesPreferences = defineOverridesPreferences({
 }
 ```
 
-## 黑暗模式
+## Dark Mode
 
-框架中内置了多种主题，你可以在`preferences.ts`中进行配置，黑暗主题同样会读取css变量来进行配置：
+There are a variety of themes built into the framework, which you can configure in `preferences.ts`. The dark theme will also read css variables for configuration:
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -1220,11 +1220,11 @@ export const overridesPreferences = defineOverridesPreferences({
 });
 ```
 
-## 自定义侧边栏颜色
+## Customize sidebar color
 
-侧边栏颜色通过`--sidebar`变量来配置
+The sidebar color is configured through the `--sidebar` variable
 
-### 默认主题下
+### Under the default theme
 
 ```css
 :root {
@@ -1232,7 +1232,7 @@ export const overridesPreferences = defineOverridesPreferences({
 }
 ```
 
-### 黑暗模式下
+### In dark mode
 
 ```css
 .dark,
@@ -1242,11 +1242,11 @@ export const overridesPreferences = defineOverridesPreferences({
 }
 ```
 
-## 自定义顶栏颜色
+## Customize top bar color
 
-侧边栏颜色通过`--header`变量来配置
+The sidebar color is configured through the `--header` variable
 
-### 默认主题下
+### Under the default theme
 
 ```css
 :root {
@@ -1254,7 +1254,7 @@ export const overridesPreferences = defineOverridesPreferences({
 }
 ```
 
-### 黑暗模式下
+### In dark mode
 
 ```css
 .dark,
@@ -1264,9 +1264,9 @@ export const overridesPreferences = defineOverridesPreferences({
 }
 ```
 
-## 色弱模式
+## Color weak mode
 
-一般用于特殊场景，将设置为色弱模式，你可以在`preferences.ts`中进行配置：
+Generally used in special scenarios, it will be set to color weak mode. You can configure it in `preferences.ts`:
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -1279,9 +1279,9 @@ export const overridesPreferences = defineOverridesPreferences({
 });
 ```
 
-## 灰色模式
+## Gray mode
 
-一般用于特殊场景，将网页置灰，你可以在`preferences.ts`中进行配置：
+Generally used in special scenarios to gray out web pages. You can configure it in `preferences.ts`:
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';

@@ -4,7 +4,7 @@ using LINGYUN.Abp.WeChat.Official.Services;
 
 namespace PackageName.CompanyName.ProjectName.AIO.Host.WeChat.Official.Messages;
 /// <summary>
-/// 文本消息客服回复
+/// Text message customer service reply
 /// </summary>
 public class TextMessageReplyContributor : IMessageHandleContributor<TextMessage>
 {

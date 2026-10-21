@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 选择控件配置
+/// Select control configuration
 /// </summary>
 public class SelectorControlConfig : ControlConfig
 {
     /// <summary>
-    /// 选择控件内容，即申请人在此控件选择的选项内容
+    /// Select the content of the control, that is, the option content selected by the applicant in this control
     /// </summary>
     [NotNull]
     [JsonProperty("selector")]
@@ -30,28 +30,28 @@ public class SelectorControlConfig : ControlConfig
 public class SelectorConfig
 {
     /// <summary>
-    /// 选择方式：single-单选；multi-多选
+    /// Selection method: single-radio selection; multi-multiple selection
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 多选选项，多选属性的选择控件允许输入多个
+    /// Multi-select option, the selection control of multi-select attribute allows multiple input
     /// </summary>
     [CanBeNull]
     [JsonProperty("options")]
     [JsonPropertyName("options")]
     public List<SelectorOption>? Options {  get; set; }
     /// <summary>
-    /// 关联控件
+    /// Associated controls
     /// </summary>
     [CanBeNull]
     [JsonProperty("op_relations")]
     [JsonPropertyName("op_relations")]
     public List<SelectorOptionRelation>? OptionRelations { get; set; }
     /// <summary>
-    /// 关联外部选项
+    /// Associated external options
     /// </summary>
     [CanBeNull]
     [JsonProperty("external_option")]
@@ -94,14 +94,14 @@ public class SelectorConfig
 public class SelectorOption
 {
     /// <summary>
-    /// 选项key
+    /// option key
     /// </summary>
     [NotNull]
     [JsonProperty("key")]
     [JsonPropertyName("key")]
     public string Key { get; set; } = default!;
     /// <summary>
-    /// 选项说明
+    /// Option description
     /// </summary>
     [NotNull]
     [JsonProperty("value")]
@@ -122,14 +122,14 @@ public class SelectorOption
 public class SelectorOptionValue
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     [NotNull]
     [JsonProperty("text")]
     [JsonPropertyName("text")]
     public string Text { get; set; } = default!;
     /// <summary>
-    /// 显示语言
+    /// Display language
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]
@@ -150,14 +150,14 @@ public class SelectorOptionValue
 public class SelectorOptionRelation
 {
     /// <summary>
-    /// 选项key
+    /// option key
     /// </summary>
     [NotNull]
     [JsonProperty("key")]
     [JsonPropertyName("key")]
     public string Key { get; set; } = default!;
     /// <summary>
-    /// 关联控件列表
+    /// List of associated controls
     /// </summary>
     [NotNull]
     [JsonProperty("relation_list")]
@@ -178,17 +178,17 @@ public class SelectorOptionRelation
 public class SelectorRelation
 {
     /// <summary>
-    /// 控件Id
+    /// ControlId
     /// </summary>
     [NotNull]
     [JsonProperty("related_control_id")]
     [JsonPropertyName("related_control_id")]
     public string ControlId { get; set; } = default!;
     /// <summary>
-    /// 操作方法
+    /// Operation method
     /// </summary>
     /// <remarks>
-    /// 1 - 显示对应控件
+    /// 1 - Display the corresponding control
     /// </remarks>
     [NotNull]
     [JsonProperty("action")]
@@ -209,14 +209,14 @@ public class SelectorRelation
 public class SelectorOptionExternal
 {
     /// <summary>
-    /// 关联外部选项
+    /// Associated external options
     /// </summary>
     [NotNull]
     [JsonProperty("use_external_option")]
     [JsonPropertyName("use_external_option")]
     public bool UseExternalOption { get; set; }
     /// <summary>
-    /// 外部选项页面地址
+    /// External options page address
     /// </summary>
     [NotNull]
     [JsonProperty("external_url")]

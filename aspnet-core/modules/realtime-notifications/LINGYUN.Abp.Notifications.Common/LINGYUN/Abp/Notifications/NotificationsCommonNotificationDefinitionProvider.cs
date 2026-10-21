@@ -22,9 +22,9 @@ public class NotificationsCommonNotificationDefinitionProvider : NotificationDef
             lifetime: NotificationLifetime.Persistent,
             contentType: NotificationContentType.Html,
             allowSubscriptionToClients: false)
-            // 指定通知提供程序
+            // Specify notification provider
             .WithProviders(NotificationProviderNames.Emailing)
-            // 设定为模板通知
+            // Set as template notification
             .WithTemplate(typeof(NotificationsResource), layout: "EmailNotifierLayout")
             .WithTemplate(template =>
             {

@@ -1,29 +1,29 @@
 # LINGYUN.Abp.IdentityServer.WeChat.Work
 
-IdentityServer企业微信认证模块，提供基于企业微信的身份认证功能。
+The IdentityServer Enterprise WeChat authentication module provides identity authentication functions based on Enterprise WeChat.
 
-## 功能特性
+## Features
 
-* 企业微信认证
-  * `WeChatWorkGrantValidator` - 企业微信授权验证器
-    * 支持企业微信登录
-    * 支持多租户
-    * 自动用户注册
-    * 安全日志记录
-    * 事件通知
-    * 本地化支持
+* Enterprise WeChat certification
+  * `WeChatWorkGrantValidator` - Enterprise WeChat authorization validator
+    *Support corporate WeChat login
+    *Support multi-tenancy
+    * Automatic user registration
+    * Security logging
+    *Event notification
+    * Localization support
 
-* 认证流程
-  1. 用户通过企业微信发起登录请求
-  2. 验证AgentId和Code的有效性
-  3. 获取企业微信用户信息
-  4. 验证用户注册状态
-     * 已注册用户直接登录
-     * 未注册用户根据配置自动注册
-  5. 生成访问令牌
-  6. 记录安全日志和事件
+* Certification process
+  1. The user initiates a login request through Enterprise WeChat
+  2. Verify the validity of AgentId and Code
+  3. Obtain enterprise WeChat user information
+  4. Verify user registration status
+     * Registered users log in directly
+     * Unregistered users are automatically registered according to configuration
+  5. Generate access token
+  6. Record security logs and events
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -35,14 +35,14 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `AbpIdentityServerDomainModule` - ABP IdentityServer领域模块
-* `AbpWeChatWorkModule` - ABP企业微信模块
+* `AbpIdentityServerDomainModule` - ABP IdentityServer domain module
+* `AbpWeChatWorkModule` - ABP enterprise WeChat module
 
-## 配置使用
+## Configuration usage
 
-### 配置企业微信认证
+### Configure Enterprise WeChat Authentication
 
 ```csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -54,53 +54,53 @@ public override void PreConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-### 认证请求参数
+### Authentication request parameters
 
-* `grant_type`: "wechat_work" (必填)
-* `agent_id`: 企业微信应用ID (必填)
-* `code`: 企业微信授权码 (必填)
-* `scope`: 请求范围 (可选)
+* `grant_type`: "wechat_work" (required)
+* `agent_id`: Enterprise WeChat application ID (required)
+* `code`: Enterprise WeChat authorization code (required)
+* `scope`: request scope (optional)
 
-### 认证响应
+### Authentication response
 
-* 认证成功:
+* Authentication successful:
 ```json
 {
-    "access_token": "访问令牌",
-    "expires_in": 有效期,
+    "access_token": "Access token",
+    "expires_in": validity period,
     "token_type": "Bearer",
-    "refresh_token": "刷新令牌"
+    "refresh_token": "Refresh token"
 }
 ```
 
-* 认证失败:
+*Authentication failed:
 ```json
 {
     "error": "invalid_grant",
-    "error_description": "错误描述"
+    "error_description": "Error description"
 }
 ```
 
-### 配置选项
+### Configuration options
 
-* 快速登录
+* Quick login
 ```csharp
 Configure<AbpSettingOptions>(options =>
 {
-    // 启用未注册用户快速登录
+    // Enable quick login for unregistered users
     options.SetDefault(WeChatWorkSettingNames.EnabledQuickLogin, true);
 });
 ```
 
-### 错误类型
+### Error type
 
-* `invalid_grant`: 授权验证失败
-  * AgentId或Code无效
-  * 用户未注册且未启用快速登录
-  * 企业微信API调用失败
+* `invalid_grant`: Authorization verification failed
+  *AgentId or Code is invalid
+  * User is not registered and quick login is not enabled
+  * Enterprise WeChat API call failed
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [企业微信开发文档](https://work.weixin.qq.com/api/doc)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [Enterprise WeChat Development Documentation](https://work.weixin.qq.com/api/doc)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

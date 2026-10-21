@@ -35,13 +35,13 @@ const nextPage = () => {
 
 <template>
   <div class="flex gap-4">
-    <Button size="small" @click="prevPage">上一页</Button>
-    <p>当前页: {{ page }}</p>
-    <Button size="small" @click="nextPage">下一页</Button>
+    <Button size="small" @click="prevPage">Previous page</Button>
+    <p>Current page: {{ page }}</p>
+    <Button size="small" @click="nextPage">Next page</Button>
   </div>
   <div class="p-4">
-    <div v-if="isPending">加载中...</div>
-    <div v-else-if="isError">出错了: {{ error }}</div>
+    <div v-if="isPending">Loading...</div>
+    <div v-else-if="isError">An error occurred: {{ error }}</div>
     <div v-else-if="data">
       <ul>
         <li v-for="item in data.products" :key="item.id">

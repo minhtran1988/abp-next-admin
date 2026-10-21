@@ -9,7 +9,7 @@ using Volo.Abp.Identity;
 namespace PackageName.CompanyName.ProjectName.Users
 {
     /// <summary>
-    /// 用户管理服务，用于处理用户的CRUD操作
+    /// User management service, used to process users' CRUD operations
     /// </summary>
     public class UserManager : DomainService, IUserManager
     {
@@ -28,14 +28,14 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 创建新用户
+        /// Create new user
         /// </summary>
-        /// <param name="nickName">用户昵称</param>
-        /// <param name="password">用户密码</param>
-        /// <param name="contactInfo">联系方式</param>
-        /// <param name="position">职位</param>
-        /// <param name="isActive">是否启用</param>
-        /// <returns>创建的用户实体</returns>
+        /// <param name="nickName">User nickname</param>
+        /// <param name="password">User password</param>
+        /// <param name="contactInfo">Contact information</param>
+        /// <param name="position">Position</param>
+        /// <param name="isActive">Whether to enable</param>
+        /// <returns>Created user entity</returns>
         public async Task<User> CreateAsync(
             string nickName,
             string password,
@@ -43,57 +43,57 @@ namespace PackageName.CompanyName.ProjectName.Users
             string position = null,
             bool isActive = true)
         {
-            // 参数验证
+            // Parameter validation
             if (string.IsNullOrWhiteSpace(nickName))
             {
-                throw new UserFriendlyException("用户名不能为空");
+                throw new UserFriendlyException("Username cannot be empty");
             }
 
-            // 密码校验
+            // Password verification
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
             {
-                throw new UserFriendlyException("密码不能为空且长度不能少于6位");
+                throw new UserFriendlyException("The password cannot be empty and the length cannot be less than 6 characters");
             }
 
-            // 检查用户昵称是否已存在
+            // Check if the user nickname already exists
             var existingUser = await _userRepository.FindAsync(u => u.NickName == nickName);
             if (existingUser != null)
             {
-                throw new UserFriendlyException($"昵称为 '{nickName}' 的用户已存在");
+                throw new UserFriendlyException($"A user with the nickname '{nickName}' already exists");
             }
 
-            // 创建Identity用户
+            // Create Identity user
             var identityUser = new IdentityUser(GuidGenerator.Create(), nickName, $"{nickName}@inspection.com");
             var identityResult = await _identityUserManager.CreateAsync(identityUser, password);
             if (!identityResult.Succeeded)
             {
-                throw new UserFriendlyException("创建用户失败: " +
+                throw new UserFriendlyException("Failed to create user: " +
                                                 string.Join(", ", identityResult.Errors.Select(x => x.Description)));
             }
 
-            // 设置用户状态
+            // Set user status
             if (!isActive)
             {
                 var lockoutResult = await _identityUserManager.SetLockoutEndDateAsync(identityUser, DateTimeOffset.MaxValue);
                 if (!lockoutResult.Succeeded)
                 {
-                    throw new UserFriendlyException("设置用户状态失败: " +
+                    throw new UserFriendlyException("Failed to set user status: " +
                         string.Join(", ", lockoutResult.Errors.Select(e => e.Description)));
                 }
             }
             else
             {
-                // 确保用户处于活动状态
+                // Make sure the user is active
                 await _identityUserManager.SetLockoutEnabledAsync(identityUser, false);
                 var lockoutResult = await _identityUserManager.SetLockoutEndDateAsync(identityUser, null);
                 if (!lockoutResult.Succeeded)
                 {
-                    throw new UserFriendlyException("设置用户状态失败: " +
+                    throw new UserFriendlyException("Failed to set user status: " +
                         string.Join(", ", lockoutResult.Errors.Select(e => e.Description)));
                 }
             }
 
-            // 创建业务用户
+            // Create business user
             var user = new User(
                 GuidGenerator.Create(),
                 nickName,
@@ -102,24 +102,24 @@ namespace PackageName.CompanyName.ProjectName.Users
                 position
             );
 
-            // 保存用户
+            // Save user
             await _userRepository.InsertAsync(user, true);
 
-            _logger.LogInformation($"创建了新用户：{nickName}，ID：{user.Id}");
+            _logger.LogInformation($"New user created: {nickName}, ID: {user.Id}");
 
             return user;
         }
 
         /// <summary>
-        /// 更新用户信息
+        /// Update user information
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <param name="nickName">用户昵称</param>
-        /// <param name="password">用户密码（可选，如不修改则传入null）</param>
-        /// <param name="contactInfo">联系方式</param>
-        /// <param name="position">职位</param>
-        /// <param name="isActive">是否启用</param>
-        /// <returns>更新后的用户实体</returns>
+        /// <param name="id">User ID</param>
+        /// <param name="nickName">User nickname</param>
+        /// <param name="password">User password (optional, pass in null if not modified)</param>
+        /// <param name="contactInfo">Contact information</param>
+        /// <param name="position">Position</param>
+        /// <param name="isActive">Whether to enable</param>
+        /// <returns>Updated user entity</returns>
         public async Task<User> UpdateAsync(
             Guid id,
             string nickName,
@@ -128,7 +128,7 @@ namespace PackageName.CompanyName.ProjectName.Users
             string position = null,
             bool isActive = true)
         {
-            // 最大重试次数
+            // Maximum number of retries
             const int maxRetries = 3;
             int retryCount = 0;
 
@@ -136,103 +136,103 @@ namespace PackageName.CompanyName.ProjectName.Users
             {
                 try
                 {
-                    // 每次尝试时重新获取最新的用户数据
+                    // Re-fetch the latest user data on each try
                     var user = await _userRepository.GetAsync(id, false);
                     if (user == null)
                     {
-                        throw new UserFriendlyException("用户不存在");
+                        throw new UserFriendlyException("User does not exist");
                     }
                     
-                    // 检查用户昵称是否已被其他用户使用
+                    // Check if the user's nickname is already used by other users
                     var existingUser = await _userRepository.FindAsync(u => u.NickName == nickName && u.Id != id);
                     if (existingUser != null)
                     {
-                        throw new UserFriendlyException($"昵称为 '{nickName}' 的用户已存在");
+                        throw new UserFriendlyException($"A user with the nickname '{nickName}' already exists");
                     }
 
-                    // 更新Identity用户
+                    // Update Identity user
                     var identityUser = await _identityUserManager.FindByIdAsync(user.IdentityUserId.ToString());
                     if (identityUser == null)
                     {
-                        throw new UserFriendlyException("Identity用户不存在");
+                        throw new UserFriendlyException("Identity user does not exist");
                     }
 
-                    // 更新用户名
+                    // Update username
                     var usernameResult = await _identityUserManager.SetUserNameAsync(identityUser, nickName);
                     if (!usernameResult.Succeeded)
                     {
-                        throw new UserFriendlyException("更新用户名失败: " +
+                        throw new UserFriendlyException("Failed to update username: " +
                             string.Join(", ", usernameResult.Errors.Select(e => e.Description)));
                     }
 
-                    // 更新电子邮件
+                    // update email
                     var emailResult = await _identityUserManager.SetEmailAsync(identityUser, $"{nickName}@inspection.com");
                     if (!emailResult.Succeeded)
                     {
-                        throw new UserFriendlyException("更新电子邮件失败: " +
+                        throw new UserFriendlyException("Failed to update email: " +
                             string.Join(", ", emailResult.Errors.Select(e => e.Description)));
                     }
 
-                    // 如果提供了新密码，则更新密码
+                    // If a new password is provided, update the password
                     if (!string.IsNullOrEmpty(password))
                     {
-                        // 移除当前密码
+                        // Remove current password
                         await _identityUserManager.RemovePasswordAsync(identityUser);
-                        // 设置新密码
+                        // Set new password
                         var passwordResult = await _identityUserManager.AddPasswordAsync(identityUser, password);
                         if (!passwordResult.Succeeded)
                         {
-                            throw new UserFriendlyException("更新密码失败: " +
+                            throw new UserFriendlyException("Failed to update password: " +
                                 string.Join(", ", passwordResult.Errors.Select(e => e.Description)));
                         }
                     }
 
-                    // 设置用户状态
+                    // Set user status
                     await SetUserActiveStatusAsync(id, isActive);
 
-                    // 更新用户信息
+                    // Update user information
                     user.NickName = nickName;
                     user.ContactInfo = contactInfo;
                     user.Position = position;
 
-                    // 保存更新
+                    // save updates
                     await _userRepository.UpdateAsync(user, true);
 
-                    _logger.LogInformation($"更新了用户信息：{nickName}，ID：{user.Id}");
+                    _logger.LogInformation($"Updated user information: {nickName}, ID: {user.Id}");
 
                     return user;
                 }
                 catch (Volo.Abp.Data.AbpDbConcurrencyException ex)
                 {
-                    // 增加重试计数
+                    // Increase retry count
                     retryCount++;
 
-                    // 如果达到最大重试次数，则抛出用户友好的异常
+                    // If the maximum number of retries is reached, throw a user-friendly exception
                     if (retryCount >= maxRetries)
                     {
                         throw new UserFriendlyException(
-                            "更新用户信息失败：数据已被其他用户修改。请刷新页面后重试。",
+                            "Failed to update user information: the data has been modified by other users. Please refresh the page and try again.",
                             "409", ex.Message,
                             ex);
                     }
 
-                    // 短暂延迟后重试
-                    await Task.Delay(100 * retryCount); // 逐步增加延迟时间
+                    // Retry after a short delay
+                    await Task.Delay(100 * retryCount); // Gradually increase the delay time
 
-                    // 记录重试信息
-                    _logger.LogWarning($"检测到用户[{id}]更新时发生并发冲突，正在进行第{retryCount}次重试...");
+                    // Record retry information
+                    _logger.LogWarning($"A concurrency conflict was detected when user [{id}] was updated, and the {retryCount}th retry is in progress...");
                 }
             }
         }
 
         /// <summary>
-        /// 删除用户
+        /// Delete user
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <returns>操作任务</returns>
+        /// <param name="id">User ID</param>
+        /// <returns>Operation tasks</returns>
         public async Task DeleteAsync(Guid id)
         {
-            // 最大重试次数
+            // Maximum number of retries
             const int maxRetries = 3;
             int retryCount = 0;
 
@@ -240,210 +240,210 @@ namespace PackageName.CompanyName.ProjectName.Users
             {
                 try
                 {
-                    // 每次尝试时重新获取最新的用户数据
+                    // Re-fetch the latest user data on each try
                     var user = await _userRepository.GetAsync(id);
                     if (user == null)
                     {
-                        _logger.LogWarning($"尝试删除不存在的用户，ID：{id}");
-                        return; // 如果用户不存在，就不再继续处理
+                        _logger.LogWarning($"Trying to delete a non-existent user, ID: {id}");
+                        return; // If the user does not exist, no further processing will be performed
                     }
 
-                    // 删除Identity用户
+                    // Delete Identity user
                     var identityUser = await _identityUserManager.FindByIdAsync(user.IdentityUserId.ToString());
                     if (identityUser != null)
                     {
                         var result = await _identityUserManager.DeleteAsync(identityUser);
                         if (!result.Succeeded)
                         {
-                            throw new UserFriendlyException("删除Identity用户失败: " +
+                            throw new UserFriendlyException("Failed to delete Identity user: " +
                                 string.Join(", ", result.Errors.Select(e => e.Description)));
                         }
                     }
 
-                    // 删除用户
+                    // delete user
                     await _userRepository.DeleteAsync(user);
 
-                    _logger.LogInformation($"删除了用户，ID：{id}");
+                    _logger.LogInformation($"Deleted user, ID: {id}");
                     return;
                 }
                 catch (Volo.Abp.Data.AbpDbConcurrencyException ex)
                 {
-                    // 增加重试计数
+                    // Increase retry count
                     retryCount++;
 
-                    // 如果达到最大重试次数，则抛出用户友好的异常
+                    // If the maximum number of retries is reached, throw a user-friendly exception
                     if (retryCount >= maxRetries)
                     {
                         throw new UserFriendlyException(
-                            "删除用户失败：数据已被其他用户修改。请刷新页面后重试。",
+                            "Failed to delete user: data has been modified by other users. Please refresh the page and try again.",
                             "409", ex.Message,
                             ex);
                     }
 
-                    // 短暂延迟后重试
-                    await Task.Delay(100 * retryCount); // 逐步增加延迟时间
+                    // Retry after a short delay
+                    await Task.Delay(100 * retryCount); // Gradually increase the delay time
 
-                    // 记录重试信息
-                    _logger.LogWarning($"检测到用户[{id}]删除时发生并发冲突，正在进行第{retryCount}次重试...");
+                    // Record retry information
+                    _logger.LogWarning($"A concurrency conflict was detected when user [{id}] was deleted, and the {retryCount}th retry is in progress...");
                 }
             }
         }
 
         /// <summary>
-        /// 修改用户密码
+        /// Modify user password
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <param name="currentPassword">当前密码</param>
-        /// <param name="newPassword">新密码</param>
-        /// <returns>操作结果</returns>
+        /// <param name="id">User ID</param>
+        /// <param name="currentPassword">Current password</param>
+        /// <param name="newPassword">New password</param>
+        /// <returns>Operation results</returns>
         public async Task ChangePasswordAsync(Guid id, string currentPassword, string newPassword)
         {
             if (string.IsNullOrEmpty(newPassword) || newPassword.Length < 6)
             {
-                throw new UserFriendlyException("新密码不能为空且长度不能少于6位");
+                throw new UserFriendlyException("The new password cannot be empty and the length cannot be less than 6 characters");
             }
 
-            // 获取用户
+            // Get user
             var user = await _userRepository.GetAsync(id);
             if (user == null)
             {
-                throw new UserFriendlyException("用户不存在");
+                throw new UserFriendlyException("User does not exist");
             }
 
-            // 获取Identity用户
+            // Get the Identity user
             var identityUser = await _identityUserManager.FindByIdAsync(user.IdentityUserId.ToString());
             if (identityUser == null)
             {
-                throw new UserFriendlyException("Identity用户不存在");
+                throw new UserFriendlyException("Identity user does not exist");
             }
 
-            // 修改密码
+            // Change password
             var result = await _identityUserManager.ChangePasswordAsync(identityUser, currentPassword, newPassword);
             if (!result.Succeeded)
             {
-                throw new UserFriendlyException("修改密码失败: " +
+                throw new UserFriendlyException("Failed to change password: " +
                     string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
-            _logger.LogInformation($"用户[{user.NickName}]成功修改了密码");
+            _logger.LogInformation($"User [{user.NickName}] successfully changed the password");
         }
 
         /// <summary>
-        /// 重置用户密码（管理员操作）
+        /// Reset user password (administrator operation)
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <param name="newPassword">新密码</param>
-        /// <returns>操作结果</returns>
+        /// <param name="id">User ID</param>
+        /// <param name="newPassword">New password</param>
+        /// <returns>Operation results</returns>
         public async Task ResetPasswordAsync(Guid id, string newPassword)
         {
             if (string.IsNullOrEmpty(newPassword) || newPassword.Length < 6)
             {
-                throw new UserFriendlyException("新密码不能为空且长度不能少于6位");
+                throw new UserFriendlyException("The new password cannot be empty and the length cannot be less than 6 characters");
             }
 
-            // 获取用户
+            // Get user
             var user = await _userRepository.GetAsync(id);
             if (user == null)
             {
-                throw new UserFriendlyException("用户不存在");
+                throw new UserFriendlyException("User does not exist");
             }
 
-            // 获取Identity用户
+            // Get the Identity user
             var identityUser = await _identityUserManager.FindByIdAsync(user.IdentityUserId.ToString());
             if (identityUser == null)
             {
-                throw new UserFriendlyException("Identity用户不存在");
+                throw new UserFriendlyException("Identity user does not exist");
             }
 
-            // 生成重置令牌
+            // Generate reset token
             var token = await _identityUserManager.GeneratePasswordResetTokenAsync(identityUser);
 
-            // 重置密码
+            // reset password
             var result = await _identityUserManager.ResetPasswordAsync(identityUser, token, newPassword);
             if (!result.Succeeded)
             {
-                throw new UserFriendlyException("重置密码失败: " +
+                throw new UserFriendlyException("Password reset failed: " +
                     string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
-            _logger.LogInformation($"管理员重置了用户[{user.NickName}]的密码");
+            _logger.LogInformation($"The administrator reset the password of user [{user.NickName}]");
         }
 
         /// <summary>
-        /// 获取用户信息
+        /// Get user information
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <returns>用户实体</returns>
+        /// <param name="id">User ID</param>
+        /// <returns>User entity</returns>
         public async Task<User> GetAsync(Guid id)
         {
             return await _userRepository.GetAsync(id);
         }
 
         /// <summary>
-        /// 根据Identity用户ID获取用户
+        /// Get the user based on the Identity user ID
         /// </summary>
-        /// <param name="identityUserId">Identity用户ID</param>
-        /// <returns>用户实体，如果不存在则返回null</returns>
+        /// <param name="identityUserId">Identity user ID</param>
+        /// <returns>User entity, return null if it does not exist</returns>
         public async Task<User> FindByIdentityUserIdAsync(Guid identityUserId)
         {
             return await _userRepository.FindAsync(u => u.IdentityUserId == identityUserId);
         }
 
         /// <summary>
-        /// 根据用户昵称查找用户
+        /// Find users based on their nicknames
         /// </summary>
-        /// <param name="nickName">用户昵称</param>
-        /// <returns>用户实体，如果不存在则返回null</returns>
+        /// <param name="nickName">User nickname</param>
+        /// <returns>User entity, return null if it does not exist</returns>
         public async Task<User> FindByNickNameAsync(string nickName)
         {
             return await _userRepository.FindAsync(u => u.NickName == nickName);
         }
 
         /// <summary>
-        /// 禁用或启用用户
+        /// Disable or enable user
         /// </summary>
-        /// <param name="id">用户ID</param>
-        /// <param name="isActive">是否启用</param>
-        /// <returns>操作任务</returns>
+        /// <param name="id">User ID</param>
+        /// <param name="isActive">Whether to enable</param>
+        /// <returns>Operation tasks</returns>
         public async Task SetUserActiveStatusAsync(Guid id, bool isActive)
         {
-            // 获取用户
+            // Get user
             var user = await _userRepository.GetAsync(id);
             if (user == null)
             {
-                throw new UserFriendlyException("用户不存在");
+                throw new UserFriendlyException("User does not exist");
             }
 
-            // 获取Identity用户
+            // Get the Identity user
             var identityUser = await _identityUserManager.FindByIdAsync(user.IdentityUserId.ToString());
             if (identityUser == null)
             {
-                throw new UserFriendlyException("Identity用户不存在");
+                throw new UserFriendlyException("Identity user does not exist");
             }
 
-            // 设置用户状态
+            // Set user status
             if (isActive)
             {
-                // 启用用户
+                // enable user
                 var result = await _identityUserManager.SetLockoutEndDateAsync(identityUser, null);
                 if (!result.Succeeded)
                 {
-                    throw new UserFriendlyException($"启用用户失败: " +
+                    throw new UserFriendlyException($"Failed to enable user: " +
                         string.Join(", ", result.Errors.Select(e => e.Description)));
                 }
             }
             else
             {
-                // 禁用用户（设置永久锁定）
+                // Disable user (set permanent lock)
                 var result = await _identityUserManager.SetLockoutEndDateAsync(identityUser, DateTimeOffset.MaxValue);
                 if (!result.Succeeded)
                 {
-                    throw new UserFriendlyException($"禁用用户失败: " +
+                    throw new UserFriendlyException($"Failed to disable user: " +
                         string.Join(", ", result.Errors.Select(e => e.Description)));
                 }
             }
 
-            _logger.LogInformation($"已{(isActive ? "启用" : "禁用")}用户[{user.NickName}]");
+            _logger.LogInformation($"{(isActive ? "Enabled" : "Disabled")}user [{user.NickName}]");
         }
     }
 }

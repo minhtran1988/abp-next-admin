@@ -135,9 +135,9 @@ export const demoPreviewPlugin = (md: MarkdownRenderer) => {
 };
 
 function generateContentHash(input: string, length: number = 10): string {
-  // 使用 SHA-256 生成哈希值
+  // Generate hash value using SHA-256
   const hash = crypto.createHash('sha256').update(input).digest('hex');
 
-  // 将哈希值转换为 Base36 编码，并取指定长度的字符作为结果
+  // Convert the hash value to Base36 encoding and take characters of the specified length as the result
   return Number.parseInt(hash, 16).toString(36).slice(0, length);
 }

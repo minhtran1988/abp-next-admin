@@ -3,20 +3,20 @@
 namespace LINGYUN.Abp.Identity;
 
 /// <summary>
-/// 安全令牌验证缓存
+/// Security token verification cache
 /// </summary>
 public class SecurityTokenCacheItem
 {
     /// <summary>
-    /// 用于验证的Token
+    /// Token used for verification
     /// </summary>
     public string Token { get; set; } = default!;
     /// <summary>
-    /// 用于验证的用户Id
+    /// User ID used for verification
     /// </summary>
     public Guid UserId { get; set; }
     /// <summary>
-    /// 用于验证的安全令牌
+    /// Security token used for verification
     /// </summary>
     public string SecurityToken { get; set; } = default!;
 
@@ -33,10 +33,10 @@ public class SecurityTokenCacheItem
     }
 
     /// <summary>
-    /// 生成查询Key
+    /// Generate query Key
     /// </summary>
-    /// <param name="phoneNumber">手机号</param>
-    /// <param name="purpose">安全令牌用途</param>
+    /// <param name="phoneNumber">Mobile phone number</param>
+    /// <param name="purpose">Security token purpose</param>
     /// <returns></returns>
     public static string CalculateSmsCacheKey(string phoneNumber, string purpose)
     {
@@ -44,10 +44,10 @@ public class SecurityTokenCacheItem
     }
 
     /// <summary>
-    /// 生成查询Key
+    /// Generate query Key
     /// </summary>
-    /// <param name="email">邮件地址</param>
-    /// <param name="purpose">安全令牌用途</param>
+    /// <param name="email">Email address</param>
+    /// <param name="purpose">Security token purpose</param>
     /// <returns></returns>
     public static string CalculateEmailCacheKey(string email, string purpose)
     {

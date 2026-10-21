@@ -157,7 +157,7 @@ export function useValidation(): RuleCreator {
       message,
       trigger: field.trigger,
       validator: (_: any, value: number) => {
-        // beetween不在进行必输检查, 改为数字有效性检查
+        // beetween no longer performs must-lose checks, but instead performs digital validity checks
         if (Number.isNaN(value)) {
           return Promise.reject(message);
         }

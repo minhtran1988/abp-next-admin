@@ -7,7 +7,7 @@
 
 `LINGYUN.Abp.OpenIddict.LinkUser` is a user linking extension module for OpenIddict, providing authentication functionality between linked users.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

@@ -3,10 +3,10 @@ using PackageName.CompanyName.ProjectName.Localization;
 
 namespace PackageName.CompanyName.ProjectName;
 /// <summary>
-/// 提供动态查询接口实现
+/// Provide dynamic query interface implementation
 /// </summary>
-/// <typeparam name="TEntity">实体类型</typeparam>
-/// <typeparam name="TEntityDto">实体dto类型</typeparam>
+/// <typeparam name="TEntity">Entity type</typeparam>
+/// <typeparam name="TEntityDto">Entity dto type</typeparam>
 public abstract class ProjectNameDynamicQueryableAppServiceBase<TEntity, TEntityDto> :
     DynamicQueryableAppService<TEntity, TEntityDto>,
     IProjectNameDynamicQueryableAppService<TEntityDto>

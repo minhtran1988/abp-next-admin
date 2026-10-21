@@ -43,36 +43,36 @@ interface UserIdentifier {
 }
 
 interface NotificationSendInput {
-  /** 当前文化（模板渲染时需要） */
+  /** Current culture (required for template rendering) */
   culture?: string;
-  /** 通知数据 */
+  /** Notification data */
   data: Dictionary<string, any>;
-  /** 通知（模板通知时为模板名称）名称 */
+  /** Notification (template name for template notification) name */
   name: string;
-  /** 紧急程度 */
+  /** Urgency */
   severity?: NotificationSeverity;
-  /** 接收人列表 */
+  /** Recipient list */
   toUsers?: UserIdentifier[];
 }
 
 type NotificationTemplateSendInput = NotificationSendInput;
 
 interface NotificationInfo {
-  /** 内容类型 */
+  /** Content type */
   contentType: NotificationContentType;
-  /** 创建时间 */
+  /** Creation time */
   creationTime: Date;
-  /** 数据 */
+  /** data */
   data: NotificationData;
   /** Id */
   id: string;
-  /** 生命周期 */
+  /** life cycle */
   lifetime: NotificationLifetime;
-  /** 名称 */
+  /** name */
   name: string;
-  /** 紧急程度 */
+  /** Urgency */
   severity: NotificationSeverity;
-  /** 类型 */
+  /** Type */
   type: NotificationType;
 }
 

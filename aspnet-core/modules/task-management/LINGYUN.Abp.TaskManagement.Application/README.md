@@ -1,64 +1,64 @@
 # LINGYUN.Abp.TaskManagement.Application
 
-任务管理模块的应用层实现，提供后台作业管理的核心功能实现。
+The application layer implementation of the task management module provides the core function implementation of background job management.
 
-## 功能实现
+## Function implementation
 
-### 后台作业管理服务
-- 后台作业信息服务 (BackgroundJobInfoAppService)
-  - 实现作业的CRUD操作
-  - 提供作业控制功能（启动、停止、暂停、恢复等）
-  - 支持批量操作功能
-  - 实现作业查询和过滤
+### Background job management service
+- Background job information service (BackgroundJobInfoAppService)
+  - Implement CRUD operations for jobs
+  - Provide job control functions (start, stop, pause, resume, etc.)
+  - Support batch operation function
+  - Implement job query and filtering
 
-### 后台作业行为服务 (BackgroundJobActionAppService)
-- 行为管理功能：
-  - 添加作业行为
-  - 更新作业行为
-  - 删除作业行为
-  - 获取作业行为列表
-- 行为定义管理：
-  - 获取可用的行为定义
-  - 行为参数配置
-  - 行为启用/禁用控制
+### Background job behavior service (BackgroundJobActionAppService)
+- Behavior management functions:
+  - Add job behavior
+  - Update job behavior
+  - Delete job behavior
+  - Get job behavior list
+- Behavior definition management:
+  - Get available behavior definitions
+  - Behavior parameter configuration
+  - Behavior enable/disable controls
 
-### 后台作业日志服务 (BackgroundJobLogAppService)
-- 日志管理功能：
-  - 获取日志详情
-  - 获取日志列表
-  - 删除日志记录
-- 日志查询功能：
-  - 支持多条件组合查询
-  - 分页查询
-  - 排序功能
-  - 高级过滤
+### Background job log service (BackgroundJobLogAppService)
+- Log management function:
+  - Get log details
+  - Get log list
+  - Delete log records
+- Log query function:
+  -Support multi-condition combination query
+  - Paging query
+  - Sorting function
+  - Advanced filtering
 
-### 对象映射配置
-- AutoMapper配置文件：
-  - BackgroundJobInfo到BackgroundJobInfoDto的映射
-  - BackgroundJobLog到BackgroundJobLogDto的映射
-  - BackgroundJobAction到BackgroundJobActionDto的映射
+### Object mapping configuration
+- AutoMapper configuration file:
+  - Mapping from BackgroundJobInfo to BackgroundJobInfoDto
+  - Mapping from BackgroundJobLog to BackgroundJobLogDto
+  - Mapping from BackgroundJobAction to BackgroundJobActionDto
 
-### 模块配置
-- 依赖模块：
+### Module configuration
+- Dependent modules:
   - AbpAutoMapper
   - AbpDynamicQueryable
   - TaskManagementDomain
   - TaskManagementApplication.Contracts
-- 服务配置：
-  - 自动对象映射配置
-  - 验证配置
+- Service configuration:
+  - Automatic object mapping configuration
+  - Verify configuration
 
-### 扩展功能
-- 表达式扩展：
-  - AndIf条件表达式
-  - OrIf条件表达式
-- 动态查询支持
-- 本地化资源集成
+### Extended functions
+- Expression expansion:
+  - AndIf conditional expression
+  - OrIf conditional expression
+- Dynamic query support
+- Localized resource integration
 
-## 使用方式
+## Usage
 
-1. 添加模块依赖：
+1. Add module dependencies:
 ```csharp
 [DependsOn(typeof(TaskManagementApplicationModule))]
 public class YourModule : AbpModule
@@ -67,7 +67,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 注入并使用服务：
+2. Inject and use the service:
 ```csharp
 public class YourService
 {

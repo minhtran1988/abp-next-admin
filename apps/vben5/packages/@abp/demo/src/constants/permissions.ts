@@ -1,8 +1,8 @@
 export const BookPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'Demo.Books.Create',
-  /** 删除 */
+  /** Delete */
   Delete: 'Demo.Books.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'Demo.Books.Edit',
 };

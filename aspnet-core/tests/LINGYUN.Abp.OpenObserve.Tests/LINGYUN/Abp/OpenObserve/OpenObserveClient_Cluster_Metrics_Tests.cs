@@ -15,7 +15,7 @@ public class OpenObserveClient_Cluster_Metrics_Tests : AbpOpenObserveTestBase
 
         var result = await client.GetClusterInfoAsync();
 
-        // 实测集群信息仅对 _meta 组织开放
+        // Measured cluster information is only open to the _meta organization
         HttpMessageHandler.LastRequest.PathAndQuery.ShouldBe("/api/_meta/cluster/info");
         result.Regions.ContainsKey("openobserve").ShouldBeTrue();
         result.Regions["openobserve"]["zo1"].PendingJobs.ShouldBe(3);

@@ -73,16 +73,16 @@ function onActionClick(e: OnActionClickParams<SystemRoleApi.SystemRole>) {
 }
 
 /**
- * 将Antd的Modal.confirm封装为promise，方便在异步函数中调用。
- * @param content 提示内容
- * @param title 提示标题
+ * Encapsulate Antd's Modal.confirm as promise to facilitate calling in asynchronous functions.
+ * @param content prompt content
+ * @param title prompt title
  */
 function confirm(content: string, title: string) {
   return new Promise((reslove, reject) => {
     Modal.confirm({
       content,
       onCancel() {
-        reject(new Error('已取消'));
+        reject(new Error('Cancelled'));
       },
       onOk() {
         reslove(true);
@@ -93,23 +93,23 @@ function confirm(content: string, title: string) {
 }
 
 /**
- * 状态开关即将改变
- * @param newStatus 期望改变的状态值
- * @param row 行数据
- * @returns 返回false则中止改变，返回其他值（undefined、true）则允许改变
+ * Status switch is about to change
+ * @param newStatus The status value expected to change
+ * @param row row data
+ * @returns Return false to abort the change, return other values ​​(undefined, true) to allow the change
  */
 async function onStatusChange(
   newStatus: number,
   row: SystemRoleApi.SystemRole,
 ) {
   const status: Recordable<string> = {
-    0: '禁用',
-    1: '启用',
+    0: 'disabled',
+    1: 'Enable',
   };
   try {
     await confirm(
-      `你要将${row.name}的状态切换为 【${status[newStatus.toString()]}】 吗？`,
-      `切换状态`,
+      `Do you want to switch the status of ${row.name} to [${status[newStatus.toString()]}]? `,
+      `switch state`,
     );
     await updateRole(row.id, { status: newStatus });
     return true;

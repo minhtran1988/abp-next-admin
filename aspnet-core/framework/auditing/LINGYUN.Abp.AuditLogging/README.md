@@ -1,17 +1,17 @@
 # LINGYUN.Abp.AuditLogging
 
-审计日志核心模块，提供审计日志的基础功能和接口定义。
+The audit log core module provides the basic functions and interface definitions of audit logs.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 审计日志基础设施
-* 审计日志仓储接口定义
-* 审计日志管理器接口定义
-* 支持忽略特定类型的审计日志记录
+* Audit logging infrastructure
+* Audit log warehousing interface definition
+* Audit log manager interface definition
+* Support ignoring specific types of audit logging
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingModule))]
@@ -21,35 +21,35 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "Auditing": {
-    "IsEnabled": true,  // 是否启用审计日志
-    "HideErrors": true, // 是否隐藏错误信息
-    "IsEnabledForAnonymousUsers": true, // 是否为匿名用户启用审计日志
-    "IsEnabledForGetRequests": false,   // 是否为GET请求启用审计日志
-    "ApplicationName": null  // 应用程序名称
+    "IsEnabled": true, // Whether to enable audit logs
+    "HideErrors": true, // Whether to hide error information
+    "IsEnabledForAnonymousUsers": true, // Whether to enable audit logs for anonymous users
+    "IsEnabledForGetRequests": false, // Whether to enable audit logs for GET requests
+    "ApplicationName": null //Application name
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 引用模块
-2. 配置审计日志选项
-3. 实现审计日志存储提供者（例如：EntityFrameworkCore或Elasticsearch）
+1. Reference module
+2. Configure audit log options
+3. Implement an audit log storage provider (for example: EntityFrameworkCore or Elasticsearch)
 
-## 高级功能
+## Advanced features
 
-### 忽略特定类型
+### Ignore specific types
 
-默认情况下，模块会忽略以下类型的审计日志：
+By default, the module ignores the following types of audit logs:
 * CancellationToken
 * CancellationTokenSource
 
-你可以通过配置添加更多需要忽略的类型：
+You can add more types to ignore via configuration:
 
 ```csharp
 Configure<AbpAuditingOptions>(options =>

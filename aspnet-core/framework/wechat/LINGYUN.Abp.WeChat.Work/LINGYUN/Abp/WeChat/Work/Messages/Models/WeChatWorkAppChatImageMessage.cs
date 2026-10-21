@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信群聊图片消息
+/// Corporate WeChat group chat picture message
 /// </summary>
 public class WeChatWorkAppChatImageMessage : WeChatWorkAppChatMessage
 {
@@ -16,17 +16,17 @@ public class WeChatWorkAppChatImageMessage : WeChatWorkAppChatMessage
         Image = image;
     }
     /// <summary>
-    /// 图片媒体文件
+    /// Image media files
     /// </summary>
     [NotNull]
     [JsonProperty("image")]
     [JsonPropertyName("image")]
     public MediaMessage Image { get; set; }
     /// <summary>
-    /// 表示是否是保密消息，
-    /// 0表示可对外分享，
-    /// 1表示不能分享且内容显示水印，
-    /// 默认为0
+    /// Indicates whether it is confidential information,
+    /// 0 means it can be shared externally.
+    /// 1 means it cannot be shared and the content displays a watermark.
+    /// Default is 0
     /// </summary>
     [JsonProperty("safe")]
     [JsonPropertyName("safe")]

@@ -124,7 +124,7 @@ public class RedisRequiresLimitFeatureChecker : IRequiresLimitFeatureChecker
                 _redisConfig.AllowAdmin = true;
                 _redisConfig.SetDefaultPorts();
                 _connection = await ConnectionMultiplexer.ConnectAsync(_redisConfig);
-                // fix: 无需关注redis连接事件
+                // fix: No need to pay attention to redis connection events
                 _redis = _connection.GetDatabase();
                 _server = _connection.GetServer(_redisConfig.EndPoints[0]);
             }

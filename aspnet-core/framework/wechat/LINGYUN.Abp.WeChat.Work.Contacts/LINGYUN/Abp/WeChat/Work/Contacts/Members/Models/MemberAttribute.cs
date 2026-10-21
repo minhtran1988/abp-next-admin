@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 成员扩展属性
+/// Member extended attributes
 /// </summary>
 public abstract class MemberAttribute
 {
     /// <summary>
-    /// 属性名称： 在新增或者更新操作时，需要先确保在管理端有创建该属性，否则会忽略
+    /// Attribute name: When adding or updating operations, you need to first ensure that the attribute is created on the management side, otherwise it will be ignored.
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 属性类型
+    /// Property type
     /// </summary>
     [NotNull]
     [JsonProperty("type")]

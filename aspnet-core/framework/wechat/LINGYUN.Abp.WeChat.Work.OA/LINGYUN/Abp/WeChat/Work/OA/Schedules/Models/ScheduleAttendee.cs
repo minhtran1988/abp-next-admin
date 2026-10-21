@@ -5,12 +5,12 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日程参与者
+/// Schedule participants
 /// </summary>
 public class ScheduleAttendee
 {
     /// <summary>
-    /// 日程参与者ID
+    /// Schedule participant ID
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]

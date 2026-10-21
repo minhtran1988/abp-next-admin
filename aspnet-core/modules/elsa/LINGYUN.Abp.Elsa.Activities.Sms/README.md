@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Elsa.Activities.Sms
 
-Elsa工作流的短信活动集成模块
+SMS activity integration module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供 **SendSms** 活动用于发送短信
-  * 支持发送给多个手机号码
-  * 支持自定义消息属性
-  * 支持JavaScript、JSON和Liquid语法
-  * 集成ABP框架的 `ISmsSender` 接口
+* Provide **SendSms** activity for sending text messages
+  *Supports sending to multiple mobile phone numbers
+  * Support custom message attributes
+  * Support JavaScript, JSON and Liquid syntax
+  * Integrate the `ISmsSender` interface of the ABP framework
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -26,15 +26,15 @@ public class YouProjectModule : AbpModule
 ```json
 {
     "Elsa": {
-        "Sms": true    // 启用短信活动
+        "Sms": true // Enable SMS activity
     }
 }
 ```
 
-## 活动参数
+## Activity parameters
 
-* **To**: 接收手机号码列表
-* **Message**: 短信内容
-* **Properties**: 附加属性（高级选项）
+* **To**: Receive a list of mobile phone numbers
+* **Message**: SMS content
+* **Properties**: Additional properties (advanced options)
 
 [English](./README.EN.md)

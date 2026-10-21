@@ -31,8 +31,8 @@ const localesMap = loadLocalesMapFromDir(
   modules,
 );
 /**
- * 加载应用特有的语言包
- * 这里也可以改造为从服务端获取翻译数据
+ * Load application-specific language packs
+ * This can also be modified to obtain translation data from the server
  * @param lang
  */
 async function loadMessages(lang: SupportedLanguagesType) {
@@ -53,7 +53,7 @@ async function loadMessages(lang: SupportedLanguagesType) {
 }
 
 /**
- * 加载第三方组件库的语言包
+ * Load language packs from third-party component libraries
  * @param lang
  */
 async function loadThirdPartyMessage(lang: SupportedLanguagesType) {
@@ -61,7 +61,7 @@ async function loadThirdPartyMessage(lang: SupportedLanguagesType) {
 }
 
 /**
- * 加载dayjs的语言包
+ * Load the language pack of dayjs
  * @param lang
  */
 async function loadDayjsLocale(lang: SupportedLanguagesType) {
@@ -75,7 +75,7 @@ async function loadDayjsLocale(lang: SupportedLanguagesType) {
       locale = await import('dayjs/locale/zh-cn');
       break;
     }
-    // 默认使用英语
+    // Use English by default
     default: {
       locale = await import('dayjs/locale/en');
     }
@@ -90,7 +90,7 @@ async function loadDayjsLocale(lang: SupportedLanguagesType) {
 }
 
 /**
- * 加载antd的语言包
+ * Load the language pack of antd
  * @param lang
  */
 async function loadAntdLocale(lang: SupportedLanguagesType) {
@@ -107,7 +107,7 @@ async function loadAntdLocale(lang: SupportedLanguagesType) {
 }
 
 /**
- * 加载abp的语言包
+ * Load abp language pack
  * @param lang
  */
 async function loadAbpLocale(lang: SupportedLanguagesType) {

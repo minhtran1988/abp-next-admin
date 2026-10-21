@@ -2,24 +2,24 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日程删除操作模式
+/// Schedule deletion operation mode
 /// </summary>
-[Description("日程删除操作模式")]
+[Description("Schedule deletion operation mode")]
 public enum ScheduleDeleteMode : uint
 {
     /// <summary>
-    /// 删除所有日程
+    /// Delete all schedules
     /// </summary>
-    [Description("删除所有日程")]
+    [Description("Delete all schedules")]
     DeleteAll = 0,
     /// <summary>
-    /// 仅删除此日程
+    /// Only delete this schedule
     /// </summary>
-    [Description("仅删除此日程")]
+    [Description("Only delete this schedule")]
     DeleteThisSchedule = 1,
     /// <summary>
-    /// 删除本次及后续日程
+    /// Delete this and subsequent schedules
     /// </summary>
-    [Description("删除本次及后续日程")]
+    [Description("Delete this and subsequent schedules")]
     DeleteAllFutureSchedules = 2,
 }

@@ -23,7 +23,7 @@ public class AbpNotificationsWeChatMiniProgramModule : AbpModule
             options.PublishProviders.Add<WeChatMiniProgramNotificationPublishProvider>();
         });
 
-        // 声明本渠道支持的载荷形态(注册期即校验存在性契约)
+        // Declare the payload formats supported by this platform (the registration period is to verify the existence contract)
         Configure<AbpNotificationChannelDataOptions>(options =>
         {
             options.Add<WeChatMiniProgramSubscribeChannelData>();

@@ -1,24 +1,24 @@
 # PackageName.CompanyName.ProjectName.AIO.DbMigrator
 
-单体应用数据库迁移工具，用于自动执行数据库迁移和初始化数据。
+Single application database migration tool, used to automatically perform database migration and initialize data.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 支持多环境配置
-* 集成Serilog日志记录
-* 支持数据迁移环境配置
-* 自动检查和应用数据库迁移
-* 控制台应用程序，方便集成到CI/CD流程
+* Automatically perform database migration
+*Support multi-environment configuration
+* Integrated Serilog logging
+* Support data migration environment configuration
+* Automatically check and apply database migrations
+* Console application for easy integration into CI/CD processes
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "Default": "你的数据库连接字符串"
+    "Default": "Your database connection string"
   },
   "Serilog": {
     "MinimumLevel": {
@@ -32,44 +32,44 @@
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接
-   * 在appsettings.json中配置数据库连接字符串
-   * 可以通过appsettings.{Environment}.json配置不同环境的连接字符串
+1. Configure database connection
+   * Configure the database connection string in appsettings.json
+   * You can configure the connection strings for different environments through appsettings.{Environment}.json
 
-2. 运行迁移工具
+2. Run the migration tool
    ```bash
    dotnet run
    ```
 
-3. 查看迁移日志
-   * 控制台输出
-   * Logs/migrations.txt文件
+3. View the migration log
+   *Console output
+   * Logs/migrations.txt file
 
-## 环境变量
+## Environment variables
 
-* `ASPNETCORE_ENVIRONMENT`: 设置运行环境（Development、Staging、Production等）
-* `DOTNET_ENVIRONMENT`: 同上，用于兼容性
+* `ASPNETCORE_ENVIRONMENT`: Set the running environment (Development, Staging, Production, etc.)
+* `DOTNET_ENVIRONMENT`: Same as above, for compatibility
 
-## 注意事项
+## Notes
 
-* 确保数据库连接字符串中包含足够的权限
-* 建议在执行迁移前备份数据库
-* 查看migrations.txt日志文件以了解迁移详情
-* 如果迁移失败，检查日志中的错误信息
+* Make sure the database connection string contains sufficient permissions
+* It is recommended to back up the database before performing migration
+* Check the migrations.txt log file for migration details
+* If the migration fails, check the log for error messages
 
-## 开发调试
+## Development and debugging
 
-1. 设置环境变量
+1. Set environment variables
    ```bash
    export ASPNETCORE_ENVIRONMENT=Development
    ```
 
-2. 使用Visual Studio或Visual Studio Code进行调试
-   * 可以设置断点
-   * 查看详细的迁移过程
+2. Debugging using Visual Studio or Visual Studio Code
+   * Can set breakpoints
+   * View detailed migration process
 
-3. 自定义迁移逻辑
-   * 修改SingleDbMigrationService类
-   * 添加新的数据种子
+3. Customize migration logic
+   * Modify SingleDbMigrationService class
+   * Add new data seeds

@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Elsa.Activities.Emailing
 
-Elsa工作流的邮件发送活动集成模块
+Email sending activity integration module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供 **SendEmailing** 活动用于发送电子邮件
-  * 支持发送给多个收件人
-  * 支持使用模板渲染邮件内容
-  * 支持JavaScript和Liquid语法
-  * 集成ABP框架的 `IEmailSender` 接口
-  * 集成ABP框架的 `ITemplateRenderer` 接口进行模板渲染
+* Provides **SendEmailing** activity for sending emails
+  *Supports sending to multiple recipients
+  * Supports using templates to render email content
+  * Support JavaScript and Liquid syntax
+  * Integrate the `IEmailSender` interface of the ABP framework
+  * Integrate the `ITemplateRenderer` interface of the ABP framework for template rendering
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -27,18 +27,18 @@ public class YouProjectModule : AbpModule
 ```json
 {
     "Elsa": {
-        "Emailing": true    // 启用邮件发送活动
+        "Emailing": true // Enable email sending activity
     }
 }
 ```
 
-## 活动参数
+## Activity parameters
 
-* **To**: 收件人邮箱地址列表
-* **Subject**: 邮件主题
-* **Body**: 邮件正文内容
-* **Culture**: 文化信息
-* **Template**: 模板名称
-* **Model**: 用于格式化模板内容的模型参数
+* **To**: Recipient email address list
+* **Subject**: Email subject
+* **Body**: Email body content
+* **Culture**: Cultural information
+* **Template**: template name
+* **Model**: Model parameters used to format template content
 
 [English](./README.EN.md)

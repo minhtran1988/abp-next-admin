@@ -3,26 +3,26 @@ using System;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信消息接收者
+/// Enterprise WeChat message receiver
 /// </summary>
 /// <remarks>
-/// 企业微信要求 touser / toparty / totag 不能同时为空,
-/// 因此接收者必须作为整体传递给消息构造过程。
+/// Enterprise WeChat requires that touser / toparty / totag cannot be empty at the same time.
+/// Therefore the receiver must be passed to the message construction process as a whole.
 /// </remarks>
 public class WeChatWorkNotificationContact
 {
     /// <summary>
-    /// 成员ID列表, 多个接收者使用"|"分隔
+    /// Member ID list, multiple receivers are separated by "|"
     /// </summary>
     public string? ToUser { get; set; }
 
     /// <summary>
-    /// 部门ID列表, 多个接收者使用"|"分隔
+    /// Department ID list, multiple recipients are separated by "|"
     /// </summary>
     public string? ToParty { get; set; }
 
     /// <summary>
-    /// 标签ID列表, 多个接收者使用"|"分隔
+    /// Tag ID list, multiple receivers separated by "|"
     /// </summary>
     public string? ToTag { get; set; }
 

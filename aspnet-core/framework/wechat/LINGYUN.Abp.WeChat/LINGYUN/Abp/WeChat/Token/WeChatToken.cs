@@ -1,16 +1,16 @@
 ﻿namespace LINGYUN.Abp.WeChat.Token;
 
 /// <summary>
-/// 微信令牌
+/// WeChat token
 /// </summary>
 public class WeChatToken
 {
     /// <summary>
-    /// 访问令牌
+    /// Access token
     /// </summary>
     public string AccessToken { get; set; } = default!;
     /// <summary>
-    /// 过期时间,单位(s)
+    /// Expiration time, unit (s)
     /// </summary>
     public int ExpiresIn { get; set; }
     public WeChatToken()

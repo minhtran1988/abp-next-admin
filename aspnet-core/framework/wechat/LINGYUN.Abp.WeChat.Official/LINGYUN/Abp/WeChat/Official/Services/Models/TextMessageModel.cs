@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Official.Services.Models;
 /// <summary>
-/// 发送文本消息
+/// Send text message
 /// </summary>
 [Serializable]
 public class TextMessageModel : MessageModel
 {
     /// <summary>
-    /// 接收消息用户
+    /// Receive message user
     /// </summary>
     [JsonProperty("touser")]
     [JsonPropertyName("touser")]
     public string ToUser { get; }
     /// <summary>
-    /// 消息内容
+    /// Message content
     /// </summary>
     [JsonProperty("text")]
     [JsonPropertyName("text")]
@@ -32,7 +32,7 @@ public class TextMessageModel : MessageModel
 public class TextMessage
 {
     /// <summary>
-    /// 内容文本
+    /// Content text
     /// </summary>
     [JsonProperty("content")]
     [JsonPropertyName("content")]

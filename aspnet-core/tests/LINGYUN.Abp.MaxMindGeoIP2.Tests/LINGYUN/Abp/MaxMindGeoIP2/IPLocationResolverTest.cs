@@ -13,7 +13,7 @@ namespace LINGYUN.Abp.MaxMindGeoIP2;
 public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
 {
     /// <summary>
-    /// 默认选项: 数据库文件需由使用方提供(不再内置离线库)、内存映射模式
+    /// Default options: Database files must be provided by the user (offline library is no longer built-in), memory mapping mode
     /// </summary>
     [Fact]
     public void TestDefaultOptions()
@@ -23,13 +23,13 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
         defaultOptions.DatabaseFileExists().ShouldBeFalse();
         defaultOptions.FileAccessMode.ShouldBe(FileAccessMode.MemoryMapped);
 
-        // 测试宿主: 离线库路径由配置提供(未配置时回退到本地离线库文件)
+        // Test host: The offline library path is provided by the configuration (fallback to the local offline library file when not configured)
         var options = GetRequiredService<IOptions<AbpMaxMindGeoIP2Options>>().Value;
         options.FileAccessMode.ShouldBe(FileAccessMode.MemoryMapped);
     }
 
     /// <summary>
-    /// 离线库应正确加载(GeoLite2-City), GeoIP2 的 Name 为离线库默认名称, 本地化名称在 Names 中
+    /// The offline library should be loaded correctly (GeoLite2-City), the Name of GeoIP2 is the default name of the offline library, and the localized name is in Names
     /// </summary>
     [Fact]
     public void TestDatabaseReader()
@@ -40,27 +40,27 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
 
         reader.TryCity(IPAddress.Parse("223.5.5.5"), out var response).ShouldBeTrue();
         response!.Country.Name.ShouldBe("China");
-        response.Country.Names["zh-CN"].ShouldBe("中国");
+        response.Country.Names["zh-CN"].ShouldBe("\u4e2d\u56fd");
         response.MostSpecificSubdivision.Name.ShouldBe("Zhejiang");
-        response.MostSpecificSubdivision.Names["zh-CN"].ShouldBe("浙江");
+        response.MostSpecificSubdivision.Names["zh-CN"].ShouldBe("\u6d59\u6c5f");
         response.City.Name.ShouldBe("Hangzhou");
-        response.City.Names["zh-CN"].ShouldBe("杭州");
+        response.City.Names["zh-CN"].ShouldBe("\u676d\u5dde");
 
         reader.TryCity(IPAddress.Parse("2400:3200::1"), out var ipv6Response).ShouldBeTrue();
         ipv6Response!.Country.IsoCode.ShouldBe("CN");
     }
 
     /// <summary>
-    /// 通过 IIPLocationResolver 解析位置(当前文化为简体中文时的备注, 规则与 IP2Region 模块一致)
+    /// Parse the location through IIPLocationResolver (remarks when the current culture is Simplified Chinese, the rules are consistent with the IP2Region module)
     /// </summary>
     [Theory]
-    [InlineData("8.8.8.8", "美国")]
-    [InlineData("2001:4860:4860::8888", "美国")]
-    [InlineData("223.5.5.5", "浙江杭州")]
-    [InlineData("2400:3200::1", "浙江杭州")]
-    [InlineData("103.151.173.211", "日本")]
-    [InlineData("2a00:1450:4001:81b::200e", "德国")]
-    [InlineData("220.246.0.1", "香港")]
+    [InlineData("8.8.8.8", "\u7f8e\u56fd")]
+    [InlineData("2001:4860:4860::8888", "\u7f8e\u56fd")]
+    [InlineData("223.5.5.5", "\u6d59\u6c5f\u676d\u5dde")]
+    [InlineData("2400:3200::1", "\u6d59\u6c5f\u676d\u5dde")]
+    [InlineData("103.151.173.211", "\u65e5\u672c")]
+    [InlineData("2a00:1450:4001:81b::200e", "\u5fb7\u56fd")]
+    [InlineData("220.246.0.1", "\u9999\u6e2f")]
     public async Task TestSearchLocation(string ip, string shouldBeRemarks)
     {
         UseCulture("zh-CN");
@@ -75,7 +75,7 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
     }
 
     /// <summary>
-    /// 国家名称匹配到移除列表(RemoveCountry)时从备注中移除, 仅有国家数据时备注为空
+    /// When the country name matches the removal list (RemoveCountry), it is removed from the remarks. When there is only country data, the remarks are empty.
     /// </summary>
     [Theory]
     [InlineData("114.114.114.114")]
@@ -89,21 +89,21 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
         var result = await resolver.ResolveAsync(ip);
 
         result.Location.ShouldNotBeNull();
-        result.Location.Country.ShouldBe("中国");
+        result.Location.Country.ShouldBe("\u4e2d\u56fd");
         result.Location.Remarks.ShouldBeNullOrEmpty();
     }
 
     /// <summary>
-    /// 地理名称按当前文化从 Names 中获取, 完整文化不存在时按语言获取, 都没有时回退到 Name
+    /// The geographical name is obtained from Names according to the current culture. If the complete culture does not exist, it is obtained according to the language. If neither exists, it falls back to Name.
     /// </summary>
     [Theory]
-    // 完整文化名称(zh-CN / en / ja 等)
-    [InlineData("zh-CN", "223.5.5.5", "浙江杭州")]
+    // Complete culture name (zh-CN / en / ja, etc.)
+    [InlineData("zh-CN", "223.5.5.5", "\u6d59\u6c5f\u676d\u5dde")]
     [InlineData("en-US", "223.5.5.5", "China")]
-    [InlineData("ja-JP", "2a00:1450:4001:81b::200e", "ドイツ連邦共和国")]
-    // 完整文化不存在(es-MX), 按语言名称(es)获取
+    [InlineData("ja-JP", "2a00:1450:4001:81b::200e", "\u30c9\u30a4\u30c4\u9023\u90a6\u5171\u548c\u56fd")]
+    // The complete culture does not exist (es-MX), get it by language name (es)
     [InlineData("es-MX", "8.8.8.8", "Estados Unidos")]
-    // 离线库没有该语言(ko), 回退到 Name(离线库默认语言)
+    // The offline library does not have this language (ko), fall back to Name (default language of the offline library)
     [InlineData("ko-KR", "8.8.8.8", "United States")]
     [InlineData("ko-KR", "223.5.5.5", "China")]
     public async Task TestSearchLocationByCulture(string culture, string ip, string shouldBeRemarks)
@@ -119,7 +119,7 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
     }
 
     /// <summary>
-    /// 内网、回环、保留地址以及离线库未收录的地址: 国家/省份/城市/备注均为空
+    /// Intranet, loopback, reserved addresses and addresses not included in the offline library: Country/Province/City/Remarks are all empty
     /// </summary>
     [Theory]
     [InlineData("10.0.0.1")]
@@ -143,7 +143,7 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
     }
 
     /// <summary>
-    /// 非法地址、本地回环与未指定地址由 IIPLocationResolver 统一处理, 不返回位置
+    /// Illegal addresses, local loopbacks and unspecified addresses are handled uniformly by IIPLocationResolver and do not return the location.
     /// </summary>
     [Theory]
     [InlineData("not-an-ip")]
@@ -162,7 +162,7 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
     }
 
     /// <summary>
-    /// 查询器为单例且线程安全, 并发查询应返回正确结果
+    /// The query is singleton and thread-safe, and concurrent queries should return correct results.
     /// </summary>
     [Fact]
     public async Task TestSearchConcurrently()
@@ -173,11 +173,11 @@ public class IPLocationResolverTest : AbpMaxMindGeoIP2TestBase
 
         var expected = new (string Ip, string Remarks)[]
         {
-            ("8.8.8.8", "美国"),
-            ("223.5.5.5", "浙江杭州"),
-            ("220.246.0.1", "香港"),
-            ("2001:4860:4860::8888", "美国"),
-            ("2400:3200::1", "浙江杭州"),
+            ("8.8.8.8", "\u7f8e\u56fd"),
+            ("223.5.5.5", "\u6d59\u6c5f\u676d\u5dde"),
+            ("220.246.0.1", "\u9999\u6e2f"),
+            ("2001:4860:4860::8888", "\u7f8e\u56fd"),
+            ("2400:3200::1", "\u6d59\u6c5f\u676d\u5dde"),
         };
 
         var tasks = Enumerable.Range(0, System.Environment.ProcessorCount * 4)

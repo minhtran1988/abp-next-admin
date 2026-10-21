@@ -7,54 +7,54 @@ namespace LINGYUN.Abp.WxPusher.User;
 public class UserProfile
 {
     /// <summary>
-    /// 用户uid
+    /// user uid
     /// </summary>
     [JsonProperty("uid")]
     public string Uid { get; set; } = default!;
     /// <summary>
-    /// 用户关注的应用或者主题id，根据type来区分
+    /// The application or topic id that the user follows is distinguished based on type.
     /// </summary>
     [JsonProperty("appOrTopicId")]
     public long? AppOrTopicId { get; set; }
     /// <summary>
-    /// 新用户微信不再返回 ，强制返回空
+    /// New user WeChat will no longer return, and is forced to return empty
     /// </summary>
     [JsonProperty("headImg")]
     public string? HeadImg { get; set; }
     /// <summary>
-    /// 创建时间
+    /// Creation time
     /// </summary>
     [JsonProperty("createTime")]
     public long CreateTime { get; set; }
     /// <summary>
-    /// 新用户微信不再返回 ，强制返回空
+    /// New user WeChat will no longer return, and is forced to return empty
     /// </summary>
     [JsonProperty("nickName")]
     public string? NickName { get; set; }
     /// <summary>
-    /// 是否拉黑
+    /// Whether to blacklist
     /// </summary>
     [JsonProperty("reject")]
     public bool Reject { get; set; }
     /// <summary>
-    /// 如果调用删除或者拉黑接口，需要这个id
+    /// If you call the delete or blacklist interface, you need this id
     /// </summary>
     [JsonProperty("id")]
     public int Id { get; set; }
     /// <summary>
-    /// 关注类型，
-    /// 0：关注应用，
-    /// 1：关注topic
+    /// Focus on type,
+    /// 0: Follow the application,
+    /// 1: Follow topic
     /// </summary>
     [JsonProperty("type")]
     public FlowType Type { get; set; }
     /// <summary>
-    /// 关注的应用或者主题名字
+    /// The name of the application or topic you are following
     /// </summary>
     [JsonProperty("target")]
     public string? Target { get; set; }
     /// <summary>
-    /// 0表示用户不是付费用户，大于0表示用户付费订阅到期时间，毫秒级时间戳
+    /// 0 means the user is not a paying user, greater than 0 means the expiration time of the user's paid subscription, millisecond timestamp
     /// </summary>
     [JsonProperty("payEndTime")]
     public long PayEndTime { get; set; }

@@ -1,20 +1,20 @@
 # LINGYUN.Abp.WeChat.Work
 
-企业微信集成模块，提供企业微信应用开发所需的功能支持。
+The enterprise WeChat integration module provides functional support required for enterprise WeChat application development.
 
-## 功能特性
+## Features
 
-* 企业微信身份验证
-* 通讯录管理
-* 消息推送
-* 素材管理
-* 客户联系
-* 应用管理
-* 身份验证
-* 企业支付
-* 电子发票
+* Enterprise WeChat identity verification
+* Address book management
+* Message push
+* Material management
+* Customer contact
+* Application management
+* Authentication
+*Business payment
+* Electronic invoice
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkModule))]
@@ -24,32 +24,32 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Work": {
-      "CorpId": "",               // 企业ID
-      "AgentId": 0,              // 应用ID
-      "Secret": "",              // 应用密钥
-      "Token": "",               // 消息Token
-      "EncodingAESKey": "",      // 消息加密密钥
-      "ApiUrl": "https://qyapi.weixin.qq.com" // API地址
+      "CorpId": "", //CorpId
+      "AgentId": 0, // Application ID
+      "Secret": "", // Application secret
+      "Token": "", // Message Token
+      "EncodingAESKey": "", // Message encryption key
+      "ApiUrl": "https://qyapi.weixin.qq.com" // API address
     }
   }
 }
 ```
 
-## Settings配置
+## SettingsConfiguration
 
-* `WeChat.Work.CorpId`: 企业ID
-* `WeChat.Work.AgentId`: 应用ID
-* `WeChat.Work.Secret`: 应用密钥
-* `WeChat.Work.Token`: 消息Token
-* `WeChat.Work.EncodingAESKey`: 消息加密密钥
-* `WeChat.Work.ApiUrl`: API地址
+* `WeChat.Work.CorpId`: corporate ID
+* `WeChat.Work.AgentId`: application ID
+* `WeChat.Work.Secret`: application secret
+* `WeChat.Work.Token`: Message Token
+* `WeChat.Work.EncodingAESKey`: message encryption key
+* `WeChat.Work.ApiUrl`: API address
 
-## 更多文档
+## More documentation
 
-* [企业微信集成模块文档](README.EN.md)
+* [Enterprise WeChat Integration Module Document](README.EN.md)

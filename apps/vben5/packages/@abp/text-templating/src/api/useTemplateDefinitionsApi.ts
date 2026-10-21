@@ -13,9 +13,9 @@ export function useTemplateDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 新增模板定义
-   * @param input 参数
-   * @returns 模板定义数据传输对象
+   * Added template definition
+   * @param input parameter
+   * @returns template definition data transfer object
    */
   function createApi(
     input: TextTemplateDefinitionCreateDto,
@@ -29,8 +29,8 @@ export function useTemplateDefinitionsApi() {
     );
   }
   /**
-   * 删除模板定义
-   * @param name 模板名称
+   * Delete template definition
+   * @param name template name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/text-templating/template/definitions/${name}`, {
@@ -38,9 +38,9 @@ export function useTemplateDefinitionsApi() {
     });
   }
   /**
-   * 获取模板定义
-   * @param name 模板名称
-   * @returns 模板定义数据传输对象
+   * Get template definition
+   * @param name template name
+   * @returns template definition data transfer object
    */
   function getApi(name: string): Promise<TextTemplateDefinitionDto> {
     return request<TextTemplateDefinitionDto>(
@@ -51,9 +51,9 @@ export function useTemplateDefinitionsApi() {
     );
   }
   /**
-   * 获取模板定义列表
-   * @param input 过滤参数
-   * @returns 模板定义数据传输对象列表
+   * Get template definition list
+   * @param input filter parameter
+   * @returns Template definition data transfer object list
    */
   function getListApi(
     input?: TextTemplateDefinitionGetListInput,
@@ -67,9 +67,9 @@ export function useTemplateDefinitionsApi() {
     );
   }
   /**
-   * 更新模板定义
-   * @param name 模板名称
-   * @returns 模板定义数据传输对象
+   * Update template definition
+   * @param name template name
+   * @returns template definition data transfer object
    */
   function updateApi(
     name: string,

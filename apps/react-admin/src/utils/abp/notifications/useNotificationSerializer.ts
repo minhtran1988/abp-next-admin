@@ -10,7 +10,7 @@ export function useNotificationSerializer() {
 		let description = data.extraProperties.description;
 		if (data.extraProperties.L === true || data.extraProperties.L === "true") {
 			{
-				//用于释放resources
+				// Used to release resources
 				const resources = getResources([
 					data.extraProperties.title.resourceName ?? data.extraProperties.title.ResourceName,
 					data.extraProperties.message.resourceName ?? data.extraProperties.message.ResourceName,

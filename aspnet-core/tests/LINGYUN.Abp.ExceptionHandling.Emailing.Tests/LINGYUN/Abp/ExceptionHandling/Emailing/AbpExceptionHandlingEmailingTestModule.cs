@@ -29,7 +29,7 @@ namespace LINGYUN.Abp.ExceptionHandling.Emailing
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // 加解密
+            // Encryption and decryption
             Configure<AbpStringEncryptionOptions>(options =>
             {
                 options.DefaultPassPhrase = "s46c5q55nxpeS8Ra";
@@ -37,20 +37,20 @@ namespace LINGYUN.Abp.ExceptionHandling.Emailing
                 options.DefaultSalt = Encoding.ASCII.GetBytes("sf&5)s3#");
             });
 
-            // 自定义需要处理的异常
+            // Customize the exceptions that need to be handled
             Configure<AbpExceptionHandlingOptions>(options =>
             {
-                //  加入需要处理的异常类型
+                // Add the exception types that need to be handled
                 options.Handlers.Add<AbpException>();
             });
-            // 自定义需要发送邮件通知的异常类型
+            // Customize the exception types that need to send email notifications
             Configure<AbpEmailExceptionHandlingOptions>(options =>
             {
-                // 是否发送堆栈信息
+                // Whether to send stack information
                 options.SendStackTrace = true;
-                // 未指定异常接收者的默认接收邮件
+                // Default received email if no exception recipient is specified
                 options.DefaultReceiveEmail = "colin.in@foxmail.com";
-                //  指定某种异常发送到哪个邮件
+                // Specify which email to send certain exceptions to
                 options.HandReceivedException<AbpException>("colin.in@foxmail.com");
                 options.HandReceivedException<TestSendEmailException>("colin.in@foxmail.com");
             });

@@ -3,27 +3,27 @@ using LINGYUN.Abp.WeChat.Work.Messages;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 消息构造上下文
+/// Enterprise WeChat Webhook message construction context
 /// </summary>
 public class WeChatWorkWebhookMessageFactoryContext
 {
     /// <summary>
-    /// 通知消息
+    /// Notification message
     /// </summary>
     public NotificationInfo Notification { get; }
 
     /// <summary>
-    /// 通知标准数据(已完成本地化与模板渲染)
+    /// Notify standard data (localization and template rendering completed)
     /// </summary>
     public NotificationStandardData StandardData { get; }
 
     /// <summary>
-    /// 渠道数据(载荷)
+    /// Channel data (load)
     /// </summary>
     public WeChatWorkWebhookChannelData ChannelData { get; }
 
     /// <summary>
-    /// 渠道选项
+    /// Channel options
     /// </summary>
     public AbpNotificationsWebhookWeChatWorkOptions Options { get; }
 

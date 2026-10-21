@@ -6,18 +6,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 报表投递目标
+/// Report delivery target
 /// </summary>
 public class ReportDestination
 {
     /// <summary>
-    /// 邮件地址
+    /// Email address
     /// </summary>
     [JsonPropertyName("email")]
     public string? Email { get; set; }
 
     /// <summary>
-    /// 未在模型中声明的字段
+    /// Fields not declared in the model
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? ExtraProperties { get; set; }

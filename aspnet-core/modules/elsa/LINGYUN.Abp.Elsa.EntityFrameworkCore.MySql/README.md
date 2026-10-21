@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Elsa.EntityFrameworkCore.MySql
 
-Elsa工作流的MySql数据库提供程序模块
+MySql database provider module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供Elsa工作流的MySql数据库支持
-* 依赖于 `AbpElsaEntityFrameworkCoreModule` 和 `AbpEntityFrameworkCoreMySQLModule`
-* 预配置以下功能:
-  * 持久化存储
-  * Webhooks存储
-  * 工作流设置存储
+* Provide MySql database support for Elsa workflow
+* Depends on `AbpElsaEntityFrameworkCoreModule` and `AbpEntityFrameworkCoreMySQLModule`
+* Pre-configured with the following features:
+  * Persistent storage
+  * Webhooks storage
+  * Workflow settings storage
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -22,14 +22,14 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
     "Elsa": {
-        "Persistence": true,     // 启用持久化存储
-        "Webhooks": true,       // 启用Webhooks存储
-        "WorkflowSettings": true // 启用工作流设置存储
+        "Persistence": true, // Enable persistent storage
+        "Webhooks": true, // Enable Webhooks storage
+        "WorkflowSettings": true // Enable workflow settings storage
     }
 }
 ```

@@ -3,7 +3,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 扫码推事件且弹出“消息接收中”提示框的事件推送
+/// Scan the QR code to push the event and pop up the "message receiving" prompt box.
 /// </summary>
 [EventName("scancode_waitmsg")]
 public class ScanCodeWaitMsgPushEvent : ScanCodeEvent

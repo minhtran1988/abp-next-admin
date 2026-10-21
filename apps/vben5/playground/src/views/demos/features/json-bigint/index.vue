@@ -17,18 +17,18 @@ function fetchData() {
 <template>
   <Page
     title="JSON BigInt Support"
-    description="解析后端返回的长整数（long/bigInt）。代码位置：playground/src/api/request.ts中的transformResponse"
+    description="Parse the long integer (long/bigInt) returned by the backend. Code location: transformResponse in playground/src/api/request.ts"
   >
     <Card>
       <Alert>
         <template #message>
-          有些后端接口返回的ID是长整数，但javascript原生的JSON解析是不支持超过2^53-1的长整数的。
-          这种情况可以建议后端返回数据前将长整数转换为字符串类型。如果后端不接受我们的建议😡……
+          The ID returned by some backend interfaces is a long integer, but JavaScript's native JSON parsing does not support long integers exceeding 2^53-1.
+          In this case, it is recommended that the backend convert the long integer to a string type before returning the data. If the backend doesn’t accept our suggestion 😡…
           <br />
-          下面的按钮点击后会发起请求，接口返回的JSON数据中的id字段是超出整数范围的数字，已自动将其解析为字符串
+          After clicking the button below, a request will be initiated. The id field in the JSON data returned by the interface is a number that exceeds the integer range and has been automatically parsed into a string.
         </template>
       </Alert>
-      <Button class="mt-4" type="primary" @click="fetchData">发起请求</Button>
+      <Button class="mt-4" type="primary" @click="fetchData">Initiate request</Button>
       <div>
         <pre>
         {{ response }}

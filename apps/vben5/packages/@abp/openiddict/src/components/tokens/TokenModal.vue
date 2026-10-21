@@ -24,7 +24,7 @@ const { cancel, getApi: getAuthorization } = useTokensApi();
 
 const [Form, formApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },

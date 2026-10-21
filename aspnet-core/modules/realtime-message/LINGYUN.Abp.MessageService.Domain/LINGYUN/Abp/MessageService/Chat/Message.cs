@@ -9,31 +9,31 @@ namespace LINGYUN.Abp.MessageService.Chat;
 public abstract class Message : CreationAuditedAggregateRoot<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 消息标识
+    /// Message ID
     /// </summary>
     public virtual long MessageId { get; protected set; }
     /// <summary>
-    /// 发送用户名称
+    /// Send user name
     /// </summary>
     public virtual string SendUserName { get; protected set; } = default!;
     /// <summary>
-    /// 内容
+    /// Content
     /// </summary>
     public virtual string Content { get; protected set; } = default!;
     /// <summary>
-    /// 消息类型
+    /// Message type
     /// </summary>
     public virtual MessageType Type { get; protected set; }
     /// <summary>
-    /// 消息来源
+    /// Source
     /// </summary>
     public virtual MessageSourceType Source { get; protected set; }
     /// <summary>
-    /// 发送状态
+    /// Send status
     /// </summary>
     public virtual MessageState State { get; protected set; }
     protected Message() { }

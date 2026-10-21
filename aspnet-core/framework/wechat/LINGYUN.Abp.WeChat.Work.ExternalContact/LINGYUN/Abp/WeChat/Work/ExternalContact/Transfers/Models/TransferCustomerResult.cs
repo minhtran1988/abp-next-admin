@@ -6,21 +6,21 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Models;
 public class TransferCustomerResult
 {
     /// <summary>
-    /// 客户的外部联系人userid
+    /// The customer's external contact userid
     /// </summary>
     [NotNull]
     [JsonProperty("external_userid")]
     [JsonPropertyName("external_userid")]
     public string ExternalUserid { get; set; } = default!;
     /// <summary>
-    /// 接替状态
+    /// Take over status
     /// </summary>
     [NotNull]
     [JsonProperty("status")]
     [JsonPropertyName("status")]
     public TransferStatus Status { get; set; }
     /// <summary>
-    /// 接替客户的时间，如果是等待接替状态，则为未来的自动接替时间
+    /// The time to take over the customer. If it is waiting for takeover, it is the future automatic takeover time.
     /// </summary>
     [NotNull]
     [JsonProperty("takeover_time")]

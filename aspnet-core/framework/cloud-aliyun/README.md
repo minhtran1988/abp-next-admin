@@ -1,33 +1,33 @@
-# LINGYUN.Abp.Aliyun 模块概述
+# LINGYUN.Abp.Aliyun module overview
 
-## 简介
-LINGYUN.Abp.Aliyun 模块集成了阿里云的 SDK，提供了对阿里云服务的全面支持，包括认证、短信服务和对象存储等功能。
+## Introduction
+The LINGYUN.Abp.Aliyun module integrates Alibaba Cloud's SDK and provides comprehensive support for Alibaba Cloud services, including authentication, SMS service, object storage and other functions.
 
-## 包含的项目列表
+## List of included items
 - **LINGYUN.Abp.Aliyun**
 - **LINGYUN.Abp.Aliyun.Features**
 - **LINGYUN.Abp.Aliyun.SettingManagement**
 
-## 每个项目的主要功能概述
+## Overview of the main features of each project
 
 ### LINGYUN.Abp.Aliyun
-- 提供阿里云服务的基础 SDK 集成。
-- 支持阿里云 RAM 认证和 STS Token 访问。
-- 支持短信服务和对象存储。
-- 提供分布式缓存支持。
+- Provide basic SDK integration of Alibaba Cloud services.
+- Supports Alibaba Cloud RAM authentication and STS Token access.
+-Support SMS service and object storage.
+- Provide distributed cache support.
 
 ### LINGYUN.Abp.Aliyun.Features
-- 提供阿里云服务的功能定义和管理。
-- 支持启用/禁用阿里云服务功能。
-- 与 ABP 功能管理系统集成。
+- Provide function definition and management of Alibaba Cloud services.
+- Support enabling/disabling Alibaba Cloud service functions.
+- Integration with ABP function management system.
 
 ### LINGYUN.Abp.Aliyun.SettingManagement
-- 提供阿里云服务配置的查询接口。
-- 通过 API 接口获取阿里云配置信息。
-- 与 ABP 设置管理系统集成。
+- Provides a query interface for Alibaba Cloud service configuration.
+- Obtain Alibaba Cloud configuration information through API interface.
+- Integration with ABP settings management system.
 
-## 模块的整体用途和重要性
-该模块为开发者提供了与阿里云服务的无缝集成，简化了云服务的使用和管理，提升了应用程序的灵活性和可扩展性。
+## Overall purpose and importance of the module
+This module provides developers with seamless integration with Alibaba Cloud services, simplifies the use and management of cloud services, and improves the flexibility and scalability of applications.
 
-## 如何使用或集成该模块
-在项目中引用相应的模块，并根据需要配置阿里云的相关参数。确保与 ABP 框架的其他模块配合使用，以实现最佳效果。
+## How to use or integrate this module
+Reference the corresponding module in the project and configure the relevant parameters of Alibaba Cloud as needed. Make sure to use it with other modules of the ABP framework for best results.

@@ -5,7 +5,7 @@ using Volo.Abp.Application.Services;
 
 namespace LINGYUN.Platform.Datas;
 /// <summary>
-/// 数据字典应用服务接口
+/// Data dictionary application service interface
 /// </summary>
 public interface IDataAppService : 
     ICrudAppService<
@@ -16,43 +16,43 @@ public interface IDataAppService :
         DataUpdateDto>
 {
     /// <summary>
-    /// 获取数据字典
+    /// Get data dictionary
     /// </summary>
-    /// <param name="name">名称</param>
+    /// <param name="name">Name</param>
     /// <returns></returns>
     Task<DataDto> GetAsync(string name);
     /// <summary>
-    /// 获取所有数据字典
+    /// Get all data dictionaries
     /// </summary>
     /// <returns></returns>
     Task<ListResultDto<DataDto>> GetAllAsync();
     /// <summary>
-    /// 移除数据字典
+    /// Remove data dictionary
     /// </summary>
-    /// <param name="id">字典Id</param>
+    /// <param name="id">DictionaryId</param>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<DataDto> MoveAsync(Guid id, DataMoveDto input);
     /// <summary>
-    /// 新增数据字典项目
+    /// Add new data dictionary item
     /// </summary>
-    /// <param name="id">字典Id</param>
+    /// <param name="id">DictionaryId</param>
     /// <param name="input"></param>
     /// <returns></returns>
     Task CreateItemAsync(Guid id, DataItemCreateDto input);
     /// <summary>
-    /// 更新数据字典项目
+    /// Update data dictionary items
     /// </summary>
-    /// <param name="id">字典Id</param>
-    /// <param name="name">项目名称</param>
+    /// <param name="id">DictionaryId</param>
+    /// <param name="name">Project name</param>
     /// <param name="input"></param>
     /// <returns></returns>
     Task UpdateItemAsync(Guid id, string name, DataItemUpdateDto input);
     /// <summary>
-    /// 删除数据字典项目
+    /// Delete data dictionary item
     /// </summary>
-    /// <param name="id">字典Id</param>
-    /// <param name="name">项目名称</param>
+    /// <param name="id">DictionaryId</param>
+    /// <param name="name">Project name</param>
     /// <returns></returns>
     Task DeleteItemAsync(Guid id, string name);
 }

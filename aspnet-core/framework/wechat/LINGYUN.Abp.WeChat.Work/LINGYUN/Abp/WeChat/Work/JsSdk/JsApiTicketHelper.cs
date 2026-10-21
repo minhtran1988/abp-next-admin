@@ -43,13 +43,13 @@ public static class JsApiTicketHelper
         }
     }
     /// <summary>
-    /// 生成JS-SDK签名
+    /// Generate JS-SDK signature
     /// See: <see href="https://developer.work.weixin.qq.com/document/path/90506"/>
     /// </summary>
-    /// <param name="jsapiTicket">企业 jsapi_ticket</param>
-    /// <param name="nonce">随机字符串</param>
-    /// <param name="timestamp">当前时间戳，单位为秒</param>
-    /// <param name="url">当前页面的 URL，不包含“#”及后面部分</param>
+    /// <param name="jsapiTicket">Enterprise jsapi_ticket</param>
+    /// <param name="nonce">Random string</param>
+    /// <param name="timestamp">Current timestamp in seconds</param>
+    /// <param name="url">The URL of the current page, excluding "#" and the following parts</param>
     /// <returns></returns>
     public static string GenerateSignature(
         string jsapiTicket, 

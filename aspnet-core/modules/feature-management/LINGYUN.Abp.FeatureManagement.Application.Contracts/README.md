@@ -1,24 +1,24 @@
 # LINGYUN.Abp.FeatureManagement.Application.Contracts
 
-功能管理应用服务契约模块，定义了功能管理所需的接口、DTO和权限。
+The function management application service contract module defines the interfaces, DTOs and permissions required for function management.
 
-## 功能特性
+## Features
 
-* 功能定义管理接口
+* Function definition management interface
   * IFeatureDefinitionAppService
-  * 支持功能定义的CRUD操作
-* 功能组定义管理接口
+  * Support function-defined CRUD operations
+* Functional group defines management interface
   * IFeatureGroupDefinitionAppService
-  * 支持功能组定义的CRUD操作
-* 完整的DTO定义
+  * Support CRUD operations defined by functional groups
+* Complete DTO definition
   * FeatureDefinitionDto
   * FeatureGroupDefinitionDto
-  * 创建、更新和查询DTO
-* 权限定义
-  * 功能定义管理权限
-  * 功能组定义管理权限
+  * Create, update and query DTO
+* Permission definition
+  * Function definition management rights
+  * Functional group definition management rights
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -29,7 +29,7 @@ public class AbpFeatureManagementApplicationContractsModule : AbpModule
 }
 ```
 
-## 权限常量
+## Permission constants
 
 ```csharp
 public static class FeatureManagementPermissionNames
@@ -54,16 +54,16 @@ public static class FeatureManagementPermissionNames
 }
 ```
 
-## 错误代码
+## Error code
 
-* Error:100001 - 功能定义已存在
-* Error:100002 - 功能组定义已存在
-* Error:100003 - 无法删除静态功能定义
-* Error:100004 - 无法删除静态功能组定义
+* Error:100001 - Function definition already exists
+* Error:100002 - Function group definition already exists
+* Error:100003 - Unable to delete static function definition
+* Error:100004 - Unable to delete static function group definition
 
-## 更多信息
+## More information
 
-* [ABP功能管理文档](https://docs.abp.io/en/abp/latest/Features)
-* [ABP应用服务文档](https://docs.abp.io/en/abp/latest/Application-Services)
+* [ABP Function Management Document](https://docs.abp.io/en/abp/latest/Features)
+* [ABP Application Service Documentation](https://docs.abp.io/en/abp/latest/Application-Services)
 
 [English](README.EN.md)

@@ -5,18 +5,18 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 审批状态通知事件
+/// Approval status notification event
 /// </summary>
 [EventName("open_approval_change")]
 public class ApprovalStatusChangeEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;
     /// <summary>
-    /// 审批信息
+    /// Approval information
     /// </summary>
     [XmlElement("ApprovalInfo")]
     public ApprovalInfo ApprovalInfo { get; set; } = default!;
@@ -29,166 +29,166 @@ public class ApprovalStatusChangeEvent : WeChatWorkEventMessage
 public class ApprovalInfo
 {
     /// <summary>
-    /// 审批单编号，由开发者在发起申请时自定义
+    /// Approval order number, customized by the developer when initiating the application
     /// </summary>
     [XmlElement("ThirdNo")]
     public string ThirdNo { get; set; } = default!;
     /// <summary>
-    /// 审批模板名称
+    /// Approval template name
     /// </summary>
     [XmlElement("OpenSpName")]
     public string OpenSpName { get; set; } = default!;
     /// <summary>
-    /// 审批模板id
+    /// Approval template id
     /// </summary>
     [XmlElement("OpenTemplateId")]
     public string OpenTemplateId { get; set; } = default!;
     /// <summary>
-    /// 申请单当前审批状态：
-    /// 1-审批中；
-    /// 2-已通过；
-    /// 3-已驳回；
-    /// 4-已取消
+    /// Current approval status of the application:
+    /// 1-Under approval;
+    /// 2-passed;
+    /// 3-Rejected;
+    /// 4-Cancelled
     /// </summary>
     [XmlElement("OpenSpStatus")]
     public byte OpenSpStatus { get; set; }
     /// <summary>
-    /// 提交申请时间
+    /// Submit application time
     /// </summary>
     [XmlElement("ApplyTime")]
     public int ApplyTime { get; set; }
     /// <summary>
-    /// 提交者姓名
+    /// Submitter's name
     /// </summary>
     [XmlElement("ApplyUserName")]
     public string ApplyUserName { get; set; } = default!;
     /// <summary>
-    /// 提交者userid
+    /// Submitter userid
     /// </summary>
     [XmlElement("ApplyUserId")]
     public string ApplyUserId { get; set; } = default!;
     /// <summary>
-    /// 提交者所在部门
+    /// The submitter's department
     /// </summary>
     [XmlElement("ApplyUserParty")]
     public string? ApplyUserParty { get; set; }
     /// <summary>
-    /// 提交者头像
+    /// Submitter avatar
     /// </summary>
     [XmlElement("ApplyUserImage")]
     public string? ApplyUserImage { get; set; }
     /// <summary>
-    /// 审批流程信息
+    /// Approval process information
     /// </summary>
     [XmlElement("ApprovalNodes")]
     public List<ApprovalNode> ApprovalNodes { get; set; } = default!;
     /// <summary>
-    /// 抄送信息，可能有多个抄送人
+    /// Cc information, there may be multiple cc people
     /// </summary>
     [XmlElement("NotifyNodes")]
     public List<NotifyNode>? NotifyNodes { get; set; }
     /// <summary>
-    /// 当前审批节点：0-第一个审批节点；1-第二个审批节点…以此类推
+    /// Current approval node: 0-the first approval node; 1-the second approval node...and so on
     /// </summary>
     [XmlElement("approverstep")]
     public int ApproverStep { get; set; }
 }
 
 /// <summary>
-/// 审批流程信息，可以有多个审批节点
+/// Approval process information, there can be multiple approval nodes
 /// </summary>
 [XmlRoot("ApprovalNode")]
 public class ApprovalNode
 {
     /// <summary>
-    /// 节点审批操作状态：
-    /// 1-审批中；
-    /// 2-已同意；
-    /// 3-已驳回；
-    /// 4-已转审
+    /// Node approval operation status:
+    /// 1-Under approval;
+    /// 2-Agreed;
+    /// 3-Rejected;
+    /// 4-Referred for review
     /// </summary>
     [XmlElement("NodeStatus")]
     public byte NodeStatus { get; set; }
     /// <summary>
-    /// 审批节点属性：
-    /// 1-或签；
-    /// 2-会签
+    /// Approval node attributes:
+    /// 1-or sign;
+    /// 2-Countersign
     /// </summary>
     [XmlElement("NodeAttr")]
     public byte NodeAttr { get; set; }
     /// <summary>
-    /// 审批节点类型：
-    /// 1-固定成员；
-    /// 2-标签；
-    /// 3-上级
+    /// Approval node type:
+    /// 1-Fixed member;
+    /// 2-label;
+    /// 3-Superior
     /// </summary>
     [XmlElement("NodeType")]
     public byte NodeType { get; set; }
     /// <summary>
-    /// 审批节点信息，当节点为标签或上级时，一个节点可能有多个分支
+    /// Approval node information. When the node is a label or superior, a node may have multiple branches.
     /// </summary>
     [XmlElement("Items")]
     public List<ApprovalNodeItem> Items { get; set; } = default!;
 }
 /// <summary>
-/// 审批节点分支，当节点为标签或上级时，一个节点可能有多个分支
+/// Approval node branches. When the node is a label or superior, a node may have multiple branches.
 /// </summary>
 [XmlRoot("Item")]
 public class ApprovalNodeItem
 {
     /// <summary>
-    /// 分支审批人姓名
+    /// Name of branch approver
     /// </summary>
     [XmlElement("ItemName")]
     public string ItemName { get; set; } = default!;
     /// <summary>
-    /// 分支审批人userid
+    /// Branch approver userid
     /// </summary>
     [XmlElement("ItemUserId")]
     public string ItemUserId { get; set; } = default!;
     /// <summary>
-    /// 分支审批人头像
+    /// Branch approver avatar
     /// </summary>
     [XmlElement("ItemImage")]
     public string? ItemImage { get; set; }
     /// <summary>
-    /// 分支审批审批操作状态：
-    /// 1-审批中；
-    /// 2-已同意；
-    /// 3-已驳回；
-    /// 4-已转审
+    /// Branch approval approval operation status:
+    /// 1-Under approval;
+    /// 2-Agreed;
+    /// 3-Rejected;
+    /// 4-Referred for review
     /// </summary>
     [XmlElement("ItemStatus")]
     public byte ItemStatus { get; set; }
     /// <summary>
-    /// 分支审批人审批意见
+    /// Approval opinions of branch approvers
     /// </summary>
     [XmlElement("ItemSpeech")]
     public string? ItemSpeech { get; set; }
     /// <summary>
-    /// 分支审批人审批意见
+    /// Approval opinions of branch approvers
     /// </summary>
     [XmlElement("ItemOpTime")]
     public int ItemOpTime { get; set; }
 }
 /// <summary>
-/// 抄送人信息
+/// Cc information
 /// </summary>
 [XmlRoot("NotifyNode")]
 public class NotifyNode
 {
     /// <summary>
-    /// 抄送人姓名
+    /// Cc’s name
     /// </summary>
     [XmlElement("ItemName")]
     public string ItemName { get; set; } = default!;
     /// <summary>
-    /// 抄送人userid
+    /// CC person userid
     /// </summary>
     [XmlElement("ItemUserId")]
     public string ItemUserId { get; set; } = default!;
     /// <summary>
-    /// 抄送人头像
+    /// Cc person's avatar
     /// </summary>
     [XmlElement("ItemImage")]
     public string? ItemImage { get; set; }

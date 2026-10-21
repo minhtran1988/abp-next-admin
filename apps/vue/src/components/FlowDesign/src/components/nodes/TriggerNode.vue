@@ -6,7 +6,7 @@
     @selected="$emit('selected')"
     @delNode="$emit('delNode')"
     @insertNode="(type) => $emit('insertNode', type)"
-    placeholder="请设置触发器"
+    placeholder="Please set trigger"
     header-bgc="#47bc82"
   >
     <template #headerIcon>
@@ -51,7 +51,7 @@
         state.showError = false;
       } else {
         state.showError = true;
-        state.errorInfo = '请设置WEBHOOK的URL地址';
+        state.errorInfo = 'Please set the URL address of WEBHOOK';
       }
     } else if (props.config.props.type === 'EMAIL') {
       if (
@@ -60,13 +60,13 @@
         isNullOrWhiteSpace(props.config.props.email.content)
       ) {
         state.showError = true;
-        state.errorInfo = '请设置邮件发送配置';
+        state.errorInfo = 'Please set the email sending configuration';
       } else {
         state.showError = false;
       }
     }
     if (state.showError) {
-      err.push(`${props.config.name} 触发动作未设置完善`);
+      err.push(`${props.config.name} trigger action is not set properly`);
     }
     return !state.showError;
   }

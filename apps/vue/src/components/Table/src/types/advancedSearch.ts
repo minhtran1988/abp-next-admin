@@ -1,105 +1,105 @@
-/** 高级查询条件属性 */
+/** Advanced query condition attributes */
 export interface AdvanceSearchProps {
-  /** 使用高级查询 */
+  /** Use advanced query */
   useAdvancedSearch?: boolean;
-  /** 允许字段重复搜索 */
+  /** Allow fields to be searched repeatedly */
   allowDuplicateFieldSearch?: boolean;
-  /** 字段列表api */
+  /** Field list api */
   defineFieldApi?: () => Promise<any>;
   /**
-   * 自定义字段列表
-   * @remarks 从服务器返回字段列表后自定义过滤函数,返回字段列表
+   * Custom field list
+   * @remarks Customize the filter function after returning the field list from the server, and return the field list
    */
   defineFieldReplace?: (response: any) => DefineParamter[];
   /**
-   * 字段列表api返回结果字段
-   * @remarks 从服务器返回字段列表在数据结构中的字段名,默认: items
+   * Field list api returns result fields
+   * @remarks Returns the field names of the field list in the data structure from the server, default: items
   */
   listField?: string;
-  /** 高级查询api */
+  /** Advanced query API */
   fetchApi?: (...arg: any) => Promise<any>,
 }
 
-/** 选项 */
+/** Options */
 export interface ParamterOption {
-  /** 键名 */
+  /** Key name */
   key: string;
-  /** 键值 */
+  /** key value */
   value: any;
 }
 
-/** 自定义字段 */
+/** Custom fields */
 export interface DefineParamter {
-  /** 字段名称 */
+  /** Field name */
   name: string;
-  /** 字段描述 */
+  /** Field description */
   description?: string;
-  /** 数据类型(后端) */
+  /** Data type (backend) */
   type: string;
-  /** 数据类型(js) */
+  /** Data type (js) */
   javaScriptType: string;
-  /** 可用运算条件列表, 用于进一步约束字段可用比较符 */
+  /** List of available operation conditions, used to further constrain the available comparison operators for fields */
   availableComparator?: DynamicComparison[];
-  /** 选项 */
+  /** Options */
   options: ParamterOption[];
 }
 
-/** 连接条件 */
+/** Connection conditions */
 export enum DynamicLogic {
-  /** 且 */
+  /** and */
   And = 0,
-  /** 或 */
+  /** or */
   Or = 1
 }
 
-/** 运算条件 */
+/** Operation conditions */
 export enum DynamicComparison {
-  /** 等于 */
+  /** equals */
   Equal = 0,
-  /** 不等于 */
+  /** Not equal to */
   NotEqual = 1,
-  /** 小于 */
+  /** Less than */
   LessThan = 2,
-  /** 小于等于 */
+  /** Less than or equal to */
   LessThanOrEqual = 3,
-  /** 大于 */
+  /** Greater than */
   GreaterThan = 4,
-  /** 大于等于 */
+  /** Greater than or equal to */
   GreaterThanOrEqual = 5,
-  /** 左包含 */
+  /** Left contains */
   StartsWith = 6,
-  /** 左不包含 */
+  /** Left does not contain */
   NotStartsWith = 7,
-  /** 右包含 */
+  /** Right contains */
   EndsWith = 8,
-  /** 右不包含 */
+  /** Right does not contain */
   NotEndsWith = 9,
-  /** 包含 */
+  /** contains */
   Contains = 10,
-  /** 不包含 */
+  /** Does not contain */
   NotContains = 11,
-  /** 空 */
+  /** empty */
   Null = 12,
-  /** 非空 */
+  /** Not empty */
   NotNull = 13,
 }
 
-/** 动态查询字段 */
+/** Dynamic query field */
 export interface DynamicParamter {
-  /** 字段名称 */
+  /** Field name */
   field: string;
-  /** 连接条件 */
+  /** Connection conditions */
   logic: DynamicLogic;
-  /** 运算条件 */
+  /** Operation conditions */
   comparison: DynamicComparison;
-  /** 比较值 */
+  /** Comparison value */
   value: any;
-  /** 数据类型(js), 仅作为前端输入控件切换 */
+  /** Data type (js), only used as front-end input control switch */
   javaScriptType?: string;
 }
 
-/** 动态查询条件 */
+/** Dynamic query conditions */
 export interface DynamicQueryable {
-  /** 参数列表 */
+  /** Parameter list */
   paramters: DynamicParamter[];
 }

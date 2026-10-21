@@ -5,89 +5,89 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules;
 /// <summary>
-/// 日程管理
+/// Schedule management
 /// </summary>
 public interface IWeChatWorkScheduleProvider
 {
     /// <summary>
-    /// 创建日程
+    /// Create schedule
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/93648" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93648" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkCreateScheduleResponse> CreateScheduleAsync(
         WeChatWorkCreateScheduleRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 更新日程
+    /// Update schedule
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97720" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97720" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkUpdateScheduleResponse> UpdateScheduleAsync(
         WeChatWorkUpdateScheduleRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 新增日程参与者
+    /// Add new schedule participants
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97721" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97721" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkResponse> AddAttendeesAsync(
         WeChatWorkScheduleAddAttendeesRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 删除日程参与者
+    /// Delete schedule participants
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97722" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97722" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkResponse> DeleteAttendeesAsync(
         WeChatWorkScheduleDeleteAttendeesRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取日历下的日程列表
+    /// Get the schedule list under the calendar
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97723" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97723" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkGetScheduleListByCalendarResponse> GetScheduleListByCalendarAsync(
         WeChatWorkGetScheduleListByCalendarRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取日程详情
+    /// Get schedule details
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97724" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97724" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkGetScheduleListResponse> GetScheduleListAsync(
         WeChatWorkGetScheduleListRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 取消日程
+    /// Cancel schedule
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/97725" />
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97725" />
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkResponse> DeleteScheduleAsync(

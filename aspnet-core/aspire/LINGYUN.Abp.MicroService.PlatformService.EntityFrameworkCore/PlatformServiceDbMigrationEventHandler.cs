@@ -61,7 +61,7 @@ public class PlatformServiceDbMigrationEventHandler :
         var hostDefaultConnectionString = Configuration.GetConnectionString(ConnectionStrings.DefaultConnectionStringName);
         using (CurrentTenant.Change(eventData.Id))
         {
-            // 需要回收策略为回收且存在默认连接字符串且默认连接字符串与宿主不同
+            // The recycling policy needs to be recycling and there is a default connection string and the default connection string is different from the host
             if (eventData.Strategy == RecycleStrategy.Recycle && !eventData.DefaultConnectionString.IsNullOrWhiteSpace())
             {
                 var hostConnection = new DbConnectionStringBuilder()

@@ -7,7 +7,7 @@ import { isDarkTheme } from '../src/update-css-variables';
 describe('preferences', () => {
   let preferenceManager: PreferenceManager;
 
-  // 模拟 window.matchMedia 方法
+  // Simulate window.matchMedia method
   vi.stubGlobal(
     'matchMedia',
     vi.fn().mockImplementation((query) => ({
@@ -41,8 +41,8 @@ describe('preferences', () => {
       overrides,
     });
 
-    // 等待防抖动操作完成
-    // await new Promise((resolve) => setTimeout(resolve, 300)); // 等待100毫秒
+    // Wait for the anti-shake operation to complete
+    // await new Promise((resolve) => setTimeout(resolve, 300)); // wait for 100 milliseconds
 
     const expected = {
       ...defaultPreferences,
@@ -75,21 +75,21 @@ describe('preferences', () => {
   });
 
   it('resets preferences to default', () => {
-    // 先更新一些偏好设置
+    // Update some preferences first
     preferenceManager.updatePreferences({
       theme: {
         mode: 'light',
       },
     });
 
-    // 然后重置偏好设置
+    // Then reset preferences
     preferenceManager.resetPreferences();
 
     expect(preferenceManager.getPreferences()).toEqual(defaultPreferences);
   });
 
   it('updates isMobile correctly', () => {
-    // 模拟移动端状态
+    // Simulate mobile terminal status
     vi.stubGlobal(
       'matchMedia',
       vi.fn().mockImplementation((query) => ({
@@ -144,7 +144,7 @@ describe('preferences', () => {
   });
 
   it('resets preferences to default correctly', () => {
-    // 先更新一些偏好设置
+    // Update some preferences first
     preferenceManager.updatePreferences({
       app: { locale: 'en-US' },
       sidebar: { collapsed: true, width: 200 },
@@ -153,7 +153,7 @@ describe('preferences', () => {
       },
     });
 
-    // 然后重置偏好设置
+    // Then reset preferences
     preferenceManager.resetPreferences();
 
     expect(preferenceManager.getPreferences()).toEqual(defaultPreferences);
@@ -185,7 +185,7 @@ describe('preferences', () => {
     const originalPreferences = preferenceManager.getPreferences();
 
     preferenceManager.updatePreferences({
-      app: { isMobile: 'true' as unknown as boolean }, // 错误类型
+      app: { isMobile: 'true' as unknown as boolean }, // Error type
     });
 
     expect(preferenceManager.getPreferences()).toEqual(originalPreferences);

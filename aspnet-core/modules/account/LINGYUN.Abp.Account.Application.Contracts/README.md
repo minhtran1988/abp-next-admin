@@ -1,22 +1,22 @@
 # LINGYUN.Abp.Account.Application.Contracts
 
-ABP账户模块的应用服务契约，提供账户管理相关的接口定义。
+The application service contract of the ABP account module provides interface definitions related to account management.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 手机号注册账户
-* 微信小程序注册账户
-* 手机号重置密码
-* 手机验证码功能（注册、登录、重置密码）
-* 邮箱验证码登录
-* 用户个人资料管理
-* 用户会话管理
-* 双因素认证
-* 用户声明管理
+* Register account with mobile phone number
+* Register an account on WeChat applet
+* Mobile phone number reset password
+* Mobile phone verification code function (registration, login, reset password)
+* Log in with email verification code
+* User profile management
+* User session management
+* Two-factor authentication
+* User statement management
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAccountApplicationContractsModule))]
@@ -26,35 +26,35 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 接口服务
+## Interface service
 
 ### IAccountAppService
 
-账户管理服务接口，提供以下功能：
-* 手机号注册
-* 微信小程序注册
-* 手机号重置密码
-* 发送手机验证码（注册、登录、重置密码）
-* 发送邮箱验证码（登录）
+Account management service interface provides the following functions:
+* Mobile phone number registration
+* WeChat mini program registration
+* Mobile phone number reset password
+* Send mobile phone verification code (register, log in, reset password)
+*Send email verification code (login)
 
 ### IMyProfileAppService
 
-个人资料管理服务接口，提供以下功能：
-* 获取/更新个人资料
-* 更改密码
-* 更改手机号
-* 更改头像
-* 双因素认证管理
-* 获取/验证认证器
-* 获取恢复代码
+Personal data management service interface provides the following functions:
+* Get/update personal information
+* Change password
+* Change mobile phone number
+* Change avatar
+* Two-factor authentication management
+* Get/verify authenticator
+* Get recovery code
 
 ### IMyClaimAppService
 
-用户声明管理服务接口，提供以下功能：
-* 获取用户声明
-* 更新用户声明
+User declaration management service interface provides the following functions:
+* Get user statement
+* Update user statement
 
-## 本地化
+## Localization
 
-模块包含多语言支持，资源文件位于：
+The module includes multi-language support, resource files are located at:
 * `/LINGYUN/Abp/Account/Localization/Resources`

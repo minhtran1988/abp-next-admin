@@ -1,16 +1,16 @@
 # LINGYUN.Abp.LocalizationManagement.HttpApi
 
-本地化管理HTTP API模块，提供RESTful风格的API接口。
+Localized management HTTP API module, providing RESTful style API interface.
 
-## 功能特性
+## Features
 
-* 提供本地化管理的HTTP API接口
-* 支持语言、资源、文本的REST操作
-* 集成ABP动态API功能
-* 支持API版本控制
-* 支持Swagger文档生成
+* Provide HTTP API interface for localized management
+* Support REST operations for languages, resources, and texts
+* Integrate ABP dynamic API function
+* Support API version control
+* Support Swagger document generation
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpLocalizationManagementHttpApiModule))]
@@ -20,13 +20,13 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API控制器
+## API Controller
 
-* `LanguageController`: 语言管理API控制器
-* `ResourceController`: 资源管理API控制器
-* `TextController`: 文本管理API控制器
+* `LanguageController`: Language management API controller
+* `ResourceController`: Resource management API controller
+* `TextController`: text management API controller
 
-## 配置项
+## Configuration items
 
 ```csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -45,12 +45,12 @@ public override void PreConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-## API路由
+## API routing
 
-* `/api/localization-management/languages` - 语言管理相关API
-* `/api/localization-management/resources` - 资源管理相关API
-* `/api/localization-management/texts` - 文本管理相关API
+* `/api/localization-management/languages` - Language management related API
+* `/api/localization-management/resources` - Resource management related API
+* `/api/localization-management/texts` - Text management related API
 
-## 更多信息
+## More information
 
 * [English documentation](./README.EN.md)

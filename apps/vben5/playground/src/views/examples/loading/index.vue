@@ -14,32 +14,32 @@ const loadingV = refAutoReset(false, 3000);
 <template>
   <Page
     title="Vben Loading"
-    description="加载中状态组件。这个组件可以为其它作为容器的组件添加一个加载中的遮罩层。使用它们时，容器需要relative定位。"
+    description="Loading status component. This component can add a loading mask layer to other components that are used as containers. When using them, the container needs to be positioned relative."
   >
     <Card title="Antd Spin">
-      <template #actions>这是Antd 组件库自带的Spin组件演示</template>
-      <Spin :spinning="spinning" tip="加载中...">
-        <Button type="primary" @click="spinning = true">显示Spin</Button>
+      <template #actions>This is a demonstration of the Spin component that comes with the Antd component library</template>
+      <Spin :spinning="spinning" tip="Loading...">
+        <Button type="primary" @click="spinning = true">Show Spin</Button>
       </Spin>
     </Card>
 
     <Card title="Vben Loading" v-loading="loadingV" class="mt-4">
       <template #extra>
         <Button type="primary" @click="loadingV = true">
-          v-loading 指令
+          v-loading command
         </Button>
       </template>
       <template #actions>
-        Loading组件可以设置文字，并且也提供了icon插槽用于替换加载图标。
+        The Loading component can set text and also provides an icon slot to replace the loading icon.
       </template>
       <div class="flex gap-4">
         <div class="size-40">
           <Loading
             :spinning="loading"
-            text="正在加载..."
+            text="Loading..."
             class="flex h-full w-full items-center justify-center"
           >
-            <Button type="primary" @click="loading = true">默认动画</Button>
+            <Button type="primary" @click="loading = true">Default animation</Button>
           </Loading>
         </div>
         <div class="size-40">
@@ -47,7 +47,7 @@ const loadingV = refAutoReset(false, 3000);
             :spinning="loading"
             class="flex h-full w-full items-center justify-center"
           >
-            <Button type="primary" @click="loading = true">自定义动画1</Button>
+            <Button type="primary" @click="loading = true">Custom animation 1</Button>
             <template #icon>
               <IconifyIcon
                 icon="svg-spinners:ring-resize"
@@ -61,7 +61,7 @@ const loadingV = refAutoReset(false, 3000);
             :spinning="loading"
             class="flex h-full w-full items-center justify-center"
           >
-            <Button type="primary" @click="loading = true">自定义动画2</Button>
+            <Button type="primary" @click="loading = true">Custom animation 2</Button>
             <template #icon>
               <IconifyIcon
                 icon="svg-spinners:bars-scale"
@@ -84,17 +84,17 @@ const loadingV = refAutoReset(false, 3000);
     >
       <template #extra>
         <Button type="primary" @click="spinningV = true">
-          v-spinning 指令
+          v-spinning directive
         </Button>
       </template>
       <template #actions>
-        Spinner组件是Loading组件的一个特例，只有一个固定的统一样式。
+        The Spinner component is a special case of the Loading component and has only a fixed unified style.
       </template>
       <Spinner
         :spinning="spinning"
         class="flex size-40 items-center justify-center"
       >
-        <Button type="primary" @click="spinning = true">显示Spinner</Button>
+        <Button type="primary" @click="spinning = true">Show Spinner</Button>
       </Spinner>
     </Card>
   </Page>

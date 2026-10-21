@@ -73,7 +73,7 @@ public partial class TaskServiceModule
 
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别
+            // Difference by open port
             options.SnowflakeIdOptions.WorkerId = 27;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -106,7 +106,7 @@ public partial class TaskServiceModule
     {
         PreConfigure<AbpQuartzOptions>(options =>
         {
-            // 如果使用持久化存储, 则配置quartz持久层
+            // If persistent storage is used, configure the quartz persistence layer
             if (configuration.GetSection("Quartz:UsePersistentStore").Get<bool>())
             {
                 var settings = configuration.GetSection("Quartz:Properties").Get<Dictionary<string, string>>();
@@ -163,7 +163,7 @@ public partial class TaskServiceModule
 
     private void ConfigureJsonSerializer(IConfiguration configuration)
     {
-        // 统一时间日期格式
+        // Unify time and date format
         Configure<AbpJsonOptions>(options =>
         {
             var jsonConfiguration = configuration.GetSection("Json");
@@ -172,7 +172,7 @@ public partial class TaskServiceModule
                 jsonConfiguration.Bind(options);
             }
         });
-        // 中文序列化的编码问题
+        // Encoding issues for Chinese serialization
         Configure<AbpSystemTextJsonSerializerOptions>(options =>
         {
             options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
@@ -181,10 +181,10 @@ public partial class TaskServiceModule
 
     private void ConfigureExceptionHandling()
     {
-        // 自定义需要处理的异常
+        // Customize the exceptions that need to be handled
         Configure<AbpExceptionHandlingOptions>(options =>
         {
-            //  加入需要处理的异常类型
+            // Add the exception types that need to be handled
             options.Handlers.Add<Volo.Abp.Data.AbpDbConcurrencyException>();
             options.Handlers.Add<AbpInitializationException>();
             options.Handlers.Add<OutOfMemoryException>();
@@ -192,13 +192,13 @@ public partial class TaskServiceModule
             options.Handlers.Add<Microsoft.EntityFrameworkCore.DbUpdateException>();
             options.Handlers.Add<System.Data.DBConcurrencyException>();
         });
-        // 自定义需要发送邮件通知的异常类型
+        // Customize the exception types that need to send email notifications
         Configure<AbpEmailExceptionHandlingOptions>(options =>
         {
-            // 是否发送堆栈信息
+            // Whether to send stack information
             options.SendStackTrace = true;
-            // 未指定异常接收者的默认接收邮件
-            // 指定自己的邮件地址
+            // Default received email if no exception recipient is specified
+            // Specify your own email address
         });
     }
 
@@ -236,7 +236,7 @@ public partial class TaskServiceModule
         Configure<AbpAuditingOptions>(options =>
         {
             options.ApplicationName = configuration["ApplicationName"];
-            // 是否启用实体变更记录
+            // Whether to enable entity change recording
             var allEntitiesSelectorIsEnabled = configuration["Auditing:AllEntitiesSelector"];
             if (allEntitiesSelectorIsEnabled.IsNullOrWhiteSpace() ||
                 (bool.TryParse(allEntitiesSelectorIsEnabled, out var enabled) && enabled))
@@ -302,7 +302,7 @@ public partial class TaskServiceModule
 
     private void ConfigureMultiTenancy(IConfiguration configuration)
     {
-        // 多租户
+        // Multi-tenant
         Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = true;
@@ -375,11 +375,11 @@ public partial class TaskServiceModule
 
     private void ConfigureLocalization()
     {
-        // 支持本地化语言类型
+        // Support localized language types
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
         });
 
         Configure<AbpLocalizationCultureMapOptions>(options =>
@@ -445,7 +445,7 @@ public partial class TaskServiceModule
 
     private void PreConfigureWrapper()
     {
-        //PreConfigure<AbpDaprClientProxyOptions>(options =>
+        // PreConfigure<AbpDaprClientProxyOptions>(options =>
         //{
         //    options.ProxyRequestActions.Add(
         //        (appid, httprequestmessage) =>
@@ -453,7 +453,7 @@ public partial class TaskServiceModule
         //            httprequestmessage.Headers.TryAddWithoutValidation(AbpHttpWrapConsts.AbpDontWrapResult, "true");
         //        });
         //});
-        // 服务间调用不包装
+        // Calls between services are not wrapped
         PreConfigure<AbpHttpClientBuilderOptions>(options =>
         {
             options.ProxyClientActions.Add(

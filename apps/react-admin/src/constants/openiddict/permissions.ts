@@ -1,42 +1,42 @@
-/** 应用权限 */
+/** Application permissions */
 export const ApplicationsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOpenIddict.Applications.Create",
 	Default: "AbpOpenIddict.Applications",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOpenIddict.Applications.Delete",
-	/** 管理功能 */
+	/** Management functions */
 	ManageFeatures: "AbpOpenIddict.Applications.ManageFeatures",
-	/** 管理权限 */
+	/** Management permissions */
 	ManagePermissions: "AbpOpenIddict.Applications.ManagePermissions",
-	/** 管理密钥 */
+	/** Management key */
 	ManageSecret: "AbpOpenIddict.Applications.ManageSecret",
-	/** 更新 */
+	/** Update */
 	Update: "AbpOpenIddict.Applications.Update",
 };
-/** 授权权限 */
+/** Authorization permissions */
 export const AuthorizationsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOpenIddict.Authorizations.Create",
 	Default: "AbpOpenIddict.Authorizations",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOpenIddict.Authorizations.Delete",
 };
-/** 范围权限 */
+/** Scope permissions */
 export const ScopesPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOpenIddict.Scopes.Create",
 	Default: "AbpOpenIddict.Scopes",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOpenIddict.Scopes.Delete",
-	/** 更新 */
+	/** Update */
 	Update: "AbpOpenIddict.Scopes.Update",
 };
-/** 授权令牌权限 */
+/** Authorization token permissions */
 export const TokensPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOpenIddict.Tokens.Create",
 	Default: "AbpOpenIddict.Tokens",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOpenIddict.Tokens.Delete",
 };

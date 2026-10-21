@@ -23,7 +23,7 @@ public class AbpDataProtectionModule : AbpModule
     {
         Configure<AbpDataProtectionOptions>(options =>
         {
-            // 当前用户数据过滤
+            // Filter current user data
             options.KeywordContributors.Add(DataAccessCurrentUserContributor.Name, new DataAccessCurrentUserContributor());
 
             options.OperateContributors.Add(DataAccessFilterOperate.Equal, new DataAccessEqualContributor());
@@ -42,7 +42,7 @@ public class AbpDataProtectionModule : AbpModule
             options.SubjectContributors.Add(new DataAccessRoleNameContributor());
             options.SubjectContributors.Add(new DataAccessOrganizationUnitContributor());
 
-            // 权限策略提供程序
+            // Permission policy provider
             options.StrategyContributors.Add(new DataAccessStrategyRoleNameContributor());
         });
 

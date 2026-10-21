@@ -19,13 +19,13 @@ public class UserSubscribeSessionExpirationEventHandler : ILocalEventHandler<Ent
 
     public async virtual Task HandleEventAsync(EntityCreatedEventData<UserEto> eventData)
     {
-        // 新用户订阅会话过期通知
+        // New user subscription session expiration notification
         await _notificationSubscriptionManager
             .SubscribeAsync(
                 eventData.Entity.TenantId,
                 new UserIdentifier(eventData.Entity.Id, eventData.Entity.UserName),
                 IdentityNotificationNames.Session.ExpirationSession);
-        // 新用户订阅不活跃用户相关通知
+        // New users subscribe to notifications related to inactive users
         await _notificationSubscriptionManager
             .SubscribeAsync(
                 eventData.Entity.TenantId,

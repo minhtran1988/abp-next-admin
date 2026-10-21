@@ -10,16 +10,16 @@ namespace LINGYUN.Abp.OpenObserve;
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 查询字段取值
+    /// Query field value
     /// </summary>
     /// <remarks>
     /// GET /api/{organization}/{stream}/_values
-    /// 参考: https://openobserve.ai/docs/reference/api/search/
+    /// Reference: https://openobserve.ai/docs/reference/api/search/
     /// </remarks>
-    /// <param name="fields">字段名称集合, 逗号拼接</param>
-    /// <param name="size">返回的取值数量, 按出现次数排序</param>
-    /// <param name="keyword">取值关键字过滤</param>
-    /// <param name="noCount">为 true 时不返回计数, 直接按取值排序</param>
+    /// <param name="fields">Field name collection, comma splicing</param>
+    /// <param name="size">The number of returned values, sorted by the number of occurrences</param>
+    /// <param name="keyword">Value keyword filtering</param>
+    /// <param name="noCount">When true, the count will not be returned, and the count will be sorted directly by value</param>
     public async virtual Task<ValuesResponse> GetValuesAsync(
         string stream,
         IEnumerable<string> fields,

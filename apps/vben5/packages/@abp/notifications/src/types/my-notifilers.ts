@@ -11,7 +11,7 @@ import type {
 
 interface GetMyNotifilerPagedListInput extends PagedAndSortedResultRequestDto {
   filter?: string;
-  /** 已读状态 */
+  /** Read status */
   readState?: NotificationReadState;
 }
 
@@ -21,23 +21,23 @@ interface MarkReadStateInput {
 }
 
 interface UserNotificationDto {
-  /** 内容类型 */
+  /** Content type */
   contentType: NotificationContentType;
-  /** 创建时间 */
+  /** Creation time */
   creationTime: Date;
-  /** 数据 */
+  /** data */
   data: NotificationData;
   /** Id */
   id: string;
-  /** 生命周期 */
+  /** life cycle */
   lifetime: NotificationLifetime;
-  /** 名称 */
+  /** name */
   name: string;
-  /** 紧急程度 */
+  /** Urgency */
   severity: NotificationSeverity;
-  /** 阅读状态 */
+  /** Reading status */
   state: NotificationReadState;
-  /** 类型 */
+  /** Type */
   type: NotificationType;
 }
 

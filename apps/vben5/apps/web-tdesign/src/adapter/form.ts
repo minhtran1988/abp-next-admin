@@ -11,10 +11,10 @@ import { $t } from '@vben/locales';
 async function initSetupVbenForm() {
   setupVbenForm<ComponentType>({
     config: {
-      // tdesign组件库默认都是 v-model:value
+      // Tdesign component library defaults to v-model:value
       baseModelPropName: 'value',
 
-      // 一些组件是 v-model:checked 或者 v-model:fileList
+      // Some components are v-model:checked or v-model:fileList
       modelPropNameMap: {
         Checkbox: 'checked',
         Radio: 'checked',
@@ -23,14 +23,14 @@ async function initSetupVbenForm() {
       },
     },
     defineRules: {
-      // 输入项目必填国际化适配
+      // International adaptation is required for input items
       required: (value, _params, ctx) => {
         if (value === undefined || value === null || value.length === 0) {
           return $t('ui.formRules.required', [ctx.label]);
         }
         return true;
       },
-      // 选择项目必填国际化适配
+      // International adaptation is required for selected projects
       selectRequired: (value, _params, ctx) => {
         if (value === undefined || value === null) {
           return $t('ui.formRules.selectRequired', [ctx.label]);

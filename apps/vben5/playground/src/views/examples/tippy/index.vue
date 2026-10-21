@@ -12,7 +12,7 @@ import { useVbenForm } from '#/adapter/form';
 const tippyProps = reactive<TippyProps>({
   animation: 'shift-away',
   arrow: true,
-  content: '这是一个提示',
+  content: 'This is a tip',
   delay: [200, 200],
   duration: 200,
   followCursor: false,
@@ -55,131 +55,131 @@ const [Form] = useVbenForm({
         buttonStyle: 'solid',
         class: 'w-full',
         options: [
-          { label: '自动', value: 'auto' },
-          { label: '暗色', value: 'dark' },
-          { label: '亮色', value: 'light' },
+          { label: 'auto', value: 'auto' },
+          { label: 'dark', value: 'dark' },
+          { label: 'light', value: 'light' },
         ],
         optionType: 'button',
       },
       defaultValue: tippyProps.theme,
       fieldName: 'theme',
-      label: '主题',
+      label: 'topic',
     },
     {
       component: 'Select',
       componentProps: {
         class: 'w-full',
         options: [
-          { label: '向上滑入', value: 'shift-away' },
-          { label: '向下滑入', value: 'shift-toward' },
-          { label: '缩放', value: 'scale' },
-          { label: '透视', value: 'perspective' },
-          { label: '淡入', value: 'fade' },
+          { label: 'Slide up', value: 'shift-away' },
+          { label: 'slide down', value: 'shift-toward' },
+          { label: 'scale', value: 'scale' },
+          { label: 'perspective', value: 'perspective' },
+          { label: 'fade', value: 'fade' },
         ],
       },
       defaultValue: tippyProps.animation,
       fieldName: 'animation',
-      label: '动画类型',
+      label: 'animation type',
     },
     {
       component: 'RadioGroup',
       componentProps: {
         buttonStyle: 'solid',
         options: [
-          { label: '是', value: true },
-          { label: '否', value: false },
+          { label: 'is', value: true },
+          { label: 'No', value: false },
         ],
         optionType: 'button',
       },
       defaultValue: tippyProps.inertia,
       fieldName: 'inertia',
-      label: '动画惯性',
+      label: 'animation inertia',
     },
     {
       component: 'Select',
       componentProps: {
         class: 'w-full',
         options: [
-          { label: '顶部', value: 'top' },
-          { label: '顶左', value: 'top-start' },
-          { label: '顶右', value: 'top-end' },
-          { label: '底部', value: 'bottom' },
-          { label: '底左', value: 'bottom-start' },
-          { label: '底右', value: 'bottom-end' },
-          { label: '左侧', value: 'left' },
-          { label: '左上', value: 'left-start' },
-          { label: '左下', value: 'left-end' },
-          { label: '右侧', value: 'right' },
-          { label: '右上', value: 'right-start' },
-          { label: '右下', value: 'right-end' },
+          { label: 'top', value: 'top' },
+          { label: 'top-left', value: 'top-start' },
+          { label: 'top right', value: 'top-end' },
+          { label: 'bottom', value: 'bottom' },
+          { label: 'bottom-left', value: 'bottom-start' },
+          { label: 'bottom-end', value: 'bottom-end' },
+          { label: 'left', value: 'left' },
+          { label: 'upper left', value: 'left-start' },
+          { label: 'left-bottom', value: 'left-end' },
+          { label: 'right', value: 'right' },
+          { label: 'upper right', value: 'right-start' },
+          { label: 'right-bottom', value: 'right-end' },
         ],
       },
       defaultValue: tippyProps.placement,
       fieldName: 'placement',
-      label: '位置',
+      label: 'position',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        addonAfter: '毫秒',
+        addonAfter: 'milliseconds',
       },
       defaultValue: tippyProps.duration,
       fieldName: 'duration',
-      label: '动画时长',
+      label: 'animation duration',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        addonAfter: '毫秒',
+        addonAfter: 'milliseconds',
       },
       defaultValue: 100,
       fieldName: 'delay1',
-      label: '显示延时',
+      label: 'Display delay',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        addonAfter: '毫秒',
+        addonAfter: 'milliseconds',
       },
       defaultValue: 100,
       fieldName: 'delay2',
-      label: '隐藏延时',
+      label: 'Hide delay',
     },
     {
       component: 'Input',
       defaultValue: tippyProps.content,
       fieldName: 'content',
-      label: '内容',
+      label: 'content',
     },
     {
       component: 'RadioGroup',
       componentProps: {
         buttonStyle: 'solid',
         options: [
-          { label: '是', value: true },
-          { label: '否', value: false },
+          { label: 'is', value: true },
+          { label: 'No', value: false },
         ],
         optionType: 'button',
       },
       defaultValue: tippyProps.arrow,
       fieldName: 'arrow',
-      label: '指示箭头',
+      label: 'indicator arrow',
     },
     {
       component: 'Select',
       componentProps: {
         class: 'w-full',
         options: [
-          { label: '不跟随', value: 'false' },
-          { label: '完全跟随', value: 'true' },
-          { label: '仅横向', value: 'horizontal' },
-          { label: '仅纵向', value: 'vertical' },
-          { label: '仅初始', value: 'initial' },
+          { label: 'Do not follow', value: 'false' },
+          { label: 'Follow completely', value: 'true' },
+          { label: 'horizontal only', value: 'horizontal' },
+          { label: 'Vertical only', value: 'vertical' },
+          { label: 'initial only', value: 'initial' },
         ],
       },
       defaultValue: tippyProps.followCursor?.toString(),
       fieldName: 'followCursor',
-      label: '跟随指针',
+      label: 'Follow pointer',
     },
     {
       component: 'Select',
@@ -187,24 +187,24 @@ const [Form] = useVbenForm({
         class: 'w-full',
         mode: 'multiple',
         options: [
-          { label: '鼠标移入', value: 'mouseenter' },
-          { label: '被点击', value: 'click' },
-          { label: '获得焦点', value: 'focusin' },
-          { label: '无触发，仅手动', value: 'manual' },
+          { label: 'mouseenter', value: 'mouseenter' },
+          { label: 'clicked', value: 'click' },
+          { label: 'Get focus', value: 'focusin' },
+          { label: 'No trigger, only manual', value: 'manual' },
         ],
       },
       defaultValue: tippyProps.trigger?.split(' '),
       fieldName: 'trigger',
-      label: '触发方式',
+      label: 'trigger mode',
     },
     {
       component: 'Select',
       componentProps: {
         class: 'w-full',
         options: [
-          { label: '否', value: 'false' },
-          { label: '是', value: 'true' },
-          { label: '仅内部', value: 'toggle' },
+          { label: 'no', value: 'false' },
+          { label: 'is', value: 'true' },
+          { label: 'Internal only', value: 'toggle' },
         ],
       },
       defaultValue: tippyProps.hideOnClick?.toString(),
@@ -217,8 +217,8 @@ const [Form] = useVbenForm({
         triggerFields: ['trigger'],
       },
       fieldName: 'hideOnClick',
-      help: '只有在触发方式为`click`时才有效',
-      label: '点击后隐藏',
+      help: 'Only valid when the trigger mode is `click`',
+      label: 'Hide after clicking',
     },
     {
       component: 'Input',
@@ -228,7 +228,7 @@ const [Form] = useVbenForm({
       },
       defaultValue: tippyProps.maxWidth,
       fieldName: 'maxWidth',
-      label: '最大宽度',
+      label: 'maximum width',
     },
   ],
   showDefaultActions: false,
@@ -245,46 +245,46 @@ function goDoc() {
       <div class="flex items-center">
         <p>
           Tippy
-          是一个轻量级的提示工具库，它可以用来创建各种交互式提示，如工具提示、引导提示等。
+          It is a lightweight prompt tool library that can be used to create various interactive prompts, such as tool tips, boot tips, etc.
         </p>
-        <Button type="link" size="small" @click="goDoc">查看文档</Button>
+        <Button type="link" size="small" @click="goDoc">View documentation</Button>
       </div>
     </template>
-    <Card title="指令形式使用">
+    <Card title="Use in command form">
       <p class="mb-4">
-        指令形式使用比较简洁，直接在需要展示tooltip的组件上用v-tippy传递配置，适用于固定内容的工具提示。
+        The instruction form is relatively simple to use. Use v-tippy to pass the configuration directly on the component that needs to display the tooltip. It is suitable for tooltips with fixed content.
       </p>
       <Flex warp="warp" gap="20" align="center">
-        <Button v-tippy="'这是一个提示，使用了默认的配置'">默认配置</Button>
+        <Button v-tippy="'This is a tip, the default configuration is used'">Default configuration</Button>
 
         <Button
-          v-tippy="{ theme: 'light', content: '这是一个提示，总是light主题' }"
+          v-tippy="{ theme: 'light', content: 'This is a tip, always light theme' }"
         >
-          指定主题
+          Specify topic
         </Button>
         <Button
           v-tippy="{
             theme: 'light',
-            content: '这个提示将在点燃组件100毫秒后激活',
+            content: 'This prompt will be activated 100 milliseconds after igniting the component',
             delay: 100,
           }"
         >
-          指定延时
+          Specify delay
         </Button>
         <Button
           v-tippy="{
-            content: '本提示的动画为`scale`',
+            content: 'The animation of this prompt is `scale`',
             animation: 'scale',
           }"
         >
-          指定动画
+          Specify animation
         </Button>
       </Flex>
     </Card>
-    <Card title="组件形式使用" class="mt-4">
+    <Card title="Use in component form" class="mt-4">
       <div class="flex w-full justify-center">
         <Tippy v-bind="tippyProps">
-          <Button>鼠标移到这个组件上来体验效果</Button>
+          <Button>Move the mouse over this component to experience the effect</Button>
         </Tippy>
       </div>
 
@@ -293,9 +293,9 @@ function goDoc() {
         <p
           class="cursor-default text-secondary-foreground hover:text-secondary-foreground"
         >
-          更多配置请
-          <Button type="link" size="small" @click="goDoc">查看文档</Button>
-          ，这里只列出了一些常用的配置
+          More configuration please
+          <Button type="link" size="small" @click="goDoc">View documentation</Button>
+          , only some common configurations are listed here
         </p>
       </template>
     </Card>

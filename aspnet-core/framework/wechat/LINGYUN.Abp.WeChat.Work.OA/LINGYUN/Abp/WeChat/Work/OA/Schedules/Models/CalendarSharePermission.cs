@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日历通知范围成员权限
+/// Calendar notification range member permissions
 /// </summary>
-[Description("日历通知范围成员权限")]
+[Description("Calendar notification scope member permissions")]
 public enum CalendarSharePermission
 {
     /// <summary>
-    /// 可查看
+    /// Viewable
     /// </summary>
-    [Description("可查看")]
+    [Description("Viewable")]
     View = 1,
     /// <summary>
-    /// 仅查看闲忙状态
+    /// Only view busy status
     /// </summary>
-    [Description("仅查看闲忙状态")]
+    [Description("View only busy status")]
     OnlyBusy = 3
 }

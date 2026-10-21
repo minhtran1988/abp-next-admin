@@ -15,32 +15,32 @@ const [Form, formApi] = useVbenForm({
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field1',
-      label: '字段1',
+      label: 'Field 1',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field2',
-      label: '字段2',
+      label: 'Field 2',
       rules: 'required',
     },
     {
       component: 'Select',
       componentProps: {
         options: [
-          { label: '选项1', value: '1' },
-          { label: '选项2', value: '2' },
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
         ],
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field3',
-      label: '字段3',
+      label: 'Field 3',
       rules: 'required',
     },
   ],
@@ -64,12 +64,12 @@ const [Modal, modalApi] = useVbenModal({
       }
     }
   },
-  title: '内嵌表单示例',
+  title: 'Inline form example',
 });
 
 function onSubmit(values: Record<string, any>) {
   message.loading({
-    content: '正在提交中...',
+    content: 'Submitting...',
     duration: 0,
     key: 'is-form-submitting',
   });
@@ -77,7 +77,7 @@ function onSubmit(values: Record<string, any>) {
   setTimeout(() => {
     modalApi.close();
     message.success({
-      content: `提交成功：${JSON.stringify(values)}`,
+      content: `Submission successful: ${JSON.stringify(values)}`,
       duration: 2,
       key: 'is-form-submitting',
     });

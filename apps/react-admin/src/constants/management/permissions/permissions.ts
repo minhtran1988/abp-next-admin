@@ -1,20 +1,20 @@
-/** 分组权限 */
+/** Group permissions */
 export const GroupDefinitionsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "PermissionManagement.GroupDefinitions.Create",
 	Default: "PermissionManagement.GroupDefinitions",
-	/** 删除 */
+	/** Delete */
 	Delete: "PermissionManagement.GroupDefinitions.Delete",
-	/** 更新 */
+	/** Update */
 	Update: "PermissionManagement.GroupDefinitions.Update",
 };
-/** 权限定义权限 */
+/** Permission definition permission */
 export const PermissionDefinitionsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "PermissionManagement.Definitions.Create",
 	Default: "PermissionManagement.Definitions",
-	/** 删除 */
+	/** Delete */
 	Delete: "PermissionManagement.Definitions.Delete",
-	/** 更新 */
+	/** Update */
 	Update: "PermissionManagement.Definitions.Update",
 };

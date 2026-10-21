@@ -1,21 +1,21 @@
 # LINGYUN.Abp.DataProtectionManagement.EntityFrameworkCore
 
-数据权限管理EntityFrameworkCore模块，提供数据权限管理的数据访问实现。
+The data permission management EntityFrameworkCore module provides data access implementation of data permission management.
 
-## 功能
+## Function
 
-* 数据权限管理仓储实现
-* 数据库映射配置
-* 数据库迁移
+* Implementation of data rights management and warehousing
+* Database mapping configuration
+* Database migration
 
-## 仓储实现
+## Warehousing implementation
 
-* `EfCoreDataProtectionRepository` - 数据权限仓储EF Core实现
-  * 实现 `IDataProtectionRepository` 接口
-  * 提供数据权限的CRUD操作
-  * 支持数据过滤
+* `EfCoreDataProtectionRepository` - Data permission warehousing EF Core implementation
+  * Implement the `IDataProtectionRepository` interface
+  * Provide CRUD operations for data permissions
+  * Support data filtering
 
-## 数据库映射配置
+## Database mapping configuration
 
 ```csharp
 public static class DataProtectionDbContextModelCreatingExtensions
@@ -40,9 +40,9 @@ public static class DataProtectionDbContextModelCreatingExtensions
 }
 ```
 
-## 配置使用
+## Configuration usage
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpDataProtectionManagementEntityFrameworkCoreModule))]
@@ -51,7 +51,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置DbContext
+2. Configure DbContext
 
 ```csharp
 public class YourDbContext : AbpDbContext<YourDbContext>, IDataProtectionManagementDbContext
@@ -67,6 +67,6 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IDataProtectionManagem
 }
 ```
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

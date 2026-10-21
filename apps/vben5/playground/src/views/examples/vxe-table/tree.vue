@@ -50,12 +50,12 @@ const collapseAll = () => {
 
 <template>
   <Page>
-    <Grid table-title="数据列表" table-title-help="提示">
+    <Grid table-title="Data List" table-title-help="Prompt">
       <template #toolbar-tools>
         <Button class="mr-2" type="primary" @click="expandAll">
-          展开全部
+          Expand all
         </Button>
-        <Button type="primary" @click="collapseAll"> 折叠全部 </Button>
+        <Button type="primary" @click="collapseAll"> Collapse All </Button>
       </template>
     </Grid>
   </Page>

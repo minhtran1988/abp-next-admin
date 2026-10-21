@@ -9,7 +9,7 @@ using Volo.Abp.Users;
 namespace LINGYUN.Abp.DataProtection.Subjects;
 
 /// <summary>
-/// 角色数据权限策略
+/// Role data permission policy
 /// </summary>
 public class DataAccessStrategyRoleNameContributor : IDataAccessStrategyContributor
 {
@@ -33,7 +33,7 @@ public class DataAccessStrategyRoleNameContributor : IDataAccessStrategyContribu
             }
         }
 
-        // 多个角色配置过策略时, 取权重最大的策略生效
+        // When multiple roles have configured policies, the policy with the highest weight will take effect.
         return states.OrderByDescending(x => x.Strategy).FirstOrDefault();
     }
 }

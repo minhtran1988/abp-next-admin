@@ -29,7 +29,7 @@ public class QrCodeTokenExtensionGrant : ITokenExtensionGrant
     {
         var logger = GetRequiredService<ILogger<QrCodeTokenExtensionGrant>>(context);
 
-        // 取出二维码Key
+        // Get the QR code Key
         var qrcodeKey = context.Request.GetParameter("qrcode_key")?.ToString();
         if (qrcodeKey.IsNullOrWhiteSpace())
         {
@@ -47,7 +47,7 @@ public class QrCodeTokenExtensionGrant : ITokenExtensionGrant
 
         var qrCodeProvider = GetRequiredService<IQrCodeLoginProvider>(context);
         var qrCodeInfo = await qrCodeProvider.GetCodeAsync(qrcodeKey);
-        // 二维码扫描后用户Id不为空
+        // The user ID is not empty after scanning the QR code
         if (qrCodeInfo == null || qrCodeInfo.Token.IsNullOrWhiteSpace() == true)
         {
             logger.LogInformation("The QR code Key {0} is invalid or the user has not scanned the QR code.", qrcodeKey);
@@ -95,7 +95,7 @@ public class QrCodeTokenExtensionGrant : ITokenExtensionGrant
                 return Forbid(properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
             }
 
-            // 检查是否已锁定
+            // Check if locked
             if (await userManager.IsLockedOutAsync(user))
             {
                 logger.LogInformation("Authentication failed for username: {username}, reason: locked out", user.UserName);

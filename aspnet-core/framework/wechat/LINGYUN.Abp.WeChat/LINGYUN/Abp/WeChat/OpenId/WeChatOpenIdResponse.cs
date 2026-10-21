@@ -5,32 +5,32 @@ using System;
 namespace LINGYUN.Abp.WeChat.OpenId;
 
 /// <summary>
-/// 微信OpenId返回对象
+/// WeChat OpenId return object
 /// </summary>
 public class WeChatOpenIdResponse
 {
     /// <summary>
-    /// 错误码
+    /// Error code
     /// </summary>
     [JsonProperty("errcode")]
     public string ErrorCode { get; set; } = default!;
     /// <summary>
-    /// 会话密钥
+    /// Session key
     /// </summary>
     [JsonProperty("session_key")]
     public string SessionKey { get; set; } = default!;
     /// <summary>
-    /// 用户唯一标识
+    /// User unique identifier
     /// </summary>
     [JsonProperty("openid")]
     public string OpenId { get; set; } = default!;
     /// <summary>
-    /// 用户在开放平台的唯一标识符，在满足 UnionID 下发条件的情况下会返回
+    /// The user's unique identifier on the open platform will be returned if the UnionID issuance conditions are met.
     /// </summary>
     [JsonProperty("unionid")]
     public string? UnionId { get; set; }
     /// <summary>
-    /// 错误消息
+    /// Error message
     /// </summary>
     public string ErrorMessage
     {
@@ -38,17 +38,17 @@ public class WeChatOpenIdResponse
         {
             return ErrorCode switch
             {
-                "-1" => "系统繁忙，此时请开发者稍候再试",
+                "-1" => "The system is busy, developers please try again later",
                 "0" => string.Empty,
-                "40029" => "code 无效",
-                "45011" => "频率限制，每个用户每分钟100次",
-                _ => $"未定义的异常代码:{ErrorCode},请重试",
+                "40029" => "code is invalid",
+                "45011" => "Frequency limit, 100 times per user per minute",
+                _ => $"Undefined exception code: {ErrorCode}, please try again",
             };
             ;
         }
     }
     /// <summary>
-    /// 微信认证成功没有errorcode或者errorcode为0
+    /// If WeChat authentication is successful, there is no errorcode or the errorcode is 0
     /// </summary>
     public bool IsError => !ErrorCode.IsNullOrWhiteSpace() && !"0".Equals(ErrorCode);
 

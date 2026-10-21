@@ -21,11 +21,11 @@
     vditorPreviewRef.value = VditorPreview.preview(viewerEl, props.value, {
       mode: getTheme(getDarkMode.value, 'content'),
       theme: {
-        // 设置内容主题
+        // Set content theme
         current: getTheme(getDarkMode.value, 'content'),
       },
       hljs: {
-        // 设置代码块主题
+        // Set code block theme
         style: getTheme(getDarkMode.value, 'code'),
       },
     });

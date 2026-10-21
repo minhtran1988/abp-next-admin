@@ -1,28 +1,28 @@
 interface PinInputProps {
   class?: any;
   /**
-   * 验证码长度
+   * Verification code length
    */
   codeLength?: number;
   /**
-   * 发送验证码按钮文本
+   * Send verification code button text
    */
   createText?: (countdown: number) => string;
   /**
-   * 是否禁用
+   * Whether to disable
    */
   disabled?: boolean;
   /**
-   * 自定义验证码发送逻辑
+   * Customize verification code sending logic
    * @returns
    */
   handleSendCode?: () => Promise<void>;
   /**
-   * 发送验证码按钮loading
+   * Send verification code button loading
    */
   loading?: boolean;
   /**
-   * 最大重试时间
+   * Maximum retry time
    */
   maxTime?: number;
 }

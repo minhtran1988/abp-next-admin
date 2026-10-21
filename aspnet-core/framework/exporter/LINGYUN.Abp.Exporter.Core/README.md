@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Exporter.Core
 
-数据导出/导入核心层
+Data export/import core layer
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp
@@ -16,7 +16,7 @@
     }
 ```
 
-> 导出数据
+> Export data
 ```csharp
     public class ExportDemoClass
     {
@@ -45,7 +45,7 @@
     }
 ```
 
-> 导入数据
+> Import data
 ```csharp
     public class ImportDemoClass
     {
@@ -60,7 +60,7 @@
         {
             var demos = await _importerProvider.ImportAsync<DemoClass>(stream);
 
-            // 其他操作
+            //Other operations
         }
     }
 

@@ -6,18 +6,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 移动报表请求
+/// Mobile report request
 /// </summary>
 public class MoveReportsRequest
 {
     /// <summary>
-    /// 报表标识集合
+    /// Report identification collection
     /// </summary>
     [JsonPropertyName("report_ids")]
     public string[] ReportIds { get; set; } = [];
 
     /// <summary>
-    /// 目标文件夹
+    /// Target folder
     /// </summary>
     [JsonPropertyName("dst_folder_id")]
     public string DestinationFolderId { get; set; } = default!;

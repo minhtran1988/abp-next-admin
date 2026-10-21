@@ -67,7 +67,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
         var user = await UserManager.FindByLoginAsync(AbpWeChatMiniProgramConsts.ProviderName, wehchatOpenId.OpenId);
         if (user != null)
         {
-            // 应该要抛出微信号已注册异常,而不是直接返回注册用户数据,否则造成用户信息泄露
+            // WeChat ID registered exception should be thrown instead of returning registered user data directly, otherwise user information will be leaked
             throw new UserFriendlyException(L["DuplicateWeChat"]);
         }
         var userName = input.UserName;
@@ -76,7 +76,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
             userName = "wxid-" + wehchatOpenId.OpenId.ToMd5().ToLower();
         }
 
-        var userEmail = input.EmailAddress;//如果邮件地址不验证,随意写入一个
+        var userEmail = input.EmailAddress;//If the email address is not verified, feel free to write one
         if (userEmail.IsNullOrWhiteSpace())
         {
             userEmail = $"{userName}@{CurrentTenant.Name ?? "default"}.io";
@@ -162,11 +162,11 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
         var securityTokenCacheItem = await SecurityTokenCache.GetAsync(securityTokenCacheKey);
         if (securityTokenCacheItem == null)
         {
-            // 验证码过期
+            // Verification code expires
             throw new UserFriendlyException(L["InvalidVerifyCode"]);
         }
 
-        // 验证码是否有效
+        // Is the verification code valid?
         if (input.Code.Equals(securityTokenCacheItem.Token))
         {
             var tempNewUser = new IdentityUser(
@@ -183,7 +183,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
                 UserTwoFactorTokenProviderConsts.PhoneNumberRegisterPurpose,
                 input.Code))
             {
-                var userEmail = input.EmailAddress ?? $"{input.PhoneNumber}@{CurrentTenant.Name ?? "default"}.io";//如果邮件地址不验证,随意写入一个
+                var userEmail = input.EmailAddress ?? $"{input.PhoneNumber}@{CurrentTenant.Name ?? "default"}.io";//If the email address is not verified, feel free to write one
                 var userName = input.UserName ?? input.PhoneNumber;
                 var user = new IdentityUser(GuidGenerator.Create(), userName, userEmail, CurrentTenant.Id)
                 {
@@ -215,15 +215,15 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
                 return;
             }
         }
-        // 验证码无效
+        // Verification code is invalid
         throw new UserFriendlyException(L["InvalidVerifyCode"]);
     }
 
     public async virtual Task SendPhoneResetPasswordCodeAsync(SendPhoneResetPasswordCodeDto input)
     {
-        // 传递 isConfirmed 用户必须是已确认过手机号的
+        // Pass isConfirmed The user must have confirmed the mobile phone number
         var user = await GetUserByPhoneNumberAsync(input.PhoneNumber, isConfirmed: true);
-        // 外部认证用户不允许修改密码
+        // External authentication users are not allowed to change passwords
         if (user.IsExternal)
         {
             throw new BusinessException(code: Volo.Abp.Identity.IdentityErrorCodes.ExternalUserPasswordChange);
@@ -234,21 +234,21 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
             UserTwoFactorTokenProviderConsts.PhoneResetPasswordPurpose);
         var securityTokenCacheItem = await SecurityTokenCache.GetAsync(securityTokenCacheKey);
         var interval = await SettingProvider.GetAsync(IdentitySettingNames.User.SmsRepetInterval, 1);
-        // 能查询到缓存就是重复发送
+        // If the cache can be queried, it is sent repeatedly.
         if (securityTokenCacheItem != null)
         {
             throw new UserFriendlyException(L["SendRepeatSmsVerifyCode", interval]);
         }
 
         var template = await SettingProvider.GetOrNullAsync(IdentitySettingNames.User.SmsResetPassword);
-        // 生成二次认证码
+        // Generate secondary authentication code
         var code = await UserManager.GenerateUserTokenAsync(
             user,
             TokenOptions.DefaultPhoneProvider,
             UserTwoFactorTokenProviderConsts.PhoneResetPasswordPurpose);
-        // 发送短信验证码
+        // Send SMS verification code
         await SecurityCodeSender.SendAsync(input.PhoneNumber, code, template!);
-        // 缓存这个手机号的记录,防重复
+        // Cache the record of this mobile phone number to prevent duplication
         securityTokenCacheItem = new SecurityTokenCacheItem(code, user.Id, user.SecurityStamp);
         await SecurityTokenCache
             .SetAsync(securityTokenCacheKey, securityTokenCacheItem,
@@ -269,29 +269,29 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
             throw new UserFriendlyException(L["InvalidVerifyCode"]);
         }
         await IdentityOptions.SetAsync();
-        // 传递 isConfirmed 用户必须是已确认过手机号的
+        // Pass isConfirmed The user must have confirmed the mobile phone number
         var user = await GetUserByPhoneNumberAsync(input.PhoneNumber, isConfirmed: true);
-        // 外部认证用户不允许修改密码
+        // External authentication users are not allowed to change passwords
         if (user.IsExternal)
         {
             throw new BusinessException(code: Volo.Abp.Identity.IdentityErrorCodes.ExternalUserPasswordChange);
         }
-        // 验证二次认证码
+        // Verify the secondary authentication code
         if (!await UserManager.VerifyUserTokenAsync(
             user,
             TokenOptions.DefaultPhoneProvider,
             UserTwoFactorTokenProviderConsts.PhoneResetPasswordPurpose,
             input.Code))
         {
-            // 验证码无效
+            // Verification code is invalid
             throw new UserFriendlyException(L["InvalidVerifyCode"]);
         }
-        // 生成真正的重置密码Token
+        // Generate the real reset password Token
         var resetPwdToken = await UserManager.GeneratePasswordResetTokenAsync(user);
-        // 重置密码
+        // reset password
         (await UserManager.ResetPasswordAsync(user, resetPwdToken, input.NewPassword)).CheckErrors();
 
-        // 移除缓存项
+        // Remove cache item
         await SecurityTokenCache.RemoveAsync(securityTokenCacheKey);
 
         await IdentitySecurityLogManager.SaveAsync(
@@ -313,15 +313,15 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
         {
             throw new UserFriendlyException(L["SendRepeatSmsVerifyCode", interval]);
         }
-        // 传递 isConfirmed 验证过的用户才允许通过手机登录
+        // Only verified users passing isConfirmed are allowed to log in via mobile phone
         var user = await GetUserByPhoneNumberAsync(input.PhoneNumber, isConfirmed: true);
-        // 登录验证手机号需要使用二次自带的认证
+        // To log in and verify your mobile phone number, you need to use the secondary authentication that comes with it.
         var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultPhoneProvider);
         var template = await SettingProvider.GetOrNullAsync(IdentitySettingNames.User.SmsUserSignin);
 
-        // 发送登录验证码短信
+        // Send login verification code SMS
         await SecurityCodeSender.SendAsync(input.PhoneNumber, code, template!);
-        // 缓存登录验证码状态,防止同一手机号重复发送
+        // Cache login verification code status to prevent repeated sending of the same mobile phone number
         securityTokenCacheItem = new SecurityTokenCacheItem(code, user.Id, user.SecurityStamp);
         await SecurityTokenCache
             .SetAsync(securityTokenCacheKey, securityTokenCacheItem,
@@ -385,7 +385,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
             return false;
         }
 
-        // 验证码是否有效
+        // Is the verification code valid?
         if (input.VerifyCode.Equals(securityTokenCacheItem.Token))
         {
             var tempNewUser = new IdentityUser(
@@ -422,7 +422,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
             throw new UserFriendlyException(L["UserEmailNotConfirmed"]);
         }
 
-        // 登录验证邮件安全码需要使用二次自带的认证
+        // The login verification email security code requires the use of the secondary authentication
         var code = await UserManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
 
         await sender.SendLoginCodeAsync(code, user.UserName, user.Email);
@@ -486,7 +486,7 @@ public class AccountAppService : AccountApplicationServiceBase, IAccountAppServi
     }
 
     /// <summary>
-    /// 检查是否允许用户注册
+    /// Check whether user registration is allowed
     /// </summary>
     /// <returns></returns>
     protected async virtual Task CheckSelfRegistrationAsync()

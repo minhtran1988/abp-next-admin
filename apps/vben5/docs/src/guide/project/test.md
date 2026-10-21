@@ -1,10 +1,10 @@
-# 单元测试
+# unit test
 
-项目内置了 [Vitest](https://vitest.dev/) 作为单元测试工具。Vitest 是一个基于 Vite 的测试运行器，它提供了一套简单的 API 来编写测试用例。
+The project has built-in [Vitest](https://vitest.dev/) as a unit testing tool. Vitest is a Vite-based test runner that provides a simple API for writing test cases.
 
-## 编写测试用例
+##Write test cases
 
-在项目中，我们约定将测试文件名以 `.test.ts` 结尾，或者存放到`__tests__`目录内。例如，创建一个 `utils.ts` 文件，然后同级目录`utils.test.ts` 文件，
+In the project, we agree that the test file name will end with `.test.ts` or be stored in the `__tests__` directory. For example, create a `utils.ts` file, and then create a `utils.test.ts` file in the same directory,
 
 ```ts
 // utils.test.ts
@@ -16,18 +16,18 @@ test('adds 1 + 2 to equal 3', () => {
 });
 ```
 
-## 运行测试
+## Run the test
 
-在大仓根目录下运行以下命令即可：
+Just run the following command in the Okura root directory:
 
 ```bash
 pnpm test:unit
 ```
 
-## 现有单元测试
+## Existing unit tests
 
-项目中已经有一些单元测试用例，可以搜索以`.test.ts`结尾的文件查看，在你更改到相关代码时，可以运行单元测试来保证代码的正确性，建议在开发过程中，保持单元测试的覆盖率，且同时在 CI/CD 流程中运行单元测试，保证测试通过在进行项目部署。
+There are already some unit test cases in the project. You can search for files ending with `.test.ts`. When you change to relevant code, you can run unit tests to ensure the correctness of the code. It is recommended to maintain unit test coverage during the development process, and at the same time run unit tests in the CI/CD process to ensure that the tests pass before deploying the project.
 
-现有单元测试情况：
+Current unit testing situation:
 
 ![](/guide/test.png)

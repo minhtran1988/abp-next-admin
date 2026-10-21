@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 外部联系人列表
+/// External contact list
 /// </summary>
 public class ExternalContactList
 {
     /// <summary>
-    /// 客户的基本信息
+    /// Basic information of the customer
     /// </summary>
     [NotNull]
     [JsonProperty("external_contact")]
     [JsonPropertyName("external_contact")]
     public ExternalContactInfo ExternalContact { get; set; } = default!;
     /// <summary>
-    /// 企业成员客户跟进信息
+    /// Corporate member customer follow-up information
     /// </summary>
     [NotNull]
     [JsonProperty("follow_info")]

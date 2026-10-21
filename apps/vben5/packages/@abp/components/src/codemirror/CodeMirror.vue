@@ -36,7 +36,7 @@ const props = defineProps({
     default: MODE.JSON,
     type: String as PropType<MODE>,
     validator(value: any) {
-      // 这个值必须匹配下列字符串中的一个
+      // This value must match one of the following strings
       return Object.values(MODE).includes(value);
     },
   },

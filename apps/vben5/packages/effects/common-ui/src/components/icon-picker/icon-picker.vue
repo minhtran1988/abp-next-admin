@@ -30,21 +30,21 @@ import { fetchIconsData } from './icons';
 
 interface Props {
   pageSize?: number;
-  /** 图标集的名字 */
+  /** The name of the icon set */
   prefix?: string;
-  /** 是否自动请求API以获得图标集的数据.提供prefix时有效 */
+  /** Whether to automatically request the API to obtain icon set data. Valid when prefix is provided */
   autoFetchApi?: boolean;
   /**
-   * 图标列表
+   *Icon list
    */
   icons?: string[];
-  /** Input组件 */
+  /** Input component */
   inputComponent?: VNode;
-  /** 图标插槽名，预览图标将被渲染到此插槽中 */
+  /** Icon slot name, the preview icon will be rendered into this slot */
   iconSlot?: string;
-  /** input组件的值属性名称 */
+  /** The value attribute name of the input component */
   modelValueProp?: string;
-  /** 图标样式 */
+  /** Icon style */
   iconClass?: string;
   type?: 'icon' | 'input';
 }

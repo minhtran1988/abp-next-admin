@@ -8,10 +8,10 @@ using Volo.Abp.AspNetCore.Mvc;
 namespace LINGYUN.Abp.WeChat.Official.Message;
 
 /// <summary>
-/// 微信公众号消息处理接口
+/// WeChat public account message processing interface
 /// </summary>
 /// <remarks>
-/// 详情见微信公众号文档: <seealso cref="https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html"/>
+/// For details, please see the WeChat official account document: <seealso cref="https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html"/>
 /// </remarks>
 [Controller]
 [RemoteService(Name = AbpWeChatOfficialRemoteServiceConsts.RemoteServiceName)]
@@ -26,10 +26,10 @@ public class WeChatMessageController : AbpControllerBase, IWeChatMessageAppServi
         _service = service;
     }
     /// <summary>
-    /// 微信公众号服务器消息验证回调接口<br />
-    /// 验证微信公众号服务器发送的消息有效性
+    /// WeChat public account server message verification callback interface<br />
+    /// Verify the validity of the message sent by the WeChat official account server
     /// </summary>
-    /// <param name="input">微信公众号服务器传递的验证消息参数</param>
+    /// <param name="input">Verification message parameters passed by the WeChat official account server</param>
     /// <returns></returns>
     [HttpGet]
     public virtual Task<string> Handle([FromQuery] MessageValidationInput input)
@@ -38,10 +38,10 @@ public class WeChatMessageController : AbpControllerBase, IWeChatMessageAppServi
     }
 
     /// <summary>
-    /// 微信公众号服务器业务消息回调接口<br />
-    /// 处理微信公众号服务器发送的业务消息
+    /// WeChat public account server business message callback interface<br />
+    /// Process business messages sent by the WeChat public account server
     /// </summary>
-    /// <param name="input">微信公众号服务器传递的消息参数</param>
+    /// <param name="input">Message parameters passed by the WeChat official account server</param>
     /// <returns></returns>
     [HttpPost]
     public async virtual Task<string> Handle([FromQuery] MessageHandleInput input)

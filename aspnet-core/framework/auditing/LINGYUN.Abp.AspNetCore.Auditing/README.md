@@ -1,8 +1,8 @@
 # LINGYUN.Abp.AspNetCore.Auditing
 
-审计日期扩展模块, 用于在审计日志中加入特定的Http请求头记录  
+Audit date extension module, used to add specific HTTP request header records to the audit log
 
-## 模块引用
+## Module reference
 
 
 ```csharp
@@ -13,7 +13,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-*	AbpAspNetCoreAuditingHeaderOptions.IsEnabled      是否在审计日志中记录Http请求头,默认: true
-*	AbpAspNetCoreAuditingHeaderOptions.HttpHeaders    需要在审计日志中记录的Http请求头列表
+* AbpAspNetCoreAuditingHeaderOptions.IsEnabled Whether to record HTTP request headers in the audit log, default: true
+* AbpAspNetCoreAuditingHeaderOptions.HttpHeaders list of Http request headers that need to be recorded in the audit log

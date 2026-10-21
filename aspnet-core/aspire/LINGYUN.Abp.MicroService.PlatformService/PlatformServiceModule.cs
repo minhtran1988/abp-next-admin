@@ -89,8 +89,8 @@ namespace LINGYUN.Abp.MicroService.PlatformService;
     typeof(AbpEmailingExceptionHandlingModule),
     typeof(AbpCAPEventBusModule),
     typeof(AbpFeaturesValidationRedisModule),
-    // typeof(AbpFeaturesClientModule),// 当需要客户端特性限制时取消注释此模块
-    // typeof(AbpFeaturesValidationRedisClientModule),// 当需要客户端特性限制时取消注释此模块
+    // typeof(AbpFeaturesClientModule), // Uncomment this module when client feature restrictions are required
+    // typeof(AbpFeaturesValidationRedisClientModule), // Uncomment this module when client feature restrictions are required
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpLocalizationCultureMapModule),
     typeof(AbpHttpClientModule),

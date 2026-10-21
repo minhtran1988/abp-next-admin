@@ -29,10 +29,10 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(2);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("输入字段验证无效!");
-            exception.ValidationErrors[1].ErrorMessage.ShouldBe("长度与求和验证无效!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("Input field validation is invalid!");
+            exception.ValidationErrors[1].ErrorMessage.ShouldBe("Length and sum verification are invalid!");
         }
     }
 }

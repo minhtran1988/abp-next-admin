@@ -1,19 +1,19 @@
 <!--
- * @Description: 右侧属性配置面板
+ * @Description: Property configuration panel on the right
 -->
 <template>
   <div>
     <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ margin: 0 }">
-      <TabPane :key="1" tab="表单">
+      <TabPane :key="1" tab="Form">
         <FormProps />
       </TabPane>
-      <TabPane :key="2" tab="控件">
+      <TabPane :key="2" tab="control">
         <FormItemProps />
       </TabPane>
-      <TabPane :key="3" tab="栅格">
+      <TabPane :key="3" tab="Grid">
         <ComponentColumnProps />
       </TabPane>
-      <TabPane :key="4" tab="组件">
+      <TabPane :key="4" tab="Component">
         <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
         <ComponentProps v-else />
       </TabPane>

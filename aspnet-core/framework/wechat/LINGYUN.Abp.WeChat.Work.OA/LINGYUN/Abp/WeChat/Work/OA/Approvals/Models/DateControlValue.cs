@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 日期/日期+时间控件值
+/// Date/date+time control value
 /// </summary>
 public class DateControlValue : ControlValue
 {
     /// <summary>
-    /// 金额内容，在此填写金额控件的输入值
+    /// Amount content, fill in the input value of the amount control here
     /// </summary>
     [NotNull]
     [JsonProperty("date")]
@@ -29,14 +29,14 @@ public class DateControlValue : ControlValue
 public class DateValue
 {
     /// <summary>
-    /// 时间展示类型：day-日期；hour-日期+时间 ，和对应模板控件属性一致
+    /// Time display type: day-date; hour-date+time, consistent with the corresponding template control properties
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 时间戳-字符串类型，在此填写日期/日期+时间控件的选择值，以此为准
+    /// Timestamp - string type, fill in the selected value of the date/date+time control here, which shall prevail
     /// </summary>
     [NotNull]
     [JsonProperty("s_timestamp")]

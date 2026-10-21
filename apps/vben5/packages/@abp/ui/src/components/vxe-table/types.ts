@@ -22,12 +22,12 @@ export interface VxePaginationInfo {
 }
 
 interface ToolbarConfigOptions extends VxeGridPropTypes.ToolbarConfig {
-  /** 是否显示切换搜索表单的按钮 */
+  /** Whether to display the button to switch the search form */
   search?: boolean;
 }
 
 export interface VxeTableGridOptions<T = any> extends VxeTableGridProps<T> {
-  /** 工具栏配置 */
+  /** Toolbar configuration */
   toolbarConfig?: ToolbarConfigOptions;
 }
 
@@ -41,11 +41,11 @@ export interface VxeGridProps<
   D extends BaseFormComponentType = BaseFormComponentType,
 > {
   /**
-   * 组件class
+   * component class
    */
   class?: ClassType;
   /**
-   * 表单配置
+   * Form configuration
    */
   formOptions?: VbenFormProps<D>;
   /**
@@ -53,27 +53,27 @@ export interface VxeGridProps<
    */
   gridClass?: ClassType;
   /**
-   * vxe-grid 事件
+   * vxe-grid event
    */
   gridEvents?: DeepPartial<VxeGridListeners<T>>;
   /**
-   * vxe-grid 配置
+   * vxe-grid configuration
    */
   gridOptions?: DeepPartial<VxeTableGridOptions<T>>;
   /**
-   * 搜索表单与表格主体之间的分隔条
+   * Separator bar between search form and table body
    */
   separator?: boolean | SeparatorOptions;
   /**
-   * 显示搜索表单
+   * Show search form
    */
   showSearchForm?: boolean;
   /**
-   * 标题
+   * Title
    */
   tableTitle?: string;
   /**
-   * 标题帮助
+   *Title help
    */
   tableTitleHelp?: string;
 }

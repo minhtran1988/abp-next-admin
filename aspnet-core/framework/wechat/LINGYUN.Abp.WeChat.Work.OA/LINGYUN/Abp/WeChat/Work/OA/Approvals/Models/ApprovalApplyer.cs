@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 申请人信息
+/// Applicant information
 /// </summary>
 public class ApprovalApplyer : ApprovalUser
 {
     /// <summary>
-    /// 申请人所在部门id
+    /// The applicant’s department id
     /// </summary>
     [NotNull]
     [JsonProperty("partyid")]

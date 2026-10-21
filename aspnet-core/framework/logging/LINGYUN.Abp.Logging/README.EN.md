@@ -4,7 +4,7 @@ Basic logging module
 
 Defines the ILoggingManager interface for implementing log information queries.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

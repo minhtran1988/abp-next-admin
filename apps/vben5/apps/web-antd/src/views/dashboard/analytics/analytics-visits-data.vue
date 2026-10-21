@@ -12,27 +12,27 @@ onMounted(() => {
   renderEcharts({
     legend: {
       bottom: 0,
-      data: ['访问', '趋势'],
+      data: ['Visit', 'Trend'],
     },
     radar: {
       indicator: [
         {
-          name: '网页',
+          name: 'webpage',
         },
         {
-          name: '移动端',
+          name: 'mobile terminal',
         },
         {
           name: 'Ipad',
         },
         {
-          name: '客户端',
+          name: 'client',
         },
         {
-          name: '第三方',
+          name: 'Third Party',
         },
         {
-          name: '其它',
+          name: 'Other',
         },
       ],
       radius: '60%',
@@ -52,14 +52,14 @@ onMounted(() => {
             itemStyle: {
               color: '#b6a2de',
             },
-            name: '访问',
+            name: 'Visit',
             value: [90, 50, 86, 40, 50, 20],
           },
           {
             itemStyle: {
               color: '#5ab1ef',
             },
-            name: '趋势',
+            name: 'Trend',
             value: [70, 75, 70, 76, 20, 85],
           },
         ],

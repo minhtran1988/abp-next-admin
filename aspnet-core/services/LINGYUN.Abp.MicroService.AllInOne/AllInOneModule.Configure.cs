@@ -22,7 +22,7 @@ public partial class AllInOneModule
 
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别，应在0-31之间
+            // Differenced by open ports, should be between 0-31
             options.SnowflakeIdOptions.WorkerId = 1;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -72,7 +72,7 @@ public partial class AllInOneModule
 
                 options.UseAspNetCore();
 
-                //options.UseDataProtection();
+                // options.UseDataProtection();
             });
         });
     }
@@ -96,9 +96,9 @@ public partial class AllInOneModule
 
             PreConfigure<OpenIddictServerBuilder>(builder =>
             {
-                //builder.UseDataProtection();
+                // builder.UseDataProtection();
 
-                // 禁用https
+                // disable https
                 builder.UseAspNetCore()
                     .DisableTransportSecurityRequirement();
 
@@ -109,13 +109,13 @@ public partial class AllInOneModule
         {
             PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
             {
-                //https://documentation.openiddict.com/configuration/encryption-and-signing-credentials.html
+                // https://documentation.openiddict.com/configuration/encryption-and-signing-credentials.html
                 options.AddDevelopmentEncryptionAndSigningCertificate = false;
             });
 
             PreConfigure<OpenIddictServerBuilder>(builder =>
             {
-                //https://documentation.openiddict.com/configuration/encryption-and-signing-credentials.html
+                // https://documentation.openiddict.com/configuration/encryption-and-signing-credentials.html
                 using (var algorithm = RSA.Create(keySizeInBits: 2048))
                 {
                     var subject = new X500DistinguishedName("CN=Fabrikam Encryption Certificate");
@@ -134,9 +134,9 @@ public partial class AllInOneModule
                     builder.AddEncryptionCertificate(certificate);
                 }
 
-                //builder.UseDataProtection();
+                // builder.UseDataProtection();
 
-                // 禁用https
+                // disable https
                 builder.UseAspNetCore()
                     .DisableTransportSecurityRequirement();
             });
@@ -169,7 +169,7 @@ public partial class AllInOneModule
     {
         PreConfigure<AbpQuartzOptions>(options =>
         {
-            // 如果使用持久化存储, 则配置quartz持久层
+            // If persistent storage is used, configure the quartz persistence layer
             if (configuration.GetValue("Quartz:UsePersistentStore", false))
             {
                 var settings = configuration.GetSection("Quartz:Properties").Get<Dictionary<string, string>>();
@@ -196,8 +196,8 @@ public partial class AllInOneModule
     private void PreConfigureElsa(IServiceCollection services, IConfiguration configuration)
     {
         var elsaSection = configuration.GetSection("Elsa");
-        // 本项目命名空间位于 LINGYUN.Abp 之下, 直接使用 Elsa.* 会被解析为 LINGYUN.Abp.Elsa.* 命名空间,
-        // 因此这里使用 global:: 指定 Elsa 包中的类型
+        // The namespace of this project is located under LINGYUN.Abp. If you use Elsa.* directly, it will be parsed into the LINGYUN.Abp.Elsa.* namespace.
+        // Therefore global:: is used here to specify the type in the Elsa package
         var startups = new[]
             {
                 typeof(global::Elsa.Activities.Console.Startup),
@@ -261,8 +261,8 @@ public partial class AllInOneModule
 
     private void ConfigureEndpoints(IServiceCollection services)
     {
-        // 不需要
-        //Configure<AbpEndpointRouterOptions>(options =>
+        // Not needed
+        // Configure<AbpEndpointRouterOptions>(options =>
         //{
         //    options.EndpointConfigureActions.Add(
         //        (context) =>
@@ -277,14 +277,14 @@ public partial class AllInOneModule
             options.ReportApiVersions = true;
             options.AssumeDefaultVersionWhenUnspecified = true;
 
-            //options.ApiVersionReader = new HeaderApiVersionReader("api-version"); //Supports header too
-            //options.ApiVersionReader = new MediaTypeApiVersionReader(); //Supports accept header too
+            // options.ApiVersionReader = new HeaderApiVersionReader("api-version"); //Supports header too
+            // options.ApiVersionReader = new MediaTypeApiVersionReader(); //Supports accept header too
         }, mvcOptions =>
         {
             mvcOptions.ConfigureAbp(preActions.Configure());
         });
 
-        //services.AddApiVersioning(config =>
+        // services.AddApiVersioning(config =>
         //{
         //    // Specify the default API Version as 1.0
         //    config.DefaultApiVersion = new ApiVersion(1, 0);
@@ -292,7 +292,7 @@ public partial class AllInOneModule
         //    config.ReportApiVersions = true;
         //});
 
-        //services.AddVersionedApiExplorer(options =>
+        // services.AddVersionedApiExplorer(options =>
         //{
         //    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
         //    // note: the specified format code will format the version as "'v'major[.minor][-status]"
@@ -388,7 +388,7 @@ public partial class AllInOneModule
         }
     }
     /// <summary>
-    /// 配置数据导出
+    /// Configuration data export
     /// </summary>
     private void ConfigureExporter()
     {
@@ -398,7 +398,7 @@ public partial class AllInOneModule
             {
                 config.DynamicColumns = new[]
                 {
-                    // 忽略某些字段
+                    // Ignore some fields
                     new DynamicExcelColumn(nameof(BookDto.AuthorId)){ Ignore = true },
                     new DynamicExcelColumn(nameof(BookDto.LastModificationTime)){ Ignore = true },
                     new DynamicExcelColumn(nameof(BookDto.LastModifierId)){ Ignore = true },
@@ -410,7 +410,7 @@ public partial class AllInOneModule
         });
     }
     /// <summary>
-    /// 配置数据权限
+    /// Configure data permissions
     /// </summary>
     private void ConfigureEntityDataProtected()
     {
@@ -439,11 +439,11 @@ public partial class AllInOneModule
             // See https://github.com/abpframework/abp/blob/dev/modules/identityserver/src/Volo.Abp.PermissionManagement.Domain.IdentityServer/Volo/Abp/PermissionManagement/IdentityServer/AbpPermissionManagementDomainIdentityServerModule.cs
             options.ProviderPolicies[ClientPermissionValueProvider.ProviderName] = AbpOpenIddictPermissions.Applications.ManagePermissions;
 
-            //if (configuration.GetValue<bool>("AuthServer:UseOpenIddict"))
+            // if (configuration.GetValue<bool>("AuthServer:UseOpenIddict"))
             //{
             //    options.ProviderPolicies[ClientPermissionValueProvider.ProviderName] = AbpOpenIddictPermissions.Applications.ManagePermissions;
             //}
-            //else
+            // else
             //{
             //    options.ProviderPolicies[ClientPermissionValueProvider.ProviderName] = AbpIdentityServerPermissions.Clients.ManagePermissions;
             //}
@@ -538,10 +538,10 @@ public partial class AllInOneModule
 
     private void ConfigureExceptionHandling()
     {
-        // 自定义需要处理的异常
+        // Customize the exceptions that need to be handled
         Configure<AbpExceptionHandlingOptions>(options =>
         {
-            //  加入需要处理的异常类型
+            // Add the exception types that need to be handled
             options.Handlers.Add<Volo.Abp.Data.AbpDbConcurrencyException>();
             options.Handlers.Add<AbpInitializationException>();
             options.Handlers.Add<OutOfMemoryException>();
@@ -549,13 +549,13 @@ public partial class AllInOneModule
             options.Handlers.Add<Microsoft.EntityFrameworkCore.DbUpdateException>();
             options.Handlers.Add<System.Data.DBConcurrencyException>();
         });
-        // 自定义需要发送邮件通知的异常类型
+        // Customize the exception types that need to send email notifications
         Configure<AbpEmailExceptionHandlingOptions>(options =>
         {
-            // 是否发送堆栈信息
+            // Whether to send stack information
             options.SendStackTrace = true;
-            // 未指定异常接收者的默认接收邮件
-            // 指定自己的邮件地址
+            // Default received email if no exception recipient is specified
+            // Specify your own email address
         });
 
         Configure<VoloAbpExceptionHandlingOptions>(options =>
@@ -567,7 +567,7 @@ public partial class AllInOneModule
 
     private void ConfigureJsonSerializer(IConfiguration configuration)
     {
-        // 统一时间日期格式
+        // Unify time and date format
         Configure<AbpJsonOptions>(options =>
         {
             var jsonConfiguration = configuration.GetSection("Json");
@@ -576,7 +576,7 @@ public partial class AllInOneModule
                 jsonConfiguration.Bind(options);
             }
         });
-        // 中文序列化的编码问题
+        // Encoding issues for Chinese serialization
         Configure<AbpSystemTextJsonSerializerOptions>(options =>
         {
             options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
@@ -602,7 +602,7 @@ public partial class AllInOneModule
 
     private void ConfigureMultiTenancy(IConfiguration configuration)
     {
-        // 多租户
+        // Multi-tenant
         Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = true;
@@ -627,7 +627,7 @@ public partial class AllInOneModule
         Configure<AbpAuditingOptions>(options =>
         {
             options.ApplicationName = ApplicationName;
-            // 是否启用实体变更记录
+            // Whether to enable entity change recording
             var allEntitiesSelectorIsEnabled = configuration["Auditing:AllEntitiesSelector"];
             if (allEntitiesSelectorIsEnabled.IsNullOrWhiteSpace() ||
                 (bool.TryParse(allEntitiesSelectorIsEnabled, out var enabled) && enabled))
@@ -670,7 +670,7 @@ public partial class AllInOneModule
                         var controllerNamespace = methodInfo.DeclaringType?.Namespace;
                         if (controllerNamespace?.StartsWith("Elsa") == true)
                         {
-                            // TODO: Elsa 2.x 使用 Swashbuckle 6.x版本不兼容, 忽略Swagger文档
+                            // TODO: Elsa 2.x is incompatible with Swashbuckle 6.x, ignore the Swagger documentation
                             return false;
                         }
                     }
@@ -693,7 +693,7 @@ public partial class AllInOneModule
 
     private void ConfigureIdentity(IConfiguration configuration)
     {
-        // 增加配置文件定义,在新建租户时需要
+        // Add configuration file definition, required when creating a new tenant
         Configure<IdentityOptions>(options =>
         {
             var identityConfiguration = configuration.GetSection("Identity");
@@ -718,7 +718,7 @@ public partial class AllInOneModule
     {
         Configure<AbpBundlingOptions>(options =>
         {
-            //options.StyleBundles.Configure(
+            // options.StyleBundles.Configure(
             //    LeptonXLiteThemeBundles.Styles.Global,
             //    bundle =>
             //    {
@@ -733,7 +733,7 @@ public partial class AllInOneModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
 
             options
                 .AddLanguagesMapOrUpdate(
@@ -741,7 +741,7 @@ public partial class AllInOneModule
                     new NameValue("zh-Hans", "zh"),
                     new NameValue("en", "en"));
 
-            // vben admin 语言映射
+            // vben admin language mapping
             options
                 .AddLanguagesMapOrUpdate(
                     "vben-admin-ui",
@@ -783,14 +783,14 @@ public partial class AllInOneModule
             options.IsEnabled = true;
             // options.IsWrapUnauthorizedEnabled = true;
             options.IgnoreNamespaces.Add("Elsa");
-            // 微信消息不能包装
+            // WeChat messages cannot be packaged
             options.IgnoreNamespaces.Add("LINGYUN.Abp.WeChat");
         });
     }
 
     private void PreConfigureWrapper()
     {
-        //PreConfigure<AbpDaprClientProxyOptions>(options =>
+        // PreConfigure<AbpDaprClientProxyOptions>(options =>
         //{
         //    options.ProxyRequestActions.Add(
         //        (appid, httprequestmessage) =>
@@ -837,22 +837,22 @@ public partial class AllInOneModule
 
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
-            // 允许第三方调用集成服务
+            // Allow third parties to call integration services
             options.ExposeIntegrationServices = true;
         });
 
         Configure<AbpAspNetCoreSessionOptions>(options =>
         {
-            // abp 9.0版本可存储登录IP地域, 开启IP解析
+            // abp version 9.0 can store the login IP region and enable IP resolution
             options.IsParseIpLocation = true;
         });
 
-        // 用于消息中心邮件集中发送
+        // Used for centralized sending of emails in the message center
         services.Replace(
             ServiceDescriptor.Transient<Volo.Abp.Emailing.IEmailSender, PlatformEmailSender>());
         services.AddKeyedTransient<Volo.Abp.Emailing.IEmailSender, MailKitSmtpEmailSender>("DefaultEmailSender");
 
-        // 用于消息中心短信集中发送
+        // Used for centralized sending of SMS messages in the message center
         services.Replace(
             ServiceDescriptor.Transient<Volo.Abp.Sms.ISmsSender, PlatformSmsSender>());
         services.AddKeyedSingleton<ISmsSender, AliyunSmsSender>("DefaultSmsSender");
@@ -993,11 +993,11 @@ public partial class AllInOneModule
     {
         Configure<AbpWeChatMessageHandleOptions>(options =>
         {
-            // 回复文本消息
+            // Reply to text message
             options.MapMessage<
                 LINGYUN.Abp.WeChat.Official.Messages.Models.TextMessage,
                 LINGYUN.Abp.MicroService.AllInOne.WeChat.Official.Messages.TextMessageReplyContributor>();
-            // 处理关注事件
+            // Handle events of interest
             options.MapEvent<
                 LINGYUN.Abp.WeChat.Official.Messages.Models.UserSubscribeEvent,
                 LINGYUN.Abp.MicroService.AllInOne.WeChat.Official.Messages.UserSubscribeEventContributor>();

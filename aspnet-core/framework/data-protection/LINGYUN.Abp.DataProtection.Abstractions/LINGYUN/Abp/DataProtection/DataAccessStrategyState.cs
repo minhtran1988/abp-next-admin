@@ -6,17 +6,17 @@ namespace LINGYUN.Abp.DataProtection;
 public class DataAccessStrategyState
 {
     /// <summary>
-    /// 权限主体
+    /// Authorization subject
     /// </summary>
     public string SubjectName { get; set; } = default!;
 
     /// <summary>
-    /// 权限主体标识
+    /// Permission subject identification
     /// </summary>
     public string[] SubjectKeys { get; set; } = default!;
 
     /// <summary>
-    /// 权限策略
+    /// Permission policy
     /// </summary>
     public DataAccessStrategy Strategy { get; set; }
     public DataAccessStrategyState()

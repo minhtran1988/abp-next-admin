@@ -148,9 +148,9 @@ public class NotificationStore : INotificationStore
             var userNotitications = await _userNotificationRepository.GetListByNotificationIdssync(
                 notitications.Select(notification => notification.Id));
 
-            // 清理过期通知
+            // Clean up expired notifications
             await _notificationRepository.DeleteManyAsync(notitications);
-            // 清理用户通知
+            // Clear user notifications
             await _userNotificationRepository.DeleteManyAsync(userNotitications);
 
             await unitOfWork.CompleteAsync(cancellationToken);
@@ -466,8 +466,8 @@ public class NotificationStore : INotificationStore
             var userNofitications = new List<UserNotification>();
             foreach (var userId in userIds)
             {
-                // 重复检查
-                // TODO:如果存在很多个订阅用户,这是个隐患
+                // Repeat check
+                // TODO: If there are many subscribers, this is a hidden danger
                 if (!await _userNotificationRepository.AnyAsync(userId, notification.GetId(), cancellationToken))
                 {
                     var userNofitication = new UserNotification(notification.GetId(), userId, notification.TenantId);

@@ -52,7 +52,7 @@
         </div>
         <div class="button">
           <Button :disabled="sendMsgRef === ''" style="width: 100px" @click="handleSendMessage"
-            >发送</Button
+            >Send</Button
           >
         </div>
       </div>
@@ -83,7 +83,7 @@
 
   const emits = defineEmits(['send']);
   const props = defineProps({
-    /** 新消息事件名称 */
+    /** New message event name */
     eventName: {
       type: String,
       required: false,
@@ -132,7 +132,7 @@
     target: chatMsgRef,
     props: {
       size: SizeEnum.SMALL,
-      tip: '加载中...',
+      tip: 'Loading...',
       absolute: true,
     },
   });
@@ -180,7 +180,7 @@
     if (e.target.scrollHeight > e.target.clientHeight && e.target.scrollTop === 0) {
       _fetchChatMessage();
       if (e.target.scrollTop === 0) {
-        // 预留空间保持刷新
+        // Reserve space to keep refreshing
         nextTick(() => {
           const chatMsgEl = unref(chatMsgRef);
           chatMsgEl.scrollTop = 10;
@@ -200,7 +200,7 @@
       event: e,
       items: [
         {
-          label: '撤回',
+          label: 'Withdraw',
           handler: () => {
             emitter.emit(ChatEventEnum.USER_MESSAGE_RECALL, message);
           },

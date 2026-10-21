@@ -7,24 +7,24 @@ public class BookImportDto
 {
     [Required]
     [StringLength(128)]
-    [DisplayName("名称")]
+    [DisplayName("name")]
     public string Name { get; set; } = default!;
 
     [Required]
-    [DisplayName("类型")]
+    [DisplayName("Type")]
     public BookType Type { get; set; } = BookType.Undefined;
 
     [Required]
     [DataType(DataType.Date)]
-    [DisplayName("出版日期")]
+    [DisplayName("Publication Date")]
     public DateTime PublishDate { get; set; } = DateTime.Now;
 
     [Required]
-    [DisplayName("价格")]
+    [DisplayName("Price")]
     public float Price { get; set; }
 
     public Guid AuthorId { get; set; }
 
-    [DisplayName("作者")]
+    [DisplayName("Author")]
     public string AuthorName { get; set; } = default!;
 }

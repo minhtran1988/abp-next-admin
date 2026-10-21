@@ -4,24 +4,24 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Identity.Session;
 /// <summary>
-/// 管理用户会话
+/// Manage user sessions
 /// </summary>
 public interface IIdentitySessionManager
 {
     /// <summary>
-    /// 保存会话
+    /// Save session
     /// </summary>
-    /// <param name="claimsPrincipal">用户身份主体</param>
+    /// <param name="claimsPrincipal">User identity principal</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task SaveSessionAsync(
         ClaimsPrincipal claimsPrincipal,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 保存会话
+    /// Save session
     /// </summary>
-    /// <param name="clientId">客户端Id</param>
-    /// <param name="claimsPrincipal">用户身份主体</param>
+    /// <param name="clientId">ClientId</param>
+    /// <param name="claimsPrincipal">User identity principal</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task SaveSessionAsync(
@@ -29,9 +29,9 @@ public interface IIdentitySessionManager
         ClaimsPrincipal claimsPrincipal,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 撤销用户会话
+    /// Cancel user session
     /// </summary>
-    /// <param name="sessionId">会话id</param>
+    /// <param name="sessionId">session id</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task RevokeSessionAsync(

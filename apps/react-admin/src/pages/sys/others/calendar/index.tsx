@@ -1,11 +1,11 @@
 import { faker } from "@faker-js/faker";
 import type { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
 //  fullcalendar plugins
-import dayGridPlugin from "@fullcalendar/daygrid"; // 提供 dayGridMonth, dayGridWeek, dayGridDay, dayGrid 视图
-import interactionPlugin from "@fullcalendar/interaction"; // 如果需要 click select drag 这些action 则需要该依赖
-import listPlugin from "@fullcalendar/list"; // 提供 listWeek view
+import dayGridPlugin from "@fullcalendar/daygrid"; // Provide dayGridMonth, dayGridWeek, dayGridDay, dayGrid views
+import interactionPlugin from "@fullcalendar/interaction"; // If you need click select drag these actions, you need this dependency
+import listPlugin from "@fullcalendar/list"; // Provide listWeek view
 import FullCalendar from "@fullcalendar/react";
-import timeGridPlugin from "@fullcalendar/timegrid"; // 提供 timeGridWeek, timeGridDay, timeGrid 视图
+import timeGridPlugin from "@fullcalendar/timegrid"; // Provide timeGridWeek, timeGridDay, timeGrid views
 import dayjs from "dayjs";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
@@ -143,7 +143,7 @@ export default function Calendar() {
 		if (start) newEvent.start = start.toDate();
 		if (end) newEvent.end = end.toDate();
 
-		// 刷新日历显示
+		// Refresh calendar display
 		oldEvent?.remove();
 		calendarApi.addEvent(newEvent);
 	};
@@ -165,7 +165,7 @@ export default function Calendar() {
 		if (start) newEvent.start = start.toDate();
 		if (end) newEvent.end = end.toDate();
 
-		// 刷新日历显示
+		// Refresh calendar display
 		calendarApi.addEvent(newEvent);
 	};
 	// delete event

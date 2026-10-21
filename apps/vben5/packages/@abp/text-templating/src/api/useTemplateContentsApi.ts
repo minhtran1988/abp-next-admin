@@ -10,9 +10,9 @@ import { useRequest } from '@abp/request';
 export function useTemplateContentsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取模板内容
-   * @param input 参数
-   * @returns 模板内容数据传输对象
+   * Get template content
+   * @param input parameter
+   * @returns template content data transfer object
    */
   function getApi(
     input: TextTemplateContentGetInput,
@@ -24,10 +24,10 @@ export function useTemplateContentsApi() {
     });
   }
   /**
-   * 重置模板内容为默认值
-   * @param name 模板名称
-   * @param input 参数
-   * @returns 模板定义数据传输对象列表
+   *Reset template content to default values
+   * @param name template name
+   * @param input parameter
+   * @returns Template definition data transfer object list
    */
   function restoreToDefaultApi(
     name: string,
@@ -42,10 +42,10 @@ export function useTemplateContentsApi() {
     );
   }
   /**
-   * 更新模板内容
-   * @param name 模板名称
-   * @param input 参数
-   * @returns 模板内容数据传输对象
+   * Update template content
+   * @param name template name
+   * @param input parameter
+   * @returns template content data transfer object
    */
   function updateApi(
     name: string,

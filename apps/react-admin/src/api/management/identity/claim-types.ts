@@ -9,44 +9,44 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 新增用户声明
- * @param input 参数
- * @returns 用户声明实体数据传输对象
+ * Added user statement
+ * @param input parameter
+ * @returns User declared entity data transfer object
  */
 export function createApi(input: IdentityClaimTypeCreateDto): Promise<IdentityClaimTypeDto> {
 	return requestClient.post<IdentityClaimTypeDto>("/api/identity/claim-types", input);
 }
 
 /**
- * 删除用户声明
- * @param id 用户声明id
+ * Delete user statement
+ * @param id user statement id
  */
 export function deleteApi(id: string): Promise<void> {
 	return requestClient.delete(`/api/identity/claim-types/${id}`);
 }
 
 /**
- * 查询用户声明
- * @param id 用户声明id
- * @returns 用户声明实体数据传输对象
+ * Query user statement
+ * @param id user statement id
+ * @returns User declared entity data transfer object
  */
 export function getApi(id: string): Promise<IdentityClaimTypeDto> {
 	return requestClient.get<IdentityClaimTypeDto>(`/api/identity/claim-types/${id}`);
 }
 
 /**
- * 更新用户声明
- * @param id 用户声明id
- * @returns 用户声明实体数据传输对象
+ * Update user statement
+ * @param id user statement id
+ * @returns User declared entity data transfer object
  */
 export function updateApi(id: string, input: IdentityClaimTypeUpdateDto): Promise<IdentityClaimTypeDto> {
 	return requestClient.put<IdentityClaimTypeDto>(`/api/identity/claim-types/${id}`, input);
 }
 
 /**
- * 查询用户声明分页列表
- * @param input 过滤参数
- * @returns 用户声明实体数据传输对象分页列表
+ * Query user statement paging list
+ * @param input filter parameter
+ * @returns User declared entity data transfer object paginated list
  */
 export function getPagedListApi(
 	input?: GetIdentityClaimTypePagedListInput,
@@ -57,7 +57,7 @@ export function getPagedListApi(
 }
 
 /**
- * 获取可用的声明类型列表
+ * Get the list of available declaration types
  */
 export function getAssignableClaimsApi(): Promise<ListResultDto<IdentityClaimTypeDto>> {
 	return requestClient.get<ListResultDto<IdentityClaimTypeDto>>("/api/identity/claim-types/actived-list");

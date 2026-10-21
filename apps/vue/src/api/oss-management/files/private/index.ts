@@ -3,7 +3,7 @@ import { FileShare, FileShareInput, MyFileShare } from '../share/model';
 import { defHttp } from '/@/utils/http/axios';
 
 export const formatUrl = (url: string) => {
-  // 格式化路径为用户目录
+  // Format the path to the user directory
   return `/api/files/static/users/p/${url}`;
 };
 

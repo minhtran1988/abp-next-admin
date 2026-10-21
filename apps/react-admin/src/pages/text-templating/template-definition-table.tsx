@@ -87,7 +87,7 @@ const TemplateDefinitionTable: React.FC = () => {
 			renderFormItem: () => (
 				<Checkbox
 					onChange={(e) => {
-						const value = e.target.checked; // 获取 Checkbox 的选中状态
+						const value = e.target.checked; // Get the checked status of Checkbox
 						onFilter("isLayout", value, false);
 					}}
 				>
@@ -192,14 +192,14 @@ const TemplateDefinitionTable: React.FC = () => {
 	];
 
 	const onFilter = (field: string, value: any, shouldSubmit = true) => {
-		// 使用 formRef 更新查询条件
+		// Use formRef to update query conditions
 		if (formRef.current) {
 			formRef.current.setFieldsValue({
 				[field]: value,
 			});
 		}
 		if (shouldSubmit) {
-			// 触发表格刷新
+			// Trigger table refresh
 			formRef.current?.submit();
 		}
 	};

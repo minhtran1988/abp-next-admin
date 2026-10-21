@@ -17,7 +17,7 @@ function useExtraMenu(useRootMenus?: ComputedRef<MenuRecordRaw[]>) {
 
   const menus = computed(() => useRootMenus?.value ?? accessStore.accessMenus);
 
-  /** 记录当前顶级菜单下哪个子菜单最后激活 */
+  /** Record which submenu under the current top-level menu was last activated */
   const defaultSubMap = new Map<string, string>();
   const extraRootMenus = ref<MenuRecordRaw[]>([]);
   const route = useRoute();
@@ -29,7 +29,7 @@ function useExtraMenu(useRootMenus?: ComputedRef<MenuRecordRaw[]>) {
   );
 
   /**
-   * 选择混合菜单事件
+   * Select mixed menu events
    * @param menu
    */
   const handleMixedMenuSelect = async (menu: MenuRecordRaw) => {
@@ -54,7 +54,7 @@ function useExtraMenu(useRootMenus?: ComputedRef<MenuRecordRaw[]>) {
   };
 
   /**
-   * 选择默认菜单事件
+   * Select default menu event
    * @param menu
    * @param rootMenu
    */
@@ -71,7 +71,7 @@ function useExtraMenu(useRootMenus?: ComputedRef<MenuRecordRaw[]>) {
   };
 
   /**
-   * 侧边菜单鼠标移出事件
+   * Side menu mouse out event
    */
   const handleSideMouseLeave = () => {
     if (preferences.sidebar.expandOnHover) {

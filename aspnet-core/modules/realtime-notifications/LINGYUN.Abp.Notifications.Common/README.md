@@ -1,21 +1,21 @@
 # LINGYUN.Abp.Notifications.Common
 
-通知系统的公共模块，提供了通知系统的基础定义和共享功能。
+The public module of the notification system provides the basic definition and sharing functions of the notification system.
 
-## 功能特性
+## Features
 
-* 通知定义
-  * 通知组定义
-  * 通知类型定义
-  * 通知级别定义
-* 通用工具类
-  * 通知数据处理
-  * 通知状态管理
-* 扩展功能
-  * 通知数据扩展
-  * 通知提供者扩展
+*Notification definition
+  * Notification group definition
+  *Notification type definition
+  *Notification level definition
+* General tools
+  * Notification data processing
+  * Notification status management
+*Extended functions
+  * Notification data extension
+  * Notification provider extension
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsCommonModule))]
@@ -25,9 +25,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基础定义
+## Basic definition
 
-### 通知组
+### Notification Group
 
 ```csharp
 public class NotificationGroupDefinition
@@ -39,7 +39,7 @@ public class NotificationGroupDefinition
 }
 ```
 
-### 通知定义
+### Notification definition
 
 ```csharp
 public class NotificationDefinition
@@ -53,9 +53,9 @@ public class NotificationDefinition
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 定义通知组
+1. Define notification groups
 ```csharp
 public class YourNotificationGroupDefinitionProvider : NotificationGroupDefinitionProvider
 {
@@ -72,7 +72,7 @@ public class YourNotificationGroupDefinitionProvider : NotificationGroupDefiniti
 }
 ```
 
-2. 定义通知
+2. Define notifications
 ```csharp
 public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
 {
@@ -91,7 +91,7 @@ public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
 }
 ```
 
-3. 使用通知数据扩展
+3. Use notification data extensions
 ```csharp
 public static class NotificationDataExtensions
 {
@@ -107,7 +107,7 @@ public static class NotificationDataExtensions
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [通知系统文档](https://docs.abp.io/en/abp/latest/Notifications)
+* [ABP Documentation](https://docs.abp.io)
+* [Notification System Documentation](https://docs.abp.io/en/abp/latest/Notifications)

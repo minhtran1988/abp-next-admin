@@ -114,7 +114,7 @@ public class AgentService : IAgentService, IScopedDependency
         {
             var historyMessages = await _chatMessageStore.GetHistoryMessagesAsync(message.ConversationId.Value);
 
-            // TODO: 应用摘要提示压缩
+            // TODO: Apply summary prompt compression
             foreach (var chatMessage in historyMessages)
             {
                 messages.Add(new AIChatMessage(chatMessage.Role, chatMessage.GetMessagePrompt()));

@@ -1,8 +1,8 @@
 /**
- * 根据指定字段对对象数组进行去重
- * @param arr 要去重的对象数组
- * @param key 去重依据的字段名
- * @returns 去重后的对象数组
+ * Deduplicate the object array according to the specified field
+ * @param arr The object array to be duplicated
+ * @param key field name based on which to remove duplicates
+ * @returns object array after deduplication
  */
 function uniqueByField<T>(arr: T[], key: keyof T): T[] {
   const seen = new Map<any, T>();

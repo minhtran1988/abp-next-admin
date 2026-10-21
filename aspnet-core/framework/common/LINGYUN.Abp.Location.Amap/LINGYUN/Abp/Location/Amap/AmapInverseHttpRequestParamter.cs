@@ -3,69 +3,69 @@
     public class AmapInverseHttpRequestParamter
     {
         /// <summary>
-        /// 经纬度坐标
+        /// Longitude and latitude coordinates
         /// 
-        /// 传入内容规则：经度在前，纬度在后，经纬度间以“,”分割，经纬度小数点后不要超过 6 位。
-        /// 如果需要解析多个经纬度的话，请用"|"进行间隔，并且将 batch 参数设置为 true，最多支持传入 20 对坐标点。
-        /// 每对点坐标之间用"|"分割。
+        /// Rules for incoming content: longitude first, latitude last, longitude and latitude separated by ",", no more than 6 digits after the decimal point for longitude and latitude.
+        /// If you need to parse multiple longitudes and latitudes, please use "|" to separate them, and set the batch parameter to true. Up to 20 pairs of coordinate points can be passed in.
+        /// Each pair of point coordinates is separated by "|".
         /// </summary>
         public Location[] Locations { get; set; } = new Location[0];
         /// <summary>
-        /// 返回附近POI类型
-        /// 以下内容需要 extensions 参数为 all 时才生效。
-        /// 逆地理编码在进行坐标解析之后不仅可以返回地址描述，也可以返回经纬度附近符合限定要求的POI内容（在 extensions 字段值为 all 时才会返回POI内容）。
-        /// 设置 POI 类型参数相当于为上述操作限定要求。
+        /// Returns the nearby POI type
+        /// The following content requires the extensions parameter to be all to take effect.
+        /// After coordinate parsing, reverse geocoding can not only return the address description, but also return the POI content near the longitude and latitude that meets the limited requirements (the POI content will be returned only when the extensions field value is all).
+        /// Setting the POI type parameters is equivalent to defining the requirements for the above operations.
         /// 
-        /// 参数仅支持传入POI TYPECODE，可以传入多个POI TYPECODE，相互之间用“|”分隔。
-        /// 该参数在 batch 取值为 true 时不生效。获取 POI TYPECODE
+        /// The parameter only supports passing in POI TYPECODE. Multiple POI TYPECODE can be passed in, separated by "|".
+        /// This parameter does not take effect when the batch value is true. Get POI TYPECODE
         /// </summary>
         public string PoiType { get; set; }
         /// <summary>
-        /// 搜索半径
-        /// radius取值范围在0~3000，默认是1000。单位：米
+        /// Search radius
+        /// The value range of radius is 0~3000, and the default is 1000. Unit: meter
         /// </summary>
         public short Radius { get; set; } = 1000;
         /// <summary>
-        /// 返回结果控制
-        /// extensions 参数默认取值是 base，也就是返回基本地址信息；
-        /// extensions 参数取值为 all 时会返回基本地址信息、附近 POI 内容、道路信息以及道路交叉口信息。
+        /// Return result control
+        /// The default value of the extensions parameter is base, which returns the basic address information;
+        /// When the extensions parameter value is all, basic address information, nearby POI content, road information and road intersection information will be returned.
         /// </summary>
         public string Extensions { get; set; } = "base";
         /// <summary>
-        /// 批量查询控制
-        /// batch 参数设置为 true 时进行批量查询操作，最多支持 20 个经纬度点进行批量地址查询操作。
-        /// batch 参数设置为 false 时进行单点查询，此时即使传入多个经纬度也只返回第一个经纬度的地址解析查询结果。
+        /// Batch query control
+        /// When the batch parameter is set to true, batch query operations are performed, and a maximum of 20 latitude and longitude points are supported for batch address query operations.
+        /// When the batch parameter is set to false, a single point query is performed. At this time, even if multiple longitudes and latitudes are passed in, only the address resolution query result of the first longitude and latitude will be returned.
         /// </summary>
         public bool Batch { get; set; } = false;
         /// <summary>
-        /// 道路等级
+        /// Road level
         /// 
-        /// 以下内容需要 extensions 参数为 all 时才生效。
-        /// 可选值：0，1
-        /// 当roadlevel=0时，显示所有道路
-        /// 当roadlevel = 1时，过滤非主干道路，仅输出主干道路数据
+        /// The following content requires the extensions parameter to be all to take effect.
+        /// Optional values: 0, 1
+        /// When roadlevel=0, display all roads
+        /// When roadlevel = 1, filter non-trunk roads and only output trunk road data
         /// </summary>
         public sbyte? RoadLevel { get; set; }
         /// <summary>
-        /// 数字签名
+        /// Digital signature
         /// </summary>
         public string Sig { get; set; }
         /// <summary>
-        /// 返回数据格式类型
-        /// 可选输入内容包括：JSON，XML。设置 JSON 返回结果数据将会以JSON结构构成；
-        /// 如果设置 XML 返回结果数据将以 XML 结构构成。
+        /// Return data format type
+        /// Optional input content includes: JSON, XML. Set JSON. The returned result data will be composed of JSON structure;
+        /// If XML is set, the returned result data will be composed of XML structure.
         /// </summary>
         public string Output { get; set; } = "JSON";
         /// <summary>
-        /// 是否优化POI返回顺序
-        /// 以下内容需要 extensions 参数为 all 时才生效。
-        /// homeorcorp 参数的设置可以影响召回 POI 内容的排序策略，目前提供三个可选参数：
+        /// Whether to optimize the POI return order
+        /// The following content requires the extensions parameter to be all to take effect.
+        /// The setting of the homeorcorp parameter can affect the sorting strategy of recalling POI content. Currently, three optional parameters are provided:
         /// 
-        /// 0：不对召回的排序策略进行干扰。
+        /// 0: No interference with the recall sorting strategy.
         /// 
-        /// 1：综合大数据分析将居家相关的 POI 内容优先返回，即优化返回结果中 pois 字段的poi顺序。
+        /// 1: Comprehensive big data analysis returns home-related POI content first, that is, optimizing the POI order of the pois field in the returned results.
         /// 
-        /// 2：综合大数据分析将公司相关的 POI 内容优先返回，即优化返回结果中 pois 字段的poi顺序。
+        /// 2: Comprehensive big data analysis returns company-related POI content first, that is, optimizing the POI order of the pois field in the returned results.
         /// </summary>
         public sbyte HomeOrCorp { get; set; } = 0;
     }

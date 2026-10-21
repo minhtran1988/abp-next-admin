@@ -11,7 +11,7 @@ using Volo.Abp.DependencyInjection;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)解析器
+/// Notification channel data (payload) parser
 /// </summary>
 public class NotificationChannelDataResolver : INotificationChannelDataResolver, ISingletonDependency
 {
@@ -102,7 +102,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
     {
         Check.NotNull(payloadType, nameof(payloadType));
 
-        // 返回数据中实际命中的载荷标识键(大小写可能与声明不同), 用于诊断信息
+        // Return the actual hit payload identification key in the data (the case may be different from the declaration), used for diagnostic information
         foreach (var key in PresenceProvider.GetMatchingKeys(payloadType))
         {
             if (Accessor.TryGetRawValue(notificationData, key, out _, out var matchedKey))
@@ -111,7 +111,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
             }
         }
 
-        // 数据中不存在时返回声明的标识键
+        // Return the declared identification key if it does not exist in the data
         return PresenceProvider.GetMatchingKeys(payloadType).FirstOrDefault();
     }
 
@@ -144,7 +144,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
             return registration;
         }
 
-        // 未注册的类型按约定直接读取, 避免生产者与渠道耦合到注册顺序
+        // Unregistered types are read directly according to the agreement to avoid coupling producers and channels to the registration order.
         return new ChannelDataRegistration(
             new NotificationChannelDataDescriptor(
                 string.Empty,
@@ -182,7 +182,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
 
         foreach (var property in NotificationChannelDataPropertyCache.GetProperties(registration.Descriptor.PayloadType))
         {
-            // 按大小写不敏感的方式定位实际键名, 兼容生产者使用不同大小写写入的数据
+            // Locate the actual key name in a case-insensitive manner, compatible with data written by producers using different cases.
             if (!Accessor.TryGetRawValue(notificationData, property.Key, out var rawValue, out var matchedKey))
             {
                 continue;
@@ -197,7 +197,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
 
             if (value == null)
             {
-                // 值存在但无法解析/类型不符, 说明生产者写入的载荷非法
+                // The value exists but cannot be parsed/the type does not match, indicating that the payload written by the producer is illegal
                 Logger.LogWarning(
                     "The channel data '{ChannelData}' property '{Property}' of provider '{Provider}' can not be resolved from the key '{Key}'.",
                     registration.Descriptor.PayloadType.FullName, property.Key, registration.Descriptor.ProviderName, matchedKey ?? property.Key);
@@ -211,9 +211,9 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
     }
 
     /// <summary>
-    /// 转换载荷属性值
+    /// Convert payload attribute value
     /// </summary>
-    /// <returns>转换结果; 无法转换或类型不符时返回 null</returns>
+    /// <returns>Conversion result; null is returned when conversion cannot be performed or the type does not match</returns>
     protected virtual object? ConvertPropertyValue(
         NotificationData notificationData,
         NotificationChannelDataProperty property,
@@ -226,7 +226,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
             return null;
         }
 
-        // 值的运行时类型必须与属性声明类型兼容
+        // The runtime type of the value must be compatible with the property declaration type
         var underlyingType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 
         return underlyingType.IsInstanceOfType(value) ? value : null;
@@ -260,7 +260,7 @@ public class NotificationChannelDataResolver : INotificationChannelDataResolver,
     }
 
     /// <summary>
-    /// 渠道数据注册项
+    /// Channel data registration item
     /// </summary>
     protected sealed class ChannelDataRegistration
     {

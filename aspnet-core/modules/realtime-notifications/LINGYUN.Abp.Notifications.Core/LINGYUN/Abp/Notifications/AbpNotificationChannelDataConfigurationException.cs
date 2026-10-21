@@ -3,11 +3,11 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据配置异常
+/// Channel data configuration abnormality
 /// </summary>
 /// <remarks>
-/// 注册期契约校验失败时抛出, 目的: 让配置错误在启动阶段暴露,
-/// 而不是在生产环境静默丢弃通知。
+/// Thrown when the contract verification fails during the registration period. Purpose: to expose configuration errors during the startup phase.
+/// Instead of silently discarding notifications in production environments.
 /// </remarks>
 public class AbpNotificationChannelDataConfigurationException : Exception
 {

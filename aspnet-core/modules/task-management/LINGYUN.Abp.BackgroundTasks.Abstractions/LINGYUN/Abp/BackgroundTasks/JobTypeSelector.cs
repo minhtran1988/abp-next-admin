@@ -26,33 +26,33 @@ public class JobTypeSelector : NamedTypeSelector
     }
 
     /// <summary>
-    /// 任务独占超时时长（秒）
-    /// 0或更小不生效
+    /// Task exclusive timeout (seconds)
+    /// 0 or less does not take effect
     /// </summary>
     public int? LockTimeOut { get; set; }
     /// <summary>
-    /// 指定运行节点
+    /// Specify the running node
     /// </summary>
     public string? NodeName { get; set; }
     /// <summary>
-    /// 任务优先级
+    /// Task priority
     /// </summary>
     public JobPriority? Priority { get; set; }
     /// <summary>
-    /// Cron表达式，如果是周期性任务需要指定
+    /// Cron expression, if it is a periodic task, it needs to be specified
     /// </summary>
     public string? Cron { get; set; }
     /// <summary>
-    /// 间隔时间，单位秒，与Cron表达式冲突
+    /// Interval time, unit seconds, conflicts with Cron expression
     /// </summary>
     public int? Interval { get; set; }
     /// <summary>
-    /// 最大触发次数
+    /// Maximum number of triggers
     /// </summary>
     public int? MaxCount { get; set; }
     /// <summary>
-    /// 失败重试上限
-    /// 默认：50
+    /// Failed retry upper limit
+    /// Default: 50
     /// </summary>
     public int? MaxTryCount { get; set; }
 }

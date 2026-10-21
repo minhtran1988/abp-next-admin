@@ -23,7 +23,7 @@ public static class NotificationsDbContextModelCreatingExtensions
 
             b.Property(p => p.NotificationName).HasMaxLength(NotificationConsts.MaxNameLength).IsRequired();
             b.Property(p => p.NotificationTypeName).HasMaxLength(NotificationConsts.MaxTypeNameLength).IsRequired();
-            //b.Property(p => p.NotificationData).HasMaxLength(NotificationConsts.MaxDataLength).IsRequired();
+            // b.Property(p => p.NotificationData).HasMaxLength(NotificationConsts.MaxDataLength).IsRequired();
 
             b.Property(p => p.ContentType)
              .HasDefaultValue(NotificationContentType.Text);
@@ -50,7 +50,7 @@ public static class NotificationsDbContextModelCreatingExtensions
             b.Property(p => p.NotificationName).HasMaxLength(SubscribeConsts.MaxNotificationNameLength).IsRequired();
             b.Property(p => p.UserName)
                 .HasMaxLength(SubscribeConsts.MaxUserNameLength)
-                .HasDefaultValue("/")// 不是必须的
+                .HasDefaultValue("/")// is not required
                 .IsRequired();
 
             b.ConfigureByConvention();
@@ -68,7 +68,7 @@ public static class NotificationsDbContextModelCreatingExtensions
             b.Property(p => p.NotificationName).HasMaxLength(NotificationConsts.MaxNameLength).IsRequired();
             b.Property(p => p.UserName)
                 .HasMaxLength(SubscribeConsts.MaxUserNameLength)
-                .HasDefaultValue("/")// 不是必须的
+                .HasDefaultValue("/")// is not required
                 .IsRequired();
 
             b.Property(p => p.Reason).HasMaxLength(NotificationSendRecordConsts.MaxReasonLength);

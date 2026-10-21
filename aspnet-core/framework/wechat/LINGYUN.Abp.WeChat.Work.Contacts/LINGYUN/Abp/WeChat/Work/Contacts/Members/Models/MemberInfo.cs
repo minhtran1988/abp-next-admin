@@ -5,166 +5,166 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 成员详情
+/// Member details
 /// </summary>
 public class MemberInfo
 {
     /// <summary>
-    /// 全局唯一
+    /// Globally unique
     /// </summary>
     [NotNull]
     [JsonProperty("open_userid")]
     [JsonPropertyName("open_userid")]
     public string OpenUserId { get; set; } = default!;
     /// <summary>
-    /// 成员UserID
+    /// Member UserID
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 成员名称
+    /// Member name
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 手机号码
+    /// Mobile phone number
     /// </summary>
     [CanBeNull]
     [JsonProperty("mobile")]
     [JsonPropertyName("mobile")]
     public string? Mobile { get; set; }
     /// <summary>
-    /// 成员所属部门id列表
+    /// List of department IDs to which members belong
     /// </summary>
     [NotNull]
     [JsonProperty("department")]
     [JsonPropertyName("department")]
     public int[] Department { get; set; } = default!;
     /// <summary>
-    /// 主部门
+    /// Main department
     /// </summary>
     [CanBeNull]
     [JsonProperty("main_department")]
     [JsonPropertyName("main_department")]
     public int? MainDepartment { get; set; }
     /// <summary>
-    /// 部门内的排序值，默认为0。数量必须和department一致，数值越大排序越前面。值范围是[0, 2^32)
+    /// The sorting value within the department, the default is 0. The quantity must be consistent with the department. The larger the value, the higher the order. The value range is [0, 2^32)
     /// </summary>
     [NotNull]
     [JsonProperty("order")]
     [JsonPropertyName("order")]
     public int[]? Order { get; set; }
     /// <summary>
-    /// 员工个人二维码
+    /// Employee personal QR code
     /// </summary>
     [CanBeNull]
     [JsonProperty("qr_code")]
     [JsonPropertyName("qr_code")]
     public string? QrCode { get; set; }
     /// <summary>
-    /// 职务信息
+    /// Job information
     /// </summary>
     [CanBeNull]
     [JsonProperty("position")]
     [JsonPropertyName("position")]
     public string? Position { get; set; }
     /// <summary>
-    /// 性别
+    /// Gender
     /// </summary>
     [CanBeNull]
     [JsonProperty("gender")]
     [JsonPropertyName("gender")]
     public Gender? Gender { get; set; }
     /// <summary>
-    /// 邮箱
+    /// Email
     /// </summary>
     [CanBeNull]
     [JsonProperty("email")]
     [JsonPropertyName("email")]
     public string? Email { get; set; }
     /// <summary>
-    /// 企业邮箱
+    /// Business email
     /// </summary>
     [CanBeNull]
     [JsonProperty("biz_mail")]
     [JsonPropertyName("biz_mail")]
     public string? BizEmail { get; set; }
     /// <summary>
-    /// 表示在所在的部门内是否为部门负责人，数量与department一致
+    /// Indicates whether you are the head of the department in your department, the number is consistent with department
     /// </summary>
     [CanBeNull]
     [JsonProperty("is_leader_in_dept")]
     [JsonPropertyName("is_leader_in_dept")]
     public int[]? IsLeaderInDept { get; set; }
     /// <summary>
-    /// 直属上级UserID，返回在应用可见范围内的直属上级列表，最多有1个直属上级
+    /// Direct superior UserID, returns the list of direct superiors within the visible range of the application, there is at most 1 direct superior
     /// </summary>
     [CanBeNull]
     [JsonProperty("direct_leader")]
     [JsonPropertyName("direct_leader")]
     public string[]? DirectLeader { get; set; }
     /// <summary>
-    /// 头像url
+    /// Avatar url
     /// </summary>
     [CanBeNull]
     [JsonProperty("avatar")]
     [JsonPropertyName("avatar")]
     public string? Avatar { get; set; }
     /// <summary>
-    /// 头像缩略图url
+    /// Avatar thumbnail url
     /// </summary>
     [CanBeNull]
     [JsonProperty("thumb_avatar")]
     [JsonPropertyName("thumb_avatar")]
     public string? ThumbAvatar { get; set; }
     /// <summary>
-    /// 座机
+    /// Landline
     /// </summary>
     [CanBeNull]
     [JsonProperty("telephone")]
     [JsonPropertyName("telephone")]
     public string? TelePhone { get; set; }
     /// <summary>
-    /// 别名
+    /// Alias
     /// </summary>
     [CanBeNull]
     [JsonProperty("alias")]
     [JsonPropertyName("alias")]
     public string? Alias { get; set; }
     /// <summary>
-    /// 地址
+    /// address
     /// </summary>
     [CanBeNull]
     [JsonProperty("address")]
     [JsonPropertyName("address")]
     public string? Address { get; set; }
     /// <summary>
-    /// 激活状态
+    /// Activation status
     /// </summary>
     [NotNull]
     [JsonProperty("status")]
     [JsonPropertyName("status")]
     public MemberStatus Status { get; set; }
     /// <summary>
-    /// 扩展属性
+    /// Extended attributes
     /// </summary>
     [CanBeNull]
     [JsonProperty("extattr")]
     [JsonPropertyName("extattr")]
     public MemberExternalAttribute? ExternalAttribute { get; set; }
     /// <summary>
-    /// 对外职务，如果设置了该值，则以此作为对外展示的职务，否则以position来展示。
+    /// External position, if this value is set, this will be used as the position displayed externally, otherwise it will be displayed as position.
     /// </summary>
     [CanBeNull]
     [JsonProperty("external_position")]
     [JsonPropertyName("external_position")]
     public string? ExternalPosition { get; set; }
     /// <summary>
-    /// 外部联系人的自定义展示信息
+    /// Customized display information for external contacts
     /// </summary>
     [CanBeNull]
     [JsonProperty("external_profile")]

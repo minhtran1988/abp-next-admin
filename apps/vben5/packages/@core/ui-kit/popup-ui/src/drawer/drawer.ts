@@ -10,128 +10,128 @@ export type CloseIconPlacement = 'left' | 'right';
 
 export interface DrawerProps {
   /**
-   * 是否挂载到内容区域
+   * Whether to mount to the content area
    * @default false
    */
   appendToMain?: boolean;
   /**
-   * 取消按钮文字
+   * Cancel button text
    */
   cancelText?: string;
   class?: ClassType;
   /**
-   * 是否显示关闭按钮
+   * Whether to display the close button
    * @default true
    */
   closable?: boolean;
   /**
-   * 关闭按钮的位置
+   * Position of close button
    */
   closeIconPlacement?: CloseIconPlacement;
   /**
-   * 点击弹窗遮罩是否关闭弹窗
+   * Click on the pop-up window mask to close the pop-up window
    * @default true
    */
   closeOnClickModal?: boolean;
   /**
-   * 按下 ESC 键是否关闭弹窗
+   * Whether to close the pop-up window by pressing the ESC key
    * @default true
    */
   closeOnPressEscape?: boolean;
   /**
-   * 确定按钮 loading
+   * OK button loading
    * @default false
    */
   confirmLoading?: boolean;
   /**
-   * 确定按钮文字
+   * OK button text
    */
   confirmText?: string;
   contentClass?: string;
   /**
-   * 弹窗描述
+   * Pop-up window description
    */
   description?: string;
   /**
-   * 在关闭时销毁抽屉
+   * Destroy the drawer on close
    */
   destroyOnClose?: boolean;
   /**
-   * 是否显示底部
+   * Whether to display the bottom
    * @default true
    */
   footer?: boolean;
   /**
-   * 弹窗底部样式
+   * Pop-up window bottom style
    */
   footerClass?: ClassType;
   /**
-   * 是否显示顶栏
+   * Whether to display the top bar
    * @default true
    */
   header?: boolean;
   /**
-   * 弹窗头部样式
+   * Pop-up window header style
    */
   headerClass?: ClassType;
   /**
-   * 弹窗是否显示
+   * Whether the pop-up window is displayed
    * @default false
    */
   loading?: boolean;
   /**
-   * 是否显示遮罩
+   * Whether to display the mask
    * @default true
    */
   modal?: boolean;
 
   /**
-   * 是否自动聚焦
+   * Whether to focus automatically
    */
   openAutoFocus?: boolean;
   /**
-   * 弹窗遮罩模糊效果
+   * Pop-up window mask blur effect
    */
   overlayBlur?: number;
   /**
-   * 抽屉位置
+   * Drawer location
    * @default right
    */
   placement?: DrawerPlacement;
 
   /**
-   * 是否显示取消按钮
+   * Whether to display the cancel button
    * @default true
    */
   showCancelButton?: boolean;
   /**
-   * 是否显示确认按钮
+   * Whether to display the confirmation button
    * @default true
    */
   showConfirmButton?: boolean;
   /**
-   * 提交中（锁定抽屉状态）
+   * Submitting (locked drawer status)
    */
   submitting?: boolean;
   /**
-   * 弹窗标题
+   * Pop-up window title
    */
   title?: string;
   /**
-   * 弹窗标题提示
+   * Pop-up window title prompt
    */
   titleTooltip?: string;
   /**
-   * 抽屉层级
+   * Drawer level
    */
   zIndex?: number;
 }
 
 export interface DrawerState extends DrawerProps {
-  /** 弹窗打开状态 */
+  /** Pop-up window open status */
   isOpen?: boolean;
   /**
-   * 共享数据
+   * Share data
    */
   sharedData?: Record<string, any>;
 }
@@ -144,35 +144,35 @@ export type ExtendedDrawerApi = DrawerApi & {
 
 export interface DrawerApiOptions extends DrawerState {
   /**
-   * 独立的抽屉组件
+   *Separate drawer components
    */
   connectedComponent?: Component;
   /**
-   * 关闭前的回调，返回 false 可以阻止关闭
+   * Callback before closing, return false to prevent closing
    * @returns
    */
   onBeforeClose?: () => MaybePromise<boolean | undefined>;
   /**
-   * 点击取消按钮的回调
+   *Callback when the cancel button is clicked
    */
   onCancel?: () => void;
   /**
-   * 弹窗关闭动画结束的回调
+   * The callback for the end of pop-up window closing animation
    * @returns
    */
   onClosed?: () => void;
   /**
-   * 点击确定按钮的回调
+   *Callback when click OK button
    */
   onConfirm?: () => void;
   /**
-   * 弹窗状态变化回调
+   * Pop-up window status change callback
    * @param isOpen
    * @returns
    */
   onOpenChange?: (isOpen: boolean) => void;
   /**
-   * 弹窗打开动画结束的回调
+   * The pop-up window opens the animation end callback
    * @returns
    */
   onOpened?: () => void;

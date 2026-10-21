@@ -2,17 +2,17 @@
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 用户扫码事件
+/// User scan event
 /// </summary>
 public abstract class ScanCodeEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;
     /// <summary>
-    /// 扫描信息
+    /// Scan information
     /// </summary>
     [XmlElement("ScanCodeInfo")]
     public ScanCodeInfo ScanCodeInfo { get; set; } = default!;
@@ -21,12 +21,12 @@ public abstract class ScanCodeEvent : WeChatWorkEventMessage
 public class ScanCodeInfo
 {
     /// <summary>
-    /// 扫描类型，一般是qrcode
+    /// Scanning type, usually qrcode
     /// </summary>
     [XmlElement("ScanType")]
     public string ScanType { get; set; } = default!;
     /// <summary>
-    /// 扫描结果，即二维码对应的字符串信息
+    /// Scanning result, that is, the string information corresponding to the QR code
     /// </summary>
     [XmlElement("ScanResult")]
     public string ScanResult { get; set; } = default!;

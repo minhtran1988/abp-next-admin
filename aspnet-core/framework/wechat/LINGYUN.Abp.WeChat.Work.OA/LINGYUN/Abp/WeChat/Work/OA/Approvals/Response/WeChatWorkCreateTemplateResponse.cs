@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Response;
 /// <summary>
-/// 创建审批模板响应参数
+/// Create approval template response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97437"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97437"/>
 /// </remarks>
 public class WeChatWorkCreateTemplateResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 模版创建成功后返回的模版id
+    /// The template id returned after the template is successfully created
     /// </summary>
     [NotNull]
     [JsonProperty("template_id")]

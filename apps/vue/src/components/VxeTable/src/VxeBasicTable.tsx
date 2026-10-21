@@ -44,8 +44,8 @@ export default defineComponent({
     });
 
     /**
-     * @description: 二次封装需要的所有属性
-     *  1.部分属性需要和全局属性进行合并
+     * @description: All attributes required for secondary encapsulation
+     * 1. Some attributes need to be merged with global attributes.
      */
     const getBindValues = computed<BasicTableProps>(() => {
       const propsData: BasicTableProps = {
@@ -57,7 +57,7 @@ export default defineComponent({
     });
 
     /**
-     * @description: Table 所有属性
+     * @description: Table all properties
      */
     const getBindGridValues = computed(() => {
       const omitProps = omit(getBindValues.value, ignorePropKeys);
@@ -69,14 +69,14 @@ export default defineComponent({
     });
 
     /**
-     * @description: 组件外层class
+     * @description: component outer class
      */
     const getWrapperClass = computed(() => {
       return [attrs.class];
     });
 
     /**
-     * @description: 重写Vxe-table 方法
+     * @description: Override Vxe-table method
      */
     const getBindGridEvent: VxeGridEventProps = {
       ...emitEvents,

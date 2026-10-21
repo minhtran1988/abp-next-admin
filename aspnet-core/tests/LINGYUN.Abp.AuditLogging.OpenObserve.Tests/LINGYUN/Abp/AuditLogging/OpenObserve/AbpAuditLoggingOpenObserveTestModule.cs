@@ -31,18 +31,18 @@ public class AbpAuditLoggingOpenObserveTestModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 集成测试按宿主实例使用独立数据流, 避免历史数据影响计数断言
-        // (AbpIntegratedTest 每个测试方法会创建新的宿主实例, 仅用时间戳会因同秒碰撞而共用数据流)
+        // Integration tests use independent data streams per host instance to avoid historical data affecting count assertions
+        // (AbpIntegratedTest Each test method will create a new host instance, and only the timestamp will share the data stream due to collisions with the same second)
         var suffix = $"{DateTime.Now:yyyyMMddHHmmss}{Guid.NewGuid():N}"[..22];
 
         Configure<AbpAuditLoggingOpenObserveOptions>(options =>
         {
             options.AuditLogStream = $"audit_log_test_{suffix}";
             options.SecurityLogStream = $"security_log_test_{suffix}";
-            // 实体变更/操作数据流由 AuditLogStream 计算: {AuditLogStream}_entity_changes / _actions
+            // Entity change/action data stream calculated by AuditLogStream: {AuditLogStream}_entity_changes / _actions
         });
 
-        // 收集日志以便断言(例如"数据流不存在"的警告)
+        // Collect logs for assertions (such as "data flow does not exist" warning)
         context.Services.AddLogging(builder => builder.AddProvider(new TestLoggerProvider()));
     }
 
@@ -66,7 +66,7 @@ public class AbpAuditLoggingOpenObserveTestModule : AbpModule
             fetchSchema: false,
             type: StreamType.Logs);
 
-        // 数据流按租户隔离, 租户数据流以基础名称为前缀(如 audit_log_test_xxx_<tenantId>), 因此按前缀匹配清理
+        // Data flows are isolated by tenant. Tenant data flows are prefixed with the base name (such as audit_log_test_xxx_<tenantId>), so they are cleaned based on prefix matching.
         var prefixes = new List<string>
         {
             options.AuditLogStream,

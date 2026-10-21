@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Members.Models;
 /// <summary>
-/// 视频号属性
+/// Video number attribute
 /// </summary>
 public class WechatChannel
 {
     /// <summary>
-    /// 视频号名字（设置后，成员将对外展示该视频号）
+    /// Video account name (after setting, members will display the video account to the outside world)
     /// </summary>
     [NotNull]
     [JsonProperty("nickname")]
     [JsonPropertyName("nickname")]
     public string NickName { get; set; } = default!;
     /// <summary>
-    /// 对外展示视频号状态
+    /// Display the video account status to the outside world
     /// </summary>
     [NotNull]
     [JsonProperty("status")]

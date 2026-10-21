@@ -35,7 +35,7 @@ public class OnlyDomainTenantResolveContributor : HttpTenantResolveContributorBa
         var options = httpContext.RequestServices.GetRequiredService<IOptions<AbpAspNetCoreMultiTenancyResolveOptions>>();
         if (options.Value.OnlyResolveDomain)
         {
-            // 仅仅解析域名, 如果请求的是IP地址, 则不使用这个解析贡献者
+            // Only resolve the domain name. If the request is an IP address, this resolution contributor will not be used.
             if (IPAddress.TryParse(httpContext.Request.Host.Host, out var _))
             {
                 return Task.FromResult<string?>(null);

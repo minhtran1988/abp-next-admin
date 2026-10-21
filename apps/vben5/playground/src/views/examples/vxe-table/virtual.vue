@@ -35,7 +35,7 @@ const gridOptions: VxeGridProps<RowType> = {
 
 const [Grid, gridApi] = useVbenVxeGrid({ gridOptions });
 
-// 模拟行数据
+// Simulate row data
 const loadList = (size = 200) => {
   try {
     const dataList: RowType[] = [];
@@ -44,7 +44,7 @@ const loadList = (size = 200) => {
         id: 10_000 + i,
         name: `Test${i}`,
         role: 'Developer',
-        sex: '男',
+        sex: 'male',
       });
     }
     gridApi.setGridOptions({ data: dataList });

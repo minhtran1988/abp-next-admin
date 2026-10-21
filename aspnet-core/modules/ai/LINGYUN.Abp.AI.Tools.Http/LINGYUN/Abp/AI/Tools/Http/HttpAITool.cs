@@ -27,10 +27,10 @@ public class HttpAITool
         IDictionary<string, object?>? paramters = null,
         object? body = null)
     {
-        // Abp远程服务适配
-        //var remoteService = Context.ToolDefinition.GetRemoteServiceOrNull();
-        //var remoteMethod = Context.ToolDefinition.GetRemoteMethodOrNull();
-        //if (!remoteService.IsNullOrWhiteSpace() && !remoteMethod.IsNullOrWhiteSpace())
+        // Abp remote service adaptation
+        // var remoteService = Context.ToolDefinition.GetRemoteServiceOrNull();
+        // var remoteMethod = Context.ToolDefinition.GetRemoteMethodOrNull();
+        // if (!remoteService.IsNullOrWhiteSpace() && !remoteMethod.IsNullOrWhiteSpace())
         //{
         //    var abpHttpClientOptions = Context.ServiceProvider.GetRequiredService<IOptions<AbpHttpClientOptions>>().Value;
         //    HttpClientProxyConfig? clientProxyConfig = null;
@@ -53,10 +53,10 @@ public class HttpAITool
         //            var httpClientProxyType = typeof(IHttpClientProxy<>).MakeGenericType(clientProxyConfig.Type);
         //            var httpClientProxy = Context.ServiceProvider.GetRequiredService(httpClientProxyType);
         //            var service = httpClientProxyType.GetProperty(nameof(IHttpClientProxy<object>.Service))!.GetValue(httpClientProxy);
-        //            // TODO: 暂不支持有参远程服务调用
+        // // TODO: Remote service calls with parameters are not supported yet.
         //            var task = (Task)serviceMethod.Invoke(service, null)!;
         //            await task;
-        //            // TODO: 必须为Task<XXX>返回结构
+        // // TODO: Must return structure for Task<XXX>
         //            return typeof(Task<>).MakeGenericType(serviceMethod.ReturnType.GenericTypeArguments[0])
         //                .GetProperty(nameof(Task<object>.Result), BindingFlags.Public | BindingFlags.Instance)!
         //                .GetValue(task);
@@ -130,7 +130,7 @@ public class HttpAITool
 
     protected virtual void AddDefaultHeaders(HttpRequestMessage requestMessage)
     {
-        //CorrelationId
+        // CorrelationId
         var correlationIdProvider = Context.ServiceProvider.GetRequiredService<ICorrelationIdProvider>();
         var correlationId = correlationIdProvider.Get();
         if (correlationId != null)
@@ -139,27 +139,27 @@ public class HttpAITool
             requestMessage.Headers.Add(correlationIdOptions.Value.HttpHeaderName, correlationId);
         }
 
-        //TenantId
+        // TenantId
         var currentTenant = Context.ServiceProvider.GetRequiredService<ICurrentTenant>();
         if (currentTenant.Id.HasValue)
         {
-            //TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
+            // TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
             requestMessage.Headers.Add(TenantResolverConsts.DefaultTenantKey, currentTenant.Id.Value.ToString());
         }
 
-        //Culture
-        //TODO: Is that the way we want? Couldn't send the culture (not ui culture)
+        // Culture
+        // TODO: Is that the way we want? Couldn't send the culture (not ui culture)
         var currentCulture = CultureInfo.CurrentUICulture.Name ?? CultureInfo.CurrentCulture.Name;
         if (!currentCulture.IsNullOrEmpty())
         {
             requestMessage.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(currentCulture));
         }
 
-        //X-Requested-With
+        // X-Requested-With
         requestMessage.Headers.Add("X-Requested-With", "XMLHttpRequest");
         requestMessage.Headers.Add("X-Requested-From", "abp-ai-httptool");
 
-        //Timezone
+        // Timezone
         var currentTimezoneProvider = Context.ServiceProvider.GetRequiredService<ICurrentTimezoneProvider>();
         if (!currentTimezoneProvider.TimeZone.IsNullOrWhiteSpace())
         {

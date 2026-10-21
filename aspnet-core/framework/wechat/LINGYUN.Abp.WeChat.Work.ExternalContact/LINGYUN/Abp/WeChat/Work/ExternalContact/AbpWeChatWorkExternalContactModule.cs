@@ -9,7 +9,7 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact;
 /// <summary>
-/// 企业微信客户联系模块
+/// Enterprise WeChat customer contact module
 /// </summary>
 [DependsOn(typeof(AbpWeChatWorkModule))]
 public class AbpWeChatWorkExternalContactModule : AbpModule
@@ -18,7 +18,7 @@ public class AbpWeChatWorkExternalContactModule : AbpModule
     {
         Configure<AbpWeChatWorkMessageResolveOptions>(options =>
         {
-            // 企业客户变更事件
+            // Enterprise customer change event
             options.MapEvent("change_external_contact", context =>
             {
                 var changeType = context.GetMessageData("ChangeType");
@@ -34,7 +34,7 @@ public class AbpWeChatWorkExternalContactModule : AbpModule
                     _ => throw new AbpWeChatException($"Contact change event change_external_contact:{changeType} is not mounted!"),
                 };
             });
-            // 客户群变更事件
+            // Customer group change event
             options.MapEvent("change_external_chat", context =>
             {
                 var changeType = context.GetMessageData("ChangeType");
@@ -42,7 +42,7 @@ public class AbpWeChatWorkExternalContactModule : AbpModule
                 {
                     case "create": return context.GetWeChatMessage<ExternalChatCreateEvent>();
                     case "update":
-                        // 客户群变更事件
+                        // Customer group change event
                         var updateDetail = context.GetMessageData("UpdateDetail");
                         return updateDetail switch
                         {
@@ -57,7 +57,7 @@ public class AbpWeChatWorkExternalContactModule : AbpModule
                     default: throw new AbpWeChatException($"Contact change event change_external_chat:{changeType} is not mounted!");
                 }
             });
-            // 企业客户标签事件
+            // Enterprise customer tag event
             options.MapEvent("change_external_tag", context =>
             {
                 var changeType = context.GetMessageData("ChangeType");
@@ -70,7 +70,7 @@ public class AbpWeChatWorkExternalContactModule : AbpModule
                     _ => throw new AbpWeChatException($"Contact change event change_external_tag:{changeType} is not mounted!"),
                 };
             });
-            // 产生会话回调事件
+            // Generate session callback event
             options.MapEvent("msgaudit_notify", context => context.GetWeChatMessage<ExternalContactMsgAuditNotifyEvent>());
         });
 

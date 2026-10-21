@@ -1,32 +1,32 @@
 # LINGYUN.Abp.MessageService.EntityFrameworkCore
 
-消息服务的 EntityFrameworkCore 实现模块。
+EntityFrameworkCore implementation module for messaging services.
 
-## 功能特性
+## Features
 
-* 实现消息服务的数据访问层
-* 提供默认仓储实现
-* 实现以下实体的仓储：
-  * ChatGroup - 聊天组
-  * UserChatGroup - 用户聊天组
-  * UserChatCard - 用户聊天卡片
-  * UserChatSetting - 用户聊天设置
-  * UserChatFriend - 用户聊天好友
+* Implement the data access layer of the message service
+* Provide default warehousing implementation
+* Implement warehousing of the following entities:
+  * ChatGroup - chat group
+  * UserChatGroup - User chat group
+  * UserChatCard - User chat card
+  * UserChatSetting - User chat settings
+  * UserChatFriend - User Chat Friend
 
-## 依赖模块
+## Dependent modules
 
 * [LINGYUN.Abp.MessageService.Domain](../LINGYUN.Abp.MessageService.Domain/README.md)
 * `AbpEntityFrameworkCoreModule`
 
-## 配置使用
+## Configuration usage
 
-1. 首先，需要安装 LINGYUN.Abp.MessageService.EntityFrameworkCore 到你的项目中：
+1. First, you need to install LINGYUN.Abp.MessageService.EntityFrameworkCore into your project:
 
 ```bash
 dotnet add package LINGYUN.Abp.MessageService.EntityFrameworkCore
 ```
 
-2. 添加 `AbpMessageServiceEntityFrameworkCoreModule` 到你的模块的依赖列表：
+2. Add `AbpMessageServiceEntityFrameworkCoreModule` to your module’s dependency list:
 
 ```csharp
 [DependsOn(typeof(AbpMessageServiceEntityFrameworkCoreModule))]
@@ -35,7 +35,7 @@ public class YourModule : AbpModule
 }
 ```
 
-3. 在你的 DbContext 中添加消息服务相关的 DbSet：
+3. Add message service-related DbSet to your DbContext:
 
 ```csharp
 public class YourDbContext : AbpDbContext<YourDbContext>, IMessageServiceDbContext
@@ -53,6 +53,6 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IMessageServiceDbConte
 }
 ```
 
-## 更多
+## More
 
 [English document](README.EN.md)

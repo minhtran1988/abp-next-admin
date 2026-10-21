@@ -43,14 +43,14 @@ public class UserProfileUserPictureProvider : IUserPictureProvider
             .ToList();
         if (avatarClaims.Any())
         {
-            // 保留最多3个头像
+            // Keep up to 3 avatars
             if (avatarClaims.Count >= 3)
             {
                 user.RemoveClaim(avatarClaims.First());
                 avatarClaims.RemoveAt(0);
             }
 
-            // 历史头像加数字标识
+            // Historical avatar plus digital identification
             for (var index = 1; index <= avatarClaims.Count; index++)
             {
                 var avatarClaim = avatarClaims[index - 1];

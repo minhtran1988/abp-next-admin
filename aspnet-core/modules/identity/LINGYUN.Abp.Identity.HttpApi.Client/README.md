@@ -1,14 +1,14 @@
 # LINGYUN.Abp.Identity.HttpApi.Client
 
-身份认证HTTP API客户端模块，提供身份认证相关的HTTP API客户端代理。
+The identity authentication HTTP API client module provides identity authentication related HTTP API client proxy.
 
-## 功能特性
+## Features
 
-* 扩展Volo.Abp.Identity.AbpIdentityHttpApiClientModule模块
-* 提供身份认证相关的HTTP API客户端代理
-* 自动注册HTTP客户端代理服务
+* Extend the Volo.Abp.Identity.AbpIdentityHttpApiClientModule module
+* Provide HTTP API client proxy related to identity authentication
+* Automatically register HTTP client proxy service
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -20,7 +20,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
@@ -32,18 +32,18 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 客户端代理
+## Client proxy
 
-* IIdentityUserAppService - 用户管理客户端代理
-* IIdentityRoleAppService - 角色管理客户端代理
-* IIdentityClaimTypeAppService - 声明类型管理客户端代理
-* IIdentitySecurityLogAppService - 安全日志客户端代理
-* IIdentitySettingsAppService - 身份认证设置客户端代理
-* IProfileAppService - 用户配置文件客户端代理
+* IIdentityUserAppService - User management client agent
+* IIdentityRoleAppService - role management client agent
+* IIdentityClaimTypeAppService - Claim type management client proxy
+* IIdentitySecurityLogAppService - Security log client agent
+* IIdentitySettingsAppService - Identity authentication settings client proxy
+* IProfileAppService - User profile client proxy
 
-## 基本用法
+## Basic usage
 
-1. 配置远程服务
+1. Configure remote services
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
@@ -57,7 +57,7 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-2. 使用客户端代理
+2. Use client proxies
 ```csharp
 public class YourService
 {
@@ -84,7 +84,7 @@ public class YourService
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
-* [ABP HTTP API客户端代理文档](https://docs.abp.io/en/abp/latest/API/HTTP-Client-Proxies)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP HTTP API Client Proxies Documentation](https://docs.abp.io/en/abp/latest/API/HTTP-Client-Proxies)

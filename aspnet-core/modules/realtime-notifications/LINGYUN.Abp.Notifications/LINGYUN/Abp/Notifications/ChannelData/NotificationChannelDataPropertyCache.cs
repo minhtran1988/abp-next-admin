@@ -9,28 +9,28 @@ using System.Threading;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据属性元数据缓存
+/// Channel data attribute metadata cache
 /// </summary>
 /// <remarks>
 /// <para>
-/// 纯反射元数据缓存(无 JSON、无日志、无配置依赖), 因此保持静态以避免
-/// 在序列化器、解析器、存在性提供者之间重复注入。
+/// Pure reflective metadata cache (no JSON, no logs, no configuration dependencies), so keep it static to avoid
+/// Repeated injection between serializers, parsers, and existence providers.
 /// </para>
 /// </remarks>
 public static class NotificationChannelDataPropertyCache
 {
     /// <summary>
-    /// 属性元数据缓存
+    /// Property metadata cache
     /// </summary>
     /// <remarks>
-    /// 值用 <see cref="Lazy{T}"/> 包装: <c>GetOrAdd</c> 的工厂在并发下可能被调用多次,
-    /// 但只有一个实例会被写入并被后续读取, 其余实例被丢弃, 因此构建仍只发生一次。
+    /// The value is wrapped with <see cref="Lazy{T}"/>: The factory of <c>GetOrAdd</c> may be called multiple times under concurrency.
+    /// But only one instance will be written to and subsequently read, the rest are discarded, so the build still only happens once.
     /// </remarks>
     private static readonly ConcurrentDictionary<Type, Lazy<NotificationChannelDataProperty[]>> PropertiesCache
         = new();
 
     /// <summary>
-    /// 获取载荷类型的属性元数据
+    /// Get the attribute metadata of the payload type
     /// </summary>
     public static NotificationChannelDataProperty[] GetProperties(Type channelDataType)
     {
@@ -44,7 +44,7 @@ public static class NotificationChannelDataPropertyCache
     }
 
     /// <summary>
-    /// 构建属性元数据
+    /// Build attribute metadata
     /// </summary>
     private static NotificationChannelDataProperty[] CreateProperties(Type channelDataType)
     {

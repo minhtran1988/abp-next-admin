@@ -1,9 +1,9 @@
 ﻿namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Request;
 /// <summary>
-/// 新增日程参与者请求参数
+/// Add schedule participant request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97721"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97721"/>
 /// </remarks>
 public class WeChatWorkScheduleAddAttendeesRequest : WeChatWorkScheduleChangeAttendeesRequest
 {

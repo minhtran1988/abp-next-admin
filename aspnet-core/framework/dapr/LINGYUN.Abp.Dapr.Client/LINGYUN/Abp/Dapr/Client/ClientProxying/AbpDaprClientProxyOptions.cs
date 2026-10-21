@@ -12,17 +12,17 @@ public class AbpDaprClientProxyOptions
 {
     public Dictionary<Type, DynamicDaprClientProxyConfig> DaprClientProxies { get; set; }
     /// <summary>
-    /// 增加一个可配置的请求消息
-    /// 参数一:    appId
-    /// 参数二:    HttpRequestMessage
+    /// Add a configurable request message
+    /// Parameter 1: appId
+    /// Parameter two: HttpRequestMessage
     /// </summary>
     public List<Action<string, HttpRequestMessage>> ProxyRequestActions { get; }
     /// <summary>
-    /// 对响应进行处理,返回响应内容
+    /// Process the response and return the response content
     /// </summary>
     public Func<HttpResponseMessage, IAbpLazyServiceProvider, Task<string?>>? ProxyResponseContent { get; private set; }
     /// <summary>
-    /// 格式化错误
+    /// Formatting error
     /// </summary>
     public Func<HttpResponseMessage, IAbpLazyServiceProvider, Task<RemoteServiceErrorInfo?>>? ProxyErrorFormat { get; private set; }
     public AbpDaprClientProxyOptions()
@@ -36,7 +36,7 @@ public class AbpDaprClientProxyOptions
         });
     }
     /// <summary>
-    /// 处理服务间调用响应数据
+    /// Process call response data between services
     /// </summary>
     /// <param name="func"></param>
     public void OnResponse(Func<HttpResponseMessage, IAbpLazyServiceProvider, Task<string?>> func)
@@ -44,7 +44,7 @@ public class AbpDaprClientProxyOptions
         ProxyResponseContent = func;
     }
     /// <summary>
-    /// 处理服务间调用错误消息
+    /// Handle error messages between services
     /// </summary>
     /// <param name="func"></param>
     public void OnError(Func<HttpResponseMessage, IAbpLazyServiceProvider, Task<RemoteServiceErrorInfo?>> func)

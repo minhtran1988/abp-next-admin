@@ -11,7 +11,7 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Platform.Datas;
 
 /// <summary>
-/// 数据字典
+/// Data dictionary
 /// </summary>
 public class Data : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {

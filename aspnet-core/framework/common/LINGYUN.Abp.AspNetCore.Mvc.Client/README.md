@@ -1,17 +1,17 @@
 # LINGYUN.Abp.AspNetCore.Mvc.Client
 
-参照 Volo.Abp.AspNetCore.Mvc.Client 进行重写  
+Rewrite with reference to Volo.Abp.AspNetCore.Mvc.Client
 
-实现可配置的用户配置缓存时间  
-实现订阅配置刷新事件清除用户配置缓存  
-实现基于用户缓存的权限、特性、配置、本地化、语言接口  
-引用 LINGYUN.Abp.MultiTenancy.RemoteService 可实现多租户接口  
-完全脱离具体数据库接口  
+Implement configurable user-configured cache time
+Implement subscription configuration refresh event to clear user configuration cache
+Implement user cache-based permissions, features, configuration, localization, and language interfaces
+Reference LINGYUN.Abp.MultiTenancy.RemoteService to implement the multi-tenant interface
+Completely separated from the specific database interface
 
-#### 注意
+#### NOTE
 
 
-## 配置使用
+## Configuration usage
 
 
 ``` json

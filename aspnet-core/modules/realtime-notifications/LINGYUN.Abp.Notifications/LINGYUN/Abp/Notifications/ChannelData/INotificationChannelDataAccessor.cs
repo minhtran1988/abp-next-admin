@@ -3,69 +3,69 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)存取器
+/// Notification channel data (load) accessor
 /// </summary>
 /// <remarks>
 /// <para>
-/// 通知数据在持久化、失败重试、跨进程投递等链路中必然经历 JSON 往返,
-/// 往返之后 <c>ExtraPropertyDictionary</c> 中的值是 JSON 节点而不是原始 CLR 实例:
-/// <c>byte 1</c> 会变成 <c>long 1</c> / <c>JsonElement(Number)</c>,
-/// 原有的 <c>x as byte?</c> 将永远返回 null。
+/// Notification data must undergo JSON round-trips in links such as persistence, failure retry, and cross-process delivery.
+/// After the round trip the values in <c>ExtraPropertyDictionary</c> are JSON nodes instead of raw CLR instances:
+/// <c>byte 1</c> will become <c>long 1</c> / <c>JsonElement(Number)</c>,
+/// The original <c>x as byte?</c> will always return null.
 /// </para>
 /// <para>
-/// 本服务是渠道数据"弱类型属性包 ↔ 强类型值"转换的唯一实现,
-/// 由 <see cref="INotificationChannelDataSerializer"/> 与
-/// <see cref="INotificationChannelDataResolver"/> 共用,
-/// 并保证与所用 JSON 实现无关。
+/// This service is the only implementation of channel data "weak type attribute package ↔ strong type value" conversion.
+/// By <see cref="INotificationChannelDataSerializer"/> and
+/// <see cref="INotificationChannelDataResolver"/> shared,
+/// and guaranteed to be independent of the JSON implementation used.
 /// </para>
 /// </remarks>
 public interface INotificationChannelDataAccessor
 {
     /// <summary>
-    /// 获取载荷的数据类型键
+    /// Get the data type key of the payload
     /// </summary>
-    /// <returns>键名, 类型无全名时返回 null</returns>
+    /// <returns>Key name, returns null if the type does not have a full name</returns>
     string? GetDataTypeKey(Type payloadType);
 
     /// <summary>
-    /// 是否存在键(大小写不敏感)
+    /// Whether the key exists (case insensitive)
     /// </summary>
     bool IsPresent(NotificationData notificationData, string key);
 
     /// <summary>
-    /// 读取原始值(大小写不敏感)
+    /// Read the original value (case insensitive)
     /// </summary>
-    /// <param name="notificationData">通知数据</param>
-    /// <param name="key">键名</param>
-    /// <param name="value">原始值</param>
-    /// <param name="matchedKey">实际命中的键名(可能与入参大小写不同)</param>
+    /// <param name="notificationData">Notification data</param>
+    /// <param name="key">Key name</param>
+    /// <param name="value">Original value</param>
+    /// <param name="matchedKey">The actual hit key name (may be different from the case of the input parameter)</param>
     bool TryGetRawValue(NotificationData notificationData, string key, out object? value, out string? matchedKey);
 
     /// <summary>
-    /// 读取并转换为目标类型
+    /// Read and convert to target type
     /// </summary>
-    /// <returns>转换后的值; 键不存在或无法转换时返回 null</returns>
+    /// <returns>The converted value; returns null when the key does not exist or cannot be converted</returns>
     object? Get(NotificationData notificationData, string key, Type targetType);
 
     /// <summary>
-    /// 类型化读取(未设置时返回 null, 以便区分"未设置"与"显式 false/0")
+    /// Typed read (returns null when not set, to distinguish "not set" from "explicit false/0")
     /// </summary>
     TValue? GetValue<TValue>(NotificationData notificationData, string key)
         where TValue : struct;
 
     /// <summary>
-    /// 类型化读取, 未设置时返回默认值
+    /// Typed reading, returns default value if not set
     /// </summary>
     TValue GetValue<TValue>(NotificationData notificationData, string key, TValue defaultValue)
         where TValue : struct;
 
     /// <summary>
-    /// 按顺序读取第一个非空字符串值(大小写不敏感)
+    /// Read the first non-empty string value in order (case insensitive)
     /// </summary>
     string? GetOrNull(NotificationData notificationData, params string[] keys);
 
     /// <summary>
-    /// 写入值, 复杂类型以 JSON 形式存储
+    /// Write values, complex types are stored in JSON form
     /// </summary>
     void Set(NotificationData notificationData, string key, Type valueType, object? value, NotificationChannelDataFormat format);
 }

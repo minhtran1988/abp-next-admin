@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.GroupChats.Models;
 /// <summary>
-/// 成员类型
+/// Member type
 /// </summary>
-[Description("成员类型")]
+[Description("Member Type")]
 public enum GroupChatMemberType
 {
     /// <summary>
-    /// 企业成员
+    /// Corporate members
     /// </summary>
-    [Description("企业成员")]
+    [Description("Corporate Member")]
     Internal = 1,
     /// <summary>
-    /// 外部联系人
+    /// External contact
     /// </summary>
-    [Description("外部联系人")]
+    [Description("External Contact")]
     External = 2
 }

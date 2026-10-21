@@ -4,40 +4,40 @@ import type { FlattenedItem } from 'reka-ui';
 import type { Recordable } from '@vben-core/typings';
 
 export interface TreeProps {
-  /** 单选时允许取消已有选项 */
+  /** Allows canceling existing options when selecting a single option */
   allowClear?: boolean;
-  /** 非关联选择时，自动选中上级节点 */
+  /** When selecting non-associatively, the superior node is automatically selected */
   autoCheckParent?: boolean;
-  /** 显示边框 */
+  /** Show border */
   bordered?: boolean;
-  /** 取消父子关联选择 */
+  /** Cancel parent-child association selection */
   checkStrictly?: boolean;
-  /** 子级字段名 */
+  /** Child field name */
   childrenField?: string;
-  /** 默认展开的键 */
+  /** Default expanded keys */
   defaultExpandedKeys?: Array<number | string>;
-  /** 默认展开的级别（优先级高于defaultExpandedKeys） */
+  /** Default expansion level (higher priority than defaultExpandedKeys) */
   defaultExpandedLevel?: number;
-  /** 默认值 */
+  /** Default value */
   defaultValue?: Arrayable<number | string>;
-  /** 禁用 */
+  /** Disable */
   disabled?: boolean;
-  /** 禁用字段名 */
+  /** Disable field name */
   disabledField?: string;
-  /** 自定义节点类名 */
+  /** Custom node class name */
   getNodeClass?: (item: FlattenedItem<Recordable<any>>) => string;
   iconField?: string;
-  /** label字段 */
+  /** label field */
   labelField?: string;
-  /** 是否多选 */
+  /** Whether to select multiple times */
   multiple?: boolean;
-  /** 显示由iconField指定的图标 */
+  /** Display the icon specified by iconField */
   showIcon?: boolean;
-  /** 启用展开收缩动画 */
+  /** Enable expansion and contraction animation */
   transition?: boolean;
-  /** 树数据 */
+  /** Tree data */
   treeData: Recordable<any>[];
-  /** 值字段 */
+  /** Value field */
   valueField?: string;
 }
 

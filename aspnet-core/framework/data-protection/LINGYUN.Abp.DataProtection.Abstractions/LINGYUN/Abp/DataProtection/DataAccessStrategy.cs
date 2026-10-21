@@ -1,31 +1,31 @@
 ﻿namespace LINGYUN.Abp.DataProtection;
 /// <summary>
-/// 数据访问策略
+/// Data access strategy
 /// </summary>
 public enum DataAccessStrategy
 {
     /// <summary>
-    /// 可以访问所有数据
+    /// All data can be accessed
     /// </summary>
     All,
     /// <summary>
-    /// 自定义规则
+    /// Custom rules
     /// </summary>
     Custom,
     /// <summary>
-    /// 仅当前用户
+    /// Only current user
     /// </summary>
     CurrentUser,
     /// <summary>
-    /// 仅当前用户角色
+    /// Only current user role
     /// </summary>
     CurrentRoles,
     /// <summary>
-    /// 仅当前用户组织机构
+    /// Only the current user organization
     /// </summary>
     CurrentOrganizationUnits,
     /// <summary>
-    /// 仅当前用户组织机构及下级机构
+    /// Only the current user organization and subordinate organizations
     /// </summary>
     CurrentAndSubOrganizationUnits,
 }

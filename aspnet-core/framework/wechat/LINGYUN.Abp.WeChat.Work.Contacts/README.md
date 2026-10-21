@@ -1,11 +1,11 @@
 # LINGYUN.Abp.WeChat.Work.Contacts
 
-企业微信通讯录模块，提供企业微信应用开发的通讯录功能实现。  
+The enterprise WeChat address book module provides the implementation of the address book function for enterprise WeChat application development.  
 
-## 功能特性
+## Features
 
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkContactModule))]
@@ -15,23 +15,23 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 
-## 消息处理
+## Message processing
 
 
-## 事件处理
+## Event handling
 
-* [新增成员事件](https://developer.work.weixin.qq.com/document/path/90970#%E6%96%B0%E5%A2%9E%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
-* [更新成员事件](https://developer.work.weixin.qq.com/document/path/90970#%E6%9B%B4%E6%96%B0%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
-* [删除成员事件](https://developer.work.weixin.qq.com/document/path/90970#%E5%88%A0%E9%99%A4%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
-* [新增部门事件](https://developer.work.weixin.qq.com/document/path/90971#%E6%96%B0%E5%A2%9E%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
-* [更新部门事件](https://developer.work.weixin.qq.com/document/path/90971#%E6%9B%B4%E6%96%B0%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
-* [删除部门事件](https://developer.work.weixin.qq.com/document/path/90971#%E5%88%A0%E9%99%A4%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
-* [标签成员变更事件](https://developer.work.weixin.qq.com/document/path/90972)
-* [异步任务完成通知](https://developer.work.weixin.qq.com/document/path/90973)
+* [New member event](https://developer.work.weixin.qq.com/document/path/90970#%E6%96%B0%E5%A2%9E%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
+* [Update member event](https://developer.work.weixin.qq.com/document/path/90970#%E6%9B%B4%E6%96%B0%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
+* [Delete member event](https://developer.work.weixin.qq.com/document/path/90970#%E5%88%A0%E9%99%A4%E6%88%90%E5%91%98%E4%BA%8B%E4%BB%B6)
+* [New department event](https://developer.work.weixin.qq.com/document/path/90971#%E6%96%B0%E5%A2%9E%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
+* [Update department events](https://developer.work.weixin.qq.com/document/path/90971#%E6%9B%B4%E6%96%B0%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
+* [Delete department events](https://developer.work.weixin.qq.com/document/path/90971#%E5%88%A0%E9%99%A4%E9%83%A8%E9%97%A8%E4%BA%8B%E4%BB%B6)
+* [Tag member change event](https://developer.work.weixin.qq.com/document/path/90972)
+* [Asynchronous task completion notification](https://developer.work.weixin.qq.com/document/path/90973)
 
-## 更多文档
+## More documentation
 
-* [企业微信通讯录文档](https://developer.work.weixin.qq.com/document/path/90193)
+* [Enterprise WeChat Address Book Document](https://developer.work.weixin.qq.com/document/path/90193)

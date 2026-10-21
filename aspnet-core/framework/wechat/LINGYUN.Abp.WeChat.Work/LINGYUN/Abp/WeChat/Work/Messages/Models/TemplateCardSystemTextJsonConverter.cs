@@ -8,22 +8,22 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 
 /// <summary>
-/// 模板卡片消息 System.Text.Json 序列化
+/// Template card message System.Text.Json serialization
 /// </summary>
 /// <remarks>
 /// <para>
-/// <see cref="TemplateCard"/> 是抽象类型, 默认序列化器无法实例化它,
-/// 导致模板卡片一旦被序列化(例如作为通知数据持久化、或进入失败重试队列)
-/// 就再也无法还原。
+/// <see cref="TemplateCard"/> is an abstract type, and the default serializer cannot instantiate it.
+/// Causes the template card to be serialized once (such as persisting as notification data, or entering the failure retry queue)
+/// It can no longer be restored.
 /// </para>
 /// <para>
-/// 这里按 <c>card_type</c> 判别符还原具体卡片类型。判别符在构造函数中传递给基类
-/// (例如 <c>base("template_card", taskId)</c>), 通过读取构造函数 IL 中的字符串常量获得,
-/// 因此新增卡片类型无需修改本转换器。
+/// Here press the <c>card_type</c> discriminator to restore the specific card type. The discriminator is passed to the base class in the constructor
+/// (for example <c>base("template_card", taskId)</c>), obtained by reading the string constant in the constructor IL,
+/// Therefore, adding a new card type does not require modifying this converter.
 /// </para>
 /// <para>
-/// 项目使用的 JSON 集成是 <c>Volo.Abp.Json.SystemTextJson</c>,
-/// 因此由渠道模块在启动时自动注册到全局选项。
+/// The JSON integration used by the project is <c>Volo.Abp.Json.SystemTextJson</c>,
+/// Therefore, the channel module automatically registers to the global options at startup.
 /// </para>
 /// </remarks>
 public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
@@ -65,7 +65,7 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
             throw new JsonException($"Unable to resolve a template card type for card_type: '{cardType}'.");
         }
 
-        // 指定具体类型反序列化, 从而避开本转换器(否则会递归)
+        // Specify a specific type for deserialization to avoid this converter (otherwise it will be recursive)
         return (TemplateCard?)JsonSerializer.Deserialize(jsonElement.GetRawText(), concreteType, options);
     }
 
@@ -74,12 +74,12 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
         TemplateCard value,
         JsonSerializerOptions options)
     {
-        // 按运行时类型写出, 避免只输出基类成员
+        // Write according to runtime type to avoid outputting only base class members
         JsonSerializer.Serialize(writer, value, value.GetType(), options);
     }
 
     /// <summary>
-    /// 按 <c>card_type</c> 获取具体的卡片类型
+    /// Press <c>card_type</c> to get the specific card type
     /// </summary>
     public static Type? GetCardType(string cardType)
     {
@@ -108,13 +108,13 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
             return mappedType;
         }
 
-        // 缺少判别符时: 目标是具体类型则直接使用
+        // When the discriminator is missing: if the target is a specific type, use it directly
         if (!targetType.IsAbstract)
         {
             return targetType;
         }
 
-        // 抽象目标且判别符缺失: 回退到文本模板卡片
+        // Abstract target and missing discriminator: fall back to text template card
         return CardTypes.TryGetValue(nameof(TextTemplateCard), out var fallbackType) ? fallbackType : null;
     }
 
@@ -150,11 +150,11 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
     }
 
     /// <summary>
-    /// 获取卡片类型的判别符
+    /// Get the discriminator of the card type
     /// </summary>
     /// <remarks>
-    /// 判别符由构造函数传递给基类, 因此读取构造函数 IL 中的字符串常量。
-    /// 同时以类型名作为兜底键。
+    /// The discriminator is passed to the base class by the constructor, so the string constant in the constructor IL is read.
+    /// At the same time, the type name is used as the key.
     /// </remarks>
     private static IEnumerable<string> GetDiscriminators(Type cardType)
     {
@@ -178,7 +178,7 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
             }
             catch
             {
-                // 读取 IL 失败不影响兜底判别符
+                // Failure to read IL does not affect the bottom discriminator
             }
         }
 
@@ -209,7 +209,7 @@ public class TemplateCardSystemTextJsonConverter : JsonConverter<TemplateCard>
             }
             catch
             {
-                // 不是字符串元数据标记, 继续扫描
+                // Not a string metadata tag, continue scanning
             }
         }
 

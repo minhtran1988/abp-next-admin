@@ -8,26 +8,26 @@ namespace LINGYUN.Abp.Location.Tencent.Response;
 public abstract class TencentLocationResponse
 {
     /// <summary>
-    /// 状态码，0为正常,
-    /// 310请求参数信息有误，
-    /// 311Key格式错误,
-    /// 306请求有护持信息请检查字符串,
-    /// 110请求来源未被授权
+    /// Status code, 0 means normal,
+    /// 310 The request parameter information is incorrect.
+    /// 311Key format error,
+    /// If the 306 request has support information, please check the string.
+    /// 110 The request source is not authorized
     /// </summary>
     [JsonProperty("status")]
     public int Status { get; set; }
     /// <summary>
-    /// 状态说明
+    /// Status description
     /// </summary>
     [JsonProperty("message")]
     public string Message { get; set; } = default!;
     /// <summary>
-    /// 本次请求的唯一标识
+    /// The unique identifier of this request
     /// </summary>
     [JsonProperty("request_id")]
     public string RequestId { get; set; } = default!;
     /// <summary>
-    /// 是否请求成功
+    /// Whether the request is successful
     /// </summary>
     public bool IsSuccessed => Status.Equals(0);
 

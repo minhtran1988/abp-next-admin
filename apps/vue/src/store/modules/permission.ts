@@ -131,7 +131,7 @@ export const usePermissionStore = defineStore({
       };
 
       /**
-       * @description 根据设置的首页path，修正routes中的affix标记（固定首页）
+       * @description Correct the affix tag in routes (fixed homepage) according to the set homepage path
        * */
       const patchHomeAffix = (routes: AppRouteRecordRaw[]) => {
         if (!routes || routes.length === 0) return;
@@ -155,7 +155,7 @@ export const usePermissionStore = defineStore({
         try {
           patcher(routes);
         } catch (e) {
-          // 已处理完毕跳出循环
+          // Jump out of the loop after processing is completed
         }
         return;
       };
@@ -261,7 +261,7 @@ export const usePermissionStore = defineStore({
         if (menu.children) {
           r.children = this.filterDynamicRoutes(menu.children);
         }
-        // 修改用户首页
+        // Modify user homepage
         if (menu.startup) {
           const userStore = useUserStore();
           const userInfo = userStore.getUserInfo;
@@ -273,9 +273,9 @@ export const usePermissionStore = defineStore({
 
       return routeList;
     },
-    /** 验证功能 */
+    /** Verification function */
     validationFeatures(meta: RouteMeta) {
-      // 如果声明了必须某些功能而系统为启用此功能,则不加入路由中
+      // If certain functions are declared required and the system does not enable this function, it will not be added to the route.
       if (meta.requiredFeatures) {
         let featureHasEnabled = true;
         const abpStore = useAbpStoreWithOut();

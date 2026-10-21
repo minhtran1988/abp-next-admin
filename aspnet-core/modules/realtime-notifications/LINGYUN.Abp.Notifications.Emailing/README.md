@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.Emailing
 
-通知系统的邮件发送模块，提供了通过邮件发送通知的功能。
+The email sending module of the notification system provides the function of sending notifications by email.
 
-## 功能特性
+## Features
 
-* 邮件通知发送
-* 邮件模板支持
-* 支持HTML格式邮件
-* 支持多收件人
-* 支持抄送和密送
+* Send email notification
+* Email template support
+* Support HTML format email
+* Support multiple recipients
+* Support CC and BCC
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsEmailingModule))]
@@ -20,7 +20,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
@@ -37,9 +37,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置邮件设置
+1. Configure email settings
 ```csharp
 Configure<AbpEmailingOptions>(options =>
 {
@@ -48,7 +48,7 @@ Configure<AbpEmailingOptions>(options =>
 });
 ```
 
-2. 发送邮件通知
+2. Send email notification
 ```csharp
 public class YourNotificationHandler : INotificationHandler
 {
@@ -71,28 +71,28 @@ public class YourNotificationHandler : INotificationHandler
 }
 ```
 
-3. 使用邮件模板
+3. Use email templates
 ```csharp
 public async Task SendWithTemplateAsync()
 {
     var template = await _templateRenderer.RenderAsync(
         "DefaultTemplate",
         new { 
-            Title = "通知标题",
-            Content = "通知内容"
+            Title = "Notification Title",
+            Content = "Notification content"
         }
     );
 
     await _emailSender.SendAsync(
         to: "user@example.com",
-        subject: "通知",
+        subject: "notification",
         body: template,
         isBodyHtml: true
     );
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [邮件发送文档](https://docs.abp.io/en/abp/latest/Emailing)
+* [ABP Documentation](https://docs.abp.io)
+* [E-mail document](https://docs.abp.io/en/abp/latest/Emailing)

@@ -1,94 +1,94 @@
-# 配置
+#Configuration
 
-## 环境变量配置
+## Environment variable configuration
 
-项目的环境变量配置位于应用目录下的 `.env`、`.env.development`、`.env.production`。
+The project's environment variable configuration is located in `.env`, `.env.development`, and `.env.production` in the application directory.
 
-规则与 [Vite Env Variables and Modes](https://vitejs.dev/guide/env-and-mode.html) 一致。格式如下：
+The rules are consistent with [Vite Env Variables and Modes](https://vitejs.dev/guide/env-and-mode.html). The format is as follows:
 
 ```bash
-.env                # 在所有的环境中被载入
-.env.local          # 在所有的环境中被载入，但会被 git 忽略
-.env.[mode]         # 只在指定的模式中被载入
-.env.[mode].local   # 只在指定的模式中被载入，但会被 git 忽略
+.env # loaded in all environments
+.env.local # Loaded in all environments, but ignored by git
+.env.[mode] # Only loaded in the specified mode
+.env.[mode].local # Only loaded in the specified mode, but will be ignored by git
 ```
 
 ::: tip
 
-- 只有以 `VITE_` 开头的变量会被嵌入到客户端侧的包中，你可以在项目代码中这样访问它们：
+- Only variables starting with `VITE_` will be embedded in the client-side package, and you can access them in the project code like this:
 
   ```ts
   console.log(import.meta.env.VITE_PROT);
   ```
 
-- 以 `VITE_GLOB_*` 开头的的变量，在打包的时候，会被加入 `_app.config.js`配置文件当中.
+- Variables starting with `VITE_GLOB_*` will be added to the `_app.config.js` configuration file when packaging.
 
 :::
 
-## 环境配置说明
+## Environment configuration instructions
 
 ::: code-group
 
 ```bash [.env]
-# 应用标题
+#App title
 VITE_APP_TITLE=Vben Admin
 
-# 应用命名空间，用于缓存、store等功能的前缀，确保隔离
+# Application namespace, used as prefix for cache, store and other functions to ensure isolation
 VITE_APP_NAMESPACE=vben-web-antd
 ```
 
 ```bash [.env.development]
-# 端口号
+# port number
 VITE_PORT=5555
 
-# 资源公共路径,需要以 / 开头和结尾
+# Resource public path, needs to start and end with /
 VITE_BASE=/
 
-# 接口地址
+#Interface address
 VITE_GLOB_API_URL=/api
 
-# 是否开启 Nitro Mock服务，true 为开启，false 为关闭
+# Whether to enable Nitro Mock service, true means open, false means closed
 VITE_NITRO_MOCK=true
 
-# 是否打开 devtools，true 为打开，false 为关闭
+# Whether to open devtools, true means open, false means closed
 VITE_DEVTOOLS=true
 
-# 是否注入全局loading
+# Whether to inject global loading
 VITE_INJECT_APP_LOADING=true
 
 ```
 
 ```bash [.env.production]
-# 资源公共路径,需要以 / 开头和结尾
+# Resource public path, needs to start and end with /
 VITE_BASE=/
 
-# 接口地址
+#Interface address
 VITE_GLOB_API_URL=https://mock-napi.vben.pro/api
 
-# 是否开启压缩，可以设置为 none, brotli, gzip
+# Whether to enable compression, can be set to none, brotli, gzip
 VITE_COMPRESS=gzip
 
-# 是否开启 PWA
+# Whether to enable PWA
 VITE_PWA=false
 
-# vue-router 的模式
+# vue-router mode
 VITE_ROUTER_HISTORY=hash
 
-# 是否注入全局loading
+# Whether to inject global loading
 VITE_INJECT_APP_LOADING=true
 
-# 打包后是否生成dist.zip
+# Whether to generate dist.zip after packaging
 VITE_ARCHIVER=true
 
 ```
 
 :::
 
-## 生产环境动态配置
+## Dynamic configuration of production environment
 
-当在大仓根目录下，执行 `pnpm build`构建项目之后，会自动在对应的应用下生成 `dist/_app.config.js`文件并插入 `index.html`。
+After executing `pnpm build` to build the project in the Okura root directory, the `dist/_app.config.js` file will be automatically generated under the corresponding application and inserted into `index.html`.
 
-`_app.config.js` 是一个动态配置文件，可以在项目构建之后，根据不同的环境动态修改配置。内容如下：
+`_app.config.js` is a dynamic configuration file that can dynamically modify the configuration according to different environments after the project is built. The content is as follows:
 
 ```ts
 window._VBEN_ADMIN_PRO_APP_CONF_ = {
@@ -101,29 +101,29 @@ Object.defineProperty(window, '_VBEN_ADMIN_PRO_APP_CONF_', {
 });
 ```
 
-### 作用
+### Function
 
-`_app.config.js` 用于项目在打包后，需要动态修改配置的需求，如接口地址。不用重新进行打包，可在打包后修改 /`dist/_app.config.js` 内的变量，刷新即可更新代码内的局部变量。这里使用`js`文件，是为了确保配置文件加载顺序保持在前面。
+`_app.config.js` is used when the project needs to dynamically modify the configuration after packaging, such as the interface address. There is no need to repackage, you can modify the variables in /`dist/_app.config.js` after packaging, and refresh to update the local variables in the code. The `js` file is used here to ensure that the configuration file loading order remains at the front.
 
-### 使用
+### Use
 
-想要获取 `_app.config.js` 内的变量，需要使用`@vben/hooks`提供的 `useAppConfig`方法。
+To obtain the variables in `_app.config.js`, you need to use the `useAppConfig` method provided by `@vben/hooks`.
 
 ```ts
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 ```
 
-### 新增
+### New
 
-新增一个可动态修改的配置项，只需要按照如下步骤即可：
+To add a dynamically modifyable configuration item, just follow the steps below:
 
-- 首先在 `.env` 或者对应的开发环境配置文件内，新增需要可动态配置的变量，需要以 `VITE_GLOB_*` 开头的变量，如：
+- First, add variables that need to be dynamically configurable in `.env` or the corresponding development environment configuration file. Variables that start with `VITE_GLOB_*` are required, such as:
 
   ```bash
   VITE_GLOB_OTHER_API_URL=https://mock-napi.vben.pro/other-api
   ```
 
-- 在 `packages/types/global.d.ts`,新增对应的类型定义，如：
+- In `packages/types/global.d.ts`, add the corresponding type definition, such as:
 
   ```ts
   export interface VbenAdminProAppConfigRaw {
@@ -137,14 +137,14 @@ const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
   }
   ```
 
-- 在 `packages/effects/hooks/src/use-app-config.ts` 中，新增对应的配置项，如：
+- In `packages/effects/hooks/src/use-app-config.ts`, add corresponding configuration items, such as:
 
   ```ts
   export function useAppConfig(
     env: Record<string, any>,
     isProduction: boolean,
   ): ApplicationConfig {
-    // 生产环境下，直接使用 window._VBEN_ADMIN_PRO_APP_CONF_ 全局变量
+    // In a production environment, use the window._VBEN_ADMIN_PRO_APP_CONF_ global variable directly
     const config = isProduction
       ? window._VBEN_ADMIN_PRO_APP_CONF_
       : (env as VbenAdminProAppConfigRaw);
@@ -158,43 +158,43 @@ const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
   }
   ```
 
-到这里，就可以在项目内使用 `useAppConfig`方法获取到新增的配置项了。
+At this point, you can use the `useAppConfig` method in the project to obtain the new configuration items.
 
 ```ts
 const { otherApiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 ```
 
-::: warning 注意
+::: warning note
 
-`useAppConfig`方法只能在应用内使用，不要耦合到包内部去使用。这里传入 `import.meta.env`和`import.meta.env.PROD`是为了避免这种情况，一个纯粹的包，应避免使用特定构建工具的变量。
+The `useAppConfig` method can only be used within the application and should not be coupled to the package for use. `import.meta.env` and `import.meta.env.PROD` are passed in here to avoid this situation. A pure package should avoid using variables of specific build tools.
 
 :::
 
-## 偏好设置
+## Preferences
 
-项目提供了非常丰富的偏好设置，用于动态配置项目的各种功能：
+The project provides a very rich set of preferences for dynamically configuring various features of the project:
 
 ![](/guide/preferences.png)
 
-如果你找不到文档说明，可以尝试自己配置好以后，点击`复制偏好设置`，覆盖项目默认即可。配置文件位于应用目录下的`preferences.ts`，在这里，你可以覆盖框架默认的配置，实现自定义配置。
+If you can't find the documentation, you can try configuring it yourself and click `Copy Preferences` to overwrite the project default. The configuration file is located in `preferences.ts` in the application directory. Here, you can override the framework's default configuration and implement custom configuration.
 
 ```ts
 import { useAppConfig } from '@vben/hooks';
 import { defineOverridesPreferences } from '@vben/preferences';
 
 /**
- * @description 项目配置文件
- * 只需要覆盖项目中的一部分配置，不需要的配置不用覆盖，会自动使用默认配置
- * !!! 更改配置后请清空缓存，否则可能不生效
+ * @description project configuration file
+ * Only part of the configuration in the project needs to be overwritten. Unnecessary configurations do not need to be overwritten. The default configuration will be automatically used.
+ *!!! Please clear the cache after changing the configuration, otherwise it may not take effect
  */
 export const overridesPreferences = defineOverridesPreferences({
   // overrides
 });
 ```
 
-### 框架默认配置
+### Framework default configuration
 
-::: details 查看框架默认配置
+::: details View the framework default configuration
 
 ```ts
 const defaultPreferences: Preferences = {
@@ -261,7 +261,7 @@ const defaultPreferences: Preferences = {
     enable: true,
     fit: 'contain',
     source: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp',
-    // sourceDark: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-dark.webp', // 可选：暗色主题logo
+    // sourceDark: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-dark.webp', // Optional: dark theme logo
   },
   navigation: {
     accordion: true,
@@ -336,66 +336,66 @@ const defaultPreferences: Preferences = {
 
 :::
 
-::: details 查看框架默认配置类型
+::: details View the framework default configuration type
 
 ```ts
 interface AppPreferences {
-  /** 权限模式 */
+  /** Permission mode */
   accessMode: AccessModeType;
-  /** 登录注册页面布局 */
+  /** Login registration page layout */
   authPageLayout: AuthPageLayoutType;
-  /** 检查更新轮询时间 */
+  /** Check update polling time */
   checkUpdatesInterval: number;
-  /** 是否开启灰色模式 */
+  /** Whether to enable gray mode */
   colorGrayMode: boolean;
-  /** 是否开启色弱模式 */
+  /** Whether to enable color weakness mode */
   colorWeakMode: boolean;
-  /** 是否开启紧凑模式 */
+  /** Whether to enable compact mode */
   compact: boolean;
-  /** 是否开启内容紧凑模式 */
+  /** Whether to enable content compact mode */
   contentCompact: ContentCompactType;
-  /** 内容紧凑宽度 */
+  /** Content compact width */
   contentCompactWidth: number;
-  /** 内容内边距 */
+  /** Content margin */
   contentPadding: number;
-  /** 内容底部内边距 */
+  /** Content bottom padding */
   contentPaddingBottom: number;
-  /** 内容左侧内边距 */
+  /** Content left padding */
   contentPaddingLeft: number;
-  /** 内容右侧内边距 */
+  /** Content right padding */
   contentPaddingRight: number;
-  /** 内容顶部内边距 */
+  /** Content top padding */
   contentPaddingTop: number;
-  // /** 应用默认头像 */
+  // /** Apply default avatar */
   defaultAvatar: string;
-  /** 默认首页地址 */
+  /**Default homepage address */
   defaultHomePath: string;
-  // /** 开启动态标题 */
+  // /** Enable dynamic title */
   dynamicTitle: boolean;
-  /** 是否开启检查更新 */
+  /** Whether to enable checking for updates */
   enableCheckUpdates: boolean;
-  /** 是否显示偏好设置 */
+  /** Whether to display preferences */
   enablePreferences: boolean;
-  /** 是否显示复制偏好设置按钮 */
+  /** Whether to display the copy preference button */
   enableCopyPreferences: boolean;
   /**
-   * @zh_CN 是否开启refreshToken
+   * @zh_CN Whether to enable refreshToken
    */
   enableRefreshToken: boolean;
-  /** 是否移动端 */
+  /** Whether it is mobile */
   isMobile: boolean;
-  /** 布局方式 */
+  /** Layout method */
   layout: LayoutType;
-  /** 支持的语言 */
+  /** Supported languages */
   locale: SupportedLanguagesType;
-  /** 登录过期模式 */
+  /** Login expiration mode */
   loginExpiredMode: LoginExpiredModeType;
-  /** 应用名 */
+  /** Application name */
   name: string;
-  /** 偏好设置按钮位置 */
+  /** Preference button location */
   preferencesButtonPosition: PreferencesButtonPositionType;
   /**
-   * @zh_CN 是否开启水印
+   * @zh_CN Whether to enable watermark
    */
   watermark: boolean;
   /** z-index */
@@ -403,233 +403,233 @@ interface AppPreferences {
 }
 
 interface BreadcrumbPreferences {
-  /** 面包屑是否启用 */
+  /** Whether breadcrumbs are enabled */
   enable: boolean;
-  /** 面包屑是否只有一个时隐藏 */
+  /** Whether to hide when there is only one breadcrumb */
   hideOnlyOne: boolean;
-  /** 面包屑首页图标是否可见 */
+  /** Whether the breadcrumb homepage icon is visible */
   showHome: boolean;
-  /** 面包屑图标是否可见 */
+  /** Whether the breadcrumb icon is visible */
   showIcon: boolean;
-  /** 面包屑风格 */
+  /** Breadcrumb style */
   styleType: BreadcrumbStyleType;
 }
 
 interface CopyrightPreferences {
-  /** 版权公司名 */
+  /** Copyright company name */
   companyName: string;
-  /** 版权公司名链接 */
+  /** Copyright company name link */
   companySiteLink: string;
-  /** 版权日期 */
+  /** Copyright date */
   date: string;
-  /** 版权是否可见 */
+  /** Whether the copyright is visible */
   enable: boolean;
-  /** 备案号 */
+  /** Registration number */
   icp: string;
-  /** 备案号链接 */
+  /** Registration number link */
   icpLink: string;
-  /** 设置面板是否显示*/
+  /** Set whether the panel is displayed*/
   settingShow?: boolean;
 }
 
 interface FooterPreferences {
-  /** 底栏是否可见 */
+  /** Whether the bottom bar is visible */
   enable: boolean;
-  /** 底栏是否固定 */
+  /** Whether the bottom bar is fixed */
   fixed: boolean;
-  /** 底栏高度 */
+  /** Bottom bar height */
   height: number;
 }
 
 interface HeaderPreferences {
-  /** 顶栏是否启用 */
+  /** Whether the top bar is enabled */
   enable: boolean;
-  /** 顶栏高度 */
+  /** Top bar height */
   height: number;
-  /** 顶栏是否隐藏,css-隐藏 */
+  /** Whether the top bar is hidden, css-hide */
   hidden: boolean;
-  /** 顶栏菜单位置 */
+  /** Top bar menu position */
   menuAlign: LayoutHeaderMenuAlignType;
-  /** header显示模式 */
+  /** header display mode */
   mode: LayoutHeaderModeType;
 }
 
 interface LogoPreferences {
-  /** logo是否可见 */
+  /** Whether the logo is visible */
   enable: boolean;
-  /** logo图片适应方式 */
+  /** Logo image adaptation method */
   fit: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
-  /** logo地址 */
+  /** logo address */
   source: string;
-  /** 暗色主题logo地址 (可选，若不设置则使用 source) */
+  /** Dark theme logo address (optional, use source if not set) */
   sourceDark?: string;
 }
 
 interface NavigationPreferences {
-  /** 导航菜单手风琴模式 */
+  /** Navigation menu accordion mode */
   accordion: boolean;
-  /** 导航菜单是否切割，只在 layout=mixed-nav 生效 */
+  /** Whether the navigation menu is cut or not, only takes effect when layout=mixed-nav */
   split: boolean;
-  /** 导航菜单风格 */
+  /** Navigation menu style */
   styleType: NavigationStyleType;
 }
 
 interface SidebarPreferences {
-  /** 点击目录时自动激活子菜单   */
+  /** Automatically activate submenu when clicking on directory */
   autoActivateChild: boolean;
-  /** 侧边栏是否折叠 */
+  /** Whether the sidebar is collapsed */
   collapsed: boolean;
-  /** 侧边栏折叠按钮是否可见 */
+  /** Whether the sidebar collapse button is visible */
   collapsedButton: boolean;
-  /** 侧边栏折叠时，是否显示title */
+  /** Whether to display the title when the sidebar is collapsed */
   collapsedShowTitle: boolean;
-  /** 侧边栏折叠宽度 */
+  /** Sidebar folding width */
   collapseWidth: number;
-  /** 侧边栏是否可见 */
+  /** Whether the sidebar is visible */
   enable: boolean;
-  /** 菜单自动展开状态 */
+  /** Menu automatic expansion state */
   expandOnHover: boolean;
-  /** 侧边栏扩展区域是否折叠 */
+  /** Whether the sidebar expansion area is collapsed */
   extraCollapse: boolean;
-  /** 侧边栏扩展区域折叠宽度 */
+  /** Sidebar expansion area collapsed width */
   extraCollapsedWidth: number;
-  /** 侧边栏固定按钮是否可见 */
+  /** Whether the sidebar fixed button is visible */
   fixedButton: boolean;
-  /** 侧边栏是否隐藏 - css */
+  /** Whether the sidebar is hidden - css */
   hidden: boolean;
-  /** 混合侧边栏宽度 */
+  /** Mixed sidebar widths */
   mixedWidth: number;
-  /** 侧边栏宽度 */
+  /** Sidebar width */
   width: number;
 }
 
 interface ShortcutKeyPreferences {
-  /** 是否启用快捷键-全局 */
+  /** Whether to enable shortcut keys - global */
   enable: boolean;
-  /** 是否启用全局锁屏快捷键 */
+  /** Whether to enable global lock screen shortcut keys */
   globalLockScreen: boolean;
-  /** 是否启用全局注销快捷键 */
+  /** Whether to enable the global logout shortcut key */
   globalLogout: boolean;
-  /** 是否启用全局偏好设置快捷键 */
+  /** Whether to enable global preference shortcut keys */
   globalPreferences: boolean;
-  /** 是否启用全局搜索快捷键 */
+  /** Whether to enable global search shortcut keys */
   globalSearch: boolean;
 }
 
 interface TabbarPreferences {
-  /** 是否开启多标签页拖拽 */
+  /** Whether to enable multi-tab dragging */
   draggable: boolean;
-  /** 是否开启多标签页 */
+  /** Whether to enable multiple tabs */
   enable: boolean;
-  /** 标签页高度 */
+  /** Tab height */
   height: number;
-  /** 开启标签页缓存功能 */
+  /** Enable tab caching function */
   keepAlive: boolean;
-  /** 限制最大数量 */
+  /** Limit the maximum number */
   maxCount: number;
-  /** 是否点击中键时关闭标签 */
+  /** Whether to close the label when clicking the middle button */
   middleClickToClose: boolean;
-  /** 是否持久化标签 */
+  /** Whether to persist the label */
   persist: boolean;
-  /** 是否开启多标签页图标 */
+  /** Whether to enable multi-tab icons */
   showIcon: boolean;
-  /** 显示最大化按钮 */
+  /** Show maximize button */
   showMaximize: boolean;
-  /** 显示更多按钮 */
+  /** Show more button */
   showMore: boolean;
-  /** 标签页风格 */
+  /** Tab style */
   styleType: TabsStyleType;
-  /** 是否开启鼠标滚轮响应 */
+  /** Whether to enable mouse wheel response */
   wheelable: boolean;
 }
 
 interface ThemePreferences {
-  /** 内置主题名 */
+  /** Built-in theme name */
   builtinType: BuiltinThemeType;
-  /** 错误色 */
+  /** Wrong color */
   colorDestructive: string;
-  /** 主题色 */
+  /** theme color */
   colorPrimary: string;
-  /** 成功色 */
+  /** Success color */
   colorSuccess: string;
-  /** 警告色 */
+  /** Warning color */
   colorWarning: string;
-  /** 当前主题 */
+  /** Current topic */
   mode: ThemeModeType;
-  /** 圆角 */
+  /** rounded corners */
   radius: string;
-  /** 是否开启半深色header（只在theme='light'时生效） */
+  /** Whether to enable semi-dark header (only effective when theme='light') */
   semiDarkHeader: boolean;
-  /** 是否开启半深色菜单（只在theme='light'时生效） */
+  /** Whether to enable semi-dark menu (only effective when theme='light') */
   semiDarkSidebar: boolean;
 }
 
 interface TransitionPreferences {
-  /** 页面切换动画是否启用 */
+  /** Whether page switching animation is enabled */
   enable: boolean;
-  // /** 是否开启页面加载loading */
+  // /** Whether to enable page loading */
   loading: boolean;
-  /** 页面切换动画 */
+  /** Page switching animation */
   name: PageTransitionType | string;
-  /** 是否开启页面加载进度动画 */
+  /** Whether to enable page loading progress animation */
   progress: boolean;
 }
 
 interface WidgetPreferences {
-  /** 是否启用全屏部件 */
+  /** Whether to enable full screen widgets */
   fullscreen: boolean;
-  /** 是否启用全局搜索部件 */
+  /** Whether to enable the global search component */
   globalSearch: boolean;
-  /** 是否启用语言切换部件 */
+  /** Whether to enable the language switching component */
   languageToggle: boolean;
-  /** 是否开启锁屏功能 */
+  /** Whether to enable the lock screen function */
   lockScreen: boolean;
-  /** 是否显示通知部件 */
+  /** Whether to display notification widgets */
   notification: boolean;
-  /** 显示刷新按钮 */
+  /** Show refresh button */
   refresh: boolean;
-  /** 是否显示侧边栏显示/隐藏部件 */
+  /** Whether to display the sidebar show/hide widgets */
   sidebarToggle: boolean;
-  /** 是否显示主题切换部件 */
+  /** Whether to display the theme switching widget */
   themeToggle: boolean;
 }
 
 interface Preferences {
-  /** 全局配置 */
+  /** Global configuration */
   app: AppPreferences;
-  /** 顶栏配置 */
+  /** Top bar configuration */
   breadcrumb: BreadcrumbPreferences;
-  /** 版权配置 */
+  /** Copyright configuration */
   copyright: CopyrightPreferences;
-  /** 底栏配置 */
+  /** Bottom bar configuration */
   footer: FooterPreferences;
-  /** 面包屑配置 */
+  /** Breadcrumb configuration */
   header: HeaderPreferences;
-  /** logo配置 */
+  /** logo configuration */
   logo: LogoPreferences;
-  /** 导航配置 */
+  /** Navigation configuration */
   navigation: NavigationPreferences;
-  /** 快捷键配置 */
+  /** Shortcut key configuration */
   shortcutKeys: ShortcutKeyPreferences;
-  /** 侧边栏配置 */
+  /** Sidebar configuration */
   sidebar: SidebarPreferences;
-  /** 标签页配置 */
+  /**Tab page configuration */
   tabbar: TabbarPreferences;
-  /** 主题配置 */
+  /** Theme configuration */
   theme: ThemePreferences;
-  /** 动画配置 */
+  /** Animation configuration */
   transition: TransitionPreferences;
-  /** 功能配置 */
+  /** Function configuration */
   widget: WidgetPreferences;
 }
 ```
 
 :::
 
-::: warning 注意
+::: warning note
 
-- `overridesPreferences`方法只需要覆盖项目中的一部分配置，不需要的配置不用覆盖，会自动使用默认配置。
-- 任何配置项都可以覆盖，只需要在`overridesPreferences`方法内覆盖即可，不要修改默认配置文件。
-- 更改配置后请清空缓存，否则可能不生效。
+- The `overridesPreferences` method only needs to override part of the configuration in the project. Unnecessary configurations do not need to be overwritten, and the default configuration will be used automatically.
+- Any configuration item can be overridden. You only need to override it in the `overridesPreferences` method. Do not modify the default configuration file.
+- Please clear the cache after changing the configuration, otherwise it may not take effect.
 
 :::

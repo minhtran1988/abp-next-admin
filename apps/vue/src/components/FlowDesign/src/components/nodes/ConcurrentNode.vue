@@ -11,18 +11,18 @@
             <Ellipsis
               class="name"
               hover-tip
-              :content="config.name ? config.name : '并行任务' + level"
+              :content="config.name ? config.name : 'Parallel task' + level"
             />
           </span>
           <span class="option">
-            <Tooltip effect="dark" content="复制分支" placement="top">
+            <Tooltip effect="dark" content="Copy branch" placement="top">
               <CopyOutlined @click="$emit('copy')" />
             </Tooltip>
             <CloseOutlined @click.stop="$emit('delNode')" />
           </span>
         </div>
         <div class="node-body-main-content">
-          <span>并行任务（同时进行）</span>
+          <span>Parallel tasks (concurrently)</span>
         </div>
       </div>
       <div class="node-body-right" @click.stop="$emit('rightMove')" v-if="level < size">
@@ -67,7 +67,7 @@
       type: Number,
       default: 1,
     },
-    //条件数
+    // condition number
     size: {
       type: Number,
       default: 0,

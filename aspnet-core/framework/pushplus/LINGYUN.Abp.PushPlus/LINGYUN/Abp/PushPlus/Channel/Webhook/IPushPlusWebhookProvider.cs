@@ -3,15 +3,15 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.PushPlus.Channel.Webhook;
 /// <summary>
-/// Webhook配置接口
+/// Webhook configuration interface
 /// </summary>
 public interface IPushPlusWebhookProvider
 {
     /// <summary>
-    /// 获取webhook列表
+    /// Get the webhook list
     /// </summary>
-    /// <param name="current">当前所在分页数</param>
-    /// <param name="pageSize">每页大小，最大值为50</param>
+    /// <param name="current">Current page number</param>
+    /// <param name="pageSize">The size of each page, the maximum value is 50</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusPagedResponse<PushPlusWebhook>> GetWebhookListAsync(
@@ -19,21 +19,21 @@ public interface IPushPlusWebhookProvider
         int pageSize = 20,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// webhook详情
+    /// webhook details
     /// </summary>
-    /// <param name="webhookId">webhook编号</param>
+    /// <param name="webhookId">webhook number</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusWebhook> GetWebhookAsync(
         int webhookId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 新增webhook
+    /// Add new webhook
     /// </summary>
-    /// <param name="webhookCode">webhook编码</param>
-    /// <param name="webhookName">webhook名称</param>
-    /// <param name="webhookType">webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱</param>
-    /// <param name="webhookUrl">调用的url地址</param>
+    /// <param name="webhookCode">webhook encoding</param>
+    /// <param name="webhookName">webhook name</param>
+    /// <param name="webhookType">webhook type; 1-Enterprise WeChat, 2-DingTalk, 3-Feishu, 4-server Jiang</param>
+    /// <param name="webhookUrl">URL address to call</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<int> CreateWebhookAsync(
@@ -43,13 +43,13 @@ public interface IPushPlusWebhookProvider
         string webhookUrl,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 修改webhook配置
+    /// Modify webhook configuration
     /// </summary>
-    /// <param name="id">webhook编号</param>
-    /// <param name="webhookCode">webhook编码</param>
-    /// <param name="webhookName">webhook名称</param>
-    /// <param name="webhookType">webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱</param>
-    /// <param name="webhookUrl">调用的url地址</param>
+    /// <param name="id">webhook number</param>
+    /// <param name="webhookCode">webhook encoding</param>
+    /// <param name="webhookName">webhook name</param>
+    /// <param name="webhookType">webhook type; 1-Enterprise WeChat, 2-DingTalk, 3-Feishu, 4-server Jiang</param>
+    /// <param name="webhookUrl">URL address to call</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<string> UpdateWebhookAsync(

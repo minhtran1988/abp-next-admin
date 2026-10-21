@@ -45,20 +45,20 @@ export function isDayjsObject(value: any): value is dayjs.Dayjs {
 }
 
 /**
- * 获取当前时区
- * @returns 当前时区
+ * Get the current time zone
+ * @returns current time zone
  */
 export const getSystemTimezone = () => {
   return dayjs.tz.guess();
 };
 
 /**
- * 自定义设置的时区
+ * Customized time zone
  */
 let currentTimezone = getSystemTimezone();
 
 /**
- * 设置默认时区
+ * Set default time zone
  * @param timezone
  */
 export const setCurrentTimezone = (timezone?: string) => {
@@ -67,8 +67,8 @@ export const setCurrentTimezone = (timezone?: string) => {
 };
 
 /**
- * 获取设置的时区
- * @returns 设置的时区
+ * Get the set time zone
+ * @returns set time zone
  */
 export const getCurrentTimezone = () => {
   return currentTimezone;

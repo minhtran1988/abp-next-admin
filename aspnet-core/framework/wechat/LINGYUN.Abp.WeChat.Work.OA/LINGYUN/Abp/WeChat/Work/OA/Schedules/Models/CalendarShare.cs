@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日历通知范围成员
+/// Calendar notification range members
 /// </summary>
 public class CalendarShare
 {
     /// <summary>
-    /// 日历通知范围成员的id
+    /// ID of calendar notification scope member
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 日历通知范围成员权限
+    /// Calendar notification range member permissions
     /// </summary>
     [NotNull]
     [JsonProperty("permission")]

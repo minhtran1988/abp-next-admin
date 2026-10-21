@@ -3,49 +3,49 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// 行政区划信息
+/// Administrative division information
 /// </summary>
 public class AddressInfo
 {
     [JsonProperty("adcode")]
     public string AdCode { get; set; } = default!;
     /// <summary>
-    /// 城市代码
+    /// City code
     /// </summary>
     [JsonProperty("city_code")]
     public string? CityCode { get; set; }
     /// <summary>
-    /// 行政区划代码
+    /// Administrative division code
     /// </summary>
     [JsonProperty("nation_code")]
     public string? NationCode { get; set; }
     /// <summary>
-    /// 行政区划名称
+    /// Administrative division name
     /// </summary>
     [JsonProperty("name")]
     public string? Name { get; set; }
     /// <summary>
-    /// 国家
+    /// Country
     /// </summary>
     [JsonProperty("nation")]
     public string? Nation { get; set; }
     /// <summary>
-    /// 省/直辖市
+    /// Province/Municipality
     /// </summary>
     [JsonProperty("province")]
     public string? Province { get; set; }
     /// <summary>
-    /// 市/地级区 及同级行政区划
+    /// City/prefecture-level districts and administrative divisions at the same level
     /// </summary>
     [JsonProperty("city")]
     public string? City { get; set; }
     /// <summary>
-    /// 区/县级市 及同级行政区划
+    /// District/county-level city and administrative divisions at the same level
     /// </summary>
     [JsonProperty("district")]
     public string? District { get; set; }
     /// <summary>
-    /// 行政区划中心点坐标
+    /// Administrative division center point coordinates
     /// </summary>
     [JsonProperty("location")]
     public Location Location { get; set; } = new Location();

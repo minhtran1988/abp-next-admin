@@ -5,22 +5,22 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Contacts.Response;
 /// <summary>
-/// 获取已服务的外部联系人响应结果
+/// Get the serviced external contact response result
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
 /// </remarks>
 public class WeChatWorkGetExternalContactListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 外部联系人列表
+    /// External contact list
     /// </summary>
     [NotNull]
     [JsonProperty("info_list")]
     [JsonPropertyName("info_list")]
     public ExternalContactInfo[] InfoList { get; set; } = default!;
     /// <summary>
-    /// 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空,有效期为4小时
+    /// Paging cursor, fill it in during the next request to obtain subsequent paging records. If there is no more data, it will return empty. The validity period is 4 hours.
     /// </summary>
     [CanBeNull]
     [JsonProperty("next_cursor")]

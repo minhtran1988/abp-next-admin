@@ -1,30 +1,30 @@
 # LINGYUN.Abp.TextTemplating.Razor
 
-## 模块说明
+## Module description
 
-文本模板 Razor 引擎模块，提供基于 Razor 语法的模板渲染实现。
+Text template Razor engine module, providing template rendering implementation based on Razor syntax.
 
-### 基础模块
+### Basic module
 
 * Volo.Abp.TextTemplating.Razor
 * LINGYUN.Abp.TextTemplating.Domain
 
-### 功能定义
+### Function definition
 
-* 提供 Razor 模板渲染引擎
-  * RazorTemplateRenderingEngine - Razor 模板渲染引擎实现
-* 支持以下功能
-  * 使用 Razor 语法编写模板
-  * 支持模型绑定和强类型视图
-  * 支持布局模板
-  * 支持部分视图
-  * 支持 HTML 编码和解码
-  * 支持条件语句和循环
-  * 支持 C# 表达式
+* Provides Razor template rendering engine
+  * RazorTemplateRenderingEngine - Razor template rendering engine implementation
+* Support the following functions
+  * Use Razor syntax to write templates
+  * Support model binding and strongly typed views
+  * Support layout templates
+  * Support partial view
+  * Support HTML encoding and decoding
+  * Support conditional statements and loops
+  * Support C# expressions
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingRazorModule` 依赖
+1. Add `AbpTextTemplatingRazorModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingRazorModule))]
@@ -33,17 +33,17 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 创建和使用 Razor 模板
+2. Create and use Razor templates
 
 ```csharp
-// 创建模板定义
+//Create template definition
 var template = new TextTemplateDefinition(
     Guid.NewGuid(),
     "Welcome",
     "Welcome Email Template",
     renderEngine: "Razor");
 
-// 模板内容示例
+// Template content example
 @model WelcomeEmailModel
 
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ var template = new TextTemplateDefinition(
 </body>
 </html>
 
-// 使用模板
+// use template
 public class YourService
 {
     private readonly ITemplateRenderer _templateRenderer;
@@ -84,4 +84,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

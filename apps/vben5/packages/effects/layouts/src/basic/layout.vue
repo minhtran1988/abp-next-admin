@@ -119,7 +119,7 @@ const {
   sidebarVisible,
 } = useMixedMenu();
 
-// 侧边多列菜单
+// Side multi-column menu
 const {
   extraActiveMenu,
   extraMenus,
@@ -131,9 +131,9 @@ const {
 } = useExtraMenu(mixHeaderMenus);
 
 /**
- * 包装菜单，翻译菜单名称
- * @param menus 原始菜单数据
- * @param deep 是否深度包装。对于双列布局，只需要包装第一层，因为更深层的数据会在扩展菜单中重新包装
+ * Package menu, translate menu name
+ * @param menus original menu data
+ * @param deep Whether to pack deeply. For a two-column layout, only the first layer needs to be wrapped, as deeper data will be rewrapped in the expansion menu
  */
 function wrapperMenus(menus: MenuRecordRaw[], deep: boolean = true) {
   return deep
@@ -162,7 +162,7 @@ function clickLogo() {
 }
 
 function autoCollapseMenuByRouteMeta(route: RouteLocationNormalizedLoaded) {
-  // 只在双列模式下生效
+  // Only effective in double column mode
   if (
     ['header-mixed-nav', 'sidebar-mixed-nav'].includes(
       preferences.app.layout,
@@ -200,11 +200,11 @@ function refreshAll() {
   refresh();
 }
 
-// 语言更新后，刷新页面
-// i18n.global.locale会在preference.app.locale变更之后才会更新，因此watchpreference.app.locale是不合适的，刷新页面时可能语言配置尚未完全加载完成
+// After the language is updated, refresh the page
+// i18n.global.locale will not be updated until preference.app.locale changes, so watchpreference.app.locale is inappropriate. The language configuration may not be fully loaded when refreshing the page.
 watch(i18n.global.locale, refreshAll, { flush: 'post' });
 
-// 时区更新后，刷新页面
+// After the time zone is updated, refresh the page
 watch(() => timezoneStore.timezone, refreshAll, { flush: 'post' });
 
 const slots: SetupContext['slots'] = useSlots();
@@ -290,7 +290,7 @@ const headerSlots = computed(() => {
         </template>
       </VbenLogo>
     </template>
-    <!-- 头部区域 -->
+    <!-- Header area -->
     <template #header>
       <LayoutHeader
         :theme="theme"
@@ -332,7 +332,7 @@ const headerSlots = computed(() => {
         </template>
       </LayoutHeader>
     </template>
-    <!-- 侧边菜单区域 -->
+    <!-- Side menu area -->
     <template #menu>
       <LayoutMenu
         :accordion="preferences.navigation.accordion"
@@ -358,7 +358,7 @@ const headerSlots = computed(() => {
         @select="handleMixedMenuSelect"
       />
     </template>
-    <!-- 侧边额外区域 -->
+    <!-- Additional side area -->
     <template #side-extra>
       <LayoutExtraMenu
         :accordion="preferences.navigation.accordion"
@@ -389,7 +389,7 @@ const headerSlots = computed(() => {
       />
     </template>
 
-    <!-- 主体内容 -->
+    <!-- Main content -->
     <template #content>
       <LayoutContent />
     </template>
@@ -398,7 +398,7 @@ const headerSlots = computed(() => {
       <LayoutContentSpinner />
     </template>
 
-    <!-- 页脚 -->
+    <!-- Footer -->
     <template v-if="preferences.footer.enable" #footer>
       <LayoutFooter>
         <Copyright

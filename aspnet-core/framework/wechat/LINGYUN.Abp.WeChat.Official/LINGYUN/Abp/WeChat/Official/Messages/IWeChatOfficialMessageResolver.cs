@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages;
 /// <summary>
-/// 微信公众号消息解析器
+/// WeChat public account message parser
 /// </summary>
 public interface IWeChatOfficialMessageResolver
 {
     /// <summary>
-    /// 解析微信公众号消息
+    /// Parse WeChat public account messages
     /// </summary>
-    /// <param name="messageData">公众号消息</param>
+    /// <param name="messageData">Official account message</param>
     /// <returns></returns>
     Task<MessageResolveResult> ResolveAsync(MessageResolveData messageData);
 }

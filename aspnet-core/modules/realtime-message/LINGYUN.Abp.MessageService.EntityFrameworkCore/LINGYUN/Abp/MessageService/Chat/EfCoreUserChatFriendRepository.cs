@@ -40,7 +40,7 @@ public class EfCoreUserChatFriendRepository : EfCoreRepository<IMessageServiceDb
         var dbContext = await GetDbContextAsync();
         var userFriendQuery = from ucf in dbContext.Set<UserChatFriend>()
                               join ucc in dbContext.Set<UserChatCard>()
-                              //      on ucf.FrientId equals ucc.UserId // 查询双向好友的
+                              // on ucf.FrientId equals ucc.UserId // Query two-way friends
                                     on ucf.UserId equals ucc.UserId
                               where ucf.UserId == userId && ucf.Status == UserFriendStatus.Added
                               select new UserFriend
@@ -112,16 +112,16 @@ public class EfCoreUserChatFriendRepository : EfCoreRepository<IMessageServiceDb
             sorting = nameof(UserChatFriend.UserId);
         }
         var dbContext = await GetDbContextAsync();
-        // 过滤用户资料
+        // Filter user data
         var userChatCardQuery = dbContext.Set<UserChatCard>()
             .WhereIf(!filter.IsNullOrWhiteSpace(), ucc => ucc.UserName.Contains(filter!) || ucc.NickName!.Contains(filter!));
 
-        // 过滤好友资料
+        // Filter friend information
         var userChatFriendQuery = dbContext.Set<UserChatFriend>()
             .Where(ucf => ucf.Status == UserFriendStatus.Added)
             .WhereIf(!filter.IsNullOrWhiteSpace(), ucf => ucf.RemarkName!.Contains(filter!));
 
-        // 组合查询
+        // Combined query
         var userFriendQuery = from ucf in userChatFriendQuery
                               join ucc in userChatCardQuery // TODO: Need LEFT JOIN?
                                     on ucf.FrientId equals ucc.UserId
@@ -168,7 +168,7 @@ public class EfCoreUserChatFriendRepository : EfCoreRepository<IMessageServiceDb
                               join um in userReceiveMsgQuery
                                     on ucc.UserId equals um.CreatorId
                               where ucf.UserId == userId && ucf.Status == UserFriendStatus.Added
-                              orderby um.CreationTime descending // 消息创建时间倒序
+                              orderby um.CreationTime descending // Message creation time in descending order
                               select new UserFriend
                               {
                                   Age = ucc.Age,

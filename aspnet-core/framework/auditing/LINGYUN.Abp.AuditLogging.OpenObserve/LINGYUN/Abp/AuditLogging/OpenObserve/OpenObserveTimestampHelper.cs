@@ -3,12 +3,12 @@ using System;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// OpenObserve 时间戳工具
+/// OpenObserve timestamp tool
 /// </summary>
 public static class OpenObserveTimestampHelper
 {
     /// <summary>
-    /// 转换为微秒时间戳
+    /// Convert to microsecond timestamp
     /// </summary>
     public static long ToMicroseconds(DateTime time)
     {
@@ -16,15 +16,15 @@ public static class OpenObserveTimestampHelper
     }
 
     /// <summary>
-    /// 尝试用日志时间覆盖 <c>_timestamp</c>
+    /// Try to overwrite <c>_timestamp</c> with log time
     /// </summary>
     /// <remarks>
-    /// OpenObserve 默认仅允许写入 <c>ZO_INGEST_ALLOWED_UPTO</c>(默认 5)小时内的数据,
-    /// 超出窗口的数据会被服务端丢弃, 因此超出时返回 null 由服务端使用写入时间
+    /// By default, OpenObserve only allows writing data within <c>ZO_INGEST_ALLOWED_UPTO</c> (default 5) hours.
+    /// Data that exceeds the window will be discarded by the server, so when it exceeds, null is returned and the writing time is used by the server.
     /// </remarks>
-    /// <param name="time">日志自身的业务时间(如 AuditLog.ExecutionTime / SecurityLog.CreationTime)</param>
-    /// <param name="now">当前时间</param>
-    /// <param name="allowedUptoHours">允许回溯的小时数, 需与服务端 ZO_INGEST_ALLOWED_UPTO 一致</param>
+    /// <param name="time">The business time of the log itself (such as AuditLog.ExecutionTime / SecurityLog.CreationTime)</param>
+    /// <param name="now">Current time</param>
+    /// <param name="allowedUptoHours">The number of hours allowed to be backtracked must be consistent with the server ZO_INGEST_ALLOWED_UPTO</param>
     public static long? TryGetTimestamp(DateTime time, DateTime now, int allowedUptoHours)
     {
         if (time == default)

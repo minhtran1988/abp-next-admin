@@ -1,68 +1,68 @@
 # LINGYUN.Abp.RulesEngineManagement.Application.Contracts
 
-## 1. 介绍
+## 1. Introduction
 
-规则引擎管理模块的应用服务契约层，定义了规则引擎管理所需的接口、DTO等。
+The application service contract layer of the rule engine management module defines the interfaces, DTOs, etc. required for rule engine management.
 
-## 2. 功能
+## 2. Function
 
-* 定义了规则引擎管理的应用服务接口
-* 定义了数据传输对象（DTOs）
-* 定义了权限
+* Defines the application service interface managed by the rule engine
+* Defines data transfer objects (DTOs)
+*Permissions defined
 
-## 3. 应用服务接口
+## 3. Application service interface
 
 * IRuleRecordAppService
-  * 提供规则记录的CRUD操作接口
-  * 支持按名称查询规则
-  * 支持分页查询
+  * Provide CRUD operation interface for rule records
+  * Support querying rules by name
+  * Support paging query
   
 * IWorkflowRecordAppService
-  * 提供工作流记录的CRUD操作接口
-  * 支持按名称和类型查询工作流
-  * 支持分页查询
+  * Provide CRUD operation interface for workflow records
+  * Support querying workflows by name and type
+  * Support paging query
 
-## 4. 数据传输对象
+## 4. Data transfer object
 
-### 4.1 规则记录DTOs
+### 4.1 Rule record DTOs
 
 * RuleRecordDto
 * CreateRuleRecordDto
 * UpdateRuleRecordDto
 * RuleRecordGetListInput
 
-### 4.2 工作流记录DTOs
+### 4.2 Workflow record DTOs
 
 * WorkflowRecordDto
 * CreateWorkflowRecordDto
 * UpdateWorkflowRecordDto
 * WorkflowRecordGetListInput
 
-### 4.3 参数记录DTOs
+### 4.3 Parameter record DTOs
 
 * ParamRecordDto
 * CreateParamRecordDto
 * UpdateParamRecordDto
 
-### 4.4 动作记录DTOs
+### 4.4 Action Record DTOs
 
 * ActionRecordDto
 * CreateActionRecordDto
 * UpdateActionRecordDto
 
-## 5. 权限定义
+## 5. Permission definition
 
 * RulesEngineManagement.Rule
-  * 规则管理权限
-  * 包含创建、修改、删除、查询权限
+  *Rule management authority
+  *Includes creation, modification, deletion, and query permissions
   
 * RulesEngineManagement.Workflow
-  * 工作流管理权限
-  * 包含创建、修改、删除、查询权限
+  * Workflow management permissions
+  *Includes creation, modification, deletion, and query permissions
 
-## 6. 依赖
+## 6. Dependencies
 
 * Volo.Abp.Ddd.Application.Contracts
 * LINGYUN.Abp.RulesEngineManagement.Domain.Shared
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

@@ -13,9 +13,9 @@ export function useSendAttemptsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询发送记录
-   * @param id 记录Id
-   * @returns 发送记录Dto
+   * Query sending records
+   * @param id record ID
+   * @returns Send record Dto
    */
   function getApi(id: string): Promise<WebhookSendRecordDto> {
     return request<WebhookSendRecordDto>(`/api/webhooks/send-attempts/${id}`, {
@@ -23,8 +23,8 @@ export function useSendAttemptsApi() {
     });
   }
   /**
-   * 删除发送记录
-   * @param id 记录Id
+   * Delete sending record
+   * @param id record ID
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/webhooks/send-attempts/${id}`, {
@@ -32,8 +32,8 @@ export function useSendAttemptsApi() {
     });
   }
   /**
-   * 批量删除发送记录
-   * @param input 参数
+   * Delete sending records in batches
+   * @param input parameter
    */
   function bulkDeleteApi(
     input: WebhookSendRecordDeleteManyInput,
@@ -44,9 +44,9 @@ export function useSendAttemptsApi() {
     });
   }
   /**
-   * 查询发送记录分页列表
-   * @param input 过滤参数
-   * @returns 发送记录Dto分页列表
+   * Query the paging list of sending records
+   * @param input filter parameter
+   * @returns Send record Dto paging list
    */
   function getPagedListApi(
     input: WebhookSendRecordGetListInput,
@@ -60,8 +60,8 @@ export function useSendAttemptsApi() {
     );
   }
   /**
-   * 重新发送
-   * @param id 记录Id
+   * Resend
+   * @param id record ID
    */
   function reSendApi(id: string): Promise<void> {
     return request(`/api/webhooks/send-attempts/${id}/resend`, {
@@ -69,8 +69,8 @@ export function useSendAttemptsApi() {
     });
   }
   /**
-   * 批量重新发送
-   * @param input 参数
+   * Batch Resend
+   * @param input parameter
    */
   function bulkReSendApi(
     input: WebhookSendRecordResendManyInput,

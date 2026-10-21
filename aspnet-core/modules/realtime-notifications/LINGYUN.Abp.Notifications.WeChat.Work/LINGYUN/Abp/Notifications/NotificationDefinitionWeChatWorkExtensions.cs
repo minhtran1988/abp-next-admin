@@ -7,7 +7,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     private const string ToPartyKey = Prefix + "to_party";
 
     /// <summary>
-    /// 设定发送到所有应用
+    /// Set to send to all applications
     /// </summary>
     /// <param name="notification"></param>
     /// <returns></returns>
@@ -18,7 +18,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 设定消息应用标识
+    /// Set message application ID
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="agentId"></param>
@@ -31,7 +31,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取消息应用标识
+    /// Get the message application ID
     /// </summary>
     /// <param name="notification"></param>
     public static string? GetAgentIdOrNull(
@@ -46,7 +46,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。
+    /// Specify the tag to receive the message, tag ID list, multiple receivers separated by '|', up to 100 are supported.
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="tag"></param>
@@ -59,7 +59,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取接收消息的标签
+    /// Get the label of the received message
     /// </summary>
     /// <param name="notification"></param>
     public static string? GetTagOrNull(
@@ -74,7 +74,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。
+    /// Specify the department to receive the message, department ID list, multiple recipients separated by '|', up to 100 are supported.
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="party"></param>
@@ -87,7 +87,7 @@ public static class NotificationDefinitionWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 获取接收消息的部门
+    /// Get the department that received the message
     /// </summary>
     /// <param name="notification"></param>
     public static string? GetPartyOrNull(

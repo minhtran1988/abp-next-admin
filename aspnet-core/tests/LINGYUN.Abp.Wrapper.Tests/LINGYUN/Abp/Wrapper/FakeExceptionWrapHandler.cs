@@ -5,8 +5,8 @@
         public void Wrap(ExceptionWrapContext context)
         {
             context.WithCode("1001")
-                   .WithMessage("自定义异常处理消息")
-                   .WithDetails("自定义异常处理消息明细");
+                   .WithMessage("Custom exception handling message")
+                   .WithDetails("Customized exception handling message details");
         }
     }
 }

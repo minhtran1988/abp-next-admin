@@ -1,11 +1,11 @@
 export enum QrCodeStatus {
-  /** 已确认 */
+  /** Confirmed */
   Confirmed = 10,
-  /** 创建 */
+  /** Create */
   Created = 0,
-  /** 无效 */
+  /** Invalid */
   Invalid = -1,
-  /** 已扫描 */
+  /** Scanned */
   Scaned = 5,
 }
 

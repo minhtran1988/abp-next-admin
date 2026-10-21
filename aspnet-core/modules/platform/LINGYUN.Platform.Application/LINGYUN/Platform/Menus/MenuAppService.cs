@@ -125,7 +125,7 @@ public class MenuAppService : PlatformApplicationServiceBase, IMenuAppService
             CurrentTenant.Id,
             input.IsPublic);
 
-        // 利用布局约定的数据字典来校验必须的路由元数据,元数据的加入是为了适配多端路由
+        // Use the data dictionary agreed by the layout to verify the necessary routing metadata. The metadata is added to adapt to multi-end routing.
         foreach (var dataItem in data.Items)
         {
             if (!input.Meta.TryGetValue(dataItem.Name, out var meta))
@@ -136,12 +136,12 @@ public class MenuAppService : PlatformApplicationServiceBase, IMenuAppService
                         .WithData("Name", dataItem.DisplayName)
                         .WithData("DataName", data.DisplayName);
                 }
-                // 是否需要设定默认值
+                // Do you need to set a default value?
                 menu.SetProperty(dataItem.Name, dataItem.DefaultValue);
             }
             else
             {
-                // 需要检查参数是否有效
+                // Need to check whether the parameters are valid
                 menu.SetProperty(dataItem.Name, DataItemMapping.MapToString(dataItem.ValueType, meta));
             }
         }
@@ -156,7 +156,7 @@ public class MenuAppService : PlatformApplicationServiceBase, IMenuAppService
     {
         var menu = await MenuRepository.GetAsync(id);
 
-        // 利用布局约定的数据字典来校验必须的路由元数据,元数据的加入是为了适配多端路由
+        // Use the data dictionary agreed by the layout to verify the necessary routing metadata. The metadata is added to adapt to multi-end routing.
         var layout = await LayoutRepository.GetAsync(menu.LayoutId);
         var data = await DataRepository.GetAsync(layout.DataId);
         foreach (var dataItem in data.Items)
@@ -169,18 +169,18 @@ public class MenuAppService : PlatformApplicationServiceBase, IMenuAppService
                         .WithData("Name", dataItem.DisplayName)
                         .WithData("DataName", data.DisplayName);
                 }
-                // 是否需要设定默认值?
+                // Do I need to set a default value?
                 menu.SetProperty(dataItem.Name, dataItem.DefaultValue);
             }
             else
             {
-                // 与现有的数据做对比
+                // Compare with existing data
                 var menuMeta = menu.GetProperty(dataItem.Name);
                 if (menuMeta != null && menuMeta.Equals(meta))
                 {
                     continue;
                 }
-                // 需要检查参数是否有效
+                // Need to check whether the parameters are valid
                 menu.SetProperty(dataItem.Name, DataItemMapping.MapToString(dataItem.ValueType, meta));
             }
         }

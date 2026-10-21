@@ -6,41 +6,41 @@ using Volo.Abp.Modularity;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据测试基类
+/// Channel data test base class
 /// </summary>
 /// <remarks>
-/// 各渠道的测试项目继承本类并指定自己的测试模块(该模块依赖真实渠道模块),
-/// 从而共用同一套"new 消息对象 → <c>IJsonSerializer</c> 序列化 → 渠道侧验证"的写法。
+/// The test projects of each channel inherit this class and specify their own test module (this module depends on the real channel module),
+/// Thus sharing the same set of "new message object → <c>IJsonSerializer</c> serialization → channel side verification" writing method.
 /// </remarks>
 public abstract class NotificationChannelDataTestsBase<TStartupModule> : AbpTestsBase<TStartupModule>
     where TStartupModule : IAbpModule
 {
     /// <summary>
-    /// 渠道侧解析器
+    /// Channel side parser
     /// </summary>
     protected INotificationChannelDataResolver ChannelDataResolver
         => GetRequiredService<INotificationChannelDataResolver>();
 
     /// <summary>
-    /// 渠道数据存取器(生产侧写入用)
+    /// Channel data accessor (for production side writing)
     /// </summary>
     protected INotificationChannelDataAccessor ChannelDataAccessor
         => GetRequiredService<INotificationChannelDataAccessor>();
 
     /// <summary>
-    /// 生产者侧序列化器
+    /// Producer side serializer
     /// </summary>
     protected INotificationChannelDataSerializer ChannelDataSerializer
         => GetRequiredService<INotificationChannelDataSerializer>();
 
     /// <summary>
-    /// ABP 全局 JSON 序列化器
+    /// ABP global JSON serializer
     /// </summary>
     protected IJsonSerializer JsonSerializer
         => GetRequiredService<IJsonSerializer>();
 
     /// <summary>
-    /// 仅序列化消息对象, 便于断言 JSON 契约
+    /// Only serialize message objects to facilitate assertion of JSON contracts
     /// </summary>
     protected string Serialize<TPayload>(TPayload payload)
         where TPayload : class
@@ -49,11 +49,11 @@ public abstract class NotificationChannelDataTestsBase<TStartupModule> : AbpTest
     }
 
     /// <summary>
-    /// 把消息对象序列化后写入通知数据的载荷键
+    /// Serialize the message object and write it into the payload key of the notification data
     /// </summary>
     /// <remarks>
-    /// 走生产路径: <see cref="INotificationChannelDataAccessor.Set"/> 对复杂类型
-    /// 调用 <see cref="IJsonSerializer"/> 序列化, 与生产者写入的结果完全一致。
+    /// Take the production path: <see cref="INotificationChannelDataAccessor.Set"/> for complex types
+    /// Call <see cref="IJsonSerializer"/> for serialization, which is exactly the same as the result written by the producer.
     /// </remarks>
     protected NotificationData WriteChannelData<TChannelData>(TChannelData channelData)
         where TChannelData : NotificationChannelData
@@ -62,7 +62,7 @@ public abstract class NotificationChannelDataTestsBase<TStartupModule> : AbpTest
     }
 
     /// <summary>
-    /// 把消息对象序列化后合并写入已有的通知数据
+    /// Serialize the message object and merge it into the existing notification data.
     /// </summary>
     protected NotificationData MergeChannelData<TChannelData>(
         NotificationData notificationData,

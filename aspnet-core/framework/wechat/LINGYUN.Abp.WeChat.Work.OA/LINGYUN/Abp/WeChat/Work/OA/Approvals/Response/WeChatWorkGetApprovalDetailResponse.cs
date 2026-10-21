@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Response;
 /// <summary>
-/// 获取审批申请详情响应参数
+/// Get approval application details response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91983"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91983"/>
 /// </remarks>
 public class WeChatWorkGetApprovalDetailResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 审批申请详情
+    /// Approval application details
     /// </summary>
     [NotNull]
     [JsonProperty("info")]

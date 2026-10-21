@@ -5,11 +5,11 @@ namespace LINGYUN.Abp.Account.Dto;
 public abstract class LinkUserBaseDto
 {
     /// <summary>
-    /// 关联用户Id
+    /// Associated user ID
     /// </summary>
     public Guid UserId { get; set; }
     /// <summary>
-    /// 关联租户Id
+    /// Associated tenant ID
     /// </summary>
     public Guid? TenantId { get; set; }
 }

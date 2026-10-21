@@ -28,7 +28,7 @@ function handleUpdate(len: number) {
 }
 </script>
 <template>
-  <Drawer title="自动计算高度">
+  <Drawer title="Automatically calculate height">
     <div
       v-for="item in list"
       :key="item"
@@ -38,7 +38,7 @@ function handleUpdate(len: number) {
     </div>
     <template #prepend-footer>
       <VbenButton type="link" @click="handleUpdate(6)">
-        点击更新数据
+        Click to update data
       </VbenButton>
     </template>
   </Drawer>

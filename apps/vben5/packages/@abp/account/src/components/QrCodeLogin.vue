@@ -17,31 +17,31 @@ import Title from './components/LoginTitle.vue';
 
 interface Props {
   /**
-   * @zh_CN 默认头像
+   * @zh_CN default avatar
    */
   defaultAvatar?: string;
   /**
-   * @zh_CN 描述
+   * @zh_CN Description
    */
   description?: string;
   /**
-   * @zh_CN 是否处于加载处理状态
+   * @zh_CN Whether it is in loading processing state
    */
   loading?: boolean;
   /**
-   * @zh_CN 登录路径
+   * @zh_CN login path
    */
   loginPath?: string;
   /**
-   * @zh_CN 按钮文本
+   * @zh_CN button text
    */
   submitButtonText?: string;
   /**
-   * @zh_CN 描述
+   * @zh_CN Description
    */
   subTitle?: string;
   /**
-   * @zh_CN 标题
+   * @zh_CN title
    */
   title?: string;
 }
@@ -120,11 +120,11 @@ async function onCheckCode() {
     return;
   }
   qrcodeInfo.value = result;
-  // 已确认登录
+  // Login confirmed
   if (result.status === QrCodeStatus.Confirmed) {
     interval && clearInterval(interval);
     localStorage.removeItem('login_qrocde');
-    // 登录
+    // Login
     emits('confirm', result.key, result.tenantId);
   }
 }

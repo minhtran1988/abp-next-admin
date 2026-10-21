@@ -14,7 +14,7 @@ export interface RequestOptions {
   joinPrefix?: boolean;
   // Interface address, use the default apiUrl if you leave it blank
   apiUrl?: string;
-  // 请求拼接路径
+  // Request splicing path
   urlPrefix?: string;
   // Error message prompt type
   errorMessageMode?: ErrorMessageMode;
@@ -32,7 +32,7 @@ export interface Result<T = any> {
   message: string;
   details?: string;
   result: T;
-  // 请求重试机制
+  // Request retry mechanism
   retryRequest?: RetryRequest;
 }
 

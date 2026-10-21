@@ -1,20 +1,20 @@
 # LINGYUN.Abp.MicroService.AdminService.EntityFrameworkCore
 
-后台管理数据迁移模块，提供后台管理系统相关的数据库迁移功能。
+The backend management data migration module provides database migration functions related to the backend management system.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 集成SaaS多租户数据迁移
-* 集成设置管理数据迁移
-* 集成数据保护管理数据迁移
-* 集成权限管理数据迁移
-* 集成特性管理数据迁移
-* 集成文本模板数据迁移
-* 支持MySQL数据库
+* Integrated SaaS multi-tenant data migration
+* Integrated settings to manage data migration
+* Integrated data protection management data migration
+* Integrated rights management data migration
+* Integrated features to manage data migration
+* Integrated text template data migration
+* Support MySQL database
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -28,22 +28,22 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "BackendAdminDbMigrator": "你的数据库连接字符串"
+    "BackendAdminDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置BackendAdminDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the BackendAdminDbMigrator connection string in appsettings.json
 
-2. 添加模块依赖
+2. Add module dependencies
    ```csharp
    [DependsOn(typeof(BackendAdminMigrationsEntityFrameworkCoreModule))]
    public class YourModule : AbpModule
@@ -52,16 +52,16 @@
    }
    ```
 
-## 数据库表说明
+## Database table description
 
-* Saas相关表 - 租户、版本等多租户相关数据
-* AbpSettings - 系统设置数据
-* AbpDataProtection - 数据保护相关数据
-* AbpPermissionGrants - 权限授权数据
-* AbpFeatures - 功能特性数据
-* AbpTextTemplates - 文本模板数据
+* Saas related tables - multi-tenant related data such as tenants and versions
+* AbpSettings - system setting data
+* AbpDataProtection - Data protection related data
+* AbpPermissionGrants - permission authorization data
+* AbpFeatures - Functional feature data
+* AbpTextTemplates - text template data
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [ASP.NET Core数据保护](https://docs.microsoft.com/zh-cn/aspnet/core/security/data-protection/introduction)
+* [ABP Documentation](https://docs.abp.io)
+* [ASP.NET Core Data Protection](https://docs.microsoft.com/zh-cn/aspnet/core/security/data-protection/introduction)

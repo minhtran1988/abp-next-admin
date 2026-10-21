@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.MessageService.Chat;
 public class UserMessage : Message
 {
     /// <summary>
-    /// 接收用户标识
+    /// Receive user ID
     /// </summary>
     public virtual Guid ReceiveUserId { get; set; }
 

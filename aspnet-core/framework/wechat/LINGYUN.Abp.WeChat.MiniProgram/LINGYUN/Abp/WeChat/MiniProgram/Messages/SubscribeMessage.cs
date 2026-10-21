@@ -6,39 +6,39 @@ namespace LINGYUN.Abp.WeChat.MiniProgram.Messages;
 public class SubscribeMessage
 {
     /// <summary>
-    /// 接收者（用户）的 openid
+    /// The openid of the recipient (user)
     /// </summary>
     [JsonProperty("touser")]
     public string ToUser { get; set; } = default!;
     /// <summary>
-    /// 所需下发的订阅模板id
+    /// The subscription template id to be distributed
     /// </summary>
     [JsonProperty("template_id")]
     public string TemplateId { get; set; } = default!;
     /// <summary>
-    /// 点击模板卡片后的跳转页面，仅限本小程序内的页面。
-    /// 支持带参数,（示例index?foo=bar）。
-    /// 该字段不填则模板无跳转
+    /// The jump page after clicking the template card is limited to pages within this mini program.
+    /// Supports parameters, (example index?foo=bar).
+    /// If this field is not filled in, the template will not jump.
     /// </summary>
     [JsonProperty("page")]
     public string? Page { get; set; }
     /// <summary>
-    /// 跳转小程序类型：
-    /// developer为开发版；trial为体验版；formal为正式版；
-    /// 默认为正式版
+    /// Jump applet type:
+    /// developer is the development version; trial is the experience version; formal is the official version;
+    /// The default is the official version
     /// </summary>
     [JsonProperty("miniprogram_state")]
     public string? MiniProgramState { get; set; }
     /// <summary>
-    /// 进入小程序查看”的语言类型，
-    /// 支持zh_CN(简体中文)、en_US(英文)、zh_HK(繁体中文)、zh_TW(繁体中文)，
-    /// 默认为zh_CN
+    /// Enter the mini program to view the language type of "
+    /// Supports zh_CN (Simplified Chinese), en_US (English), zh_HK (Traditional Chinese), zh_TW (Traditional Chinese),
+    /// The default is zh_CN
     /// </summary>
     [JsonProperty("lang")]
     public string? Lang { get; set; } = "zh_CN";
     /// <summary>
-    /// 模板内容，
-    /// 格式形如 { "key1": { "value": any }, "key2": { "value": any } }
+    /// Template content,
+    /// The format is { "key1": { "value": any }, "key2": { "value": any } }
     /// </summary>
     [JsonProperty("data")]
     public Dictionary<string, MessageData> Data { get; set; } = new Dictionary<string, MessageData>();
@@ -60,7 +60,7 @@ public class SubscribeMessage
 
     public SubscribeMessage WriteData(string prefix, string key, object value)
     {
-        // 只截取符合标记的数据
+        // Only intercept data that matches the mark
         if (key.StartsWith(prefix))
         {
             key = key.Replace(prefix, "");

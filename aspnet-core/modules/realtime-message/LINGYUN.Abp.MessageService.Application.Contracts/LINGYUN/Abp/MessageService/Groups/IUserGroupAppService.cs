@@ -8,30 +8,30 @@ namespace LINGYUN.Abp.MessageService.Groups;
 public interface IUserGroupAppService : IApplicationService
 {
     /// <summary>
-    /// 申请加入群组
+    /// Apply to join the group
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task ApplyJoinGroupAsync(UserJoinGroupDto input);
     /// <summary>
-    /// 获取我的群组
+    /// Get my group
     /// </summary>
     /// <returns></returns>
     Task<ListResultDto<Group>> GetMyGroupsAsync();
     /// <summary>
-    /// 获取群组用户
+    /// Get group users
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<PagedResultDto<GroupUserCard>> GetGroupUsersAsync(GroupUserGetByPagedDto input);
     /// <summary>
-    /// 处理用户群组申请
+    /// Process user group application
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task GroupAcceptUserAsync(GroupAcceptUserDto input);
     /// <summary>
-    /// 群组移除用户
+    /// Remove users from group
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>

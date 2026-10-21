@@ -56,8 +56,8 @@ public class DataAccessEntityTypeInfoProvider : IDataAccessEntityTypeInfoProvide
 
         foreach (var propertyInfo in entityPropeties)
         {
-            // 字段本地化描述规则
-            // 在本地化文件中定义 DisplayName:PropertyName
+            // Field localization description rules
+            // Define DisplayName:PropertyName in localization file
             var localizedProp = stringLozalizer[$"DisplayName:{propertyInfo.Name}"];
             var propertyInfoResult = javaScriptTypeConvert.Convert(propertyInfo.PropertyType);
             var entityPropertyInfo = new EntityPropertyInfoModel

@@ -43,7 +43,7 @@ namespace LINGYUN.Abp.Notifications.Sms
             // mappingSmsData.TryGetData("template").ShouldNotBeNull();
             // mappingSmsData.TryGetData("template").ToString().ShouldBe("SM_202011250901");
 
-            // // 按照预定义规则,这条数据被丢弃
+            // // According to the predefined rules, this data is discarded
             // mappingSmsData.TryGetData("otherDataKey").ShouldBeNull();
         }
 
@@ -56,7 +56,7 @@ namespace LINGYUN.Abp.Notifications.Sms
 
             // var mappingStandardData = mappingStandardItem.MappingFunc(_notificationData);
 
-            // // 按照自定义规则,其他数据被丢弃
+            // // According to custom rules, other data is discarded
             // mappingStandardData.TryGetData("phoneNumber").ShouldBeNull();
             // mappingStandardData.TryGetData("template").ShouldBeNull();
             // mappingStandardData.TryGetData("otherDataKey").ShouldBeNull();
@@ -72,7 +72,7 @@ namespace LINGYUN.Abp.Notifications.Sms
 
             // var mappingOriginData = mappingOriginItem.MappingFunc(_notificationData);
 
-            // // 按照自定义规则,所有数据被保留
+            // // According to custom rules, all data is retained
             // mappingOriginData.TryGetData(NotificationSmsOptions.TemplateParamsPrefix + "phoneNumber").ShouldNotBeNull();
             // mappingOriginData.TryGetData(NotificationSmsOptions.TemplateParamsPrefix + "template").ShouldNotBeNull();
             // mappingOriginData.TryGetData("otherDataKey").ShouldNotBeNull();

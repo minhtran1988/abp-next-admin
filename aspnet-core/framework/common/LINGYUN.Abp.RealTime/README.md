@@ -1,25 +1,25 @@
 # LINGYUN.Abp.RealTime
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.RealTime` 是一个实时通信基础模块，提供了实时消息传递的基础设施。该模块主要用于处理实时通知、消息和事件的传递。
+`LINGYUN.Abp.RealTime` is a real-time communication basic module that provides real-time messaging infrastructure. This module is mainly used to handle the delivery of real-time notifications, messages and events.
 
-## 功能
+## Function
 
-* 实时事件传递基础设施
-* 支持本地化字符串处理
-* 分布式事件集成
-* 可扩展的事件处理机制
+* Real-time event delivery infrastructure
+* Support localized string processing
+* Distributed event integration
+* Extensible event handling mechanism
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.RealTime
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpRealTimeModule))]` 到你的模块类上。
+1. Add `[DependsOn(typeof(AbpRealTimeModule))]` to your module class.
 
 ```csharp
 [DependsOn(typeof(AbpRealTimeModule))]
@@ -29,7 +29,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 创建实时事件数据传输对象：
+2. Create a real-time event data transmission object:
 
 ```csharp
 public class YourRealTimeEto : RealTimeEto<YourData>
@@ -41,7 +41,7 @@ public class YourRealTimeEto : RealTimeEto<YourData>
 }
 ```
 
-3. 使用本地化字符串：
+3. Use localized strings:
 
 ```csharp
 public class LocalizedMessage
@@ -61,9 +61,9 @@ public class LocalizedMessage
 }
 ```
 
-## 高级用法
+## Advanced usage
 
-### 1. 自定义实时事件
+### 1. Customize real-time events
 
 ```csharp
 [EventName("your-custom-event")]
@@ -76,7 +76,7 @@ public class CustomRealTimeEto : RealTimeEto<CustomData>
 }
 ```
 
-### 2. 实时事件处理
+### 2. Real-time event processing
 
 ```csharp
 public class YourRealTimeEventHandler : 
@@ -85,11 +85,11 @@ public class YourRealTimeEventHandler :
 {
     public async Task HandleEventAsync(YourRealTimeEto eventData)
     {
-        // 处理实时事件
+        // Handle real-time events
     }
 }
 ```
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)

@@ -7,7 +7,7 @@ import type {
 
 type ExtendOptions<T = any> = {
   /**
-   * 参数序列化方式。预置的有
+   * Parameter serialization method. There are preset
    * - brackets: ids[]=1&ids[]=2&ids[]=3
    * - comma: ids=1,2,3
    * - indices: ids[0]=1&ids[1]=2&ids[2]=3
@@ -20,10 +20,10 @@ type ExtendOptions<T = any> = {
     | 'repeat'
     | AxiosRequestConfig<T>['paramsSerializer'];
   /**
-   * 响应数据的返回方式。
-   * - raw: 原始的AxiosResponse，包括headers、status等，不做是否成功请求的检查。
-   * - body: 返回响应数据的BODY部分（只会根据status检查请求是否成功，忽略对code的判断，这种情况下应由调用方检查请求是否成功）。
-   * - data: 解构响应的BODY数据，只返回其中的data节点数据（会检查status和code是否为成功状态）。
+   * How to return response data.
+   * - raw: The original AxiosResponse, including headers, status, etc., does not check whether the request is successful.
+   * - body: Returns the BODY part of the response data (only the status will be used to check whether the request is successful, and the code will be ignored. In this case, the caller should check whether the request is successful).
+   * - data: Deconstruct the response BODY data and only return the data node data (status and code will be checked to see if they are successful).
    */
   responseReturn?: 'body' | 'data' | 'raw';
 };
@@ -42,7 +42,7 @@ type RequestContentType =
 type RequestClientOptions = CreateAxiosDefaults & ExtendOptions;
 
 /**
- * SSE 请求选项
+ * SSE request options
  */
 interface SseRequestOptions extends RequestInit {
   onMessage?: (message: string) => void;
@@ -69,7 +69,7 @@ type MakeErrorMessageFn = (message: string, error: any) => void;
 
 interface HttpResponse<T = any> {
   /**
-   * 0 表示成功 其他表示失败
+   * 0 means success, other means failure
    * 0 means success, others means fail
    */
   code: number;

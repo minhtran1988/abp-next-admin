@@ -21,7 +21,7 @@ public class NotificationsHub : AbpHub
 
         if (CurrentTenant.IsAvailable)
         {
-            // 以租户为分组，将用户加入租户通讯组
+            // Group tenants and add users to tenant distribution groups
             await Groups.AddToGroupAsync(Context.ConnectionId, CurrentTenant.GetId().ToString());
         }
         else
@@ -37,7 +37,7 @@ public class NotificationsHub : AbpHub
 
         if (CurrentTenant.IsAvailable)
         {
-            // 以租户为分组，将移除租户通讯组
+            // Grouped by tenants, the tenant distribution group will be removed
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, CurrentTenant.GetId().ToString());
         }
         else

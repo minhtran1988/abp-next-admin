@@ -7,7 +7,7 @@
 
 `LINGYUN.Abp.OpenIddict.HttpApi` is the HTTP API module for OpenIddict, providing RESTful API interfaces for OpenIddict-related functionality.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

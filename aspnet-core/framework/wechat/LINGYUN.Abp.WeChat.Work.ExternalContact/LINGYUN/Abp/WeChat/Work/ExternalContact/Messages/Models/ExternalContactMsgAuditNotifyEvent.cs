@@ -4,7 +4,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 产生会话回调事件推送
+/// Generate session callback event push
 /// </summary>
 [EventName("external_contact_msgaudit_notify")]
 public class ExternalContactMsgAuditNotifyEvent : WeChatWorkEventMessage

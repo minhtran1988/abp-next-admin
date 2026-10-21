@@ -43,28 +43,28 @@ public class AbpAspNetCoreMvcWrapperModule : AbpModule
 
         Configure<AbpWrapperOptions>(options =>
         {
-            // 即使重写端点也不包装返回结果
+            // Do not wrap the return result even if the endpoint is overridden
             // api/abp/api-definition
             // options.IgnoreReturnTypes.Add<ApplicationApiDescriptionModel>();
             // api/abp/application-configuration
             //  options.IgnoreReturnTypes.Add<ApplicationConfigurationDto>();
             // api/abp/application-localization
             // options.IgnoreReturnTypes.Add<ApplicationLocalizationDto>(); 
-            // 文件流
+            // file stream
             options.IgnoreReturnTypes.Add<IRemoteStreamContent>();
             // options.IgnoreReturnTypes.Add<FileResult>();
 
-            //options.IgnoreReturnTypes.Add<ViewResult>();
-            //options.IgnoreReturnTypes.Add<ViewEngineResult>();
-            //options.IgnoreReturnTypes.Add<ViewComponentResult>();
+            // options.IgnoreReturnTypes.Add<ViewResult>();
+            // options.IgnoreReturnTypes.Add<ViewEngineResult>();
+            // options.IgnoreReturnTypes.Add<ViewComponentResult>();
 
-            //options.IgnoreReturnTypes.Add<RedirectToActionResult>();
-            //options.IgnoreReturnTypes.Add<RedirectToPageResult>();
-            //options.IgnoreReturnTypes.Add<RedirectToRouteResult>();
+            // options.IgnoreReturnTypes.Add<RedirectToActionResult>();
+            // options.IgnoreReturnTypes.Add<RedirectToPageResult>();
+            // options.IgnoreReturnTypes.Add<RedirectToRouteResult>();
 
-            //options.IgnoreReturnTypes.Add<SignInResult>();
-            //options.IgnoreReturnTypes.Add<SignOutResult>();
-            //options.IgnoreReturnTypes.Add<ForbidResult>();
+            // options.IgnoreReturnTypes.Add<SignInResult>();
+            // options.IgnoreReturnTypes.Add<SignOutResult>();
+            // options.IgnoreReturnTypes.Add<ForbidResult>();
 
             // options.IgnoreControllers.Add<AbpApplicationLocalizationController>();
             // options.IgnoreControllers.Add<AbpApplicationConfigurationController>();
@@ -76,13 +76,13 @@ public class AbpAspNetCoreMvcWrapperModule : AbpModule
             // Application Configuration Script
             options.IgnoreControllers.Add<AbpApplicationConfigurationScriptController>();
 
-            // 官方模块不包装结果
+            // Official modules do not wrap results
             // options.IgnoreNamespaces.Add("Volo.Abp");
 
-            // oidc端点不包装结果
+            // oidc endpoint does not wrap results
             options.IgnorePrefixUrls.Add("/connect");
 
-            // 返回本地化的 404 错误消息
+            // Return localized 404 error message
             options.MessageWithEmptyResult = (serviceProvider) =>
             {
                 var localizer = serviceProvider.GetRequiredService<IStringLocalizer<AbpMvcWrapperResource>>();

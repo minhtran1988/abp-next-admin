@@ -5,7 +5,7 @@ public static class WxPusherFeatureNames
     public const string GroupName = "WxPusher";
 
     /// <summary>
-    /// 启用WxPusher
+    /// Enable WxPusher
     /// </summary>
     public const string Enable = GroupName + ".Enable";
 
@@ -13,15 +13,15 @@ public static class WxPusherFeatureNames
     {
         public const string GroupName = WxPusherFeatureNames.GroupName + ".Message";
         /// <summary>
-        /// 启用消息推送
+        /// Enable message push
         /// </summary>
         public const string Enable = GroupName + ".Enable";
         /// <summary>
-        /// 发送次数上限
+        /// Maximum number of sending times
         /// </summary>
         public const string SendLimit = GroupName + ".SendLimit";
         /// <summary>
-        /// 发送次数上限时长
+        /// The upper limit of sending times
         /// </summary>
         public const string SendLimitInterval = GroupName + ".SendLimitInterval";
     }

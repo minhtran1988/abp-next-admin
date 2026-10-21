@@ -3,30 +3,30 @@
 public class AbpWeChatOfficialOptions
 {
     /// <summary>
-    /// 是否沙盒测试
+    /// Whether to sandbox test
     /// </summary>
     /// <remarks>
-    /// Tips: 当使用测试号时，消息为明文传输，调试时需要启用
+    /// Tips: When using the test number, the message is transmitted in clear text and needs to be enabled during debugging.
     /// </remarks>
     public bool IsSandBox { get; set; }
     /// <summary>
-    /// 公众号服务器消息Url
+    /// Official account server message Url
     /// </summary>
     public string Url { get; set; } = default!;
     /// <summary>
-    /// 公众号AppId
+    /// Official account AppId
     /// </summary>
     public string AppId { get; set; } = default!;
     /// <summary>
-    /// 公众号AppSecret
+    /// Official account AppSecret
     /// </summary>
     public string AppSecret { get; set; } = default!;
     /// <summary>
-    /// 公众号消息解密Token
+    /// Official account message decryption token
     /// </summary>
     public string Token { get; set; } = default!;
     /// <summary>
-    /// 公众号消息解密AESKey
+    /// Official account message decryption AESKey
     /// </summary>
     public string EncodingAESKey { get; set; } = default!;
 }

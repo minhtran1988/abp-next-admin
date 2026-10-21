@@ -6,123 +6,123 @@ namespace LINGYUN.Abp.BackgroundTasks;
 public class JobInfo
 {
     /// <summary>
-    /// 任务标识
+    /// Task ID
     /// </summary>
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 租户标识
+    /// Tenant ID
     /// </summary>
     public Guid? TenantId { get; set; }
     /// <summary>
-    /// 任务名称
+    /// Task name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 任务分组
+    /// Task grouping
     /// </summary>
     public string Group { get; set; } = default!;
     /// <summary>
-    /// 任务类型
+    /// Task type
     /// </summary>
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 返回参数
+    /// Return parameters
     /// </summary>
     public string? Result { get; set; }
     /// <summary>
-    /// 作业来源
+    /// Job source
     /// </summary>
     public JobSource Source { get; set; } = JobSource.None;
     /// <summary>
-    /// 任务参数
+    /// Task parameters
     /// </summary>
     public IDictionary<string, object> Args { get; set; } = new Dictionary<string, object>();
     /// <summary>
-    /// 任务状态
+    /// Task status
     /// </summary>
     public JobStatus Status { get; set; } = JobStatus.None;
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     public string? Description { get; set; }
     /// <summary>
-    /// 创建时间
+    /// Creation time
     /// </summary>
     public DateTime CreationTime { get; set; }
     /// <summary>
-    /// 开始时间
+    /// Start time
     /// </summary>
     public DateTime BeginTime { get; set; }
     /// <summary>
-    /// 结束时间
+    /// End time
     /// </summary>
     public DateTime? EndTime { get; set; }
     /// <summary>
-    /// 上次运行时间
+    /// Last run time
     /// </summary>
     public DateTime? LastRunTime { get; set; }
     /// <summary>
-    /// 下一次执行时间
+    /// Next execution time
     /// </summary>
     public DateTime? NextRunTime { get; set; }
     /// <summary>
-    /// 任务类别
+    /// Task category
     /// </summary>
     public JobType JobType { get; set; } = JobType.Once;
     /// <summary>
-    /// Cron表达式，如果是周期性任务需要指定
+    /// Cron expression, if it is a periodic task, it needs to be specified
     /// </summary>
     public string? Cron { get; set; }
     /// <summary>
-    /// 触发次数
+    /// Number of triggers
     /// </summary>
     public int TriggerCount { get; set; }
     /// <summary>
-    /// 失败重试次数
+    /// Number of failed retries
     /// </summary>
     public int TryCount { get; set; }
     /// <summary>
-    /// 失败重试上限
-    /// 默认：50
+    /// Failed retry upper limit
+    /// Default: 50
     /// </summary>
     public int MaxTryCount { get; set; } = 50;
     /// <summary>
-    /// 最大执行次数
-    /// 默认：0, 无限制
+    /// Maximum number of executions
+    /// Default: 0, no limit
     /// </summary>
     public int MaxCount { get; set; }
     /// <summary>
-    /// 连续失败且不会再次执行
+    /// Continuous failure and will not be executed again
     /// </summary>
     public bool IsAbandoned { get; set; }
     /// <summary>
-    /// 间隔时间，单位秒，与Cron表达式冲突
-    /// 默认: 300
+    /// Interval time, unit seconds, conflicts with Cron expression
+    /// Default: 300
     /// </summary>
     public int Interval { get; set; } = 300;
     /// <summary>
-    /// 任务优先级
+    /// Task priority
     /// </summary>
     public JobPriority Priority { get; set; } = JobPriority.Normal;
     /// <summary>
-    /// 任务独占超时时长（秒）
-    /// 0或更小不生效
+    /// Task exclusive timeout (seconds)
+    /// 0 or less does not take effect
     /// </summary>
     public int LockTimeOut { get; set; }
     /// <summary>
-    /// 指定运行节点
+    /// Specify the running node
     /// </summary>
     public string? NodeName { get; set; }
     /// <summary>
-    /// 计算作业可触发次数
+    /// Calculate the number of times a job can be triggered
     /// </summary>
     /// <returns></returns>
     public int CalcCanBeTriggered()
     {
-        // 无限次
+        // unlimited times
         var maxCount = -1;
 
-        // 剩余次数
+        // Remaining times
         if (MaxCount > 0)
         {
             maxCount = MaxCount - TriggerCount;
@@ -132,15 +132,15 @@ public class JobInfo
             }
         }
 
-        // 一次
+        // once
         if (JobType == JobType.Once)
         {
             maxCount = 1;
         }
 
-        // 重试
-        // TODO: 不能用Quartz自带的重试机制
-        //if (Status == JobStatus.FailedRetry && MaxTryCount > 0)
+        // Retry
+        // TODO: Quartz's built-in retry mechanism cannot be used
+        // if (Status == JobStatus.FailedRetry && MaxTryCount > 0)
         //{
         //    maxCount = MaxTryCount - TryCount;
 
@@ -151,7 +151,7 @@ public class JobInfo
 
         //    if (maxCount > 0)
         //    {
-        //        // 触发重试时，失败间隔时间调整
+        // // When retry is triggered, the failure interval is adjusted
         //        Interval = 60;
         //    }
         //}

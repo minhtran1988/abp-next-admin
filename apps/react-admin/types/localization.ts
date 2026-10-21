@@ -4,4 +4,4 @@ interface StringLocalizer {
 }
 
 export type { StringLocalizer };
-//TODO 是否要去掉
+// TODO whether to remove

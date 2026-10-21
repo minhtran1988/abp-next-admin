@@ -4,7 +4,7 @@ import { preferences, usePreferences } from '@vben/preferences';
 import { convertToRgb, updateCSSVariables } from '@vben/utils';
 
 /**
- * 用于适配各个框架的设计系统
+ * Design system for adapting to various frameworks
  */
 
 export function useAntdDesignTokens() {
@@ -25,7 +25,7 @@ export function useAntdDesignTokens() {
     colorSuccess: '',
     colorTextBase: '',
     colorWarning: '',
-    zIndexPopupBase: 2000, // 调整基础弹层层级，避免下拉等组件被弹窗或者最大化状态下的表格遮挡
+    zIndexPopupBase: 2000, //Adjust the basic pop-up layer level to prevent drop-down and other components from being blocked by pop-up windows or maximized tables.
   });
 
   const getCssVariableValue = (variable: string, isColor: boolean = true) => {
@@ -304,7 +304,7 @@ export function useElementPlusDesignTokens() {
         '--el-fill-color-dark': getCssVariableValue('--accent-dark'),
         '--el-fill-color-darker': getCssVariableValue('--accent-darker'),
 
-        // 解决ElLoading背景色问题
+        // Solve the problem of ElLoading background color
         '--el-mask-color': isDark.value
           ? 'rgba(0,0,0,.8)'
           : 'rgba(255,255,255,.9)',

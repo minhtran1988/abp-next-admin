@@ -4,26 +4,26 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-// 本测试项目未全局启用可空上下文, 而本文件需要表达"可空参数"语义
+// This test project does not enable nullable context globally, and this file needs to express "nullable parameter" semantics
 #nullable enable
 
 namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram;
 
 /// <summary>
-/// 捕获式 <see cref="ISubscribeMessager"/> 假实现
+/// Capture <see cref="ISubscribeMessager"/> fake implementation
 /// </summary>
 /// <remarks>
-/// 用于在不真正调用微信接口的前提下, 断言渠道最终发出的模板消息内容。
+/// Used to assert the content of the template message eventually sent by the channel without actually calling the WeChat interface.
 /// </remarks>
 public class FakeSubscribeMessager : ISubscribeMessager
 {
     /// <summary>
-    /// 已发送的模板消息(按顺序)
+    /// Template messages sent (in order)
     /// </summary>
     public List<SubscribeMessage> SentMessages { get; } = new();
 
     /// <summary>
-    /// 已发送的"按模板参数"形式的调用
+    /// Sent "by template parameter" form of call
     /// </summary>
     public List<SentTemplateArgs> SentTemplates { get; } = new();
 

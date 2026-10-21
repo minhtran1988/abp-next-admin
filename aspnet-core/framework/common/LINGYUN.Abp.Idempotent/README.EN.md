@@ -95,4 +95,4 @@ public async Task<OrderDto> QueryAsync(string orderId)
 
 ## Links
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

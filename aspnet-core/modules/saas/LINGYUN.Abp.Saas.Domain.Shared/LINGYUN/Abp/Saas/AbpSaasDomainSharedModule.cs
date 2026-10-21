@@ -30,7 +30,7 @@ public class AbpSaasDomainSharedModule : AbpModule
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
             options.MapCodeNamespace(AbpSaasErrorCodes.Namespace, typeof(AbpSaasResource));
-            // 见租户管理模块
+            // See tenant management module
             options.MapCodeNamespace("Volo.AbpIo.MultiTenancy", typeof(AbpSaasResource));
         });
     }

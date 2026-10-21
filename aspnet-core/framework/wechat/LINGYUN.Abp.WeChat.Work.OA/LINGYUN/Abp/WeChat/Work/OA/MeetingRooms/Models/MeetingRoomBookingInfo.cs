@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Models;
 /// <summary>
-/// 会议室预订信息
+/// Meeting room reservation information
 /// </summary>
 public class MeetingRoomBookingInfo
 {
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [NotNull]
     [JsonProperty("meetingroom_id")]
     [JsonPropertyName("meetingroom_id")]
     public int MeetingRoomId { get; set; }
     /// <summary>
-    /// 该会议室查询时间段内的预定情况
+    /// Query the reservation status of this conference room within the time period
     /// </summary>
     [NotNull]
     [JsonProperty("schedule")]

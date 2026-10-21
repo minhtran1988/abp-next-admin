@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Account.Templates
 
-ABP账户模块的邮件模板定义模块，提供账户相关的邮件模板功能。
+The email template definition module of the ABP account module provides account-related email template functions.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 提供标准的账户邮件模板
-* 支持邮件模板本地化
-* 集成ABP虚拟文件系统
-* 使用ABP文本模板系统
+* Provide standard account email templates
+* Support email template localization
+* Integrated ABP virtual file system
+* Use ABP text template system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -23,36 +23,36 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 邮件模板
+## Email template
 
-### 模板定义
+### Template definition
 
-模块定义了以下邮件模板：
+The module defines the following email templates:
 
-* `Abp.Account.MailConfirmLink` - 邮件地址确认模板
-  * 用于用户邮箱地址验证
-  * 模板文件：`/LINGYUN/Abp/Account/Emailing/Templates/MailConfirm.tpl`
-  * 使用标准邮件布局
+* `Abp.Account.MailConfirmLink` - Email address confirmation template
+  * Used for user email address verification
+  * Template file: `/LINGYUN/Abp/Account/Emailing/Templates/MailConfirm.tpl`
+  * Use standard email layout
 
-* `Abp.Account.MailSecurityVerifyLink` - 邮件安全验证模板
-  * 用于邮箱安全验证
-  * 模板文件：`/LINGYUN/Abp/Account/Emailing/Templates/MailSecurityVerify.tpl`
-  * 使用标准邮件布局
+* `Abp.Account.MailSecurityVerifyLink` - Email security verification template
+  * Used for email security verification
+  * Template file: `/LINGYUN/Abp/Account/Emailing/Templates/MailSecurityVerify.tpl`
+  * Use standard email layout
 
-### 模板系统
+### Template system
 
-* 使用ABP文本模板系统（TextTemplating）
-* 支持模板本地化
-* 模板定义提供者：`AccountTemplateDefinitionProvider`
+* Use ABP text template system (TextTemplating)
+* Support template localization
+* Template definition provider: `AccountTemplateDefinitionProvider`
 
-## 本地化
+## Localization
 
-模块包含本地化资源：
-* 资源类型：`AccountResource`
-* 资源路径：`/LINGYUN/Abp/Account/Templates/Localization/Resources`
+Modules contain localized resources:
+* Resource type: `AccountResource`
+* Resource path: `/LINGYUN/Abp/Account/Templates/Localization/Resources`
 
-## 虚拟文件系统
+## Virtual file system
 
-模块使用ABP虚拟文件系统来管理模板文件：
-* 所有模板文件都通过虚拟文件系统嵌入
-* 支持模板文件的覆盖和自定义
+The module uses the ABP virtual file system to manage template files:
+* All template files are embedded through the virtual file system
+* Supports overwriting and customization of template files

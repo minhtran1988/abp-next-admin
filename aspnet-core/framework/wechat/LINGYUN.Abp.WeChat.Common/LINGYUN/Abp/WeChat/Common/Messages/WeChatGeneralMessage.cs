@@ -2,12 +2,12 @@
 
 namespace LINGYUN.Abp.WeChat.Common.Messages;
 /// <summary>
-/// 微信普通消息
+/// WeChat ordinary messages
 /// </summary>
 public abstract class WeChatGeneralMessage : WeChatMessage
 {
     /// <summary>
-    /// 消息id，64位整型
+    /// Message id, 64-bit integer
     /// </summary>
     [XmlElement("MsgId")]
     public long MsgId { get; set; }

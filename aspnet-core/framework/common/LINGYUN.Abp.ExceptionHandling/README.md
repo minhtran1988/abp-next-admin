@@ -1,17 +1,17 @@
 # LINGYUN.Abp.ExceptionHandling
 
-基于abp框架底层的**IExceptionSubscriber**实现二次扩展,用于自定义异常通知方式
+Based on the **IExceptionSubscriber** at the bottom of the abp framework, a secondary extension is implemented to customize the exception notification method.
 
-## 功能特性
+## Features
 
-* 提供统一的异常处理和通知机制
-* 支持自定义异常处理程序
-* 支持异常通知筛选
-* 支持与其他通知模块集成（如邮件、实时通知等）
+* Provide unified exception handling and notification mechanism
+* Support custom exception handler
+* Support exception notification filtering
+* Support integration with other notification modules (such as email, real-time notification, etc.)
 
-## 配置使用
+## Configuration usage
 
-使用前只需配置**AbpExceptionHandlingOptions**定义需要发送通知的异常即可。
+Before use, you only need to configure **AbpExceptionHandlingOptions** to define the exceptions that need to be notified.
 
 ```csharp
     [DependsOn(
@@ -21,26 +21,26 @@
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // 自定义需要处理的异常
+            // Customize the exceptions that need to be handled
             Configure<AbpExceptionHandlingOptions>(options =>
             {
-                //  加入需要处理的异常类型
+                //Add the exception types that need to be handled
                 options.Handlers.Add<AbpException>();
             });
         }
     }
 ```
 
-## 配置项说明
+## Configuration item description
 
-* `Handlers`: 异常处理程序列表，用于定义需要处理的异常类型
-* `HasNotifierError`: 检查异常是否需要发送通知
+* `Handlers`: List of exception handlers, used to define the types of exceptions that need to be handled
+* `HasNotifierError`: Check whether the exception requires sending a notification
 
-## 扩展模块
+## Extension modules
 
-* [LINGYUN.Abp.ExceptionHandling.Emailing](../LINGYUN.Abp.ExceptionHandling.Emailing/README.md): 异常邮件通知模块
-* [LINGYUN.Abp.ExceptionHandling.Notifications](../../../modules/realtime-notifications/LINGYUN.Abp.ExceptionHandling.Notifications/README.md): 异常实时通知模块
+* [LINGYUN.Abp.ExceptionHandling.Emailing](../LINGYUN.Abp.ExceptionHandling.Emailing/README.md): Exception email notification module
+* [LINGYUN.Abp.ExceptionHandling.Notifications](../../../modules/realtime-notifications/LINGYUN.Abp.ExceptionHandling.Notifications/README.md): Exception real-time notification module
 
-## 更多
+## More
 
-有关更多信息和配置示例，请参阅[文档](https://github.com/colinin/abp-next-admin)。
+See [Documentation](https://github.com/colinin/abp-next-admin) for more information and configuration examples.

@@ -5,18 +5,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 数据流信息
+/// Data flow information
 /// </summary>
 public class StreamInfo
 {
     /// <summary>
-    /// 数据流名称
+    /// Data stream name
     /// </summary>
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
 
     /// <summary>
-    /// 存储类型
+    /// Storage type
     /// </summary>
     /// <remarks>
     /// s3 / disk
@@ -25,7 +25,7 @@ public class StreamInfo
     public string? StorageType { get; set; }
 
     /// <summary>
-    /// 数据流类型
+    /// Data stream type
     /// </summary>
     /// <remarks>
     /// logs / metrics / traces
@@ -34,22 +34,22 @@ public class StreamInfo
     public string? StreamType { get; set; }
 
     /// <summary>
-    /// 统计信息
+    /// Statistics
     /// </summary>
     [JsonPropertyName("stats")]
     public StreamStats? Stats { get; set; }
 
     /// <summary>
-    /// 字段定义
+    /// Field definition
     /// </summary>
     /// <remarks>
-    /// 查询参数 fetchSchema 为 false 时不返回
+    /// Does not return when the query parameter fetchSchema is false
     /// </remarks>
     [JsonPropertyName("schema")]
     public StreamSchemaField[]? Schema { get; set; }
 
     /// <summary>
-    /// 数据流设置
+    /// Data flow settings
     /// </summary>
     [JsonPropertyName("settings")]
     public StreamSettingsInfo? Settings { get; set; }

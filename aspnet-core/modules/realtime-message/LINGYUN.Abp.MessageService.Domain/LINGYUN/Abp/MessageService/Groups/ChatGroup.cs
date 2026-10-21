@@ -5,56 +5,56 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Abp.MessageService.Groups;
 
 /// <summary>
-/// 聊天群组
+/// Chat group
 /// </summary>
 public class ChatGroup : AuditedEntity<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 群主
+    /// Group owner
     /// </summary>
     public virtual Guid AdminUserId { get; protected set; }
     /// <summary>
-    /// 群组标识
+    /// Group ID
     /// </summary>
     public virtual long GroupId { get; protected set; }
     /// <summary>
-    /// 群组名称
+    /// Group name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 群组标记
+    /// Group tag
     /// </summary>
     public virtual string? Tag { get; protected set; }
     /// <summary>
-    /// 群组地址
+    /// Group address
     /// </summary>
     public virtual string? Address { get; set; }
     /// <summary>
-    /// 群组公告
+    /// Group announcement
     /// </summary>
     public virtual string? Notice { get; set; }
     /// <summary>
-    /// 最大用户数量
+    /// Maximum number of users
     /// </summary>
     public virtual int MaxUserCount { get; protected set; }
     /// <summary>
-    /// 允许匿名聊天
+    /// Allow anonymous chat
     /// </summary>
     public virtual bool AllowAnonymous { get; set; }
     /// <summary>
-    /// 允许发送消息
+    /// Allow sending messages
     /// </summary>
     public virtual bool AllowSendMessage { get; set; }
     /// <summary>
-    /// 群组说明
+    /// Group description
     /// </summary>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 群组头像地址
+    /// Group avatar address
     /// </summary>
     public virtual string? AvatarUrl { get; set; }
     protected ChatGroup()

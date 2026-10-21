@@ -6,5 +6,5 @@ const [Modal] = useVbenModal({
 });
 </script>
 <template>
-  <Modal title="拖拽示例"> modal content </Modal>
+  <Modal title="Drag and drop example"> modal content </Modal>
 </template>

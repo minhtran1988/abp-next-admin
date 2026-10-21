@@ -23,7 +23,7 @@ public class MessageSender : IMessageSender, ITransientDependency
     {
         chatMessage.SetProperty(nameof(ChatMessage.IsAnonymous), chatMessage.IsAnonymous);
         chatMessage.MessageId = DistributedIdGenerator.Create().ToString();
-        // 如果先存储的话,就紧耦合消息处理模块了
+        // If stored first, the message processing module will be tightly coupled.
         // await Store.StoreMessageAsync(chatMessage);
         var eto = new RealTimeEto<ChatMessage>(chatMessage);
 

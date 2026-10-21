@@ -3,7 +3,7 @@
 public enum NotificationContentType
 {
     /// <summary>
-    /// 文本
+    /// text
     /// </summary>
     Text = 0,
     /// <summary>

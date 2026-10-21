@@ -31,11 +31,11 @@ export function getSearchFormSchemas(): Partial<FormProps> {
   };
 }
 /**
- * 构建布局表单
- * @param data 布局定义
- * @param uiItems ui框架,来源于数据字典
- * @param consts 布局约束,来源于数据字典
- * @returns 返回表单定义
+ * Build layout form
+ * @param data layout definition
+ * @param uiItems ui framework, derived from data dictionary
+ * @param consts layout constraints, derived from data dictionary
+ * @returns return form definition
  */
 export function getModalFormSchemas(layout: Layout): FormSchema[] {
   return [

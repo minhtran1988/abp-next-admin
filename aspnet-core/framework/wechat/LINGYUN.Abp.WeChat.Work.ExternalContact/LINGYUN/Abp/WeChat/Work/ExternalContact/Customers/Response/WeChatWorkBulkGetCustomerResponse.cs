@@ -6,29 +6,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Response;
 /// <summary>
-/// 批量获取客户详情响应参数
+/// Get customer details response parameters in batches
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
 /// </remarks>
 public class WeChatWorkBulkGetCustomerResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 外部联系人的userid列表
+    /// List of userids of external contacts
     /// </summary>
     [NotNull]
     [JsonProperty("external_contact_list")]
     [JsonPropertyName("external_contact_list")]
     public List<ExternalContactList> ExternalUserId { get; set; } = new List<ExternalContactList>();
     /// <summary>
-    /// 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
+    /// Paging cursor, fill it in on the next request to obtain subsequent paging records, if there is no more data, return empty
     /// </summary>
     [CanBeNull]
     [JsonProperty("next_cursor")]
     [JsonPropertyName("next_cursor")]
     public string? NextCursor { get; set; }
     /// <summary>
-    /// 若请求中所有userid都无有效互通许可，接口直接报错701008。如果部分userid无有效互通许可，接口返回成功
+    /// If all userids in the request do not have valid interoperability permissions, the interface will directly report error 701008. If some userids do not have valid interoperability permission, the interface returns success
     /// </summary>
     [CanBeNull]
     [JsonProperty("fail_info")]
@@ -39,7 +39,7 @@ public class WeChatWorkBulkGetCustomerResponse : WeChatWorkResponse
 public class WeChatWorkBulkGetCustomerFailInfo
 {
     /// <summary>
-    /// 无许可的userid列表
+    /// Unpermitted userid list
     /// </summary>
     [NotNull]
     [JsonProperty("next_cursor")]

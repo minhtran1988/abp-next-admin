@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Response;
 /// <summary>
-/// 获取userid响应参数
+/// Get userid response parameter
 /// </summary>
 public class WeChatWorkGetUserIdResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 	成员UserID。对应管理端的账号，企业内必须唯一。不区分大小写，长度为1~64个字节。注意：第三方应用获取的值是密文的userid
+    /// Member UserID. The account corresponding to the management end must be unique within the enterprise. It is not case sensitive and the length is 1~64 bytes. Note: The value obtained by the third-party application is the userid of the ciphertext.
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]

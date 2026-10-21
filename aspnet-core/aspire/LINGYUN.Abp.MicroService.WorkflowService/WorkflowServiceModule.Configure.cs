@@ -73,7 +73,7 @@ public partial class WorkflowServiceModule
     {
         PreConfigure<AbpSerilogEnrichersUniqueIdOptions>(options =>
         {
-            // 以开放端口区别
+            // Difference by open port
             options.SnowflakeIdOptions.WorkerId = 29;
             options.SnowflakeIdOptions.WorkerIdBits = 5;
             options.SnowflakeIdOptions.DatacenterId = 1;
@@ -107,7 +107,7 @@ public partial class WorkflowServiceModule
     {
         PreConfigure<AbpQuartzOptions>(options =>
         {
-            // 如果使用持久化存储, 则配置quartz持久层
+            // If persistent storage is used, configure the quartz persistence layer
             if (configuration.GetSection("Quartz:UsePersistentStore").Get<bool>())
             {
                 var settings = configuration.GetSection("Quartz:Properties").Get<Dictionary<string, string>>();
@@ -180,8 +180,8 @@ public partial class WorkflowServiceModule
 
     private void ConfigureEndpoints(IServiceCollection services)
     {
-        // 不需要
-        //Configure<AbpEndpointRouterOptions>(options =>
+        // Not needed
+        // Configure<AbpEndpointRouterOptions>(options =>
         //{
         //    options.EndpointConfigureActions.Add(
         //        (context) =>
@@ -196,8 +196,8 @@ public partial class WorkflowServiceModule
             options.ReportApiVersions = true;
             options.AssumeDefaultVersionWhenUnspecified = true;
 
-            //options.ApiVersionReader = new HeaderApiVersionReader("api-version"); //Supports header too
-            //options.ApiVersionReader = new MediaTypeApiVersionReader(); //Supports accept header too
+            // options.ApiVersionReader = new HeaderApiVersionReader("api-version"); //Supports header too
+            // options.ApiVersionReader = new MediaTypeApiVersionReader(); //Supports accept header too
         }, mvcOptions =>
         {
             mvcOptions.ConfigureAbp(preActions.Configure());
@@ -228,7 +228,7 @@ public partial class WorkflowServiceModule
 
     private void ConfigureDbContext()
     {
-        // 配置Ef
+        // Configure Ef
         Configure<AbpDbContextOptions>(options =>
         {
             options.UseNpgsql();
@@ -237,7 +237,7 @@ public partial class WorkflowServiceModule
 
     private void ConfigureJsonSerializer(IConfiguration configuration)
     {
-        // 统一时间日期格式
+        // Unify time and date format
         Configure<AbpJsonOptions>(options =>
         {
             var jsonConfiguration = configuration.GetSection("Json");
@@ -246,7 +246,7 @@ public partial class WorkflowServiceModule
                 jsonConfiguration.Bind(options);
             }
         });
-        // 中文序列化的编码问题
+        // Encoding issues for Chinese serialization
         Configure<AbpSystemTextJsonSerializerOptions>(options =>
         {
             options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
@@ -257,7 +257,7 @@ public partial class WorkflowServiceModule
     {
         Configure<AbpAuditingOptions>(options =>
         {
-            // 是否启用实体变更记录
+            // Whether to enable entity change recording
             var allEntitiesSelectorIsEnabled = configuration["Auditing:AllEntitiesSelector"];
             if (allEntitiesSelectorIsEnabled.IsNullOrWhiteSpace() ||
                 (bool.TryParse(allEntitiesSelectorIsEnabled, out var enabled) && enabled))
@@ -317,7 +317,7 @@ public partial class WorkflowServiceModule
 
     private void ConfigureMultiTenancy(IConfiguration configuration)
     {
-        // 多租户
+        // Multi-tenant
         Configure<AbpMultiTenancyOptions>(options =>
         {
             options.IsEnabled = true;
@@ -380,7 +380,7 @@ public partial class WorkflowServiceModule
                         var controllerNamespace = methodInfo.DeclaringType?.Namespace;
                         if (controllerNamespace?.StartsWith("Elsa") == true)
                         {
-                            // TODO: Elsa 2.x 使用 Swashbuckle 6.x版本不兼容, 忽略Swagger文档
+                            // TODO: Elsa 2.x is incompatible with Swashbuckle 6.x, ignore the Swagger documentation
                             return false;
                         }
                     }
@@ -406,11 +406,11 @@ public partial class WorkflowServiceModule
 
     private void ConfigureLocalization()
     {
-        // 支持本地化语言类型
+        // Support localized language types
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
         });
 
         Configure<AbpLocalizationCultureMapOptions>(options =>

@@ -33,7 +33,7 @@ public abstract class WeChatWorkTokenProviderBase
     }
 
     /// <summary>
-    /// 获取缓存中的Token配置
+    /// Get the Token configuration in the cache
     /// </summary>
     /// <param name="corpId"></param>
     /// <param name="agentId"></param>
@@ -55,7 +55,7 @@ public abstract class WeChatWorkTokenProviderBase
         return await GetCacheItemAsync(cacheKey, ProviderName, corpId, agentId, secret, cancellationToken);
     }
     /// <summary>
-    /// 获取或刷新分布式缓存中的Token配置
+    /// Get or refresh the Token configuration in the distributed cache
     /// </summary>
     /// <param name="cacheKey"></param>
     /// <param name="provider"></param>
@@ -94,7 +94,7 @@ public abstract class WeChatWorkTokenProviderBase
 
         var cacheOptions = new DistributedCacheEntryOptions
         {
-            // 设置绝对过期时间为Token有效期剩余的二分钟
+            // Set the absolute expiration time to the remaining two minutes of the Token's validity period
             AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(token.ExpiresIn - 100),
         };
 

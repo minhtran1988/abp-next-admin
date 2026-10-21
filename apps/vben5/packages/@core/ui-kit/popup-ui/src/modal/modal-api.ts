@@ -4,7 +4,7 @@ import { Store } from '@vben-core/shared/store';
 import { bindMethods, isFunction } from '@vben-core/shared/utils';
 
 export class ModalApi {
-  // 共享数据
+  // share data
   public sharedData: Record<'payload', any> = {
     payload: {},
   };
@@ -71,7 +71,7 @@ export class ModalApi {
         onUpdate: () => {
           const state = this.store.state;
 
-          // 每次更新状态时，都会调用 onOpenChange 回调函数
+          // Each time the state is updated, the onOpenChange callback function will be called
           if (state?.isOpen === this.state?.isOpen) {
             this.state = state;
           } else {
@@ -96,12 +96,12 @@ export class ModalApi {
   }
 
   /**
-   * 关闭弹窗
-   * @description 关闭弹窗时会调用 onBeforeClose 钩子函数，如果 onBeforeClose 返回 false，则不关闭弹窗
+   * Close pop-up window
+   * @description The onBeforeClose hook function will be called when closing the pop-up window. If onBeforeClose returns false, the pop-up window will not be closed.
    */
   async close() {
-    // 通过 onBeforeClose 钩子函数来判断是否允许关闭弹窗
-    // 如果 onBeforeClose 返回 false，则不关闭弹窗
+    // Use the onBeforeClose hook function to determine whether the pop-up window is allowed to be closed.
+    // If onBeforeClose returns false, the pop-up window will not be closed.
     const allowClose = (await this.api.onBeforeClose?.()) ?? true;
     if (allowClose) {
       this.store.setState((prev) => ({
@@ -116,16 +116,16 @@ export class ModalApi {
   }
 
   /**
-   * 锁定弹窗状态（用于提交过程中的等待状态）
-   * @description 锁定状态将禁用默认的取消按钮，使用spinner覆盖弹窗内容，隐藏关闭按钮，阻止手动关闭弹窗，将默认的提交按钮标记为loading状态
-   * @param isLocked 是否锁定
+   * Lock pop-up window status (used for waiting status during submission)
+   * @description The locked state will disable the default cancel button, use spinner to cover the pop-up window content, hide the close button, prevent manual closing of the pop-up window, and mark the default submit button as loading state
+   * @param isLocked whether to lock
    */
   lock(isLocked = true) {
     return this.setState({ submitting: isLocked });
   }
 
   /**
-   * 取消操作
+   * Cancel operation
    */
   onCancel() {
     if (this.api.onCancel) {
@@ -136,7 +136,7 @@ export class ModalApi {
   }
 
   /**
-   * 弹窗关闭动画播放完毕后的回调
+   * Callback after the pop-up window closing animation has finished playing
    */
   onClosed() {
     if (!this.state.isOpen) {
@@ -145,14 +145,14 @@ export class ModalApi {
   }
 
   /**
-   * 确认操作
+   * Confirm operation
    */
   onConfirm() {
     this.api.onConfirm?.();
   }
 
   /**
-   * 弹窗打开动画播放完毕后的回调
+   * The pop-up window opens the callback after the animation is played.
    */
   onOpened() {
     if (this.state.isOpen) {
@@ -187,8 +187,8 @@ export class ModalApi {
   }
 
   /**
-   * 解除弹窗的锁定状态
-   * @description 解除由lock方法设置的锁定状态，是lock(false)的别名
+   * Unlock the pop-up window
+   * @description Unlocks the lock state set by the lock method, which is an alias of lock(false)
    */
   unlock() {
     return this.lock(false);

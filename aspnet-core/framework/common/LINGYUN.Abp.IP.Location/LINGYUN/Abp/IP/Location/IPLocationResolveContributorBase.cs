@@ -11,15 +11,15 @@ public abstract class IPLocationResolveContributorBase : IIPLocationResolveContr
     public abstract Task ResolveAsync(IIPLocationResolveContext context);
 
     /// <summary>
-    /// 由国家/省份/城市构造 <see cref="IPLocation"/>, 并按 <see cref="AbpIPLocationResolveOptions"/> 生成备注(Remarks)
+    /// Constructed from country/province/city <see cref="IPLocation"/>, and press <see cref="AbpIPLocationResolveOptions"/> to generate remarks (Remarks)
     /// </summary>
     /// <remarks>
-    /// 各 IP 位置解析贡献者共用的备注规则(名称匹配忽略大小写与首尾空白, 适用于所有国家的 IP 地址解析):
-    /// * 省份名称匹配到 <see cref="AbpIPLocationResolveOptions.RemoveProvince"/> 时, 省份从备注中移除, 备注使用城市(如 杭州市);
-    /// * 国家名称匹配到 <see cref="AbpIPLocationResolveOptions.RemoveCountry"/> 时, 国家从备注中移除,
-    ///   备注使用省份与城市组合(省市同名时仅使用城市, 如 重庆市; 仅有省份时使用省份, 如 香港特别行政区);
-    /// * 都未匹配时, 备注使用国家名称(如 中国、日本、美国);
-    /// * 匹配到的名称被移除后没有可显示的层级时, 备注为空。
+    /// Remarks rules shared by all IP location resolution contributors (name matching ignores case and leading and trailing whitespace, applicable to IP address resolution in all countries):
+    /// * When the province name matches <see cref="AbpIPLocationResolveOptions.RemoveProvince"/>, the province is removed from the remark, and the remark uses the city (such as Hangzhou);
+    /// * When the country name matches <see cref="AbpIPLocationResolveOptions.RemoveCountry"/>, the country is removed from the note,
+    /// Remarks: Use the combination of province and city (when the province and city have the same name, only use the city, such as Chongqing; when there are only provinces, use the province, such as the Hong Kong Special Administrative Region);
+    /// * When there is no match, use the country name (such as China, Japan, the United States) for remarks;
+    /// * When the matched name is removed and there is no level to display, the comment will be empty.
     /// </remarks>
     protected virtual IPLocation CreateIPLocation(
         IIPLocationResolveContext context,
@@ -31,40 +31,40 @@ public abstract class IPLocationResolveContributorBase : IIPLocationResolveContr
 
         var ipLocation = new IPLocation(country, province, city);
 
-        // 匹配到配置的名称时, 对应的层级从备注中移除
+        // When the configuration name is matched, the corresponding level is removed from the remarks.
         var useCountry = !IsExcluded(options.RemoveCountry, country);
         var useProvince = !IsExcluded(options.RemoveProvince, province);
 
-        // 220.246.0.0|220.246.255.255|中国|香港|0|电讯盈科
+        // 220.246.0.0|220.246.255.255|China|Hong Kong|0|PCCW
         if (!useProvince)
         {
-            // 省份名称匹配到移除列表: 备注使用城市(如 杭州市)
+            // Province name matches the removal list: Note the city (such as Hangzhou)
             ipLocation.Remarks = string.IsNullOrWhiteSpace(city) ? null : city;
         }
-        // 36.133.232.0|36.133.239.255|中国|重庆|重庆市|移动
+        // 36.133.232.0|36.133.239.255|China|Chongqing|Chongqing City|Mobile
         else if (!useCountry)
         {
-            // 国家名称匹配到移除列表: 备注使用省份与城市组合
+            // Country name matches the removal list: Note using province and city combination
             if (!string.IsNullOrWhiteSpace(province) &&
                 !string.IsNullOrWhiteSpace(city))
             {
                 if (province!.Length <= city!.Length &&
                     city.StartsWith(province, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    // 重庆市
+                    // Chongqing City
                     ipLocation.Remarks = city;
                 }
-                // 111.26.31.0|111.26.31.127|中国|吉林省|吉林市|移动
+                // 111.26.31.0|111.26.31.127|China|Jilin Province|Jilin City|Mobile
                 else
                 {
-                    // 吉林省吉林市
+                    // Jilin City, Jilin Province
                     ipLocation.Remarks = $"{province}{city}";
                 }
             }
-            // 220.246.0.0|220.246.255.255|中国|香港特别行政区|0
+            // 220.246.0.0|220.246.255.255|China|Hong Kong SAR|0
             else if (!string.IsNullOrWhiteSpace(province))
             {
-                // 香港特别行政区
+                // Hong Kong Special Administrative Region
                 ipLocation.Remarks = province;
             }
             else if (!string.IsNullOrWhiteSpace(city))
@@ -73,14 +73,14 @@ public abstract class IPLocationResolveContributorBase : IIPLocationResolveContr
             }
             else
             {
-                // 匹配到的名称已从备注中移除(例如仅有"中国"时备注为空)
+                // The matched name has been removed from the remark (for example, the remark is empty when there is only "China")
                 ipLocation.Remarks = null;
             }
         }
-        // 103.151.173.0|103.151.173.255|日本|东京|东京|IKUUU网络
+        // 103.151.173.0|103.151.173.255|Japan|Tokyo|Tokyo|IKUUU Network
         else
         {
-            // 日本 / 美国 / 德国(未匹配到移除列表时仅使用国家名称)
+            // Japan / United States / Germany (only use country name if no removal list is matched)
             ipLocation.Remarks = country;
         }
 
@@ -88,7 +88,7 @@ public abstract class IPLocationResolveContributorBase : IIPLocationResolveContr
     }
 
     /// <summary>
-    /// 名称是否匹配到移除列表(忽略大小写与首尾空白)
+    /// Whether the name matches the removal list (ignoring case and leading and trailing blanks)
     /// </summary>
     protected virtual bool IsExcluded(string[] names, string? name)
     {

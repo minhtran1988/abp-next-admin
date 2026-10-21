@@ -7,20 +7,20 @@ namespace LINGYUN.Abp.Elasticsearch;
 public partial class ExpressionQueryTranslator
 {
     /// <summary>
-    /// 尝试翻译包含方法调用的比较表达式
+    /// Attempt to translate comparison expressions containing method calls
     /// </summary>
     private Query? TryTranslateMethodComparison(BinaryExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
-        // 处理 (field.Method(value) == 0) 或 (field.Method(value) >= 0) 这类表达式
+        // Process expressions such as (field.Method(value) == 0) or (field.Method(value) >= 0)
         if (node.Left is MethodCallExpression leftMethodCall)
         {
             return TranslateMethodComparison(leftMethodCall, node.Right, node.NodeType, prefix, mappingInfo);
         }
 
-        // 处理 (0 == field.Method(value)) 或 (0 <= field.Method(value)) 这类表达式
+        // Process expressions such as (0 == field.Method(value)) or (0 <= field.Method(value))
         if (node.Right is MethodCallExpression rightMethodCall)
         {
-            // 反转比较操作符
+            // Invert comparison operator
             var reversedNodeType = ReverseComparisonOperator(node.NodeType);
             return TranslateMethodComparison(rightMethodCall, node.Left, reversedNodeType, prefix, mappingInfo);
         }
@@ -29,7 +29,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译方法调用比较
+    /// Translation method call comparison
     /// </summary>
     private Query? TranslateMethodComparison(
         MethodCallExpression methodCall,
@@ -38,7 +38,7 @@ public partial class ExpressionQueryTranslator
         string? prefix,
         IndexMappingInfo? mappingInfo)
     {
-        // 限定string方法调用
+        // Limit string method calls
         if (methodCall.Method.DeclaringType == typeof(string))
         {
             return methodCall.Method.Name switch
@@ -52,7 +52,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 反转比较操作符
+    /// Invert comparison operator
     /// </summary>
     private ExpressionType ReverseComparisonOperator(ExpressionType nodeType)
     {

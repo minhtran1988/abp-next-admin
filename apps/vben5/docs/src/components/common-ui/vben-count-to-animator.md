@@ -2,58 +2,58 @@
 outline: deep
 ---
 
-# Vben CountToAnimator 数字动画
+# Vben CountToAnimator Digital Animation
 
-框架提供的数字动画组件，支持数字动画效果。
+The digital animation component provided by the framework supports digital animation effects.
 
-> 如果文档内没有参数说明，可以尝试在在线示例内寻找
+> If there is no parameter description in the document, you can try to find it in the online examples
 
-::: info 写在前面
+::: info is written in front
 
-如果你觉得现有组件的封装不够理想，或者不完全符合你的需求，大可以直接使用原生组件，亦或亲手封装一个适合的组件。框架提供的组件并非束缚，使用与否，完全取决于你的需求与自由。
+If you feel that the encapsulation of existing components is not ideal enough, or does not fully meet your needs, you can use native components directly, or encapsulate a suitable component yourself. The components provided by the framework are not binding. Whether to use them or not depends entirely on your needs and freedom.
 
 :::
 
-## 基础用法
+## Basic usage
 
-通过 `start-val` 和 `end-val`设置数字动画的开始值和结束值， 持续时间`3000`ms。
+Set the start value and end value of the digital animation through `start-val` and `end-val`, with a duration of `3000`ms.
 
 <DemoPreview dir="demos/vben-count-to-animator/basic" />
 
-## 自定义前缀及分隔符
+## Custom prefix and separator
 
-通过 `prefix` 和 `separator` 设置数字动画的前缀和分隔符。
+Set the prefix and separator of digital animation through `prefix` and `separator`.
 
 <DemoPreview dir="demos/vben-count-to-animator/custom" />
 
 ### Props
 
-| 属性名     | 描述           | 类型      | 默认值   |
+| Property name | Description | Type | Default value |
 | ---------- | -------------- | --------- | -------- |
-| startVal   | 起始值         | `number`  | `0`      |
-| endVal     | 结束值         | `number`  | `2021`   |
-| duration   | 动画持续时间   | `number`  | `1500`   |
-| autoplay   | 自动执行       | `boolean` | `true`   |
-| prefix     | 前缀           | `string`  | -        |
-| suffix     | 后缀           | `string`  | -        |
-| separator  | 分隔符         | `string`  | `,`      |
-| color      | 字体颜色       | `string`  | -        |
-| useEasing  | 是否开启动画   | `boolean` | `true`   |
-| transition | 动画效果       | `string`  | `linear` |
-| decimals   | 保留小数点位数 | `number`  | `0`      |
+| startVal | starting value | `number` | `0` |
+| endVal | end value | `number` | `2021` |
+| duration | animation duration | `number` | `1500` |
+| autoplay | automatic execution | `boolean` | `true` |
+| prefix | prefix | `string` | - |
+| suffix | suffix | `string` | - |
+| separator | separator | `string` | `,` |
+| color | font color | `string` | - |
+| useEasing | Whether to enable animation | `boolean` | `true` |
+| transition | animation effects | `string` | `linear` |
+| decimals | Number of decimal places | `number` | `0` |
 
 ### Events
 
-| 事件名         | 描述           | 类型           |
+| Event name | Description | Type |
 | -------------- | -------------- | -------------- |
-| started        | 动画已开始     | `()=>void`     |
-| finished       | 动画已结束     | `()=>void`     |
-| ~~onStarted~~  | ~~动画已开始~~ | ~~`()=>void`~~ |
-| ~~onFinished~~ | ~~动画已结束~~ | ~~`()=>void`~~ |
+| started | Animation has started | `()=>void` |
+| finished | animation has ended | `()=>void` |
+| ~~onStarted~~ | ~~Animation has started~~ | ~~`()=>void`~~ |
+| ~~onFinished~~ | ~~The animation has ended~~ | ~~`()=>void`~~ |
 
 ### Methods
 
-| 方法名 | 描述         | 类型       |
+| Method name | Description | Type |
 | ------ | ------------ | ---------- |
-| start  | 开始执行动画 | `()=>void` |
-| reset  | 重置         | `()=>void` |
+| start | Start executing animation | `()=>void` |
+| reset | reset | `()=>void` |

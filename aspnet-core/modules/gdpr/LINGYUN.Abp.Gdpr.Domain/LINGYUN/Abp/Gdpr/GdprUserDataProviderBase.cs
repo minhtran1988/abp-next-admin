@@ -12,10 +12,10 @@ public abstract class GdprUserDataProviderBase: IGdprUserDataProvider
     public abstract Task DeleteAsync(GdprDeleteUserDataContext context);
     public abstract Task PorepareAsync(GdprPrepareUserDataContext context);
     /// <summary>
-    /// 发布个人数据
+    /// Publish personal data
     /// </summary>
     /// <param name="context"></param>
-    /// <param name="gdprDataInfo">个人数据</param>
+    /// <param name="gdprDataInfo">Personal data</param>
     /// <returns></returns>
     protected async virtual Task DispatchPrepareUserDataAsync(GdprPrepareUserDataContext context, GdprDataInfo gdprDataInfo)
     {

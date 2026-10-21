@@ -241,7 +241,7 @@ export function useDataSource(
       clearSelectOnPageChange,
     } = unref(propsRef);
     let fetchApi = api;
-    // 高级查询条件支持
+    // Advanced query condition support
     const searchInput = cloneDeep(getFieldsValue());
     if (advancedSearchConfig?.useAdvancedSearch) {
       if (Reflect.has(searchInput, 'queryable') 
@@ -294,7 +294,7 @@ export function useDataSource(
       }
 
       let res = await fetchApi(params);
-      // 增加用户自定义的返回数据处理函数
+      // Add user-defined return data processing function
       if (beforeResponse && isFunction(beforeResponse)) {
         res = beforeResponse(res);
       }
@@ -306,7 +306,7 @@ export function useDataSource(
       let resultItems: Recordable[] = isArrayResult ? res : get(res, listField);
       const resultTotal: number = isArrayResult ? res.length : get(res, totalField);
 
-      // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
+      // If the data becomes less, causing the total number of pages to become less and smaller than the currently selected page number, the page number obtained through getPaginationRef is incorrect, and the correct page number needs to be obtained and executed again.
       if (Number(resultTotal)) {
         const currentTotalPage = Math.ceil(resultTotal / pageSize);
         if (current > currentTotalPage) {

@@ -6,11 +6,11 @@ namespace LINGYUN.Platform.Portal;
 public abstract class EnterpriseCreateOrUpdateDto 
 {
     /// <summary>
-    /// 关联租户
+    /// Associated tenants
     /// </summary>
     public Guid? TenantId { get; set; }
     /// <summary>
-    /// 英文名称
+    /// English name
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxEnglishNameLength))]
     public string? EnglishName { get; set; }
@@ -20,36 +20,36 @@ public abstract class EnterpriseCreateOrUpdateDto
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxLogoLength))]
     public string? Logo { get; set; }
     /// <summary>
-    /// 地址
+    /// address
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxAddressLength))]
     public string? Address { get; set; }
     /// <summary>
-    /// 法人代表
+    /// Legal representative
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxLegalManLength))]
     public string? LegalMan { get; set; }
     /// <summary>
-    /// 税务登记号
+    /// Tax registration number
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxTaxCodeLength))]
     public string? TaxCode { get; set; }
     /// <summary>
-    /// 组织机构代码
+    /// Organization code
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxOrganizationCodeLength))]
     public string? OrganizationCode { get; set; }
     /// <summary>
-    /// 注册代码
+    /// Registration code
     /// </summary>
     [DynamicStringLength(typeof(EnterpriseConsts), nameof(EnterpriseConsts.MaxRegistrationCodeLength))]
     public string? RegistrationCode { get; set; }
     /// <summary>
-    /// 注册日期
+    /// Registration date
     /// </summary>
     public DateTime? RegistrationDate { get; set; }
     /// <summary>
-    /// 过期日期
+    /// Expiration date
     /// </summary>
     public DateTime? ExpirationDate { get; set; }
 }

@@ -6,16 +6,16 @@ import { ref } from 'vue';
 
 interface UserDefineSettingProvider extends ISettingProvider {
   /**
-   * 初始化配置项
-   * @param groups 配置分组
+   * Initialize configuration items
+   * @param groups configuration groups
    */
   initlize(groups: SettingGroup[]): void;
 }
 
 /**
- * 自定义设置管理Hooks
- * @returns 自定义设置管理器
- * @summary 请事先获取配置分组后通过 initlize 函数设置初始化设置值
+ * Customized settings management Hooks
+ * @returns Custom settings manager
+ * @summary Please obtain the configuration group in advance and set the initialization setting value through the initlize function
  */
 export function useDefineSettings(): UserDefineSettingProvider {
   const settings = ref<SettingValue[]>([]);

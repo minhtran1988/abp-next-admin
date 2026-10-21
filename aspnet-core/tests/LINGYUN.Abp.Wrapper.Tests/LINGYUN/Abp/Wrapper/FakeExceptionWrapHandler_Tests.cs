@@ -27,8 +27,8 @@ namespace LINGYUN.Abp.Wrapper.Tests
             handler.Wrap(exceptionWrapContext);
 
             exceptionWrapContext.ErrorInfo.Code.ShouldBe("1001");
-            exceptionWrapContext.ErrorInfo.Message.ShouldBe("自定义异常处理消息");
-            exceptionWrapContext.ErrorInfo.Details.ShouldBe("自定义异常处理消息明细");
+            exceptionWrapContext.ErrorInfo.Message.ShouldBe("Custom exception handling message");
+            exceptionWrapContext.ErrorInfo.Details.ShouldBe("Custom exception handling message details");
         }
 
         [Fact]
@@ -36,8 +36,8 @@ namespace LINGYUN.Abp.Wrapper.Tests
         {
             var exception = new AbpException();
             var errorInfo = new RemoteServiceErrorInfo(
-                "默认异常处理消息",
-                "默认异常处理消息明细",
+                "Default exception handling message",
+                "Default exception handling message details",
                 "1000");
             var exceptionWrapContext = new ExceptionWrapContext(
                 exception,
@@ -48,8 +48,8 @@ namespace LINGYUN.Abp.Wrapper.Tests
             handler.Wrap(exceptionWrapContext);
 
             exceptionWrapContext.ErrorInfo.Code.ShouldBe("1000");
-            exceptionWrapContext.ErrorInfo.Message.ShouldBe("默认异常处理消息");
-            exceptionWrapContext.ErrorInfo.Details.ShouldBe("默认异常处理消息明细");
+            exceptionWrapContext.ErrorInfo.Message.ShouldBe("Default exception handling message");
+            exceptionWrapContext.ErrorInfo.Details.ShouldBe("Default exception handling message details");
         }
 
         [Fact]
@@ -57,8 +57,8 @@ namespace LINGYUN.Abp.Wrapper.Tests
         {
             var exception = new AbpException();
             var errorInfo = new RemoteServiceErrorInfo(
-                "默认异常处理消息",
-                "默认异常处理消息明细");
+                "Default exception handling message",
+                "Default exception handling message details");
             var exceptionWrapContext = new ExceptionWrapContext(
                 exception,
                 errorInfo,
@@ -68,8 +68,8 @@ namespace LINGYUN.Abp.Wrapper.Tests
             handler.Wrap(exceptionWrapContext);
 
             exceptionWrapContext.ErrorInfo.Code.ShouldBe("500");
-            exceptionWrapContext.ErrorInfo.Message.ShouldBe("默认异常处理消息");
-            exceptionWrapContext.ErrorInfo.Details.ShouldBe("默认异常处理消息明细");
+            exceptionWrapContext.ErrorInfo.Message.ShouldBe("Default exception handling message");
+            exceptionWrapContext.ErrorInfo.Details.ShouldBe("Default exception handling message details");
         }
     }
 }

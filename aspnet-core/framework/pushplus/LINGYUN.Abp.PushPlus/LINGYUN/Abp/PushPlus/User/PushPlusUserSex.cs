@@ -2,15 +2,15 @@
 public enum PushPlusUserSex
 {
     /// <summary>
-    /// 未设置
+    /// not set
     /// </summary>
     NoSet = 0,
     /// <summary>
-    /// 男
+    /// Male
     /// </summary>
     Man =1,
     /// <summary>
-    /// 女
+    /// Female
     /// </summary>
     Woman = 2,
 }

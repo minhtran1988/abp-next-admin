@@ -1,23 +1,23 @@
 # LINGYUN.Abp.PermissionManagement.Application
 
-权限管理应用服务模块，提供权限管理的应用层实现。
+The permission management application service module provides application layer implementation of permission management.
 
-## 功能特性
+## Features
 
-* 权限组定义管理
-  * 创建、更新、删除权限组定义
-  * 支持权限组的启用/禁用
-  * 支持权限组的静态/动态配置
-* 权限定义管理
-  * 创建、更新、删除权限定义
-  * 支持权限的启用/禁用
-  * 支持权限的静态/动态配置
-  * 支持权限的父子层级关系
-* 多租户支持
-  * 支持Host和Tenant两种多租户模式
-  * 支持权限的多租户侧配置
+* Permission group definition management
+  * Create, update, and delete permission group definitions
+  * Support enabling/disabling permission groups
+  * Support static/dynamic configuration of permission groups
+* Permission definition management
+  * Create, update, delete permission definitions
+  * Support enabling/disabling permissions
+  * Support static/dynamic configuration of permissions
+  * Support parent-child hierarchical relationship of permissions
+*Multi-tenant support
+  * Supports two multi-tenant modes: Host and Tenant
+  * Support multi-tenant side configuration of permissions
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -29,9 +29,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 权限组定义管理
+1. Permission group definition management
 ```csharp
 public class YourService
 {
@@ -44,14 +44,14 @@ public class YourService
 
     public async Task ManageGroupDefinitionAsync()
     {
-        // 创建权限组
+        //Create permission group
         await _groupDefinitionAppService.CreateAsync(new PermissionGroupDefinitionCreateDto
         {
             Name = "MyPermissionGroup",
             DisplayName = "My Permission Group"
         });
 
-        // 更新权限组
+        //Update permission group
         await _groupDefinitionAppService.UpdateAsync("MyPermissionGroup", 
             new PermissionGroupDefinitionUpdateDto
             {
@@ -61,7 +61,7 @@ public class YourService
 }
 ```
 
-2. 权限定义管理
+2. Permission definition management
 ```csharp
 public class YourService
 {
@@ -74,7 +74,7 @@ public class YourService
 
     public async Task ManagePermissionDefinitionAsync()
     {
-        // 创建权限
+        //Create permissions
         await _permissionDefinitionAppService.CreateAsync(new PermissionDefinitionCreateDto
         {
             GroupName = "MyPermissionGroup",
@@ -83,7 +83,7 @@ public class YourService
             Providers = new[] { "Role", "User" }
         });
 
-        // 更新权限
+        //Update permissions
         await _permissionDefinitionAppService.UpdateAsync("MyPermission",
             new PermissionDefinitionUpdateDto
             {
@@ -93,7 +93,7 @@ public class YourService
 }
 ```
 
-## 另请参阅
+## See also
 
 * [LINGYUN.Abp.PermissionManagement.Application.Contracts](../LINGYUN.Abp.PermissionManagement.Application.Contracts/README.md)
 * [LINGYUN.Abp.PermissionManagement.Domain.OrganizationUnits](../LINGYUN.Abp.PermissionManagement.Domain.OrganizationUnits/README.md)

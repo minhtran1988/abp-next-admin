@@ -5,36 +5,36 @@ namespace Microsoft.AspNetCore.Authentication.WeChat.Work;
 public static class WeChatWorkOAuthConsts
 {
     /// <summary>
-    /// 企业微信授权名称
+    /// Enterprise WeChat authorized name
     /// </summary>
     public static string AuthenticationScheme => AbpWeChatWorkGlobalConsts.ProviderName;
     /// <summary>
-    /// 微信提供者显示名称
+    /// WeChat provider display name
     /// </summary>
     public static string DisplayName => AbpWeChatWorkGlobalConsts.DisplayName;
     /// <summary>
-    /// 回调地址
+    /// Callback address
     /// </summary>
     public static string CallbackPath { get; set; } = "/signin-wxwork";
     /// <summary>
-    /// 微信客户端内的网页登录
+    /// Web page login in WeChat client
     /// </summary>
     public const string AuthorizationEndpoint = "https://open.weixin.qq.com/connect/oauth2/authorize";
     /// <summary>
-    /// Web网页登录
+    /// Web page login
     /// </summary>
     public const string AuthorizationSsoEndpoint = "https://login.work.weixin.qq.com/wwlogin/sso/login";
     /// <summary>
-    /// 用户允许授权后通过返回的code换取access_token地址
+    /// After the user allows authorization, the returned code is exchanged for the access_token address.
     /// </summary>
     public const string TokenEndpoint = "https://qyapi.weixin.qq.com/cgi-bin/gettoken";
 
     /// <summary>
-    /// 使用access_token获取用户个人信息地址
+    /// Use access_token to obtain the user's personal information address
     /// </summary>
     public const string UserInfoEndpoint = "https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo";
     /// <summary>
-    /// 使用access_token获取用户敏感信息地址
+    /// Use access_token to obtain the user's sensitive information address
     /// </summary>
     public const string UserDetailEndpoint = "https://qyapi.weixin.qq.com/cgi-bin/auth/getuserdetail";
 

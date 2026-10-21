@@ -11,7 +11,7 @@ export const withAccessChecker = (element: React.ReactElement, requiredCodes: st
 
 /**
  *
- * @param codes 具有至少一个传入的访问权限代码
+ * @param codes has at least one incoming access code
  * @returns
  */
 export const hasAccessByCodes = (codes: string[]) => {

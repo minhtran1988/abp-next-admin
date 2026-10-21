@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.MsgAudits.Request;
 /// <summary>
-/// 获取会话内容存档内部群信息请求参数
+/// Get session content archive internal group information request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92951" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92951" />
 /// </remarks>
 public class WeChatWorkGetGroupChatRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 待查询的roomid
+    /// The roomid to be queried
     /// </summary>
     [NotNull]
     [JsonProperty("roomid")]

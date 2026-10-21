@@ -4,49 +4,49 @@ namespace LINGYUN.Abp.AuditLogging;
 public class AbpAuditLoggingOptions
 {
     /// <summary>
-    /// 是否启用审计日志记录
+    /// Whether to enable audit logging
     /// </summary>
     public bool IsAuditLogEnabled { get; set; }
     /// <summary>
-    /// 使用审计日志队列
+    /// Use the audit log queue
     /// </summary>
     /// <remarks>
-    /// 不启用队列则直接写入到持久化设施
+    /// If the queue is not enabled, write directly to the persistence facility
     /// </remarks>
     public bool UseAuditLogQueue { get; set; }
     /// <summary>
-    /// 审计日志最大队列大小
+    /// Audit log maximum queue size
     /// </summary>
     public int MaxAuditLogQueueSize { get; set; }
     /// <summary>
-    /// 一次处理审计日志队列大小
+    /// Process the audit log queue size at one time
     /// </summary>
     public int BatchAuditLogSize { get; set; }
     /// <summary>
-    /// 审计日志贡献者列表,用于写入前修改自定义属性
+    /// List of audit log contributors, used to modify custom attributes before writing
     /// </summary>
     public List<IAuditLogInfoContributor> AuditLogInfoContributors { get; }
     /// <summary>
-    /// 是否启用安全日志记录
+    /// Whether to enable security logging
     /// </summary>
     public bool IsSecurityLogEnabled { get; set; }
     /// <summary>
-    /// 使用安全日志队列
+    /// Use security log queue
     /// </summary>
     /// <remarks>
-    /// 不启用队列则直接写入到持久化设施
+    /// If the queue is not enabled, write directly to the persistence facility
     /// </remarks>
     public bool UseSecurityLogQueue { get; set; }
     /// <summary>
-    /// 安全日志最大队列大小
+    /// Security log maximum queue size
     /// </summary>
     public int MaxSecurityLogQueueSize { get; set; }
     /// <summary>
-    /// 一次处理安全日志队列大小
+    /// Process the security log queue size at once
     /// </summary>
     public int BatchSecurityLogSize { get; set; }
     /// <summary>
-    /// 安全日志贡献者列表,用于写入前修改自定义属性
+    /// List of security log contributors, used to modify custom attributes before writing
     /// </summary>
     public List<ISecurityLogInfoContributor> SecurityLogInfoContributors { get; }
     public AbpAuditLoggingOptions()

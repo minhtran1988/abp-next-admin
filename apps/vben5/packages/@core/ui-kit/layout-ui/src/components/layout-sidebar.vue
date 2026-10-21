@@ -12,78 +12,78 @@ import { SidebarCollapseButton, SidebarFixedButton } from './widgets';
 
 interface Props {
   /**
-   * 折叠区域高度
+   * Folding area height
    * @default 42
    */
   collapseHeight?: number;
   /**
-   * 折叠宽度
+   * Folding width
    * @default 48
    */
   collapseWidth?: number;
   /**
-   * 隐藏的dom是否可见
+   * Is the hidden dom visible?
    * @default true
    */
   domVisible?: boolean;
   /**
-   * 扩展区域宽度
+   * Extended area width
    */
   extraWidth: number;
   /**
-   * 固定扩展区域
+   * Fixed expansion area
    * @default false
    */
   fixedExtra?: boolean;
   /**
-   * 头部高度
+   *Height of head
    */
   headerHeight: number;
   /**
-   * 是否侧边混合模式
+   * Whether to use side blending mode
    * @default false
    */
   isSidebarMixed?: boolean;
   /**
-   * 顶部margin
+   * top margin
    * @default 60
    */
   marginTop?: number;
   /**
-   * 混合菜单宽度
+   * Mixed menu width
    * @default 80
    */
   mixedWidth?: number;
   /**
-   * 顶部padding
+   * Top padding
    * @default 60
    */
   paddingTop?: number;
   /**
-   * 是否显示
+   * Whether to display
    * @default true
    */
   show?: boolean;
   /**
-   * 显示折叠按钮
+   * Show collapse button
    * @default true
    */
   showCollapseButton?: boolean;
   /**
-   * 显示固定按钮
+   * Show fixed button
    * @default true
    */
   showFixedButton?: boolean;
   /**
-   * 主题
+   * theme
    */
   theme: string;
   /**
-   * 子主题
+   * Subtopic
    */
   themeSub: string;
   /**
-   * 宽度
+   * Width
    */
   width: number;
   /**
@@ -235,7 +235,7 @@ function handleMouseenter(e: MouseEvent) {
     return;
   }
 
-  // 未开启和未折叠状态不生效
+  // Unopened and unfolded states do not take effect
   if (expandOnHover.value) {
     return;
   }

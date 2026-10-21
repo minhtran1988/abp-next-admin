@@ -19,15 +19,15 @@ public static class PushPlusFeatureNames
         {
             public const string GroupName = Channel.GroupName + ".WeChat";
             /// <summary>
-            /// 启用微信通道
+            /// Enable WeChat channel
             /// </summary>
             public const string Enable = GroupName + ".Enable";
             /// <summary>
-            /// 发送次数上限
+            /// Maximum number of sending times
             /// </summary>
             public const string SendLimit = GroupName + ".SendLimit";
             /// <summary>
-            /// 发送次数上限时长
+            /// The upper limit of sending times
             /// </summary>
             public const string SendLimitInterval = GroupName + ".SendLimitInterval";
         }
@@ -36,15 +36,15 @@ public static class PushPlusFeatureNames
         {
             public const string GroupName = Channel.GroupName + ".WeWork";
             /// <summary>
-            /// 启用企业微信通道
+            /// Enable corporate WeChat channel
             /// </summary>
             public const string Enable = GroupName + ".Enable";
             /// <summary>
-            /// 发送次数上限
+            /// Maximum number of sending times
             /// </summary>
             public const string SendLimit = GroupName + ".SendLimit";
             /// <summary>
-            /// 发送次数上限时长
+            /// The upper limit of sending times
             /// </summary>
             public const string SendLimitInterval = GroupName + ".SendLimitInterval";
         }
@@ -53,15 +53,15 @@ public static class PushPlusFeatureNames
         {
             public const string GroupName = Channel.GroupName + ".Webhook";
             /// <summary>
-            /// 启用Webhook通道
+            /// Enable Webhook channel
             /// </summary>
             public const string Enable = GroupName + ".Enable";
             /// <summary>
-            /// 发送次数上限
+            /// Maximum number of sending times
             /// </summary>
             public const string SendLimit = GroupName + ".SendLimit";
             /// <summary>
-            /// 发送次数上限时长
+            /// The upper limit of sending times
             /// </summary>
             public const string SendLimitInterval = GroupName + ".SendLimitInterval";
         }
@@ -70,15 +70,15 @@ public static class PushPlusFeatureNames
         {
             public const string GroupName = Channel.GroupName + ".Email";
             /// <summary>
-            /// 启用Email通道
+            /// Enable Email channel
             /// </summary>
             public const string Enable = GroupName + ".Enable";
             /// <summary>
-            /// 发送次数上限
+            /// Maximum number of sending times
             /// </summary>
             public const string SendLimit = GroupName + ".SendLimit";
             /// <summary>
-            /// 发送次数上限时长
+            /// The upper limit of sending times
             /// </summary>
             public const string SendLimitInterval = GroupName + ".SendLimitInterval";
         }
@@ -87,15 +87,15 @@ public static class PushPlusFeatureNames
         {
             public const string GroupName = Channel.GroupName + ".Sms";
             /// <summary>
-            /// 启用Sms通道
+            /// Enable SMS channel
             /// </summary>
             public const string Enable = GroupName + ".Enable";
             /// <summary>
-            /// 发送次数上限
+            /// Maximum number of sending times
             /// </summary>
             public const string SendLimit = GroupName + ".SendLimit";
             /// <summary>
-            /// 发送次数上限时长
+            /// The upper limit of sending times
             /// </summary>
             public const string SendLimitInterval = GroupName + ".SendLimitInterval";
         }

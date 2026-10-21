@@ -9,15 +9,15 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Request;
 /// <summary>
-/// 创建成员请求参数
+/// Create member request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90195" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90195" />
 /// </remarks>
 public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 成员UserID。对应管理端的账号，企业内必须唯一。长度为1~64个字节。只能由数字、字母和“_-@.”四种字符组成，且第一个字符必须是数字或字母。系统进行唯一性检查时会忽略大小写。
+    /// Member UserID. The account corresponding to the management end must be unique within the enterprise. The length is 1~64 bytes. It can only be composed of four characters: numbers, letters and "_-@.", and the first character must be a number or a letter. The system ignores case when doing uniqueness checks.
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
@@ -25,7 +25,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [StringLength(64, MinimumLength = 1)]
     public string UserId { get; set; }
     /// <summary>
-    /// 成员名称。长度为1~64个utf8字符
+    /// Member name. The length is 1~64 utf8 characters
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
@@ -33,7 +33,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [StringLength(64, MinimumLength = 1)]
     public string Name { get; set; }
     /// <summary>
-    /// 成员别名。长度1~64个utf8字符
+    /// Member alias. Length 1~64 utf8 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("alias")]
@@ -41,28 +41,28 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [StringLength(64, MinimumLength = 1)]
     public string? Alias { get; set; }
     /// <summary>
-    /// 手机号码。企业内必须唯一，mobile/email二者不能同时为空 ，中国大陆手机号码可省略“+86”，其他国家或地区必须要带上国际码。
+    /// Mobile phone number. It must be unique within the enterprise, and mobile/email cannot be empty at the same time. The mobile phone number in mainland China can omit "+86", and the international code must be included in other countries or regions.
     /// </summary>
     [CanBeNull]
     [JsonProperty("mobile")]
     [JsonPropertyName("mobile")]
     public string? Mobile { get; set; }
     /// <summary>
-    /// 成员所属部门id列表，不超过100个。当不填写department或id为0时，成员会放在其他（待设置部门）下，当填写的部门不存在时，会在在其他（待设置部门）下新建对应部门
+    /// List of department IDs to which members belong, no more than 100. When the department is not filled in or the id is 0, the members will be placed under Others (Department to be set). When the filled-in department does not exist, the corresponding department will be created under Other (Department to be set).
     /// </summary>
     [CanBeNull]
     [JsonProperty("department")]
     [JsonPropertyName("department")]
     public int[]? Department { get; set; }
     /// <summary>
-    /// 部门内的排序值，默认为0，成员次序以创建时间从小到大排列。个数必须和参数department的个数一致，数值越大排序越前面。有效的值范围是[0, 2^32)
+    /// The sort value within the department, the default is 0, and the members are arranged in ascending order of creation time. The number must be consistent with the number of parameter department. The larger the value, the higher the order. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]
     [JsonPropertyName("order")]
     public int[]? Order { get; set; }
     /// <summary>
-    /// 职务信息。长度为0~128个字符
+    /// Job information. Length is 0~128 characters
     /// </summary>
     [CanBeNull]
     [StringLength(128)]
@@ -70,7 +70,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("position")]
     public string? Position { get; set; }
     /// <summary>
-    /// 性别
+    /// Gender
     /// </summary>
     [CanBeNull]
     [JsonProperty("gender")]
@@ -79,7 +79,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.EnumToNumberStringConverter<Gender>))]
     public Gender? Gender { get; set; }
     /// <summary>
-    /// 邮箱。可填写企业已有的邮箱账号，方便同事获取成员的邮箱账号以发邮件。长度6~64个字节，且为有效的email格式。企业内必须唯一，mobile/email二者不能同时为空。境外成员可用此邮箱登录企业微信。
+    /// Email. You can fill in the company's existing email account to facilitate colleagues to obtain members' email accounts to send emails. The length is 6~64 bytes and is a valid email format. It must be unique within the enterprise, and both mobile/email cannot be empty at the same time. Overseas members can use this email address to log in to corporate WeChat.
     /// </summary>
     [CanBeNull]
     [StringLength(64)]
@@ -87,7 +87,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("email")]
     public string? Email { get; set; }
     /// <summary>
-    /// 如果企业已开通腾讯企业邮（企业微信邮箱），设置该值可创建企业邮箱账号。长度6~64个字节，且为有效的企业邮箱格式。企业内必须唯一。未填写则系统会为用户生成默认企业邮箱（由系统生成的邮箱可修改一次）
+    /// If the enterprise has opened Tencent Enterprise Email (Enterprise WeChat Email), setting this value can create an enterprise email account. The length is 6~64 bytes and is in a valid corporate email format. Must be unique within the enterprise. If not filled in, the system will generate a default corporate email for the user (the email generated by the system can be modified once)
     /// </summary>
     [CanBeNull]
     [StringLength(64)]
@@ -95,7 +95,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("biz_mail")]
     public string? BizEmail { get; set; }
     /// <summary>
-    /// 座机。32字节以内，由纯数字、“-”、“+”或“,”组成。
+    /// Landline. Within 32 bytes, it consists of pure numbers, "-", "+" or ",".
     /// </summary>
     [CanBeNull]
     [StringLength(32)]
@@ -103,56 +103,56 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("telephone")]
     public string? TelePhone { get; set; }
     /// <summary>
-    /// 个数必须和参数department的个数一致，表示在所在的部门内是否为部门负责人。1表示为部门负责人，0表示非部门负责人。在审批(自建、第三方)等应用里可以用来标识上级审批人
+    /// The number must be consistent with the number of parameter department, indicating whether the department is the head of the department. 1 means the person in charge of the department, 0 means not the person in charge of the department. It can be used to identify superior approvers in applications such as approval (self-built, third-party)
     /// </summary>
     [CanBeNull]
     [JsonProperty("is_leader_in_dept")]
     [JsonPropertyName("is_leader_in_dept")]
     public int[]? IsLeaderInDept { get; set; }
     /// <summary>
-    /// 直属上级UserID，设置范围为企业内成员，可以设置最多1个上级
+    /// Direct superior UserID, the setting scope is members within the enterprise, and up to 1 superior can be set
     /// </summary>
     [CanBeNull]
     [JsonProperty("direct_leader")]
     [JsonPropertyName("direct_leader")]
     public string[]? DirectLeader { get; set; }
     /// <summary>
-    /// 成员头像的mediaid，通过素材管理接口上传图片获得的mediaid
+    /// The mediaid of the member's avatar, which is obtained by uploading pictures through the material management interface.
     /// </summary>
     [CanBeNull]
     [JsonProperty("avatar_mediaid")]
     [JsonPropertyName("avatar_mediaid")]
     public string? AvatarMediaId { get; set; }
     /// <summary>
-    /// 启用/禁用成员。1表示启用成员，0表示禁用成员
+    /// Enable/disable members. 1 means enable the member, 0 means disable the member
     /// </summary>
     [CanBeNull]
     [JsonProperty("enable")]
     [JsonPropertyName("enable")]
     public int? Enable { get; set; }
     /// <summary>
-    /// 扩展属性。扩展属性字段需要先在WEB管理端添加，见扩展属性添加方法，否则忽略未知属性的赋值。字段详情见成员扩展属性
+    /// Extended attributes. The extended attribute field needs to be added on the WEB management side first, see the extended attribute adding method, otherwise the assignment of unknown attributes will be ignored. For field details, see member extended attributes
     /// </summary>
     [CanBeNull]
     [JsonProperty("extattr")]
     [JsonPropertyName("extattr")]
     public MemberExternalAttribute? ExternalAttribute { get; set; }
     /// <summary>
-    /// 是否邀请该成员使用企业微信（将通过微信服务通知或短信或邮件下发邀请，每天自动下发一次，最多持续3个工作日），默认值为true。
+    /// Whether to invite this member to use Enterprise WeChat (the invitation will be sent through WeChat service notification or SMS or email, automatically once a day, lasting up to 3 working days), the default value is true.
     /// </summary>
     [CanBeNull]
     [JsonProperty("to_invite")]
     [JsonPropertyName("to_invite")]
     public bool? ToInvite { get; set; }
     /// <summary>
-    /// 成员对外属性，字段详情见对外属性
+    /// External attributes of members, please see external attributes for field details
     /// </summary>
     [CanBeNull]
     [JsonProperty("external_profile")]
     [JsonPropertyName("external_profile")]
     public ExternalProfile? ExternalProfile { get; set; }
     /// <summary>
-    /// 对外职务，如果设置了该值，则以此作为对外展示的职务，否则以position来展示。长度12个汉字内
+    /// External position, if this value is set, this will be used as the position displayed externally, otherwise it will be displayed as position. Within 12 Chinese characters in length
     /// </summary>
     [CanBeNull]
     [StringLength(12)]
@@ -160,14 +160,14 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("external_position")]
     public string? ExternalPosition { get; set; }
     /// <summary>
-    /// 视频号名字（设置后，成员将对外展示该视频号）。须从企业绑定到企业微信的视频号中选择，可在“我的企业”页中查看绑定的视频号
+    /// Video account name (after setting, members will display the video account to the outside world). You must choose from the video accounts bound to the enterprise WeChat account. You can view the bound video accounts on the "My Enterprise" page.
     /// </summary>
     [CanBeNull]
     [JsonProperty("nickname")]
     [JsonPropertyName("nickname")]
     public string? NickName { get; set; }
     /// <summary>
-    /// 地址。长度最大128个字符
+    /// Address. Maximum length 128 characters
     /// </summary>
     [CanBeNull]
     [StringLength(128)]
@@ -175,7 +175,7 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
     [JsonPropertyName("address")]
     public string? Address { get; set; }
     /// <summary>
-    /// 主部门
+    /// Main department
     /// </summary>
     [CanBeNull]
     [JsonProperty("main_department")]
@@ -201,36 +201,36 @@ public class WeChatWorkCreateMemberRequest : WeChatWorkRequest
         Check.Length(TelePhone, nameof(TelePhone), 32);
         Check.Length(ExternalPosition, nameof(ExternalPosition), 12);
         Check.Length(Address, nameof(Address), 128);
-        // mobile/email二者不能同时为空
+        // mobile/email cannot be empty at the same time
         if (Mobile.IsNullOrWhiteSpace() && Email.IsNullOrWhiteSpace())
         {
             throw new ArgumentException("mobile and email cannot be empty at the same time!");
         }
-        // 成员所属部门id列表，不超过100个
+        // List of department IDs to which members belong, no more than 100
         if (Department?.Length > 0)
         {
-            // 成员所属部门id列表，不超过100个
+            // List of department IDs to which members belong, no more than 100
             if (Department?.Length > 100)
             {
                 throw new ArgumentException("The list of department ids to which members belong shall not exceed 100!");
             }
-            // 部门排序列表个数必须和参数department的个数一致
+            // The number of department sorting lists must be consistent with the number of parameter department
             if (Order?.Length != Department?.Length)
             {
                 throw new ArgumentException("The number of Order must be consistent with the number of the parameter \"department\"!");
             }
-            // 部门负责人列表个数必须和参数department的个数一致
+            // The number of department heads list must be consistent with the number of parameter department
             if (IsLeaderInDept?.Length != Department?.Length)
             {
                 throw new ArgumentException("The number of IsLeaderInDept must be consistent with the number of the parameter \"Department\"!");
             }
         }
-        // 最多只可设置一个直属上级
+        // Only one direct superior can be set at most
         if (DirectLeader?.Length > 1)
         {
             throw new ArgumentException("At most, only one direct superior can be set up!");
         }
-        // 只可存在两种值
+        // Only two values can exist
         if (Enable.HasValue && Enable != 0)
         {
             Enable = 1;

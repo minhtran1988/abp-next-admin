@@ -1,6 +1,6 @@
 # LINGYUN.Abp.AuditLogging.OpenObserve
 
-English | [简体中文](./README.md)
+English | [Simplified Chinese](./README.md)
 
 ## Introduction
 

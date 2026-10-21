@@ -7,50 +7,50 @@ namespace LINGYUN.Abp.WxPusher.Messages;
 public class SendMessageResult
 {
     /// <summary>
-    /// 状态码
+    /// Status code
     /// </summary>
     [JsonProperty("code")]
     public int Code { get; set; } = default!;
     /// <summary>
-    /// 消息标识
+    /// Message ID
     /// </summary>
     [JsonProperty("messageId")]
-    [Obsolete("废弃，请不要再使用，后续会删除这个字段, see: https://wxpusher.dingliqc.com/docs/#/?id=%e5%8f%91%e9%80%81%e6%b6%88%e6%81%af")]
+    [Obsolete("Obsolete, please do not use it again, this field will be deleted later, see: https://wxpusher.dingliqc.com/docs/#/?id=%e5%8f%91%e9%80%81%e6%b6%88%e6%81%af")]
     public long? MessageId { get; set; }
     /// <summary>
-    /// 消息内容标识
+    /// Message content identifier
     /// </summary>
     /// <remarks>
-    /// 调用一次接口，生成一个，你可以通过此id调用删除消息接口，删除消息。
-    /// 本次发送的所有用户共享此消息内容。
+    /// Call the interface once to generate one. You can call the delete message interface through this id to delete the message.
+    /// All users sent this time share the content of this message.
     /// </remarks>
     [JsonProperty("messageContentId")]
     public long ContentId { get; set; }
     /// <summary>
-    /// 消息发送标识
+    /// Message sending identifier
     /// </summary>
     /// <remarks>
-    /// 每个uid用户或者topicId生成一个，可以通过这个id查询对某个用户的发送状态
+    /// Generate one for each uid user or topicId. You can use this ID to query the sending status of a certain user.
     /// </remarks>
     [JsonProperty("sendRecordId")]
     public long RecordId { get; set; }
     /// <summary>
-    /// 状态
+    /// Status
     /// </summary>
     [JsonProperty("status")]
     public string Status { get; set; } = default!;
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     [JsonProperty("uid")]
     public string Uid { get; set; } = default!;
     /// <summary>
-    /// 群组标识
+    /// Group ID
     /// </summary>
     [JsonProperty("topicId")]
     public long? TopicId { get; set; }
     /// <summary>
-    /// 是否调用成功
+    /// Whether the call is successful
     /// </summary>
     public bool IsSuccessed => Code == 1000;
 }

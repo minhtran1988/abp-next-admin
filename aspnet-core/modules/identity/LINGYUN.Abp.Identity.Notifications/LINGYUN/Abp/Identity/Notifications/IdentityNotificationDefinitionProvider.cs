@@ -19,12 +19,12 @@ public class IdentityNotificationDefinitionProvider : NotificationDefinitionProv
             NotificationType.ServiceCallback,
             NotificationLifetime.Persistent,
             NotificationContentType.Json,
-            allowSubscriptionToClients: false) // 客户端禁用, 所有新用户必须订阅此通知
+            allowSubscriptionToClients: false) // Client disabled, all new users must subscribe to this notification
             .WithProviders(
-                NotificationProviderNames.SignalR, // 实时通知处理会话过期事件
-                NotificationProviderNames.Emailing); // 邮件通知会话过期
+                NotificationProviderNames.SignalR, // Real-time notification processing session expiration event
+                NotificationProviderNames.Emailing); // Email notification session expires
 
-        // 账号保持活跃通知
+        // Account remains active notification
         group.AddNotification(
             IdentityNotificationNames.IdentityUser.InactiveUserReminderNotifier,
             L("InactiveUserReminderNotifier"),
@@ -32,9 +32,9 @@ public class IdentityNotificationDefinitionProvider : NotificationDefinitionProv
             NotificationType.User,
             NotificationLifetime.Persistent,
             NotificationContentType.Html,
-            allowSubscriptionToClients: false) // 客户端禁用, 所有新用户必须订阅此通知
+            allowSubscriptionToClients: false) // Client disabled, all new users must subscribe to this notification
             .WithProviders(NotificationProviderNames.Emailing);
-        // 账号停用通知
+        // Account deactivation notification
         group.AddNotification(
             IdentityNotificationNames.IdentityUser.InactiveUserDeactivationNotifier,
             L("InactiveUserDeactivationNotifier"),
@@ -42,9 +42,9 @@ public class IdentityNotificationDefinitionProvider : NotificationDefinitionProv
             NotificationType.User,
             NotificationLifetime.Persistent,
             NotificationContentType.Html,
-            allowSubscriptionToClients: false) // 客户端禁用, 所有新用户必须订阅此通知
+            allowSubscriptionToClients: false) // Client disabled, all new users must subscribe to this notification
             .WithProviders(NotificationProviderNames.Emailing);
-        // 账号删除通知不需要添加,直接发送邮件通知即可,因为发布通知时用户已删除
+        // There is no need to add the account deletion notification, just send the email notification directly, because the user has been deleted when the notification is posted.
     }
 
     private static ILocalizableString L(string name)

@@ -10,10 +10,10 @@ type LayoutType =
 type ThemeModeType = 'auto' | 'dark' | 'light';
 
 /**
- * 偏好设置按钮位置
- * fixed 固定在右侧
- * header 顶栏
- * auto 自动
+ * Preference button location
+ * fixed fixed on the right side
+ * header top bar
+ * auto automatic
  */
 type PreferencesButtonPositionType = 'auto' | 'fixed' | 'header';
 
@@ -43,58 +43,58 @@ type LayoutHeaderModeType = 'auto' | 'auto-scroll' | 'fixed' | 'static';
 type LayoutHeaderMenuAlignType = 'center' | 'end' | 'start';
 
 /**
- * 登录过期模式
- * modal 弹窗模式
- * page 页面模式
+ * Login expiration mode
+ * modal pop-up mode
+ * page page mode
  */
 type LoginExpiredModeType = 'modal' | 'page';
 
 /**
- * 面包屑样式
- * background 背景
- * normal 默认
+ * Breadcrumb style
+ * background background
+ * normal default
  */
 type BreadcrumbStyleType = 'background' | 'normal';
 
 /**
- * 权限模式
- * backend 后端权限模式
- * frontend 前端权限模式
- * mixed 混合权限模式
+ * Permission mode
+ * backend backend permission mode
+ * frontend front-end permission mode
+ * mixed mixed permission mode
  */
 type AccessModeType = 'backend' | 'frontend' | 'mixed';
 
 /**
- * 导航风格
- * plain 朴素
- * rounded 圆润
+ *Navigation style
+ * plain plain
+ * rounded
  */
 type NavigationStyleType = 'plain' | 'rounded';
 
 /**
- * 标签栏风格
- * brisk 轻快
- * card 卡片
- * chrome 谷歌
- * plain 朴素
+ * Tab bar style
+ * brisk brisk
+ * card card
+ * chrome google
+ * plain plain
  */
 type TabsStyleType = 'brisk' | 'card' | 'chrome' | 'plain';
 
 /**
- * 页面切换动画
+ * Page switching animation
  */
 type PageTransitionType = 'fade' | 'fade-down' | 'fade-slide' | 'fade-up';
 
 /**
- * 页面切换动画
- * panel-center 居中布局
- * panel-left 居左布局
- * panel-right 居右布局
+ * Page switching animation
+ * panel-center centered layout
+ * panel-left layout on the left
+ * panel-right right layout
  */
 type AuthPageLayoutType = 'panel-center' | 'panel-left' | 'panel-right';
 
 /**
- * 时区选项
+ * Time zone options
  */
 interface TimezoneOption {
   label: string;

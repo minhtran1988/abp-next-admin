@@ -23,7 +23,7 @@ const ApplicationSecretModal: React.FC<ApplicationSecretModalProps> = ({
 	const { t: $t } = useTranslation();
 	const [form] = Form.useForm();
 
-	// 获取应用详情
+	// Get application details
 	const { data: applicationData, isLoading: isLoadingApp } = useQuery({
 		queryKey: ["application", applicationId],
 		queryFn: () => {
@@ -35,7 +35,7 @@ const ApplicationSecretModal: React.FC<ApplicationSecretModalProps> = ({
 		enabled: visible && !!applicationId,
 	});
 
-	// 更新应用密钥
+	// Update application key
 	const { mutateAsync: updateSecret, isPending: isUpdating } = useMutation({
 		mutationFn: (clientSecret: string) => {
 			if (!applicationData) {

@@ -1,31 +1,31 @@
-# 单体服务启动指南
+# Monolithic Service Startup Guide
 
-[English](startup-aio-readme.en.md) | 简体中文
+English | [Chinese](startup-aio-readme.zh-CN.md)
 
-## 目录
+## Table of Contents
 
-- [CLI 快速启动](#cli快速启动)
-  - [环境要求](#cli环境要求)
-  - [安装命令行工具](#安装命令行工具)
-  - [创建项目](#创建项目)
-  - [运行项目](#运行项目)
-- [源码启动](#源码启动)
-  - [环境要求](#环境要求)
-  - [项目编译](#项目编译)
-  - [环境配置](#环境配置)
-    - [必选配置](#必选配置)
-    - [可选配置](#可选配置)
-  - [数据库初始化](#数据库初始化)
-  - [服务启动](#服务启动)
-  - [配置说明](#配置说明)
-- [常见问题](#常见问题)
+- [Quick Start with CLI](#quick-start-with-cli)
+  - [Requirements](#cli-requirements)
+  - [Install CLI Tool](#install-cli-tool)
+  - [Create Project](#create-project)
+  - [Run Project](#run-project)
+- [Source Code Startup](#source-code-startup)
+  - [Requirements](#requirements)
+  - [Project Compilation](#project-compilation)
+  - [Environment Configuration](#environment-configuration)
+    - [Required Configuration](#required-configuration)
+    - [Optional Configuration](#optional-configuration)
+  - [Database Initialization](#database-initialization)
+  - [Service Startup](#service-startup)
+  - [Configuration Details](#configuration-details)
+- [Common Issues](#common-issues)
 
-## CLI 快速启动
+## Quick Start with CLI
 
-### CLI 环境要求
+### CLI Requirements
 
 - .NET 8.0 SDK
-- 数据库（支持以下任一种）：
+- Database (support any of the following):
   - MySQL
   - SQL Server
   - SQLite
@@ -34,85 +34,84 @@
   - PostgreSQL
 - Redis
 
-### 安装模板
+### Install Templates
 
 ```bash
-# 安装微服务模板:lam
+# Install the microservice template: lam
 dotnet new install LINGYUN.Abp.MicroService.Templates
 
-# 安装单体应用模板:laa
+# Install the monolithic application template: laa
 dotnet new install LINGYUN.Abp.AllInOne.Templates
 ```
 
-### 安装 labp 命令行工具
+### Install the labp CLI Tool
 
 ```bash
-  dotnet tool install --global LINGYUN.Abp.Cli
+dotnet tool install --global LINGYUN.Abp.Cli
 ```
 
-### 创建项目
+### Create Project
 
 ```bash
-# 简写名称：laa (LINGYUN Abp AllInOne)
+# Short name: laa (LINGYUN Abp AllInOne)
 labp create YourCompanyName.YourProjectName -pk YourPackageName -t laa -o /path/to/output --dbms MySql --cs "Server=127.0.0.1;Database=Platform-V70;User Id=root;Password=123456;SslMode=None" --no-random-port
 ```
 
-参数说明：
+Parameter Description:
+- `-pk` or `--package-name`: Package name
+- `-t` or `--template`: Template type, use `laa` for All-in-One template
+- `-o` or `--output`: Output directory
+- `--dbms`: Database type, supports MySql, SqlServer, Sqlite, Oracle, OracleDevart, PostgreSql
+- `--cs`: Database connection string
+- `--no-random-port`: Do not use random port
 
-- `-pk` 或 `--package-name`: 包名
-- `-t` 或 `--template`: 模板类型，使用 `laa` 表示单体应用模板
-- `-o` 或 `--output`: 输出目录
-- `--dbms`: 数据库类型，支持 MySql、SqlServer、Sqlite、Oracle、OracleDevart、PostgreSql
-- `--cs`: 数据库连接字符串
-- `--no-random-port`: 不使用随机端口
+### Run Project
 
-### 运行项目
-
-创建项目后，进入项目目录：
+After creating the project, navigate to the project directory:
 
 ```bash
 cd /path/to/output/host/YourPackageName.YourCompanyName.YourProjectName.AIO.Host
 dotnet run --launch-profile "YourPackageName.YourCompanyName.YourProjectName.Development"
 ```
 
-## 源码启动
+## Source Code Startup
 
-### 环境要求
+### Requirements
 
 - .NET 8.0 SDK
-- 数据库（支持以下任一种）：
+- Database (support any of the following):
   - PostgreSQL
   - MySQL
-  - SQL Server（即将支持）
+  - SQL Server (coming soon)
 - Redis
-- Docker（可选）
+- Docker (optional)
 
-### 项目编译
+### Project Compilation
 
-1. 确保已安装 .NET 8.0 SDK
-2. 在项目根目录执行以下命令编译整个项目：
+1. Ensure .NET 8.0 SDK is installed
+2. Execute the following command in the project root directory to compile the entire project:
 
 ```shell
 ./build/build-aspnetcore-release.ps1
 ```
 
-3. 使用 IDE 打开 `LINGYUN.Abp.MicroService.AllInOne` 解决方案进行调试或发布
+3. Open the `LINGYUN.Abp.MicroService.AllInOne` solution in your IDE for debugging or publishing
 
-### 环境配置
+### Environment Configuration
 
-#### 必选配置
+#### Required Configuration
 
-#### 1. 数据库配置
+#### 1. Database Configuration
 
-支持多种数据库，以下是各种数据库的配置示例：
+Multiple databases are supported. Here are configuration examples for each:
 
 ##### PostgreSQL
 
 ```shell
-# 使用Docker启动PostgreSQL
+# Start PostgreSQL using Docker
 docker run -d --name postgres \
     -p 5432:5432 \
-    -e POSTGRES_PASSWORD=123456 \
+    -e POSTGRES_PASSWORD=postgres \
     -e PGDATA=/var/lib/postgresql/data \
     postgres:latest
 ```
@@ -120,33 +119,41 @@ docker run -d --name postgres \
 ##### MySQL
 
 ```shell
-# 使用Docker启动MySQL
+# Start MySQL using Docker
 docker run -d --name mysql \
     -p 3306:3306 \
-    -e MYSQL_ROOT_PASSWORD=123456 \
+    -e MYSQL_ROOT_PASSWORD=mysql \
     mysql:latest
 ```
 
-##### SQL Server
+Create database:
+
+```sql
+CREATE DATABASE `Platform-V70`;
+```
+
+##### SQL Server (coming soon)
 
 ```shell
-# 使用Docker启动SQL Server
+# Start SQL Server using Docker
 docker run -d --name sqlserver \
     -p 1433:1433 \
     -e "ACCEPT_EULA=Y" \
-    -e "SA_PASSWORD=123456" \
+    -e "SA_PASSWORD=yourStrong(!)Password" \
     mcr.microsoft.com/mssql/server:latest
 ```
 
-#### 2. 配置文件修改
+#### 2. Configuration File Modification
 
-需要根据选择的数据库类型修改以下配置文件中的数据库连接字符串：
+Modify the database connection strings in the following configuration files according to your chosen database:
 
-数据库连接字符串示例：
+- `migrations/LINGYUN.Abp.MicroService.AllInOne.DbMigrator/appsettings.json`
+- `LINGYUN.Abp.MicroService.AllInOne/appsettings.Development.json`
+
+Database connection string examples:
 
 PostgreSQL:
 
-- `LINGYUN.Abp.MicroService.AllInOne/appsettings.Development.PostgreSql.json`
 ```json
 {
   "ConnectionStrings": {
@@ -157,7 +164,6 @@ PostgreSQL:
 
 MySQL:
 
-- `LINGYUN.Abp.MicroService.AllInOne/appsettings.Development.MySql.json`
 ```json
 {
   "ConnectionStrings": {
@@ -166,25 +172,24 @@ MySQL:
 }
 ```
 
-SQL Server:
+SQL Server (coming soon):
 
-- `LINGYUN.Abp.MicroService.AllInOne/appsettings.Development.SqlServer.json`
 ```json
 {
   "ConnectionStrings": {
-    "Default": "Server=localhost,1433;Database=Platform-V70;User Id=sa;Password=123456;TrustServerCertificate=True"
+    "Default": "Server=localhost,1433;Database=Platform-V70;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True"
   }
 }
 ```
 
-#### 3. Redis 服务
+#### 3. Redis Service
 
 ```shell
-# 使用Docker启动Redis
+# Start Redis using Docker
 docker run -d --name redis -p 6379:6379 redis:latest
 ```
 
-Redis 配置示例：
+Redis configuration example:
 
 ```json
 {
@@ -210,11 +215,11 @@ Redis 配置示例：
 }
 ```
 
-### 可选配置
+### Optional Configuration
 
-以下配置适用于单体分布式架构：
+The following configurations are applicable for monolithic distributed architecture:
 
-#### 1. MinIO 分布式文件存储
+#### 1. MinIO Distributed File Storage
 
 ```json
 {
@@ -229,7 +234,7 @@ Redis 配置示例：
 }
 ```
 
-#### 2. Elasticsearch 分布式审计日志
+#### 2. Elasticsearch Distributed Audit Logging
 
 ```json
 {
@@ -239,44 +244,46 @@ Redis 配置示例：
 }
 ```
 
-### 数据库初始化
+### Database Initialization
 
-1. 运行数据库迁移脚本：
+1. Run database migration script:
 
-方案一：
+Option 1 (Recommended):
 
 ```shell
 ./aspnet-core/migrations/Migrate.ps1
 ```
 
-根据命令行提示生成迁移文件和 sql 脚本，然后执行 sql 脚本来创建数据表
+Follow the command line prompts to generate migration files and SQL scripts, then execute the SQL scripts to create database tables
 
-方案二（推荐）：
-以 pgsql 为例
+Option 2:
+Taking PostgreSQL as an example:
 
-1. 选择启动配置
-   - 选择 `LINGYUN.Abp.MicroService.AllInOne.DbMigrator/Properties/launchSettings.json` 中的 `Single.PostgreSql.Dev`
+- Modify database connection information in `LINGYUN.Abp.MicroService.AllInOne.DbMigrator/appsettings.PostgreSql.json`
+- Navigate to `LINGYUN.Abp.MicroService.AllInOne.EntityFrameworkCore.PostgreSql` project
+- Run `dotnet ef database update`
+- Wait for migration completion
 
-2. 配置数据初始化：
+2. Configure data initialization:
 
-   - 修改 `LINGYUN.Abp.MicroService.AllInOne.DbMigrator/appsettings.PostgreSql.json` 中的数据库连接信息
+   - Modify database connection information in `LINGYUN.Abp.MicroService.AllInOne.DbMigrator/appsettings.json`
+   - Ensure the correct database provider is selected
 
-3. 执行数据迁移：
-   - 运行 `LINGYUN.Abp.MicroService.AllInOne.DbMigrator` 项目
-   - 等待数据迁移完成，基础表数据将被初始化
+3. Execute data migration:
+   - Run the `LINGYUN.Abp.MicroService.AllInOne.DbMigrator` project
+   - Wait for migration to complete, basic table data will be initialized
 
-### 服务启动
-1. 选择启动配置
-   - 选择 `LINGYUN.Abp.MicroService.AllInOne/Properties/launchSettings.json` 中的 `Single.PostgreSql.Dev`
-1. 运行 `LINGYUN.Abp.MicroService.AllInOne` 项目
-2. 在浏览器中访问 Swagger 接口文档：
+### Service Startup
+
+1. Run the `LINGYUN.Abp.MicroService.AllInOne` project
+2. Access Swagger API documentation in your browser:
    - URL: http://127.0.0.1:30000/swagger
 
-### 配置说明
+### Configuration Details
 
-#### 基础配置
+#### 1. Basic Configuration
 
-#### 应用程序配置
+#### Application Configuration
 
 ```json
 {
@@ -288,7 +295,7 @@ Redis 配置示例：
 }
 ```
 
-#### 分布式缓存配置
+#### Distributed Cache Configuration
 
 ```json
 {
@@ -303,9 +310,9 @@ Redis 配置示例：
 }
 ```
 
-### 认证配置
+### Authentication Configuration
 
-#### OpenIddict 配置
+#### OpenIddict Configuration
 
 ```json
 {
@@ -325,7 +332,7 @@ Redis 配置示例：
 }
 ```
 
-#### 身份认证配置
+#### Identity Authentication Configuration
 
 ```json
 {
@@ -350,7 +357,7 @@ Redis 配置示例：
 }
 ```
 
-### 功能开关配置
+#### Feature Management Configuration
 
 ```json
 {
@@ -366,7 +373,7 @@ Redis 配置示例：
 }
 ```
 
-### 日志配置
+#### Logging Configuration
 
 ```json
 {
@@ -391,14 +398,14 @@ Redis 配置示例：
 }
 ```
 
-## 常见问题
+## Common Issues
 
-如果遇到问题，请检查：
+If you encounter problems, please check:
 
-1. 数据库连接字符串是否正确
-2. 是否选择了正确的数据库提供程序
-3. Redis 连接是否正常
-4. 必要的端口是否被占用
-5. 数据库迁移是否成功完成
-6. 认证服务器配置是否正确
-7. CORS 配置是否正确（如果前端访问出现跨域问题）
+1. Database connection string is correct
+2. Correct database provider is selected
+3. Redis connection is working
+4. Required ports are not occupied
+5. Database migration completed successfully
+6. Authentication server configuration is correct
+7. CORS configuration is correct (if frontend access has cross-origin issues)

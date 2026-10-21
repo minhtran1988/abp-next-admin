@@ -3,19 +3,19 @@
 public enum PushPlusMessageStatus
 {
     /// <summary>
-    /// 未发送
+    /// Not sent
     /// </summary>
     NotSend = 0,
     /// <summary>
-    /// 发送中
+    /// Sending
     /// </summary>
     Sending = 1,
     /// <summary>
-    /// 已发送
+    /// Sent
     /// </summary>
     Successed = 2,
     /// <summary>
-    /// 发送失败
+    /// Sending failed
     /// </summary>
     Failed = 3,
 }

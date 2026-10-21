@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Account.HttpApi
 
-ABP账户模块的HTTP API层，提供RESTful API接口实现。
+The HTTP API layer of the ABP account module provides RESTful API interface implementation.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 提供账户管理的HTTP API接口
-* 支持本地化和多语言
-* 集成ABP MVC框架
-* 自动API控制器注册
+* Provides HTTP API interface for account management
+* Support localization and multi-language
+* Integrate ABP MVC framework
+* Automatic API controller registration
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -23,37 +23,37 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API控制器
+## API Controller
 
 ### AccountController
 
-提供以下HTTP API端点：
-* POST /api/account/register - 手机号注册
-* POST /api/account/register-by-wechat - 微信小程序注册
-* POST /api/account/reset-password - 重置密码
-* POST /api/account/send-phone-register-code - 发送手机注册验证码
-* POST /api/account/send-phone-signin-code - 发送手机登录验证码
-* POST /api/account/send-email-signin-code - 发送邮箱登录验证码
-* POST /api/account/send-phone-reset-password-code - 发送手机重置密码验证码
+The following HTTP API endpoints are provided:
+* POST /api/account/register - Mobile phone number registration
+* POST /api/account/register-by-wechat - WeChat mini program registration
+* POST /api/account/reset-password - reset password
+* POST /api/account/send-phone-register-code - Send mobile phone registration verification code
+* POST /api/account/send-phone-signin-code - Send mobile phone login verification code
+* POST /api/account/send-email-signin-code - Send email login verification code
+* POST /api/account/send-phone-reset-password-code - Send phone reset password verification code
 
 ### MyProfileController
 
-提供以下HTTP API端点：
-* GET /api/account/my-profile - 获取个人资料
-* PUT /api/account/my-profile - 更新个人资料
-* POST /api/account/my-profile/change-password - 修改密码
-* POST /api/account/my-profile/change-phone-number - 修改手机号
-* POST /api/account/my-profile/send-phone-number-change-code - 发送手机号变更验证码
-* POST /api/account/my-profile/change-avatar - 更新头像
+The following HTTP API endpoints are provided:
+* GET /api/account/my-profile - Get personal information
+* PUT /api/account/my-profile - update profile
+* POST /api/account/my-profile/change-password - change password
+* POST /api/account/my-profile/change-phone-number - change mobile phone number
+* POST /api/account/my-profile/send-phone-number-change-code - Send phone number change verification code
+* POST /api/account/my-profile/change-avatar - update avatar
 
 ### MyClaimController
 
-提供以下HTTP API端点：
-* GET /api/account/my-claim - 获取用户声明
-* PUT /api/account/my-claim - 更新用户声明
+The following HTTP API endpoints are provided:
+* GET /api/account/my-claim - Get user statement
+* PUT /api/account/my-claim - Update user claim
 
-## 本地化配置
+## Localization configuration
 
-模块预配置了本地化选项：
-* 支持AccountResource资源本地化
-* 自动注册MVC应用程序部件
+The module comes preconfigured with localization options:
+* Support AccountResource resource localization
+* Automatically register MVC application components

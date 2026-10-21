@@ -5,47 +5,47 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 二级标题+文本
+/// Second-level title + text
 /// </summary>
 public class WebhookTemplateCardHorizontalContent
 {
     /// <summary>
-    /// 模版卡片的二级标题信息内容支持的类型，1是url，2是文件附件，3 代表点击跳转成员详情
+    /// Types supported by the secondary title information content of the template card, 1 is url, 2 is file attachment, 3 represents click to jump to member details
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public int? Type { get; set; }
     /// <summary>
-    /// 二级标题，建议不超过5个字
+    /// Second-level title, it is recommended not to exceed 5 words
     /// </summary>
     [NotNull]
     [JsonProperty("keyname")]
     [JsonPropertyName("keyname")]
     public string KeyName { get; set; }
     /// <summary>
-    /// 二级文本，如果type是2，该字段代表文件名称（要包含文件类型），建议不超过26个字
+    /// Second-level text, if type is 2, this field represents the file name (including file type), it is recommended not to exceed 26 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("value")]
     [JsonPropertyName("value")]
     public string? Value { get; set; }
     /// <summary>
-    /// 链接跳转的url，type是1时必填
+    /// URL for link jump, required when type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 附件的media_id，type是2时必填
+    /// The media_id of the attachment, required when type is 2
     /// </summary>
     [CanBeNull]
     [JsonProperty("media_id")]
     [JsonPropertyName("media_id")]
     public string? MediaId { get; set; }
     /// <summary>
-    /// 成员详情的userid，type是3时必填
+    /// Userid of member details, required when type is 3
     /// </summary>
     [CanBeNull]
     [JsonProperty("userid")]
@@ -68,10 +68,10 @@ public class WebhookTemplateCardHorizontalContent
         UserId = userId;
     }
     /// <summary>
-    /// 创建一个默认二级标题+文本
+    /// Create a default secondary title + text
     /// </summary>
-    /// <param name="keyName">二级标题</param>
-    /// <param name="value">二级文本</param>
+    /// <param name="keyName">Second-level title</param>
+    /// <param name="value">Second-level text</param>
     /// <returns></returns>
     public static WebhookTemplateCardHorizontalContent Default(string keyName, string? value = null)
     {
@@ -80,11 +80,11 @@ public class WebhookTemplateCardHorizontalContent
         return new WebhookTemplateCardHorizontalContent(keyName, value: value);
     }
     /// <summary>
-    /// 创建一个跳转链接的二级标题+文本
+    /// Create a secondary title + text for a jump link
     /// </summary>
-    /// <param name="keyName">二级标题</param>
-    /// <param name="url">链接跳转的url</param>
-    /// <param name="value">二级文本</param>
+    /// <param name="keyName">Second-level title</param>
+    /// <param name="url">URL for link jump</param>
+    /// <param name="value">Second-level text</param>
     /// <returns></returns>
     public static WebhookTemplateCardHorizontalContent Link(string keyName, string url, string? value = null)
     {
@@ -94,11 +94,11 @@ public class WebhookTemplateCardHorizontalContent
         return new WebhookTemplateCardHorizontalContent(keyName, 1, value: value, url: url);
     }
     /// <summary>
-    /// 创建一个引用文件的二级标题+文本
+    /// Create a secondary title + text that references the file
     /// </summary>
-    /// <param name="keyName">二级标题</param>
-    /// <param name="fileName">文件名称</param>
-    /// <param name="mediaId">附件的mediaId</param>
+    /// <param name="keyName">Second-level title</param>
+    /// <param name="fileName">File name</param>
+    /// <param name="mediaId">mediaId of the attachment</param>
     /// <returns></returns>
     public static WebhookTemplateCardHorizontalContent File(string keyName, string fileName, string mediaId)
     {
@@ -109,10 +109,10 @@ public class WebhookTemplateCardHorizontalContent
         return new WebhookTemplateCardHorizontalContent(keyName, 2, value: fileName, mediaId: mediaId);
     }
     /// <summary>
-    /// 创建一个成员详情的二级标题+文本
+    /// Create a secondary title + text for member details
     /// </summary>
-    /// <param name="keyName">二级标题</param>
-    /// <param name="userId">成员的userid</param>
+    /// <param name="keyName">Second-level title</param>
+    /// <param name="userId">Member's userid</param>
     /// <returns></returns>
     public static WebhookTemplateCardHorizontalContent UserInfo(string keyName, string userId)
     {

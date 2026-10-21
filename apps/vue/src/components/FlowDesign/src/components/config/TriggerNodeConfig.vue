@@ -1,14 +1,14 @@
 <template>
   <div>
     <Form layout="vertical">
-      <FormItem label="选择触发的动作" name="text" class="user-type">
+      <FormItem label="Select triggered action" name="text" class="user-type">
         <RadioGroup v-model:value="config.type">
-          <Radio value="WEBHOOK">发送网络请求</Radio>
-          <Radio value="EMAIL">发送邮件</Radio>
+          <Radio value="WEBHOOK">Send network request</Radio>
+          <Radio value="EMAIL">Send email</Radio>
         </RadioGroup>
       </FormItem>
       <div v-if="config.type === 'WEBHOOK'">
-        <FormItem label="请求地址" name="text">
+        <FormItem label="Request address" name="text">
           <InputGroup compact>
             <Select style="width: 20%" v-model:value="config.http.method" placeholder="URL">
               <Option value="GET">GET</Option>
@@ -18,7 +18,7 @@
             </Select>
             <Input
               style="width: 80%"
-              placeholder="请输入URL地址"
+              placeholder="Please enter URL address"
               size="middle"
               v-model:value="config.http.url"
             />
@@ -26,8 +26,8 @@
         </FormItem>
         <FormItem name="text">
           <template #label>
-            <span style="margin-right: 10px">Header请求头</span>
-            <Button type="link" @click="addItem(config.http.headers)"> + 添加</Button>
+            <span style="margin-right: 10px">Header request header</span>
+            <Button type="link" @click="addItem(config.http.headers)"> + Add</Button>
           </template>
           <div
             style="margin-top: 6px"
@@ -36,21 +36,21 @@
           >
             -
             <Input
-              placeholder="参数名"
+              placeholder="parameter name"
               size="small"
               style="width: 100px"
               v-model:value="header.name"
             />
             <RadioGroup size="small" style="margin: 0 5px" v-model:value="header.isField">
-              <RadioButton :value="true">表单</RadioButton>
-              <RadioButton :value="false">固定</RadioButton>
+              <RadioButton :value="true">Form</RadioButton>
+              <RadioButton :value="false">Fixed</RadioButton>
             </RadioGroup>
             <Select
               v-if="header.isField"
               style="width: 180px"
               v-model:value="header.value"
               size="small"
-              placeholder="请选择表单字段"
+              placeholder="Please select form fields"
             >
               <Option v-for="form in forms" :key="form.id" :value="form.title">{{
                 form.title
@@ -58,7 +58,7 @@
             </Select>
             <Input
               v-else
-              placeholder="请设置字段值"
+              placeholder="Please set field value"
               size="small"
               v-model:value="header.value"
               style="width: 180px"
@@ -71,11 +71,11 @@
         </FormItem>
         <FormItem name="text">
           <template #label>
-            <span style="margin-right: 10px">Header请求参数 </span>
+            <span style="margin-right: 10px">Header request parameters </span>
             <Button style="margin-right: 20px" type="link" @click="addItem(config.http.params)">
-              + 添加</Button
+              + Add</Button
             >
-            <span>参数类型 - </span>
+            <span>Parameter type - </span>
             <RadioGroup size="small" style="margin: 0 5px" v-model:value="config.http.contentType">
               <RadioButton value="JSON">json</RadioButton>
               <RadioButton value="FORM">form</RadioButton>
@@ -88,21 +88,21 @@
           >
             -
             <Input
-              placeholder="参数名"
+              placeholder="parameter name"
               size="small"
               style="width: 100px"
               v-model:value="param.name"
             />
             <RadioGroup size="small" style="margin: 0 5px" v-model:value="param.isField">
-              <RadioButton :value="true">表单</RadioButton>
-              <RadioButton :value="false">固定</RadioButton>
+              <RadioButton :value="true">Form</RadioButton>
+              <RadioButton :value="false">Fixed</RadioButton>
             </RadioGroup>
             <Select
               v-if="param.isField"
               style="width: 180px"
               v-model:value="param.value"
               size="small"
-              placeholder="请选择表单字段"
+              placeholder="Please select form fields"
             >
               <Option v-for="form in forms" :key="form.id" :value="form.title">{{
                 form.title
@@ -110,7 +110,7 @@
             </Select>
             <Input
               v-else
-              placeholder="请设置字段值"
+              placeholder="Please set field value"
               size="small"
               v-model:value="param.value"
               style="width: 180px"
@@ -124,40 +124,40 @@
         </FormItem>
         <FormItem name="text">
           <template #label>
-            <span>请求结果处理</span>
-            <span style="margin-left: 20px">自定义脚本: </span>
+            <span>Request result processing</span>
+            <span style="margin-left: 20px">Custom script: </span>
             <Switch v-model:checked="config.http.handlerByScript"></Switch>
           </template>
           <span class="item-desc" v-if="config.http.handlerByScript">
-            👉 返回值为 ture 则流程通过，为 false 则流程将被驳回
+            👉 If the return value is true, the process will be passed; if it is false, the process will be rejected.
             <div
-              >支持函数
+              >Support functions
               <span style="color: dodgerblue"
                 >setFormByName(
-                <span style="color: #939494">'表单字段名', '表单字段值'</span>
+                <span style="color: #939494">'Form field name', 'Form field value'</span>
                 )</span
               >
-              可改表单数据
+              Modifiable form data
             </div>
           </span>
-          <span class="item-desc" v-else>👉 无论请求结果如何，均通过</span>
+          <span class="item-desc" v-else>👉 Pass regardless of the request result</span>
           <div v-if="config.http.handlerByScript">
             <div>
-              <span>请求成功😀：</span>
+              <span>Request successful😀:</span>
               <Textarea v-model:value="config.http.success" :rows="3"></Textarea>
             </div>
             <div>
-              <span>请求失败😥：</span>
+              <span>Request failed😥:</span>
               <Textarea v-model:value="config.http.fail" :rows="3"></Textarea>
             </div>
           </div>
         </FormItem>
       </div>
       <div v-else-if="config.type === 'EMAIL'">
-        <FormItem label="邮件主题" name="text">
-          <Input placeholder="请输入邮件主题" size="middle" v-model:value="config.email.subject" />
+        <FormItem label="Email subject" name="text">
+          <Input placeholder="Please enter the email subject" size="middle" v-model:value="config.email.subject" />
         </FormItem>
-        <FormItem label="收件方" name="text">
+        <FormItem label="recipient" name="text">
           <Select
             size="small"
             style="width: 100%"
@@ -166,16 +166,16 @@
             multiple
             allow-create
             default-first-option
-            placeholder="请输入收件人"
+            placeholder="Please enter recipient"
           >
             <Option v-for="item in config.email.to" :key="item" :value="item">{{ item }}</Option>
           </Select>
         </FormItem>
-        <FormItem label="邮件正文" name="text">
+        <FormItem label="Email text" name="text">
           <Textarea
             v-model:value="config.email.content"
             :rows="4"
-            placeholder="邮件内容，支持变量提取表单数据 ${表单字段名} "
+            placeholder="Email content, supports variable extraction of form data ${form field name} "
           ></Textarea>
         </FormItem>
       </div>
@@ -213,27 +213,27 @@
     cmOptions: {
       tabSize: 4, // tab
       indentUnit: 4,
-      styleActiveLine: true, // 高亮选中行
-      lineNumbers: true, // 显示行号
+      styleActiveLine: true, // Highlight selected line
+      lineNumbers: true, // Display line numbers
       styleSelectedText: true,
       line: true,
-      foldGutter: true, // 块槽
+      foldGutter: true, // block slot
       gutters: ['CodeMirror-linenumbers', 'lock', 'warn'],
-      highlightSelectionMatches: { showToken: /w/, annotateScrollbar: true }, // 可以启用该选项来突出显示当前选中的内容的所有实例
+      highlightSelectionMatches: { showToken: /w/, annotateScrollbar: true }, // This option can be enabled to highlight all instances of the currently selected content
       mode: 'javascript',
       // hint.js options
       hintOptions: {
-        // 当匹配只有一项的时候是否自动补全
+        // Whether to automatically complete when there is only one match
         completeSingle: false,
       },
-      // 快捷键 可提供三种模式 sublime、emacs、vim
+      // Shortcut keys provide three modes: sublime, emacs, vim
       keyMap: 'sublime',
       matchBrackets: true,
       showCursorWhenSelecting: false,
       // scrollbarStyle:null,
-      // readOnly:true,  //是否只读
-      theme: 'material', // 主题 material
-      extraKeys: { Ctrl: 'autocomplete' }, // 可以用于为编辑器指定额外的键绑定，以及keyMap定义的键绑定
+      // readOnly:true, //Whether it is read only
+      theme: 'material', // theme material
+      extraKeys: { Ctrl: 'autocomplete' }, // Can be used to specify additional key bindings for the editor, as well as key bindings defined by keyMap
       lastLineBefore: 0,
     },
   });
@@ -244,7 +244,7 @@
       items.length > 0 &&
       (items[items.length - 1].name.trim() === '' || items[items.length - 1].value.trim() === '')
     ) {
-      createMessage.warning('请完善之前项后在添加');
+      createMessage.warning('Please complete the previous items before adding');
       return;
     }
     items.push({ name: '', value: '', isField: true });

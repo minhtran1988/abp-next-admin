@@ -13,9 +13,9 @@ export function useEditionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 创建版本
-   * @param {EditionCreateDto} input 参数
-   * @returns 创建的版本
+   * Create version
+   * @param {EditionCreateDto} input parameter
+   * @returns created version
    */
   function createApi(input: EditionCreateDto): Promise<EditionDto> {
     return request<EditionDto>('/api/saas/editions', {
@@ -25,10 +25,10 @@ export function useEditionsApi() {
   }
 
   /**
-   * 编辑版本
-   * @param {string} id 参数
-   * @param {EditionUpdateDto} input 参数
-   * @returns 编辑的版本
+   *Edited version
+   * @param {string} id parameter
+   * @param {EditionUpdateDto} input parameter
+   * @returns edited version
    */
   function updateApi(id: string, input: EditionUpdateDto): Promise<EditionDto> {
     return request<EditionDto>(`/api/saas/editions/${id}`, {
@@ -38,9 +38,9 @@ export function useEditionsApi() {
   }
 
   /**
-   * 查询版本
+   * Query version
    * @param {string} id Id
-   * @returns 查询的版本
+   * @returns Query version
    */
   function getApi(id: string): Promise<EditionDto> {
     return request<EditionDto>(`/api/saas/editions/${id}`, {
@@ -49,7 +49,7 @@ export function useEditionsApi() {
   }
 
   /**
-   * 删除版本
+   * delete version
    * @param {string} id Id
    * @returns {void}
    */
@@ -60,8 +60,8 @@ export function useEditionsApi() {
   }
 
   /**
-   * 查询版本分页列表
-   * @param {GetEditionPagedListInput} input 参数
+   * Query version paging list
+   * @param {GetEditionPagedListInput} input parameter
    * @returns {void}
    */
   function getPagedListApi(

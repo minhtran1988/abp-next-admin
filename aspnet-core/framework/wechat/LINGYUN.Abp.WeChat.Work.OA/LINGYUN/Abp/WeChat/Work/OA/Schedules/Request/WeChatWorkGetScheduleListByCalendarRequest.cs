@@ -5,29 +5,29 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Request;
 /// <summary>
-/// 获取日历下的日程列表请求参数
+/// Get the schedule list request parameters under the calendar
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97723"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97723"/>
 /// </remarks>
 public class WeChatWorkGetScheduleListByCalendarRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 日历ID
+    /// Calendar ID
     /// </summary>
     [NotNull]
     [JsonProperty("cal_id")]
     [JsonPropertyName("cal_id")]
     public string CalId { get; }
     /// <summary>
-    /// 分页，偏移量, 默认为0
+    /// Paging, offset, default is 0
     /// </summary>
     [NotNull]
     [JsonProperty("offset")]
     [JsonPropertyName("offset")]
     public int Offset { get; }
     /// <summary>
-    /// 分页，预期请求的数据量，默认为500，取值范围 1 ~ 1000
+    /// Paging, the expected amount of requested data, the default is 500, the value range is 1 ~ 1000
     /// </summary>
     [NotNull]
     [JsonProperty("limit")]

@@ -5,27 +5,27 @@ namespace LINGYUN.Abp.SystemInfo.Utils;
 public class GCMetrics
 {
     /// <summary>
-    /// Gen0回收次数
+    /// Gen0 recycling times
     /// </summary>
     public int Gen0Collections { get; set; }
     /// <summary>
-    /// Gen1回收次数
+    /// Gen1 recycling times
     /// </summary>
     public int Gen1Collections { get; set; }
     /// <summary>
-    /// Gen2回收次数
+    /// Gen2 recycling times
     /// </summary>
     public int Gen2Collections { get; set; }
     /// <summary>
-    /// 总可用内存
+    /// Total available memory
     /// </summary>
     public long TotalMemory { get; set; }
     /// <summary>
-    /// 内存负载
+    /// Memory load
     /// </summary>
     public long MemoryLoad { get; set; }
     /// <summary>
-    /// 内存碎片大小
+    /// Memory fragment size
     /// </summary>
     public long FragmentedBytes { get; set; }
 }

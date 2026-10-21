@@ -4,7 +4,7 @@ public class NotificationsCommonNotificationNames
 {
     public const string GroupName = "LINGYUN.Abp.Notifications.Primitives";
     /// <summary>
-    /// 异常处理
+    /// Exception handling
     /// </summary>
     public const string ExceptionHandling = GroupName + ".ExceptionHandling";
 }

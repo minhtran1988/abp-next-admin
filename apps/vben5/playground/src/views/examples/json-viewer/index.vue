@@ -8,26 +8,26 @@ import { Card, message } from 'ant-design-vue';
 import { json1, json2 } from './data';
 
 function handleKeyClick(key: string) {
-  message.info(`点击了Key ${key}`);
+  message.info(`Key ${key} was clicked`);
 }
 
 function handleValueClick(value: JsonViewerValue) {
-  message.info(`点击了Value ${JSON.stringify(value)}`);
+  message.info(`Value ${JSON.stringify(value)}`);
 }
 
 function handleCopied(_event: JsonViewerAction) {
-  message.success('已复制JSON');
+  message.success('JSON copied');
 }
 </script>
 <template>
   <Page
     title="Json Viewer"
-    description="一个渲染 JSON 结构数据的组件，支持复制、展开等，简单易用"
+    description="A component that renders JSON structure data, supports copying, expansion, etc., simple and easy to use"
   >
-    <Card title="默认配置">
+    <Card title="Default configuration">
       <JsonViewer :value="json1" />
     </Card>
-    <Card title="可复制、默认展开3层、显示边框、事件处理" class="mt-4">
+    <Card title="Copyable, expand to 3 layers by default, display borders, event handling" class="mt-4">
       <JsonViewer
         :value="json2"
         :expand-depth="3"
@@ -39,7 +39,7 @@ function handleCopied(_event: JsonViewerAction) {
         boxed
       />
     </Card>
-    <Card title="预览模式" class="mt-4">
+    <Card title="Preview Mode" class="mt-4">
       <JsonViewer
         :value="json2"
         copyable

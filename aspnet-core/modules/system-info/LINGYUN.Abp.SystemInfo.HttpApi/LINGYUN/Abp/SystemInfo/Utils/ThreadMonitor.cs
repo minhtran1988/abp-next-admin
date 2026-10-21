@@ -6,27 +6,27 @@ namespace LINGYUN.Abp.SystemInfo.Utils;
 public class ThreadMetrics
 {
     /// <summary>
-    /// 可用工作线程数
+    /// Number of available worker threads
     /// </summary>
     public int AvailableWorkerThreads { get; set; }
     /// <summary>
-    /// 可用I/O线程数
+    /// Number of available I/O threads
     /// </summary>
     public int AvailableCompletionPortThreads { get; set; }
     /// <summary>
-    /// 最大工作线程数
+    /// Maximum number of worker threads
     /// </summary>
     public int MaxWorkerThreads { get; set; }
     /// <summary>
-    /// 最大I/O线程数
+    /// Maximum number of I/O threads
     /// </summary>
     public int MaxCompletionPortThreads { get; set; }
     /// <summary>
-    /// 进程总线程数
+    /// Total number of threads in the process
     /// </summary>
     public int ActiveThreads { get; set; }
     /// <summary>
-    /// 线程池活动线程数
+    /// Number of active threads in the thread pool
     /// </summary>
     public int ThreadPoolThreadCount { get; set; }
 }
@@ -42,7 +42,7 @@ public class ThreadMonitor
             out var maxWorkerThreads,
             out var maxCompletionPortThreads);
 
-        // 获取进程线程数（近似活动线程数）
+        // Get the number of process threads (approximate number of active threads)
         var process = Process.GetCurrentProcess();
         var threads = process.Threads;
 

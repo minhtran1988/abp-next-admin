@@ -1,36 +1,36 @@
 # LINGYUN.Abp.CachingManagement.Application.Contracts
 
-缓存管理应用服务契约模块。
+Cache management application service contract module.
 
-## 接口
+## Interface
 
 ### ICacheAppService
 
-缓存管理应用服务接口，提供以下功能：
+Cache management application service interface provides the following functions:
 
-* `GetKeysAsync`: 获取缓存键列表
-* `GetValueAsync`: 获取缓存值
-* `SetAsync`: 设置缓存值
-* `RefreshAsync`: 刷新缓存
-* `RemoveAsync`: 删除缓存
+* `GetKeysAsync`: Get the cache key list
+* `GetValueAsync`: Get cached value
+* `SetAsync`: Set cache value
+* `RefreshAsync`: Refresh cache
+* `RemoveAsync`: delete cache
 
-## 权限
+## Permissions
 
-* AbpCachingManagement.Cache：缓存管理
-  * AbpCachingManagement.Cache.Refresh：刷新缓存
-  * AbpCachingManagement.Cache.Delete：删除缓存
-  * AbpCachingManagement.Cache.ManageValue：管理缓存值
+* AbpCachingManagement.Cache: cache management
+  *AbpCachingManagement.Cache.Refresh: Refresh the cache
+  * AbpCachingManagement.Cache.Delete: Delete cache
+  * AbpCachingManagement.Cache.ManageValue: Manage cache value
 
-## 安装
+## Installation
 
 ```bash
 abp add-module LINGYUN.Abp.CachingManagement
 ```
 
-## 更多
+## More
 
-有关更多信息，请参阅以下资源：
+For more information, see the following resources:
 
-* [应用服务实现](../LINGYUN.Abp.CachingManagement.Application/README.md)
+* [Application service implementation](../LINGYUN.Abp.CachingManagement.Application/README.md)
 * [HTTP API](../LINGYUN.Abp.CachingManagement.HttpApi/README.md)
-* [领域层](../LINGYUN.Abp.CachingManagement.Domain/README.md)
+* [Domain layer](../LINGYUN.Abp.CachingManagement.Domain/README.md)

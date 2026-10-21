@@ -29,12 +29,12 @@ public class AbpBackgroundJobsHangfireModule : AbpModule
                 {
                     return job.Type.FullName;
 
-                    //if (job.Type.GenericTypeArguments.Length == 0)
+                    // if (job.Type.GenericTypeArguments.Length == 0)
                     //{
                     //    return job.Type.FullName;
                     //}
-                    //// TODO: 把特性作为任务名称?
-                    //return BackgroundJobNameAttribute.GetName(job.Type.GenericTypeArguments[0]);
+                    //// TODO: Use features as task names?
+                    // return BackgroundJobNameAttribute.GetName(job.Type.GenericTypeArguments[0]);
                 }
                 var context = dashboardContext.GetHttpContext();
                 var options = context.RequestServices.GetRequiredService<IOptions<AbpBackgroundJobOptions>>().Value;

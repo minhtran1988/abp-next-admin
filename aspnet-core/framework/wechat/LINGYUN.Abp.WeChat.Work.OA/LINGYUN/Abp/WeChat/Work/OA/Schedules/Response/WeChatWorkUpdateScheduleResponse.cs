@@ -4,18 +4,18 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Response;
 /// <summary>
-/// 更新日程响应参数
+/// Update schedule response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97720"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97720"/>
 /// </remarks>
 public class WeChatWorkUpdateScheduleResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 修改重复日程新产生的日程ID。
+    /// Modify the newly generated schedule ID of the repeated schedule.
     /// </summary>
     /// <remarks>
-    /// 对于重复日程，如果不是修改全部周期，会修剪原重复日程，产生新的重复日程，此时会返回新日程的ID
+    /// For repeated schedules, if all periods are not modified, the original repeated schedule will be trimmed and a new repeated schedule will be generated. At this time, the ID of the new schedule will be returned.
     /// </remarks>
     [NotNull]
     [JsonProperty("schedule_id")]

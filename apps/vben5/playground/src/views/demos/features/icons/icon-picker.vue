@@ -12,7 +12,7 @@ export interface Props {
   allowClear?: boolean;
   pageSize?: number;
   /**
-   * 可以通过prefix获取系统中使用的图标集
+   * You can get the icon set used in the system through prefix
    */
   prefix?: string;
   readonly?: boolean;
@@ -71,7 +71,7 @@ const handleChange = (icon: string) => {
     :readonly="props.readonly"
     :style="{ width }"
     class="cursor-pointer"
-    placeholder="点击选中图标"
+    placeholder="Click to select the icon"
     @click="triggerPopover"
   >
     <template #addonAfter>

@@ -4,37 +4,37 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信消息公共选项
+/// Enterprise WeChat message public options
 /// </summary>
 public class WeChatWorkMessageOptions
 {
     /// <summary>
-    /// 消息应用标识, 由渠道在发布时填充
+    /// Message application ID, filled in by the channel when publishing
     /// </summary>
     public string AgentId { get; set; } = default!;
 
     /// <summary>
-    /// 是否是保密消息
+    /// Is it confidential information?
     /// </summary>
     public bool? Safe { get; set; }
 
     /// <summary>
-    /// 是否开启id转译
+    /// Whether to enable id translation
     /// </summary>
     public bool? EnableIdTrans { get; set; }
 
     /// <summary>
-    /// 是否开启重复消息检查
+    /// Whether to enable duplicate message checking
     /// </summary>
     public bool? EnableDuplicateCheck { get; set; }
 
     /// <summary>
-    /// 重复消息检查的时间间隔(秒)
+    /// Time interval for repeated message checking (seconds)
     /// </summary>
     public int? DuplicateCheckInterval { get; set; }
 
     /// <summary>
-    /// 从通知数据中解析公共选项
+    /// Parse public options from notification data
     /// </summary>
     public static WeChatWorkMessageOptions From(
         INotificationChannelDataResolver resolver,
@@ -53,22 +53,22 @@ public class WeChatWorkMessageOptions
     }
 
     /// <summary>
-    /// 保密消息标记
+    /// Confidential message mark
     /// </summary>
     public byte SafeValue => Safe == true ? (byte)1 : (byte)0;
 
     /// <summary>
-    /// id转译标记
+    /// id translation tag
     /// </summary>
     public byte EnableIdTransValue => EnableIdTrans == true ? (byte)1 : (byte)0;
 
     /// <summary>
-    /// 重复消息检查标记
+    /// Duplicate message check mark
     /// </summary>
     public byte EnableDuplicateCheckValue => EnableDuplicateCheck == true ? (byte)1 : (byte)0;
 
     /// <summary>
-    /// 重复消息检查间隔, 未设置时使用企业微信默认值
+    /// Repeat message check interval, if not set, use the default value of Enterprise WeChat
     /// </summary>
     public int DuplicateCheckIntervalValue => DuplicateCheckInterval ?? 1800;
 }

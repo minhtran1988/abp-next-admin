@@ -88,17 +88,17 @@ function LoginForm() {
 
 	useEffect(() => {
 		const search = window.location.search;
-		// 创建 URLSearchParams 实例来解析查询字符串
+		// Create a URLSearchParams instance to parse the query string
 		const params = new URLSearchParams(search);
 
-		// 提取具体的参数
+		// Extract specific parameters
 		const provider = params.get("provider") || "";
 		const clientId = params.get("clientId") || "";
 
 		if (provider && clientId) {
 			handleExternalLogin();
 		}
-	}, []); //TODO 添加更醒目的三方登录提示
+	}, []); //TODO add a more eye-catching three-party login prompt
 
 	if (loginState !== LoginStateEnum.LOGIN) return null;
 
@@ -146,7 +146,7 @@ function LoginForm() {
 					</Form.Item>
 				)}
 
-				{/* 用户名密码登录表单项 */}
+				{/* Username and password login form items */}
 				<Form.Item name="username" rules={[{ required: true, message: t("sys.login.accountPlaceholder") }]}>
 					<Input placeholder={t("sys.login.userName")} />
 				</Form.Item>

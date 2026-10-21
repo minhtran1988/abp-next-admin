@@ -23,21 +23,21 @@ export const EntityChangeTable: React.FC<EntityChangeTableProps> = ({ data, show
 			title: t("AbpAuditLogging.UserName"),
 			dataIndex: "userName",
 			align: "center",
-			width: 100, // 设置列宽
+			width: 100, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.ChangeType"),
 			dataIndex: "changeType",
 			sorter: true,
 			align: "center",
-			width: 120, // 设置列宽
+			width: 120, // Set column width
 			render: (type: ChangeType) => <Tag color={getChangeTypeColor(type)}>{getChangeTypeValue(type)}</Tag>,
 		},
 		{
 			title: t("AbpAuditLogging.StartTime"),
 			dataIndex: "changeTime",
 			sorter: true,
-			width: 200, // 设置列宽
+			width: 200, // Set column width
 			render: (value: Date) => value && formatToDateTime(value),
 		},
 		{
@@ -45,19 +45,19 @@ export const EntityChangeTable: React.FC<EntityChangeTableProps> = ({ data, show
 			dataIndex: "entityTypeFullName",
 			ellipsis: true,
 			sorter: true,
-			width: 400, // 设置列宽
+			width: 400, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.EntityId"),
 			dataIndex: "entityId",
 			sorter: true,
-			width: 312, // 设置列宽
+			width: 312, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.TenantId"),
 			dataIndex: "entityTenantId",
 			sorter: true,
-			width: 312, // 设置列宽
+			width: 312, // Set column width
 		},
 	].filter(Boolean) as ColumnsType<EntityChangeDto>;
 
@@ -66,27 +66,27 @@ export const EntityChangeTable: React.FC<EntityChangeTableProps> = ({ data, show
 			title: t("AbpAuditLogging.PropertyName"),
 			dataIndex: "propertyName",
 			sorter: true,
-			width: 150, // 设置列宽
+			width: 150, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.NewValue"),
 			dataIndex: "newValue",
 			sorter: true,
 			className: "font-medium text-success",
-			width: 250, // 设置列宽
+			width: 250, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.OriginalValue"),
 			dataIndex: "originalValue",
 			sorter: true,
 			className: "font-medium text-error",
-			width: 250, // 设置列宽
+			width: 250, // Set column width
 		},
 		{
 			title: t("AbpAuditLogging.PropertyTypeFullName"),
 			dataIndex: "propertyTypeFullName",
 			sorter: true,
-			width: 250, // 设置列宽
+			width: 250, // Set column width
 		},
 	];
 

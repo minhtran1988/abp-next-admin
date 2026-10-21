@@ -3,7 +3,7 @@
 public class AbpAspNetCoreMultiTenancyResolveOptions
 {
     /// <summary>
-    /// 仅解析域名中的租户, 默认: true
+    /// Only resolve tenants in the domain name, default: true
     /// </summary>
     public bool OnlyResolveDomain {  get; set; }
     public AbpAspNetCoreMultiTenancyResolveOptions()

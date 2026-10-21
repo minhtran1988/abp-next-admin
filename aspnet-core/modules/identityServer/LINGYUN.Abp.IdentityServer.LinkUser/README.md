@@ -1,22 +1,22 @@
 # LINGYUN.Abp.IdentityServer.LinkUser
 
-IdentityServer用户关联模块，提供用户关联的扩展授权类型支持。
+IdentityServer user association module provides extended authorization type support for user association.
 
-## 功能特性
+## Features
 
-* 扩展授权验证器
-  * `LinkUserGrantValidator` - 用户关联授权验证器
-    * 授权类型：`link_user`
-    * 支持验证访问令牌
-    * 支持验证用户关联关系
-    * 支持多租户场景
-    * 支持自定义声明扩展
+* Extended authorization validator
+  * `LinkUserGrantValidator` - user association grant validator
+    * Authorization type: `link_user`
+    * Supports verifying access tokens
+    * Supports verification of user association relationships
+    * Support multi-tenant scenarios
+    * Support custom statement extension
 
-* 本地化支持
-  * 内置中英文资源
-  * 支持扩展其他语言
+* Localization support
+  * Built-in Chinese and English resources
+  * Support expansion of other languages
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -28,20 +28,20 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `AbpIdentityServerDomainModule` - ABP IdentityServer领域模块
+* `AbpIdentityServerDomainModule` - ABP IdentityServer domain module
 
-## 配置使用
+## Configuration usage
 
-### 授权请求参数
+### Authorization request parameters
 
-* `grant_type` - 必须为 `link_user`
-* `access_token` - 当前用户的访问令牌
-* `LinkUserId` - 要关联的用户ID
-* `LinkTenantId` - 要关联的用户所属租户ID（可选）
+* `grant_type` - must be `link_user`
+* `access_token` - the current user's access token
+* `LinkUserId` - the user ID to be linked
+* `LinkTenantId` - the tenant ID of the user to be associated (optional)
 
-### 授权请求示例
+### Authorization request example
 
 ```http
 POST /connect/token
@@ -53,14 +53,14 @@ LinkUserId=target_user_id&
 LinkTenantId=target_tenant_id
 ```
 
-### 自定义声明扩展
+### Custom declaration extension
 
 ```csharp
 public class CustomLinkUserGrantValidator : LinkUserGrantValidator
 {
     protected override Task AddCustomClaimsAsync(List<Claim> customClaims, IdentityUser user, ExtensionGrantValidationContext context)
     {
-        // 添加自定义声明
+        //Add custom declaration
         customClaims.Add(new Claim("custom_claim", "custom_value"));
 
         return base.AddCustomClaimsAsync(customClaims, user, context);
@@ -68,8 +68,8 @@ public class CustomLinkUserGrantValidator : LinkUserGrantValidator
 }
 ```
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Authentication)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Authentication)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

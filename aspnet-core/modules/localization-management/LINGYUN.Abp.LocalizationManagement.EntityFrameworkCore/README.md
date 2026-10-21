@@ -1,15 +1,15 @@
 # LINGYUN.Abp.LocalizationManagement.EntityFrameworkCore
 
-本地化管理模块的Entity Framework Core集成实现，提供数据访问和持久化功能。
+The Entity Framework Core integrated implementation of the localization management module provides data access and persistence functions.
 
-## 功能特性
+## Features
 
-* 实现本地化管理的数据库映射
-* 支持自定义表前缀和Schema
-* 提供仓储接口的EF Core实现
-* 支持语言、资源、文本的数据库操作
+* Implement database mapping for localized management
+* Support custom table prefix and Schema
+* Provides EF Core implementation of warehousing interface
+* Support database operations of language, resources, and text
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpLocalizationManagementEntityFrameworkCoreModule))]
@@ -19,7 +19,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
@@ -33,12 +33,12 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 
     Configure<AbpDbContextOptions>(options =>
     {
-        options.UseMySQL(); // 或其他数据库
+        options.UseMySQL(); // or other database
     });
 }
 ```
 
-数据库表配置选项：
+Database table configuration options:
 ```csharp
 public class LocalizationModelBuilderConfigurationOptions : AbpModelBuilderConfigurationOptions
 {
@@ -51,12 +51,12 @@ public class LocalizationModelBuilderConfigurationOptions : AbpModelBuilderConfi
 }
 ```
 
-## 数据库表
+## Database table
 
-* Languages - 语言表
-* Resources - 资源表
-* Texts - 文本表
+* Languages - Language table
+* Resources - Resource table
+* Texts - text table
 
-## 更多信息
+## More information
 
 * [English documentation](./README.EN.md)

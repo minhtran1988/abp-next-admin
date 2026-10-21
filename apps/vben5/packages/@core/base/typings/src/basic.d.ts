@@ -9,23 +9,23 @@ type TabOption = BasicOption;
 
 interface BasicUserInfo {
   /**
-   * 头像
+   * Avatar
    */
   avatar: string;
   /**
-   * 用户昵称
+   * User nickname
    */
   realName: string;
   /**
-   * 用户角色
+   * User role
    */
   roles?: string[];
   /**
-   * 用户id
+   * user id
    */
   userId: string;
   /**
-   * 用户名
+   * Username
    */
   username: string;
 }

@@ -66,18 +66,18 @@ public class AliyunBlobProvider : BlobProviderBase, ITransientDependency
         using var ossClient = await GetOssClientAsync(args);
         var blobName = AliyunBlobNameCalculator.Calculate(args);
 
-        //if (!await BlobExistsAsync(ossClient, args, blobName))
+        // if (!await BlobExistsAsync(ossClient, args, blobName))
         //{
         //    return null;
         //}
 
-        //var result = await ossClient.GetObjectAsync(
+        // var result = await ossClient.GetObjectAsync(
         //    new GetObjectRequest
         //    {
         //        Bucket = GetBucketName(args),
         //        Key = blobName,
         //    });
-        //return result.Body;
+        // return result.Body;
 
         var configuration = args.Configuration.GetAliyunConfiguration();
         var presignResult = ossClient.Presign(
@@ -99,7 +99,7 @@ public class AliyunBlobProvider : BlobProviderBase, ITransientDependency
         var blobName = AliyunBlobNameCalculator.Calculate(args);
         var configuration = args.Configuration.GetAliyunConfiguration();
 
-        // 先检查Bucket
+        // Check the Bucket first
         if (configuration.CreateBucketIfNotExists)
         {
             await CreateBucketIfNotExists(ossClient, args, configuration.CreateBucketAcl);
@@ -107,17 +107,17 @@ public class AliyunBlobProvider : BlobProviderBase, ITransientDependency
 
         var bucketName = GetBucketName(args);
 
-        // 是否已存在
+        // Does it already exist?
         if (await BlobExistsAsync(ossClient, args, blobName))
         {
-            // 是否覆盖
+            // Whether to overwrite
             if (!args.OverrideExisting)
             {
                 throw new BlobAlreadyExistsException($"Saving BLOB '{args.BlobName}' does already exists in the bucketName '{GetBucketName(args)}'! Set {nameof(args.OverrideExisting)} if it should be overwritten.");
             }
             else
             {
-                // 删除原文件
+                // Delete original file
                 await ossClient.DeleteObjectAsync(
                     new DeleteObjectRequest
                     {
@@ -127,7 +127,7 @@ public class AliyunBlobProvider : BlobProviderBase, ITransientDependency
                     cancellationToken: args.CancellationToken);
             }
         }
-        // 保存
+        // save
         await ossClient.PutObjectAsync(
             new PutObjectRequest
             {

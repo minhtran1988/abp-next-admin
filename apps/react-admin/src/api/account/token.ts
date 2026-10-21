@@ -8,9 +8,9 @@ import type {
 import requestClient from "../request";
 
 /**
- * 用户登录
- * @param request 参数
- * @returns 用户token
+ * User login
+ * @param request parameter
+ * @returns user token
  */
 export async function loginApi(request: PasswordTokenRequestModel): Promise<TokenResult> {
 	const clientId = import.meta.env.VITE_GLOB_CLIENT_ID;
@@ -42,7 +42,7 @@ export async function loginApi(request: PasswordTokenRequestModel): Promise<Toke
 }
 
 /**
- * 刷新token
+ * Refresh token
  * @param request
  * @returns
  */
@@ -74,7 +74,7 @@ export async function refreshToken(request: RefreshTokenRequestModel): Promise<T
 }
 
 /**
- * 刷新token
+ * Refresh token
  * @param request
  * @returns
  */
@@ -84,11 +84,11 @@ export async function externalLoginApi(): Promise<TokenResult | SignInRedirectRe
 	const scope = import.meta.env.VITE_GLOB_SCOPE;
 	const registerAddress = import.meta.env.VITE_REGISTER_ADDRESS;
 
-	//import: https://stackoverflow.com/questions/61345366/axios-302-responses
+	// import: https://stackoverflow.com/questions/61345366/axios-302-responses
 	const res = await fetch("/connect/token", {
 		method: "POST",
 		headers: { "Content-Type": "application/x-www-form-urlencoded" },
-		credentials: "include", // 让请求带上 Cookie
+		credentials: "include", // Let the request bring Cookie
 		body: new URLSearchParams({
 			client_id: clientId,
 			client_secret: clientSecret,
@@ -106,7 +106,7 @@ export async function externalLoginApi(): Promise<TokenResult | SignInRedirectRe
 		return {
 			isExternalLogin,
 			needRegister,
-			// redirectUrl //这个react项目这里不需要
+			// redirectUrl //This react project is not needed here
 		};
 	}
 	const result = await res.json();

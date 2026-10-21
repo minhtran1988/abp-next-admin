@@ -35,7 +35,7 @@ public class RequestForwardedHeaderWebClientInfoProvider : HttpContextWebClientI
             var headerStr = headers.ToString();
             if (!headerStr.IsNullOrWhiteSpace())
             {
-                // 原始客户端IP永远是第一个
+                // The original client IP is always the first one
                 forwardedForHeader = headerStr.Split(",").First();
             }
         }

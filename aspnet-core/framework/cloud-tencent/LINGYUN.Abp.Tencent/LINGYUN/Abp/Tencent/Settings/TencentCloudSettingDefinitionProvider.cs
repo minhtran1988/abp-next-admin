@@ -22,7 +22,7 @@ public class TencentCloudSettingDefinitionProvider : SettingDefinitionProvider
         {
             new SettingDefinition(
                     TencentCloudSettingNames.Connection.HttpMethod,
-                    // 默认 post
+                    // default post
                     defaultValue: "POST",
                     displayName: L("DisplayName:HttpMethod"),
                     description: L("Description:HttpMethod"),
@@ -38,7 +38,7 @@ public class TencentCloudSettingDefinitionProvider : SettingDefinitionProvider
                 .WithOrder(0),
                 new SettingDefinition(
                     TencentCloudSettingNames.Connection.Timeout,
-                    // 默认 60秒
+                    // Default 60 seconds
                     defaultValue: "60",
                     displayName: L("DisplayName:Timeout"),
                     description: L("Description:Timeout"),
@@ -137,7 +137,7 @@ public class TencentCloudSettingDefinitionProvider : SettingDefinitionProvider
         {
                 new SettingDefinition(
                     TencentCloudSettingNames.EndPoint,
-                    // 腾讯云默认使用广州区域
+                    // Tencent Cloud uses the Guangzhou region by default
                     defaultValue: "ap-guangzhou",
                     displayName: L("DisplayName:EndPoint"),
                     description: L("Description:EndPoint"),

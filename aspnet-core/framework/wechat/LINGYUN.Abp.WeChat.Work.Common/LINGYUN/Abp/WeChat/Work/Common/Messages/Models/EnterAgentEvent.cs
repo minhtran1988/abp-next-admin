@@ -4,13 +4,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 进入应用事件
+/// Enter application events
 /// </summary>
 [EventName("enter_agent")]
 public class EnterAgentEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;

@@ -140,5 +140,5 @@ public class YourLocationService
 
 ## More Information
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)
 * [Tencent Location Service](https://lbs.qq.com/)

@@ -42,7 +42,7 @@ public class CosClientFactory : AbstractTencentCloudClientFactory<CosXml, Tencen
 
     protected override CosXml CreateClient(TencentBlobProviderConfiguration configuration, TencentCloudClientCacheItem cloudCache)
     {
-        // 推荐全局单个对象，需要解决缓存过期事件
+        // Recommended global single object, need to solve cache expiration events
         var cacheKey = TencentCloudClientCacheItem.CalculateCacheKey("client-instance");
         var cosXmlCache =  ClientCache.Get<CosXmlServer>(cacheKey);
         if (cosXmlCache == null)
@@ -68,7 +68,7 @@ public class CosClientFactory : AbstractTencentCloudClientFactory<CosXml, Tencen
                     ClientCache.Set(
                         cacheKey,
                         cosXmlCache,
-                        // 会话持续时间前60秒过期
+                        // Expires 60 seconds before session duration
                         TimeSpan.FromSeconds(cloudCache.DurationSecond - 60));
                 }
             }

@@ -23,36 +23,36 @@ public class WeChatWorkAppChatUpdateRequest : WeChatWorkAppChatRequest
     }
 
     /// <summary>
-    /// 新的群聊名。若不需更新，请忽略此参数。最多50个utf8字符，超过将截断
+    /// New group chat name. If no update is required, please ignore this parameter. Maximum 50 utf8 characters, exceeding will be truncated
     /// </summary>
     [CanBeNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public virtual string? Name { get; set; }
     /// <summary>
-    /// 新群主的id。
-    /// 若不需更新，请忽略此参数。课程群聊群主必须在设置的群主列表内
+    /// The id of the new group owner.
+    /// If no update is required, please ignore this parameter. The course group chat group owner must be in the set group owner list
     /// </summary>
     [CanBeNull]
     [JsonProperty("owner")]
     [JsonPropertyName("owner")]
     public virtual string? Owner { get; set; }
     /// <summary>
-    /// 添加成员的id列表
+    /// Add member id list
     /// </summary>
     [CanBeNull]
     [JsonProperty("add_user_list")]
     [JsonPropertyName("add_user_list")]
     public virtual List<string>? AddUsers { get; set; }
     /// <summary>
-    /// 踢出成员的id列表
+    /// ID list of kicked members
     /// </summary>
     [CanBeNull]
     [JsonProperty("del_user_list")]
     [JsonPropertyName("del_user_list")]
     public virtual List<string>? DelUsers { get; set; }
     /// <summary>
-    /// 群聊id
+    /// Group chat id
     /// </summary>
     [NotNull]
     [JsonProperty("chatid")]

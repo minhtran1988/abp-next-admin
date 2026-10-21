@@ -13,7 +13,7 @@ import { Button, Card, message } from 'ant-design-vue';
 
 function handleSuccess(data: CaptchaVerifyPassingData) {
   const { time } = data;
-  message.success(`校验成功,耗时${time}秒`);
+  message.success(`Verification successful, took ${time} seconds`);
 }
 function handleBtnClick(elRef?: SliderCaptchaActionType) {
   if (!elRef) {
@@ -31,16 +31,16 @@ const el6 = ref<SliderCaptchaActionType>();
 </script>
 
 <template>
-  <Page description="用于前端简单的拖动校验场景" title="滑块校验">
-    <Card class="mb-5" title="基础示例">
+  <Page description="Used for simple drag verification scenarios on the front end" title="Slider verification">
+    <Card class="mb-5" title="Basic Example">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha ref="el1" @success="handleSuccess" />
         <Button class="ml-2" type="primary" @click="handleBtnClick(el1)">
-          还原
+          restore
         </Button>
       </div>
     </Card>
-    <Card class="mb-5" title="自定义圆角">
+    <Card class="mb-5" title="Customized rounded corners">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha
           ref="el2"
@@ -48,27 +48,27 @@ const el6 = ref<SliderCaptchaActionType>();
           @success="handleSuccess"
         />
         <Button class="ml-2" type="primary" @click="handleBtnClick(el2)">
-          还原
+          restore
         </Button>
       </div>
     </Card>
-    <Card class="mb-5" title="自定义背景色">
+    <Card class="mb-5" title="Customized background color">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha
           ref="el3"
           :bar-style="{
             backgroundColor: '#018ffb',
           }"
-          success-text="校验成功"
-          text="拖动以进行校验"
+          success-text="Verification successful"
+          text="Drag to verify"
           @success="handleSuccess"
         />
         <Button class="ml-2" type="primary" @click="handleBtnClick(el3)">
-          还原
+          restore
         </Button>
       </div>
     </Card>
-    <Card class="mb-5" title="自定义拖拽图标">
+    <Card class="mb-5" title="Customized drag icon">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha ref="el4" @success="handleSuccess">
           <template #actionIcon="{ isPassing }">
@@ -77,39 +77,39 @@ const el6 = ref<SliderCaptchaActionType>();
           </template>
         </SliderCaptcha>
         <Button class="ml-2" type="primary" @click="handleBtnClick(el4)">
-          还原
+          restore
         </Button>
       </div>
     </Card>
-    <Card class="mb-5" title="自定义文本">
+    <Card class="mb-5" title="Custom text">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha
           ref="el5"
-          success-text="成功"
-          text="拖动"
+          success-text="success"
+          text="Drag"
           @success="handleSuccess"
         />
         <Button class="ml-2" type="primary" @click="handleBtnClick(el5)">
-          还原
+          restore
         </Button>
       </div>
     </Card>
-    <Card class="mb-5" title="自定义内容(slot)">
+    <Card class="mb-5" title="Custom content(slot)">
       <div class="flex items-center justify-center p-4 px-[30%]">
         <SliderCaptcha ref="el6" @success="handleSuccess">
           <template #text="{ isPassing }">
             <template v-if="isPassing">
               <Bell class="mr-2 size-4" />
-              成功
+              success
             </template>
             <template v-else>
-              拖动
+              Drag
               <Sun class="ml-2 size-4" />
             </template>
           </template>
         </SliderCaptcha>
         <Button class="ml-2" type="primary" @click="handleBtnClick(el6)">
-          还原
+          restore
         </Button>
       </div>
     </Card>

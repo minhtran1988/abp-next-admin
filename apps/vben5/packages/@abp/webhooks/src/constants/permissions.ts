@@ -1,41 +1,41 @@
-/** 分组权限 */
+/** Group permissions */
 export const GroupDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpWebhooks.GroupDefinitions.Create',
   Default: 'AbpWebhooks.GroupDefinitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpWebhooks.GroupDefinitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'AbpWebhooks.GroupDefinitions.Update',
 };
 
-/** Webhook定义权限 */
+/** Webhook defines permissions */
 export const WebhookDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpWebhooks.Definitions.Create',
   Default: 'AbpWebhooks.Definitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpWebhooks.Definitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'AbpWebhooks.Definitions.Update',
 };
 
-/** Webhook订阅权限 */
+/** Webhook subscription permissions */
 export const WebhookSubscriptionPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpWebhooks.Subscriptions.Create',
   Default: 'AbpWebhooks.Subscriptions',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpWebhooks.Subscriptions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'AbpWebhooks.Subscriptions.Update',
 };
 
-/** Webhook发送记录权限 */
+/** Webhook sending record permission */
 export const WebhooksSendAttemptsPermissions = {
   Default: 'AbpWebhooks.SendAttempts',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpWebhooks.SendAttempts.Delete',
-  /** 更新 */
+  /** Update */
   Resend: 'AbpWebhooks.SendAttempts.Resend',
 };

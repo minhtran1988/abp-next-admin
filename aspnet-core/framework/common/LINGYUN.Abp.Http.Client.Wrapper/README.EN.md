@@ -2,7 +2,7 @@
 
 HTTP client wrapper module for automatically adding wrapper request headers in HTTP client requests.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

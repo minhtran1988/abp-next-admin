@@ -18,7 +18,7 @@ const SelectMemberModal: React.FC<Props> = ({ visible, onClose, onConfirm, organ
 	const [selectedUsers, setSelectedUsers] = useState<IdentityUserDto[]>([]);
 	const [searchParams, setSearchParams] = useState<{ filter?: string }>({});
 
-	// 获取可添加的用户列表
+	// Get the list of users that can be added
 	const { data, isLoading } = useQuery({
 		queryKey: ["organizationUnitUsers", "unAdded", organizationUnitId, searchParams],
 		queryFn: () =>

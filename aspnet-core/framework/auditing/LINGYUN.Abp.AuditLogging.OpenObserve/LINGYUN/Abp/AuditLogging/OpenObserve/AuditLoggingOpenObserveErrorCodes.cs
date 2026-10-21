@@ -5,7 +5,7 @@ public static class AuditLoggingOpenObserveErrorCodes
     public const string Namespace = "AuditLoggingOpenObserve";
 
     /// <summary>
-    /// 当前日志设施不支持删除记录!
+    /// The current log facility does not support deleting records!
     /// </summary>
     public const string DeleteNotSupported = Namespace + ":010001";
 }

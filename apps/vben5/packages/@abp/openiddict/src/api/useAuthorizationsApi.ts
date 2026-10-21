@@ -11,8 +11,8 @@ export function useAuthorizationsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除授权
-   * @param id 授权id
+   * Delete authorization
+   * @param id authorization id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/openiddict/authorizations/${id}`, {
@@ -21,9 +21,9 @@ export function useAuthorizationsApi() {
   }
 
   /**
-   * 查询授权
-   * @param id 授权id
-   * @returns 授权实体数据传输对象
+   * Query authorization
+   * @param id authorization id
+   * @returns Authorization entity data transfer object
    */
   function getApi(id: string): Promise<OpenIddictAuthorizationDto> {
     return request<OpenIddictAuthorizationDto>(
@@ -35,9 +35,9 @@ export function useAuthorizationsApi() {
   }
 
   /**
-   * 查询授权分页列表
-   * @param input 过滤参数
-   * @returns 授权实体数据传输对象分页列表
+   * Query the authorized paging list
+   * @param input filter parameter
+   * @returns Authorized entity data transfer object paginated list
    */
   function getPagedListApi(
     input?: OpenIddictAuthorizationGetListInput,

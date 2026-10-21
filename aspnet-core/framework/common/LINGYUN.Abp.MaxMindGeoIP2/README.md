@@ -1,30 +1,30 @@
 # LINGYUN.Abp.MaxMindGeoIP2
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.MaxMindGeoIP2` 是一个基于 [MaxMind.GeoIP2](https://github.com/maxmind/GeoIP2-dotnet) 的 ABP 框架模块，
-通过 mmdb 离线库(需由使用方提供, 见下文)解析 IP 地理位置，并注册 `LINGYUN.Abp.IP.Location` 的位置解析贡献者，
-可与 `LINGYUN.Abp.IP2Region` 互换使用(备注规则保持一致)。
+`LINGYUN.Abp.MaxMindGeoIP2` is an ABP framework module based on [MaxMind.GeoIP2](https://github.com/maxmind/GeoIP2-dotnet),
+Parse the IP geographical location through the mmdb offline library (to be provided by the user, see below), and register the location resolution contributor of `LINGYUN.Abp.IP.Location`,
+Can be used interchangeably with `LINGYUN.Abp.IP2Region` (remarks rules remain the same).
 
-## 功能
+## Function
 
-* 通过 mmdb 离线库解析 IP 地理位置(国家/省份/城市)
-* **不内置离线库**：GeoLite2 受 MaxMind 许可约束、不得随包分发，需通过 `MaxMindGeoIP2:DatabaseFile` 指向使用方自行下载的 mmdb 文件
-* 离线库文件不存在时使用 `EmptyGeoIP2DatabaseReader`(解析空内容，位置为空并记录警告日志)，不会阻断业务
-* 同时支持 IPv4 与 IPv6(取决于离线库)
-* 按当前文化解析地理名称(从 `Names` 获取，缺失时回退 `Name`)
-* 本地回环、内网、保留地址等无记录地址不返回数据(备注为空)
-* 支持 ABP 虚拟文件系统
+* Parse IP geographical location (country/province/city) through mmdb offline library
+* **No built-in offline library**: GeoLite2 is subject to the MaxMind license and cannot be distributed with the package. It needs to point to the mmdb file downloaded by the user through `MaxMindGeoIP2:DatabaseFile`
+* Use `EmptyGeoIP2DatabaseReader` when the offline library file does not exist (parse empty content, empty position and record warning log), which will not block business
+* Supports both IPv4 and IPv6 (depends on offline library)
+* Parse geographical names according to the current culture (obtained from `Names`, fallback to `Name` if missing)
+* Local loopback, intranet, reserved addresses and other unrecorded addresses do not return data (remarks are empty)
+* Support ABP virtual file system
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.MaxMindGeoIP2
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpMaxMindGeoIP2Module))]` 到你的模块类上。
+1. Add `[DependsOn(typeof(AbpMaxMindGeoIP2Module))]` to your module class.
 
 ```csharp
 [DependsOn(typeof(AbpMaxMindGeoIP2Module))]
@@ -34,7 +34,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 注入 `IIPLocationResolver` 解析 IP 位置：
+2. Inject `IIPLocationResolver` to resolve IP location:
 
 ```csharp
 public class YourService
@@ -50,20 +50,20 @@ public class YourService
     {
         var result = await _ipLocationResolver.ResolveAsync(ip);
 
-        // 223.5.5.5 => 浙江杭州
+        // 223.5.5.5 => Hangzhou, Zhejiang
         return result.Location?.Remarks;
     }
 }
 ```
 
-## 选项
+## Options
 
 ```csharp
 Configure<AbpMaxMindGeoIP2Options>(options =>
 {
-    // 离线库文件路径(必填): 需自行从 MaxMind 下载并接受其许可协议
+    // Offline library file path (required): You need to download it from MaxMind and accept its license agreement
     options.DatabaseFile = "/data/GeoLite2-City.mmdb";
-    // 文件打开方式，默认内存映射
+    //File opening method, default memory mapping
     options.FileAccessMode = FileAccessMode.MemoryMapped;
 });
 ```
@@ -77,67 +77,67 @@ Configure<AbpMaxMindGeoIP2Options>(options =>
 }
 ```
 
-### 地理名称与文化
+### Geographical Names and Culture
 
-查询器不指定 locales(即以离线库默认名称 `Name` 打开)，地理名称在解析时按**当前文化**
-(`CultureInfo.CurrentUICulture`)从 MaxMind 的 `Names` 字典中获取：
+The query does not specify locales (that is, it is opened with the default name of the offline library `Name`), and the geographical name is parsed according to the **current culture**
+(`CultureInfo.CurrentUICulture`) Obtained from MaxMind's `Names` dictionary:
 
-* 先按完整文化名称匹配(如 `zh-CN`)，未命中再按语言名称匹配(如 `es-MX` → `es`)；
-* 仍未命中时回退到 `Name`(离线库默认语言，通常为英语)；
-* GeoLite2-City 离线库提供 `de,en,es,fr,ja,pt-BR,ru,zh-CN` 语言，部分实体只提供少数语言(此时按上述规则回退)。
+* First match by the complete culture name (such as `zh-CN`), and then match by the language name if no hits are found (such as `es-MX` → `es`);
+* Fall back to `Name` (offline library default language, usually English) when still not hit;
+* The GeoLite2-City offline library provides `de,en,es,fr,ja,pt-BR,ru,zh-CN` languages, and some entities only provide a few languages (in this case, fallback according to the above rules).
 
-因此同一个单例查询器可为所有文化提供服务，无需按语言创建多个查询器。
+So the same singleton queryer can serve all cultures, eliminating the need to create multiple queryers per language.
 
-| 当前文化 | `8.8.8.8` 的备注 | `223.5.5.5` 的备注 |
+| Current culture | Notes for `8.8.8.8` | Notes for `223.5.5.5` |
 |---|---|---|
-| `zh-CN` | 美国 | 浙江杭州 |
+| `zh-CN` | United States | Hangzhou, Zhejiang |
 | `en-US` | United States | China |
-| `ja-JP` | アメリカ | 中国 |
-| `ko-KR`(离线库无该语言，回退 `Name`) | United States | China |
+| `ja-JP` | アメリカ | China |
+| `ko-KR` (the language is not available in the offline library, fallback to `Name`) | United States | China |
 
-### 备注(Remarks)规则
+### Remarks rules
 
-备注(Remarks)规则由 `LINGYUN.Abp.IP.Location` 统一处理，与 `LINGYUN.Abp.IP2Region` 共用同一份配置：
+Remarks rules are processed uniformly by `LINGYUN.Abp.IP.Location` and share the same configuration with `LINGYUN.Abp.IP2Region`:
 
 ```csharp
 Configure<AbpIPLocationResolveOptions>(options =>
 {
-    // 匹配到的国家名称从备注中移除(仅中国IP不显示国家)
-    options.RemoveCountry = new[] { "中国" };
-    // 匹配到的省份名称从备注中移除
-    // options.RemoveProvince = new[] { "香港特别行政区" };
+    //The matched country name is removed from the remarks (only Chinese IP does not display the country)
+    options.RemoveCountry = new[] { "China" };
+    //The matched province name is removed from the remarks
+    // options.RemoveProvince = new[] { "Hong Kong Special Administrative Region" };
 });
 ```
 
-也可以直接使用配置节(`LINGYUN.Abp.IP.Location` 模块绑定 `IPLocation` 节)：
+You can also use the configuration section directly (the `LINGYUN.Abp.IP.Location` module binds the `IPLocation` section):
 
 ```json
 {
   "IPLocation": {
-    "RemoveCountry": [ "中国" ]
+    "RemoveCountry": [ "China" ]
   }
 }
 ```
 
 ```yaml
 # docker-compose environment
-- IPLocation__RemoveCountry__0=中国
+- IPLocation__RemoveCountry__0=China
 ```
 
-| 场景 | `Remarks` 示例 |
+| Scenario | `Remarks` Example |
 |---|---|
-| 国家名称匹配 `RemoveCountry`，且有省份与城市 | `浙江杭州`(省市同名时仅显示市，如 `重庆市`) |
-| 国家名称匹配 `RemoveCountry`，且仅有省份 | `香港特别行政区` |
-| 国家名称匹配 `RemoveCountry`，且仅有国家数据 | 空 |
-| 省份名称匹配 `RemoveProvince` | `杭州`(仅使用城市) |
-| 都未匹配 | `美国`、`日本`、`德国`(仅国家名称) |
-| 本地回环 / 内网 / 保留 / 离线库未收录 | 空 |
+| The country name matches `RemoveCountry`, and there are provinces and cities | `Zhejiang Hangzhou` (only the city is displayed when the province and city have the same name, such as `Chongqing City`) |
+| Country name matches `RemoveCountry`, and only provinces | `Hong Kong SAR` |
+| Country name matches `RemoveCountry`, and only country data | empty |
+| Province name matching `RemoveProvince` | `Hangzhou` (only use city) |
+| None matched | `United States`, `Japan`, `Germany` (only country names) |
+| Local loopback / Intranet / Reserved / Not included in the offline library | Empty |
 
-> 名称匹配忽略大小写与首尾空白，适用于所有国家的 IP 地址解析。
+> Name matching ignores case and leading and trailing whitespace, and is suitable for IP address resolution in all countries.
 
-## 性能基准
+## Performance Benchmark
 
-使用 [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet)(`MemoryDiagnoser` + `InProcessEmitToolchain`)测得：
+Measured using [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet)(`MemoryDiagnoser` + `InProcessEmitToolchain`):
 
 ```ini
 BenchmarkDotNet v0.15.8, Windows 10.0.26100
@@ -145,43 +145,43 @@ Intel Core i7-14700K (20C/28T), .NET 10.0.12 (SDK 10.0.401), X64 RyuJIT x86-64-v
 GC=Concurrent Workstation, Toolchain=InProcessEmitToolchain (IterationCount=15)
 ```
 
-| 方法 | Mean | Error | StdDev | Ratio | Gen0 | Gen1 | Allocated |
+| Method | Mean | Error | StdDev | Ratio | Gen0 | Gen1 | Allocated |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| `DatabaseReader_TryCity_IPv4`(基线) | 3.428 μs | 0.0415 μs | 0.0388 μs | 1.00 | 0.4807 | 0.0038 | 8.15 KB |
+| `DatabaseReader_TryCity_IPv4` (baseline) | 3.428 μs | 0.0415 μs | 0.0388 μs | 1.00 | 0.4807 | 0.0038 | 8.15 KB |
 | `DatabaseReader_TryCity_IPv6` | 3.496 μs | 0.0273 μs | 0.0228 μs | 1.02 | 0.4807 | 0.0038 | 8.15 KB |
 | `DatabaseReader_TryCity_String_IPv4` | 3.428 μs | 0.0611 μs | 0.0542 μs | 1.00 | 0.4845 | 0.0038 | 8.19 KB |
-| `ResolveAsync_IPv4`(模块全链路) | 3.753 μs | 0.0426 μs | 0.0399 μs | 1.09 | 0.5112 | 0.0076 | 8.73 KB |
-| `ResolveAsync_IPv6`(模块全链路) | 3.812 μs | 0.0364 μs | 0.0323 μs | 1.11 | 0.5188 | 0.0076 | 8.78 KB |
+| `ResolveAsync_IPv4` (module full link) | 3.753 μs | 0.0426 μs | 0.0399 μs | 1.09 | 0.5112 | 0.0076 | 8.73 KB |
+| `ResolveAsync_IPv6` (module full link) | 3.812 μs | 0.0364 μs | 0.0323 μs | 1.11 | 0.5188 | 0.0076 | 8.78 KB |
 
-* **单次查询约 3.4 μs**（单线程理论吞吐约 29 万次/秒），IPv6 与 IPv4 基本一致（`Ratio` 1.02）；
-* `TryCity(IPAddress)` 与 `TryCity(string)` 无差异，字符串解析开销可忽略；
-* 经 `IIPLocationResolver` 的**完整链路**（DI Scope + 贡献者 + 按当前文化解析名称）仅增加约 **9%~11%**；
-* 每次查询分配约 **8.15 KB**（`CityResponse` 模型对象图），完整链路约 8.73 KB —— 高并发场景建议关注 GC（例如对热点 IP 做结果缓存）；
-* 测量场景：`TryCity` 使用**物理 mmdb + 内存映射**（`FileAccessMode.MemoryMapped`，推荐的部署方式）；`ResolveAsync` 使用模块默认配置（配置的离线库 + `IIPLocationResolver`）；
-* 基准使用 in-process 工具链（当前环境无法派生独立基准进程），数值会略优于独立进程模式，仅用于横向对比。
+* **A single query takes about 3.4 μs** (single-thread theoretical throughput is about 290,000 times/second), IPv6 is basically the same as IPv4 (`Ratio` 1.02);
+* There is no difference between `TryCity(IPAddress)` and `TryCity(string)`, and the string parsing overhead is negligible;
+* The **full link** via `IIPLocationResolver` (DI Scope + Contributors + Parsing Names by Current Culture) only adds about **9%~11%**;
+* Each query is allocated about **8.15 KB** (`CityResponse` model object graph), and the complete link is about 8.73 KB - it is recommended to pay attention to GC in high concurrency scenarios (for example, caching results for hotspot IPs);
+* Measurement scenario: `TryCity` uses **physical mmdb + memory mapping** (`FileAccessMode.MemoryMapped`, the recommended deployment method); `ResolveAsync` uses the module default configuration (configured offline library + `IIPLocationResolver`);
+* The benchmark uses the in-process tool chain (the current environment cannot derive an independent benchmark process), the values will be slightly better than the independent process mode, and are only used for horizontal comparison.
 
-## mmdb 离线库说明
+## mmdb offline library description
 
-* **本模块不内置离线库**：GeoLite2 数据库受 [MaxMind 最终用户许可协议(EULA)](https://www.maxmind.com/en/geolite2/eula)
-  约束，不得随包分发，因此需要由使用方自行下载并通过 `MaxMindGeoIP2:DatabaseFile` 指定文件路径；
-* 未配置(或文件不存在)时，模块注册 `EmptyGeoIP2DatabaseReader`——相当于解析一份空内容：
-  `TryCity`/`TryCountry` 等返回 `false`、`City`/`Country` 等抛出 `AddressNotFoundException`
-  (与真实解读器未命中时一致)，位置解析结果为空并记录一条警告日志，不影响业务流程；
-* GeoLite2 需要 [MaxMind 账号](https://www.maxmind.com/en/geolite2/signup) 与 License Key 才能下载与定期更新，
-  生产环境建议通过 `DatabaseFile` 指向物理文件并定期替换；
-* 离线 mmdb 文件也可从 [wp-statistics/GeoLite2-City](https://github.com/wp-statistics/GeoLite2-City) 仓库下载：
-  仓库中提供的是压缩包 `GeoLite2-City.mmdb.gz`，解压后得到 `GeoLite2-City.mmdb`，
-  再通过 `MaxMindGeoIP2:DatabaseFile` 指向该文件；
-  直接下载地址：<https://raw.githubusercontent.com/wp-statistics/GeoLite2-City/master/GeoLite2-City.mmdb.gz>
-* GeoLite2-City 同时支持 IPv4 与 IPv6，并提供
-  `de,en,es,fr,ja,pt-BR,ru,zh-CN` 语言；
-* 非法地址、本地回环与未指定地址由 `IIPLocationResolver` 统一处理(返回空结果，不进入位置解析模块)；
-* 离线库没有记录的地址(内网、保留、未收录)返回空的 `IPLocation`(国家/省份/城市与备注均为空)；
-* 查询异常(例如离线库文件损坏)不会阻断业务流程：记录警告日志并按无数据处理(返回空位置)。
+* **This module does not have a built-in offline library**: GeoLite2 database is subject to [MaxMind End User License Agreement (EULA)](https://www.maxmind.com/en/geolite2/eula)
+  Constraint, it cannot be distributed with the package, so the user needs to download it by himself and specify the file path through `MaxMindGeoIP2:DatabaseFile`;
+* When not configured (or the file does not exist), the module registers `EmptyGeoIP2DatabaseReader` - equivalent to parsing an empty content:
+  `TryCity`/`TryCountry`, etc. return `false`, `City`/`Country`, etc. throw `AddressNotFoundException`
+  (Same as when the real interpreter misses), the location analysis result is empty and a warning log is recorded, which does not affect the business process;
+* GeoLite2 requires [MaxMind account](https://www.maxmind.com/en/geolite2/signup) and License Key to download and update regularly.
+  In the production environment, it is recommended to point to the physical file through `DatabaseFile` and replace it regularly;
+* Offline mmdb files can also be downloaded from the [wp-statistics/GeoLite2-City](https://github.com/wp-statistics/GeoLite2-City) repository:
+  The compressed package `GeoLite2-City.mmdb.gz` is provided in the warehouse. After decompression, you get `GeoLite2-City.mmdb`.
+  Then point to the file through `MaxMindGeoIP2:DatabaseFile`;
+  Direct download address: <https://raw.githubusercontent.com/wp-statistics/GeoLite2-City/master/GeoLite2-City.mmdb.gz>
+* GeoLite2-City supports both IPv4 and IPv6 and provides
+  `de,en,es,fr,ja,pt-BR,ru,zh-CN` language;
+* Illegal addresses, local loopbacks and unspecified addresses are handled uniformly by `IIPLocationResolver` (empty results are returned and the location resolution module is not entered);
+* Addresses that are not recorded in the offline library (intranet, reserved, not included) return empty `IPLocation` (country/province/city and remarks are all empty);
+* Query exceptions (such as offline library file corruption) will not block business processes: record warning logs and process them as no data (return to empty positions).
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)
 * [MaxMind GeoIP2 .NET](https://github.com/maxmind/GeoIP2-dotnet)
-* [GeoLite2 离线库](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
-* [离线 mmdb 下载(wp-statistics/GeoLite2-City)](https://github.com/wp-statistics/GeoLite2-City)
+* [GeoLite2 offline library](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
+* [Offline mmdb download (wp-statistics/GeoLite2-City)](https://github.com/wp-statistics/GeoLite2-City)

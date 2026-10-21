@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 附件控件配置
+/// Attachment control configuration
 /// </summary>
 public class FileControlConfig : ControlConfig
 {
     /// <summary>
-    /// 附件控件
+    /// Attachment control
     /// </summary>
     [NotNull]
     [JsonProperty("file")]
@@ -29,7 +29,7 @@ public class FileControlConfig : ControlConfig
 public class FileConfig
 {
     /// <summary>
-    /// 是否只允许拍照，1--是， 0--否
+    /// Whether only taking photos is allowed, 1--yes, 0--no
     /// </summary>
     [NotNull]
     [JsonProperty("is_only_photo")]

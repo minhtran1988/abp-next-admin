@@ -5,29 +5,29 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Request;
 /// <summary>
-/// 通过会议预定会议室请求参数
+/// Reservation of meeting room request parameters via meeting
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%80%9A%E8%BF%87%E4%BC%9A%E8%AE%AE%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%80%9A%E8%BF%87%E4%BC%9A%E8%AE%AE%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
 /// </remarks>
 public class WeChatWorkBookMeetingRoomByMeetingRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [NotNull]
     [JsonProperty("meetingroom_id")]
     [JsonPropertyName("meetingroom_id")]
     public int MeetingRoomId { get; }
     /// <summary>
-    /// 预定人的userid
+    /// The userid of the reservation person
     /// </summary>
     [NotNull]
     [JsonProperty("booker")]
     [JsonPropertyName("booker")]
     public string Booker { get; }
     /// <summary>
-    /// 会议id，仅可使用同应用创建的会议
+    /// Meeting id, only meetings created with the same application can be used
     /// </summary>
     [NotNull]
     [JsonProperty("meetingid")]

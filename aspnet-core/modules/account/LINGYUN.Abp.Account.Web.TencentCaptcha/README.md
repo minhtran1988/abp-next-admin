@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Account.Web.TencentCaptcha
 
-腾讯云天御验证码组件集成模块,可使用腾讯云验证码能力  
+Tencent Cloud Tianyu verification code component integration module can use Tencent Cloud verification code capabilities
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAccountWebTencentCaptchaModule))]
@@ -12,18 +12,18 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 注意事项
+## Notes
 
-` 请在启动项目或系统设置中配置腾讯云相关参数,否则造成登录页验证码组件无法加载  
+` Please configure Tencent Cloud related parameters in the startup project or system settings, otherwise the login page verification code component cannot be loaded.
 
-*	Abp.TencentCloud.SecretId      腾讯云账号SecretId, 需加密
-*	Abp.TencentCloud.SecretKey            腾讯云账号SecretKey, 需加密
-*	Abp.TencentCloud.Captcha.CaptchaAppId     验证码业务ID, 需加密
-*	Abp.TencentCloud.Captcha.AppSecretKey     原始密钥（25位）, 需加密
-*	Abp.TencentCloud.Captcha.CaptchaAppIdEncryptedType    加密方式，大小写不敏感："cbc"、 "gcm"，不指定时前端验证器组件不加密
-*	Abp.TencentCloud.Captcha.CaptchaAppIdEncryptedExpireTime   过期时间（秒），最大值 86400 秒，即 24 小时
+* Abp.TencentCloud.SecretId Tencent Cloud account SecretId, needs to be encrypted
+* Abp.TencentCloud.SecretKey Tencent Cloud account SecretKey, needs to be encrypted
+* Abp.TencentCloud.Captcha.CaptchaAppId Verification code business ID, needs to be encrypted
+* Abp.TencentCloud.Captcha.AppSecretKey original key (25 digits), needs to be encrypted
+* Abp.TencentCloud.Captcha.CaptchaAppIdEncryptedType encryption method, case insensitive: "cbc", "gcm", if not specified, the front-end validator component will not be encrypted
+* Abp.TencentCloud.Captcha.CaptchaAppIdEncryptedExpireTime expiration time (seconds), the maximum value is 86400 seconds, which is 24 hours
 
-示例配置：
+Example configuration:
 
 ```json
 {

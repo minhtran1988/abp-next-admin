@@ -119,7 +119,7 @@ function handleCancel() {
 
 const loading = ref(false);
 async function handleOpenChange(val: boolean) {
-  await nextTick(); // 等待标记isConfirm状态
+  await nextTick(); // Wait for the mark isConfirm status
   if (!val && props.beforeClose) {
     loading.value = true;
     try {

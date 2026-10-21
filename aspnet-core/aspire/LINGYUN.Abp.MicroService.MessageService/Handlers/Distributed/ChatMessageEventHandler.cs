@@ -44,13 +44,13 @@ namespace LINGYUN.Abp.MicroService.MessageService.Handlers.Distributed
             Logger.LogDebug($"Persistent chat message.");
 
             var message = eventData.Data;
-            // 消息拦截
-            // 扩展敏感词汇过滤
+            // Message interception
+            // Extend sensitive word filtering
             await MessageBlocker.InterceptAsync(message);
 
             await MessageStore.StoreMessageAsync(message);
 
-            // 发送消息
+            // send message
             foreach (var provider in MessageSenderProviderManager.Providers)
             {
                 Logger.LogDebug($"Sending message with provider {provider.Name}");

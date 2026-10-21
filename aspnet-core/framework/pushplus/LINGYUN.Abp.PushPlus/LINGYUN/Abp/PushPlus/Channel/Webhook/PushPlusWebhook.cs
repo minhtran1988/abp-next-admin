@@ -8,36 +8,36 @@ namespace LINGYUN.Abp.PushPlus.Channel.Webhook;
 public class PushPlusWebhook
 {
     /// <summary>
-    /// webhook编号
+    /// webhook number
     /// </summary>
     [JsonProperty("id")]
     public int Id { get; set; }
     /// <summary>
-    /// webhook编码
+    /// webhook encoding
     /// </summary>
     [JsonProperty("webhookCode")]
     public string WebhookCode { get; set; } = default!;
     /// <summary>
-    /// webhook名称
+    /// webhook name
     /// </summary>
     [JsonProperty("webhookName")]
     public string WebhookName { get; set; } = default!;
     /// <summary>
-    /// webhook类型；
-    /// 1-企业微信，
-    /// 2-钉钉，
-    /// 3-飞书，
-    /// 4-server酱
+    /// webhook type;
+    /// 1-Enterprise WeChat,
+    /// 2-DingTalk,
+    /// 3-Feishu,
+    /// 4-server sauce
     /// </summary>
     [JsonProperty("webhookType")]
     public PushPlusWebhookType WebhookType { get; set; }
     /// <summary>
-    /// 调用的url地址
+    /// The calling url address
     /// </summary>
     [JsonProperty("webhookUrl")]
     public string WebhookUrl { get; set; } = default!;
     /// <summary>
-    /// 创建日期
+    /// Creation date
     /// </summary>
     [JsonProperty("createTime")]
     public DateTime CreateTime { get; set; }

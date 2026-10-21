@@ -6,9 +6,9 @@ import { valueTypeOptions } from './BasicType';
 const { L } = useLocalization('AppPlatform');
 
 /**
- * 构建数据字典表单
- * @param data 数据字典
- * @returns 返回表单定义
+ * Build data dictionary form
+ * @param data data dictionary
+ * @returns return form definition
  */
 export function getDateFormSchemas(): FormSchema[] {
   return [
@@ -51,9 +51,9 @@ export function getDateFormSchemas(): FormSchema[] {
 }
 
 /**
- * 构建数据字典项目表单
- * @param dataItem 数据字典项目
- * @returns 返回表单定义
+ * Build data dictionary project form
+ * @param dataItem data dictionary item
+ * @returns return form definition
  */
 export function getDataItemFormSchemas(): FormSchema[] {
   return [

@@ -16,7 +16,7 @@ const SelectRoleModal: React.FC<Props> = ({ visible, onClose, onConfirm, organiz
 	const { t: $t } = useTranslation();
 	const [selectedRoles, setSelectedRoles] = useState<IdentityRoleDto[]>([]);
 
-	// 获取可添加的角色列表
+	// Get the list of roles that can be added
 	const { data, isLoading } = useQuery({
 		queryKey: ["organizationUnitRoles", "unAdded", organizationUnitId],
 		queryFn: () =>

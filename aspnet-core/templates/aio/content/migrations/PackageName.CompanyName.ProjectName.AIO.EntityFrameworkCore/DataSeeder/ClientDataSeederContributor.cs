@@ -93,7 +93,7 @@ public class ClientDataSeederContributor : IDataSeedContributor, ITransientDepen
                 DisplayName = scope + " access",
                 DisplayNames =
                 {
-                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API 应用程序访问",
+                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API application access",
                     [CultureInfo.GetCultureInfo("en")] = "Abp API Application Access"
                 },
                 Resources =
@@ -330,7 +330,7 @@ public class ClientDataSeederContributor : IDataSeedContributor, ITransientDepen
                 "role",
                 "phone",
                 "address",
-                "offline_access" // 加上刷新,
+                "offline_access" // Add refresh,
 
             };
 
@@ -356,7 +356,7 @@ public class ClientDataSeederContributor : IDataSeedContributor, ITransientDepen
             );
         }
 
-        // InternalService 内部服务间通讯客户端,必要的话需要在前端指定它拥有所有权限,当前项目仅预置用户查询权限
+        // InternalService is an internal inter-service communication client. If necessary, you need to specify it on the front end to have all permissions. The current project only presets user query permissions.
         var internalServiceClientId = configurationSection["InternalService:ClientId"];
         if (!internalServiceClientId.IsNullOrWhiteSpace())
         {

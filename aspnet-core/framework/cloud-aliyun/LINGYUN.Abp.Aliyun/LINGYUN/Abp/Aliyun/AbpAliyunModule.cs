@@ -27,7 +27,7 @@ public class AbpAliyunModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<AliyunResource>("zh-Hans") // 中国区云服务,默认使用简体中文
+                .Add<AliyunResource>("zh-Hans") // China cloud service, simplified Chinese is used by default
                 .AddVirtualJson("/LINGYUN/Abp/Aliyun/Localization/Resources");
         });
     }

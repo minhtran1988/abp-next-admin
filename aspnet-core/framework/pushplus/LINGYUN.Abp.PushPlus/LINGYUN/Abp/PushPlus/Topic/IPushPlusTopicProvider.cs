@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.PushPlus.Topic;
 /// <summary>
-/// 群组接口
+/// Group interface
 /// </summary>
 public interface IPushPlusTopicProvider
 {
     /// <summary>
-    /// 获取群组列表
+    /// Get the group list
     /// </summary>
-    /// <param name="current">当前所在分页数</param>
-    /// <param name="pageSize">每页大小，最大值为50</param>
-    /// <param name="topicType">群组类型;0-我创建的，1-我加入的</param>
+    /// <param name="current">Current page number</param>
+    /// <param name="pageSize">The size of each page, the maximum value is 50</param>
+    /// <param name="topicType">Group type; 0-created by me, 1-joined by me</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusPagedResponse<PushPlusTopic>> GetTopicListAsync(
@@ -21,31 +21,31 @@ public interface IPushPlusTopicProvider
         PushPlusTopicType topicType = PushPlusTopicType.Create,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取我创建的群组详情
+    /// Get the details of the group I created
     /// </summary>
-    /// <param name="topicId">群组编号</param>
+    /// <param name="topicId">Group ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusTopicProfile> GetTopicProfileAsync(
         int topicId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取我加入的群详情
+    /// Get the details of the group I joined
     /// </summary>
-    /// <param name="topicId">群组编号</param>
+    /// <param name="topicId">Group ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusTopicForMe> GetTopicForMeProfileAsync(
         int topicId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 新增群组
+    /// Add new group
     /// </summary>
-    /// <param name="topicCode">群组编码</param>
-    /// <param name="topicName">群组名称</param>
-    /// <param name="contact">联系方式</param>
-    /// <param name="introduction">群组简介</param>
-    /// <param name="receiptMessage">加入后回复内容</param>
+    /// <param name="topicCode">Group coding</param>
+    /// <param name="topicName">Group name</param>
+    /// <param name="contact">Contact information</param>
+    /// <param name="introduction">Group introduction</param>
+    /// <param name="receiptMessage">Reply content after joining</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<int> CreateTopicAsync(
@@ -56,10 +56,10 @@ public interface IPushPlusTopicProvider
         string receiptMessage = "",
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组二维码
+    /// Get the group QR code
     /// </summary>
-    /// <param name="topicId">群组编号</param>
-    /// <param name="forever">二维码类型；0-临时二维码，1-永久二维码</param>
+    /// <param name="topicId">Group ID</param>
+    /// <param name="forever">QR code type; 0-temporary QR code, 1-permanent QR code</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusTopicQrCode> GetTopicQrCodeAsync(
@@ -67,20 +67,20 @@ public interface IPushPlusTopicProvider
         PushPlusTopicQrCodeType forever = PushPlusTopicQrCodeType.Temporary,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 退出群组
+    /// Exit the group
     /// </summary>
-    /// <param name="topicId">群组编号</param>
+    /// <param name="topicId">Group ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<string> QuitTopicAsync(
         int topicId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组内用户
+    /// Get users in the group
     /// </summary>
-    /// <param name="current">当前所在分页数</param>
-    /// <param name="pageSize">每页大小，最大值为50</param>
-    /// <param name="topicId">群组编号</param>
+    /// <param name="current">Current page number</param>
+    /// <param name="pageSize">The size of each page, the maximum value is 50</param>
+    /// <param name="topicId">Group ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusPagedResponse<PushPlusTopicUser>> GetSubscriberListAsync(
@@ -89,9 +89,9 @@ public interface IPushPlusTopicProvider
         int topicId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 删除群组内用户
+    /// Delete users in the group
     /// </summary>
-    /// <param name="topicRelationId">用户编号</param>
+    /// <param name="topicRelationId">User ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<string> UnSubscriberAsync(

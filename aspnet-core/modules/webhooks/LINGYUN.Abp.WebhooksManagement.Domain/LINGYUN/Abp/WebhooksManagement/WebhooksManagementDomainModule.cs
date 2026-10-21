@@ -55,7 +55,7 @@ public class WebhooksManagementDomainModule : AbpModule
             WebhooksDefinitionConsts.MinimumTimeoutDuration = WebhookSubscriptionConsts.TimeoutDurationMinimum;
             WebhooksDefinitionConsts.MaximumTimeoutDuration = WebhookSubscriptionConsts.TimeoutDurationMaximum;
 
-            // 扩展实体配置
+            // Extend entity configuration
             ModuleExtensionConfigurationHelper.ApplyEntityConfigurationToEntity(
                 WebhooksManagementModuleExtensionConsts.ModuleName,
                 WebhooksManagementModuleExtensionConsts.EntityNames.WebhookEvent,

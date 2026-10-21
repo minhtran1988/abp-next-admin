@@ -1,18 +1,18 @@
 /**
- * 更新 CSS 变量的函数
- * @param variables 要更新的 CSS 变量与其新值的映射
+ * Function to update CSS variables
+ * @param variables Mapping of CSS variables to be updated and their new values
  */
 function updateCSSVariables(
   variables: { [key: string]: string },
   id = '__vben-styles__',
 ): void {
-  // 获取或创建内联样式表元素
+  // Get or create an inline style sheet element
   const styleElement =
     document.querySelector(`#${id}`) || document.createElement('style');
 
   styleElement.id = id;
 
-  // 构建要更新的 CSS 变量的样式文本
+  // Construct the style text of the CSS variable to be updated
   let cssText = ':root {';
   for (const key in variables) {
     if (Object.prototype.hasOwnProperty.call(variables, key)) {
@@ -21,10 +21,10 @@ function updateCSSVariables(
   }
   cssText += '}';
 
-  // 将样式文本赋值给内联样式表
+  // Assign style text to the inline style sheet
   styleElement.textContent = cssText;
 
-  // 将内联样式表添加到文档头部
+  // Add an inline style sheet to the head of the document
   if (!document.querySelector(`#${id}`)) {
     setTimeout(() => {
       document.head.append(styleElement);

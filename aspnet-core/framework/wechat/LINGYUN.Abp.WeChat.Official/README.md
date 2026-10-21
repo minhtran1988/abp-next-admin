@@ -1,20 +1,20 @@
 # LINGYUN.Abp.WeChat.Official
 
-微信公众号SDK集成模块，提供微信公众号开发所需的功能支持。
+WeChat public account SDK integration module provides functional support required for WeChat public account development.
 
-## 功能特性
+## Features
 
-* 微信公众号OAuth2.0认证
-* 自定义菜单管理
-* 模板消息发送
-* 素材管理
-* 用户管理
-* 客服消息
-* 微信支付集成
-* 消息加解密
-* 事件处理
+* WeChat public account OAuth2.0 authentication
+* Custom menu management
+* Template message sending
+* Material management
+* User management
+*Customer service message
+* WeChat payment integration
+* Message encryption and decryption
+*Event handling
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatOfficialModule))]
@@ -24,37 +24,37 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Official": {
-      "AppId": "",                // 公众号AppId
-      "AppSecret": "",           // 公众号AppSecret
-      "Token": "",               // 公众号消息Token
-      "EncodingAESKey": "",      // 公众号消息加密密钥
-      "IsSandBox": false,        // 是否为沙箱环境
-      "Url": ""                  // 公众号服务器URL
+      "AppId": "", // Official account AppId
+      "AppSecret": "", // Official account AppSecret
+      "Token": "", // Official account message Token
+      "EncodingAESKey": "", // Official account message encryption key
+      "IsSandBox": false, // Whether it is a sandbox environment
+      "Url": "" // Official account server URL
     }
   }
 }
 ```
 
-#### 注意事项
+#### Notes
 
-在动态配置中有一个已知的问题: https://github.com/abpframework/abp/issues/6318  
-因此必须要重建一个动态变更 AbpWeChatOfficialOptions 的方法，请使用AbpWeChatOfficialOptionsFactory.CreateAsync()
+There is a known issue in dynamic configuration: https://github.com/abpframework/abp/issues/6318
+Therefore, it is necessary to recreate a method to dynamically change AbpWeChatOfficialOptions, please use AbpWeChatOfficialOptionsFactory.CreateAsync()
 
-## Settings配置
+## SettingsConfiguration
 
-* `WeChat.Official.AppId`: 公众号AppId
-* `WeChat.Official.AppSecret`: 公众号AppSecret
-* `WeChat.Official.Token`: 公众号消息Token
-* `WeChat.Official.EncodingAESKey`: 公众号消息加密密钥
-* `WeChat.Official.IsSandBox`: 是否为沙箱环境
-* `WeChat.Official.Url`: 公众号服务器URL
+* `WeChat.Official.AppId`: Official account AppId
+* `WeChat.Official.AppSecret`: Official account AppSecret
+* `WeChat.Official.Token`: Official account message Token
+* `WeChat.Official.EncodingAESKey`: public account message encryption key
+* `WeChat.Official.IsSandBox`: whether it is a sandbox environment
+* `WeChat.Official.Url`: Official account server URL
 
-## 更多文档
+## More documentation
 
-* [微信公众号模块文档](README.EN.md)
+* [WeChat public account module document](README.EN.md)

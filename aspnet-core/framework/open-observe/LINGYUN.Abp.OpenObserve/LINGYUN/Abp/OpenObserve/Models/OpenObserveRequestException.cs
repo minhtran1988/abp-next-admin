@@ -3,10 +3,10 @@ using System.Net.Http;
 namespace LINGYUN.Abp.OpenObserve.Models;
 
 /// <summary>
-/// OpenObserve 请求异常
+/// OpenObserve request exception
 /// </summary>
 /// <remarks>
-/// 响应内容无法解析为 OpenObserve 标准错误响应时抛出
+/// Thrown when the response content cannot be parsed as an OpenObserve standard error response
 /// </remarks>
 public class OpenObserveRequestException : OpenObserveException
 {

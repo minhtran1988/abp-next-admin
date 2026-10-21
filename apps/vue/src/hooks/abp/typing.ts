@@ -6,68 +6,68 @@ interface IRule {
 }
 
 export interface IField extends IRule {
-  /** 字段名称 */
+  /** Field name */
   name?: string;
-  /** 字段前缀
-   * @description 用于本地化字段名称
+  /** Field prefix
+   * @description for localized field names
    * @example DisplayName => L('ResourceName.DisplayName:Field')
    */
   prefix?: string;
-  /** 连接符
-   * @description 用于本地化字段名称时的连接字符
+  /** Connector
+   * @description Connection character used when localizing field names
    * @example . => L('ResourceName.DisplayName.Field')
    * @example : => L('ResourceName.DisplayName:Field')
    */
   connector?: string;
-  /** 本地化资源 */
+  /** Localized resources */
   resourceName?: string;
 }
 
 export interface IFieldRequired extends IField {
-  /** 是否必须 */
+  /** Is it necessary */
   required?: boolean;
 }
 
 export interface IFieldBeetWeen extends IField {
-  /** 起始值 */
+  /** Starting value */
   start: number;
-  /** 结束值 */
+  /** end value */
   end: number;
 }
 
 export interface IFieldLength extends IField {
-  /** 长度 */
+  /** length */
   length: number;
 }
 
 export interface IFieldRange extends IField {
-  /** 最小数值 */
+  /** Minimum value */
   minimum: number;
-  /** 最大数值 */
+  /** Maximum value */
   maximum: number;
 }
 
 export interface IFieldRegular extends IField {
-  /** 正则表达式 */
+  /** Regular expression */
   expression: string;
 }
 
 export interface IFieldMatch extends IFieldRequired {
-  /** 字段名称 */
+  /** Field name */
   name: string;
-  /** 对比字段 */
+  /** Compare fields */
   matchField: string;
-  /** 对比字段值 */
+  /** Compare field values */
   matchValue: string;
 }
 
 export interface IFieldContains extends IField {
-  /** 验证的值中是否包含在定义的值中 */
+  /** Verify whether the value is included in the defined value */
   value: string;
 }
 
 export interface IFieldValidator extends IFieldRequired {
-  /** 值是否有效验证器 */
+  /**Validity validator */
   validator: (value: any) => boolean;
 }
 

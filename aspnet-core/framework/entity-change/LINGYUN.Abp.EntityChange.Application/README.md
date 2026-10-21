@@ -1,14 +1,14 @@
 # LINGYUN.Abp.EntityChange.Application
 
-实体变更追踪与恢复的应用层实现模块。
+Application layer implementation module for entity change tracking and recovery.
 
-## 功能
+## Function
 
-* 实现实体变更查询服务
-* 实现实体恢复服务
-* 提供实体变更的自动映射配置
+* Implement entity change query service
+* Implement entity recovery service
+* Provide automatic mapping configuration for entity changes
 
-## 基本用法
+## Basic usage
 
 ```csharp
 [DependsOn(typeof(AbpEntityChangeApplicationModule))]
@@ -21,16 +21,16 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 服务实现
+## Service implementation
 
-* `EntityRestoreAppService<TEntity, TKey>`: 实体恢复服务实现
-  * `RestoreEntityAsync`: 通过审计日志恢复单个实体到指定版本
-  * `RestoreEntitesAsync`: 通过审计日志批量恢复实体到指定版本
-  * 支持通过 `RestorePolicy` 配置恢复权限策略
+* `EntityRestoreAppService<TEntity, TKey>`: Entity recovery service implementation
+  * `RestoreEntityAsync`: Restore a single entity to a specified version through the audit log
+  * `RestoreEntitesAsync`: Batch restore entities to a specified version through audit logs
+  * Support configuring permission recovery policy through `RestorePolicy`
 
-## 对象映射
+## Object mapping
 
-模块使用AutoMapper实现以下对象的自动映射：
+The module uses AutoMapper to implement automatic mapping of the following objects:
 * `EntityPropertyChange` -> `EntityPropertyChangeDto`
 * `EntityChange` -> `EntityChangeDto`
 

@@ -1,16 +1,16 @@
 # LINGYUN.Abp.WeChat.Common
 
-微信通用模块，提供微信产品线共享的基础功能实现。
+WeChat general module provides basic function implementation for WeChat product line sharing.
 
-## 功能特性
+## Features
 
-* 统一的消息处理框架
-* 统一的消息加解密机制
-* 统一的事件处理机制
-* 统一的API调用接口
-* 统一的错误处理机制
+* Unified message processing framework
+* Unified message encryption and decryption mechanism
+* Unified event handling mechanism
+* Unified API calling interface
+* Unified error handling mechanism
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatCommonModule))]
@@ -19,32 +19,32 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Common": {
       "MessageHandlerFactory": {
-        "MessageResolvers": [],           // 消息解析器列表
-        "MessageHandlers": []             // 消息处理器列表
+        "MessageResolvers": [], // Message resolver list
+        "MessageHandlers": [] // Message handler list
       }
     }
   }
 }
 ```
 
-## 消息处理
+## Message processing
 
-* 支持文本消息处理
-* 支持图片消息处理
-* 支持语音消息处理
-* 支持视频消息处理
-* 支持事件消息处理
-* 支持自定义消息处理器扩展
+* Support text message processing
+* Support picture message processing
+* Support voice message processing
+* Support video message processing
+* Support event message processing
+* Support custom message processor extension
 
-## 更多文档
+## More documentation
 
-* [微信通用模块文档](README.EN.md)
+* [WeChat general module document](README.EN.md)
 
-### 更新日志 
+### Update log

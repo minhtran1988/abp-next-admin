@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Dapr.Actors
 
-Dapr.IActor客户端代理模块
+Dapr.IActor client proxy module
 
-## 功能特性
+## Features
 
-* Dapr Actors的动态代理生成
-* 与ABP远程服务系统集成
-* 支持Actor认证和授权
-* 多租户支持
-* 自动请求/响应处理
-* 自定义错误处理
-* 文化和语言标头支持
+* Dynamic proxy generation for Dapr Actors
+* Integrated with ABP remote service system
+* Support Actor authentication and authorization
+*Multi-tenant support
+* Automatic request/response handling
+* Custom error handling
+* Culture and language header support
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpDaprActorsModule))]
@@ -22,32 +22,32 @@ public class YouProjectModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 注册代理类似于 Volo.Abp.Http.Client 模块
+        // The registered proxy is similar to the Volo.Abp.Http.Client module
         context.Services.AddDaprActorProxies(
-            typeof(YouProjectActorInterfaceModule).Assembly, // 搜索 YouProjectActorInterfaceModule 模块下的IActor定义
+            typeof(YouProjectActorInterfaceModule).Assembly, // Search for the IActor definition under the YouProjectActorInterfaceModule module
             RemoteServiceName
         );
     }
 }
 ```
 
-## 配置选项
+## Configuration options
 
 ```json
 {
     "RemoteServices": {
         "Default": {
-            "BaseUrl": "http://localhost:3500",  // 必需，Dapr HTTP端点
-            "DaprApiToken": "your-api-token",    // 可选，Dapr API Token
-            "RequestTimeout": "30000"            // 可选，请求超时时间（毫秒，默认：30000）
+            "BaseUrl": "http://localhost:3500", // Required, Dapr HTTP endpoint
+            "DaprApiToken": "your-api-token", // Optional, Dapr API Token
+            "RequestTimeout": "30000" // Optional, request timeout (milliseconds, default: 30000)
         }
     }
 }
 ```
 
-## 实现示例
+## Implementation example
 
-1. Actor接口定义
+1. Actor interface definition
 
 ```csharp
 public interface ICounterActor : IActor
@@ -57,7 +57,7 @@ public interface ICounterActor : IActor
 }
 ```
 
-2. Actor实现
+2. Actor implementation
 
 ```csharp
 public class CounterActor : Actor, ICounterActor
@@ -82,7 +82,7 @@ public class CounterActor : Actor, ICounterActor
 }
 ```
 
-3. 客户端使用
+3. Client use
 
 ```csharp
 public class CounterService
@@ -103,27 +103,27 @@ public class CounterService
 }
 ```
 
-## 注意事项
+## Notes
 
-* Actor方法必须返回`Task`或`Task<T>`
-* Actor方法最多只能有一个参数
-* Actor实例是单线程的，一次只能处理一个请求
-* Actor状态由Dapr运行时管理
-* 模块自动处理：
-  * 认证标头
-  * 租户上下文
-  * 文化信息
-  * 请求超时
-  * 错误处理
+* Actor methods must return `Task` or `Task<T>`
+* Actor methods can only have at most one parameter
+* Actor instances are single-threaded and can only handle one request at a time
+* Actor state is managed by Dapr runtime
+* Module automatic processing:
+  * Authentication header
+  * Tenant context
+  * Cultural information
+  * Request timeout
+  * Error handling
 
-## 错误处理
+## Error handling
 
-模块为Actor调用提供自定义错误处理：
-* `AbpDaprActorCallException`：当Actor方法调用失败时抛出
-* `ActorMethodInvocationException`：包含有关失败的详细信息
-* 错误响应包括：
-  * 错误消息
-  * 错误代码
-  * 原始异常类型
+Module provides custom error handling for Actor calls:
+* `AbpDaprActorCallException`: thrown when the Actor method call fails
+* `ActorMethodInvocationException`: Contains details about the failure
+* Error responses include:
+  * Error message
+  * Error code
+  * Original exception type
 
-[查看更多](README.EN.md)
+[View more](README.EN.md)

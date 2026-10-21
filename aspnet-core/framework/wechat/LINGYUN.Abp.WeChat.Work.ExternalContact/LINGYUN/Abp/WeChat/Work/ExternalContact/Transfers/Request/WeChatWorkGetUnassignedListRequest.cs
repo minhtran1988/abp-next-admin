@@ -6,14 +6,14 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Request;
 public class WeChatWorkGetUnassignedListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 分页查询游标，字符串类型，适用于数据量较大的情况，如果使用该参数则无需填写page_id，该参数由上一次调用返回
+    /// Paging query cursor, string type, suitable for large amounts of data. If you use this parameter, you do not need to fill in the page_id. This parameter is returned by the previous call.
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; set; }
     /// <summary>
-    /// 每次返回的最大记录数，默认为1000，最大值为1000
+    /// The maximum number of records returned each time, the default is 1000, the maximum value is 1000
     /// </summary>
     [CanBeNull]
     [JsonProperty("page_size")]

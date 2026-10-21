@@ -6,22 +6,22 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Request;
 /// <summary>
-/// 分配离职成员的客户群请求参数
+/// Assign the customer group request parameters of the resigned member
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92127" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92127" />
 /// </remarks>
 public class WeChatWorkGroupChatTransferRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 新群主ID
+    /// New group owner ID
     /// </summary>
     [NotNull]
     [JsonProperty("new_owner")]
     [JsonPropertyName("new_owner")]
     public string NewOwner { get; }
     /// <summary>
-    /// 需要转群主的客户群ID列表。取值范围： 1 ~ 100
+    /// List of customer group IDs that need to be transferred to the group owner. Value range: 1 ~ 100
     /// </summary>
     [NotNull]
     [JsonProperty("chat_id_list")]

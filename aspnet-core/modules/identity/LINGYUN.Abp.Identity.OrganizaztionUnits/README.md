@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Identity.OrganizaztionUnits
 
-身份认证组织单元模块，提供身份认证系统与组织单元的集成功能。
+The identity authentication organizational unit module provides the integration function of the identity authentication system and organizational units.
 
-## 功能特性
+## Features
 
-* 扩展AbpIdentityDomainModule模块
-* 集成AbpAuthorizationOrganizationUnitsModule模块
-* 支持组织单元声明动态添加
-* 提供组织单元相关的身份认证功能
+* Extend AbpIdentityDomainModule module
+* Integrate AbpAuthorizationOrganizationUnitsModule module
+* Support dynamic addition of organizational unit declaration
+* Provide identity authentication functions related to organizational units
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -21,7 +21,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ### AbpClaimsPrincipalFactoryOptions
 
@@ -31,7 +31,7 @@ public class YouProjectModule : AbpModule
     "Security": {
       "Claims": {
         "DynamicClaims": {
-          "OrganizationUnit": true  // 启用组织单元动态声明
+          "OrganizationUnit": true // Enable dynamic declaration of organizational units
         }
       }
     }
@@ -39,15 +39,15 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 声明类型
+## Declaration type
 
-* `AbpOrganizationUnitClaimTypes.OrganizationUnit` - 组织单元声明类型
-  * 用于标识用户所属的组织单元
-  * 在用户身份验证时自动添加到声明中
+* `AbpOrganizationUnitClaimTypes.OrganizationUnit` - Organization unit claim type
+  * Used to identify the organizational unit to which the user belongs
+  * Automatically added to claims upon user authentication
 
-## 基本用法
+## Basic usage
 
-1. 配置组织单元声明
+1. Configure organizational unit declaration
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
@@ -58,7 +58,7 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-2. 获取用户的组织单元声明
+2. Obtain the user's organizational unit statement
 ```csharp
 public class YourService
 {
@@ -78,7 +78,7 @@ public class YourService
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
-* [ABP组织单元文档](https://docs.abp.io/en/abp/latest/Organization-Units)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP Organizational Unit Documentation](https://docs.abp.io/en/abp/latest/Organization-Units)

@@ -1,19 +1,19 @@
 # LINGYUN.Abp.WebhooksManagement.HttpApi
 
-Webhook管理HTTP API模块，提供Webhook管理的REST API接口。
+Webhook management HTTP API module provides a REST API interface for Webhook management.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* Webhook订阅REST API
-* Webhook组REST API
-* Webhook定义REST API
-* Webhook日志REST API
-* 自动API路由
-* API权限控制
+* Webhook subscribe to REST API
+* Webhook Group REST API
+* Webhook defines REST API
+* Webhook log REST API
+* Automatic API routing
+* API permission control
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementHttpApiModule))]
@@ -23,16 +23,16 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API路由
+## API routing
 
-* /api/webhooks-management/subscriptions - Webhook订阅管理
-* /api/webhooks-management/groups - Webhook组管理
-* /api/webhooks-management/definitions - Webhook定义管理
-* /api/webhooks-management/logs - Webhook日志查询
+* /api/webhooks-management/subscriptions - Webhook subscription management
+* /api/webhooks-management/groups - Webhook group management
+* /api/webhooks-management/definitions - Webhook definition management
+* /api/webhooks-management/logs - Webhook log query
 
-## 基本用法
+## Basic usage
 
-1. 配置API路由
+1. Configure API routing
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
@@ -48,18 +48,18 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-2. 调用API示例
+2. API call example
 ```http
-### 创建Webhook订阅
+### Create Webhook subscription
 POST /api/webhooks-management/subscriptions
 {
     "webhookUri": "https://your-webhook-endpoint",
     "webhooks": ["YourWebhook"]
 }
 
-### 查询Webhook订阅
+### Query Webhook subscription
 GET /api/webhooks-management/subscriptions?maxResultCount=10&skipCount=0
 
-### 查询Webhook日志
+### Query Webhook logs
 GET /api/webhooks-management/logs?maxResultCount=10&skipCount=0
 ```

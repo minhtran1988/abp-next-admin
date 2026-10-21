@@ -56,7 +56,7 @@ public class ProjectNameDbMigratorEntityFrameworkCoreModule : AbpModule
 #endif
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 配置Ef
+        // Configure Ef
         Configure<AbpDbContextOptions>(options =>
         {
 #if MySQL

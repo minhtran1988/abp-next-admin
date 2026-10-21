@@ -45,12 +45,12 @@ public class AliyunSettingAppService : ApplicationService, IAliyunSettingAppServ
     {
         var settingGroups = new SettingGroupResult();
 
-        // 无权限返回空结果,直接报错的话,网关聚合会抛出异常
+        // Return an empty result without permission. If an error is reported directly, the gateway aggregation will throw an exception.
         if (await FeatureChecker.IsEnabledAsync(AliyunFeatureNames.Enable) && 
             await PermissionChecker.IsGrantedAsync(AliyunSettingPermissionNames.Settings))
         {
             var aliyunSettingGroup = new SettingGroupDto(L["DisplayName:Aliyun"], L["Description:Aliyun"]);
-            #region 访问控制
+            #region Access Control
 
             var ramSetting = aliyunSettingGroup.AddSetting(L["DisplayName:Aliyun.RAM"], L["Description:Aliyun.RAM"]);
 
@@ -106,7 +106,7 @@ public class AliyunSettingAppService : ApplicationService, IAliyunSettingAppServ
 
             #endregion
 
-            #region 短信
+            #region SMS
 
             if (await FeatureChecker.IsEnabledAsync(AliyunFeatureNames.Sms.Enable))
             {
@@ -177,7 +177,7 @@ public class AliyunSettingAppService : ApplicationService, IAliyunSettingAppServ
 
             #endregion
 
-            #region 验证码
+            #region verification code
 
             var captchaSetting = aliyunSettingGroup.AddSetting(L["DisplayName:Aliyun.Captcha"], L["DisplayName:Aliyun.Captcha"]);
             captchaSetting.AddDetail(

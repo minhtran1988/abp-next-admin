@@ -1,16 +1,16 @@
 # LINGYUN.Abp.LocalizationManagement.Application.Contracts
 
-本地化管理应用服务层契约模块，定义了本地化管理的应用服务接口、DTO对象和权限定义。
+The localization management application service layer contract module defines the application service interface, DTO object and permission definition of localization management.
 
-## 功能特性
+## Features
 
-* 定义语言管理应用服务接口
-* 定义资源管理应用服务接口
-* 定义文本管理应用服务接口
-* 定义权限和授权
-* 提供DTO对象定义
+* Define language management application service interface
+* Define resource management application service interface
+* Define text management application service interface
+* Define permissions and authorizations
+* Provide DTO object definition
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpLocalizationManagementApplicationContractsModule))]
@@ -20,27 +20,27 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 权限定义
+## Permission definition
 
-* LocalizationManagement.Resource - 授权对象是否允许访问资源
-* LocalizationManagement.Resource.Create - 授权对象是否允许创建资源
-* LocalizationManagement.Resource.Update - 授权对象是否允许修改资源
-* LocalizationManagement.Resource.Delete - 授权对象是否允许删除资源
-* LocalizationManagement.Language - 授权对象是否允许访问语言
-* LocalizationManagement.Language.Create - 授权对象是否允许创建语言
-* LocalizationManagement.Language.Update - 授权对象是否允许修改语言
-* LocalizationManagement.Language.Delete - 授权对象是否允许删除语言
-* LocalizationManagement.Text - 授权对象是否允许访问文档
-* LocalizationManagement.Text.Create - 授权对象是否允许创建文档
-* LocalizationManagement.Text.Update - 授权对象是否允许修改文档
-* LocalizationManagement.Text.Delete - 授权对象是否允许删除文档
+* LocalizationManagement.Resource - whether the authorization object allows access to the resource
+* LocalizationManagement.Resource.Create - whether the authorization object allows resource creation
+* LocalizationManagement.Resource.Update - whether the authorization object allows modification of resources
+* LocalizationManagement.Resource.Delete - Whether the authorization object allows resource deletion
+* LocalizationManagement.Language - whether the authorization object allows access to the language
+* LocalizationManagement.Language.Create - whether the authorization object allows language creation
+* LocalizationManagement.Language.Update - whether the authorization object allows language modification
+* LocalizationManagement.Language.Delete - whether the authorization object allows language deletion
+* LocalizationManagement.Text - whether the authorization object allows access to the document
+* LocalizationManagement.Text.Create - whether the authorization object allows document creation
+* LocalizationManagement.Text.Update - whether the authorization object allows modification of the document
+* LocalizationManagement.Text.Delete - Whether the authorization object allows deletion of documents
 
-## 应用服务接口
+## Application service interface
 
-* `ILanguageAppService`: 语言管理应用服务接口
-* `IResourceAppService`: 资源管理应用服务接口
-* `ITextAppService`: 文本管理应用服务接口
+* `ILanguageAppService`: Language management application service interface
+* `IResourceAppService`: Resource management application service interface
+* `ITextAppService`: Text management application service interface
 
-## 更多信息
+## More information
 
 * [English documentation](./README.EN.md)

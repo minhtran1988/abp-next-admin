@@ -2,43 +2,43 @@
 outline: deep
 ---
 
-# Page 常规页面组件
+# Page General page components
 
-提供一个常规页面布局的组件，包括头部、内容区域、底部三个部分。
+Provides components for a general page layout, including three parts: header, content area, and bottom.
 
-::: info 写在前面
+::: info is written in front
 
-本组件是一个基本布局组件。如果有更多的通用页面布局需求（比如双列布局等），可以根据实际需求自行封装。
+This component is a basic layout component. If you have more general page layout requirements (such as double-column layout, etc.), you can package it yourself according to actual needs.
 
 :::
 
-## 基础用法
+## Basic usage
 
-将`Page`作为你的业务页面的根组件即可。
+Just use `Page` as the root component of your business page.
 
 ### Props
 
-| 属性名 | 描述 | 类型 | 默认值 | 说明 |
+| Property name | Description | Type | Default value | Description |
 | --- | --- | --- | --- | --- |
-| title | 页面标题 | `string\|slot` | - | - |
-| description | 页面描述（标题下的内容） | `string\|slot` | - | - |
-| contentClass | 内容区域的class | `string` | - | - |
-| headerClass | 头部区域的class | `string` | - | - |
-| footerClass | 底部区域的class | `string` | - | - |
-| autoContentHeight | 自动调整内容区域的高度 | `boolean` | `false` | - |
+| title | Page title | `string\|slot` | - | - |
+| description | Page description (content under the title) | `string\|slot` | - | - |
+| contentClass | The class of the content area | `string` | - | - |
+| headerClass | The class of the header area | `string` | - | - |
+| footerClass | The class of the bottom area | `string` | - | - |
+| autoContentHeight | Automatically adjust the height of the content area | `boolean` | `false` | - |
 
-::: tip 注意
+::: tip note
 
-如果`title`、`description`、`extra`三者均未提供有效内容（通过`props`或者`slots`均可），则页面头部区域不会渲染。
+If `title`, `description`, and `extra` do not provide valid content (either through `props` or `slots`), the page header area will not be rendered.
 
 :::
 
 ### Slots
 
-| 插槽名称    | 描述         |
+| Slot Name | Description |
 | ----------- | ------------ |
-| default     | 页面内容     |
-| title       | 页面标题     |
-| description | 页面描述     |
-| extra       | 页面头部右侧 |
-| footer      | 页面底部     |
+| default | page content |
+| title | Page title |
+| description | Page description |
+| extra | right side of page header |
+| footer | Bottom of page |

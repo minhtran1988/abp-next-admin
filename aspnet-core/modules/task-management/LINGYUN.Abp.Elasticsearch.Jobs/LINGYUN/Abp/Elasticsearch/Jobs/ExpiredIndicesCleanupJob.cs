@@ -7,7 +7,7 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.Elasticsearch.Jobs;
 
 /// <summary>
-/// Elasticsearch 过期索引清理作业
+/// Elasticsearch expired index cleanup job
 /// </summary>
 public class ExpiredIndicesCleanupJob : IJobRunnable
 {
@@ -27,11 +27,11 @@ public class ExpiredIndicesCleanupJob : IJobRunnable
 
     public const string Name = "ExpiredIndicesCleanupJob";
     /// <summary>
-    /// 每次清除记录大小
+    /// Clear the record size each time
     /// </summary>
     private const string PropertyIndexPrefix = "IndexPrefix";
     /// <summary>
-    /// 过期时间, 单位秒, 默认 5184000 (60天)
+    /// Expiration time, unit seconds, default 5184000 (60 days)
     /// </summary>
     private const string PropertyExpirationTime = "ExpirationTime";
 
@@ -66,7 +66,7 @@ public class ExpiredIndicesCleanupJob : IJobRunnable
 
         foreach (var index in indexResponse.Indices)
         {
-            // 索引创建日期
+            // Index creation date
             if (index.Value.Settings?.CreationDate <= expirationTime ||
                 index.Value.Settings?.Index?.CreationDate <= expirationTime)
             {

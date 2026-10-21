@@ -26,12 +26,12 @@ class ActionCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 12),
       child: Column(
         children: [
-          /// 主题设置
+          /// Theme settings
           _actionButton(
             title: 'Label:SwitchTheme'.tr,
             onTap: onSwitchTheme,
           ),
-          /// 账号设置
+          /// Account settings
           _actionButton(
             title: 'Label:AccountSettings'.tr,
             onTap: onAccountSettings,

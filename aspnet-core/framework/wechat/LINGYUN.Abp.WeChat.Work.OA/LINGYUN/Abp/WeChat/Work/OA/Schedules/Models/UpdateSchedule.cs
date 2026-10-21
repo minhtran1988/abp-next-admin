@@ -9,10 +9,10 @@ namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 public class UpdateSchedule : CreateOrUpdateSchedule
 {
     /// <summary>
-    /// 日程ID
+    /// Schedule ID
     /// </summary>
     /// <remarks>
-    /// 创建日程时返回的ID
+    /// ID returned when creating schedule
     /// </remarks>
     [NotNull]
     [JsonProperty("schedule_id")]

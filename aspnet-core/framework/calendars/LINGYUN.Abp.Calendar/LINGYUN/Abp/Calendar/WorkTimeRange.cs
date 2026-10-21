@@ -2,16 +2,16 @@
 
 namespace LINGYUN.Abp.Calendar;
 /// <summary>
-/// 工作时间范围
+/// Working time range
 /// </summary>
 public class WorkTimeRange
 {
     /// <summary>
-    /// 开始时间
+    /// Start time
     /// </summary>
     public TimeSpan StartTime { get; set; }
     /// <summary>
-    /// 截止时间
+    /// Deadline
     /// </summary>
     public TimeSpan EndTime { get; set; }
     public WorkTimeRange()

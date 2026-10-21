@@ -1,59 +1,59 @@
 # LINGYUN.Abp.RulesEngineManagement.EntityFrameworkCore
 
-## 1. 介绍
+## 1. Introduction
 
-规则引擎管理模块的EntityFrameworkCore实现，提供了基于EF Core的数据访问层实现。
+The EntityFrameworkCore implementation of the rule engine management module provides a data access layer implementation based on EF Core.
 
-## 2. 功能
+## 2. Function
 
-* 实现了规则引擎管理模块的DbContext
-* 提供了实体的数据库映射配置
-* 实现了仓储接口
+* Implemented the DbContext of the rule engine management module
+* Provides database mapping configuration for entities
+* Implemented warehousing interface
 
-## 3. 数据库实现
+## 3. Database implementation
 
 ### 3.1 DbContext
 
 * RulesEngineManagementDbContext
-  * 实现了IRulesEngineManagementDbContext接口
-  * 包含了所有实体的DbSet定义
-  * 支持多租户
+  * Implemented the IRulesEngineManagementDbContext interface
+  * Contains DbSet definitions for all entities
+  *Support multi-tenancy
 
-### 3.2 仓储实现
+### 3.2 Warehousing implementation
 
 * EfCoreRuleRecordRepository
-  * 实现了IRuleRecordRepository接口
-  * 提供规则记录的CRUD操作
-  * 支持按名称查询规则
+  * Implemented the IRuleRecordRepository interface
+  * Provide CRUD operations for rule records
+  * Support querying rules by name
   
 * EfCoreWorkflowRecordRepository
-  * 实现了IWorkflowRecordRepository接口
-  * 提供工作流记录的CRUD操作
-  * 支持按名称和类型查询工作流
+  * Implemented the IWorkflowRecordRepository interface
+  * Provide CRUD operations for workflow records
+  * Support querying workflows by name and type
 
-### 3.3 实体映射
+### 3.3 Entity mapping
 
-* 工作流记录映射
-  * 配置了主键、索引
-  * 配置了字段长度限制
-  * 配置了关联关系
+* Workflow record mapping
+  * Configured primary keys and indexes
+  * Configured field length limit
+  * Configured associations
   
-* 规则记录映射
-  * 配置了主键、索引
-  * 配置了字段长度限制
-  * 配置了关联关系
+* Rule record mapping
+  * Configured primary keys and indexes
+  * Configured field length limit
+  * Configured associations
   
-* 参数记录映射
-  * 配置了主键
-  * 配置了字段长度限制
+* Parameter record mapping
+  * Configured primary key
+  * Configured field length limit
   
-* 动作记录映射
-  * 配置了主键
-  * 配置了字段长度限制
+* Action record mapping
+  * Configured primary key
+  * Configured field length limit
 
-## 4. 依赖
+## 4. Dependencies
 
 * Volo.Abp.EntityFrameworkCore
 * LINGYUN.Abp.RulesEngineManagement.Domain
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

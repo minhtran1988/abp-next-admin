@@ -6,33 +6,33 @@ namespace LINGYUN.Abp.Location.Amap
     public class AmapRegeocode
     {
         /// <summary>
-        /// 结构化地址信息
-        /// 省份＋城市＋区县＋城镇＋乡村＋街道＋门牌号码
+        /// Structured address information
+        /// Province + city + district and county + town + village + street + house number
         /// </summary>
         [JsonProperty("formatted_address")]
         public string Address { get; set; }
         /// <summary>
-        /// 地址元素列表
+        /// List of address elements
         /// </summary>
         public AddressComponent AddressComponent { get; set; }
         /// <summary>
-        /// 道路信息列表
-        /// 请求参数 extensions 为 all 时返回
+        /// Road information list
+        /// Returned when the request parameter extensions is all
         /// </summary>
         public Road[] Roads { get; set; }
         /// <summary>
-        /// 道路交叉口列表
-        /// 请求参数 extensions 为 all 时返回
+        /// Road intersection list
+        /// Returned when the request parameter extensions is all
         /// </summary>
         public Roadinter[] Roadinters { get; set; }
         /// <summary>
-        /// poi信息列表
-        /// 请求参数 extensions 为 all 时返回
+        /// poi information list
+        /// Returned when the request parameter extensions is all
         /// </summary>
         public Poi[] Pois { get; set; }
         /// <summary>
-        /// aoi信息列表
-        /// 请求参数 extensions 为 all 时返回
+        /// aoi information list
+        /// Returned when the request parameter extensions is all
         /// </summary>
         public Aoi[] Aois { get; set; }
         public AmapRegeocode()
@@ -48,69 +48,69 @@ namespace LINGYUN.Abp.Location.Amap
     public class AddressComponent
     {
         /// <summary>
-        /// 国家
+        /// Country
         /// </summary>
         public string Country { get; set; }
         /// <summary>
-        /// 坐标点所在省名称
-        /// 例如：北京市
+        /// The name of the province where the coordinate point is located
+        /// For example: Beijing City
         /// </summary>
         public string Province { get; set; }
 
         /// <summary>
-        /// 坐标点所在城市名称
-        /// 请注意：当城市是省直辖县时返回为空，以及城市为北京、上海、天津、重庆四个直辖市时，该字段返回为空
+        /// The name of the city where the coordinate point is located
+        /// Please note: When the city is a county directly under the central government of the province, the return value is empty, and when the city is the four municipalities directly under the central government: Beijing, Shanghai, Tianjin, and Chongqing, this field returns empty
         /// </summary>
         public string[] City { get; set; }
 
         /// <summary>
-        /// 城市编码
-        /// 例如：010
+        /// City code
+        /// For example: 010
         /// </summary>
         public string CityCode { get; set; }
 
         /// <summary>
-        /// 坐标点所在区
-        /// 例如：海淀区
+        /// The area where the coordinate point is located
+        /// For example: Haidian District
         /// </summary>
         public string District { get; set; }
 
         /// <summary>
-        /// 行政区编码
-        /// 例如：110108
+        /// Administrative area code
+        /// For example: 110108
         /// </summary>
         public string AdCode { get; set; }
 
         /// <summary>
-        /// 坐标点所在乡镇/街道（此街道为社区街道，不是道路信息）
-        /// 例如：燕园街道
+        /// The town/street where the coordinate point is located (this street is a community street, not road information)
+        /// For example: Yanyuan Street
         /// </summary>
         public string[] TownShip { get; set; }
 
         /// <summary>
-        /// 乡镇街道编码
-        /// 例如：110101001000
+        /// Township street code
+        /// For example: 110101001000
         /// </summary>
         public string TownCode { get; set; }
         /// <summary>
-        /// 社区信息列表
+        /// Community information list
         /// </summary>
         public NeighBorHood NeighBorHood { get; set; }
         /// <summary>
-        /// 楼信息列表
+        /// Building information list
         /// </summary>
         public Building Building { get; set; }
         /// <summary>
-        /// 门牌信息列表
+        /// House number information list
         /// </summary>
         public StreetNumber StreetNumber { get; set; }
         /// <summary>
-        /// 所属海域信息
-        /// 例如：渤海
+        /// The sea area information to which it belongs
+        /// For example: Bohai
         /// </summary>
         public string SeaArea { get; set; }
         /// <summary>
-        /// 经纬度所属商圈列表
+        /// List of business districts to which the latitude and longitude belongs
         /// </summary>
         public List<BusinessArea> BusinessAreas { get; set; }
         public AddressComponent()
@@ -123,243 +123,243 @@ namespace LINGYUN.Abp.Location.Amap
     }
 
     /// <summary>
-    /// 社区信息
+    /// Community information
     /// </summary>
     public class NeighBorHood
     {
         /// <summary>
-        /// 社区名称
-        /// 例如：北京大学
+        /// Community name
+        /// For example: Peking University
         /// </summary>
         public string[] Name { get; set; } = new string[0];
 
         /// <summary>
-        /// POI类型
-        /// 例如：科教文化服务;学校;高等院校
+        /// POI type
+        /// For example: science, education and cultural services; schools; colleges and universities
         /// </summary>
         public string[] Type { get; set; } = new string[0];
     }
     /// <summary>
-    /// 楼信息
+    /// Building information
     /// </summary>
     public class Building
     {
         /// <summary>
-        /// 建筑名称
-        /// 例如：万达广场
+        /// Building name
+        /// For example: Wanda Plaza
         /// </summary>
         public string[] Name { get; set; } = new string[0];
 
         /// <summary>
-        /// 类型
-        /// 例如：科教文化服务;学校;高等院校
+        /// Type
+        /// For example: science, education and cultural services; schools; colleges and universities
         /// </summary>
         public string[] Type { get; set; } = new string[0];
     }
     /// <summary>
-    /// 街道信息
+    /// Street information
     /// </summary>
     public class StreetNumber
     {
         /// <summary>
-        /// 街道名称
-        /// 例如：中关村北二条
+        /// street name
+        /// For example: Zhongguancun North 2nd Street
         /// </summary>
         public string Street { get; set; }
 
         /// <summary>
-        /// 门牌号
-        /// 例如：3号
+        /// House number
+        /// For example: No. 3
         /// </summary>
         public string Number { get; set; }
 
         /// <summary>
-        /// 坐标点
-        /// 经纬度坐标点：经度，纬度
+        /// Coordinate point
+        /// Longitude and latitude coordinate points: longitude, latitude
         /// </summary>
         public string Location { get; set; }
 
         /// <summary>
-        /// 方向
-        /// 坐标点所处街道方位
+        /// direction
+        /// The street orientation of the coordinate point
         /// </summary>
         public string Direction { get; set; }
 
         /// <summary>
-        /// 门牌地址到请求坐标的距离
-        /// 单位：米
+        /// The distance from the house address to the requested coordinates
+        /// Unit: meters
         /// </summary>
         public string Distance { get; set; }
     }
 
     /// <summary>
-    /// 商圈信息
+    /// Business district information
     /// </summary>
     public class BusinessArea
     {
         /// <summary>
-        /// 商圈中心点经纬度
-        /// 经纬度坐标点：经度，纬度
+        /// Longitude and latitude of the center point of the business district
+        /// Longitude and latitude coordinate points: longitude, latitude
         /// </summary>
         public string Location { get; set; }
 
         /// <summary>
-        /// 商圈名称 
-        /// 例如：颐和园
+        /// Business district name
+        /// For example: Summer Palace
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 商圈所在区域的adcode  
-        /// 例如：朝阳区/海淀区 
+        /// The adcode of the area where the business district is located
+        /// For example: Chaoyang District/Haidian District
         /// </summary>
         public string Id { get; set; }
     }
 
     /// <summary>
-    /// 道路信息
+    /// Road information
     /// </summary>
     public class Road
     {
         /// <summary>
-        /// 道路Id
+        /// RoadId
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// 道路名称
+        /// Road name
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 道路到请求的坐标距离
-        /// 单位：米
+        /// Distance from the road to the requested coordinates
+        /// Unit: meters
         /// </summary>
         public string Distance { get; set; }
         /// <summary>
-        /// 方位
-        /// 输入点和此路的相对方位
+        /// Orientation
+        /// Enter the relative orientation of the point and this road
         /// </summary>
         public string Direction { get; set; }
         /// <summary>
-        /// 坐标点
-        /// 经纬度坐标点：经度，纬度
+        /// Coordinate point
+        /// Longitude and latitude coordinate points: longitude, latitude
         /// </summary>
         public string Location { get; set; }
     }
 
     /// <summary>
-    /// 道路交叉口
+    /// road intersection
     /// </summary>
     public class Roadinter
     {
         /// <summary>
-        /// 交叉路口到请求坐标的距离
-        /// 单位：米
+        /// The distance from the intersection to the requested coordinates
+        /// Unit: meters
         /// </summary>
         public string Distance { get; set; }
         /// <summary>
-        /// 方位
-        /// 输入点相对路口的方位
+        /// Orientation
+        /// Enter the orientation of the point relative to the intersection
         /// </summary>
         public string Direction { get; set; }
         /// <summary>
-        /// 路口经纬度
+        /// Intersection latitude and longitude
         /// </summary>
         public string Location { get; set; }
         /// <summary>
-        /// 第一条道路id
+        /// The first road id
         /// </summary>
         [JsonProperty("first_id")]
         public string FirstId { get; set; }
         /// <summary>
-        /// 第一条道路名称
+        /// First road name
         /// </summary>
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
         /// <summary>
-        /// 第二条道路id
+        /// The second road id
         /// </summary>
         [JsonProperty("second_id")]
         public string SecondId { get; set; }
         /// <summary>
-        /// 第二条道路名称
+        /// Second road name
         /// </summary>
         [JsonProperty("second_name")]
         public string SecondName { get; set; }
     }
 
     /// <summary>
-    /// poi信息
+    /// poi information
     /// </summary>
     public class Poi
     {
         /// <summary>
-        /// Poi信息
+        /// Poi information
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// poi点名称
+        /// poi point name
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// poi类型
+        /// poi type
         /// </summary>
         public string Type { get; set; }
         /// <summary>
-        /// 电话
+        /// Phone
         /// </summary>
         public string Tel { get; set; }
         /// <summary>
-        /// 该POI的中心点到请求坐标的距离
-        /// 单位：米
+        /// The distance from the center point of the POI to the requested coordinates
+        /// Unit: meters
         /// </summary>
         public string Distance { get; set; }
         /// <summary>
-        /// 方向
-        /// 为输入点相对建筑物的方位
+        /// direction
+        /// is the orientation of the input point relative to the building
         /// </summary>
         public string Direction { get; set; }
         /// <summary>
-        /// poi地址信息
+        /// poi address information
         /// </summary>
         public string Address { get; set; }
         /// <summary>
-        /// 坐标点
+        /// Coordinate point
         /// </summary>
         public string Location { get; set; }
         /// <summary>
-        /// poi所在商圈名称
+        /// The name of the business district where poi is located
         /// </summary>
         public string BusinessArea { get; set; }
     }
     /// <summary>
-    /// aoi信息
+    /// aoi information
     /// </summary>
     public class Aoi
     {
         /// <summary>
-        /// 所属 aoi的id
+        /// The id of the aoi to which it belongs
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// 所属 aoi 名称
+        /// The name of the aoi to which it belongs
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 所属 aoi 所在区域编码
+        /// The region code of the aoi to which it belongs
         /// </summary>
         public string AdCode { get; set; }
         /// <summary>
-        /// 所属 aoi 中心点坐标
+        /// The coordinates of the center point of the aoi it belongs to
         /// </summary>
         public string Location { get; set; }
         /// <summary>
-        /// 所属aoi点面积
-        /// 单位：平方米
+        /// The area of the aoi point it belongs to
+        /// Unit: square meters
         /// </summary>
         public string Area { get; set; }
         /// <summary>
-        /// 输入经纬度是否在aoi面之中
-        /// 0，代表在aoi内 其余整数代表距离AOI的距离
+        /// Whether the input longitude and latitude are in the aoi plane
+        /// 0, means within the aoi. The remaining integers represent the distance from the AOI.
         /// </summary>
         public string Distance { get; set; }
     }

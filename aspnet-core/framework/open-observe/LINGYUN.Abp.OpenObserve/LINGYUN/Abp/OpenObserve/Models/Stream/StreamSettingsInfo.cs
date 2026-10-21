@@ -5,18 +5,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 数据流设置(响应)
+/// Data flow settings (response)
 /// </summary>
 public class StreamSettingsInfo
 {
     /// <summary>
-    /// 分区字段
+    /// Partition field
     /// </summary>
     [JsonPropertyName("partition_keys")]
     public Dictionary<string, object?>? PartitionKeys { get; set; }
 
     /// <summary>
-    /// 全文检索字段
+    /// Full text search field
     /// </summary>
     [JsonPropertyName("full_text_search_keys")]
     public string[]? FullTextSearchKeys { get; set; }

@@ -1,18 +1,18 @@
-# 本地开发 {#development}
+# Local development {#development}
 
-::: tip 代码获取
+::: tip code acquisition
 
-如果你还没有获取代码，可以先从 [快速开始](../introduction/quick-start.md) 处开始阅读文档。
+If you haven't gotten the code yet, you can start reading the documentation at [Quick Start](../introduction/quick-start.md).
 
 :::
 
-## 前置准备
+## Preparation
 
-为了更好的开发体验，我们提供了一些工具配置、项目说明，以便于您更好的开发。
+For a better development experience, we provide some tool configurations and project descriptions to facilitate your better development.
 
-### 需要掌握的基础知识
+### Basic knowledge to be mastered
 
-本项目需要一定前端基础知识，请确保掌握 Vue 的基础知识，以便能处理一些常见的问题。建议在开发前先学一下以下内容，提前了解和学习这些知识，会对项目理解非常有帮助:
+This project requires some basic front-end knowledge. Please make sure to master the basic knowledge of Vue so that you can deal with some common problems. It is recommended to learn the following before development. Understanding and learning this knowledge in advance will be very helpful for project understanding:
 
 - [Vue3](https://vuejs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
@@ -22,143 +22,143 @@
 - [Pnpm](https://pnpm.io/)
 - [Turbo](https://turbo.build/)
 
-### 工具配置
+### Tool configuration
 
-如果您使用的 IDE 是[vscode](https://code.visualstudio.com/)(推荐)的话，可以安装以下工具来提高开发效率及代码格式化:
+If the IDE you are using is [vscode](https://code.visualstudio.com/) (recommended), you can install the following tools to improve development efficiency and code formatting:
 
-- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - Vue 官方插件（必备）。
-- [Tailwind CSS](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Tailwindcss 提示插件。
-- [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=bradlc.vunguyentuan.vscode-css-variables) - Css 变量提示插件。
-- [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - Iconify 图标插件
-- [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally) - i18n 插件
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - 脚本代码检查
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - 代码格式化
-- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - css 格式化
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - 单词语法检查
-- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) - .env 文件 高亮
+- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - Vue official plug-in (required).
+- [Tailwind CSS](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Tailwindcss prompt plugin.
+- [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=bradlc.vunguyentuan.vscode-css-variables) - Css variable prompt plug-in.
+- [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - Iconify icon plug-in
+- [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally) - i18n plug-in
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Script code inspection
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Code formatting
+- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - css formatting
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - Word grammar check
+- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) - .env file highlight
 
 ## Npm Scripts
 
-npm 脚本是项目常见的配置，用于执行一些常见的任务，比如启动项目、打包项目等。以下的脚本都可以在项目根目录的 `package.json` 文件中找到。
+npm scripts are common configurations for projects and are used to perform some common tasks, such as starting projects, packaging projects, etc. The following scripts can be found in the `package.json` file in the project root directory.
 
-执行方式为：`pnpm run [script]` 或 `npm run [script]`。
+The execution method is: `pnpm run [script]` or `npm run [script]`.
 
 ```json
 {
   "scripts": {
-    // 构建项目
+    //Build project
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build",
-    // 构建项目并分析
+    //Build the project and analyze it
     "build:analyze": "turbo build:analyze",
-    // 构建本地 docker 镜像
+    //Build local docker image
     "build:docker": "./build-local-docker-image.sh",
-    // 单独构建 web-antd 应用
+    //Build the web-antd application separately
     "build:antd": "pnpm run build --filter=@vben/web-antd",
-    // 单独构建文档
+    //Build the document separately
     "build:docs": "pnpm run build --filter=@vben/docs",
-    // 单独构建 web-ele 应用
+    //Build the web-ele application separately
     "build:ele": "pnpm run build --filter=@vben/web-ele",
-    // 单独构建 web-naive 应用
+    //Build web-naive application separately
     "build:naive": "pnpm run build --filter=@vben/naive",
-    // 单独构建 web-tdesign 应用
+    //Build the web-tdesign application separately
     "build:tdesign": "pnpm run build --filter=@vben/web-tdesign",
-    // 单独构建 playground 应用
+    //Build the playground application separately
     "build:play": "pnpm run build --filter=@vben/playground",
-    // changeset 版本管理
+    // changeset version management
     "changeset": "pnpm exec changeset",
-    // 检查项目各种问题
+    // Check various issues with the project
     "check": "pnpm run check:circular && pnpm run check:dep && pnpm run check:type && pnpm check:cspell",
-    // 检查循环引用
+    // Check for circular references
     "check:circular": "vsh check-circular",
-    // 检查拼写
+    //check spelling
     "check:cspell": "cspell lint **/*.ts **/README.md .changeset/*.md --no-progress"
-    // 检查依赖
+    // Check dependencies
     "check:dep": "vsh check-dep",
-    // 检查类型
+    // check type
     "check:type": "turbo run typecheck",
-    // 清理项目（删除node_modules、dist、.turbo）等目录
+    // Clean up the project (delete node_modules, dist, .turbo) and other directories
     "clean": "node ./scripts/clean.mjs",
-    // 提交代码
+    //Submit code
     "commit": "czg",
-    // 启动项目（默认会运行整个仓库所有包的dev脚本）
+    //Start the project (the dev script of all packages in the entire warehouse will be run by default)
     "dev": "turbo-run dev",
-    // 启动web-antd应用
+    // Start the web-antd application
     "dev:antd": "pnpm -F @vben/web-antd run dev",
-    // 启动文档
+    // start document
     "dev:docs": "pnpm -F @vben/docs run dev",
-    // 启动web-ele应用
+    //Start the web-ele application
     "dev:ele": "pnpm -F @vben/web-ele run dev",
-    // 启动web-naive应用
+    // Start the web-naive application
     "dev:naive": "pnpm -F @vben/web-naive run dev",
-    // 启动演示应用
+    // Start the demo application
     "dev:play": "pnpm -F @vben/playground run dev",
-    // 格式化代码
+    //Formatting code
     "format": "vsh lint --format",
-    // lint 代码
+    // lint code
     "lint": "vsh lint",
-    // 依赖安装完成之后，执行所有包的stub脚本
+    // After the dependency installation is completed, execute the stub scripts of all packages
     "postinstall": "pnpm -r run stub --if-present",
-    // 只允许使用pnpm
+    //Only allowed to use pnpm
     "preinstall": "npx only-allow pnpm",
-    // lefthook的安装
+    //Installation of lefthook
     "prepare": "is-ci || lefthook install",
-    // 预览应用
+    // Preview application
     "preview": "turbo-run preview",
-    // 包规范检查
+    // Package specification check
     "publint": "vsh publint",
-    // 删除所有的node_modules、yarn.lock、package.lock.json，重新安装依赖
+    // Delete all node_modules, yarn.lock, package.lock.json, and reinstall dependencies
     "reinstall": "pnpm clean --del-lock && pnpm install",
-    // 运行 vitest 单元测试
+    //Run vitest unit tests
     "test:unit": "vitest run --dom",
-    // 更新项目依赖
+    //Update project dependencies
     "update:deps": " pnpm update --latest --recursive",
-    // changeset生成提交集
+    // changeset generates commit set
     "version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile"
   }
 }
 ```
 
-## 本地运行项目
+## Run the project locally
 
-如需本地运行文档，并进行调整，可以执行以下命令，执行该命令，你可以选择需要的应用进行开发：
+If you need to run the document locally and make adjustments, you can execute the following command. After executing this command, you can select the required application for development:
 
 ```bash
 pnpm dev
 ```
 
-如果你想直接运行某个应用，可以执行以下命令：
+If you want to run an application directly, you can execute the following command:
 
-运行 `web-antd` 应用：
+Run the `web-antd` application:
 
 ```bash
 pnpm dev:antd
 ```
 
-运行 `web-naive` 应用：
+Run the `web-naive` application:
 
 ```bash
 pnpm dev:naive
 ```
 
-运行 `web-ele` 应用：
+Run the `web-ele` application:
 
 ```bash
 pnpm dev:ele
 ```
 
-运行 `docs` 应用：
+Run the `docs` application:
 
 ```bash
 pnpm dev:docs
 ```
 
-## 区分构建环境
+## Differentiate build environments
 
-在实际的业务开发中，通常会在构建时区分多种环境，如测试环境`test`、生产环境`build`等。
+In actual business development, multiple environments are usually distinguished during construction, such as test environment `test`, production environment `build`, etc.
 
-此时可以修改三个文件，在其中增加对应的脚本配置来达到区分生产环境的效果。
+At this time, you can modify three files and add corresponding script configurations to achieve the effect of distinguishing the production environment.
 
-以`@vben/web-antd`添加测试环境`test`为例：
+Take `@vben/web-antd` to add the test environment `test` as an example:
 
 - `apps\web-antd\package.json`
 
@@ -173,7 +173,7 @@ pnpm dev:docs
 },
 ```
 
-增加命令`"build:test"`, 并将原`"build"`改为`"build:prod"`以避免同时构建两个环境的包。
+Add the command `"build:test"`, and change the original `"build"` to `"build:prod"` to avoid building packages for two environments at the same time.
 
 - `package.json`
 
@@ -188,7 +188,7 @@ pnpm dev:docs
 }
 ```
 
-在根目录`package.json`中加入构建测试环境的命令
+Add the command to build the test environment in the root directory `package.json`
 
 - `turbo.json`
 
@@ -217,41 +217,41 @@ pnpm dev:docs
     ······
 ```
 
-在`turbo.json`中加入相关依赖的命令
+Add related dependent commands to `turbo.json`
 
-## 公共静态资源
+## Public static resources
 
-项目中需要使用到的公共静态资源，如：图片、静态HTML等，需要在开发中通过 `src="/xxx.png"` 直接引入的。
+Public static resources that need to be used in the project, such as pictures, static HTML, etc., need to be directly introduced during development through `src="/xxx.png"`.
 
-需要将资源放在对应项目的 `public/static` 目录下。引入的路径为：`src="/static/xxx.png"`。
+Resources need to be placed in the `public/static` directory of the corresponding project. The imported path is: `src="/static/xxx.png"`.
 
 ## DevTools
 
-项目内置了 [Vue DevTools](https://github.com/vuejs/devtools-next) 插件，可以在开发过程中使用。默认关闭，可在`.env.development` 内开启，并重新运行项目即可：
+The project has built-in [Vue DevTools](https://github.com/vuejs/devtools-next) plug-in, which can be used during the development process. It is turned off by default. It can be turned on in `.env.development` and re-run the project:
 
 ```bash
 VITE_DEVTOOLS=true
 ```
 
-开启后，项目运行会在页面底部显示一个 Vue DevTools 的图标，点击即可打开 DevTools。
+After it is turned on, a Vue DevTools icon will be displayed at the bottom of the page when the project is running. Click to open DevTools.
 
 ![Vue DevTools](/guide/devtools.png)
 
-## 本地运行文档
+## Run the document locally
 
-如需本地运行文档，并进行调整，可以执行以下命令：
+To run the document locally and make adjustments, you can execute the following command:
 
 ```bash
 pnpm dev:docs
 ```
 
-## 问题解决
+## Problem Solving
 
-如果你在使用过程中遇到依赖相关的问题，可以尝试以下重新安装依赖：
+If you encounter dependency-related problems during use, you can try the following to reinstall the dependencies:
 
 ```bash
-# 请在项目根目录下执行
-# 该命令会删除整个仓库所有的 node_modules、yarn.lock、package.lock.json后
-# 再进行依赖重新安装（安装速度会明显变慢）。
+# Please execute in the project root directory
+# This command will delete all node_modules, yarn.lock, and package.lock.json in the entire warehouse
+# Then reinstall the dependencies (the installation speed will be significantly slower).
 pnpm reinstall
 ```

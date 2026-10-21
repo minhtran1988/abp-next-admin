@@ -41,7 +41,7 @@ public class IdentityServerSessionAuthenticationService : AuthenticationService
         var clientId = principal.FindClientId();
         if (clientId.IsNullOrWhiteSpace())
         {
-            // 从授权回调中获取客户端Id
+            // Get the client ID from the authorization callback
             clientId = FindClientId(context);
         }
 

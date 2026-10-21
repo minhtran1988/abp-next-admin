@@ -3,12 +3,12 @@ using System.Xml.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages;
 /// <summary>
-/// 企业微信事件消息
+/// Enterprise WeChat event message
 /// </summary>
 public abstract class WeChatWorkEventMessage : WeChatEventMessage
 {
     /// <summary>
-    /// 企业应用的id，整型。可在应用的设置页面查看
+    /// The id of the enterprise application, integer type. Can be viewed on the app’s settings page
     /// </summary>
     [XmlElement("AgentID")]
     public int AgentId { get; set; }

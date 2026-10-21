@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.MsgAudits.Request;
 /// <summary>
-/// 获取会话内容存档开启成员列表请求参数
+/// Get session content archive to open member list request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91614" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91614" />
 /// </remarks>
 public class WeChatWorkGetPermitUserListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 拉取对应版本的开启成员列表。1表示办公版；2表示服务版；3表示企业版。非必填，不填写的时候返回全量成员列表
+    /// Pull the list of open members of the corresponding version. 1 represents the office version; 2 represents the service version; 3 represents the enterprise version. Optional, if not filled in, the full member list will be returned.
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
@@ -23,7 +23,7 @@ public class WeChatWorkGetPermitUserListRequest : WeChatWorkRequest
         Type = type; 
     }
     /// <summary>
-    /// 默认
+    /// Default
     /// </summary>
     /// <returns></returns>
     public static WeChatWorkGetPermitUserListRequest Default()
@@ -31,7 +31,7 @@ public class WeChatWorkGetPermitUserListRequest : WeChatWorkRequest
         return new WeChatWorkGetPermitUserListRequest();
     }
     /// <summary>
-    /// 办公版
+    /// Office version
     /// </summary>
     /// <returns></returns>
     public static WeChatWorkGetPermitUserListRequest Office()
@@ -39,7 +39,7 @@ public class WeChatWorkGetPermitUserListRequest : WeChatWorkRequest
         return new WeChatWorkGetPermitUserListRequest(1);
     }
     /// <summary>
-    /// 服务版
+    /// Service version
     /// </summary>
     /// <returns></returns>
     public static WeChatWorkGetPermitUserListRequest Service()
@@ -47,7 +47,7 @@ public class WeChatWorkGetPermitUserListRequest : WeChatWorkRequest
         return new WeChatWorkGetPermitUserListRequest(2);
     }
     /// <summary>
-    /// 企业版
+    /// Enterprise Edition
     /// </summary>
     /// <returns></returns>
     public static WeChatWorkGetPermitUserListRequest Enterprise()

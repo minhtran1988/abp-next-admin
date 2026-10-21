@@ -1,28 +1,28 @@
 # LINGYUN.Abp.Notifications.WeChat.Work
 
-企业微信通知发布模块，提供通过企业微信应用向用户发送消息的功能。
+The Enterprise WeChat notification publishing module provides the function of sending messages to users through the Enterprise WeChat application.
 
-## 功能特性
+## Features
 
-* 支持多种消息类型
-  * 文本消息
-  * 文本卡片消息
-  * Markdown消息
-* 灵活的消息发送目标
-  * 支持发送到指定用户
-  * 支持发送到指定部门
-  * 支持发送到指定标签
-  * 支持发送到多个应用
-* 多语言支持
-  * 支持本地化消息内容
-  * 支持多语言标题和描述
-* 特性开关控制
-  * 支持通过功能开关控制消息发送
-* 扩展性
-  * 支持自定义通知定义
-  * 支持自定义消息处理
+* Support multiple message types
+  * Text message
+  * Text card messages
+  * Markdown message
+* Flexible message sending destination
+  *Support sending to designated users
+  *Support sending to designated departments
+  *Support sending to specified tags
+  *Supports sending to multiple applications
+*Multi-language support
+  * Support localized message content
+  * Supports multi-language titles and descriptions
+* Feature switch control
+  * Supports controlling message sending through function switch
+* Extensibility
+  * Support custom notification definitions
+  * Support custom message processing
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWeChatWorkModule))]
@@ -32,13 +32,13 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置说明
+## Configuration instructions
 
-### 1. 基础配置
+### 1. Basic configuration
 
-消息发送需要在企业微信后台配置应用，并获取相应的应用ID（AgentId）。
+To send messages, you need to configure the application in the enterprise WeChat background and obtain the corresponding application ID (AgentId).
 
-### 2. 通知定义配置
+### 2. Notification definition configuration
 
 ```csharp
 public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
@@ -48,15 +48,15 @@ public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
         var notification = context.Create(
             name: "App.Notification.Test",
             displayName: L("TestNotification"))
-            .WithAgentId("1000001")               // 设置应用ID
-            .WithParty("1|2|3")                   // 设置接收部门
-            .WithTag("TagId1|TagId2")             // 设置接收标签
-            .WithAllAgent();                      // 发送到所有应用
+            .WithAgentId("1000001") //Set application ID
+            .WithParty("1|2|3") //Set the receiving department
+            .WithTag("TagId1|TagId2") //Set the receiving tag
+            .WithAllAgent(); // Send to all applications
     }
 }
 ```
 
-### 3. 发送通知
+### 3. Send notification
 
 ```csharp
 public class YourService
@@ -72,36 +72,36 @@ public class YourService
     {
         var notificationData = new NotificationData();
         
-        // 设置消息内容
-        notificationData.TrySetData("title", "消息标题");
-        notificationData.TrySetData("message", "消息内容");
-        notificationData.TrySetData("description", "消息描述");
+        //Set message content
+        notificationData.TrySetData("title", "Message title");
+        notificationData.TrySetData("message", "Message content");
+        notificationData.TrySetData("description", "Message description");
 
-        // 设置发送目标
-        notificationData.SetAgentId("1000001");   // 设置应用ID
-        notificationData.SetParty("1|2|3");       // 设置接收部门
-        notificationData.SetTag("TagId1|TagId2"); // 设置接收标签
-        notificationData.WithAllAgent();          // 发送到所有应用
+        //Set sending target
+        notificationData.SetAgentId("1000001"); //Set application ID
+        notificationData.SetParty("1|2|3"); //Set the receiving department
+        notificationData.SetTag("TagId1|TagId2"); // Set the receiving tag
+        notificationData.WithAllAgent(); //Send to all applications
 
         await _notificationPublisher.PublishAsync(
-            "App.Notification.Test",              // 通知名称
-            notificationData,                     // 通知数据
-            userIds: new[] { "userId" },          // 接收用户ID列表
-            tenantIds: new[] { "tenantId" }       // 租户ID列表
+            "App.Notification.Test", // notification name
+            notificationData, // notification data
+            userIds: new[] { "userId" }, // Receive user ID list
+            tenantIds: new[] { "tenantId" } // Tenant ID list
         );
     }
 }
 ```
 
-## 注意事项
+## Notes
 
-1. 发送消息时需要确保企业微信应用配置正确，包括应用ID和相关权限。
-2. 部门ID和标签ID需要与企业微信后台配置的一致。
-3. 多个接收者（部门/标签）使用'|'分隔，最多支持100个。
-4. 使用 `WithAllAgent()` 时会向所有配置的应用发送消息。
-5. 消息发送依赖于企业微信API，需要确保网络连接正常。
+1. When sending messages, you need to ensure that the enterprise WeChat application is configured correctly, including the application ID and related permissions.
+2. The department ID and tag ID need to be consistent with the enterprise WeChat background configuration.
+3. Use '|' to separate multiple recipients (departments/labels), up to 100 are supported.
+4. When using `WithAllAgent()`, messages will be sent to all configured applications.
+5. Message sending relies on the Enterprise WeChat API, and you need to ensure that the network connection is normal.
 
-## 更多文档
+## More documentation
 
 * [English Documentation](README.EN.md)
-* [企业微信应用消息开发文档](https://developer.work.weixin.qq.com/document/path/90236)
+* [Enterprise WeChat Application Message Development Document](https://developer.work.weixin.qq.com/document/path/90236)

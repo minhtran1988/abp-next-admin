@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Elsa.Notifications
 
-工作流通知集成, 当工作流触发后, 发布相应事件通知    
+Workflow notification integration, when the workflow is triggered, the corresponding event notification is released
 
-## 可用状态
+## Available status
 
-* Faulted:      工作流执行出现错误  
-* Cancelled:    工作流取消  
-* Completed:    工作流执行完毕  
-* Suspended:    工作流暂停  
+* Faulted: An error occurred during workflow execution
+* Canceled: Workflow canceled
+* Completed: Workflow execution is completed
+*Suspended: Workflow suspended
 
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 
@@ -23,14 +23,14 @@
 ```
 
 ```csharp
-    // 定义通知
+    // define notification
     public class DemoNotificationDefinitionProvider : NotificationDefinitionProvider
     {
         public override void Define(INotificationDefinitionContext context)
         {
             var demoGroup = context.AddGroup("Group");
 
-            // 由于通知的多样性, 需要使用模板消息来传递数据
+            // Due to the diversity of notifications, template messages need to be used to transfer data
             demoGroup.AddNotification("Faulted")
                 .WithTemplate(template => { });
             demoGroup.AddNotification("Cancelled")
@@ -45,7 +45,7 @@
 
 ```csharp
 
-    // 定义工作流
+    //Define workflow
     public class DemoWorkflow : IWorkflow
     {
         public void Build(IWorkflowBuilder builder)
@@ -57,9 +57,9 @@
                 .WithCompletedNotification("Completed")
                 .SetVariable("demo", context =>
                 {
-                    // 可传递自定义参数, 将作为瞬时变量写入到发布的通知数据中
+                    // Custom parameters can be passed and will be written into the published notification data as transient variables.
                     context.WithNotificationData("demo", "demo");
-                    // 自定义用于发布通知的租户标识
+                    // Customize the tenant ID used to publish notifications
                     context.WithNotificationTenantId(Guid.NewGuid());
                 })
                 .WriteLine("Start a workflow.")

@@ -23,27 +23,27 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
 
     dialogHeaderEl.onmousedown = (e: any) => {
       if (!e) return;
-      // 鼠标按下，计算当前元素距离可视区的距离
+      // When the mouse is pressed, calculate the distance between the current element and the visible area
       const disX = e.clientX;
       const disY = e.clientY;
-      const screenWidth = document.body.clientWidth; // body当前宽度
-      const screenHeight = document.documentElement.clientHeight; // 可见区域高度(应为body高度，可某些环境下无法获取)
+      const screenWidth = document.body.clientWidth; // current width of body
+      const screenHeight = document.documentElement.clientHeight; // Visible area height (should be the body height, but it cannot be obtained in some environments)
 
-      const dragDomWidth = dragDom.offsetWidth; // 对话框宽度
-      const dragDomheight = dragDom.offsetHeight; // 对话框高度
+      const dragDomWidth = dragDom.offsetWidth; // Dialog width
+      const dragDomheight = dragDom.offsetHeight; // Dialog height
 
       const minDragDomLeft = dragDom.offsetLeft;
 
       const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth;
       const minDragDomTop = dragDom.offsetTop;
       const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomheight;
-      // 获取到的值带px 正则匹配替换
+      // The obtained value has px regular matching and replacement
       const domLeft = getStyle(dragDom, 'left');
       const domTop = getStyle(dragDom, 'top');
       let styL = +domLeft;
       let styT = +domTop;
 
-      // 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
+      // Note that in IE, the value obtained for the first time is 50% of the component. After moving, the value is assigned to px.
       if (domLeft.includes('%')) {
         styL = +document.body.clientWidth * (+domLeft.replace(/%/g, '') / 100);
         styT = +document.body.clientHeight * (+domTop.replace(/%/g, '') / 100);
@@ -53,11 +53,11 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
       }
 
       document.onmousemove = function (e) {
-        // 通过事件委托，计算移动的距离
+        // Calculate the distance moved through event delegation
         let left = e.clientX - disX;
         let top = e.clientY - disY;
 
-        // 边界处理
+        // Boundary processing
         if (-left > minDragDomLeft) {
           left = -minDragDomLeft;
         } else if (left > maxDragDomLeft) {
@@ -70,7 +70,7 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
           top = maxDragDomTop;
         }
 
-        // 移动当前元素
+        // Move the current element
         dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`;
       };
 
@@ -88,7 +88,7 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
       const display = getStyle(wrap, 'display');
       const draggable = wrap.getAttribute('data-drag');
       if (display !== 'none') {
-        // 拖拽位置
+        // Drag position
         if (draggable === null || unref(context.destroyOnClose)) {
           drag(wrap);
         }

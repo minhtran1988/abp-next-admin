@@ -8,66 +8,66 @@ namespace LINGYUN.Abp.Wrapper;
 public class AbpWrapperOptions
 {
     /// <summary>
-    /// 未处理异常代码
-    /// 默认: 500
+    /// Unhandled exception code
+    /// Default: 500
     /// </summary>
     public string CodeWithUnhandled { get; set; }
     /// <summary>
-    /// 是否启用包装器
-    /// 默认: false
+    /// Whether to enable the wrapper
+    /// Default: false
     /// </summary>
     public bool IsEnabled { get; set; }
     /// <summary>
-    /// 成功时返回代码
-    /// 默认：0
+    /// Return code on success
+    /// Default: 0
     /// </summary>
     public string CodeWithSuccess { get; set; }
     /// <summary>
-    /// 资源为空时是否提示错误
-    /// 默认: false
+    /// Whether to prompt an error when the resource is empty
+    /// Default: false
     /// </summary>
     public bool ErrorWithEmptyResult { get; set; }
     /// <summary>
-    /// 是否启用401错误包装
-    /// 默认: false
+    /// Whether to enable 401 error packaging
+    /// Default: false
     /// </summary>
     public bool IsWrapUnauthorizedEnabled { get; set; }
     /// <summary>
-    /// 资源为空时返回代码
-    /// 默认：404
+    /// Return code when the resource is empty
+    /// Default: 404
     /// </summary>
     public Func<IServiceProvider, string> CodeWithEmptyResult { get; set; }
     /// <summary>
-    /// 资源为空时返回错误消息
+    /// Return an error message when the resource is empty
     /// </summary>
     public Func<IServiceProvider, string> MessageWithEmptyResult { get; set; }
     /// <summary>
-    /// 包装后的返回状态码
-    /// 默认：200  HttpStatusCode.OK
+    /// Return status code after packaging
+    /// Default: 200 HttpStatusCode.OK
     /// </summary>
     public HttpStatusCode HttpStatusCode { get; set; }
     /// <summary>
-    /// 忽略Url开头类型
+    /// Ignore the URL starting type
     /// </summary>
     public IList<string> IgnorePrefixUrls { get; }
     /// <summary>
-    /// 忽略指定命名空间
+    /// Ignore the specified namespace
     /// </summary>
     public IList<string> IgnoreNamespaces { get; }
     /// <summary>
-    /// 忽略控制器
+    /// Ignore controller
     /// </summary>
     public ITypeList IgnoreControllers { get; }
     /// <summary>
-    /// 忽略返回值
+    /// Ignore return value
     /// </summary>
     public ITypeList IgnoreReturnTypes { get; }
     /// <summary>
-    /// 忽略异常
+    /// Ignore exception
     /// </summary>
     public ITypeList<Exception> IgnoreExceptions { get; }
     /// <summary>
-    /// 忽略接口类型
+    /// Ignore interface type
     /// </summary>
     public ITypeList IgnoredInterfaces { get; }
 

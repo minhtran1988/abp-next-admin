@@ -4,75 +4,75 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Models;
 /// <summary>
-/// 会议室详情
+/// Meeting room details
 /// </summary>
 public class MeetingRoomInfo
 {
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [NotNull]
     [JsonProperty("meetingroom_id")]
     [JsonPropertyName("meetingroom_id")]
     public int MeetingRoomId { get; set; }
     /// <summary>
-    /// 会议室名称
+    /// Conference room name
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 会议室容纳人数
+    /// Meeting room capacity
     /// </summary>
     [NotNull]
     [JsonProperty("capacity")]
     [JsonPropertyName("capacity")]
     public int Capacity { get; set; }
     /// <summary>
-    /// 会议室所在城市
+    /// The city where the meeting room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("city")]
     [JsonPropertyName("city")]
     public string? City { get; set; }
     /// <summary>
-    /// 会议室所在楼宇
+    /// The building where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("building")]
     [JsonPropertyName("building")]
     public string? Building { get; set; }
     /// <summary>
-    /// 会议室所在楼层
+    /// The floor where the conference room is located
     /// </summary>
     [CanBeNull]
     [JsonProperty("floor")]
     [JsonPropertyName("floor")]
     public string? Floor { get; set; }
     /// <summary>
-    /// 会议室支持的设备列表
+    /// List of devices supported by the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("equipment")]
     [JsonPropertyName("equipment")]
     public int[] Equipment { get; set; } = default!;
     /// <summary>
-    /// 会议室坐标
+    /// Conference room coordinates
     /// </summary>
     [CanBeNull]
     [JsonProperty("coordinate")]
     [JsonPropertyName("coordinate")]
     public MeetingRoomCoordinate? Coordinate { get; set; }
     /// <summary>
-    /// 会议室使用范围
+    /// Meeting room usage range
     /// </summary>
     [CanBeNull]
     [JsonProperty("range")]
     [JsonPropertyName("range")]
     public MeetingRoomRange? Range { get; set; }
     /// <summary>
-    /// 是否需要审批 0-无需审批 1-需要审批
+    /// Whether approval is required 0-No approval required 1-Approval required
     /// </summary>
     [NotNull]
     [JsonProperty("need_approval")]

@@ -6,10 +6,10 @@
       </div>
       <div class="node-body-main" @click="$emit('selected')">
         <div class="node-body-main-header">
-          <Ellipsis class="title" hover-tip :content="config.name ? config.name : '条件' + level" />
-          <span class="level">优先级{{ level }}</span>
+          <Ellipsis class="title" hover-tip :content="config.name ? config.name : 'condition' + level" />
+          <span class="level">Priority{{ level }}</span>
           <span class="option">
-            <Tooltip effect="dark" content="复制条件" placement="top">
+            <Tooltip effect="dark" content="Copy condition" placement="top">
               <CopyOutlined @click.stop="$emit('copy')" />
             </Tooltip>
             <CloseOutlined class="icon-close" @click.stop="$emit('delNode')" />
@@ -66,12 +66,12 @@
         return {};
       },
     },
-    //索引位置
+    // index position
     level: {
       type: Number,
       default: 1,
     },
-    //条件数
+    // condition number
     size: {
       type: Number,
       default: 0,
@@ -88,9 +88,9 @@
         switch (subCondition.valueType) {
           case 'dept':
           case 'user':
-            subConditionStr = `${subCondition.title}属于[${String(
+            subConditionStr = `${subCondition.title} belongs to [${String(
               subCondition.value.map((u) => u.name),
-            ).replaceAll(',', '. ')}]之一`;
+            ).replaceAll(',', '. ')}] one`;
             break;
           case 'number':
           case 'string':
@@ -99,28 +99,28 @@
         }
         subConditions.push(subConditionStr);
       });
-      //根据子条件关系构建描述
+      // Construct description based on sub-condition relationship
       let subConditionsStr = String(subConditions).replaceAll(
         ',',
         subConditions.length > 1
           ? group.groupType === 'AND'
-            ? ') 且 ('
-            : ') 或 ('
+            ? ') and ('
+            : ') or ('
           : group.groupType === 'AND'
-          ? ' 且 '
-          : ' 或 ',
+          ? ' and '
+          : ' or ',
       );
       confitions.push(subConditions.length > 1 ? `(${subConditionsStr})` : subConditionsStr);
     });
-    //构建最终描述
+    // Construct the final description
     return String(confitions).replaceAll(
       ',',
-      props.config.props.groupsType === 'AND' ? ' 且 ' : ' 或 ',
+      props.config.props.groupsType === 'AND' ? ' AND ' : ' OR ',
     );
   });
   const state = reactive({
     groupNames: [] as string[],
-    placeholder: '请设置条件',
+    placeholder: 'Please set conditions',
     errorInfo: '',
     showError: false,
   });
@@ -132,7 +132,7 @@
   function getOrdinaryConditionContent(subCondition: any) {
     switch (subCondition.compare) {
       case 'IN':
-        return `${subCondition.title}为[${String(subCondition.value).replaceAll(',', '、')}]中之一`;
+        return `${subCondition.title} is one of [${String(subCondition.value).replaceAll(',', ', ')}]`;
       case 'B':
         return `${subCondition.value[0]} < ${subCondition.title} < ${subCondition.value[1]}`;
       case 'AB':
@@ -157,14 +157,14 @@
     const thatProps = props.config.props;
     if (thatProps.groups.length <= 0) {
       state.showError = true;
-      state.errorInfo = '请设置分支条件';
-      err.push(`${props.config.name} 未设置条件`);
+      state.errorInfo = 'Please set branch conditions';
+      err.push(`${props.config.name} condition not set`);
     } else {
       for (let i = 0; i < thatProps.groups.length; i++) {
         if (thatProps.groups[i].cids.length === 0) {
           state.showError = true;
-          state.errorInfo = `请设置条件组${thatProps.groupNames[i]}内的条件`;
-          err.push(`条件 ${props.config.name} 条件组${thatProps.groupNames[i]}内未设置条件`);
+          state.errorInfo = `Please set the conditions in the condition group ${thatProps.groupNames[i]}`;
+          err.push(`Condition ${props.config.name} condition group ${thatProps.groupNames[i]} has no condition set`);
           break;
         } else {
           let conditions = thatProps.groups[i].conditions;
@@ -176,9 +176,9 @@
               state.showError = false;
             }
             if (state.showError) {
-              state.errorInfo = `请完善条件组${thatProps.groupNames[i]}内的${subc.title}条件`;
+              state.errorInfo = `Please complete the ${subc.title} condition in the condition group ${thatProps.groupNames[i]}`;
               err.push(
-                `条件 ${props.config.name} 条件组${thatProps.groupNames[i]}内${subc.title}条件未完善`,
+                `Condition ${props.config.name} condition group ${thatProps.groupNames[i]} condition ${subc.title} is not complete`,
               );
               return false;
             }

@@ -8,10 +8,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string FileMessage = Prefix + "file_message";
 
     /// <summary>
-    /// 文件消息通知
+    /// File message notification
     /// </summary>
-    /// <param name="notificationData">通知内容</param>
-    /// <param name="fileMessage">文件消息</param>
+    /// <param name="notificationData">Notification content</param>
+    /// <param name="fileMessage">File message</param>
     public static void WithFileMessage(
         this NotificationData notificationData,
         MediaMessage fileMessage)
@@ -20,7 +20,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试获取文件消息
+    /// Try to get the file message
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="fileMessage"></param>

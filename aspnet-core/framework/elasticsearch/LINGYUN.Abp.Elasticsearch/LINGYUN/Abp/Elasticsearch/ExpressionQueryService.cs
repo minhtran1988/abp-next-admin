@@ -70,7 +70,7 @@ public class ExpressionQueryService : IExpressionQueryService, ITransientDepende
             }
         }
 
-        // 数量超过10000且存在排序时才可以使用SearchAfter特性
+        // The SearchAfter attribute can only be used when the number exceeds 10,000 and sorting exists.
         return skipCount >= 10000 && sorts != null
             ? await SearchAfter<TDocument>(
                 client, 
@@ -202,7 +202,7 @@ public class ExpressionQueryService : IExpressionQueryService, ITransientDepende
         int skipCount,
         CancellationToken cancellationToken = default)
     {
-        // 10000以内直接取最后一条数据
+        // Get the last data directly within 10000
         if (skipCount < 10000)
         {
             var response = await client.SearchAsync<EmptyDocument>(
@@ -225,7 +225,7 @@ public class ExpressionQueryService : IExpressionQueryService, ITransientDepende
             return hit?.Sort?.ToList();
         }
 
-        // 获取第9999条数据Hits作为searchAfter
+        // Get the 9999th data Hits as searchAfter
         var firstResponse = await client.SearchAsync<EmptyDocument>(
             dsl => dsl.Indices(indexName)
                     .Query(query)

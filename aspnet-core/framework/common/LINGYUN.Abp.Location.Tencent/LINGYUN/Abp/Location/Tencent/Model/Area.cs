@@ -3,33 +3,33 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// 区域信息
+/// Region information
 /// </summary>
 public class Area
 {
     /// <summary>
-    /// 地点唯一标识
+    /// Unique identifier of location
     /// </summary>
     [JsonProperty("id")]
     public string Id { get; set; } = default!;
     /// <summary>
-    /// 名称/标题
+    /// name/title
     /// </summary>
     [JsonProperty("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 坐标
+    /// coordinates
     /// </summary>
     [JsonProperty("location")]
     public Location Location { get; set; } = new Location();
     /// <summary>
-    /// 此参考位置到输入坐标的直线距离
+    /// The straight-line distance from this reference position to the input coordinates
     /// </summary>
     [JsonProperty("_distance")]
     public string? Distance { get; set; }
     /// <summary>
-    /// 此参考位置到输入坐标的方位关系，
-    /// 如：北、南、内
+    /// The azimuth relationship between this reference position and the input coordinates,
+    /// Such as: north, south, inner
     /// </summary>
     [JsonProperty("_dir_desc")]
     public string? DirDescription { get; set; }

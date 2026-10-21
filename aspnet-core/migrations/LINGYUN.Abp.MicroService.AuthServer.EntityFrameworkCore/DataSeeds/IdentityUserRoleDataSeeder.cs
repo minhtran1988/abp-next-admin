@@ -118,7 +118,7 @@ public class IdentityUserRoleDataSeeder : ITransientDependency
 
             adminUser.AddRole(adminRoleId);
 
-            // 创建租户管理用户
+            // Create tenant management user
             (await UserManager.CreateAsync(adminUser)).CheckErrors();
 
             Logger.LogInformation("Add user {adminUserName} password.", adminUserName);

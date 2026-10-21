@@ -2,24 +2,24 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Models;
 /// <summary>
-/// 预定状态
+/// Reservation status
 /// </summary>
-[Description("预定状态")]
+[Description("Reservation status")]
 public enum MeetingRoomScheduleStatus
 {
     /// <summary>
-    /// 已预定
+    /// Already booked
     /// </summary>
-    [Description("已预定")]
+    [Description("Reserved")]
     Reserved = 0,
     /// <summary>
-    /// 申请中
+    /// Applying
     /// </summary>
-    [Description("申请中")]
+    [Description("Applying")]
     Applying = 2,
     /// <summary>
-    /// 审批中
+    /// Under approval
     /// </summary>
-    [Description("审批中")]
+    [Description("Under Approval")]
     Approvaling = 3,
 }

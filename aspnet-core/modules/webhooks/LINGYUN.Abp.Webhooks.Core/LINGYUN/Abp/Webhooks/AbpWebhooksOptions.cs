@@ -8,19 +8,19 @@ namespace LINGYUN.Abp.Webhooks;
 public class AbpWebhooksOptions
 {
     /// <summary>
-    /// 默认超时时间
+    /// Default timeout
     /// </summary>
     public TimeSpan TimeoutDuration { get; set; }
     /// <summary>
-    /// 默认最大发送次数
+    /// Default maximum number of sending times
     /// </summary>
     public int MaxSendAttemptCount { get; set; }
     /// <summary>
-    /// 是否达到最大连续失败次数时自动取消订阅
+    /// Whether to automatically cancel the subscription when the maximum number of consecutive failures is reached
     /// </summary>
     public bool IsAutomaticSubscriptionDeactivationEnabled { get; set; }
     /// <summary>
-    /// 取消订阅前最大连续失败次数
+    /// Maximum number of consecutive failures before canceling subscription
     /// </summary>
     public int MaxConsecutiveFailCountBeforeDeactivateSubscription { get; set; }
 
@@ -30,11 +30,11 @@ public class AbpWebhooksOptions
 
     public HashSet<string> DeletedWebhookGroups { get; }
     /// <summary>
-    /// 默认请求头
+    /// Default request header
     /// </summary>
     public IDictionary<string, string> DefaultHttpHeaders { get; }
     /// <summary>
-    /// 默认发送方标识
+    /// Default sender ID
     /// </summary>
     public string DefaultAgentIdentifier { get; set; }
     public AbpWebhooksOptions()
@@ -50,11 +50,11 @@ public class AbpWebhooksOptions
 
         DefaultHttpHeaders = new Dictionary<string, string>
         {
-            // 取消响应内容包装
+            // Cancel response content packaging
             { "_AbpDontWrapResult", "true" },
-            // TODO: 可能跨域影响
+            // TODO: Possible cross-domain impact
             // { "X-Requested-With", "XMLHttpRequest" },
-            // 标识来源
+            // identify source
             { "X-Requested-From", "abp-webhooks" },
         };
 

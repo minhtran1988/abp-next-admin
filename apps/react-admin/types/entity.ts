@@ -13,13 +13,13 @@ export interface UserInfo {
 	role?: Role;
 	status?: BasicStatus;
 	permissions?: Permission[];
-	//TODO 清理无用的信息
+	// TODO clean up useless information
 	/**
-	 * 用户描述
+	 * User description
 	 */
 	desc: string;
 	/**
-	 * 首页地址
+	 * Home page address
 	 */
 	homePath: string;
 
@@ -28,23 +28,23 @@ export interface UserInfo {
 	 */
 	token: string;
 	/**
-	 * 头像
+	 * Avatar
 	 */
 	avatar: string;
 	/**
-	 * 用户昵称
+	 * User nickname
 	 */
 	realName: string;
 	/**
-	 * 用户角色
+	 * User role
 	 */
 	roles?: string[];
 	/**
-	 * 用户id
+	 * user id
 	 */
 	userId: string;
 	/**
-	 * 用户名
+	 * Username
 	 */
 	username: string;
 }

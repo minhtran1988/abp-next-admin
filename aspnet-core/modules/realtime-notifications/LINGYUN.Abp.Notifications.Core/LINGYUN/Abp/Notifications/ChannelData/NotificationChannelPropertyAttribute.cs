@@ -3,33 +3,33 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 标记通知渠道数据(载荷)的属性参与类型化读写
+/// Mark the attributes of notification channel data (payload) to participate in typed reading and writing
 /// </summary>
 /// <remarks>
 /// <para>
-/// 参与读写的属性名称默认取属性名, 也可以通过 <see cref="Name"/> 显式指定,
-/// 以便兼容历史遗留的通知数据键(例如 <c>TemplateId</c> 这类未加前缀的键)。
+/// The name of the attribute participating in reading and writing is the attribute name by default, or it can be specified explicitly through <see cref="Name"/>.
+/// In order to be compatible with historical notification data keys (such as unprefixed keys such as <c>TemplateId</c>).
 /// </para>
 /// <para>
-/// 读写过程会做弱类型转换, 因此数据无论经历过多少次
-/// JSON 序列化/反序列化(持久化、失败重试、跨进程投递)都不会丢失。
+/// The reading and writing process will perform weak type conversion, so no matter how many times the data has been
+/// JSON serialization/deserialization (persistence, failure retry, cross-process delivery) will not be lost.
 /// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 public sealed class NotificationChannelPropertyAttribute : Attribute
 {
     /// <summary>
-    /// 通知数据中的键名, 为空时取属性名
+    /// The key name in the notification data, if it is empty, take the attribute name
     /// </summary>
     public string? Name { get; }
 
     /// <summary>
-    /// 匹配载荷时是否忽略本属性
+    /// Whether to ignore this attribute when matching the payload
     /// </summary>
     /// <remarks>
-    /// 适用于"投递选项"这类不决定载荷形态的属性,
-    /// 例如企业微信的接收人(to_user/toparty/totag)。
-    /// 投递选项单独存在时不代表某个消息载荷存在。
+    /// Applicable to attributes such as "delivery options" that do not determine the payload form.
+    /// For example, the recipient of Enterprise WeChat (to_user/toparty/totag).
+    /// The presence of a delivery option alone does not mean that a certain message payload exists.
     /// </remarks>
     public bool IgnoreWhenMatching { get; set; }
 

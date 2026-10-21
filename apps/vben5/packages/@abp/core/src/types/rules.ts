@@ -11,41 +11,41 @@ import type {
   Rule,
 } from './validations';
 
-/** 规则创建器 */
+/** Rule Creator */
 interface RuleCreator {
-  /** 自定义验证器 */
+  /** Custom validator */
   defineValidator(field: FieldDefineValidator): Rule[];
-  /** input 与 value 是否匹配 */
+  /** Whether input and value match */
   doNotMatch(field: FieldMatch): Rule[];
-  /** 字段{0}不是有效的信用卡号码 */
+  /** Field {0} is not a valid credit card number */
   fieldDoNotValidCreditCardNumber(field: Field): Rule[];
-  /** 字段{0}不是有效的邮箱地址 */
+  /** Field {0} is not a valid email address */
   fieldDoNotValidEmailAddress(field: Field): Rule[];
-  /** 字段{0}不是有效的完全限定的http,https或ftp URL. */
+  /** Field {0} is not a valid fully qualified http, https or ftp URL. */
   fieldDoNotValidFullyQualifiedUrl(field: Field): Rule[];
-  /** 字段{0}不是有效的手机号码 */
+  /** Field {0} is not a valid mobile phone number */
   fieldDoNotValidPhoneNumber(field: Field): Rule[];
-  /** 字段是无效值 */
+  /** The field is an invalid value */
   fieldInvalid(field: FieldValidator): Rule[];
-  /** 验证未通过 */
+  /** Verification failed */
   fieldIsNotValid(field: FieldValidator): Rule[];
-  /** 字段{0}值必须在{1}和{2}范围内 */
+  /** The value of field {0} must be within the range of {1} and {2} */
   fieldMustBeetWeen(field: FieldBeetWeen): Rule[];
-  /** 字段{0}必须是最大长度为'{1}'的字符串或数组 */
+  /** Field {0} must be a string or array with a maximum length of '{1}' */
   fieldMustBeStringOrArrayWithMaximumLength(field: FieldLength): Rule[];
-  /** 字段{0}必须是最小长度为'{1}'的字符串或数组 */
+  /** Field {0} must be a string or array with a minimum length of '{1}' */
   fieldMustBeStringOrArrayWithMinimumLength(field: FieldLength): Rule[];
-  /** 字段{0}必须是最大长度为{1}的字符串 */
+  /** Field {0} must be a string with a maximum length of {1} */
   fieldMustBeStringWithMaximumLength(field: FieldLength): Rule[];
-  /** 字段{0}必须是最小长度为{2}并且最大长度{1}的字符串 */
+  /** Field {0} must be a string with a minimum length of {2} and a maximum length of {1} */
   fieldMustBeStringWithMinimumLengthAndMaximumLength(field: FieldRange): Rule[];
-  /** 字段{0}与正则表达式不匹配 */
+  /** Field {0} does not match the regular expression */
   fieldMustMatchRegularExpression(field: FieldRegular): Rule[];
-  /** {0}字段只允许以下扩展名的文件: {1} */
+  /** The {0} field only allows files with the following extensions: {1} */
   fieldOnlyAcceptsFilesExtensions(field: FieldContains): Rule[];
-  /** 字段{0}不可为空 */
+  /** Field {0} cannot be empty */
   fieldRequired(field: Field): Rule[];
-  /** 获取一个错误枚举验证消息 */
+  /** Get an error enumeration verification message */
   mapEnumValidMessage(
     enumName: string,
     args?: any[] | Record<string, string> | undefined,

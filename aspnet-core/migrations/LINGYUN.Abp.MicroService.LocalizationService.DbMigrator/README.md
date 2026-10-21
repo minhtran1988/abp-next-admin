@@ -1,21 +1,21 @@
 # LINGYUN.Abp.MicroService.LocalizationService.DbMigrator
 
-本地化管理数据库迁移控制台应用程序，用于执行本地化管理系统的数据库迁移和初始化种子数据。
+The localization management database migration console application is used to perform database migration and initialize seed data of the localization management system.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 初始化系统必要的种子数据
-* 支持命令行参数配置
-* 集成Autofac依赖注入容器
-* 继承本地化管理系统的所有迁移功能
-* 支持多语言资源管理
-* 支持动态语言文本管理
-* 支持语言管理
+* Automatically perform database migration
+* Initialize the necessary seed data for the system
+* Support command line parameter configuration
+* Integrate Autofac dependency injection container
+* Inherit all migration functions of the localization management system
+*Support multi-language resource management
+* Support dynamic language text management
+*Support language management
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -24,45 +24,45 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "LocalizationManagementDbMigrator": "你的数据库连接字符串"
+    "LocalizationManagementDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置LocalizationManagementDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the LocalizationManagementDbMigrator connection string in appsettings.json
 
-2. 运行迁移程序
+2. Run the migration program
    ```bash
    dotnet run
    ```
 
-## 命令行参数
+## Command line parameters
 
 * --database-provider
-  * 指定数据库提供程序 (默认: MySQL)
+  * Specify database provider (default: MySQL)
 * --connection-string
-  * 指定数据库连接字符串
+  * Specify database connection string
 * --skip-db-migrations
-  * 跳过数据库迁移
+  * Skip database migration
 * --skip-seed-data
-  * 跳过种子数据初始化
+  * Skip seed data initialization
 
-## 种子数据
+## Seed data
 
-* 默认语言配置
-* 基础本地化资源
-* 系统文本资源
-* 默认权限配置
+*Default language configuration
+*Basic localization resources
+* System text resources
+*Default permission configuration
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [ABP本地化文档](https://docs.abp.io/zh-Hans/abp/latest/Localization)
+* [ABP Documentation](https://docs.abp.io)
+* [ABP Localization Document](https://docs.abp.io/zh-Hans/abp/latest/Localization)

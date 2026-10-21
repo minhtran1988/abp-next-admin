@@ -5,22 +5,22 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Request;
 /// <summary>
-/// 获取规则组列表请求参数
+/// Get the rule group list request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E8%8E%B7%E5%8F%96%E8%A7%84%E5%88%99%E7%BB%84%E5%88%97%E8%A1%A8" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E8%8E%B7%E5%8F%96%E8%A7%84%E5%88%99%E7%BB%84%E5%88%97%E8%A1%A8" />
 /// </remarks>
 public class WeChatWorkGetCustomerStrategyListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 分页查询游标，首次调用可不填
+    /// Paging query cursor, you don’t need to fill it in for the first time.
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; }
     /// <summary>
-    /// 分页大小,默认为1000，最大不超过1000
+    /// Paging size, the default is 1000, the maximum is not more than 1000
     /// </summary>
     [CanBeNull]
     [JsonProperty("limit")]

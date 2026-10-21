@@ -5,33 +5,33 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 卡片的点击跳转事件
+/// Card click jump event
 /// </summary>
 public class WebhookTemplateCardAction
 {
     /// <summary>
-    /// 卡片跳转类型，1 代表跳转url，2 代表打开小程序。text_notice模版卡片中该字段取值范围为[1,2]
+    /// Card jump type, 1 means jump to url, 2 means open mini program. The value range of this field in the text_notice template card is [1,2]
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public int Type { get; set; }
     /// <summary>
-    /// 跳转链接的url，type是1时必填
+    /// The url of the jump link, required when type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的appid，type是2时必填
+    /// The appid of the mini program that you click to jump to. Required when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的pagepath，type是2时选填
+    /// Click to jump to the pagepath of the applet. Optional when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]
@@ -50,9 +50,9 @@ public class WebhookTemplateCardAction
         PagePath = pagePath;
     }
     /// <summary>
-    /// 创建一个跳转链接卡片事件
+    /// Create a jump link card event
     /// </summary>
-    /// <param name="url">跳转链接的url</param>
+    /// <param name="url">URL of jump link</param>
     /// <returns></returns>
     public static WebhookTemplateCardAction Link(string url)
     {
@@ -61,10 +61,10 @@ public class WebhookTemplateCardAction
         return new WebhookTemplateCardAction(1, url);
     }
     /// <summary>
-    /// 创建一个跳转小程序卡片事件
+    /// Create a jump applet card event
     /// </summary>
-    /// <param name="appId">小程序的appid</param>
-    /// <param name="pagePath">小程序的pagePath</param>
+    /// <param name="appId">appid of the mini program</param>
+    /// <param name="pagePath">pagePath of the applet</param>
     /// <returns></returns>
     public static WebhookTemplateCardAction MiniProgram(string appId, string pagePath)
     {

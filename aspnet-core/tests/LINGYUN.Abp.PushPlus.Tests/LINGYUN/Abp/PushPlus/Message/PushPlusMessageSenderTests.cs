@@ -5,8 +5,8 @@ using Shouldly;
 namespace LINGYUN.Abp.PushPlus.Message;
 
 /// <summary>
-/// TODO: 接入webhook测试
-/// TODO: 接入企业微信测试
+/// TODO: Access webhook test
+/// TODO: Access enterprise WeChat test
 /// </summary>
 public class PushPlusMessageSenderTests : AbpPushPlusTestBase
 {

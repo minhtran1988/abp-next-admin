@@ -20,68 +20,68 @@ interface Rule {
 }
 
 interface Field extends Rule {
-  /** 连接符
-   * @description 用于本地化字段名称时的连接字符
+  /** Connector
+   * @description Connection character used when localizing field names
    * @example . => L('ResourceName.DisplayName.Field')
    * @example : => L('ResourceName.DisplayName:Field')
    */
   connector?: string;
-  /** 字段名称 */
+  /** Field name */
   name?: string;
-  /** 字段前缀
-   * @description 用于本地化字段名称
+  /** Field prefix
+   * @description for localized field names
    * @example DisplayName => L('ResourceName.DisplayName:Field')
    */
   prefix?: string;
-  /** 本地化资源 */
+  /** Localized resources */
   resourceName?: string;
 }
 
 interface FieldRequired extends Field {
-  /** 是否必须 */
+  /** Is it necessary */
   required?: boolean;
 }
 
 interface FieldBeetWeen extends Field {
-  /** 结束值 */
+  /** end value */
   end: number;
-  /** 起始值 */
+  /** Starting value */
   start: number;
 }
 
 interface FieldLength extends Field {
-  /** 长度 */
+  /** length */
   length: number;
 }
 
 interface FieldRange extends Field {
-  /** 最大数值 */
+  /** Maximum value */
   maximum: number;
-  /** 最小数值 */
+  /** Minimum value */
   minimum: number;
 }
 
 interface FieldRegular extends Field {
-  /** 正则表达式 */
+  /** Regular expression */
   expression: string;
 }
 
 interface FieldMatch extends FieldRequired {
-  /** 对比字段 */
+  /** Compare fields */
   matchField: string;
-  /** 对比字段值 */
+  /** Compare field values */
   matchValue: string;
-  /** 字段名称 */
+  /** Field name */
   name: string;
 }
 
 interface FieldContains extends Field {
-  /** 验证的值中是否包含在定义的值中 */
+  /** Verify whether the value is included in the defined value */
   value: string;
 }
 
 interface FieldValidator extends FieldRequired {
-  /** 值是否有效验证器 */
+  /**Validity validator */
   validator: (value: any) => boolean;
 }
 

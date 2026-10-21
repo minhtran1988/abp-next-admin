@@ -7,7 +7,7 @@ namespace LINGYUN.Abp.WeChat.Work.Common.Members.Models;
 public class MemberExtendAttribute
 {
     /// <summary>
-    /// 扩展属性
+    /// Extended attributes
     /// </summary>
     [XmlElement("Item")]
     public List<MemberExtend>? Items { get;set; }
@@ -16,52 +16,52 @@ public class MemberExtendAttribute
 public class MemberExtend
 {
     /// <summary>
-    /// 扩展属性类型: 0-文本 1-网页
+    /// Extended attribute type: 0-text 1-web page
     /// </summary>
     [XmlElement("Type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 扩展属性名称
+    /// Extended attribute name
     /// </summary>
     [XmlElement("Name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 文本属性内容
+    /// Text attribute content
     /// </summary>
     [XmlElement("Text", IsNullable = true)]
     public MemberTextExtend? Text { get; set; }
     /// <summary>
-    /// Web属性内容
+    /// Web attribute content
     /// </summary>
     [XmlElement("Web", IsNullable = true)]
     public MemberWebExtend? Web { get; set; }
 }
 
 /// <summary>
-/// 文本属性类型，扩展属性类型为0时填写
+/// Text attribute type, fill in when the extended attribute type is 0
 /// </summary>
 [XmlRoot("Text")]
 public class MemberTextExtend 
 {
     /// <summary>
-    /// 文本属性内容
+    /// Text attribute content
     /// </summary>
     [XmlElement("Value")]
     public string Value { get; set; } = default!;
 }
 /// <summary>
-/// 网页类型属性，扩展属性类型为1时填写
+/// Web page type attribute, fill in when the extended attribute type is 1
 /// </summary>
 [XmlRoot("Web")]
 public class MemberWebExtend
 {
     /// <summary>
-    /// 网页的展示标题
+    /// Display title of the web page
     /// </summary>
     [XmlElement("Title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 网页的url
+    /// URL of the web page
     /// </summary>
     [XmlElement("Url")]
     public string Url { get; set; } = default!;

@@ -1,9 +1,9 @@
 # LINGYUN.Abp.Elsa.Server
 
-Elsa.Server.Api集成, 处理elsa默认端点    
+Elsa.Server.Api integration, handles elsa default endpoint
 
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 

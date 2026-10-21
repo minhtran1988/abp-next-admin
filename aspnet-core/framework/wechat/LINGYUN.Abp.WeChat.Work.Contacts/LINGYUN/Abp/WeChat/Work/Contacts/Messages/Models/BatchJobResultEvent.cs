@@ -5,16 +5,16 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 异步任务完成通知
+/// Asynchronous task completion notification
 /// </summary>
 /// <remarks>
-/// 本事件是成员在使用异步任务接口时，用于接收任务执行完毕的结果通知。
+/// This event is used by members to receive notification of the completion of task execution when members use the asynchronous task interface.
 /// </remarks>
 [EventName("batch_job_result")]
 public class BatchJobResultEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 异步任务信息
+    /// Asynchronous task information
     /// </summary>
     [XmlElement("BatchJob")]
     public BatchJob BatchJob { get; set; } = default!;
@@ -28,22 +28,22 @@ public class BatchJobResultEvent : WeChatWorkEventMessage
 public class BatchJob
 {
     /// <summary>
-    /// 异步任务id，最大长度为64字符
+    /// Asynchronous task id, the maximum length is 64 characters
     /// </summary>
     [XmlElement("JobId")]
     public string JobId { get; set; } = default!;
     /// <summary>
-    /// 操作类型，字符串，目前分别有：sync_user(增量更新成员)、 replace_user(全量覆盖成员）、invite_user(邀请成员关注）、replace_party(全量覆盖部门)
+    /// Operation type, string, currently includes: sync_user (incremental update of members), replace_user (full coverage of members), invite_user (invite members to follow), replace_party (full coverage of departments)
     /// </summary>
     [XmlElement("JobType")]
     public string JobType { get; set; } = default!;
     /// <summary>
-    /// 返回码
+    /// return code
     /// </summary>
     [XmlElement("ErrCode")]
     public int ErrCode { get; set; }
     /// <summary>
-    /// 对返回码的文本描述内容
+    /// Text description of the return code
     /// </summary>
     [XmlElement("ErrMsg")]
     public string? ErrMsg { get; set; }

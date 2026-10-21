@@ -10,11 +10,11 @@ import { Slot } from '@vben-core/shadcn-ui';
 
 interface Props {
   /**
-   * 内容区域定宽
+   *Content area fixed width
    */
   contentCompact: ContentCompactType;
   /**
-   * 定宽布局宽度
+   * Fixed width layout width
    */
   contentCompactWidth: number;
   padding: number;

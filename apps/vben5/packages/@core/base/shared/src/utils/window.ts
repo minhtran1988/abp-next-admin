@@ -5,26 +5,26 @@ interface OpenWindowOptions {
 }
 
 /**
- * 新窗口打开URL。
+ * URL opens in new window.
  *
- * @param url - 需要打开的网址。
- * @param options - 打开窗口的选项。
+ * @param url - the URL that needs to be opened.
+ * @param options - Options for opening the window.
  */
 function openWindow(url: string, options: OpenWindowOptions = {}): void {
-  // 解构并设置默认值
+  // Destructure and set default values
   const { noopener = true, noreferrer = true, target = '_blank' } = options;
 
-  // 基于选项创建特性字符串
+  // Create attribute string based on options
   const features = [noopener && 'noopener=yes', noreferrer && 'noreferrer=yes']
     .filter(Boolean)
     .join(',');
 
-  // 打开窗口
+  // open window
   window.open(url, target, features);
 }
 
 /**
- * 在新窗口中打开路由。
+ * Open route in new window.
  * @param path
  */
 function openRouteInNewWindow(path: string) {

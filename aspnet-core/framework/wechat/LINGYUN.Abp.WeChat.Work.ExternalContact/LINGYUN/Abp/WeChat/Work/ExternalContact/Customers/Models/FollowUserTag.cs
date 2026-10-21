@@ -4,33 +4,33 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 外部联系人所打标签
+/// Tags tagged by external contacts
 /// </summary>
 public class FollowUserTag
 {
     /// <summary>
-    /// 该成员添加此外部联系人所打标签的分组名称
+    /// The member adds the group name tagged by this external contact
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_name")]
     [JsonPropertyName("group_name")]
     public string? GroupName { get; set; }
     /// <summary>
-    /// 该成员添加此外部联系人所打标签名称
+    /// The member adds the tag name of this external contact
     /// </summary>
     [NotNull]
     [JsonProperty("tag_name")]
     [JsonPropertyName("tag_name")]
     public string TagName { get; set; } = default!;
     /// <summary>
-    /// 该成员添加此外部联系人所打标签类型
+    /// The member adds the tag type of this external contact
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public FollowUserTagType Type { get; set; }
     /// <summary>
-    /// 该成员添加此外部联系人所打企业标签的id，用户自定义类型标签（type=2）不返回
+    /// The member adds the id of the enterprise label marked by this external contact. User-defined type labels (type=2) are not returned.
     /// </summary>
     [CanBeNull]
     [JsonProperty("tag_id")]

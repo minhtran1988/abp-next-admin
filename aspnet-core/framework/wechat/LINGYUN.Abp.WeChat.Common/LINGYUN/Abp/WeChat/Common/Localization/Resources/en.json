@@ -1,16 +1,16 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "WeChat:-40001": "签名验证错误",
-    "WeChat:-40002": "xml/json解析失败",
-    "WeChat:-40003": "sha加密生成签名失败",
-    "WeChat:-40004": "AESKey 非法",
-    "WeChat:-40005": "AppId 校验错误",
-    "WeChat:-40006": "AES 加密失败",
-    "WeChat:-40007": "AES 解密失败",
-    "WeChat:-40008": "解密后得到的buffer非法",
-    "WeChat:-40009": "base64加密失败",
-    "WeChat:-40010": "base64解密失败",
-    "WeChat:-40011": "生成xml/json失败"
+    "WeChat:-40001": "Signature verification error",
+    "WeChat:-40002": "xml/json parsing failed",
+    "WeChat:-40003": "Sha encryption failed to generate signature",
+    "WeChat:-40004": "AESKey is illegal",
+    "WeChat:-40005": "AppId verification error",
+    "WeChat:-40006": "AES encryption failed",
+    "WeChat:-40007": "AES decryption failed",
+    "WeChat:-40008": "The buffer obtained after decryption is illegal",
+    "WeChat:-40009": "base64 encryption failed",
+    "WeChat:-40010": "base64 decryption failed",
+    "WeChat:-40011": "Failed to generate xml/json"
   }
 }

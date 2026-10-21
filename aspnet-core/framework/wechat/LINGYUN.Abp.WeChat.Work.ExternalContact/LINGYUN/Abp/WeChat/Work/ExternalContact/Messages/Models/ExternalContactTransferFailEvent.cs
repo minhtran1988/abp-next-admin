@@ -5,13 +5,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 客户接替失败事件
+/// Customer takeover failure event
 /// </summary>
 [EventName("external_contact_transfer_fail")]
 public class ExternalContactTransferFailEvent : ExternalContactChangeEvent
 {
     /// <summary>
-    /// 接替失败的原因, customer_refused-客户拒绝， customer_limit_exceed-接替成员的客户数达到上限
+    /// The reason for the failure of the replacement, customer_refused-the customer refused, customer_limit_exceed-the number of customers who replaced the member reached the upper limit
     /// </summary>
     [XmlElement("FailReason")]
     public string FailReason { get; set; } = default!;

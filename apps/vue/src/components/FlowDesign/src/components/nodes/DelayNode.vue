@@ -7,7 +7,7 @@
     @selected="$emit('selected')"
     @delNode="$emit('delNode')"
     @insertNode="(type) => $emit('insertNode', type)"
-    placeholder="请设置延时时间"
+    placeholder="Please set the delay time"
     header-bgc="#f25643"
   >
     <template #headerIcon>
@@ -43,9 +43,9 @@
 
   const content = computed(() => {
     if (props.config.props.type === 'FIXED') {
-      return `等待 ${props.config.props.time} ${getName(props.config.props.unit)}`;
+      return `Wait ${props.config.props.time} ${getName(props.config.props.unit)}`;
     } else if (props.config.props.type === 'AUTO') {
-      return `至当天 ${props.config.props.dateTime}`;
+      return `To the current day ${props.config.props.dateTime}`;
     } else {
       return undefined;
     }
@@ -54,13 +54,13 @@
   function getName(unit: string) {
     switch (unit) {
       case 'D':
-        return '天';
+        return 'day';
       case 'H':
-        return '小时';
+        return 'hour';
       case 'M':
-        return '分钟';
+        return 'minutes';
       default:
-        return '未知';
+        return 'unknown';
     }
   }
 
@@ -70,20 +70,20 @@
       if (props.config.props.type === 'AUTO') {
         if ((props.config.props.dateTime || '') === '') {
           state.showError = true;
-          state.errorInfo = '请选择时间点';
+          state.errorInfo = 'Please select a time point';
         }
       } else {
         if (props.config.props.time <= 0) {
           state.showError = true;
-          state.errorInfo = '请设置延时时长';
+          state.errorInfo = 'Please set the delay length';
         }
       }
     } catch (e) {
       state.showError = true;
-      state.errorInfo = '配置出现问题';
+      state.errorInfo = 'There is a configuration problem';
     }
     if (state.showError) {
-      err.push(`${props.config.name} 未设置延时规则`);
+      err.push(`${props.config.name} has no delay rule set`);
     }
     return !state.showError;
   }

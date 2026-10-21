@@ -69,9 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--取消注释以使用Elasticsearch存储审计日志-->
+		<!-- Uncomment to use Elasticsearch to store audit logs-->
 		<!--<ProjectReference Include="..\..\framework\auditing\LINGYUN.Abp.AuditLogging.Elasticsearch\LINGYUN.Abp.AuditLogging.Elasticsearch.csproj" />-->
-		<!--取消注释以使用OpenObserve存储审计日志-->
+		<!-- Uncomment to use OpenObserve to store audit logs-->
 		<!--<ProjectReference Include="..\..\framework\auditing\LINGYUN.Abp.AuditLogging.OpenObserve\LINGYUN.Abp.AuditLogging.OpenObserve.csproj" />-->
 		<ProjectReference Include="..\..\framework\auditing\LINGYUN.Abp.AuditLogging.IP.Location\LINGYUN.Abp.AuditLogging.IP.Location.csproj" />
 		<ProjectReference Include="..\..\framework\auditing\LINGYUN.Abp.AuditLogging\LINGYUN.Abp.AuditLogging.csproj" />

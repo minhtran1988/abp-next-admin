@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Auditing.HttpApi
 
-审计日志HTTP API模块，提供审计日志的REST API接口。
+The audit log HTTP API module provides a REST API interface for audit logs.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 审计日志REST API接口
-* 安全日志REST API接口
-* 支持API版本控制
-* 集成Swagger文档
+* Audit log REST API interface
+* Security log REST API interface
+* Support API version control
+* Integrate Swagger documentation
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuditingHttpApiModule))]
@@ -21,30 +21,30 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API接口
+## API interface
 
-### 审计日志
+### Audit log
 
-* GET /api/audit-logging/audit-logs/{id} - 获取指定的审计日志
-* GET /api/audit-logging/audit-logs - 获取审计日志列表
-* DELETE /api/audit-logging/audit-logs/{id} - 删除指定的审计日志
-* DELETE /api/audit-logging/audit-logs/batch - 批量删除审计日志
+* GET /api/audit-logging/audit-logs/{id} - Get the specified audit log
+* GET /api/audit-logging/audit-logs - Get the audit log list
+* DELETE /api/audit-logging/audit-logs/{id} - delete the specified audit log
+* DELETE /api/audit-logging/audit-logs/batch - delete audit logs in batches
 
-### 安全日志
+### Security Log
 
-* GET /api/audit-logging/security-logs/{id} - 获取指定的安全日志
-* GET /api/audit-logging/security-logs - 获取安全日志列表
-* DELETE /api/audit-logging/security-logs/{id} - 删除指定的安全日志
-* DELETE /api/audit-logging/security-logs/batch - 批量删除安全日志
+* GET /api/audit-logging/security-logs/{id} - Get the specified security log
+* GET /api/audit-logging/security-logs - Get the security log list
+* DELETE /api/audit-logging/security-logs/{id} - delete the specified security log
+* DELETE /api/audit-logging/security-logs/batch - delete security logs in batches
 
-## 基本用法
+## Basic usage
 
-1. 引用模块
-2. 配置权限（如需要）
-3. 通过HTTP客户端调用相应的API接口
+1. Reference module
+2. Configure permissions (if necessary)
+3. Call the corresponding API interface through HTTP client
 
-## API文档
+## API documentation
 
-启动应用程序后，可以通过Swagger UI查看完整的API文档：
-* /swagger - Swagger UI界面
-* /swagger/v1/swagger.json - OpenAPI规范文档
+After launching the application, the full API documentation can be viewed through the Swagger UI:
+* /swagger - Swagger UI interface
+* /swagger/v1/swagger.json - OpenAPI specification document

@@ -17,23 +17,23 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Translations
 
-### 预制本地化文档    
+### Pre-made localization documents
 * [English](./translation.json)   
-* [简体中文](./translation.zh-Hans.json)
+* [Simplified Chinese](./translation.zh-Hans.json)
 
-### 使用方法
+### How to use
 
-- 本地文件    
+- local files
 
- **替换 [AbpTranslations](./lib/utils/localization.dart) 中keys为如下格式：**
+ **Replace the keys in [AbpTranslations](./lib/utils/localization.dart) with the following format: **
 
 	```json
 	{
 		"zh-Hans": {
-			"Center:Feedback": "意见反馈",
-			"Center:Help": "在线帮助",
-			"Center:Info": "关于",
-			...其他本地化内容
+			"Center:Feedback": "Feedback",
+			"Center:Help": "Online Help",
+			"Center:Info": "About",
+			...other localized content
 		},
 		"en": {
 			"Center:Feedback": "Feedback",
@@ -44,53 +44,53 @@ samples, guidance on mobile development, and a full API reference.
 	}
 	```
 	
-- 后台服务    
+-Backend services
 
-	**将预制的本地化文档复制到后台服务的本地化目录即可, 具体见abp多语言文档**
+	**Copy the pre-made localization document to the localization directory of the background service. For details, see abp multi-language documentation**
 
-## Environment 环境配置
+## Environment environment configuration
 
-> **application** 应用程序配置    
->>	*name* 应用程序名称   
+> **application** application configuration
+>> *name* application name
 
-> **auth** 身份认证服务器配置    
->>	*<font color=red size=4>authority</font>* 身份认证服务器地址   
->>	*<font color=red size=4>clientId</font>* 客户端标识   
->>	*clientSecret* 客户端密钥    
+> **auth** Identity authentication server configuration
+>> *<font color=red size=4>authority</font>* Identity authentication server address
+>> *<font color=red size=4>clientId</font>* Client ID
+>> *clientSecret* client secret
 
-> **tenant** 多租户配置    
->>	*tenantKey* 多租户标识    
+> **tenant** Multi-tenant configuration
+>> *tenantKey* multi-tenant identification
 
-> **localization** 国际化配置    
->>	*defaultLanguage* 应用程序默认语言
+> **localization** internationalization configuration
+>> *defaultLanguage* Application default language
 
-> **remoteServices** 远程服务配置     
->>	<font color=red size=4>default</font> 默认连接配置 <font color=red size=4>必须指定</font>  
->>> url 连接地址    
->>> rootNamespace 根命名空间（保留配置）    
+> **remoteServices** remote service configuration
+>> <font color=red size=4>default</font> Default connection configuration <font color=red size=4>must be specified</font>
+>>> url connection address
+>>> rootNamespace root namespace (preserve configuration)
 
->>	<font color=red size=4>avatar</font> 头像接口配置（如果用户头像设定为相对路径, 需要指定接口地址前缀）  
->>> url 连接地址    
+>> <font color=red size=4>avatar</font> Avatar interface configuration (if the user avatar is set to a relative path, the interface address prefix needs to be specified)
+>>> url connection address
 
-> **remoteEnvironment** 远程环境配置（按照给定的应用策略替换当前环境配置）   
->>	*url* 连接地址（从此连接拉取配置信息）    
->>	*method* 请求方法    
->>	*headers* 请求头    
->>	*strategy* 应用策略，deepmerge（合并）、overwrite（替换）     
+> **remoteEnvironment** Remote environment configuration (replaces the current environment configuration according to the given application policy)
+>> *url* connection address (pull configuration information from this connection)
+>> *method* request method
+>> *headers* request headers
+>> *strategy* application strategy, deepmerge (merge), overwrite (replacement)
 
-> **notifications** 通知相关设置
->>  *android* android端通知设置(可选)
->>>    - *channelId*: 通道标识(配置了android节点后为必输)    
->>>    - *channelName*: 通道名称(配置了android节点后为必输)    
->>>    - *channelDescription*: 通道说明(可选)    
+> **notifications** Notification related settings
+>> *android* Android notification settings (optional)
+>>> - *channelId*: Channel ID (required after configuring the android node)
+>>> - *channelName*: channel name (required after configuring the android node)
+>>> - *channelDescription*: Channel description (optional)
 
->>  *linux* linux端通知设置(可选)
->>>    - *defaultActionName*: 默认点击方法名称(配置了linux节点后为必输)    
+>> *linux* Linux side notification settings (optional)
+>>> - *defaultActionName*: Default click method name (must be lost after configuring a linux node)
 
->>  *darwin* iOS/Mac os端通知设置(可选)
+>> *darwin* iOS/Mac os side notification settings (optional)
 
 
-# 配置示例
+# Configuration example
 [demo.json](./res/config/demo.json)
 ```json
 {
@@ -125,7 +125,7 @@ samples, guidance on mobile development, and a full API reference.
         "android": {
             "channelId": "abp-flutter",
             "channelName": "abp-flutter",
-            "channelDescription": "适用于Android端的通知通道定义"
+            "channelDescription": "Notification channel definition suitable for Android"
         },
         "linux": {
             "defaultActionName": "Open notification"

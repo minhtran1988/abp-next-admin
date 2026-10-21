@@ -12,8 +12,8 @@ import { useRequest } from '@abp/request';
 export function useDefinitionsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 删除设置定义
-   * @param name 设置名称
+   * Delete setting definition
+   * @param name set name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/setting-management/settings/definitions/${name}`, {
@@ -22,9 +22,9 @@ export function useDefinitionsApi() {
   }
 
   /**
-   * 查询设置定义
-   * @param name 设置名称
-   * @returns 设置定义数据传输对象
+   * Query setting definition
+   * @param name set name
+   * @returns Set the definition data transfer object
    */
   function getApi(name: string): Promise<SettingDefinitionDto> {
     return request<SettingDefinitionDto>(
@@ -36,9 +36,9 @@ export function useDefinitionsApi() {
   }
 
   /**
-   * 查询设置定义列表
-   * @param input 设置过滤条件
-   * @returns 设置定义数据传输对象列表
+   * Query setting definition list
+   * @param input Set filter conditions
+   * @returns Set the definition data transfer object list
    */
   function getListApi(
     input?: SettingDefinitionGetListInput,
@@ -53,9 +53,9 @@ export function useDefinitionsApi() {
   }
 
   /**
-   * 创建设置定义
-   * @param input 设置定义参数
-   * @returns 设置定义数据传输对象
+   * Create settings definition
+   * @param input Set definition parameters
+   * @returns Set the definition data transfer object
    */
   function createApi(
     input: SettingDefinitionCreateDto,
@@ -70,10 +70,10 @@ export function useDefinitionsApi() {
   }
 
   /**
-   * 更新设置定义
-   * @param name 设置名称
-   * @param input 设置定义参数
-   * @returns 设置定义数据传输对象
+   * Update settings definition
+   * @param name set name
+   * @param input Set definition parameters
+   * @returns Set the definition data transfer object
    */
   function updateApi(
     name: string,
@@ -89,8 +89,8 @@ export function useDefinitionsApi() {
   }
 
   /**
-   * 获取可用设置提供者列表
-   * @returns {Promise<ListResultDto<NameValue<string>>>} 设置提供者列表
+   * Get the list of available settings providers
+   * @returns {Promise<ListResultDto<NameValue<string>>>} Set the provider list
    */
   function getAssignableProvidersApi(): Promise<
     ListResultDto<NameValue<string>>

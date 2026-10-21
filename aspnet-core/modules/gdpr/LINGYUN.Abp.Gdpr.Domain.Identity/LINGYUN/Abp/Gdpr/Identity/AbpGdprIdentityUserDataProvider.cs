@@ -10,7 +10,7 @@ using Volo.Abp.Users;
 namespace LINGYUN.Abp.Gdpr.Identity;
 
 /// <summary>
-/// 身份标识模块用户数据提供者
+/// Identity module user data provider
 /// </summary>
 public class AbpGdprIdentityUserDataProvider: GdprUserDataProviderBase
 {
@@ -27,17 +27,17 @@ public class AbpGdprIdentityUserDataProvider: GdprUserDataProviderBase
         identityUser.Name = "";
         identityUser.Surname = "";
 
-        // TODO: 应设置为空字符串, 但是abp框架不允许Email为空
+        // TODO: should be set to an empty string, but the abp framework does not allow the Email to be empty
         (await identityUserManager.SetEmailAsync(identityUser, $"{identityUser.UserName}@abp.io")).CheckErrors();
         (await identityUserManager.SetPhoneNumberAsync(identityUser, "")).CheckErrors();
 
-        // 清理身份标识
+        // Clean up the identity
         var userClaims = await identityUserManager.GetClaimsAsync(identityUser);
         (await identityUserManager.RemoveClaimsAsync(identityUser, userClaims)).CheckErrors();
 
-        // TODO: 是否需要清理第三方关联账户?
-        //var userLogins = await identityUserManager.GetLoginsAsync(identityUser);
-        //foreach (var userLogin in userLogins)
+        // TODO: Do you need to clean up third-party related accounts?
+        // var userLogins = await identityUserManager.GetLoginsAsync(identityUser);
+        // foreach (var userLogin in userLogins)
         //{
         //    (await identityUserManager.RemoveLoginAsync(identityUser, userLogin.LoginProvider, userLogin.ProviderKey)).CheckErrors();
         //}

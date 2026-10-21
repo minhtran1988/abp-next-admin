@@ -17,13 +17,13 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
         [BindProperty]
         public VerifyCodeInputModel Input { get; set; } = default!;
         /// <summary>
-        /// 双因素认证提供程序
+        /// Two-factor authentication provider
         /// </summary>
         [HiddenInput]
         [BindProperty(SupportsGet = true)]
         public string Provider { get; set; } = default!;
         /// <summary>
-        /// 重定向Url
+        /// Redirect Url
         /// </summary>
         [HiddenInput]
         [BindProperty(SupportsGet = true)]
@@ -35,7 +35,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
         [BindProperty(SupportsGet = true)]
         public string? ReturnUrlHash { get; set; }
         /// <summary>
-        /// 是否记住登录状态
+        /// Whether to remember login status
         /// </summary>
         [HiddenInput]
         [BindProperty(SupportsGet = true)]
@@ -76,14 +76,14 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
 
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            // 验证用户登录状态
+            // Verify user login status
             var user = await SignInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 Alerts.Warning(L["TwoFactorAuthenticationInvaidUser"]);
                 return Page();
             }
-            // 双因素登录
+            // Two-factor login
             var result = await SignInManager.TwoFactorSignInAsync(Provider, Input.VerifyCode, RememberMe, Input.RememberBrowser);
             if (result.Succeeded)
             {
@@ -118,7 +118,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
             }
             else
             {
-                Alerts.Danger(L["TwoFactorAuthenticationInvaidUser"]);// TODO: 更多状态码的解读
+                Alerts.Danger(L["TwoFactorAuthenticationInvaidUser"]);//TODO: More status code interpretations
                 return Page();
             }
         }
@@ -184,11 +184,11 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
     public class VerifyCodeInputModel
     {
         /// <summary>
-        /// 是否在浏览器中记住登录状态
+        /// Whether to remember the login status in the browser
         /// </summary>
         public bool RememberBrowser { get; set; }
         /// <summary>
-        /// 发送的验证码
+        /// Verification code sent
         /// </summary>
         [Required]
         public string VerifyCode { get; set; } = default!;

@@ -7,7 +7,7 @@ public static class DemoErrorCodes
     {
         public const string Prefix = Namespace + ":00";
         /// <summary>
-        /// 作者 {Name} 已经存在!
+        /// Author {Name} already exists!
         /// </summary>
         public const string AuthorAlreadyExists = Prefix + "001";
     }

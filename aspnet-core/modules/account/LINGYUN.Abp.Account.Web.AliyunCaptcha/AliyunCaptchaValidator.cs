@@ -68,7 +68,7 @@ public class AliyunCaptchaValidator : ICaptchaValidator
 
             if (response.StatusCode >= 500)
             {
-                // 业务容灾, 请求阿里云失败时默认验证通过
+                // Business disaster recovery, if the request to Alibaba Cloud fails, the verification will pass by default
                 logContext.Action = IdentitySecurityLogExtendActionConsts.CaptchaSucceeded;
                 return true;
             }

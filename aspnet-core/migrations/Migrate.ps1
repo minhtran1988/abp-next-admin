@@ -1,15 +1,15 @@
-# 数据库迁移脚本
+# Database migration script
 
-# 导入必要的模块
+#Import necessary modules
 using namespace System.Management.Automation.Host
 
-# 加入环境变量FROM_MIGRATION,使其在Program.cs文件中可以进行判断
+# Add the environment variable FROM_MIGRATION so that it can be judged in the Program.cs file
 $env:FROM_MIGRATION = "true"
 
-# 定义项目路径
+# Define project path
 $projectPath = Resolve-Path (Join-Path $PSScriptRoot "..")
 
-# 定义可用的DbContext
+# Define available DbContext
 $dbContexts = @{
     "1" = @{
         Name = "LINGYUN.Abp.MicroService.AllInOne.EntityFrameworkCore.MySql"
@@ -28,17 +28,17 @@ $dbContexts = @{
     }
 }
 
-# 显示DbContext选择菜单
+# Display DbContext selection menu
 function Show-DbContextMenu {
     $host.UI.RawUI.BackgroundColor = "Black"
     $host.UI.RawUI.ForegroundColor = "White"
     Clear-Host
 
     Write-Host "========================================" -ForegroundColor Cyan
-    Write-Host "     数据库迁移上下文选择" -ForegroundColor Yellow
+    Write-Host "Database Migration Context Selection" -ForegroundColor Yellow
     Write-Host "========================================" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "请选择要迁移的数据库上下文:" -ForegroundColor Green
+    Write-Host "Please select the database context to migrate:" -ForegroundColor Green
     foreach ($key in $dbContexts.Keys) {
         $context = $dbContexts[$key]
         Write-Host "[$key] " -NoNewline -ForegroundColor Magenta
@@ -47,40 +47,40 @@ function Show-DbContextMenu {
     Write-Host ""
 }
 
-# 选择DbContext
+#Select DbContext
 function Select-DbContext {
     Show-DbContextMenu
     
     while ($true) {
-        $choice = Read-Host "请输入数字选择"
+        $choice = Read-Host "Please enter a number to choose"
         if ($dbContexts.ContainsKey($choice)) {
             return $dbContexts[$choice]
         }
-        Write-Host "无效的选择，请重新输入。" -ForegroundColor Red
+        Write-Host "Invalid selection, please re-enter." -ForegroundColor Red
     }
 }
 
-# 获取迁移名称
+# Get the migration name
 function Get-MigrationName {
     $defaultName = "AddNewMigration_" + (Get-Date -Format "yyyyMMdd_HHmmss")
-    $migrationName = Read-Host "请输入迁移名称 (留空将使用默认名称: $defaultName)"
+    $migrationName = Read-Host "Please enter a migration name (leave blank to use the default name: $defaultName)"
     
     return ($migrationName ? $migrationName : $defaultName)
 }
 
-# 执行数据库迁移
+# Execute database migration
 function Invoke-DatabaseMigration($dbContext, $migrationName) {
     Write-Host "========================================" -ForegroundColor Cyan
-    Write-Host "正在执行数据库迁移..." -ForegroundColor Green
-    Write-Host "上下文: " -NoNewline -ForegroundColor Yellow
+    Write-Host "Performing database migration..." -ForegroundColor Green
+    Write-Host "Context: " -NoNewline -ForegroundColor Yellow
     Write-Host "$($dbContext.Name)" -ForegroundColor White
-    Write-Host "迁移名称: " -NoNewline -ForegroundColor Yellow
+    Write-Host "Migration Name: " -NoNewline -ForegroundColor Yellow
     Write-Host "$migrationName" -ForegroundColor White
-    Write-Host "项目路径: " -NoNewline -ForegroundColor Yellow
+    Write-Host "Project path: " -NoNewline -ForegroundColor Yellow
     Write-Host "$projectPath" -ForegroundColor White
     Write-Host "========================================" -ForegroundColor Cyan
     
-    # 切换到项目目录并执行迁移
+    # Switch to the project directory and perform migration
     Push-Location $projectPath
     try {
         dotnet ef migrations add $migrationName --project "migrations/$($dbContext.Name)" --context "$($dbContext.Context)"
@@ -90,24 +90,24 @@ function Invoke-DatabaseMigration($dbContext, $migrationName) {
     }
 }
 
-# 获取所有迁移文件
+# Get all migration files
 function Get-AllMigrations($dbContext) {
     Push-Location $projectPath
     try {
         $migrations = @(dotnet ef migrations list --project "migrations/$($dbContext.Name)" --context "$($dbContext.Context)")
-        return $migrations | Where-Object { $_ -match '\S' } # 过滤空行
+        return $migrations | Where-Object { $_ -match '\S' } # Filter empty lines
     }
     finally {
         Pop-Location
     }
 }
 
-# 选择起始迁移
+# Select starting migration
 function Select-FromMigration($dbContext) {
     $migrations = Get-AllMigrations -dbContext $dbContext
     
     Write-Host "========================================" -ForegroundColor Cyan
-    Write-Host "可用的迁移文件:" -ForegroundColor Yellow
+    Write-Host "Available migration files:" -ForegroundColor Yellow
     Write-Host "========================================" -ForegroundColor Cyan
     
     for ($i = 0; $i -lt $migrations.Count; $i++) {
@@ -116,12 +116,12 @@ function Select-FromMigration($dbContext) {
     }
     
     Write-Host "[A] " -NoNewline -ForegroundColor Magenta
-    Write-Host "生成所有迁移的SQL脚本" -ForegroundColor White
+    Write-Host "Generate SQL script for all migrations" -ForegroundColor White
     Write-Host "[L] " -NoNewline -ForegroundColor Magenta
-    Write-Host "仅生成最新迁移的SQL脚本" -ForegroundColor White
+    Write-Host "Only generate SQL scripts for the latest migrations" -ForegroundColor White
     
     while ($true) {
-        $choice = Read-Host "请选择起始迁移文件"
+        $choice = Read-Host "Please select the starting migration file"
         if ($choice -eq "A" -or $choice -eq "a") {
             return $null
         }
@@ -137,20 +137,20 @@ function Select-FromMigration($dbContext) {
                 return $migrations[$index]
             }
         }
-        Write-Host "无效的选择，请重新输入。" -ForegroundColor Red
+        Write-Host "Invalid selection, please re-enter." -ForegroundColor Red
     }
 }
 
-# 生成SQL脚本
+# Generate SQL script
 function Export-SqlScript($dbContext, $migrationName) {
-    $choice = Read-Host "是否生成SQL迁移脚本？(Y/N)"
+    $choice = Read-Host "Generate SQL migration script? (Y/N)"
     
     if ($choice -eq "Y" -or $choice -eq "y") {
         $sqlFileName = (Get-Date -Format "yyyyMMddHHmm") + ".sql"
         $initSqlPath = Join-Path $projectPath "InitSql"
         $contextSqlPath = Join-Path $initSqlPath $dbContext.Name
         
-        # 确保InitSql和上下文特定目录存在
+        # Ensure InitSql and context specific directories exist
         if (-not (Test-Path $initSqlPath)) {
             New-Item -ItemType Directory -Path $initSqlPath | Out-Null
         }
@@ -160,20 +160,20 @@ function Export-SqlScript($dbContext, $migrationName) {
         
         $sqlFilePath = Join-Path $contextSqlPath $sqlFileName
         
-        # 选择起始迁移
+        # Select starting migration
         $fromMigration = Select-FromMigration -dbContext $dbContext
         
         Write-Host "========================================" -ForegroundColor Cyan
-        Write-Host "正在生成SQL脚本..." -ForegroundColor Green
-        Write-Host "输出路径: " -NoNewline -ForegroundColor Yellow
+        Write-Host "Generating SQL script..." -ForegroundColor Green
+        Write-Host "Output path: " -NoNewline -ForegroundColor Yellow
         Write-Host "$sqlFilePath" -ForegroundColor White
         if ($fromMigration) {
-            Write-Host "起始迁移: " -NoNewline -ForegroundColor Yellow
+            Write-Host "Start migration: " -NoNewline -ForegroundColor Yellow
             Write-Host "$fromMigration" -ForegroundColor White
         }
         Write-Host "========================================" -ForegroundColor Cyan
         
-        # 切换到项目目录并生成SQL脚本
+        # Switch to the project directory and generate SQL script
         Push-Location $projectPath
         try {
             if ($fromMigration) {
@@ -187,27 +187,27 @@ function Export-SqlScript($dbContext, $migrationName) {
             Pop-Location
         }
         
-        Write-Host "SQL脚本已生成: " -NoNewline -ForegroundColor Green
+        Write-Host "SQL script has been generated: " -NoNewline -ForegroundColor Green
         Write-Host "$sqlFilePath" -ForegroundColor White
     }
 }
 
-# 主执行流程
+# Main execution process
 try {
     $dbContext = Select-DbContext
     $migrationName = Get-MigrationName
     Invoke-DatabaseMigration -dbContext $dbContext -migrationName $migrationName
     
-    # 生成SQL脚本
+    # Generate SQL script
     Export-SqlScript -dbContext $dbContext -migrationName $migrationName
     
-    Write-Host "迁移完成！" -ForegroundColor Green
+    Write-Host "Migration completed!" -ForegroundColor Green
 }
 catch {
-    Write-Host "迁移过程中发生错误:" -ForegroundColor Red
+    Write-Host "An error occurred during migration:" -ForegroundColor Red
     Write-Host $_.Exception.Message -ForegroundColor Red
 }
 finally {
-    Write-Host "`n按任意键退出..."
+    Write-Host "`nPress any key to exit..."
     $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }

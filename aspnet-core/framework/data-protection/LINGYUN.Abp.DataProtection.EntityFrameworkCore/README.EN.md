@@ -102,4 +102,4 @@ public class EfCoreYouProtectionObjectRepository :
 
 ## Related Links
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

@@ -1,19 +1,19 @@
 # 10.2.0 - 10.4.0
 
-## 模块变更
+## Module changes
 
-1. [身份标识模块]   增加不活跃用户通知/清理作业,实现了三个通知模板(账户保持活跃通知、账户停用通知、账户删除通知)
-2. [身份标识模块]   增加不活跃用户实体 `IdentityUserInactive` 需要执行数据库迁移  
-3. [身份标识模块]   增加用户登录Url设置定义: `Abp.Identity.Link.UserLoginUri`, 用于在外部系统中关联用户登录页    
-4. [身份认证模块]   增加用户登录Url定义: `Abp.Account.UserLogin`    
-5. [身份认证模块]   增加关联用户登录功能, 可以实现跨租户用户关联, 切换关联用户登录      
-6. [设置管理模块]   增加身份标识模块缺少的设置项: 启用防止密码重用、防止密码重用数量 
-7. [设置基础模块]   增加设置定义分组、所属设置、优先级、依赖权限、依赖功能、选择项等常用结构扩展  
-8. [设置管理模块]   重构设置管理应用服务接口, 通过预设定的设置定义分组、上下级关系等自动构成Dto结构
+1. [Identity Identification Module] Add inactive user notification/cleanup job, and implement three notification templates (account stay active notification, account deactivation notification, account deletion notification)
+2. [Identity Module] Adding inactive user entity `IdentityUserInactive` requires database migration.
+3. [Identity Module] Add user login Url setting definition: `Abp.Identity.Link.UserLoginUri`, used to associate user login pages in external systems
+4. [Identity Authentication Module] Add user login Url definition: `Abp.Account.UserLogin`
+5. [Identity Authentication Module] Added associated user login function, which can realize cross-tenant user association and switch associated user login
+6. [Settings Management Module] Add missing setting items in the identity module: enable password reuse prevention, password reuse prevention number
+7. [Setting Basic Module] Add common structure extensions such as setting definition groups, belonging settings, priorities, dependent permissions, dependent functions, options, etc.
+8. [Setting Management Module] Reconstruct the setting management application service interface, and automatically form a Dto structure through preset setting definition groups, superior-subordinate relationships, etc.
 
-## 依赖项变更  
+## Dependency changes
 
-| 库名称                                       | 原版本    | 现版本 |
+| Library name | Original version | Current version |
 | -------------------------------------------- | --------- | ------ |
 | Microsoft.AspNetCore.*					   | 10.0.2	   | 10.0.7 |
 | Microsoft.Bcl.AsyncInterfaces			       | 10.0.2	   | 10.0.7 |
@@ -38,7 +38,7 @@
 
 
 
-## 数据库迁移
+## Database migration
 
 | Project Name             | Database Provider | Scripts                                        | EF Core Version |
 | ------------------------ | ----------------- | ---------------------------------------------- | --------------- |
@@ -49,7 +49,7 @@
 | services/AuthServer      | MySQL             | 20260530061141_Add-Identity-User-Inactive		| 10.0.3          |
 
 
-## 数据库连接字符串
+## Database connection string
 
 | Module Name                   | ConnectionString Name        | Example(MySQL)                                               |
 | ----------------------------- | ---------------------------- | ------------------------------------------------------------ |

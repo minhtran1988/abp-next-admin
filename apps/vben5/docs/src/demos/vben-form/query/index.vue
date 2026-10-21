@@ -4,48 +4,48 @@ import { message } from 'ant-design-vue';
 import { useVbenForm } from '#/adapter/form';
 
 const [QueryForm] = useVbenForm({
-  // 默认展开
+  // Expand by default
   collapsed: false,
-  // 所有表单项共用，可单独在表单内覆盖
+  // Common to all form items, they can be overridden individually within the form.
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
-  // 提交函数
+  // Submit function
   handleSubmit: onSubmit,
-  // 垂直布局，label和input在不同行，值为vertical
-  // 水平布局，label和input在同一行
+  // Vertical layout, label and input are on different lines, the value is vertical
+  // Horizontal layout, label and input are on the same line
   layout: 'horizontal',
   schema: [
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'Input',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        placeholder: '请输入用户名',
+        placeholder: 'Please enter username',
       },
-      // 字段名
+      // Field name
       fieldName: 'username',
-      // 界面显示的label
-      label: '字符串',
+      // Label displayed on the interface
+      label: 'string',
     },
     {
       component: 'InputPassword',
       componentProps: {
-        placeholder: '请输入密码',
+        placeholder: 'Please enter password',
       },
       fieldName: 'password',
-      label: '密码',
+      label: 'password',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'number',
-      label: '数字(带后缀)',
+      label: 'Number (with suffix)',
       suffix: () => '¥',
     },
     {
@@ -55,30 +55,30 @@ const [QueryForm] = useVbenForm({
         filterOption: true,
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       fieldName: 'options',
-      label: '下拉选',
+      label: 'drop-down selection',
     },
     {
       component: 'DatePicker',
       fieldName: 'datePicker',
-      label: '日期选择框',
+      label: 'Date selection box',
     },
   ],
-  // 是否可展开
+  // Whether it can be expanded
   showCollapseButton: true,
   submitButtonOptions: {
-    content: '查询',
+    content: 'query',
   },
   wrapperClass: 'grid-cols-1 md:grid-cols-2',
 });

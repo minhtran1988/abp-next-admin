@@ -1,12 +1,12 @@
-# 赞助
+#sponsored
 
-如果你觉得这个项目对你有帮助，你可以帮作者买一杯咖啡表示支持!
+If you feel this project is helpful to you, you can show your support by buying the author a cup of coffee!
 
 ![](https://unpkg.com/@vbenjs/static-source@0.1.7/source/sponsor.png)
 
-您的赞助将帮助我们：
+Your sponsorship will help us:
 
-- 维持项目的基础设施，如服务器、域名、社群费用。
-- 支持开发者的贡献和加快新功能的开发。
+- Maintain project infrastructure, such as servers, domain names, and community fees.
+- Support developer contributions and accelerate the development of new features.
 
-感谢所有现有的和未来的赞助者，您的支持对我们来说至关重要，让我们一起推动项目继续前行。
+Thank you to all current and future backers, your support is vital for us to keep the project moving forward.

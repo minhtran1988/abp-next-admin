@@ -1,36 +1,36 @@
 # LINGYUN.Abp.DistributedLocking.Dapr
 
-基于Dapr分布式锁API的ABP分布式锁实现。该模块提供了与Dapr分布式锁服务的无缝集成，支持跨服务、跨实例的分布式锁定功能。
+ABP distributed lock implementation based on Dapr distributed lock API. This module provides seamless integration with the Dapr distributed lock service and supports cross-service and cross-instance distributed locking functions.
 
-参考文档: [Dapr Distributed Lock API](https://docs.dapr.io/developing-applications/building-blocks/distributed-lock/distributed-lock-api-overview/)
+Reference document: [Dapr Distributed Lock API](https://docs.dapr.io/developing-applications/building-blocks/distributed-lock/distributed-lock-api-overview/)
 
-## 功能特性
+## Features
 
-* 与ABP分布式锁系统集成
-* 支持自定义锁资源拥有者标识
-* 支持可配置的锁定超时时间
-* 支持锁资源自动释放
-* 支持多种锁存储组件
-* 支持锁获取和释放的事件通知
-* 支持分布式锁的健康检查
+* Integrated with ABP distributed lock system
+* Support custom lock resource owner identification
+* Supports configurable lock timeout
+* Support automatic release of lock resources
+* Supports a variety of lock storage components
+* Support event notification for lock acquisition and release
+* Support health check of distributed locks
 
-## 配置选项
+## Configuration options
 
 ```json
 {
     "DistributedLocking": {
         "Dapr": {
-            "StoreName": "lockstore",  // Dapr组件中定义的存储名称
-            "DefaultIdentifier": "dapr-lock-owner",  // 默认锁资源拥有者标识
-            "DefaultTimeout": "00:00:30"  // 默认锁定超时时间（30秒）
+            "StoreName": "lockstore", // The storage name defined in the Dapr component
+            "DefaultIdentifier": "dapr-lock-owner", //Default lock resource owner identification
+            "DefaultTimeout": "00:00:30" //Default lock timeout (30 seconds)
         }
     }
 }
 ```
 
-## 基础使用
+## Basic usage
 
-### 1. 模块配置
+### 1. Module configuration
 
 ```csharp
 [DependsOn(typeof(AbpDistributedLockingDaprModule))]
@@ -38,18 +38,18 @@ public class YourProjectModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 基础配置
+        //Basic configuration
         Configure<AbpDistributedLockingDaprOptions>(options =>
         {
-            options.StoreName = "redis-lock";  // 使用Redis作为锁存储
-            options.DefaultIdentifier = "my-service";  // 自定义锁拥有者标识
-            options.DefaultTimeout = TimeSpan.FromMinutes(1);  // 设置默认超时时间为1分钟
+            options.StoreName = "redis-lock"; // Use Redis as lock storage
+            options.DefaultIdentifier = "my-service"; // Customize the lock owner identification
+            options.DefaultTimeout = TimeSpan.FromMinutes(1); // Set the default timeout to 1 minute
         });
     }
 }
 ```
 
-### 2. 基本用法
+### 2. Basic usage
 
 ```csharp
 public class OrderService
@@ -63,33 +63,33 @@ public class OrderService
 
     public async Task ProcessOrderAsync(string orderId)
     {
-        // 尝试获取锁
+        //Try to acquire the lock
         using (var handle = await _lockProvider.TryAcquireAsync($"order:{orderId}"))
         {
             if (handle != null)
             {
                 try
                 {
-                    // 执行需要加锁的业务逻辑
+                    // Execute business logic that requires locking
                     await ProcessOrderInternalAsync(orderId);
                 }
                 catch (Exception ex)
                 {
-                    // 处理异常
-                    _logger.LogError(ex, "处理订单时发生错误");
+                    // Handle exceptions
+                    _logger.LogError(ex, "An error occurred while processing the order");
                     throw;
                 }
             }
             else
             {
-                throw new ConcurrencyException("订单正在被其他进程处理");
+                throw new ConcurrencyException("The order is being processed by another process");
             }
         }
     }
 }
 ```
 
-### 3. 高级用法
+### 3. Advanced usage
 
 ```csharp
 public class InventoryService
@@ -107,11 +107,11 @@ public class InventoryService
 
     public async Task UpdateInventoryAsync(string productId, int quantity)
     {
-        // 自定义锁配置
+        // Custom lock configuration
         var lockOptions = new DistributedLockOptions
         {
-            Timeout = TimeSpan.FromSeconds(10),  // 自定义超时时间
-            RetryDelay = TimeSpan.FromMilliseconds(100)  // 重试延迟
+            Timeout = TimeSpan.FromSeconds(10), // Custom timeout time
+            RetryDelay = TimeSpan.FromMilliseconds(100) //Retry delay
         };
 
         try
@@ -122,32 +122,32 @@ public class InventoryService
             {
                 if (handle == null)
                 {
-                    _logger.LogWarning("无法获取库存锁，产品ID: {ProductId}", productId);
-                    throw new ConcurrencyException("无法获取库存锁");
+                    _logger.LogWarning("Unable to obtain inventory lock, product ID: {ProductId}", productId);
+                    throw new ConcurrencyException("Unable to acquire inventory lock");
                 }
 
-                // 执行库存更新操作
+                //Perform inventory update operation
                 await UpdateInventoryInternalAsync(productId, quantity);
             }
         }
         catch (Exception ex) when (ex is not ConcurrencyException)
         {
-            _logger.LogError(ex, "更新库存时发生错误");
+            _logger.LogError(ex, "An error occurred while updating inventory");
             throw;
         }
     }
 }
 ```
 
-## 组件配置
+## Component configuration
 
-### Redis锁存储配置示例
+### Redis lock storage configuration example
 
 ```yaml
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: redis-lock  # 对应StoreName配置
+  name: redis-lock # Corresponding to StoreName configuration
 spec:
   type: lock.redis
   version: v1
@@ -164,7 +164,7 @@ spec:
       value: 5s
 ```
 
-### Consul锁存储配置示例
+### Consul lock storage configuration example
 
 ```yaml
 apiVersion: dapr.io/v1alpha1
@@ -183,11 +183,11 @@ spec:
       value: http
 ```
 
-## 核心接口
+## Core interface
 
 ### ILockOwnerFinder
 
-提供锁资源持有者标识的接口。
+Provides an interface for lock resource holder identification.
 
 ```csharp
 public interface ILockOwnerFinder
@@ -196,11 +196,11 @@ public interface ILockOwnerFinder
 }
 ```
 
-默认实现 `LockOwnerFinder` 会：
-1. 优先使用当前用户ID作为锁拥有者标识
-2. 如果用户未登录，则使用配置的 `DefaultIdentifier`
+The default implementation of `LockOwnerFinder` will:
+1. Prioritize using the current user ID as the lock owner ID
+2. If the user is not logged in, use the configured `DefaultIdentifier`
 
-### 自定义锁拥有者标识实现
+### Implementation of custom lock owner identification
 
 ```csharp
 public class CustomLockOwnerFinder : ILockOwnerFinder
@@ -214,43 +214,43 @@ public class CustomLockOwnerFinder : ILockOwnerFinder
 
     public string GetOwner()
     {
-        // 使用租户ID和机器名称组合作为锁拥有者标识
+        // Use the tenant ID and machine name combination as the lock owner ID
         return $"{_currentTenant.Id ?? "host"}-{Environment.MachineName}";
     }
 }
 
-// 注册自定义实现
+//Register custom implementation
 context.Services.AddTransient<ILockOwnerFinder, CustomLockOwnerFinder>();
 ```
 
-## 最佳实践
+## Best Practices
 
-1. **合理设置超时时间**
-   - 根据业务操作的预期执行时间设置合适的超时时间
-   - 避免设置过长的超时时间，以防止死锁
+1. **Set the timeout reasonably**
+   - Set an appropriate timeout based on the expected execution time of the business operation
+   - Avoid setting too long timeouts to prevent deadlocks
 
-2. **正确的锁粒度**
-   - 锁的范围应该尽可能小，只锁定必要的资源
-   - 避免长时间持有锁，及时释放
+2. **Correct lock granularity**
+   - The scope of the lock should be as small as possible, locking only necessary resources
+   - Avoid holding locks for a long time and release them promptly
 
-3. **异常处理**
-   - 始终在 using 块中使用锁
-   - 妥善处理锁获取失败的情况
-   - 记录关键的锁操作日志
+3. **Exception handling**
+   - Always use locks in using blocks
+   - Properly handle lock acquisition failure
+   - Record key lock operation logs
 
-4. **性能优化**
-   - 使用合适的存储组件
-   - 配置适当的重试策略
-   - 监控锁的使用情况
+4. **Performance Optimization**
+   - Use appropriate storage components
+   - Configure appropriate retry strategies
+   - Monitor lock usage
 
-## 注意事项
+## Notes
 
-* 确保Dapr Sidecar已正确配置并运行
-* 分布式锁组件需要在Dapr配置中正确定义
-* 合理设置锁的超时时间，避免死锁
-* 正确处理锁获取失败的情况
-* 在高并发场景下注意性能影响
-* 建议配置锁组件的健康检查
-* 重要操作建议添加日志记录
+* Make sure Dapr Sidecar is correctly configured and running
+* The distributed lock component needs to be correctly defined in the Dapr configuration
+* Set the lock timeout reasonably to avoid deadlock
+* Correctly handle lock acquisition failure
+* Pay attention to the performance impact in high concurrency scenarios
+* It is recommended to configure the health check of the lock component
+* It is recommended to add log records for important operations
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

@@ -28,7 +28,7 @@ public class AbpBackgroundTasksJobsModule : AbpModule
             {
                 builder.ConfigureHttpClient(client =>
                 {
-                    // 后台作业一般都是内部调用, 不需要包装结果
+                    // Background jobs are generally internal calls and do not require packaging results.
                     client.DefaultRequestHeaders.TryAddWithoutValidation(DontWrapResultField, "true");
                 });
             });
@@ -53,7 +53,7 @@ public class AbpBackgroundTasksJobsModule : AbpModule
         {
             options.ProxyRequestActions.Add((remoteService, request) =>
             {
-                // 后台作业一般都是内部调用, 不需要包装结果
+                // Background jobs are generally internal calls and do not require packaging results.
                 request.Headers.TryAddWithoutValidation(DontWrapResultField, "true");
             });
         });

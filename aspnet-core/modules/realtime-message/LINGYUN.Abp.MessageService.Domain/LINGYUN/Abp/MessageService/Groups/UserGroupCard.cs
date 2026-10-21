@@ -6,28 +6,28 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.MessageService.Groups;
 
 /// <summary>
-/// 用户群组卡片
+/// User group card
 /// </summary>
 public class UserGroupCard : AuditedAggregateRoot<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     public virtual Guid UserId { get; protected set; }
     /// <summary>
-    /// 昵称
+    /// Nickname
     /// </summary>
     public virtual string? NickName { get; set; }
     /// <summary>
-    /// 是否管理员
+    /// Is it an administrator?
     /// </summary>
     public virtual bool IsAdmin { get; protected set; }
     /// <summary>
-    /// 禁言期止
+    /// The ban period expires
     /// </summary>
     public virtual DateTime? SilenceEnd { get; protected set; }
     protected UserGroupCard()
@@ -47,7 +47,7 @@ public class UserGroupCard : AuditedAggregateRoot<long>, IMultiTenant
         TenantId = tenantId;
     }
     /// <summary>
-    /// 设置管理员
+    /// Set administrator
     /// </summary>
     /// <param name="admin"></param>
     public void SetAdmin(bool admin)
@@ -55,7 +55,7 @@ public class UserGroupCard : AuditedAggregateRoot<long>, IMultiTenant
         IsAdmin = admin;
     }
     /// <summary>
-    /// 禁言
+    /// Ban
     /// </summary>
     /// <param name="clock"></param>
     /// <param name="seconds"></param>
@@ -64,7 +64,7 @@ public class UserGroupCard : AuditedAggregateRoot<long>, IMultiTenant
         SilenceEnd = clock.Now.AddSeconds(seconds);
     }
     /// <summary>
-    /// 解除禁言
+    /// Unban
     /// </summary>
     public void UnSilence()
     {

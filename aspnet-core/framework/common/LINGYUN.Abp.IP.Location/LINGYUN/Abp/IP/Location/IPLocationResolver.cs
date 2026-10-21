@@ -23,11 +23,11 @@ public class IPLocationResolver : IIPLocationResolver, ITransientDependency
 
         if (!IPAddress.TryParse(ipAddress, out var ip))
         {
-            // 非法地址不解析
+            // Illegal addresses are not resolved
             return result;
         }
 
-        // 本地回环与未指定地址(离线库无记录, 例如 127.0.0.1、::1、::)
+        // Local loopback and unspecified address (no record in offline library, such as 127.0.0.1, ::1, ::)
         if (IPAddress.IsLoopback(ip) || ip.Equals(IPAddress.Any) || ip.Equals(IPAddress.IPv6Any))
         {
             return result;

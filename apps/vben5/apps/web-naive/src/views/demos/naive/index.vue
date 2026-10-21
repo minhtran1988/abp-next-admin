@@ -26,17 +26,17 @@ function loading() {
 
 function notify(type: NotificationType) {
   notification[type]({
-    content: '说点啥呢',
+    content: 'What are you talking about',
     duration: 2500,
     keepAliveOnHover: true,
-    meta: '想不出来',
+    meta: 'Cannot think of it',
   });
 }
 </script>
 
 <template>
-  <Page description="支持多语言，主题功能集成切换等" title="naive组件使用演示">
-    <NCard class="mb-5" title="按钮">
+  <Page description="Supports multiple languages, integrated theme function switching, etc." title="Naive component usage demonstration">
+    <NCard class="mb-5" title="Button">
       <NSpace>
         <NButton>Default</NButton>
         <NButton type="tertiary"> Tertiary </NButton>
@@ -50,19 +50,19 @@ function notify(type: NotificationType) {
 
     <NCard class="mb-5" title="Message">
       <NSpace>
-        <NButton type="error" @click="error"> 错误 </NButton>
-        <NButton type="warning" @click="warning"> 警告 </NButton>
-        <NButton type="success" @click="success"> 成功 </NButton>
-        <NButton type="primary" @click="loading"> 加载中 </NButton>
+        <NButton type="error" @click="error"> Error </NButton>
+        <NButton type="warning" @click="warning"> Warning </NButton>
+        <NButton type="success" @click="success"> Success </NButton>
+        <NButton type="primary" @click="loading"> Loading </NButton>
       </NSpace>
     </NCard>
 
     <NCard class="mb-5" title="Notification">
       <NSpace>
-        <NButton type="error" @click="notify('error')"> 错误 </NButton>
-        <NButton type="warning" @click="notify('warning')"> 警告 </NButton>
-        <NButton type="success" @click="notify('success')"> 成功 </NButton>
-        <NButton type="primary" @click="notify('info')"> 加载中 </NButton>
+        <NButton type="error" @click="notify('error')"> Error </NButton>
+        <NButton type="warning" @click="notify('warning')"> Warning </NButton>
+        <NButton type="success" @click="notify('success')"> Success </NButton>
+        <NButton type="primary" @click="notify('info')"> Loading </NButton>
       </NSpace>
     </NCard>
   </Page>

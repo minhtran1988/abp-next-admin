@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.BackgroundTasks;
 /// <summary>
-/// 作业发布接口
+/// Job release interface
 /// </summary>
 /// <remarks>
-/// 使用场景: 发布作业到作业调度器(发布作业到当前运行节点)
+/// Usage scenarios: Publish jobs to the job scheduler (publish jobs to the current running node)
 /// </remarks>
 public interface IJobPublisher
 {

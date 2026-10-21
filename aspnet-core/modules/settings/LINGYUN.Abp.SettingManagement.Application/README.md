@@ -1,57 +1,57 @@
 # LINGYUN.Abp.SettingManagement.Application
 
-## 模块说明
+## Module description
 
-设置管理应用服务模块，实现设置管理相关的业务逻辑。
+The settings management application service module implements business logic related to settings management.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.SettingManagement.Application.Contracts
 * Volo.Abp.SettingManagement.Application
 * Volo.Abp.Ddd.Application
 
-### 功能定义
+### Function definition
 
-* 提供设置管理的应用服务实现
-  * SettingAppService - 通用设置管理服务实现
-  * UserSettingAppService - 用户设置管理服务实现
-  * SettingDefinitionAppService - 设置定义管理服务实现
-* 实现以下应用服务接口
+* Provide application service implementation for setting management
+  * SettingAppService - Universal settings management service implementation
+  * UserSettingAppService - User setting management service implementation
+  * SettingDefinitionAppService - Setting definition management service implementation
+* Implement the following application service interfaces
   * ISettingAppService
   * IUserSettingAppService
   * ISettingDefinitionAppService
-* 提供设置缓存管理
-  * DynamicSettingDefinitionStoreCacheInvalidator - 动态设置定义缓存失效处理
+* Provide settings cache management
+  * DynamicSettingDefinitionStoreCacheInvalidator - dynamic setting definition cache invalidation processing
 
-### 应用服务
+### Application Services
 
 * SettingAppService
-  * GetAllForGlobalAsync - 获取全局设置
-  * GetAllForTenantAsync - 获取租户设置
-  * GetAllForUserAsync - 获取用户设置
-  * GetAllGroupsAsync - 获取所有设置组
-  * UpdateAsync - 更新设置
+  * GetAllForGlobalAsync - Get global settings
+  * GetAllForTenantAsync - Get tenant settings
+  * GetAllForUserAsync - Get user settings
+  * GetAllGroupsAsync - Get all settings groups
+  * UpdateAsync - update settings
 * UserSettingAppService
-  * GetAsync - 获取用户设置
-  * UpdateAsync - 更新用户设置
-  * DeleteAsync - 删除用户设置
+  * GetAsync - Get user settings
+  * UpdateAsync - Update user settings
+  * DeleteAsync - delete user settings
 * SettingDefinitionAppService
-  * GetAsync - 获取设置定义
-  * GetListAsync - 获取设置定义列表
-  * CreateAsync - 创建设置定义
-  * UpdateAsync - 更新设置定义
-  * DeleteAsync - 删除设置定义
+  * GetAsync - Get setting definition
+  * GetListAsync - Get the setting definition list
+  * CreateAsync - Create settings definition
+  * UpdateAsync - Update settings definition
+  * DeleteAsync - delete settings definition
 
-### 错误代码
+### Error code
 
-* SettingManagement:010001 - 设置定义名称已存在
-* SettingManagement:010002 - 设置定义不存在
-* SettingManagement:010003 - 设置定义为静态，不允许修改
-* SettingManagement:010004 - 设置定义为静态，不允许删除
+* SettingManagement:010001 - Setting definition name already exists
+* SettingManagement:010002 - Setting definition does not exist
+* SettingManagement:010003 - The setting is defined as static and no modification is allowed
+* SettingManagement:010004 - The setting is defined as static and does not allow deletion
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpSettingManagementApplicationModule` 依赖
+1. Add `AbpSettingManagementApplicationModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpSettingManagementApplicationModule))]
@@ -60,7 +60,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 注入并使用设置服务
+2. Inject and use the settings service
 
 ```csharp
 public class YourService
@@ -78,10 +78,10 @@ public class YourService
 
     public async Task ManageSettingsAsync()
     {
-        // 获取全局设置
+        // Get global settings
         var settings = await _settingAppService.GetAllForGlobalAsync();
 
-        // 更新用户设置
+        //Update user settings
         await _userSettingAppService.UpdateAsync(
             "SettingName",
             "NewValue");
@@ -89,4 +89,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

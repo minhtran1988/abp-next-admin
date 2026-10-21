@@ -4,8 +4,8 @@ import { Fallback } from '@vben/common-ui';
 
 <template>
   <Fallback
-    description="当前页面已在新窗口内打开"
+    description="The current page has been opened in a new window"
     status="coming-soon"
-    title="新窗口打开页面"
+    title="Open page in new window"
   />
 </template>

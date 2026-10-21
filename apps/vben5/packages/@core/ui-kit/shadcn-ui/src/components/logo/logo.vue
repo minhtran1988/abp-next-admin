@@ -5,35 +5,35 @@ import { VbenAvatar } from '../avatar';
 
 interface Props {
   /**
-   * @zh_CN 是否收起文本
+   * @zh_CN Whether to close the text
    */
   collapsed?: boolean;
   /**
-   * @zh_CN Logo 图片适应方式
+   * @zh_CN Logo image adaptation method
    */
   fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   /**
-   * @zh_CN Logo 跳转地址
+   * @zh_CN Logo jump address
    */
   href?: string;
   /**
-   * @zh_CN Logo 图片大小
+   * @zh_CN Logo image size
    */
   logoSize?: number;
   /**
-   * @zh_CN Logo 图标
+   * @zh_CN Logo icon
    */
   src?: string;
   /**
-   * @zh_CN 暗色主题 Logo 图标 (可选，若不设置则使用 src)
+   * @zh_CN Dark theme Logo icon (optional, if not set, use src)
    */
   srcDark?: string;
   /**
-   * @zh_CN Logo 文本
+   * @zh_CN Logo text
    */
   text: string;
   /**
-   * @zh_CN Logo 主题
+   * @zh_CN Logo theme
    */
   theme?: string;
 }
@@ -53,14 +53,14 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 /**
- * @zh_CN 根据主题选择合适的 logo 图标
+ * @zh_CN Choose the appropriate logo icon according to the theme
  */
 const logoSrc = computed(() => {
-  // 如果是暗色主题且提供了 srcDark，则使用暗色主题的 logo
+  // If it is a dark theme and srcDark is provided, use the dark theme logo
   if (props.theme === 'dark' && props.srcDark) {
     return props.srcDark;
   }
-  // 否则使用默认的 src
+  // Otherwise use default src
   return props.src;
 });
 </script>

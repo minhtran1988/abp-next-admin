@@ -15,9 +15,9 @@ import { useRequest } from '@abp/request';
 export function useTenantsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 创建租户
-   * @param {TenantCreateDto} input 参数
-   * @returns 创建的租户
+   * Create tenant
+   * @param {TenantCreateDto} input parameter
+   * @returns created tenant
    */
   function createApi(input: TenantCreateDto): Promise<TenantDto> {
     return request<TenantDto>('/api/saas/tenants', {
@@ -27,10 +27,10 @@ export function useTenantsApi() {
   }
 
   /**
-   * 编辑租户
-   * @param {string} id 参数
-   * @param {TenantUpdateDto} input 参数
-   * @returns 编辑的租户
+   * Edit tenant
+   * @param {string} id parameter
+   * @param {TenantUpdateDto} input parameter
+   * @returns edited tenant
    */
   function updateApi(id: string, input: TenantUpdateDto): Promise<TenantDto> {
     return request<TenantDto>(`/api/saas/tenants/${id}`, {
@@ -40,9 +40,9 @@ export function useTenantsApi() {
   }
 
   /**
-   * 查询租户
+   * Query tenants
    * @param {string} id Id
-   * @returns 查询的租户
+   * @returns queried tenant
    */
   function getApi(id: string): Promise<TenantDto> {
     return request<TenantDto>(`/api/saas/tenants/${id}`, {
@@ -51,7 +51,7 @@ export function useTenantsApi() {
   }
 
   /**
-   * 删除租户
+   * Delete tenant
    * @param {string} id Id
    * @returns {void}
    */
@@ -62,8 +62,8 @@ export function useTenantsApi() {
   }
 
   /**
-   * 查询租户分页列表
-   * @param {GetTenantPagedListInput} input 参数
+   * Query tenant paging list
+   * @param {GetTenantPagedListInput} input parameter
    * @returns {void}
    */
   function getPagedListApi(
@@ -76,10 +76,10 @@ export function useTenantsApi() {
   }
 
   /**
-   * 设置连接字符串
-   * @param {string} id 租户Id
-   * @param {TenantConnectionStringSetInput} input 参数
-   * @returns 连接字符串
+   * Set connection string
+   * @param {string} id tenant ID
+   * @param {TenantConnectionStringSetInput} input parameter
+   * @returns connection string
    */
   function setConnectionStringApi(
     id: string,
@@ -95,10 +95,10 @@ export function useTenantsApi() {
   }
 
   /**
-   * 查询连接字符串
-   * @param {string} id 租户Id
-   * @param {string} name 连接字符串名称
-   * @returns 连接字符串
+   * Query connection string
+   * @param {string} id tenant ID
+   * @param {string} name connection string name
+   * @returns connection string
    */
   function getConnectionStringApi(
     id: string,
@@ -113,9 +113,9 @@ export function useTenantsApi() {
   }
 
   /**
-   * 查询所有连接字符串
-   * @param {string} id 租户Id
-   * @returns 连接字符串列表
+   * Query all connection strings
+   * @param {string} id tenant ID
+   * @returns connection string list
    */
   function getConnectionStringsApi(
     id: string,
@@ -129,9 +129,9 @@ export function useTenantsApi() {
   }
 
   /**
-   * 删除租户
-   * @param {string} id 租户Id
-   * @param {string} name 连接字符串名称
+   * Delete tenant
+   * @param {string} id tenant ID
+   * @param {string} name connection string name
    * @returns {void}
    */
   function deleteConnectionStringApi(id: string, name: string): Promise<void> {
@@ -141,8 +141,8 @@ export function useTenantsApi() {
   }
 
   /**
-   * 检查数据库连接字符串
-   * @param input 参数
+   * Check database connection string
+   * @param input parameter
    */
   function checkConnectionString(
     input: TenantConnectionStringCheckInput,

@@ -6,22 +6,22 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Request;
 /// <summary>
-/// 创建日程请求参数
+/// Create schedule request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93648"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93648"/>
 /// </remarks>
 public class WeChatWorkCreateScheduleRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 日历信息
+    /// Calendar information
     /// </summary>
     [NotNull]
     [JsonProperty("schedule")]
     [JsonPropertyName("schedule")]
     public CreateSchedule Schedule { get; }
     /// <summary>
-    /// 授权方安装的应用agentid。仅旧的第三方多应用套件需要填此参数
+    /// The agentid of the application installed by the authorized party. Only old third-party multi-application suites need to fill in this parameter
     /// </summary>
     [CanBeNull]
     [JsonProperty("agentid")]

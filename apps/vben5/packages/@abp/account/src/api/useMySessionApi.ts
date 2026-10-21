@@ -7,9 +7,9 @@ export function useMySessionApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询会话列表
-   * @param { GetMySessionsInput } input 查询参数
-   * @returns { Promise<PagedResultDto<IdentitySessionDto>> } 用户会话列表
+   * Query session list
+   * @param { GetMySessionsInput } input query parameter
+   * @returns { Promise<PagedResultDto<IdentitySessionDto>> } User session list
    */
   function getSessionsApi(
     input?: GetMySessionsInput,
@@ -23,8 +23,8 @@ export function useMySessionApi() {
     );
   }
   /**
-   * 撤销会话
-   * @param { string } sessionId 会话id
+   * Cancel session
+   * @param { string } sessionId session id
    * @returns { Promise<void> }
    */
   function revokeSessionApi(sessionId: string): Promise<void> {

@@ -8,8 +8,8 @@ public class NotificationDataMappingDictionary : Dictionary<string, List<Notific
 {
     public static string DefaultKey { get; set; } = "Default";
     /// <summary>
-    /// 处理某个通知的数据
-    /// 特定于一个提供程序
+    /// Process the data of a notification
+    /// Specific to a provider
     /// </summary>
     /// <param name="provider"></param>
     /// <param name="name"></param>
@@ -33,8 +33,8 @@ public class NotificationDataMappingDictionary : Dictionary<string, List<Notific
         }
     }
     /// <summary>
-    /// 处理所有通知的数据
-    /// 特定于一个提供程序
+    /// Process all notification data
+    /// Specific to a provider
     /// </summary>
     /// <param name="provider"></param>
     /// <param name="func"></param>
@@ -43,7 +43,7 @@ public class NotificationDataMappingDictionary : Dictionary<string, List<Notific
         Mapping(provider, DefaultKey, func);
     }
     /// <summary>
-    /// 获取需要处理数据的方法
+    /// Get the method that needs to process the data
     /// </summary>
     /// <param name="name"></param>
     /// <param name="provider"></param>

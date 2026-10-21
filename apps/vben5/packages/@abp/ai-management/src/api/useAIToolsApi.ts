@@ -14,9 +14,9 @@ export function useAIToolsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取AI工具详情
-   * @param id AI工具id
-   * @returns AI工具详情
+   * Get details of AI tools
+   * @param id AI tool id
+   * @returns AI tool details
    */
   function getApi(id: string): Promise<AIToolDefinitionRecordDto> {
     return request<AIToolDefinitionRecordDto>(
@@ -28,9 +28,9 @@ export function useAIToolsApi() {
   }
 
   /**
-   * 获取AI工具分页列表
-   * @param input 查询过滤参数
-   * @returns AI工具分页列表
+   * Get the paginated list of AI tools
+   * @param input query filter parameters
+   * @returns AI tool paginated list
    */
   function getPagedListApi(
     input?: AIToolDefinitionRecordGetPagedListInput,
@@ -45,8 +45,8 @@ export function useAIToolsApi() {
   }
 
   /**
-   * 获取可用AI工具提供者列表
-   * @returns AI工具提供者列表
+   * Get a list of available AI tool providers
+   * @returns AI tool provider list
    */
   function getAvailableProviderListApi(): Promise<
     ListResultDto<AIToolProviderDto>
@@ -60,8 +60,8 @@ export function useAIToolsApi() {
   }
 
   /**
-   * 删除AI工具
-   * @param id AI工具id
+   * Remove AI tools
+   * @param id AI tool id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/ai-management/tools/${id}`, {
@@ -70,9 +70,9 @@ export function useAIToolsApi() {
   }
 
   /**
-   * 新增AI工具
-   * @param input 参数
-   * @returns AI工具详情
+   * Added AI tools
+   * @param input parameter
+   * @returns AI tool details
    */
   function createApi(
     input: AIToolDefinitionRecordCreateDto,
@@ -84,10 +84,10 @@ export function useAIToolsApi() {
   }
 
   /**
-   * 编辑AI工具
-   * @param id AI工具id
-   * @param input 参数
-   * @returns AI工具详情
+   * Edit AI tools
+   * @param id AI tool id
+   * @param input parameter
+   * @returns AI tool details
    */
   function updateApi(
     id: string,

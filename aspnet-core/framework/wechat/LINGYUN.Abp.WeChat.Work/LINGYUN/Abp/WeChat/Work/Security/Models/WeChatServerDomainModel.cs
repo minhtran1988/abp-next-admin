@@ -6,13 +6,13 @@ namespace LINGYUN.Abp.WeChat.Work.Security.Models;
 public class WeChatServerDomainModel
 {
     /// <summary>
-    /// 域名列表
+    /// Domain name list
     /// </summary>
     [JsonProperty("domain_list")]
     [JsonPropertyName("domain_list")]
     public List<WeChatDomainModel> Domains { get; }
     /// <summary>
-    /// Ip列表
+    /// IP list
     /// </summary>
     [JsonProperty("ip_list")]
     [JsonPropertyName("ip_list")]

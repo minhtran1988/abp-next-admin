@@ -13,15 +13,15 @@ const profileBaseSettingRef = ref();
 
 const MOCK_ROLES_OPTIONS: BasicOption[] = [
   {
-    label: '管理员',
+    label: 'Administrator',
     value: 'super',
   },
   {
-    label: '用户',
+    label: 'user',
     value: 'user',
   },
   {
-    label: '测试',
+    label: 'test',
     value: 'test',
   },
 ];
@@ -31,12 +31,12 @@ const formSchema = computed((): VbenFormSchema[] => {
     {
       fieldName: 'realName',
       component: 'Input',
-      label: '姓名',
+      label: 'name',
     },
     {
       fieldName: 'username',
       component: 'Input',
-      label: '用户名',
+      label: 'username',
     },
     {
       fieldName: 'roles',
@@ -45,12 +45,12 @@ const formSchema = computed((): VbenFormSchema[] => {
         mode: 'tags',
         options: MOCK_ROLES_OPTIONS,
       },
-      label: '角色',
+      label: 'role',
     },
     {
       fieldName: 'introduction',
       component: 'Textarea',
-      label: '个人简介',
+      label: 'personal profile',
     },
   ];
 });

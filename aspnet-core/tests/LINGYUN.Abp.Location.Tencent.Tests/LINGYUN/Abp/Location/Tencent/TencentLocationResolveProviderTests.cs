@@ -21,14 +21,14 @@ namespace LINGYUN.Abp.Location.Tencent
             var location = await _provider.ReGeocodeAsync(lat, lng, radius);
 
             location.ShouldNotBeNull();
-            location.Address.ShouldBe("北京市东城区东长安街");
-            location.FormattedAddress.ShouldBe("天安门广场");
+            location.Address.ShouldBe("\u5317\u4eac\u5e02\u4e1c\u57ce\u533a\u4e1c\u957f\u5b89\u8857");
+            location.FormattedAddress.ShouldBe("\u5929\u5b89\u95e8\u5e7f\u573a");
 
             // TODO
         }
 
         [Theory]
-        [InlineData("北京市东城区广场东侧路")]
+        [InlineData("\u5317\u4eac\u5e02\u4e1c\u57ce\u533a\u5e7f\u573a\u4e1c\u4fa7\u8def")]
         public async Task Geocode_Test(string address, string city = "")
         {
             var location = await _provider.GeocodeAsync(address, city);

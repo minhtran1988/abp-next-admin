@@ -1,16 +1,16 @@
 # LINGYUN.Platform.EntityFrameworkCore
 
-平台管理模块的EntityFrameworkCore实现，提供了数据访问和持久化功能。
+The EntityFrameworkCore implementation of the platform management module provides data access and persistence functions.
 
-## 功能特性
+## Features
 
-* 实现平台管理所有仓储接口
-* 支持多数据库提供程序
-* 实体关系映射配置
-* 数据库上下文定义
-* 支持查询优化和性能调优
+* Implement platform management of all warehousing interfaces
+* Supports multiple database providers
+* Entity relationship mapping configuration
+* Database context definition
+* Support query optimization and performance tuning
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(PlatformEntityFrameworkCoreModule))]
@@ -20,29 +20,29 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 仓储实现
+## Warehousing implementation
 
-* `EfCoreUserMenuRepository`: 用户菜单仓储实现
-  * 支持获取用户启动菜单
-  * 支持用户菜单列表查询
-  * 支持用户菜单权限验证
+* `EfCoreUserMenuRepository`: User menu storage implementation
+  * Supports obtaining user startup menu
+  * Support user menu list query
+  * Support user menu permission verification
 
-* `EfCorePackageRepository`: 包管理仓储实现
-  * 支持包版本查询
-  * 支持包规格过滤
-  * 支持包详情加载
+* `EfCorePackageRepository`: package management repository implementation
+  * Support package version query
+  * Support package specification filtering
+  * Support package details loading
 
-* `EfCoreEnterpriseRepository`: 企业仓储实现
-  * 支持租户关联查询
-  * 支持企业列表分页
+* `EfCoreEnterpriseRepository`: Enterprise warehousing implementation
+  * Support tenant related query
+  * Support enterprise list paging
 
-## 数据库上下文
+## Database context
 
-* `IPlatformDbContext`: 平台管理数据库上下文接口
-  * 定义所有实体的DbSet
-  * 支持多租户数据隔离
+* `IPlatformDbContext`: platform management database context interface
+  * Define DbSet for all entities
+  * Support multi-tenant data isolation
 
-## 配置项
+## Configuration items
 
 ```json
 {
@@ -52,6 +52,6 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 更多
+## More
 
-更多信息请参考 [Platform](../README.md)
+For more information please refer to [Platform](../README.md)

@@ -1,66 +1,66 @@
 # 10.6.0 - 10.7.0
 
-## 模块变更
+## Module changes
 
-1. [动态定义]   新增 LINGYUN.Abp.Dynamic.Definitions 动态定义模块,以统一的机制承载功能/权限/设置/通知/Webhook/AI 的定义扩展.
-2. [功能管理]   重写 ABP 默认的 FeatureDefinitionManager,实现内置定义与动态定义的合并、忽略、覆盖三种策略.
-3. [权限管理]   重写 PermissionDefinitionManager,实现合并、忽略、覆盖三种策略.
-4. [设置管理]   重写 SettingDefinitionManager,实现合并、忽略、覆盖三种策略.
-5. [通知管理]   重写 NotificationDefinitionManager,实现合并、忽略、覆盖三种策略.
-6. [Webhook管理]   重写 WebhookDefinitionManager,实现合并、忽略、覆盖三种策略.
-7. [AI管理]   重写 WorkspaceDefinitionManager 与 AIToolDefinitionManager,实现合并、忽略、覆盖三种策略.
-8. [定义管理]   功能/权限/设置定义变更后触发本地事件,便于订阅方刷新缓存.
-9. [定义管理]   优化定义管理页面与权限列表样式.
-10. [账号模块]   增强用户安全:创建用户时校验双因素策略、登录时绑定双因素认证器、注册时校验双因素与邮箱确认、登录时校验邮箱确认.
-11. [账号模块]   集成图片验证码(LazyCaptcha)与腾讯云验证码,覆盖登录、注册与验证码校验接口.
-12. [账号模块]   重构登录页面,增加密码显示/隐藏、页面内容标题、"返回登录"按钮样式等交互.
-13. [账号模块]   用户注册改为通过邮件确认;完善验证码与恢复代码的校验流程.
-14. [身份模块]   增加用户操作安全日志记录,补齐验证码相关安全日志.
-15. [身份模块]   重构会话模块,增强会话校验安全性,用户密码变更后使用户会话失效.
-16. [身份模块]   admin 角色强制启用双因素认证,且禁止被设置为默认角色.
-17. [身份模块]   提高安全相关设置的默认值.
-18. [个人中心]   增加绑定信息校验器;同步 Identity 接口的 HttpClientProxy.
-19. [审计日志]   审计日志不再记录租户连接字符串.
-20. [OpenIddict模块]   增加 JsonWebKeySet 支持,并优化 OpenIddict 管理功能与身份令牌映射.
-21. [OpenIddict模块]   企业微信授权拆分为网页授权与小程序两条授权流程(wecom_oauth / wecom_mp),并新增小程序临时登录凭证换取会话的实现.
-22. [OpenIddict模块]   二维码登录改为使用二维码自身携带的租户,不再接受请求参数 tenant_id;并细化二维码登录的安全日志动作.
-23. [IdentityServer模块]   企业微信授权校验器同步拆分为网页授权与小程序两个校验器.
-24. [系统日志]   新增 OpenObserve 日志查询提供者,支持以 OpenObserve 替代 Elasticsearch 查询系统日志.
-25. [审计日志]   新增基于 OpenObserve 的审计日志存储:审计日志、安全日志、实体变更、操作分流入不同数据流,并按租户分流.
-26. [审计日志]   新增审计日志与安全日志的信息贡献者扩展点,允许模块在不替换存储实现的前提下补充日志信息.
-27. [日志模块]   Elasticsearch 与 OpenObserve 日志提供者内置 Serilog 增强器(ApplicationName / UniqueId).
-28. [系统日志]   审计/安全日志的索引名称启用滚动策略.
-29. [OpenTelemetry模块]   增加 Redis 追踪仪表,移除已弃用的 Zipkin 导出器配置.
-30. [IP定位]   优化 IP 地址地理位置的解析与名称本地化.
-31. [IP定位]   位置备注规则改为可配置(按国家/省份移除),由独立的配置节绑定.
-32. [IP定位]   所有服务、网关与 Aspire 宿主启用审计日志的 IP 位置解析.
-33. [IP定位]   MaxMind GeoIP2 离线库改为由使用方在部署时自行提供,模块不再内置分发;库文件缺失时回退空解读器并记录警告.
-34. [IP定位]   各宿主的默认位置解析提供者由 MaxMind GeoIP2 切换为 IP2Region(内置离线库).
-35. [通知模块]   抽象模板卡片消息支持 JSON 往返:新增 Newtonsoft 与 System.Text.Json 两个转换器,按 card_type 还原具体卡片类型.
-36. [通知模块]   通知数据扩展按消息类型拆分为多个分部文件,并补充保密消息、ID转译、重复消息检查等开关.
-37. [通知模块]   新增按渠道声明通知载荷的机制,属性包按渠道前缀划分命名空间承载,渠道新增字段无需变更通知表结构.
-38. [通知模块]   优化渠道载荷属性元数据的构建,去除全局锁并改为延迟初始化.
-39. [TuiJuhe模块]   通知发布契约统一为 NotificationPublishContext(与其他渠道保持一致).
-40. [Blob管理]   修复本地文件系统存储提供者的路径穿越漏洞,新增跨平台的名称与路径校验规则.
-41. [Blob管理]   文件存在性检查改为按容器标识过滤,移除容器表关联查询.
-42. [部署]   容器编排中为各服务开启审计日志的 IP 位置解析与备注移除规则;补充容器端口与运行配置说明.
-43. [CLI]   新增 blob-migration 命令,用于从旧版本地文件系统存储迁移文件到 BlobManagement.
-44. [CLI]   改进 blob-migration:补齐参数提示,指定目录不存在时告警并终止操作.
-45. [项目结构]   微服务工程统一重命名为 LINGYUN.Abp.MicroService.*,单应用工程更名为 LINGYUN.Abp.MicroService.AllInOne.
-46. [项目结构]   移除历史遗留的 IdentityServer 与 AIO 单体应用宿主工程.
-47. [项目结构]   新增 AI 微服务工程及其数据迁移工程,并在 Aspire 编排中增加对应宿主.
-48. [项目结构]   从解决方案中摘除 v1 版 VueVbenAdmin 平台模块(导航/设置/主题),保留 v5 版本导航.
-49. [部署]   优化 Dockerfile、Docker Compose 与镜像构建脚本.
-50. [模板]   微服务模板升级到 10.7.0,同步打包、织入与日志配置,并为模板 Host 新增 appsettings.Production.json.
-51. [构建]   包输出与是否生成包改为按条件控制;新增 abppkg 打包内容与客户端代理描述文件自动内嵌;ConfigureAwait 织入仅在 Release 生效,并移除各工程冗余的 FodyWeavers 配置文件.
+1. [Dynamic Definition] Added LINGYUN.Abp.Dynamic.Definitions dynamic definition module to carry definition extensions of functions/permissions/settings/notifications/Webhook/AI in a unified mechanism.
+2. [Function Management] Rewrite ABP's default FeatureDefinitionManager to implement three strategies of merging, ignoring, and overwriting built-in definitions and dynamic definitions.
+3. [Permission Management] Rewrite PermissionDefinitionManager to implement three strategies: merge, ignore, and overwrite.
+4. [Setting Management] Rewrite SettingDefinitionManager to implement three strategies: merge, ignore, and overwrite.
+5. [Notification Management] Rewrite NotificationDefinitionManager to implement three strategies: merge, ignore, and overwrite.
+6. [Webhook Management] Rewrite WebhookDefinitionManager to implement three strategies: merge, ignore, and overwrite.
+7. [AI Management] Rewrite WorkspaceDefinitionManager and AIToolDefinitionManager to implement three strategies: merge, ignore, and overwrite.
+8. [Definition Management] Local events are triggered after function/permission/setting definition changes, making it easier for subscribers to refresh the cache.
+9. [Definition Management] Optimize the definition management page and permission list styles.
+10. [Account module] Enhance user security: verify the two-factor policy when creating a user, bind a two-factor authenticator when logging in, verify two-factor and email confirmation when registering, and verify email confirmation when logging in.
+11. [Account module] Integrate picture verification code (LazyCaptcha) and Tencent Cloud verification code, covering login, registration and verification code verification interface.
+12. [Account module] Reconstruct the login page and add interactions such as password display/hide, page content title, "Return to login" button style, etc.
+13. [Account Module] User registration will be confirmed through email; the verification process of verification code and recovery code will be improved.
+14. [Identity Module] Add user operation security log records and complete verification code-related security logs.
+15. [Identity module] Reconstruct the session module to enhance the security of session verification and invalidate the user session after the user password is changed.
+16. [Identity module] The admin role is forced to enable two-factor authentication and is prohibited from being set as the default role.
+17. [Identity Module] Improve the default values of security related settings.
+18. [Personal Center] Add binding information validator; synchronize HttpClientProxy of Identity interface.
+19. [Audit Log] The audit log no longer records the tenant connection string.
+20. [OpenIddict module] Add JsonWebKeySet support, and optimize OpenIddict management functions and identity token mapping.
+21. [OpenIddict module] Enterprise WeChat authorization is split into two authorization processes: web page authorization and mini program (wecom_oauth / wecom_mp), and a new implementation of mini program temporary login credentials in exchange for sessions is added.
+22. [OpenIddict module] QR code login is changed to use the tenant carried by the QR code itself, and the request parameter tenant_id is no longer accepted; and the security log actions for QR code login are refined.
+23. [IdentityServer module] The enterprise WeChat authorization verifier is simultaneously split into two verifiers: web authorization and mini program.
+24. [System Log] Added OpenObserve log query provider to support using OpenObserve instead of Elasticsearch to query system logs.
+25. [Audit Log] Added new audit log storage based on OpenObserve: audit logs, security logs, entity changes, and operations are streamed into different data streams and streamed according to tenants.
+26. [Audit Log] Added information contributor extension points for audit logs and security logs, allowing modules to supplement log information without replacing the storage implementation.
+27. [Log module] Elasticsearch and OpenObserve log providers have built-in Serilog enhancer (ApplicationName / UniqueId).
+28. [System Logs] Enable rolling policy for audit/security log index names.
+29. [OpenTelemetry module] Add Redis tracking instrumentation and remove the deprecated Zipkin exporter configuration.
+30. [IP positioning] Optimize the analysis and name localization of IP address geographical location.
+31. [IP Positioning] Location remark rules are changed to configurable (removed by country/province) and bound by an independent configuration section.
+32. [IP Location] Enable IP location resolution of audit logs for all services, gateways and Aspire hosts.
+33. [IP Positioning] The MaxMind GeoIP2 offline library is changed to be provided by the user during deployment, and the module is no longer built-in for distribution; when the library file is missing, it falls back to the empty interpreter and records a warning.
+34. [IP Positioning] The default location resolution provider of each host is switched from MaxMind GeoIP2 to IP2Region (built-in offline library).
+35. [Notification module] Abstract template card messages support JSON round-trip: two new converters, Newtonsoft and System.Text.Json, are added to restore the specific card type according to card_type.
+36. [Notification module] The notification data extension is split into multiple partial files according to message types, and switches such as confidential messages, ID translation, and duplicate message checking are added.
+37. [Notification Module] Added a new mechanism to declare notification payloads by channel. The attribute package is divided into namespaces according to channel prefixes. New fields in channels do not need to change the notification table structure.
+38. [Notification Module] Optimize the construction of channel load attribute metadata, remove global locks and change to delayed initialization.
+39. [TuiJuhe Module] The notification publishing contract is unified into NotificationPublishContext (consistent with other channels).
+40. [Blob Management] Fixed the path traversal vulnerability of the local file system storage provider, and added cross-platform name and path verification rules.
+41. [Blob Management] File existence check is changed to filtering by container ID, and container table association query is removed.
+42. [Deployment] Enable IP location resolution and comment removal rules for audit logs for each service in container orchestration; add container port and running configuration instructions.
+43. [CLI] Added blob-migration command for migrating files from old version of file system storage to BlobManagement.
+44. [CLI] Improve blob-migration: complete parameter prompts, alert and terminate the operation when the specified directory does not exist.
+45. [Project structure] Microservice projects are renamed to LINGYUN.Abp.MicroService.*, and single application projects are renamed to LINGYUN.Abp.MicroService.AllInOne.
+46. [Project structure] Remove the legacy IdentityServer and AIO single application host projects.
+47. [Project structure] Add an AI microservice project and its data migration project, and add corresponding hosts in Aspire orchestration.
+48. [Project structure] Remove the v1 VueVbenAdmin platform module (navigation/settings/theme) from the solution and retain the v5 version navigation.
+49. [Deployment] Optimize Dockerfile, Docker Compose and image building scripts.
+50. [Template] The microservice template is upgraded to 10.7.0, packaging, weaving and log configuration are synchronized, and appsettings.Production.json is added to the template Host.
+51. [Build] Package output and whether to generate packages are changed to conditional control; new abppkg packaging content and client agent description files are automatically embedded; ConfigureAwait weaving only takes effect in Release, and redundant FodyWeavers configuration files of each project are removed.
 
-## 依赖项变更
+## Dependency changes
 
-| 库名称                                                  | 原版本          | 现版本        |
+| Library name | Original version | Current version |
 | ------------------------------------------------------- | --------------- | ------------- |
 | AlibabaCloud.SDK.Captcha20230305                        |                 | 1.1.4         |
 | Duende.IdentityModel                                    |                 | 7.1.0         |
-| IdentityModel                                           | 7.0.0           | (移除)        |
+| IdentityModel | 7.0.0 | (removed) |
 | Lazy.Captcha.Core                                       |                 | 2.2.5         |
 | MaxMind.GeoIP2                                          |                 | 6.1.0         |
 | Microsoft.AspNetCore.*                                  | 10.0.9          | 10.0.11       |
@@ -91,19 +91,19 @@
 | System.Threading.Channels                               | 10.0.9          | 10.0.11       |
 | Volo.Abp.*                                              | 10.6.0          | 10.7.0        |
 | Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite            | 5.6.0           | 5.7.0         |
-| aliyun-net-sdk-core                                     | 1.6.2           | (移除)        |
+| aliyun-net-sdk-core | 1.6.2 | (removed) |
 
-## 数据库迁移
+## Database migration
 
 | Project Name       | Database Provider | Scripts                              | EF Core Version |
 | ------------------ | ----------------- | ------------------------------------ | --------------- |
 | services/AIService | MySQL             | 20261007004411_Initial-AI-Service    | 10.0.11         |
 
-> 说明:本版本新增 AI 微服务,其数据迁移工程为 `LINGYUN.Abp.MicroService.AIService.EntityFrameworkCore` / `.DbMigrator`,连接字符串名为 `AIServiceDbMigrator`.
+> Note: This version adds a new AI microservice, its data migration project is `LINGYUN.Abp.MicroService.AIService.EntityFrameworkCore` / `.DbMigrator`, and the connection string name is `AIServiceDbMigrator`.
 >
-> 其余数据库无新增迁移脚本,仅迁移工程名随本版本的工程重命名而变化:原 `LY.*` 系列统一为 `LINGYUN.Abp.MicroService.*`,`services/Single` 更名为 `LINGYUN.Abp.MicroService.AllInOne`,原 `services/BackendAdmin` 已随旧版宿主一并移除.升级时请按新的工程名执行迁移,历史数据无需结构变更.
+> There are no new migration scripts for the remaining databases. Only the migration project names change with the project renaming of this version: the original `LY.*` series are unified into `LINGYUN.Abp.MicroService.*`, `services/Single` is renamed to `LINGYUN.Abp.MicroService.AllInOne`, and the original `services/BackendAdmin` has been removed along with the old version of the host. When upgrading, please perform migration according to the new project name, and no structural changes are required for historical data.
 
-## 数据库连接字符串
+## Database connection string
 
 | Module Name                   | ConnectionString Name        | Example(MySQL)                                               |
 | ----------------------------- | ---------------------------- | ------------------------------------------------------------ |
@@ -129,16 +129,16 @@
 | labp/WebhooksManagement       | WebhooksManagement           | Server=127.0.0.1;Database=abp;User Id=root;Password=123456;SslMode=None |
 | labp/Elsa                     | Workflow                     | Server=127.0.0.1;Database=abp;User Id=root;Password=123456;SslMode=None |
 
-> 本版本未新增或改名连接字符串键,配置结构与 10.6.0 一致;上表按模块归并,项目名称请按本版本的工程命名对应.
+> There is no new or renamed connection string key in this version, and the configuration structure is consistent with 10.6.0; the above table is organized by module, and the project name should correspond to the project naming of this version.
 
-## 升级注意事项
+## Upgrade Notes
 
-1. **MaxMind GeoIP2 的破坏性变更**:模块不再内置 `GeoLite2-City.mmdb`,公开常量 `AbpMaxMindGeoIP2Module.DefaultDatabaseFile` 已移除.如需继续使用,请自行下载 GeoLite2 离线库并配置 `MaxMindGeoIP2:DatabaseFile`(或环境变量 `MaxMindGeoIP2__DatabaseFile`);未配置时位置解析返回空结果并记录警告.各宿主默认已切换为 IP2Region,通常无需额外处理.
+1. **Destructive changes to MaxMind GeoIP2**: The module is no longer built-in `GeoLite2-City.mmdb`, and the public constant `AbpMaxMindGeoIP2Module.DefaultDatabaseFile` has been removed. If you want to continue using it, please download the GeoLite2 offline library and configure `MaxMindGeoIP2:DatabaseFile` (or environment variable `MaxMindGeoIP2__DatabaseFile`); When not configured, location analysis returns empty results and records warnings. Each host has switched to IP2Region by default, and usually no additional processing is required.
 
-2. **企业微信授权类型变更**:授权类型由 `wecom` 改为 `wecom_oauth`,并新增小程序授权类型 `wecom_mp`.旧客户端若仍在发送 `grant_type=wecom` 将认证失败,需同步升级.同时 `WeChatWorkTokenExtensionGrant` / `WeChatWorkGrantValidator` 已改为抽象类.
+2. **Enterprise WeChat authorization type change**: The authorization type is changed from `wecom` to `wecom_oauth`, and a new mini program authorization type `wecom_mp` is added. If the old client is still sending `grant_type=wecom`, the authentication will fail and needs to be upgraded simultaneously. At the same time, `WeChatWorkTokenExtensionGrant` / `WeChatWorkGrantValidator` has been changed to an abstract class.
 
-3. **二维码登录不再接受 `tenant_id`**:租户信息取自二维码自身,请求参数中的 `tenant_id` 会被忽略(不报错).此前依赖该参数指定租户的调用方需移除该参数.
+3. **QR code login is no longer accepted `tenant_id`**: The tenant information is taken from the QR code itself, and the `tenant_id` in the request parameter will be ignored (no error will be reported). The caller that previously relied on this parameter to specify the tenant needs to remove this parameter.
 
-4. **Fody 织入配置变更**:`ConfigureAwait` 织入仅在 Release 配置生效,并通过公共属性文件内联 `WeaverConfiguration`;各工程原有的 `FodyWeavers.xml` / `.xsd` 已移除.若有自定义 Fody 配置,请改为在工程内显式声明.
+4. **Fody weaving configuration changes**: `ConfigureAwait` weaving only takes effect in the Release configuration, and is inlined in `WeaverConfiguration` through the public property file; the original `FodyWeavers.xml` / `.xsd` of each project has been removed. If there is a custom Fody configuration, please declare it explicitly in the project instead.
 
-5. **打包行为变更**:`GeneratePackageOnBuild` 改为按条件控制(不再对所有 `LINGYUN*` 程序集生效),并新增 `*.abppkg` 内容打包与 `HttpApi.Client` 程序集自动内嵌 `*generate-proxy.json`.如依赖旧的打包产物路径,请确认 `LocalNuget` 输出.
+5. **Packaging behavior change**: `GeneratePackageOnBuild` is changed to conditional control (no longer effective for all `LINGYUN*` assemblies), and `*.abppkg` content packaging and `HttpApi.Client` assembly are automatically embedded with `*generate-proxy.json`. If you rely on the old packaging product path, please confirm the `LocalNuget` output.

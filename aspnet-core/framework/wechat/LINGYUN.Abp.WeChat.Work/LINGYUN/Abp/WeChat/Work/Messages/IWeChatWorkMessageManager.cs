@@ -3,17 +3,17 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages;
 /// <summary>
-/// 企业微信消息管理器
+/// Enterprise WeChat Message Manager
 /// </summary>
 public interface IWeChatWorkMessageManager
 {
     /// <summary>
-    /// 撤回应用消息
+    /// Withdraw application message
     /// </summary>
     /// <remarks>
-    /// 参考：<see href="https://developer.work.weixin.qq.com/document/path/94867"/>
+    /// Reference: <see href="https://developer.work.weixin.qq.com/document/path/94867"/>
     /// </remarks>
-    /// <param name="messageId">消息ID。从应用发送消息接口 <see cref="IWeChatWorkMessageSender"/> 处获得。</param>
+    /// <param name="messageId">Message ID. Obtained from the application sending message interface <see cref="IWeChatWorkMessageSender"/>. </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<bool> ReCallMessageAsync( string messageId, CancellationToken cancellationToken = default);

@@ -5,35 +5,35 @@ namespace LINGYUN.Abp.Location;
 public class Location
 {
     /// <summary>
-    /// 地球半径（米）
+    /// Radius of the Earth (meters)
     /// </summary>
     public const double EARTH_RADIUS = 6378137;
     /// <summary>
-    /// 纬度
+    /// Latitude
     /// </summary>
     public double Latitude { get; set; }
     /// <summary>
-    /// 经度
+    /// Longitude
     /// </summary>
     public double Longitude { get; set; }
 
     /// <summary>
-    /// 计算两个位置的距离，返回两点的距离，单位 米
-    /// 该公式为GOOGLE提供，误差小于0.2米
+    /// Calculate the distance between two locations and return the distance between two points in meters.
+    /// This formula is provided by GOOGLE, the error is less than 0.2 meters
     /// </summary>
-    /// <param name="location">参与计算的位置信息</param>
-    /// <returns>返回两个位置的距离</returns>
+    /// <param name="location">Location information participating in calculation</param>
+    /// <returns>Returns the distance between two positions</returns>
     public double CalcDistance(Location location)
     {
         return CalcDistance(this, location);
     }
     /// <summary>
-    /// 计算两个位置的距离，返回两点的距离，单位 米
-    /// 该公式为GOOGLE提供，误差小于0.2米
+    /// Calculate the distance between two locations and return the distance between two points in meters.
+    /// This formula is provided by GOOGLE, the error is less than 0.2 meters
     /// </summary>
-    /// <param name="location1">参与计算的位置信息</param>
-    /// <param name="location2">参与计算的位置信息</param>
-    /// <returns>返回两个位置的距离</returns>
+    /// <param name="location1">Location information participating in calculation</param>
+    /// <param name="location2">Location information participating in calculation</param>
+    /// <returns>Returns the distance between two positions</returns>
     public static double CalcDistance(Location location1, Location location2)
     {
         double radLat1 = Rad(location1.Latitude);
@@ -47,10 +47,10 @@ public class Location
         return result;
     }
     /// <summary>
-    /// 计算位置的偏移距离
+    /// Calculate the offset distance of the position
     /// </summary>
-    /// <param name="location">参与计算的位置</param>
-    /// <param name="distance">位置偏移量,单位 米</param>
+    /// <param name="location">Location participating in calculation</param>
+    /// <param name="distance">Position offset, unit meter</param>
     /// <returns></returns>
     public static Position CalcOffsetDistance(Location location, double distance)
     {
@@ -75,7 +75,7 @@ public class Location
     }
 
     /// <summary>
-    /// 角度转换为弧度
+    /// Convert angles to radians
     /// </summary>
     /// <param name="d"></param>
     /// <returns></returns>
@@ -85,7 +85,7 @@ public class Location
     }
 
     /// <summary>
-    /// 弧度转换为角度
+    /// Convert radians to degrees
     /// </summary>
     /// <param name="d"></param>
     /// <returns></returns>

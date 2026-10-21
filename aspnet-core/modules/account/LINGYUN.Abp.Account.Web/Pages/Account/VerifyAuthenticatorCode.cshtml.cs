@@ -74,7 +74,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
             }
             else
             {
-                Alerts.Danger(L["TwoFactorAuthenticationInvaidUser"]);// TODO: 更多状态码的解读
+                Alerts.Danger(L["TwoFactorAuthenticationInvaidUser"]);//TODO: More status code interpretations
                 return Page();
             }
         }

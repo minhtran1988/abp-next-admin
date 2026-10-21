@@ -13,8 +13,8 @@ export function useFeatureGroupDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除功能定义
-   * @param name 功能名称
+   * Delete function definition
+   * @param name function name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/feature-management/definitions/groups/${name}`, {
@@ -23,9 +23,9 @@ export function useFeatureGroupDefinitionsApi() {
   }
 
   /**
-   * 查询功能定义
-   * @param name 功能名称
-   * @returns 功能定义数据传输对象
+   * Query function definition
+   * @param name function name
+   * @returns function definition data transfer object
    */
   function getApi(name: string): Promise<FeatureGroupDefinitionDto> {
     return request<FeatureGroupDefinitionDto>(
@@ -37,9 +37,9 @@ export function useFeatureGroupDefinitionsApi() {
   }
 
   /**
-   * 查询功能定义列表
-   * @param input 功能过滤条件
-   * @returns 功能定义数据传输对象列表
+   * Query function definition list
+   * @param input function filter conditions
+   * @returns function definition data transfer object list
    */
   function getListApi(
     input?: FeatureGroupDefinitionGetListInput,
@@ -54,9 +54,9 @@ export function useFeatureGroupDefinitionsApi() {
   }
 
   /**
-   * 创建功能定义
-   * @param input 功能定义参数
-   * @returns 功能定义数据传输对象
+   * Create function definition
+   * @param input function definition parameters
+   * @returns function definition data transfer object
    */
   function createApi(
     input: FeatureGroupDefinitionCreateDto,
@@ -71,10 +71,10 @@ export function useFeatureGroupDefinitionsApi() {
   }
 
   /**
-   * 更新功能定义
-   * @param name 功能名称
-   * @param input 功能定义参数
-   * @returns 功能定义数据传输对象
+   * Update function definition
+   * @param name function name
+   * @param input function definition parameters
+   * @returns function definition data transfer object
    */
   function updateApi(
     name: string,

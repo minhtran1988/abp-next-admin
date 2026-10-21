@@ -89,7 +89,7 @@
         if (!wrapEl) return;
         const bindValue = { ...attrs, ...props };
         const insEditor = new Vditor(wrapEl, {
-          // 设置外观主题
+          // Set appearance theme
           theme: getTheme(getDarkMode.value) as any,
           lang: unref(getCurrentLang),
           mode: 'sv',
@@ -98,11 +98,11 @@
           },
           preview: {
             theme: {
-              // 设置内容主题
+              // Set content theme
               current: getTheme(getDarkMode.value, 'content'),
             },
             hljs: {
-              // 设置代码块主题
+              // Set code block theme
               style: getTheme(getDarkMode.value, 'code'),
             },
             actions: [],
@@ -122,7 +122,7 @@
             });
           },
           blur: () => {
-            //unref(vditorRef)?.setValue(props.value);
+            // unref(vditorRef)?.setValue(props.value);
           },
           ...bindValue,
           cache: {

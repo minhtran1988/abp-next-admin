@@ -4,23 +4,23 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 弹出地理位置选择器的事件推送
+/// Pop up the event push of the geographical location selector
 /// </summary>
 [EventName("location_select")]
 public class GeoLocationSelectPushEevent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;
     /// <summary>
-    /// 发送的位置信息
+    /// Location information sent
     /// </summary>
     [XmlElement("SendLocationInfo")]
     public LocationInfo SendLocationInfo { get; set; } = default!;
     /// <summary>
-    /// app类型，在企业微信固定返回wxwork，在微信不返回该字段
+    /// For app type, wxwork is always returned in enterprise WeChat, but this field is not returned in WeChat.
     /// </summary>
     [XmlElement("AppType")]
     public string? AppType { get; set; }
@@ -34,27 +34,27 @@ public class GeoLocationSelectPushEevent : WeChatWorkEventMessage
 public class LocationInfo
 {
     /// <summary>
-    /// 地理位置纬度
+    /// Geographical location latitude
     /// </summary>
     [XmlElement("Location_X")]
     public double Latitude { get; set; }
     /// <summary>
-    /// 地理位置经度
+    /// Geographical location longitude
     /// </summary>
     [XmlElement("Location_Y")]
     public double Longitude { get; set; }
     /// <summary>
-    /// 地图缩放大小
+    /// Map zoom size
     /// </summary>
     [XmlElement("Scale")]
     public double Scale { get; set; }
     /// <summary>
-    /// 地理位置信息
+    /// Geographical location information
     /// </summary>
     [XmlElement("Label")]
     public string? Label { get; set; }
     /// <summary>
-    /// POI的名字，可能为空
+    /// The name of the POI, may be empty
     /// </summary>
     [XmlElement("Poiname")]
     public string? PoiName { get; set; }

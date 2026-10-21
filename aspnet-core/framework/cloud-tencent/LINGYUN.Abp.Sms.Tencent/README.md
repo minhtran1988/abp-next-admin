@@ -1,49 +1,49 @@
 # LINGYUN.Abp.Sms.Tencent
 
-腾讯云短信服务模块，集成腾讯云短信服务到ABP应用程序。
+Tencent Cloud SMS service module integrates Tencent Cloud SMS service into ABP applications.
 
-## 功能特性
+## Features
 
-* 支持腾讯云短信服务的发送功能
-* 支持多租户配置
-* 支持默认签名和模板配置
-* 支持多手机号批量发送
-* 支持短信模板参数传递
-* 内置错误处理和日志记录
+* Support the sending function of Tencent Cloud SMS service
+* Support multi-tenant configuration
+* Support default signature and template configuration
+* Support batch sending to multiple mobile phone numbers
+* Support SMS template parameter passing
+* Built-in error handling and logging
 
-## 配置项说明
+## Configuration item description
 
-### 基础配置
+### Basic configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud": {
-      "SecretId": "您的腾讯云SecretId", // 从腾讯云控制台获取
-      "SecretKey": "您的腾讯云SecretKey", // 从腾讯云控制台获取
-      "DurationSecond": "600" // 会话持续时长，单位秒
+      "SecretId": "Your Tencent Cloud SecretId", // Get it from the Tencent Cloud console
+      "SecretKey": "Your Tencent Cloud SecretKey", // Get it from the Tencent Cloud console
+      "DurationSecond": "600" // Session duration, in seconds
     }
   }
 }
 ```
 
-### 短信服务配置
+### SMS service configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud.Sms": {
-      "AppId": "", // 短信应用ID，在短信控制台添加应用后生成
-      "DefaultSignName": "", // 默认短信签名
-      "DefaultTemplateId": "" // 默认短信模板ID
+      "AppId": "", // SMS application ID, generated after adding the application in the SMS console
+      "DefaultSignName": "", //Default SMS signature
+      "DefaultTemplateId": "" //Default SMS template ID
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 添加模块依赖
+1. Add module dependencies
 ```csharp
 [DependsOn(typeof(AbpSmsTencentModule))]
 public class YourModule : AbpModule
@@ -52,24 +52,24 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置腾讯云短信服务
+2. Configure Tencent Cloud SMS service
 ```json
 {
   "Settings": {
     "Abp.TencentCloud": {
-      "SecretId": "您的腾讯云SecretId",
-      "SecretKey": "您的腾讯云SecretKey"
+      "SecretId": "Your Tencent Cloud SecretId",
+      "SecretKey": "Your Tencent Cloud SecretKey"
     },
     "Abp.TencentCloud.Sms": {
-      "AppId": "您的短信应用ID",
-      "DefaultSignName": "您的短信签名",
-      "DefaultTemplateId": "您的默认模板ID"
+      "AppId": "Your SMS application ID",
+      "DefaultSignName": "Your SMS signature",
+      "DefaultTemplateId": "Your default template ID"
     }
   }
 }
 ```
 
-3. 发送短信示例
+3. Example of sending SMS
 ```csharp
 public class YourService
 {
@@ -80,7 +80,7 @@ public class YourService
         _smsSender = smsSender;
     }
 
-    // 使用默认签名和模板发送
+    //Send using default signature and template
     public async Task SendSmsAsync(string phoneNumber, Dictionary<string, object> templateParams)
     {
         await _smsSender.SendAsync(
@@ -89,7 +89,7 @@ public class YourService
             templateParams);
     }
 
-    // 使用指定签名和模板发送
+    //Send using specified signature and template
     public async Task SendSmsAsync(
         string signName,
         string templateCode,
@@ -105,23 +105,23 @@ public class YourService
 }
 ```
 
-## 高级特性
+## Advanced features
 
-### 特性开关
+### Feature switch
 
-模块提供以下特性开关：
+The module provides the following feature switches:
 
-* TencentSms - 控制腾讯云短信服务的启用/禁用
+* TencentSms - Control the enabling/disabling of Tencent Cloud SMS service
 
-### 错误处理
+### Error handling
 
-* 当所有短信发送失败时，会抛出异常
-* 当部分短信发送失败时，会记录警告日志
-* 支持查看发送失败的详细信息，包括流水号、手机号、错误代码和错误信息
+* When all text messages fail to be sent, an exception will be thrown
+* When some text messages fail to be sent, a warning log will be recorded
+* Supports viewing detailed information of failed delivery, including serial number, mobile phone number, error code and error message
 
-## 更多文档
+## More documentation
 
-* [腾讯云短信服务](https://cloud.tencent.com/document/product/382)
-* [短信控制台](https://console.cloud.tencent.com/smsv2)
+* [Tencent Cloud SMS Service](https://cloud.tencent.com/document/product/382)
+* [SMS Console](https://console.cloud.tencent.com/smsv2)
 
 [English](./README.EN.md)

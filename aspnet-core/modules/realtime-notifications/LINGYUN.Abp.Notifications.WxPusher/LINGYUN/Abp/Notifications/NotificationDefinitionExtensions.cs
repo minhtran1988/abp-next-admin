@@ -10,7 +10,7 @@ public static class NotificationDefinitionExtensions
     private const string TopicKey = Prefix + "topic";
     private const string UrlKey = Prefix + "url";
     /// <summary>
-    /// 设定消息内容类型
+    /// Set message content type
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="contentType"></param>
@@ -22,7 +22,7 @@ public static class NotificationDefinitionExtensions
         return notification.WithProperty(ContentTypeKey, contentType);
     }
     /// <summary>
-    /// 获取消息发送通道
+    /// Get the message sending channel
     /// </summary>
     /// <param name="notification"></param>
     /// <param name="defaultChannelType"></param>
@@ -47,10 +47,10 @@ public static class NotificationDefinitionExtensions
         };
     }
     /// <summary>
-    /// 消息主题(Topic)
+    /// Message topic (Topic)
     /// see: https://wxpusher.dingliqc.com/docs/#/?id=%e5%90%8d%e8%af%8d%e8%a7%a3%e9%87%8a
     /// </summary>
-    /// <param name="notification">群组编码</param>
+    /// <param name="notification">Group encoding</param>
     /// <param name="topics"></param>
     /// <returns>
     /// <see cref="NotificationDefinition"/>
@@ -62,11 +62,11 @@ public static class NotificationDefinitionExtensions
         return notification.WithProperty(TopicKey, topics);
     }
     /// <summary>
-    /// 获取消息群发群组编码
+    /// Get the message group code
     /// </summary>
     /// <param name="notification"></param>
     /// <returns>
-    /// 通知定义的群组编码列表
+    /// Group encoding list defined by notification
     /// </returns>
     public static List<int> GetTopics(
         this NotificationDefinition notification)
@@ -80,9 +80,9 @@ public static class NotificationDefinitionExtensions
         return new List<int>();
     }
     /// <summary>
-    /// 用户点击标题跳转页面
+    /// The user clicks on the title to jump to the page
     /// </summary>
-    /// <param name="notification">群组编码</param>
+    /// <param name="notification">Group encoding</param>
     /// <param name="url"></param>
     /// <returns>
     /// <see cref="NotificationDefinition"/>
@@ -94,7 +94,7 @@ public static class NotificationDefinitionExtensions
         return notification.WithProperty(UrlKey, url);
     }
     /// <summary>
-    /// 获取标题跳转页面
+    /// Get the title jump page
     /// </summary>
     /// <param name="notification"></param>
     public static string? GetUrlOrNull(

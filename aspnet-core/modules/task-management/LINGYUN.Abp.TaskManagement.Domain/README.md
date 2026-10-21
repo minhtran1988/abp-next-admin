@@ -1,75 +1,75 @@
 # LINGYUN.Abp.TaskManagement.Domain
 
-任务管理领域模块，实现核心业务逻辑和领域模型。
+Task management domain module implements core business logic and domain model.
 
-## 功能
+## Function
 
-### 后台作业管理
-- 作业生命周期管理（创建、更新、删除）
-- 作业状态控制（启动、停止、暂停、恢复、触发）
-- 支持不同类型的作业：
-  - 一次性作业
-  - 周期性作业（使用cron表达式）
-  - 持续性作业（使用时间间隔）
+### Background job management
+-Job life cycle management (create, update, delete)
+- Job status control (start, stop, pause, resume, trigger)
+- Supports different types of jobs:
+  - One-time job
+  - Periodic jobs (using cron expressions)
+  - Continuous jobs (using time intervals)
 
-### 作业存储
-- 存储作业信息和执行状态
-- 跟踪作业执行历史
-- 清理过期作业
-- 支持多租户
+### Job storage
+- Store job information and execution status
+- Track job execution history
+- Clean up expired jobs
+- Supports multi-tenancy
 
-### 作业同步
-- 在分布式系统中同步作业状态
-- 处理作业创建、更新和删除事件
-- 维护作业队列一致性
+### Job synchronization
+- Synchronize job status in distributed systems
+- Handle job creation, update and delete events
+- Maintain job queue consistency
 
-### 作业行为
-- 管理作业相关行为
-- 存储行为参数
-- 启用/禁用行为
+### Job behavior
+- Manage job-related behaviors
+- Store behavior parameters
+- Enable/disable behavior
 
-### 作业过滤和规范
-- 通过多个条件过滤作业：
-  - 类型
-  - 分组
-  - 名称
-  - 状态
-  - 优先级
-  - 来源
-  - 创建时间
-  - 上次运行时间
-- 支持复杂作业查询
+### Job filtering and specification
+- Filter jobs by multiple criteria:
+  - type
+  - Group
+  - Name
+  - Status
+  - Priority
+  - source
+  - Creation time
+  - Last run time
+-Support complex job queries
 
-### 作业日志
-- 记录作业执行详情
-- 跟踪执行结果和异常
-- 支持多租户日志记录
+### Job Log
+- Record job execution details
+- Track execution results and exceptions
+- Supports multi-tenant logging
 
-### 领域事件
-- 作业状态变更事件
-- 作业执行事件
-- 分布式事件处理
+### Domain events
+-Job status change event
+-Job execution events
+- Distributed event processing
 
-### 作业优先级管理
-- 支持多个优先级别：
-  - 低
-  - 低于正常
-  - 正常
-  - 高于正常
-  - 高
+### Job priority management
+- Supports multiple priority levels:
+  - low
+  - lower than normal
+  - normal
+  - higher than normal
+  - high
 
-### 作业来源管理
-- 支持不同的作业来源：
-  - 用户作业
-  - 系统作业
+### Job source management
+- Support different job sources:
+  - User jobs
+  - System work
 
-### 多租户支持
-- 租户特定的作业管理
-- 跨租户作业操作
-- 作业执行中的租户隔离
+### Multi-tenant support
+- Tenant-specific job management
+- Cross-tenant job operations
+- Tenant isolation during job execution
 
-### 领域服务
-- 后台作业管理器
-- 作业存储服务
-- 作业行为服务
-- 作业日志服务
+### Domain Services
+- Background job manager
+-Job storage service
+- Homework behavior service
+-Job log service

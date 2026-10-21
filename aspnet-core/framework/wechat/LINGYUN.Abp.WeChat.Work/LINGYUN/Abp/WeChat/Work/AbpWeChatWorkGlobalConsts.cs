@@ -3,35 +3,35 @@
 public class AbpWeChatWorkGlobalConsts
 {
     /// <summary>
-    ///  企业微信对应的Provider名称
+    /// Provider name corresponding to Enterprise WeChat
     /// </summary>
     public static string ProviderName { get; set; } = "WorkWeixin";
     /// <summary>
-    /// 企业微信OAuth授权类型
+    /// Enterprise WeChat OAuth authorization type
     /// </summary>
     public static string OAuthGrantType { get; set; } = "wecom_oauth";
     /// <summary>
-    /// 企业微信小程序授权类型
+    /// Enterprise WeChat applet authorization type
     /// </summary>
     public static string MiniProgramGrantType { get; set; } = "wecom_mp";
     /// <summary>
-    /// 企业微信个人信息标识
+    /// Enterprise WeChat personal information identification
     /// </summary>
     public static string ProfileKey { get; set; } = "wecom.profile";
     /// <summary>
-    /// 企业微信授权应用标识参数
+    /// Enterprise WeChat authorized application identification parameters
     /// </summary>
     public static string AgentId { get; set; } = "agent_id";
     /// <summary>
-    /// 企业微信授权Code参数
+    /// Enterprise WeChat authorization code parameters
     /// </summary>
     public static string Code  { get; set; }= "code";
     /// <summary>
-    /// 企业微信授权显示名称
+    /// Enterprise WeChat authorized display name
     /// </summary>
-    public static string DisplayName { get; set; } = "企业微信";
+    public static string DisplayName { get; set; } = "Enterprise WeChat";
     /// <summary>
-    ///企业微信授权方法名称
+    /// Enterprise WeChat authorization method name
     /// </summary>
     public static string AuthenticationMethod { get; set; } = "wecom";
 

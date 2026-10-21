@@ -1,11 +1,11 @@
 # LINGYUN.Abp.Telemetry.SkyWalking
 
-分布式追踪系统 `SkyWalking` 集成  
+Distributed tracing system `SkyWalking` integration
 
-## 功能特性
+## Features
 
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpTelemetrySkyWalkingModule))]
@@ -15,17 +15,17 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```shell
 
-# 切换到主程序目录
+# Switch to the main program directory
 cd my-host-project-path
 
-# 安装 skyapm 命令行工具
+#Install skyapm command line tool
 dotnet tool install -g SkyAPM.DotNet.CLI
 
-# 生成 SkyWalking 配置文件, localhost:11800 为你运行的SkyWalking实例暴露的Grpc端口
+# Generate SkyWalking configuration file, localhost:11800 is the Grpc port exposed by the SkyWalking instance you are running.
 dotnet skyapm config auth_server localhost:11800
 ```
 
@@ -47,7 +47,7 @@ public class YouProjectModule : AbpModule
 
 ```
 
-## 更多文档
+## More documentation
 
 * [SkyWalking](https://skywalking.apache.org/)
 * [SkyWalking .NET](https://github.com/SkyAPM/SkyAPM-dotnet)

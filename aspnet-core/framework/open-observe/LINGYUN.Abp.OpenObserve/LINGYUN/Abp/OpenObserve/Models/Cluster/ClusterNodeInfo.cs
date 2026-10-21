@@ -5,18 +5,18 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Cluster;
 
 /// <summary>
-/// 集群节点信息
+/// Cluster node information
 /// </summary>
 public class ClusterNodeInfo
 {
     /// <summary>
-    /// 待处理的压缩任务数
+    /// Number of compression tasks to be processed
     /// </summary>
     [JsonPropertyName("pending_jobs")]
     public int PendingJobs { get; set; }
 
     /// <summary>
-    /// 未在模型中声明的字段
+    /// Fields not declared in the model
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? ExtraProperties { get; set; }

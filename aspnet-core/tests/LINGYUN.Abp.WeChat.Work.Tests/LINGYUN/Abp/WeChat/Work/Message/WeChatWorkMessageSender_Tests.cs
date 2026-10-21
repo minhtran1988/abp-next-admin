@@ -17,7 +17,7 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
     [InlineData("1000002")]
     public async Task Send_Text_Message_Test(string agentId)
     {
-        var text = new TextMessage("你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。");
+        var text = new TextMessage("Your express delivery has arrived, please bring your work card to the mail center to pick it up.\nBefore departure, you can view <a href=\"http://work.weixin.qq.com\">Mail Center video live broadcast</a> to avoid queues smartly.");
         var message = new WeChatWorkTextMessage(agentId, text)
         {
             ToUser = "@all"
@@ -31,7 +31,7 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
     [InlineData("1000002", "wr0vTBJwAAFY2xtHp76qFMRDcVXu42qw")]
     public async Task Send_AppChat_Text_Message_Test(string agentId, string chatId)
     {
-        var text = new TextMessage("你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。");
+        var text = new TextMessage("Your express delivery has arrived, please bring your work card to the mail center to pick it up.\nBefore departure, you can view <a href=\"http://work.weixin.qq.com\">Mail Center video live broadcast</a> to avoid queues smartly.");
         var message = new WeChatWorkAppChatTextMessage(agentId, chatId, text);
 
         var response = await Sender.SendAsync(message);
@@ -42,7 +42,7 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
     [InlineData("1000002")]
     public async Task Send_Markdown_Message_Test(string agentId)
     {
-        var markdown = new MarkdownMessage("您的会议室已经预定，稍后会同步到`邮箱`  \n>**事项详情**  \n>事　项：<font color=\"info\">开会</font>  \n>组织者：@miglioguan  \n>参与者：@miglioguan、@kunliu、@jamdeezhou、@kanexiong、@kisonwang  \n>  \n>会议室：<font color=\"info\">广州TIT 1楼 301</font>  \n>日　期：<font color=\"warning\">2018年5月18日</font>  \n>时　间：<font color=\"comment\">上午9:00-11:00</font>  \n>  \n>请准时参加会议。  \n>  \n>如需修改会议信息，请点击：[修改会议信息](https://work.weixin.qq.com)");
+        var markdown = new MarkdownMessage("Your meeting room has been reserved and will be synchronized to `mailbox` later \n>**Item details** \n>Item: <font color=\"info\">Meeting</font> \n>Organizer: @miglioguan \n>Participants: @miglioguan, @kunliu, @jamdeezhou, @kanexiong, @kisonwang \n> \n>Conference room: <font color=\"info\">Room 301, 1st Floor, Guangzhou TIT</font> \n>Date: <font color=\"warning\">May 18, 2018</font> \n>Time: <font color=\"comment\">9:00-11:00 am</font> \n> \n>Please attend the meeting on time. \n>If you need to modify the meeting information, please click: [Modify Meeting Information](https://work.weixin.qq.com)");
         var message = new WeChatWorkMarkdownMessage(agentId, markdown)
         {
             ToUser = "@all"
@@ -56,7 +56,7 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
     [InlineData("1000002", "wr0vTBJwAAFY2xtHp76qFMRDcVXu42qw")]
     public async Task Send_AppChat_Markdown_Message_Test(string agentId, string chatId)
     {
-        var markdown = new MarkdownMessage("您的会议室已经预定，稍后会同步到`邮箱`  \n>**事项详情**  \n>事　项：<font color=\"info\">开会</font>  \n>组织者：@miglioguan  \n>参与者：@miglioguan、@kunliu、@jamdeezhou、@kanexiong、@kisonwang  \n>  \n>会议室：<font color=\"info\">广州TIT 1楼 301</font>  \n>日　期：<font color=\"warning\">2018年5月18日</font>  \n>时　间：<font color=\"comment\">上午9:00-11:00</font>  \n>  \n>请准时参加会议。  \n>  \n>如需修改会议信息，请点击：[修改会议信息](https://work.weixin.qq.com)");
+        var markdown = new MarkdownMessage("Your meeting room has been reserved and will be synchronized to `mailbox` later \n>**Item details** \n>Item: <font color=\"info\">Meeting</font> \n>Organizer: @miglioguan \n>Participants: @miglioguan, @kunliu, @jamdeezhou, @kanexiong, @kisonwang \n> \n>Conference room: <font color=\"info\">Room 301, 1st Floor, Guangzhou TIT</font> \n>Date: <font color=\"warning\">May 18, 2018</font> \n>Time: <font color=\"comment\">9:00-11:00 am</font> \n> \n>Please attend the meeting on time. \n>If you need to modify the meeting information, please click: [Modify Meeting Information](https://work.weixin.qq.com)");
         var message = new WeChatWorkAppChatMarkdownMessage(agentId, chatId, markdown);
 
         var response = await Sender.SendAsync(message);
@@ -70,29 +70,29 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
         var cardAction = new TemplateCardCardAction("https://work.weixin.qq.com");
         var template = new TextTemplateCard(cardAction, Guid.NewGuid().ToString("D"))
         {
-            Source = new TemplateCardSource("图片的url", "图片的url", DescriptionColor.Black),
+            Source = new TemplateCardSource("URL of the picture", "URL of the picture", DescriptionColor.Black),
             ActionMenu = new TemplateCardActionMenu(
                 new List<TemplateCardAction>
                 {
-                    new TemplateCardAction("A","接受推送"),
-                    new TemplateCardAction("B","不再推送"),
+                    new TemplateCardAction("A","Accept Push"),
+                    new TemplateCardAction("B","No more pushing"),
                 },
-                "卡片副交互辅助文本说明"),
-            MainTitle = new TemplateCardMainTitle("欢迎使用企业微信", "您的好友正在邀请您加入企业微信"),
-            QuoteArea = new TemplateCardQuoteArea("https://work.weixin.qq.com", "企业微信的引用样式", "企业微信真好用呀真好用"),
-            EmphasisContent = new TemplateCardEmphasisContent("100", "核心数据"),
-            SubTitle = "下载企业微信还能抢红包！",
+                "Card Vice Interaction Auxiliary Text Description"),
+            MainTitle = new TemplateCardMainTitle("Welcome to Enterprise WeChat", "Your friend is inviting you to join Enterprise WeChat"),
+            QuoteArea = new TemplateCardQuoteArea("https://work.weixin.qq.com", "Quote style of Enterprise WeChat", "Enterprise WeChat is so easy to use, so easy to use"),
+            EmphasisContent = new TemplateCardEmphasisContent("100", "Core Data"),
+            SubTitle = "Download Enterprise WeChat and grab red envelopes!",
             HorizontalContents = new List<TemplateCardHorizontalContent>
             {
-                TemplateCardHorizontalContent.None("邀请人","张三"),
-                TemplateCardHorizontalContent.FromUrl("企业微信官网","https://work.weixin.qq.com", "点击访问"),
-                //TemplateCardHorizontalContent.FromMedia("企业微信下载","文件的media_id", "企业微信.apk"),
-                //TemplateCardHorizontalContent.FromUser("员工信息","点击查看", "张三"),
+                TemplateCardHorizontalContent.None("Inviter","Zhang San"),
+                TemplateCardHorizontalContent.FromUrl("Enterprise WeChat official website", "https://work.weixin.qq.com", "Click to visit"),
+                // TemplateCardHorizontalContent.FromMedia("Enterprise WeChat Download", "File media_id", "Enterprise WeChat.apk"),
+                // TemplateCardHorizontalContent.FromUser("Employee Information", "Click to View", "Zhang San"),
             },
             Jumps = new List<TemplateCardJump>
             {
-                new TemplateCardJump("企业微信官网","https://work.weixin.qq.com"),
-                new TemplateCardJump("跳转小程序","跳转小程序","/index.html"),
+                new TemplateCardJump("Enterprise WeChat official website","https://work.weixin.qq.com"),
+                new TemplateCardJump("Jump applet","Jump applet","/index.html"),
             },
         };
         var message = new WeChatWorkTemplateCardMessage(agentId, template)
@@ -111,18 +111,18 @@ public class WeChatWorkMessageSender_Tests : AbpWeChatWorkTestBase
         var message = new WeChatWorkWebhookTemplateCardMessage(
             new WebhookTextNoticeCardMessage(
                 WebhookTemplateCardAction.Link("https://developer.work.weixin.qq.com/document/path/99110"),
-                new WebhookTemplateCardMainTitle("请假通过通知", "您的请假申请已通过,请前往查看!"),
-                source: WebhookTemplateCardSource.Black("https://wwcdn.weixin.qq.com/node/wework/images/wecom-logo.a61830413b.svg", "企业微信"),
+                new WebhookTemplateCardMainTitle("Leave application approval notification", "Your leave application has been approved, please go and check it!"),
+                source: WebhookTemplateCardSource.Black("https://wwcdn.weixin.qq.com/node/wework/images/wecom-logo.a61830413b.svg", "Enterprise WeChat"),
                 horizontalContents: new List<WebhookTemplateCardHorizontalContent>
                 {
-                    WebhookTemplateCardHorizontalContent.Default("审批单号", "QJ20251000000136"),
-                    WebhookTemplateCardHorizontalContent.Default("请假日期", "2025/10/01-2025/10/10"),
-                    WebhookTemplateCardHorizontalContent.Default("通过时间", "2025-10-01 15:30:00"),
-                    WebhookTemplateCardHorizontalContent.Default("审批备注", "做好考勤及交接事项"),
+                    WebhookTemplateCardHorizontalContent.Default("Approval Number", "QJ20251000000136"),
+                    WebhookTemplateCardHorizontalContent.Default("Leave Date", "2025/10/01-2025/10/10"),
+                    WebhookTemplateCardHorizontalContent.Default("Passed time", "2025-10-01 15:30:00"),
+                    WebhookTemplateCardHorizontalContent.Default("Approval Notes", "Do a good job in attendance and handover matters"),
                 },
                 jumps: new List<WebhookTemplateCardJump>
                 {
-                    WebhookTemplateCardJump.Link("去OA查看", "https://developer.work.weixin.qq.com/document/path/99110")
+                    WebhookTemplateCardJump.Link("Go to OA to view", "https://developer.work.weixin.qq.com/document/path/99110")
                 }));
 
         var response = await Sender.SendAsync(webhookKey, message);

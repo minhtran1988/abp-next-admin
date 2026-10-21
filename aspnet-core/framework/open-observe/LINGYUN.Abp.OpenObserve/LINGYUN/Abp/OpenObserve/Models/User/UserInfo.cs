@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.User;
 
 /// <summary>
-/// 用户信息
+/// User information
 /// </summary>
 public class UserInfo
 {
@@ -13,10 +13,10 @@ public class UserInfo
     public string Email { get; set; } = default!;
 
     /// <summary>
-    /// 名
+    /// name
     /// </summary>
     /// <remarks>
-    /// 文档的响应示例误写为 fist_name, 此处按字段表使用 first_name, 并通过扩展属性兜底
+    /// The response example of the document is mistakenly written as fist_name. Here, first_name is used according to the field table, and the extended attribute is used to find out.
     /// </remarks>
     [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
@@ -25,7 +25,7 @@ public class UserInfo
     public string? LastName { get; set; }
 
     /// <summary>
-    /// 角色
+    /// role
     /// </summary>
     /// <remarks>
     /// admin / user / root
@@ -34,19 +34,19 @@ public class UserInfo
     public string? Role { get; set; }
 
     /// <summary>
-    /// 是否外部用户
+    /// Whether it is an external user
     /// </summary>
     [JsonPropertyName("is_external")]
     public bool? IsExternal { get; set; }
 
     /// <summary>
-    /// 创建时间(微秒)
+    /// Creation time (microseconds)
     /// </summary>
     [JsonPropertyName("created_at")]
     public long? CreatedAt { get; set; }
 
     /// <summary>
-    /// 未在模型中声明的字段
+    /// Fields not declared in the model
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? ExtraProperties { get; set; }

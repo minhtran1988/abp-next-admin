@@ -75,7 +75,7 @@ namespace LINGYUN.Abp.AspNetCore.Mvc
             {
                 options.IsEnabled = true;
 
-                // 测试先清空
+                // Test clear first
                 options.IgnoreControllers.Clear();
                 options.IgnoreExceptions.Clear();
                 options.IgnoreNamespaces.Clear();
@@ -110,7 +110,7 @@ namespace LINGYUN.Abp.AspNetCore.Mvc
                     ).AddVirtualJson("/LINGYUN/Abp/AspNetCore/Mvc/Localization/Resources");
 
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
             });
 
             Configure<RazorPagesOptions>(options =>

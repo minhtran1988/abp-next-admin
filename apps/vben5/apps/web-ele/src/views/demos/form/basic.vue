@@ -10,16 +10,16 @@ import { getAllMenusApi } from '#/api';
 
 const [Form, formApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
   layout: 'horizontal',
-  // 大屏一行显示3个，中屏一行显示2个，小屏一行显示1个
+  // The large screen displays 3 items in one line, the medium screen displays 2 items in one line, and the small screen displays 1 item in one line.
   // wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
   handleSubmit: (values) => {
-    ElMessage.success(`表单数据：${JSON.stringify(values)}`);
+    ElMessage.success(`Form data: ${JSON.stringify(values)}`);
   },
   schema: [
     {
@@ -28,39 +28,39 @@ const [Form, formApi] = useVbenForm({
       label: 'IconPicker',
     },
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'ApiSelect',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        // 菜单接口转options格式
+        // Convert menu interface to options format
         afterFetch: (data: { name: string; path: string }[]) => {
           return data.map((item: any) => ({
             label: item.name,
             value: item.path,
           }));
         },
-        // 菜单接口
+        // Menu interface
         api: getAllMenusApi,
       },
-      // 字段名
+      // Field name
       fieldName: 'api',
-      // 界面显示的label
+      // Label displayed on the interface
       label: 'ApiSelect',
     },
     {
       component: 'ApiTreeSelect',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        // 菜单接口
+        // Menu interface
         api: getAllMenusApi,
         childrenField: 'children',
-        // 菜单接口转options格式
+        // Convert menu interface to options format
         labelField: 'name',
         valueField: 'path',
       },
-      // 字段名
+      // Field name
       fieldName: 'apiTree',
-      // 界面显示的label
+      // Label displayed on the interface
       label: 'ApiTreeSelect',
     },
     {
@@ -95,7 +95,7 @@ const [Form, formApi] = useVbenForm({
         isButton: true,
         options: ['A', 'B', 'C', 'D', 'E', 'F'].map((v) => ({
           value: v,
-          label: `选项${v}`,
+          label: `option${v}`,
         })),
       },
     },
@@ -104,7 +104,7 @@ const [Form, formApi] = useVbenForm({
       fieldName: 'checkbox',
       label: 'Checkbox',
       componentProps: {
-        options: ['A', 'B', 'C'].map((v) => ({ value: v, label: `选项${v}` })),
+        options: ['A', 'B', 'C'].map((v) => ({ value: v, label: `Option${v}` })),
       },
     },
     {
@@ -128,9 +128,9 @@ const [Form, formApi] = useVbenForm({
       componentProps: {
         isButton: true,
         options: [
-          { value: 'A', label: '选项A' },
-          { value: 'B', label: '选项B' },
-          { value: 'C', label: '选项C' },
+          { value: 'A', label: 'Option A' },
+          { value: 'B', label: 'Option B' },
+          { value: 'C', label: 'Option C' },
         ],
       },
     },
@@ -146,9 +146,9 @@ const [Form, formApi] = useVbenForm({
       componentProps: {
         filterable: true,
         options: [
-          { value: 'A', label: '选项A' },
-          { value: 'B', label: '选项B' },
-          { value: 'C', label: '选项C' },
+          { value: 'A', label: 'Option A' },
+          { value: 'B', label: 'Option B' },
+          { value: 'C', label: 'Option C' },
         ],
       },
     },
@@ -172,20 +172,20 @@ function setFormValues() {
 </script>
 <template>
   <Page
-    description="我们重新包装了CheckboxGroup、RadioGroup、Select，可以通过options属性传入选项属性数组以自动生成选项"
-    title="表单演示"
+    description="We have repackaged CheckboxGroup, RadioGroup, and Select. You can pass in the option attribute array through the options attribute to automatically generate options"
+    title="Form Demonstration"
   >
-    <Drawer class="w-[600px]" title="基础表单示例">
+    <Drawer class="w-[600px]" title="Basic form example">
       <Form />
     </Drawer>
     <ElCard>
       <template #header>
         <div class="flex items-center">
-          <span class="flex-auto">基础表单演示</span>
-          <ElButton type="primary" @click="setFormValues">设置表单值</ElButton>
+          <span class="flex-auto">Basic form demonstration</span>
+          <ElButton type="primary" @click="setFormValues">Set form values</ElButton>
         </div>
       </template>
-      <ElButton type="primary" @click="drawerApi.open"> 打开抽屉 </ElButton>
+      <ElButton type="primary" @click="drawerApi.open"> Open drawer </ElButton>
     </ElCard>
   </Page>
 </template>

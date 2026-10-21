@@ -5,15 +5,15 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.GroupChats.Request;
 /// <summary>
-/// 客户群opengid转换请求参数
+/// Customer group opengid conversion request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94822" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94822" />
 /// </remarks>
 public class WeChatWorkOpengIdToChatIdRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 小程序在微信获取到的群ID
+    /// The group ID obtained by the mini program on WeChat
     /// </summary>
     [NotNull]
     [JsonProperty("opengid")]

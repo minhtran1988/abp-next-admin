@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.TaskManagement;
 public class BackgroundJobActionCreateDto : BackgroundJobActionCreateOrUpdateDto
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     [Required]
     [DynamicStringLength(typeof(BackgroundJobActionConsts), nameof(BackgroundJobActionConsts.MaxNameLength))]

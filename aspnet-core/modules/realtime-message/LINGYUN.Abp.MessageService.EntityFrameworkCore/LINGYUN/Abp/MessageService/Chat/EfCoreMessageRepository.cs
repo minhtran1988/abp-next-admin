@@ -170,14 +170,14 @@ public class EfCoreMessageRepository : EfCoreRepository<IMessageServiceDbContext
         int maxResultCount = 10,
         CancellationToken cancellationToken = default)
     {
-        // 参数验证和默认值设置
+        // Parameter validation and default value setting
         sorting = sorting.IsNullOrWhiteSpace() ? $"{nameof(LastChatMessage.SendTime)} DESC" : sorting;
         var dbContext = await GetDbContextAsync();
         var token = GetCancellationToken(cancellationToken);
 
-        // 使用Union All合并用户消息和群组消息查询
+        // Use Union All to merge user messages and group message queries
         var lastMessages = await (
-            // 用户消息查询
+            // User message query
             from um in dbContext.Set<UserMessage>()
             join ucc in dbContext.Set<UserChatCard>()
                 on um.CreatorId equals ucc.UserId
@@ -205,7 +205,7 @@ public class EfCoreMessageRepository : EfCoreRepository<IMessageServiceDbContext
                 GroupId = ""
             })
             .Union(
-                // 群组消息查询
+                // Group message query
                 from gm in dbContext.Set<GroupMessage>()
                 join cg in dbContext.Set<ChatGroup>()
                     on gm.GroupId equals cg.GroupId
@@ -233,7 +233,7 @@ public class EfCoreMessageRepository : EfCoreRepository<IMessageServiceDbContext
                     GroupId = gm.GroupId.ToString()
                 }
             )
-            // 排序和分页
+            // Sorting and paging
             .OrderBy(sorting)
             .Take(maxResultCount)
             .ToListAsync(token);

@@ -9,12 +9,12 @@ using Volo.Abp.DependencyInjection;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 实体变更文档转换器
+/// Entity change document converter
 /// </summary>
 /// <remarks>
-/// OpenObserve 会把嵌套数组保存为 JSON 字符串列, 因此实体变更的属性明细
-/// (<c>propertychanges</c>) 在写入前序列化、读取后反序列化;
-/// 转换逻辑集中在此处以保持实体模型为纯数据对象
+/// OpenObserve will save nested arrays as JSON string columns, so the attribute details of entity changes
+/// (<c>propertychanges</c>) serialize before writing and deserialize after reading;
+/// Transformation logic is concentrated here to keep the entity model as a pure data object
 /// </remarks>
 public class OpenObserveEntityChangeConverter : ITransientDependency
 {
@@ -26,7 +26,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 审计日志 -> 实体变更文档集合
+    /// Audit log -> Entity change document collection
     /// </summary>
     public virtual List<OpenObserveEntityChange> ToDocuments(AuditLog auditLog)
     {
@@ -37,7 +37,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 实体变更 -> 实体变更文档
+    /// Entity change -> Entity change document
     /// </summary>
     public virtual OpenObserveEntityChange ToDocument(AuditLog auditLog, EntityChange entityChange)
     {
@@ -59,7 +59,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 实体变更文档 -> 实体变更
+    /// Entity change document -> Entity change
     /// </summary>
     public virtual EntityChange ToEntityChange(OpenObserveEntityChange document)
     {
@@ -79,7 +79,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 实体变更文档 -> 附带用户名的实体变更
+    /// Entity change document -> Entity change with user name
     /// </summary>
     public virtual EntityChangeWithUsername ToEntityChangeWithUsername(OpenObserveEntityChange document)
     {
@@ -91,7 +91,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 序列化属性变更明细
+    /// Serialized attribute change details
     /// </summary>
     protected virtual string? SerializePropertyChanges(IEnumerable<EntityPropertyChange>? propertyChanges)
     {
@@ -103,7 +103,7 @@ public class OpenObserveEntityChangeConverter : ITransientDependency
     }
 
     /// <summary>
-    /// 反序列化属性变更明细
+    /// Deserialization attribute change details
     /// </summary>
     protected virtual List<EntityPropertyChange> DeserializePropertyChanges(string? propertyChangesJson)
     {

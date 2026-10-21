@@ -48,7 +48,7 @@ export function useOpenKeys(
   });
 
   /**
-   * @description:  重置值
+   * @description: reset value
    */
   function resetKeys() {
     menuState.selectedKeys = [];

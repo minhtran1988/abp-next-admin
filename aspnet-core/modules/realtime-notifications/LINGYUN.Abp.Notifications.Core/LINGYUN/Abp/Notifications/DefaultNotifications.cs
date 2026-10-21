@@ -4,15 +4,15 @@ public static class DefaultNotifications
 {
     public const string GroupName = "Abp.Notifications";
     /// <summary>
-    /// 站内通知
+    /// Site notification
     /// </summary>
     public const string OnsideNotice = GroupName + ".OnsideNotice";
     /// <summary>
-    /// 活动通知
+    /// Event notification
     /// </summary>
     public const string ActivityNotice = GroupName + ".ActivityNotice";
     /// <summary>
-    /// 系统通知
+    /// System notification
     /// </summary>
     public const string SystemNotice = GroupName + ".SystemNotice";
 }

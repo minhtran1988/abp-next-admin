@@ -20,7 +20,7 @@ public abstract class ExpressionQueryService_Tests<TStartupModule> : AbpIntegrat
         ExpressionQueryService = GetRequiredService<IExpressionQueryService>();
     }
 
-    #region 索引初始化
+    #region index initialization
 
     protected override void AfterInitialize()
     {

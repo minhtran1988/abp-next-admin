@@ -12,9 +12,9 @@ import { useRequest } from '@abp/request';
 export function useApplicationsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 新增应用
-   * @param input 参数
-   * @returns 应用实体数据传输对象
+   * New application
+   * @param input parameter
+   * @returns application entity data transfer object
    */
   function createApi(
     input: OpenIddictApplicationCreateDto,
@@ -26,8 +26,8 @@ export function useApplicationsApi() {
   }
 
   /**
-   * 删除应用
-   * @param id 应用id
+   * Delete app
+   * @param id application id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/openiddict/applications/${id}`, {
@@ -36,9 +36,9 @@ export function useApplicationsApi() {
   }
 
   /**
-   * 查询应用
-   * @param id 应用id
-   * @returns 应用实体数据传输对象
+   * Query application
+   * @param id application id
+   * @returns application entity data transfer object
    */
   function getApi(id: string): Promise<OpenIddictApplicationDto> {
     return request<OpenIddictApplicationDto>(
@@ -50,9 +50,9 @@ export function useApplicationsApi() {
   }
 
   /**
-   * 更新应用
-   * @param id 应用id
-   * @returns 应用实体数据传输对象
+   * Update application
+   * @param id application id
+   * @returns application entity data transfer object
    */
   function updateApi(
     id: string,
@@ -68,9 +68,9 @@ export function useApplicationsApi() {
   }
 
   /**
-   * 查询应用分页列表
-   * @param input 过滤参数
-   * @returns 应用实体数据传输对象分页列表
+   * Query application paging list
+   * @param input filter parameter
+   * @returns paging list of application entity data transfer objects
    */
   function getPagedListApi(
     input?: OpenIddictApplicationGetListInput,

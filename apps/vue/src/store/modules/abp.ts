@@ -38,7 +38,7 @@ export const useAbpStore = defineStore({
   },
   actions: {
     resetSession() {
-      // 清除与用户相关的信息
+      // Clear user-related information
       this.application.auth = {} as ApplicationAuthConfigurationDto;
       this.application.currentUser = {} as CurrentUser;
     },
@@ -61,7 +61,7 @@ export const useAbpStore = defineStore({
             i18nLocaleMessageDic[vKey] = {};
             Object.keys(abpLocaleMessageDic[vKey]).forEach((mKey) => {
               let msgKey = mKey;
-              // 处理最后一个字符以适配 i18n
+              // Process last character to adapt to i18n
               if (msgKey.endsWith('.')) {
                 msgKey = msgKey.substring(0, msgKey.length - 1);
               }

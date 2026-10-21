@@ -3,22 +3,22 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// IP定位结果
+/// IP positioning results
 /// </summary>
 public class TencentIPGeocode
 {
     /// <summary>
-    /// 用于定位的IP地址
+    /// IP address used for positioning
     /// </summary>
     [JsonProperty("ip")]
     public string IpAddress { get; set; } = default!;
     /// <summary>
-    /// 定位坐标
+    /// Positioning coordinates
     /// </summary>
     [JsonProperty("location")]
     public Location Location { get; set; } = new Location();
     /// <summary>
-    /// 定位行政区划信息
+    /// Locate administrative division information
     /// </summary>
     [JsonProperty("ad_info")]
     public AddressInfo AddressInfo { get; set; } = new AddressInfo();

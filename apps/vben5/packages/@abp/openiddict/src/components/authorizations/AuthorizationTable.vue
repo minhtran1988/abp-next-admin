@@ -37,14 +37,14 @@ const { deleteApi, getPagedListApi } = useAuthorizationsApi();
 
 const applications = ref<OpenIddictApplicationDto[]>([]);
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: true,
   collapsedRows: 2,
-  // 所有表单项共用，可单独在表单内覆盖
+  // Common to all form items, they can be overridden individually within the form.
   commonConfig: {
-    // 在label后显示一个冒号
+    // Display a colon after the label
     colon: true,
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
@@ -91,9 +91,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpUi.Search'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
 };
 

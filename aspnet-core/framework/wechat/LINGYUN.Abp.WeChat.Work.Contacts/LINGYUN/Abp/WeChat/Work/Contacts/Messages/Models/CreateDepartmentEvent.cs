@@ -5,13 +5,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 新增部门事件
+/// Add department event
 /// </summary>
 [EventName("create_party")]
 public class CreateDepartmentEvent : DepartmentUpdateEvent
 {
     /// <summary>
-    /// 部门排序
+    /// Department sorting
     /// </summary>
     [XmlElement("Order", IsNullable = true)]
     public int? Order { get; set; }

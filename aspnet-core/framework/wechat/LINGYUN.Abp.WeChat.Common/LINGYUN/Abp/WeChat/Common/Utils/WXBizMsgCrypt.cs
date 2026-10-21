@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Collections;
-//using System.Web;
+// using System.Web;
 using System.Security.Cryptography;
-//-40001 ： 签名验证错误
-//-40002 :  xml解析失败
-//-40003 :  sha加密生成签名失败
-//-40004 :  AESKey 非法
-//-40005 :  corpid 校验错误
-//-40006 :  AES 加密失败
-//-40007 ： AES 解密失败
-//-40008 ： 解密后得到的buffer非法
-//-40009 :  base64加密异常
-//-40010 :  base64解密异常
+//-40001: Signature verification error
+//-40002: xml parsing failed
+//-40003: SHA encryption failed to generate signature
+//-40004: AESKey illegal
+//-40005: corpid verification error
+//-40006: AES encryption failed
+//-40007: AES decryption failed
+//-40008: The buffer obtained after decryption is illegal
+//-40009: base64 encryption exception
+//-40010: base64 decryption exception
 namespace LINGYUN.Abp.WeChat.Common.Utils;
 #nullable disable
 public class WXBizMsgCrypt
@@ -38,10 +38,10 @@ public class WXBizMsgCrypt
         WXBizMsgCrypt_DecodeBase64_Error = -40010
     };
 
-    //构造函数
-    // @param sToken: 企业微信后台，开发者设置的Token
-    // @param sEncodingAESKey: 企业微信后台，开发者设置的EncodingAESKey
-    // @param sReceiveId: 不同场景含义不同，详见文档说明
+    // Constructor
+    // @param sToken: Enterprise WeChat backend, Token set by the developer
+    // @param sEncodingAESKey: Enterprise WeChat backend, EncodingAESKey set by the developer
+    // @param sReceiveId: Different scenarios have different meanings. Please refer to the documentation for details.
     public WXBizMsgCrypt(string sToken, string sEncodingAESKey, string sReceiveId)
     {
         m_sToken = sToken;
@@ -49,13 +49,13 @@ public class WXBizMsgCrypt
         m_sEncodingAESKey = sEncodingAESKey;
     }
 
-    //验证URL
-    // @param sMsgSignature: 签名串，对应URL参数的msg_signature
-    // @param sTimeStamp: 时间戳，对应URL参数的timestamp
-    // @param sNonce: 随机串，对应URL参数的nonce
-    // @param sEchoStr: 随机串，对应URL参数的echostr
-    // @param sReplyEchoStr: 解密之后的echostr，当return返回0时有效
-    // @return：成功0，失败返回对应的错误码
+    // Verify URL
+    // @param sMsgSignature: signature string, corresponding to the msg_signature of the URL parameter
+    // @param sTimeStamp: timestamp, corresponding to the timestamp of the URL parameter
+    // @param sNonce: random string, corresponding to the nonce of the URL parameter
+    // @param sEchoStr: random string, corresponding to the echostr of the URL parameter
+    // @param sReplyEchoStr: echostr after decryption, valid when return returns 0
+    // @return: 0 on success, return the corresponding error code on failure
     public int VerifyURL(string sMsgSignature, string sTimeStamp, string sNonce, string sEchoStr, ref string sReplyEchoStr)
     {
         var ret = 0;
@@ -87,13 +87,13 @@ public class WXBizMsgCrypt
         return 0;
     }
 
-    // 检验消息的真实性，并且获取解密后的明文
-    // @param sMsgSignature: 签名串，对应URL参数的msg_signature
-    // @param sTimeStamp: 时间戳，对应URL参数的timestamp
-    // @param sNonce: 随机串，对应URL参数的nonce
-    // @param sPostData: 密文，对应POST请求的数据
-    // @param sMsg: 解密后的原文，当return返回0时有效
-    // @return: 成功0，失败返回对应的错误码
+    // Verify the authenticity of the message and obtain the decrypted plaintext
+    // @param sMsgSignature: signature string, corresponding to the msg_signature of the URL parameter
+    // @param sTimeStamp: timestamp, corresponding to the timestamp of the URL parameter
+    // @param sNonce: random string, corresponding to the nonce of the URL parameter
+    // @param sPostData: ciphertext, corresponding to the data of the POST request
+    // @param sMsg: The decrypted original text, valid when return returns 0
+    // @return: 0 on success, return the corresponding error code on failure
     public int DecryptMsg(string sMsgSignature, string sTimeStamp, string sNonce, string sPostData, ref string sMsg)
     {
         if (m_sEncodingAESKey.Length != 43)
@@ -113,12 +113,12 @@ public class WXBizMsgCrypt
         {
             return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ParseXml_Error;
         }
-        //verify signature
+        // verify signature
         var ret = 0;
         ret = VerifySignature(m_sToken, sTimeStamp, sNonce, sEncryptMsg, sMsgSignature);
         if (ret != 0)
             return ret;
-        //decrypt
+        // decrypt
         var cpid = "";
         try
         {
@@ -139,13 +139,13 @@ public class WXBizMsgCrypt
         return 0;
     }
 
-    //将企业号回复用户的消息加密打包
-    // @param sReplyMsg: 企业号待回复用户的消息，xml格式的字符串
-    // @param sTimeStamp: 时间戳，可以自己生成，也可以用URL参数的timestamp
-    // @param sNonce: 随机串，可以自己生成，也可以用URL参数的nonce
-    // @param sEncryptMsg: 加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串,
-    //						当return返回0时有效
-    // return：成功0，失败返回对应的错误码
+    // Encrypt and package the enterprise account's reply to the user's message
+    // @param sReplyMsg: The enterprise account’s message to be replied to by the user, a string in xml format
+    // @param sTimeStamp: timestamp, you can generate it yourself, or you can use the timestamp of the URL parameter
+    // @param sNonce: random string, you can generate it yourself, or you can use the nonce of the URL parameter
+    // @param sEncryptMsg: The encrypted ciphertext can be directly replied to the user, including msg_signature, timestamp, nonce, encrypted xml format string,
+    // Valid when return returns 0
+    // return: 0 on success, return the corresponding error code on failure
     public int EncryptMsg(string sReplyMsg, string sTimeStamp, string sNonce, ref string sEncryptMsg)
     {
         if (m_sEncodingAESKey.Length != 43)
@@ -206,7 +206,7 @@ public class WXBizMsgCrypt
 
         }
     }
-    //Verify Signature
+    // Verify Signature
     private static int VerifySignature(string sToken, string sTimeStamp, string sNonce, string sMsgEncrypt, string sSigture)
     {
         var hash = "";

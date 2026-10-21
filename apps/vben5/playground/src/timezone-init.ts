@@ -3,7 +3,7 @@ import { setTimezoneHandler } from '@vben/stores';
 import { getTimezoneApi, getTimezoneOptionsApi, setTimezoneApi } from '#/api';
 
 /**
- * 初始化时区处理，通过API保存时区设置
+ * Initialize time zone processing and save time zone settings through API
  */
 export function initTimezone() {
   setTimezoneHandler({

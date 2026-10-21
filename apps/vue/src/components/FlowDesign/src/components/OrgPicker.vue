@@ -16,7 +16,7 @@
             style="width: 95%"
             size="small"
             allow-clear
-            placeholder="搜索人员，支持拼音、姓名"
+            placeholder="Search for people, supports pinyin and name"
           />
           <div v-show="!showUsers">
             <Ellipsis
@@ -35,19 +35,19 @@
                 v-model="state.checkAll"
                 @change="handleCheckAllChange"
                 :disabled="!multiple"
-                >全选</Checkbox
+                >Select all</Checkbox
               >
               <span v-show="state.deptStack.length > 0" class="top-dept" @click="beforeNode"
-                >上一级</span
+                >Previous level</span
               >
             </div>
           </div>
         </div>
         <div class="role-header" v-else>
-          <div>系统角色</div>
+          <div>System role</div>
         </div>
         <div class="org-items" :style="type === 'role' ? 'height: 350px' : ''">
-          <Empty :image-size="100" description="似乎没有数据" v-show="orgs.length === 0" />
+          <Empty :image-size="100" description="There seems to be no data" v-show="orgs.length === 0" />
           <div
             v-for="(org, index) in orgs"
             :key="index"
@@ -63,9 +63,9 @@
                 @click.stop="nextNode(org)"
                 :class="`next-dept${org.selected ? '-disable' : ''}`"
               >
-                <!-- <i class="iconfont icon-map-site"></i>下级 -->
+                <!-- <i class="iconfont icon-map-site"></i>Download -->
                 <ApartmentOutlined />
-                下级
+                subordinate
               </span>
             </div>
             <div v-else-if="org.type === 'user'" style="display: flex; align-items: center">
@@ -83,13 +83,13 @@
       </div>
       <div class="selected">
         <div class="count">
-          <span>已选 {{ state.select.length }} 项</span>
-          <span @click="clearSelected">清空</span>
+          <span>{{ state.select.length }} items selected</span>
+          <span @click="clearSelected">Clear</span>
         </div>
         <div class="org-items" style="height: 350px">
           <Empty
             :image-size="100"
-            description="请点击左侧列表选择数据"
+            description="Please click on the list on the left to select data"
             v-show="state.select.length === 0"
           />
           <div v-for="(org, index) in state.select" :key="index" :class="orgItemClass(org)">
@@ -152,15 +152,15 @@
       default: false,
     },
     title: {
-      default: '请选择',
+      default: 'Please select',
       type: String,
     },
     type: {
-      default: 'dept', //org选择部门/人员  user-选人  dept-选部门 role-选角色
+      default: 'dept', //org select department/personnel user-select person dept-select department role-select role
       type: String,
     },
     multiple: {
-      //是否多选
+      // Whether to multiple select
       default: false,
       type: Boolean,
     },
@@ -298,7 +298,7 @@
       })
       .catch(() => {
         state.loading = false;
-        createMessage.error('接口异常');
+        createMessage.error('Interface exception');
       });
   }
 
@@ -427,8 +427,8 @@
 
   function clearSelected() {
     createConfirm({
-      title: '提示',
-      content: '您确定要清空已选中的项?',
+      title: 'Tips',
+      content: 'Are you sure you want to clear the selected items?',
       iconType: 'warning',
       onOk: () => {
         recover();

@@ -1,9 +1,9 @@
-# LINGYUN.Abp.Tencent 模块概述
+# LINGYUN.Abp.Tencent module overview
 
-## 简介
-LINGYUN.Abp.Tencent 模块集成了腾讯云的各项服务，提供了对腾讯云服务的全面支持，包括对象存储、短信服务、QQ 互联和语音合成等功能。
+## Introduction
+The LINGYUN.Abp.Tencent module integrates various services of Tencent Cloud and provides comprehensive support for Tencent Cloud services, including object storage, SMS service, QQ interconnection, speech synthesis and other functions.
 
-## 包含的项目列表
+## List of included items
 - **LINGYUN.Abp.Tencent**
 - **LINGYUN.Abp.BlobStoring.Tencent**
 - **LINGYUN.Abp.Sms.Tencent**
@@ -11,32 +11,32 @@ LINGYUN.Abp.Tencent 模块集成了腾讯云的各项服务，提供了对腾讯
 - **LINGYUN.Abp.Tencent.SettingManagement**
 - **LINGYUN.Abp.Tencent.TTS**
 
-## 每个项目的主要功能概述
+## Overview of the main features of each project
 
 ### LINGYUN.Abp.Tencent
-- 提供腾讯云 SDK 客户端工厂，支持动态创建腾讯云各项服务的客户端。
-- 支持多租户配置和多语言本地化。
-- 提供统一的腾讯云服务配置管理。
+- Provides Tencent Cloud SDK client factory to support dynamic creation of clients for Tencent Cloud services.
+- Supports multi-tenant configuration and multi-language localization.
+- Provide unified Tencent Cloud service configuration management.
 
 ### LINGYUN.Abp.BlobStoring.Tencent
-- 支持腾讯云对象存储服务，自动创建存储桶。
-- 支持多区域配置和文件大小限制。
+- Supports Tencent Cloud object storage service and automatically creates storage buckets.
+- Supports multi-region configuration and file size limits.
 
 ### LINGYUN.Abp.Sms.Tencent
-- 支持腾讯云短信服务的发送功能，支持多手机号批量发送。
-- 内置错误处理和日志记录。
+- Supports the sending function of Tencent Cloud SMS service and supports batch sending to multiple mobile phone numbers.
+- Built-in error handling and logging.
 
 ### LINGYUN.Abp.Tencent.QQ
-- 支持 QQ 互联快速登录，支持多租户配置。
+- Support QQ Internet quick login and support multi-tenant configuration.
 
 ### LINGYUN.Abp.Tencent.SettingManagement
-- 提供腾讯云服务的配置管理界面，支持全局和租户级别的配置管理。
+- Provides a configuration management interface for Tencent Cloud services, supporting global and tenant-level configuration management.
 
 ### LINGYUN.Abp.Tencent.TTS
-- 支持腾讯云语音合成服务，提供 TTS 客户端工厂。
+- Support Tencent Cloud speech synthesis service and provide TTS client factory.
 
-## 模块的整体用途和重要性
-该模块为开发者提供了与腾讯云服务的无缝集成，简化了云服务的使用和管理，提升了应用程序的灵活性和可扩展性。
+## Overall purpose and importance of the module
+This module provides developers with seamless integration with Tencent Cloud services, simplifies the use and management of cloud services, and improves the flexibility and scalability of applications.
 
-## 如何使用或集成该模块
-在项目中引用相应的模块，并根据需要配置腾讯云的相关参数。确保与 ABP 框架的其他模块配合使用，以实现最佳效果。
+## How to use or integrate this module
+Reference the corresponding modules in the project and configure relevant parameters of Tencent Cloud as needed. Make sure to use it with other modules of the ABP framework for best results.

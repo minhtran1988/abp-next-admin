@@ -12,12 +12,12 @@ using Xunit;
 namespace LINGYUN.Abp.BlobManagement.FileSystem;
 
 /// <summary>
-/// FileSystem provider 路径安全
+/// FileSystem provider path security
 /// </summary>
 /// <remarks>
-/// 覆盖目录穿越、绝对路径注入、NTFS 备用数据流、Windows 归一化碰撞、保留设备名、
-/// 容器名穿越与容器别名、多租户越权; 同时确认合法名称不受影响。
-/// provider 由生产模块按 BlobManagement:Provider=FileSystem 注册, 测试从 DI 解析
+/// Override directory traversal, absolute path injection, NTFS alternate data stream, Windows normalization collision, preserved device name,
+/// Container name traversal, container aliasing, and multi-tenant override; at the same time, confirm that legal names are not affected.
+/// The provider is registered by the production module according to BlobManagement:Provider=FileSystem, and the test is resolved from DI
 /// </remarks>
 public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemTestBase
 {
@@ -37,12 +37,12 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("..\\..\\..\\..\\..\\outside/pwn.txt")]
     [InlineData("folder/../../outside/pwn.txt")]
     [InlineData("folder\\..\\..\\..\\outside\\pwn.txt")]
-    // 类 Unix 上同样必须拒绝: 分隔符与非法字符按跨平台并集判断
+    // Unix-like systems must also be rejected: delimiters and illegal characters are judged by cross-platform union
     [InlineData("..\\..\\..\\etc\\passwd")]
     [InlineData("C:\\Windows\\Temp\\pwn.txt")]
     [InlineData("..")]
     [InlineData("folder/..")]
-    // NTFS 备用数据流 / Windows 非法字符
+    // NTFS alternate data stream / Windows illegal characters
     [InlineData("pwn.txt:evil")]
     [InlineData("pwn*star.txt")]
     [InlineData("pwn?question.txt")]
@@ -50,7 +50,7 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("pwn|pipe.txt")]
     [InlineData("pwn<less.txt")]
     [InlineData("pwn>greater.txt")]
-    // Windows 归一化碰撞与保留设备名
+    // Windows normalized collision and reserved device name
     [InlineData("victim.txt.")]
     [InlineData("victim.txt ")]
     [InlineData("NUL")]
@@ -122,15 +122,15 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     }
 
     [Theory]
-    // 逃逸: 容器名带 .. 试图离开 BasePath
+    // Escape: Container name with .. trying to leave BasePath
     [InlineData("abp-c/../..")]
     [InlineData("..\\..\\evil")]
     [InlineData("../../evil")]
-    // 容器别名: 结果仍在 BasePath 内, 会落到其它容器目录
+    // Container alias: The result is still in BasePath and will fall into other container directories
     [InlineData("x/../abp-c")]
     [InlineData("x\\..\\abp-c")]
     [InlineData("users/../../abp-users")]
-    // Windows 归一化碰撞
+    // Windows normalized collision
     [InlineData("abp-c.")]
     [InlineData("abp-c ")]
     [InlineData(".")]
@@ -166,7 +166,7 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("abp-c?question", "abp-cquestion")]
     public async Task Should_Neutralize_Invalid_Characters_Of_Container_Names(string containerName, string expectedDirectoryName)
     {
-        // ABP 的 FileSystemBlobNamingNormalizer 会剥掉非法字符
+        // ABP's FileSystemBlobNamingNormalizer will strip illegal characters
         await BlobProvider.CreateContainerAsync(containerName);
 
         Directory.Exists(Path.Combine(BasePath, "host", expectedDirectoryName)).ShouldBeTrue();
@@ -176,7 +176,7 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("public")]
     [InlineData("users")]
     [InlineData("my-container")]
-    [InlineData("对象存储")]
+    [InlineData("Object Storage")]
     public async Task Should_Allow_Legitimate_Container_Names(string containerName)
     {
         await BlobProvider.CreateContainerAsync(containerName);
@@ -188,7 +188,7 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("file.txt")]
     [InlineData("folder/file.txt")]
     [InlineData("folder/sub/file.txt")]
-    [InlineData("目录/子目录/文件.txt")]
+    [InlineData("Directory/Subdirectory/File.txt")]
     [InlineData("/folder/leading-slash.txt")]
     [InlineData("folder/with space.txt")]
     public async Task Should_Allow_Legitimate_Blob_Names(string blobName)
@@ -241,14 +241,14 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
             await BlobProvider.UploadBlobAsync(ContainerName, "tenant.txt", new MemoryStream(new byte[] { 2 }));
             File.Exists(Path.Combine(BasePath, "tenants", tenantId.ToString("D"), ContainerName, "tenant.txt")).ShouldBeTrue();
 
-            // 租户读取主机目录(租户目录之外的相对路径)会被拒绝
+            // The tenant will be rejected when reading the host directory (relative path outside the tenant directory)
             await Should.ThrowAsync<BusinessException>(async () =>
                 await BlobProvider.DownloadBlobAsync(ContainerName, "..\\..\\..\\host\\abp-c\\host.txt"));
         }
     }
 
     /// <summary>
-    /// 路径包含性比较必须与文件系统大小写语义一致
+    /// Path inclusion comparison must be consistent with file system case semantics
     /// </summary>
     [Fact]
     public void Should_Use_File_System_Case_Semantics_For_Containment()

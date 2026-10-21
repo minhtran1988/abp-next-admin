@@ -6,80 +6,80 @@ import type {
 	PagedAndSortedResultRequestDto,
 } from "#/abp-core";
 
-/** 用户对象接口 */
+/** User Object Interface */
 interface IUser {
-	/** 邮件地址 */
+	/** Email address */
 	email: string;
-	/** 登录锁定 */
+	/** Login lock */
 	lockoutEnabled: boolean;
-	/** 用户名 */
+	/** Username */
 	name: string;
-	/** 联系方式 */
+	/** Contact information */
 	phoneNumber?: string;
-	/** 用户简称 */
+	/** User abbreviation */
 	surname?: string;
-	/** 双因素验证 */
+	/** Two-factor authentication */
 	twoFactorEnabled: boolean;
-	/** 用户账户 */
+	/** User account */
 	userName: string;
 }
 
-/** 更改密码数据传输对象 */
+/** Change password data transfer object */
 interface ChangeMyPasswordInput {
-	/** 当前密码 */
+	/** Current password */
 	currentPassword?: string;
-	/** 新密码 */
+	/** New password */
 	newPassword: string;
 }
 
 interface ChangeUserPasswordInput {
-	/** 新密码 */
+	/** New password */
 	password: string;
 }
 
-/** 用户组织机构数据传输对象 */
+/** User organization data transfer object */
 interface IdentityUserOrganizationUnitUpdateDto {
-	/** 组织机构标识列表 */
+	/** Organization identification list */
 	organizationUnitIds: string[];
 }
-/** 用户实体数据传输对象 */
+/** User entity data transfer object */
 interface IdentityUserDto extends FullAuditedEntityDto<string>, IUser, IHasConcurrencyStamp, IHasExtraProperties {
 	[key: string]: any;
-	/** 邮箱已验证 */
+	/** Email has been verified */
 	emailConfirmed: boolean;
-	/** 已激活的用户 */
+	/** Activated user */
 	isActive: boolean;
-	/** 锁定截止时间 */
+	/** Lock expiration time */
 	lockoutEnd?: Date;
-	/** 联系方式已验证 */
+	/** Contact information verified */
 	phoneNumberConfirmed: boolean;
-	/** 角色列表 */
+	/** Role list */
 	roleNames: string[];
-	/** 租户标识 */
+	/** Tenant ID */
 	tenentId?: string;
 }
-/** 创建或更新用户实体数据传输对象 */
+/** Create or update user entity data transfer object */
 interface IdentityUserCreateOrUpdateDto extends ExtensibleObject {
-	/** 邮件地址 */
+	/** Email address */
 	email: string;
-	/** 登录锁定 */
+	/** Login lock */
 	lockoutEnabled: boolean;
-	/** 用户名 */
+	/** Username */
 	name: string;
-	/** 密码 */
+	/** Password */
 	password?: string;
-	/** 联系方式 */
+	/** Contact information */
 	phoneNumber?: string;
-	/** 角色列表 */
+	/** Role list */
 	roleNames?: string[];
-	/** 用户简称 */
+	/** User abbreviation */
 	surname?: string;
-	/** 用户账户 */
+	/** User account */
 	userName: string;
 }
-/** 获取用户分页列表数据传输对象 */
+/** Get user paging list data transfer object */
 interface GetUserPagedListInput extends PagedAndSortedResultRequestDto {
-	/** 过滤条件 */
+	/** Filter conditions */
 	filter?: string;
 }
 

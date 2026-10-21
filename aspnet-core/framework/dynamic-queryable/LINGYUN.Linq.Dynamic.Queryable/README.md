@@ -1,22 +1,22 @@
 # LINGYUN.Linq.Dynamic.Queryable
 
-动态查询基本库, 扩展Linq, 动态构建表达式树  
+Dynamically query basic libraries, extend Linq, and dynamically build expression trees
 
-## 功能特性
+## Features
 
-* 支持动态构建查询条件
-* 支持多种比较运算符：等于、不等于、大于、小于、大于等于、小于等于、包含、不包含、开始于、不开始于、结束于、不结束于等
-* 支持动态类型转换和空值处理
-* 支持枚举类型的动态查询
+* Support dynamic construction of query conditions
+* Supports multiple comparison operators: equal to, not equal to, greater than, less than, greater than or equal to, less than or equal to, contains, does not contain, starts with, does not start with, ends with, does not end with, etc.
+* Support dynamic type conversion and null value processing
+* Support dynamic query of enumeration types
 
-## 配置使用
+## Configuration usage
 
-模块按需引用, 只提供针对Linq的扩展。
+Modules are referenced on demand and only extensions for Linq are provided.
 
-### 基本用法
+### Basic usage
 
 ```csharp
-// 创建动态查询参数
+//Create dynamic query parameters
 var parameter = new DynamicParamter 
 {
     Field = "Name",
@@ -24,35 +24,35 @@ var parameter = new DynamicParamter
     Value = "test"
 };
 
-// 创建查询条件
+//Create query conditions
 var queryable = new DynamicQueryable
 {
     Paramters = new List<DynamicParamter> { parameter }
 };
 
-// 应用到Expression
+//Apply to Expression
 Expression<Func<TEntity, bool>> condition = e => true;
 condition = condition.DynamicQuery(queryable);
 
-// 使用条件进行查询
+// Query using conditions
 var result = await repository.Where(condition).ToListAsync();
 ```
 
-### 支持的比较运算符
+### Supported comparison operators
 
-* `Equal` - 等于
-* `NotEqual` - 不等于
-* `LessThan` - 小于
-* `LessThanOrEqual` - 小于等于
-* `GreaterThan` - 大于
-* `GreaterThanOrEqual` - 大于等于
-* `Contains` - 包含
-* `NotContains` - 不包含
-* `StartsWith` - 开始于
-* `NotStartsWith` - 不开始于
-* `EndsWith` - 结束于
-* `NotEndsWith` - 不结束于
+* `Equal` - equal to
+* `NotEqual` - not equal to
+* `LessThan` - less than
+* `LessThanOrEqual` - less than or equal to
+* `GreaterThan` - greater than
+* `GreaterThanOrEqual` - greater than or equal to
+* `Contains` - contains
+* `NotContains` - does not contain
+* `StartsWith` - starts with
+* `NotStartsWith` - does not start with
+* `EndsWith` - ends with
+* `NotEndsWith` - does not end with
 
-## 相关链接
+## Related links
 
 * [LINGYUN.Abp.Dynamic.Queryable.Application](../LINGYUN.Abp.Dynamic.Queryable.Application/README.md)

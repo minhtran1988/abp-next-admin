@@ -93,7 +93,7 @@ public class TencentBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // 腾讯云Oss没有目录的概念,新建对象时可以模拟目录
+        // Tencent Cloud Oss does not have the concept of a directory. You can simulate a directory when creating a new object.
         return Task.CompletedTask;
     }
 
@@ -126,8 +126,8 @@ public class TencentBlobProvider : IBlobProvider
         bool isAttachmentContent = true,
         CancellationToken cancellationToken = default)
     {
-        // TODO: 腾讯云需用户开通对象处理服务以支持预览, 不启用腾讯云的预览方式.
-        //return InternalGeneratePresignedUrlAsync(
+        // TODO: Tencent Cloud requires users to activate the object processing service to support preview, and Tencent Cloud's preview method is not enabled.
+        // return InternalGeneratePresignedUrlAsync(
         //    containerName,
         //    blobName,
         //    expiration,
@@ -142,7 +142,7 @@ public class TencentBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // 腾讯云Oss没有目录的概念,新建对象时可以模拟目录
+        // Tencent Cloud Oss does not have the concept of a directory. You can simulate a directory when creating a new object.
         // https://cloud.tencent.com/document/product/436/13324
         return Task.CompletedTask;
     }
@@ -189,15 +189,15 @@ public class TencentBlobProvider : IBlobProvider
         // See: https://cloud.tencent.com/document/product/436/47238
         var preSignatureStruct = new PreSignatureStruct
         {
-            appid = configuration.AppId,//"1250000000"; //腾讯云账号 APPID
-            region = configuration.Region,//"COS_REGION"; //存储桶地域
-            bucket = bucket,//"examplebucket-1250000000"; //存储桶
-            key = objectName, //对象键
-            httpMethod = "GET", //HTTP 请求方法
-            isHttps = true, //生成 HTTPS 请求 URL
-            signDurationSecond = expiration.TotalSeconds.To<long>(), //请求签名时间
-            headers = null, //签名中需要校验的 header
-            queryParameters = null //签名中需要校验的 URL 中请求参数
+            appid = configuration.AppId,//"1250000000"; //Tencent Cloud account APPID
+            region = configuration.Region,//"COS_REGION"; //Bucket region
+            bucket = bucket,//"examplebucket-1250000000"; //Bucket
+            key = objectName, //object key
+            httpMethod = "GET", //HTTP request method
+            isHttps = true, //Generate HTTPS request URL
+            signDurationSecond = expiration.TotalSeconds.To<long>(), //Request signature time
+            headers = null, //Headers that need to be verified in the signature
+            queryParameters = null //Request parameters in the URL that need to be verified in the signature
         };
         var fileName = Path.GetFileName(blobName);
         var type = isAttachmentContent ? "attachment" : "inline";

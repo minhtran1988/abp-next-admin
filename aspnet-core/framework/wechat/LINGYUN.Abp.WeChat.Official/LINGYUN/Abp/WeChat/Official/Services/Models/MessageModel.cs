@@ -5,7 +5,7 @@ namespace LINGYUN.Abp.WeChat.Official.Services.Models;
 public abstract class MessageModel : WeChatRequest
 {
     /// <summary>
-    /// 消息类型
+    /// Message type
     /// </summary>
     [JsonProperty("msgtype")]
     [JsonPropertyName("msgtype")]

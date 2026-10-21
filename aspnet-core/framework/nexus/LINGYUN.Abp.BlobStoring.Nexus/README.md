@@ -1,18 +1,18 @@
 # LINGYUN.Abp.BlobStoring.Nexus
 
-[English](./README.EN.md) | 简体中文
+[English](./README.EN.md) | Simplified Chinese
 
-基于 Sonatype Nexus 的 Blob 存储提供程序。
+Blob storage provider based on Sonatype Nexus.
 
-## 功能
+## Function
 
-* 支持将文件存储到 Nexus 仓库
-* 支持文件的上传、下载、删除等基本操作
-* 支持文件路径规范化
-* 支持文件重复检查和覆盖选项
-* 支持多租户
+* Supports storing files to Nexus repository
+* Supports basic operations such as file upload, download, and deletion
+* Support file path normalization
+* Supports file duplicate checking and overwriting options
+*Support multi-tenancy
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpBlobStoringNexusModule))]
@@ -22,11 +22,11 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-### 1. 配置 Nexus 存储
+### 1. Configure Nexus storage
 
-在 `appsettings.json` 中配置 Nexus 存储选项：
+Configure Nexus storage options in `appsettings.json`:
 
 ```json
 {
@@ -38,7 +38,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### 2. 配置容器
+### 2. Configure container
 
 ```csharp
 Configure<AbpBlobStoringOptions>(options =>
@@ -53,7 +53,7 @@ Configure<AbpBlobStoringOptions>(options =>
 });
 ```
 
-### 3. 使用 BLOB 存储
+### 3. Use BLOB storage
 
 ```csharp
 public class MyService
@@ -77,19 +77,19 @@ public class MyService
 }
 ```
 
-## 配置选项
+## Configuration options
 
-* Repository - Nexus 仓库名称
+* Repository - Nexus warehouse name
 
-## 最佳实践
+## Best Practices
 
-1. 合理规划文件路径和命名，便于管理和维护
-2. 根据实际需求配置文件覆盖选项
-3. 合理使用多租户功能，确保数据隔离
+1. Properly plan file paths and naming to facilitate management and maintenance
+2. Configure file coverage options according to actual needs
+3. Properly use multi-tenant functions to ensure data isolation
 
-## 注意事项
+## Notes
 
-1. 确保 Nexus 仓库已正确配置并可访问
-2. 文件路径会被自动规范化，将反斜杠替换为正斜杠
-3. 默认情况下不允许覆盖已存在的文件，需要显式设置 OverrideExisting 选项
-4. 文件操作可能会受到网络状况的影响，建议添加适当的错误处理机制
+1. Make sure the Nexus repository is properly configured and accessible
+2. The file path will be automatically normalized, replacing backslashes with forward slashes.
+3. By default, overwriting existing files is not allowed, and the OverrideExisting option needs to be explicitly set.
+4. File operations may be affected by network conditions. It is recommended to add appropriate error handling mechanisms.

@@ -55,20 +55,20 @@ export function useTabs() {
   }
 
   /**
-   * 设置当前标签页的标题
+   * Set the title of the current tab page
    *
-   * @description 支持设置静态标题字符串或动态计算标题
-   * @description 动态标题会在每次渲染时重新计算,适用于多语言或状态相关的标题
+   * @description supports setting static title string or dynamically calculated title
+   * @description The dynamic title will be recalculated every time it is rendered, suitable for multi-language or state-related titles.
    *
-   * @param title - 标题内容
-   *   - 静态标题: 直接传入字符串
-   *   - 动态标题: 传入 ComputedRef
+   * @param title - title content
+   * - Static title: pass in the string directly
+   * - Dynamic title: Pass in ComputedRef
    *
    * @example
-   * // 静态标题
-   * setTabTitle('标签页')
+   * // static title
+   * setTabTitle('tab')
    *
-   * // 动态标题(多语言)
+   * // Dynamic title (multi-language)
    * setTabTitle(computed(() => t('page.title')))
    */
   async function setTabTitle(title: ComputedRef<string> | string) {
@@ -82,7 +82,7 @@ export function useTabs() {
   }
 
   /**
-   * 获取操作是否禁用
+   * Get whether the operation is disabled
    * @param tab
    */
   function getTabDisableState(tab: RouteLocationNormalized = route) {
@@ -96,7 +96,7 @@ export function useTabs() {
     const affixTab = meta?.affixTab ?? false;
     const isCurrentTab = route.path === tab.path;
 
-    // 当前处于最左侧或者减去固定标签页的数量等于0
+    // Currently on the far left or minus the number of fixed tabs equals 0
     const disabledCloseLeft =
       index === 0 || index - affixTabs.length <= 0 || !isCurrentTab;
 

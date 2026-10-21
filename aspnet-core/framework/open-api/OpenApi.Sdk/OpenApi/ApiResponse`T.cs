@@ -6,19 +6,19 @@ namespace OpenApi
     public class ApiResponse<TResult>
     {
         /// <summary>
-        /// 错误代码
+        /// Error code
         /// </summary>
         public string Code { get; set; }
         /// <summary>
-        /// 错误提示消息
+        /// Error message
         /// </summary>
         public string Message { get; set; }
         /// <summary>
-        /// 补充消息
+        /// Supplementary message
         /// </summary>
         public string Details { get; set; }
         /// <summary>
-        /// 返回值
+        /// return value
         /// </summary>
         public TResult Result { get; set; }
         public ApiResponse() { }

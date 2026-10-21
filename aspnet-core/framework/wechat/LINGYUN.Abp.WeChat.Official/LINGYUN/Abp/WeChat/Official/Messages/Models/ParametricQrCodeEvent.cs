@@ -4,18 +4,18 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages.Models;
 /// <summary>
-/// 扫描带参数二维码事件
+/// Scan QR code event with parameters
 /// </summary>
 [EventName("parametric_qr_code")]
 public class ParametricQrCodeEvent : WeChatEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;
     /// <summary>
-    /// 二维码的ticket，可用来换取二维码图片
+    /// The QR code ticket can be used to exchange for the QR code image
     /// </summary>
     [XmlElement("Ticket")]
     public string Ticket { get; set; } = default!;

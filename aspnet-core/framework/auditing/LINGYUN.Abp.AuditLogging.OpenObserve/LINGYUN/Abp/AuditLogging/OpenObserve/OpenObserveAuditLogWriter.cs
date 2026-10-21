@@ -14,13 +14,13 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 审计日志 OpenObserve 写入器
+/// Audit log OpenObserve writer
 /// </summary>
 /// <remarks>
-/// 审计日志头部写入 <see cref="AbpAuditLoggingOpenObserveOptions.AuditLogStream"/>;
-/// 实体变更与操作分别展平写入
-/// <see cref="AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream"/> 与
-/// <see cref="AbpAuditLoggingOpenObserveOptions.GetActionStream"/>(均由 AuditLogStream 计算得出)
+/// Write the audit log header <see cref="AbpAuditLoggingOpenObserveOptions.AuditLogStream"/>;
+/// Entity changes and operations are flattened and written separately
+/// <see cref="AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream"/> with
+/// <see cref="AbpAuditLoggingOpenObserveOptions.GetActionStream"/>(all calculated by AuditLogStream)
 /// </remarks>
 [Dependency(ReplaceServices = true)]
 public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
@@ -80,7 +80,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
             return;
         }
 
-        // 多租户: 按租户分组写入各自的数据流
+        // Multi-tenant: write respective data streams according to tenant groups
         foreach (var group in auditLogs.GroupBy(auditLog => auditLog.TenantId))
         {
             await Client.JsonBulkAsync(
@@ -94,7 +94,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 获取审计日志数据流名称(按日志所属租户)
+    /// Get the name of the audit log data stream (according to the tenant to which the log belongs)
     /// </summary>
     protected virtual string GetAuditLogStream(AuditLog auditLog)
     {
@@ -102,7 +102,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 获取审计日志数据流名称(按租户)
+    /// Get the audit log data stream name (by tenant)
     /// </summary>
     protected virtual string GetAuditLogStream(Guid? tenantId)
     {
@@ -110,7 +110,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 获取实体变更数据流名称(按租户)
+    /// Get the entity change data flow name (by tenant)
     /// </summary>
     protected virtual string GetEntityChangeStream(Guid? tenantId)
     {
@@ -118,7 +118,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 获取操作数据流名称(按租户)
+    /// Get the operation data flow name (by tenant)
     /// </summary>
     protected virtual string GetActionStream(Guid? tenantId)
     {
@@ -126,7 +126,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 创建审计日志文档(按 ExecutionTime 覆盖 _timestamp)
+    /// Create audit log document (overwrite _timestamp by ExecutionTime)
     /// </summary>
     protected virtual OpenObserveAuditLog CreateDocument(AuditLog auditLog)
     {
@@ -144,7 +144,7 @@ public class OpenObserveAuditLogWriter : IAuditLogWriter, ITransientDependency
     }
 
     /// <summary>
-    /// 展平写入实体变更与操作
+    /// Flatten write entity changes and operations
     /// </summary>
     protected async virtual Task WriteDetailsAsync(
         IReadOnlyList<AuditLog> auditLogs,

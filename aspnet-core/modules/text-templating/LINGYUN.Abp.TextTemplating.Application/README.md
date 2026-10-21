@@ -1,51 +1,51 @@
 # LINGYUN.Abp.TextTemplating.Application
 
-## 模块说明
+## Module description
 
-文本模板应用服务模块，实现文本模板的管理和操作功能。
+The text template application service module implements the management and operation functions of text templates.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.TextTemplating.Application.Contracts
 * Volo.Abp.TextTemplating
 * Volo.Abp.Ddd.Application
 
-### 功能定义
+### Function definition
 
-* 提供文本模板定义管理服务
-  * TextTemplateDefinitionAppService - 模板定义管理服务
-  * TextTemplateContentAppService - 模板内容管理服务
-* 实现以下应用服务接口
+* Provide text template definition management services
+  * TextTemplateDefinitionAppService - template definition management service
+  * TextTemplateContentAppService - Template content management service
+* Implement the following application service interfaces
   * ITextTemplateDefinitionAppService
   * ITextTemplateContentAppService
 
-### 应用服务
+### Application Services
 
 * TextTemplateDefinitionAppService
-  * GetAsync - 获取模板定义
-  * GetListAsync - 获取模板定义列表
-  * CreateAsync - 创建模板定义
-  * UpdateAsync - 更新模板定义
-  * DeleteAsync - 删除模板定义
+  * GetAsync - Get template definition
+  * GetListAsync - Get the template definition list
+  * CreateAsync - Create template definition
+  * UpdateAsync - Update template definition
+  * DeleteAsync - delete template definition
 * TextTemplateContentAppService
-  * GetAsync - 获取模板内容
-  * UpdateAsync - 更新模板内容
-  * DeleteAsync - 删除模板内容
-  * RestoreAsync - 恢复模板内容
+  * GetAsync - Get template content
+  * UpdateAsync - Update template content
+  * DeleteAsync - delete template content
+  * RestoreAsync - restore template content
 
-### 权限
+### Permissions
 
 * AbpTextTemplating.TextTemplateDefinitions
-  * Create - 创建模板定义
-  * Update - 更新模板定义
-  * Delete - 删除模板定义
+  * Create - Create a template definition
+  * Update - Update template definition
+  * Delete - delete template definition
 * AbpTextTemplating.TextTemplateContents
-  * Update - 更新模板内容
-  * Delete - 删除模板内容
+  * Update - update template content
+  * Delete - delete template content
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingApplicationModule` 依赖
+1. Add `AbpTextTemplatingApplicationModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingApplicationModule))]
@@ -54,7 +54,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 注入并使用模板服务
+2. Inject and use the template service
 
 ```csharp
 public class YourService
@@ -68,7 +68,7 @@ public class YourService
 
     public async Task ManageTemplateAsync()
     {
-        // 创建模板定义
+        //Create template definition
         var template = await _templateDefinitionAppService.CreateAsync(
             new TextTemplateDefinitionCreateDto
             {
@@ -80,4 +80,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

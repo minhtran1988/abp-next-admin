@@ -1,12 +1,12 @@
 import type {
-  // 系列类型的定义后缀都为 SeriesOption
+  // The definition suffix of series types is SeriesOption
   BarSeriesOption,
   LineSeriesOption,
 } from 'echarts/charts';
 import type {
   DatasetComponentOption,
   GridComponentOption,
-  // 组件类型的定义后缀都为 ComponentOption
+  // The definition suffix of component types is ComponentOption
   TitleComponentOption,
   TooltipComponentOption,
 } from 'echarts/components';
@@ -14,21 +14,21 @@ import type { ComposeOption } from 'echarts/core';
 
 import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts';
 import {
-  // 数据集组件
+  // Dataset component
   DatasetComponent,
   GridComponent,
   LegendComponent,
   TitleComponent,
   ToolboxComponent,
   TooltipComponent,
-  // 内置数据转换器组件 (filter, sort)
+  // Built-in data converter component (filter, sort)
   TransformComponent,
 } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
-// 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
+// Use ComposeOption to combine an Option type with only necessary components and charts
 export type ECOption = ComposeOption<
   | BarSeriesOption
   | DatasetComponentOption
@@ -38,7 +38,7 @@ export type ECOption = ComposeOption<
   | TooltipComponentOption
 >;
 
-// 注册必须的组件
+// Register necessary components
 echarts.use([
   TitleComponent,
   PieChart,

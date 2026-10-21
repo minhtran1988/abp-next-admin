@@ -15,17 +15,17 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 实体变更 OpenObserve 存储
+/// Entity changes OpenObserve storage
 /// </summary>
 /// <remarks>
-/// 实体变更被展平写入 <see cref="AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream"/>,
-/// 因此可直接按实体字段检索
+/// Entity changes are flattened and written <see cref="AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream"/>,
+/// Therefore, you can search directly by entity fields
 /// </remarks>
 [Dependency(ReplaceServices = true)]
 public class OpenObserveEntityChangeStore : OpenObserveAuditLoggingManagerBase, IEntityChangeStore, ITransientDependency
 {
     /// <summary>
-    /// 表达式成员名 -> 数据流列名(数据流列名一律小写)
+    /// Expression member name -> Data flow column name (data flow column names must be lowercase)
     /// </summary>
     protected readonly static Dictionary<string, string> MapedFields = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -155,7 +155,7 @@ public class OpenObserveEntityChangeStore : OpenObserveAuditLoggingManagerBase, 
     }
 
     /// <summary>
-    /// 查询实体变更
+    /// Query entity changes
     /// </summary>
     protected async virtual Task<List<OpenObserveEntityChange>> FindAsync(
         string condition,
@@ -173,7 +173,7 @@ public class OpenObserveEntityChangeStore : OpenObserveAuditLoggingManagerBase, 
     }
 
     /// <summary>
-    /// 由查询参数构建条件
+    /// Construct conditions from query parameters
     /// </summary>
     protected virtual List<Condition> BuildConditions(
         Guid? auditLogId = null,

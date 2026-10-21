@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 控件名称
+/// Control name
 /// </summary>
 public class ControlTtile
 {
     /// <summary>
-    /// 控件名称。需满足以下条件：1-控件名称不得和现有控件名称重复；2-长度不得超过40个字符。3-Attendance-外出/出差/加班控件title固定为外出/出差/加班，暂不支持自定义
+    /// Control name. The following conditions must be met: 1-The control name must not be the same as the existing control name; 2-The length must not exceed 40 characters. 3-Attendance-Outing/business trip/overtime control title is fixed to outing/business trip/overtime, and does not support customization for the time being.
     /// </summary>
     [NotNull]
     [StringLength(40)]
@@ -18,7 +18,7 @@ public class ControlTtile
     [JsonPropertyName("text")]
     public string Text { get; set; } = default!;
     /// <summary>
-    /// 显示语言，中文：zh_CN（注意不是zh-CN）
+    /// Display language, Chinese: zh_CN (note not zh-CN)
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]

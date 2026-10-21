@@ -14,8 +14,8 @@ using Volo.Abp.Uow;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 默认实现通过分布式事件发送通知
-/// 可替换实现来发送实时通知
+/// The default implementation is to send notifications through distributed events
+/// Alternative implementation to send real-time notifications
 /// </summary>
 public class NotificationSender : INotificationSender, ITransientDependency
 {

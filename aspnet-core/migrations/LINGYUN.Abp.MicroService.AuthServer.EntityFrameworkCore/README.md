@@ -1,21 +1,21 @@
 # LINGYUN.Abp.MicroService.AuthServer.EntityFrameworkCore
 
-认证服务器数据库迁移模块，提供认证服务器所需的数据库迁移功能。
+The authentication server database migration module provides the database migration functions required by the authentication server.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 集成OpenIddict认证框架的数据库迁移
-* 集成ABP Identity模块的数据库迁移
-* 集成ABP权限管理模块的数据库迁移
-* 集成ABP设置管理模块的数据库迁移
-* 集成ABP特性管理模块的数据库迁移
-* 集成ABP SaaS多租户模块的数据库迁移
-* 集成文本模板模块的数据库迁移
-* 支持MySQL数据库
+* Database migration integrating OpenIddict authentication framework
+* Integrate database migration of ABP Identity module
+* Integrate database migration of ABP permission management module
+* Integrate database migration of ABP settings management module
+* Integrate database migration of ABP feature management module
+* Integrate database migration of ABP SaaS multi-tenant module
+* Integrated database migration of text template module
+* Support MySQL database
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -35,22 +35,22 @@ public class YourModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "AuthServerDbMigrator": "你的数据库连接字符串"
+    "AuthServerDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置AuthServerDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the AuthServerDbMigrator connection string in appsettings.json
 
-2. 添加数据库上下文
+2. Add database context
    ```csharp
    public override void ConfigureServices(ServiceConfigurationContext context)
    {
@@ -63,14 +63,14 @@ public class YourModule : AbpModule
    }
    ```
 
-3. 执行数据库迁移
-   * 使用EF Core命令行工具执行迁移
+3. Perform database migration
+   * Use the EF Core command line tool to perform migrations
    ```bash
    dotnet ef database update
    ```
 
-## 注意事项
+## Notes
 
-* 确保数据库连接字符串中包含正确的权限，以便能够创建和修改数据库表
-* 在执行迁移之前，建议先备份数据库
-* 迁移脚本会自动处理模块间的依赖关系
+* Make sure the database connection string contains the correct permissions to be able to create and modify database tables
+* Before performing migration, it is recommended to back up the database first
+* The migration script will automatically handle dependencies between modules

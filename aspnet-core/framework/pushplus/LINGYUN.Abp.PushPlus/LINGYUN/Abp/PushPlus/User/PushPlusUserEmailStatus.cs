@@ -3,15 +3,15 @@
 public enum PushPlusUserEmailStatus
 {
     /// <summary>
-    /// 未验证
+    /// Not verified
     /// </summary>
     None = 0,
     /// <summary>
-    /// 待验证
+    /// To be verified
     /// </summary>
     UnConfirmed = 1,
     /// <summary>
-    /// 已验证
+    /// Verified
     /// </summary>
     Confirmed = 2,
 }

@@ -34,13 +34,13 @@ public class TaskServiceDbMigrationEventHandler :
 
     public async Task HandleEventAsync(EntityDeletedEto<TenantEto> eventData)
     {
-        // 租户删除时移除轮询作业
+        // Remove polling job when tenant is deleted
         await DataSeeder.RemoveSeedAsync(eventData.Entity.Id);
     }
 
     protected async override Task AfterTenantCreated(TenantCreatedEto eventData, bool schemaMigrated)
     {
-        // 新租户数据种子
+        // New tenant data seed
         var context = new DataSeedContext(eventData.Id);
         if (eventData.Properties != null)
         {

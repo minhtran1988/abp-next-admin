@@ -36,7 +36,7 @@ public class UserWeChatOpenIdFinder : IUserWeChatOpenIdFinder
 
     protected string? GetUserOpenIdOrNull(IdentityUser? user, string provider)
     {
-        // 微信扩展登录后openid存储在Login中
+        // Openid is stored in Login after WeChat extension login
         var userLogin = user?.Logins
             .Where(login => login.LoginProvider == provider)
             .FirstOrDefault();

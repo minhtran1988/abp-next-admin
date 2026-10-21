@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 跳转指引样式
+/// Jump guide style
 /// </summary>
 public class TemplateCardJump
 {
@@ -27,35 +27,35 @@ public class TemplateCardJump
         Title = title;
     }
     /// <summary>
-    /// 跳转链接类型，0或不填代表不是链接，1 代表跳转url，2 代表跳转小程序
+    /// Jump link type, 0 or not filled in means it is not a link, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; }
     /// <summary>
-    /// 跳转链接样式的文案内容，建议不超过18个字
+    /// It is recommended that the copy content of the jump link style should not exceed 18 words.
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; }
     /// <summary>
-    /// 跳转链接的url，jump_list.type是1时必填
+    /// The url of the jump link, required when jump_list.type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 跳转链接的小程序的appid，必须是与当前应用关联的小程序，jump_list.type是2时必填
+    /// The appid of the applet of the jump link must be the applet associated with the current application. It is required when jump_list.type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 跳转链接的小程序的pagepath，jump_list.type是2时选填
+    /// The pagepath of the mini program for the jump link, optional when jump_list.type is 2
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]

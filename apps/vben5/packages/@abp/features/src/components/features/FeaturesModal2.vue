@@ -66,17 +66,17 @@ const [Modal, modalApi] = useVbenModal({
 
 function mapFeatures(groups: FeatureGroupDto[]): FeatureGroupDto[] {
   groups.forEach((group) => {
-    // 构建树形结构
+    // Build a tree structure
     const treeRoots = buildFeatureTree(group.features);
 
-    // 存储树形结构到 group 中供模板使用
+    // Store the tree structure in group for template use
     (group as any)._treeRoots = treeRoots;
     (group as any)._allFeatures = [...group.features];
 
-    // 初始化可见性
+    // Initialize visibility
     treeRoots.forEach((root) => updateVisibility(root, true));
 
-    // 处理特性值类型转换
+    // Handle attribute value type conversion
     processAllFeatures(treeRoots);
   });
   return groups;
@@ -122,7 +122,7 @@ function handleFeatureChange(feature: any, groupIndex: number) {
   const treeRoots = (group as any)._treeRoots;
   if (treeRoots) {
     onFeatureValueChange(feature, treeRoots);
-    // 强制更新视图
+    // Force update view
     formModel.value = { ...formModel.value };
   }
 }

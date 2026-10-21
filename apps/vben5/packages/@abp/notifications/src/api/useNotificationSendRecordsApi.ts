@@ -10,9 +10,9 @@ import { useRequest } from '@abp/request';
 export function useNotificationSendRecordsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取通知发送记录分页列表
-   * @param input 查询过滤参数
-   * @returns {Promise<PagedResultDto<NotificationSendRecordDto>>} 通知发送记录分页列表
+   * Get the paging list of notification sending records
+   * @param input query filter parameters
+   * @returns {Promise<PagedResultDto<NotificationSendRecordDto>>} Notification sending record paging list
    */
   function getPagedListApi(
     input?: NotificationSendRecordGetPagedListInput,
@@ -26,8 +26,8 @@ export function useNotificationSendRecordsApi() {
     );
   }
   /**
-   * 删除发送记录
-   * @param id 发送记录Id
+   * Delete sending record
+   * @param id Send record ID
    * @returns {Promise<void>}
    */
   function deleteApi(id: string): Promise<void> {
@@ -36,8 +36,8 @@ export function useNotificationSendRecordsApi() {
     });
   }
   /**
-   * 重新发送通知
-   * @param id 发送记录Id
+   * Resend notification
+   * @param id Send record ID
    * @returns {Promise<void>}
    */
   function reSendApi(id: string): Promise<void> {

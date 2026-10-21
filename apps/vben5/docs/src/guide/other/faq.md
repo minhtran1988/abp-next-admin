@@ -1,56 +1,56 @@
-# 常见问题 #{faq}
+# Frequently Asked Questions #{faq}
 
-::: tip 列举了一些常见的问题
+::: tip lists some common questions
 
-有问题可以先来这里寻找，如果没有可以在 [GitHub Issue](https://github.com/vbenjs/vue-vben-admin/issues) 搜索或者提交你的问题, 如果是讨论性的问题可以在 [GitHub Discussions](https://github.com/vbenjs/vue-vben-admin/discussions)
+If you have any questions, you can search here first. If not, you can search or submit your questions at [GitHub Issues](https://github.com/vbenjs/vue-vben-admin/issues). If they are discussion questions, you can go to [GitHub Discussions](https://github.com/vbenjs/vue-vben-admin/discussions)
 
 :::
 
-## 说明
+## Description
 
-遇到问题,可以先从以下几个方面查找
+If you encounter a problem, you can first look for it from the following aspects:
 
-1. 对应模块的 GitHub 仓库 [issue](https://github.com/vbenjs/vue-vben-admin/issues) 搜索
-2. 从[google](https://www.google.com)搜索问题
-3. 从[百度](https://www.baidu.com)搜索问题
-4. 在下面列表找不到问题可以到 issue 提问 [issues](https://github.com/vbenjs/vue-vben-admin/issues)
-5. 如果不是问题类型的，需要讨论的，请到 [discussions](https://github.com/vbenjs/vue-vben-admin/discussions) 讨论
+1. Search the GitHub repository of the corresponding module [issue](https://github.com/vbenjs/vue-vben-admin/issues)
+2. Search the question from [google](https://www.google.com)
+3. Search questions from [Baidu](https://www.baidu.com)
+4. If you cannot find an issue in the list below, you can go to issue to ask [issues](https://github.com/vbenjs/vue-vben-admin/issues)
+5. If it is not a question type and needs to be discussed, please go to [discussions](https://github.com/vbenjs/vue-vben-admin/discussions) to discuss
 
-## 依赖问题
+## Dependency issues
 
-在 `Monorepo` 项目下，需要养成每次 `git pull`代码都要执行`pnpm install`的习惯，因为经常会有新的依赖包加入，项目在`lefthook.yml`已经配置了自动执行`pnpm install`，但是有时候会出现问题，如果没有自动执行，建议手动执行一次。
+Under the `Monorepo` project, you need to develop the habit of executing `pnpm install` every time you `git pull` the code, because new dependency packages are often added. The project has been configured to automatically execute `pnpm install` in `lefthook.yml`, but sometimes problems may occur. If it is not executed automatically, it is recommended to execute it manually.
 
-## 关于缓存更新问题
+## Regarding cache update issues
 
-项目配置默认是缓存在 `localStorage` 内，所以版本更新后可能有些配置没改变。
+The project configuration is cached in `localStorage` by default, so some configurations may not change after the version is updated.
 
-解决方式是每次更新代码的时候修改 `package.json` 内的 `version` 版本号. 因为 localStorage 的 key 是根据版本号来的。所以更新后版本不同前面的配置会失效。重新登录即可
+The solution is to modify the `version` version number in `package.json` every time the code is updated. Because the key of localStorage is based on the version number. Therefore, the previous configuration will become invalid if the version is different after the update. Just log in again
 
-## 关于修改配置文件的问题
+## Regarding the problem of modifying the configuration file
 
-当修改 `.env` 等环境文件以及 `vite.config.ts` 文件时，vite 会自动重启服务。
+When modifying environment files such as `.env` and `vite.config.ts` files, vite will automatically restart the service.
 
-自动重启有几率出现问题，请重新运行项目即可解决.
+Automatic restart may cause problems, please re-run the project to solve it.
 
-## 本地运行报错
+## Error when running locally
 
-由于 vite 在本地没有转换代码，且代码中用到了可选链等比较新的语法。所以本地开发需要使用版本较高的浏览器(`Chrome 90+`)进行开发
+Because vite does not convert the code locally, and relatively new syntax such as optional chaining is used in the code. Therefore, local development needs to use a higher version of the browser (`Chrome 90+`) for development.
 
-## 页面切换后页面空白
+## The page is blank after page switching
 
-这是由于开启了路由切换动画,且对应的页面组件存在多个根节点导致的，在页面最外层添加`<div></div>`即可
+This is caused by the routing switching animation being turned on and the corresponding page component having multiple root nodes. Just add `<div></div>` to the outermost layer of the page.
 
-**错误示例**
+**Error Example**
 
 ```vue
 <template>
-  <!-- 注释也算一个节点 -->
+  <!-- Comments are also counted as nodes -->
   <h1>text h1</h1>
   <h2>text h2</h2>
 </template>
 ```
 
-**正确示例**
+**Correct example**
 
 ```vue
 <template>
@@ -61,71 +61,71 @@
 </template>
 ```
 
-::: tip 提示
+::: tip tip
 
-- 如果想使用多个根标签，可以禁用路由切换动画
-- template 下面的根注释节点也算一个节点
+- If you want to use multiple root tags, you can disable the route switching animation
+- The root annotation node under the template is also counted as a node.
 
 :::
 
-## 我的代码本地开发可以，打包就不行了
+## My code can be developed locally, but not packaged.
 
-目前发现这个原因可能有以下，可以从以下原因来排查，如果还有别的可能，欢迎补充
+At present, it is found that the reasons for this may be as follows, which can be investigated from the following reasons. If there are other possibilities, please feel free to add them.
 
-- 使用了 ctx 这个变量，ctx 本身未暴露出在实例类型内，Vue官方也是说了不要用这个属性。这个属性只是用于内部使用。
+- The variable ctx is used. ctx itself is not exposed in the instance type. Vue officials also say not to use this attribute. This property is for internal use only.
 
 ```ts
 import { getCurrentInstance } from 'vue';
 getCurrentInstance().ctx.xxxx;
 ```
 
-## 依赖安装问题
+## Dependency installation issues
 
-- 如果依赖安装不了或者启动报错可以尝试执行`pnpm run reinstall`。
-- 如果依赖安装不了或者报错，可以尝试切换手机热点来进行依赖安装。
-- 如果还是不行，可以自行配置国内镜像安装。
-- 也可以在项目根目录创建 `.npmrc` 文件，内容如下
+- If the dependency cannot be installed or an error is reported during startup, you can try executing `pnpm run reinstall`.
+- If the dependencies cannot be installed or an error is reported, you can try to switch to the mobile hotspot to install the dependencies.
+- If it still doesn't work, you can configure the domestic mirror installation yourself.
+- You can also create a `.npmrc` file in the project root directory with the following content
 
 ```bash
 # .npmrc
 registry = https://registry.npmmirror.com/
 ```
 
-## 打包文件过大
+## The package file is too large
 
-- 首先，完整版由于引用了比较多的库文件，所以打包会比较大。可以使用精简版来进行开发
+- First of all, because the full version references more library files, the package will be larger. You can use the lite version for development
 
-- 其次建议开启 gzip，使用之后体积会只有原先 1/3 左右。gzip 可以由服务器直接开启。如果是这样，前端不需要构建 `.gz` 格式的文件，如果前端构建了 `.gz` 文件，以 nginx 为例，nginx 需要开启 `gzip_static: on` 这个选项。
+- Secondly, it is recommended to enable gzip. After using it, the volume will be only about 1/3 of the original size. gzip can be enabled directly by the server. If so, the front end does not need to build a `.gz` format file. If the front end builds a `.gz` file, taking nginx as an example, nginx needs to turn on the `gzip_static: on` option.
 
-- 开启 gzip 的同时还可以同时开启 `brotli`，比 gzip 更好的压缩。两者可以共存
+- When gzip is turned on, `brotli` can also be turned on at the same time, which provides better compression than gzip. Both can coexist
 
-**注意**
+**NOTE**
 
-- gzip_static: 这个模块需要 nginx 另外安装，默认的 nginx 没有安装这个模块。
+- gzip_static: This module requires nginx to be installed separately. This module is not installed by default nginx.
 
-- 开启 `brotli` 也需要 nginx 另外安装模块
+- Enabling `brotli` also requires nginx to install additional modules
 
-## 运行错误
+## Run error
 
-如果出现类似以下错误，请检查项目全路径（包含所有父级路径）不能出现中文、日文、韩文。否则将会出现路径访问 404 导致以下问题
+If an error similar to the following occurs, please check that the full path of the project (including all parent paths) cannot contain Chinese, Japanese, or Korean characters. Otherwise, path access 404 will occur, causing the following problems
 
 ```ts
 [vite] Failed to resolve module import "ant-design-vue/dist/antd.css-vben-adminode_modulesant-design-vuedistantd.css". (imported by /@/setup/ant-design-vue/index.ts)
 ```
 
-## 控制台路由警告问题
+## Console routing warning issue
 
-如果看到控制台有如下警告，且页面**能正常打开** 可以忽略该警告。
+If you see the following warning on the console and the page can be opened normally, you can ignore the warning.
 
-后续 `vue-router` 可能会提供配置项来关闭警告
+In the future, `vue-router` may provide configuration items to turn off warnings
 
 ```ts
 [Vue Router warn]: No match found for location with path "xxxx"
 ```
 
-## 启动报错
+## Start error reporting
 
-当出现以下错误信息时，请检查你的 nodejs 版本号是否符合要求
+When the following error message appears, please check whether your nodejs version number meets the requirements
 
 ```bash
 TypeError: str.matchAll is not a function
@@ -133,19 +133,19 @@ at Object.extractor (vue-vben-admin-main\node_modules@purge-icons\core\dist\inde
 at Extract (vue-vben-admin-main\node_modules@purge-icons\core\dist\index.js:173:54)
 ```
 
-## nginx 部署
+## nginx deployment
 
-部署到 `nginx`后，可能会出现以下错误：
+After deploying to `nginx`, the following error may occur:
 
 ```bash
 Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "application/octet-stream". Strict MIME type checking is enforced for module scripts per HTML spec.
 ```
 
-解决方式一：
+Solution one:
 
 ```bash
 http {
-    #如果有此项配置需要注释掉
+    #If there is this configuration, it needs to be commented out
     #include       mime.types;
 
     types {
@@ -154,6 +154,6 @@ http {
 }
 ```
 
-解决方式二：
+Solution two:
 
-进入 `nginx` 下的`mime.types`文件, 将`application/javascript js;` 修改为 `application/javascript js mjs;`
+Enter the `mime.types` file under `nginx` and change `application/javascript js;` to `application/javascript js mjs;`

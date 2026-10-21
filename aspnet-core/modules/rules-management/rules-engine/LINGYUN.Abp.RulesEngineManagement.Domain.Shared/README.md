@@ -1,42 +1,42 @@
 # LINGYUN.Abp.RulesEngineManagement.Domain.Shared
 
-## 1. 介绍
+## 1. Introduction
 
-规则引擎管理模块的共享领域层，包含了规则引擎管理所需的常量定义、枚举类型等基础设施。
+The shared domain layer of the rule engine management module includes constant definitions, enumeration types and other infrastructure required for rule engine management.
 
-## 2. 功能
+## 2. Function
 
-* 定义了工作流记录相关的常量
-* 定义了规则记录相关的常量
-* 定义了动作记录相关的常量
-* 定义了参数记录相关的常量
-* 定义了动作类型枚举
+* Defines constants related to workflow records
+* Defines constants related to rule records
+* Defines constants related to action recording
+* Defines constants related to parameter recording
+* Defines action type enumeration
 
-## 3. 常量配置
+## 3. Constant configuration
 
-### 3.1 工作流记录常量
+### 3.1 Workflow record constants
 
-* MaxNameLength: 工作流名称最大长度，默认64
-* MaxTypeFullNameLength: 类型全名最大长度，默认255
-* MaxInjectWorkflowsLength: 注入工作流最大长度，默认为(MaxNameLength + 1) * 5
+* MaxNameLength: Maximum length of workflow name, default 64
+* MaxTypeFullNameLength: The maximum length of the full name of the type, default 255
+* MaxInjectWorkflowsLength: The maximum length of the injected workflow, the default is (MaxNameLength + 1) * 5
 
-### 3.2 规则记录常量
+### 3.2 Rule record constants
 
-* MaxNameLength: 规则名称最大长度，默认64
-* MaxOperatorLength: 操作符最大长度，默认30
-* MaxErrorMessageLength: 错误消息最大长度，默认255
-* MaxInjectWorkflowsLength: 注入工作流最大长度，默认为(MaxNameLength + 1) * 5
-* MaxExpressionLength: 表达式最大长度，默认为int.MaxValue
-* MaxSuccessEventLength: 成功事件最大长度，默认128
+* MaxNameLength: Maximum length of rule name, default 64
+* MaxOperatorLength: maximum length of operator, default 30
+* MaxErrorMessageLength: Maximum error message length, default 255
+* MaxInjectWorkflowsLength: The maximum length of the injected workflow, the default is (MaxNameLength + 1) * 5
+* MaxExpressionLength: Maximum length of expression, default is int.MaxValue
+* MaxSuccessEventLength: Maximum length of success event, default 128
 
-### 3.3 动作类型枚举
+### 3.3 Action type enumeration
 
-* Success = 0: 成功
-* Failure = 1: 失败
+* Success = 0: Success
+* Failure = 1: Failure
 
-## 4. 依赖
+## 4. Dependencies
 
 * Volo.Abp.Validation
 * LINGYUN.Abp.Rules.RulesEngine
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

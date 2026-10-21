@@ -44,7 +44,7 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
 
     public async virtual Task SetCurrentUserAsync(UpdateSettingsDto input)
     {
-        // 增加特性检查
+        // Add feature check
         await CheckFeatureAsync();
 
         foreach (var setting in input.Settings)
@@ -54,7 +54,7 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
 
         CurrentUnitOfWork!.OnCompleted(async () =>
         {
-            // 发送刷新用户缓存事件
+            // Send refresh user cache event
             await EventBus.PublishAsync(new CurrentApplicationConfigurationCacheResetEventData());
         });
 
@@ -70,10 +70,10 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
     {
         var settingGroups = new SettingGroupResult();
 
-        #region 系统设置
+        #region System Settings
 
         var sysSettingGroup = new SettingGroupDto(L["DisplayName:System"], L["Description:System"]);
-        // 语言
+        // language
         var languageSetting = sysSettingGroup.AddSetting(L["DisplayName:System.Language"], L["Description:System.Language"]);
         languageSetting.AddDetail(
             await SettingDefinitionManager.GetAsync(LocalizationSettingNames.DefaultLanguage),
@@ -82,7 +82,7 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
             ValueType.Option,
             providerName)
             ?.AddOptions(LocalizationOptions.Languages.Select(l => new OptionDto(l.DisplayName, l.CultureName)));
-        // 时区
+        // time zone
         var timezones = TimeZoneHelper.GetTimezones(TimezoneProvider.GetWindowsTimezones());
         var timingSetting = sysSettingGroup.AddSetting(L["DisplayName:System.Timing"], L["Description:System.Timing"]);
         timingSetting.AddDetail(
@@ -97,13 +97,13 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
 
         #endregion
 
-        #region 身份标识设置
+        #region Identity Settings
 
-        // 身份标识设置
+        // Identity setting
         var identitySetting = new SettingGroupDto(L["DisplayName:Identity"], L["Description:Identity"]);
 
 
-        #region 登录
+        #region Login
 
         var signinSetting = identitySetting.AddSetting(L["DisplayName:Identity.SignIn"], L["Description:Identity.SignIn"]);
         signinSetting.AddDetail(
@@ -127,7 +127,7 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
 
         #endregion
 
-        #region 密码
+        #region Password
 
         var passwordSetting = identitySetting.AddSetting(L["DisplayName:Identity.Password"], L["Description:Identity.Password"]);
         passwordSetting.AddDetail(
@@ -185,70 +185,70 @@ public class UserSettingAppService : SettingManagementAppServiceBase, IUserSetti
 
         #endregion
 
-        #region 邮件设置
+        #region Mail Settings
 
-        // 控制用户行为, 禁止返回邮件配置
+        // Control user behavior, prohibit return email configuration
 
-        //var emailSettingGroup = new SettingGroupDto(L["DisplayName:Emailing"], L["Description:Emailing"]);
-        //var defaultMailSetting = emailSettingGroup.AddSetting(L["DisplayName:Emailing.Default"], L["Description:Emailing.Default"]);
-        //defaultMailSetting.AddDetail(
+        // var emailSettingGroup = new SettingGroupDto(L["DisplayName:Emailing"], L["Description:Emailing"]);
+        // var defaultMailSetting = emailSettingGroup.AddSetting(L["DisplayName:Emailing.Default"], L["Description:Emailing.Default"]);
+        // defaultMailSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.DefaultFromAddress),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.DefaultFromAddress, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
-        //defaultMailSetting.AddDetail(
+        // defaultMailSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.DefaultFromDisplayName),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.DefaultFromDisplayName, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
 
-        //var smtpSetting = emailSettingGroup.AddSetting(L["DisplayName:Emailing.Smtp"], L["Description:Emailing.Smtp"]);
-        //smtpSetting.AddDetail(
+        // var smtpSetting = emailSettingGroup.AddSetting(L["DisplayName:Emailing.Smtp"], L["Description:Emailing.Smtp"]);
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.EnableSsl),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.EnableSsl, providerName, providerKey),
         //    ValueType.Boolean,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.UseDefaultCredentials),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.UseDefaultCredentials, providerName, providerKey),
         //    ValueType.Boolean,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.Domain),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.Domain, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.Host),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.Host, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.Port),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.Port, providerName, providerKey),
         //    ValueType.Number,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.UserName),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.UserName, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
-        //smtpSetting.AddDetail(
+        // smtpSetting.AddDetail(
         //    SettingDefinitionManager.Get(EmailSettingNames.Smtp.Password),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(EmailSettingNames.Smtp.Password, providerName, providerKey),
         //    ValueType.String,
         //    providerName);
 
-        //settingGroups.AddGroup(emailSettingGroup);
+        // settingGroups.AddGroup(emailSettingGroup);
 
         #endregion
 

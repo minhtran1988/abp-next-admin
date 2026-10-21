@@ -6,15 +6,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Request;
 /// <summary>
-/// 批量删除成员请求参数
+/// Batch delete member request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90199" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90199" />
 /// </remarks>
 public class WeChatWorkBulkDeleteMemberRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 成员UserID列表。对应管理端的账号。最多支持200个。若存在无效UserID，直接返回错误
+    /// Member UserID list. Corresponding to the account on the management side. Supports up to 200. If there is an invalid UserID, an error will be returned directly.
     /// </summary>
     [NotNull]
     [JsonProperty("useridlist")]

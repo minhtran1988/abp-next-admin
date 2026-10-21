@@ -15,7 +15,7 @@ using Volo.Abp.Users;
 
 namespace LINGYUN.Abp.MicroService.IdentityService.Handlers;
 /// <summary>
-/// 会话控制事件处理器
+/// Session control event handler
 /// </summary>
 public class IdentitySessionAccessEventHandler :
     IDistributedEventHandler<IdentityUserSessionPasswordChangedEto>,
@@ -47,7 +47,7 @@ public class IdentitySessionAccessEventHandler :
     [UnitOfWork]
     public async virtual Task HandleEventAsync(EntityCreatedEto<IdentitySessionEto> eventData)
     {
-        // 新会话创建时检查登录策略
+        // Check login policy when new session is created
         var lockKey = $"{nameof(IdentitySessionAccessEventHandler)}_{nameof(EntityCreatedEto<IdentitySessionEto>)}";
         await using (var handle = await DistributedLock.TryAcquireAsync(lockKey))
         {
@@ -66,7 +66,7 @@ public class IdentitySessionAccessEventHandler :
     [UnitOfWork]
     public async virtual Task HandleEventAsync(EntityDeletedEto<UserEto> eventData)
     {
-        // 用户被删除, 移除所有会话
+        // The user is deleted and all sessions are removed
         var lockKey = $"{nameof(IdentitySessionAccessEventHandler)}_{nameof(EntityDeletedEto<UserEto>)}";
         await using (var handle = await DistributedLock.TryAcquireAsync(lockKey))
         {
@@ -89,7 +89,7 @@ public class IdentitySessionAccessEventHandler :
         if (!eventData.SessionId.IsNullOrWhiteSpace() &&
             Guid.TryParse(eventData.SessionId, out var exceptSessionId))
         {
-            // 用户密码更新使会话过期
+            // User password update causes session to expire
             var lockKey = $"{nameof(IdentitySessionAccessEventHandler)}_{nameof(IdentityUserSessionPasswordChangedEto)}";
             await using var handle = await DistributedLock.TryAcquireAsync(lockKey);
 
@@ -110,7 +110,7 @@ public class IdentitySessionAccessEventHandler :
     [UnitOfWork]
     public async virtual Task HandleEventAsync(IdentitySessionChangeAccessedEvent eventData)
     {
-        // 会话访问更新
+        // Session access update
         var lockKey = $"{nameof(IdentitySessionAccessEventHandler)}_{nameof(IdentitySessionChangeAccessedEvent)}";
         await using (var handle = await DistributedLock.TryAcquireAsync(lockKey))
         {
@@ -137,7 +137,7 @@ public class IdentitySessionAccessEventHandler :
             }
             else
             {
-                // 数据库中不存在会话, 清理缓存, 后续请求会话失效
+                // There is no session in the database, clear the cache, and the subsequent request session will be invalid.
                 await IdentitySessionCache.RemoveAsync(eventData.SessionId);
 
                 Logger.LogWarning("User session {SessionId} is invalid. Remove all session caches.", eventData.SessionId);
@@ -147,7 +147,7 @@ public class IdentitySessionAccessEventHandler :
 
     protected async virtual Task CheckConcurrentLoginStrategy(IdentitySessionEto session)
     {
-        // 创建一个会话后根据策略使其他会话失效
+        // After creating a session, invalidate other sessions according to the policy
         var strategySet = await SettingProvider.GetOrNullAsync(IdentitySettingNames.Session.ConcurrentLoginStrategy);
 
         Logger.LogDebug($"The concurrent login strategy is: {strategySet}");
@@ -156,7 +156,7 @@ public class IdentitySessionAccessEventHandler :
         {
             switch (strategy)
             {
-                // 限制用户相同设备
+                // Restrict users to the same device
                 case ConcurrentLoginStrategy.LogoutFromSameTypeDevicesLimit:
 
                     var sameTypeDevicesCountSet = await SettingProvider.GetAsync(IdentitySettingNames.Session.LogoutFromSameTypeDevicesLimit, 1);
@@ -169,7 +169,7 @@ public class IdentitySessionAccessEventHandler :
                         session.Id,
                         sameTypeDevicesCountSet);
                     break;
-                // 限制登录设备
+                // Restrict login devices
                 case ConcurrentLoginStrategy.LogoutFromSameTypeDevices:
 
                     Logger.LogDebug($"Clear all other sessions on the device {session.Device}.");
@@ -179,7 +179,7 @@ public class IdentitySessionAccessEventHandler :
                         session.Device,
                         session.Id);
                     break;
-                // 限制多端登录
+                // Restrict multi-terminal login
                 case ConcurrentLoginStrategy.LogoutFromAllDevices:
 
                     Logger.LogDebug($"Clear all other user sessions.");

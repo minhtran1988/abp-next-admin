@@ -1,25 +1,25 @@
 # LINGYUN.Abp.Settings
 
-## 模块说明
+## Module description
 
-ABP 设置管理扩展模块，提供了额外的设置管理功能。
+ABP settings management extension module provides additional settings management functions.
 
-### 基础模块  
+### Basic module
 
 * Volo.Abp.Settings
 
-### 功能定义  
+### Function definition
 
-* 扩展了 ISettingProvider 接口，提供了更多便利的设置获取方法
-  * GetOrDefaultAsync - 获取设置值，如果为空则返回默认值
+* Extended the ISettingProvider interface to provide more convenient settings acquisition methods
+  * GetOrDefaultAsync - Get the setting value, if it is empty, return the default value
 
-### 配置定义  
+### Configuration definition
 
-无特殊配置项
+No special configuration items
 
-### 如何使用
+### How to use
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpSettingsModule))]
@@ -28,7 +28,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用扩展方法
+2. Use extension methods
 
 ```csharp
 public class YourService
@@ -46,10 +46,10 @@ public class YourService
 
     public async Task<string> GetSettingValueAsync(string name)
     {
-        // 获取设置值，如果为空则返回默认值
+        // Get the setting value, if it is empty, return the default value
         return await _settingProvider.GetOrDefaultAsync(name, _serviceProvider);
     }
 }
 ```
 
-[返回目录](../../../README.md)
+[Return to directory](../../../README.md)

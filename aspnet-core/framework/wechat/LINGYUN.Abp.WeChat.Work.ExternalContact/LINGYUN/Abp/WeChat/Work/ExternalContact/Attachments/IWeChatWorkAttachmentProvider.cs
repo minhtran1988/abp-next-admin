@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Attachments;
 /// <summary>
-/// 附件资源接口
+/// Attachment resource interface
 /// </summary>
 public interface IWeChatWorkAttachmentProvider
 {
     /// <summary>
-    /// 上传附件资源
+    /// Upload attachment resources
     /// </summary>
     /// <remarks>
-    /// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90253"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90253"/>
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkUploadAttachmentResponse> UploadAsync(

@@ -21,9 +21,9 @@ export function useUsersApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 新增用户
-   * @param input 参数
-   * @returns 用户实体数据传输对象
+   * Add new user
+   * @param input parameter
+   * @returns User entity data transfer object
    */
   function createApi(input: IdentityUserCreateDto): Promise<IdentityUserDto> {
     return request<IdentityUserDto>('/api/identity/users', {
@@ -33,8 +33,8 @@ export function useUsersApi() {
   }
 
   /**
-   * 删除用户
-   * @param id 用户id
+   * Delete user
+   * @param id user id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/identity/users/${id}`, {
@@ -43,9 +43,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 查询用户
-   * @param id 用户id
-   * @returns 用户实体数据传输对象
+   * Query user
+   * @param id user id
+   * @returns User entity data transfer object
    */
   function getApi(id: string): Promise<IdentityUserDto> {
     return request<IdentityUserDto>(`/api/identity/users/${id}`, {
@@ -54,9 +54,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 更新用户
-   * @param id 用户id
-   * @returns 用户实体数据传输对象
+   * Update user
+   * @param id user id
+   * @returns User entity data transfer object
    */
   function updateApi(
     id: string,
@@ -69,9 +69,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 查询用户分页列表
-   * @param input 过滤参数
-   * @returns 用户实体数据传输对象分页列表
+   * Query user paging list
+   * @param input filter parameter
+   * @returns User entity data transfer object paginated list
    */
   function getPagedListApi(
     input?: GetUserPagedListInput,
@@ -83,9 +83,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 从组织机构中移除用户
-   * @param id 用户id
-   * @param ouId 组织机构id
+   * Remove users from the organization
+   * @param id user id
+   * @param ouId organization id
    */
   function removeOrganizationUnitApi(id: string, ouId: string): Promise<void> {
     return request(`/api/identity/users/${id}/organization-units/${ouId}`, {
@@ -94,8 +94,8 @@ export function useUsersApi() {
   }
 
   /**
-   * 获取用户组织机构列表
-   * @param id 用户id
+   * Get the list of user organizations
+   * @param id user id
    */
   function getOrganizationUnitsApi(
     id: string,
@@ -109,9 +109,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 锁定用户
-   * @param id 用户id
-   * @param seconds 锁定时长(秒)
+   * Lock user
+   * @param id user id
+   * @param seconds lock duration (seconds)
    */
   function lockApi(id: string, seconds: number): Promise<void> {
     return request(`/api/identity/users/${id}/lock/${seconds}`, {
@@ -120,8 +120,8 @@ export function useUsersApi() {
   }
 
   /**
-   * 解锁用户
-   * @param id 用户id
+   * Unlock user
+   * @param id user id
    */
   function unLockApi(id: string): Promise<void> {
     return request(`/api/identity/users/${id}/unlock`, {
@@ -130,9 +130,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 更改用户密码
-   * @param id 用户id
-   * @param input 密码变更dto
+   * Change user password
+   * @param id user id
+   * @param input password change dto
    */
   function changePasswordApi(
     id: string,
@@ -145,7 +145,7 @@ export function useUsersApi() {
   }
 
   /**
-   * 获取可用的角色列表
+   * Get the list of available roles
    */
   function getAssignableRolesApi(): Promise<ListResultDto<IdentityRoleDto>> {
     return request<ListResultDto<IdentityRoleDto>>(
@@ -157,8 +157,8 @@ export function useUsersApi() {
   }
 
   /**
-   * 获取用户角色列表
-   * @param id 用户id
+   * Get user role list
+   * @param id user id
    */
   function getRolesApi(id: string): Promise<ListResultDto<IdentityRoleDto>> {
     return request<ListResultDto<IdentityRoleDto>>(
@@ -170,8 +170,8 @@ export function useUsersApi() {
   }
 
   /**
-   * 获取用户声明列表
-   * @param id 用户id
+   * Get user statement list
+   * @param id user id
    */
   function getClaimsApi(id: string): Promise<ListResultDto<IdentityClaimDto>> {
     return request<ListResultDto<IdentityClaimDto>>(
@@ -183,9 +183,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 删除用户声明
-   * @param id 用户id
-   * @param input 用户声明dto
+   * Delete user statement
+   * @param id user id
+   * @param input user declaration dto
    */
   function deleteClaimApi(
     id: string,
@@ -198,9 +198,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 创建用户声明
-   * @param id 用户id
-   * @param input 用户声明dto
+   * Create user statement
+   * @param id user id
+   * @param input user declaration dto
    */
   function createClaimApi(
     id: string,
@@ -213,9 +213,9 @@ export function useUsersApi() {
   }
 
   /**
-   * 更新用户声明
-   * @param id 用户id
-   * @param input 用户声明dto
+   * Update user statement
+   * @param id user id
+   * @param input user declaration dto
    */
   function updateClaimApi(
     id: string,

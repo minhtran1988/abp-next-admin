@@ -36,7 +36,7 @@ public class WeChatWorkOAuthHandler : OAuthHandler<WeChatWorkOAuthOptions>
     }
 
     /// <summary>
-    /// 重写应用配置
+    /// Rewrite application configuration
     /// </summary>
     /// <returns></returns>
     protected async override Task InitializeHandlerAsync()
@@ -56,7 +56,7 @@ public class WeChatWorkOAuthHandler : OAuthHandler<WeChatWorkOAuthOptions>
         // Check.NotNullOrEmpty(agentId, nameof(agentId));
         // Check.NotNullOrEmpty(secret, nameof(secret));
 
-        // 用配置项重写
+        // Rewrite with configuration items
         Options.CorpId = corpId ?? "";
         Options.ClientId = agentId ?? "";
         Options.ClientSecret = secret ?? "";
@@ -67,7 +67,7 @@ public class WeChatWorkOAuthHandler : OAuthHandler<WeChatWorkOAuthOptions>
     }
 
     /// <summary>
-    ///  第一步：构建用户授权地址
+    /// Step one: Build user authorization address
     /// </summary> 
     protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
     {
@@ -99,7 +99,7 @@ public class WeChatWorkOAuthHandler : OAuthHandler<WeChatWorkOAuthOptions>
     }
 
     /// <summary>
-    /// 第二步：code换取access_token
+    /// Step 2: exchange code for access_token
     /// </summary> 
     protected async override Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
     {
@@ -138,7 +138,7 @@ public class WeChatWorkOAuthHandler : OAuthHandler<WeChatWorkOAuthOptions>
     }
 
     /// <summary>
-    /// 第三步：构建用户票据
+    /// Step 3: Build user ticket
     /// </summary>
     /// <param name="identity"></param>
     /// <param name="properties"></param>

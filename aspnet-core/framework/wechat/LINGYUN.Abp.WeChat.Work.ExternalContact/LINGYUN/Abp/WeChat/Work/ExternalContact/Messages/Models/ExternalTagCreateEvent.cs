@@ -4,7 +4,7 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 企业客户标签创建事件推送
+/// Enterprise customer label creation event push
 /// </summary>
 [EventName("change_external_tag_create")]
 public class ExternalTagCreateEvent : ExternalTagChangeEvent

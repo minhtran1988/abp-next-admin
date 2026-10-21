@@ -1,37 +1,37 @@
-# 服务端交互与数据Mock
+# Server interaction and data mock
 
-::: tip 说明
+::: tip description
 
-本文档介绍如何在开发环境下使用 Mock 数据和与服务端进行交互，涉及到的技术有：
+This document introduces how to use Mock data and interact with the server in a development environment. The technologies involved are:
 
-- [Nitro](https://nitro.unjs.io/) 轻量级后端服务器，可部署在任何地方，项目用作于 Mock 服务器。
-- [axios](https://axios-http.com/docs/intro) 用于发送 HTTP 请求与服务端进行交互。
-
-:::
-
-## 开发环境交互
-
-如果前端应用和后端接口服务器没有运行在同一个主机上，你需要在开发环境下将接口请求代理到接口服务器。如果是同一个主机，可以直接请求具体的接口地址。
-
-### 本地开发跨域配置
-
-::: tip 提示
-
-本地开发跨域配置项目已经配置好了，如有其他需求，可以自行增加或者调整配置。
+- [Nitro](https://nitro.unjs.io/) A lightweight backend server that can be deployed anywhere, and the project is used as a Mock server.
+- [axios](https://axios-http.com/docs/intro) is used to send HTTP requests to interact with the server.
 
 :::
 
-#### 配置本地开发接口地址
+## Development environment interaction
 
-在项目根目录下的 `.env.development` 文件中配置接口地址，这里配置为 `/api`：
+If the front-end application and the back-end interface server do not run on the same host, you need to proxy interface requests to the interface server in the development environment. If it is the same host, you can directly request the specific interface address.
+
+### Local development cross-domain configuration
+
+::: tip tip
+
+The local development cross-domain configuration project has been configured. If you have other needs, you can add or adjust the configuration by yourself.
+
+:::
+
+#### Configure the local development interface address
+
+Configure the interface address in the `.env.development` file in the project root directory, here it is configured as `/api`:
 
 ```bash
 VITE_GLOB_API_URL=/api
 ```
 
-#### 配置开发服务器代理
+#### Configure the development server proxy
 
-开发环境时候，如果需要处理跨域，接口地址在对应的应用目录下的 `vite.config.mts` 文件中配置：
+When developing the environment, if you need to handle cross-domain processing, the interface address is configured in the `vite.config.mts` file in the corresponding application directory:
 
 ```ts{8-16}
 // apps/web-antd/vite.config.mts
@@ -45,7 +45,7 @@ export default defineConfig(async () => {
           '/api': {
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ''),
-            // mock代理目标地址
+            // mock proxy target address
             target: 'http://localhost:5320/api',
             ws: true,
           },
@@ -56,9 +56,9 @@ export default defineConfig(async () => {
 });
 ```
 
-#### 接口请求
+#### Interface request
 
-根据上面的配置，我们可以在前端项目中使用 `/api` 作为接口请求的前缀，例如：
+According to the above configuration, we can use `/api` as the prefix for interface requests in the front-end project, for example:
 
 ```ts
 import axios from 'axios';
@@ -68,56 +68,56 @@ axios.get('/api/user').then((res) => {
 });
 ```
 
-此时，请求会被代理到 `http://localhost:5320/api/user`。
+At this point, the request will be proxied to `http://localhost:5320/api/user`.
 
-::: warning 注意
+::: warning note
 
-从浏览器控制台的 Network 看，请求是 `http://localhost:5555/api/user`, 这是因为 proxy 配置不会改变本地请求的 url。
+From the Network view of the browser console, the request is `http://localhost:5555/api/user`. This is because the proxy configuration does not change the URL of the local request.
 
 :::
 
-### 没有跨域时的配置
+### No cross-domain configuration
 
-如果没有跨域问题，可以直接忽略 [配置开发服务器代理](./server.md#配置开发服务器代理) 配置，直接将接口地址设置在 `VITE_GLOB_API_URL`
+If there is no cross-domain problem, you can directly ignore the [Configure the development server proxy](./server.md#configure-the-development-server-proxy) configuration and directly set the interface address to `VITE_GLOB_API_URL`
 
-在项目根目录下的 `.env.development` 文件中配置接口地址：
+Configure the interface address in the `.env.development` file in the project root directory:
 
 ```bash
 VITE_GLOB_API_URL=https://mock-napi.vben.pro/api
 ```
 
-## 生产环境交互
+## Production environment interaction
 
-### 接口地址配置
+### Interface address configuration
 
-在项目根目录下的 `.env.production` 文件中配置接口地址：
+Configure the interface address in the `.env.production` file in the project root directory:
 
 ```bash
 VITE_GLOB_API_URL=https://mock-napi.vben.pro/api
 ```
 
-::: tip 打包如何动态修改接口地址
+::: tip How to dynamically modify the interface address in packaging
 
-`.env` 文件内的 `VITE_GLOB_*` 开头的变量会在打包的时候注入 `_app.config.js` 文件内。在 `dist/_app.config.js` 修改相应的接口地址后刷新页面即可，不需要在根据不同环境打包多次，一次打包可以用于多个不同接口环境的部署。
+Variables starting with `VITE_GLOB_*` in the `.env` file will be injected into the `_app.config.js` file during packaging. Just refresh the page after modifying the corresponding interface address in `dist/_app.config.js`. There is no need to package multiple times according to different environments. One package can be used for deployment in multiple different interface environments.
 
 :::
 
-### 跨域处理
+### Cross-domain processing
 
-生产环境如果出现跨域问题，可以使用 `nginx` 代理接口地址 或者后台开启 `cors` 进行处理即可（可参考mock服务）。
+If cross-domain problems occur in the production environment, you can use the `nginx` proxy interface address or enable `cors` in the background for processing (refer to the mock service).
 
-## 接口请求配置
+## Interface request configuration
 
-项目中默认自带了基于 `axios` 封装的基础的请求配置，核心由 `@vben/request` 包提供。项目没有过多的封装，只是简单的封装了一些常用的配置，如有其他需求，可以自行增加或者调整配置。针对不同的app，可能是用到了不同的组件库以及`store`,所以在应用目录下的`src/api/request.ts`文件夹下，有对应的请求配置文件,如`web-antd`项目下的`src/api/request.ts`文件,可以根据自己的需求进行配置。
+The project comes with basic request configuration based on the `axios` package by default, and the core is provided by the `@vben/request` package. The project does not have too many packages, but simply encapsulates some commonly used configurations. If you have other needs, you can add or adjust the configurations yourself. For different apps, different component libraries and `stores' may be used, so in the `src/api/request.ts` folder in the application directory, there are corresponding request configuration files, such as the `src/api/request.ts` file under the `web-antd` project, which can be configured according to your own needs.
 
-### 扩展的配置
+### Extended configuration
 
-除了基础的Axios配置外，扩展了部分配置。
+In addition to the basic Axios configuration, some configurations have been extended.
 
 ```ts
 type ExtendOptions<T = any> = {
   /**
-   * 参数序列化方式。预置了几种针对数组的序列化类型
+   * Parameter serialization method. Several serialization types for arrays are preset
    * - brackets: ids[]=1&ids[]=2&ids[]=3
    * - comma: ids=1,2,3
    * - indices: ids[0]=1&ids[1]=2&ids[2]=3
@@ -131,18 +131,18 @@ type ExtendOptions<T = any> = {
     | 'repeat'
     | AxiosRequestConfig<T>['paramsSerializer'];
   /**
-   * 响应数据的返回方式。
-   * - raw: 原始的AxiosResponse，包括headers、status等，不做是否成功请求的检查。
-   * - body: 返回响应数据的BODY部分（只会根据status检查请求是否成功，忽略对code的判断，这种情况下应由调用方检查请求是否成功）。
-   * - data: 解构响应的BODY数据，只返回其中的data节点数据（会检查status和code是否为成功状态）。
+   * How to return response data.
+   * - raw: The original AxiosResponse, including headers, status, etc., does not check whether the request is successful.
+   * - body: Returns the BODY part of the response data (only the status will be used to check whether the request is successful, and the code will be ignored. In this case, the caller should check whether the request is successful).
+   * - data: Deconstruct the response BODY data and only return the data node data (status and code will be checked to see if they are successful).
    */
   responseReturn?: 'body' | 'data' | 'raw';
 };
 ```
 
-### 请求示例
+### Request example
 
-#### GET 请求
+#### GET request
 
 ```ts
 import { requestClient } from '#/api/request';
@@ -152,7 +152,7 @@ export async function getUserInfoApi() {
 }
 ```
 
-#### POST/PUT 请求
+#### POST/PUT request
 
 ```ts
 import { requestClient } from '#/api/request';
@@ -169,13 +169,13 @@ export async function saveUserApi(user: UserInfo) {
   const url = user.id ? `/user/${user.id}` : '/user/';
   return requestClient.request<UserInfo>(url, {
     data: user,
-    // 或者 PUT
+    // or PUT
     method: user.id ? 'PUT' : 'POST',
   });
 }
 ```
 
-#### DELETE 请求
+#### DELETE request
 
 ```ts
 import { requestClient } from '#/api/request';
@@ -185,13 +185,13 @@ export async function deleteUserApi(userId: number) {
 }
 ```
 
-### 请求配置
+### Request configuration
 
-应用内的`src/api/request.ts`可以根据自己应用的情况的需求进行配置：
+`src/api/request.ts` in the application can be configured according to the needs of your own application:
 
 ```ts
 /**
- * 该文件可自行根据业务逻辑进行调整
+ * This file can be adjusted according to business logic
  */
 import type { HttpResponse } from '@vben/request';
 
@@ -218,7 +218,7 @@ function createRequestClient(baseURL: string) {
   });
 
   /**
-   * 重新认证逻辑
+   * Re-authentication logic
    */
   async function doReAuthenticate() {
     console.warn('Access token or refresh token is invalid or expired. ');
@@ -236,7 +236,7 @@ function createRequestClient(baseURL: string) {
   }
 
   /**
-   * 刷新token逻辑
+   * Refresh token logic
    */
   async function doRefreshToken() {
     const accessStore = useAccessStore();
@@ -250,7 +250,7 @@ function createRequestClient(baseURL: string) {
     return token ? `Bearer ${token}` : null;
   }
 
-  // 请求头处理
+  // Request header processing
   client.addRequestInterceptor({
     fulfilled: async (config) => {
       const accessStore = useAccessStore();
@@ -261,19 +261,19 @@ function createRequestClient(baseURL: string) {
     },
   });
 
-  // 处理返回的响应数据格式。会根据responseReturn指定的类型返回对应的数据
+  // Process the returned response data format. The corresponding data will be returned according to the type specified by responseReturn.
   client.addResponseInterceptor(
     defaultResponseInterceptor({
-      // 指定接口返回的数据中的 code 字段名
+      //Specify the code field name in the data returned by the interface
       codeField: 'code',
-      // 指定接口返回的数据中装载了主要数据的字段名
+      // Specify the field name of the main data loaded in the data returned by the specified interface
       dataField: 'data',
-      // 请求成功的 code 值，如果接口返回的 code 等于 successCode 则会认为是成功的请求
+      //The code value of a successful request. If the code returned by the interface is equal to successCode, it will be considered a successful request.
       successCode: 0,
     }),
   );
 
-  // token过期的处理
+  //Token expiration processing
   client.addResponseInterceptor(
     authenticateResponseInterceptor({
       client,
@@ -284,14 +284,14 @@ function createRequestClient(baseURL: string) {
     }),
   );
 
-  // 通用的错误处理,如果没有进入上面的错误处理逻辑，就会进入这里
+  //General error handling, if you do not enter the above error handling logic, you will enter here
   client.addResponseInterceptor(
     errorMessageResponseInterceptor((msg: string, error) => {
-      // 这里可以根据业务进行定制,你可以拿到 error 内的信息进行定制化处理，根据不同的 code 做不同的提示，而不是直接使用 message.error 提示 msg
-      // 当前mock接口返回的错误字段是 error 或者 message
+      // This can be customized according to the business. You can get the information in the error for customized processing and make different prompts according to different codes instead of directly using message.error to prompt msg.
+      //The error field returned by the current mock interface is error or message
       const responseData = error?.response?.data ?? {};
       const errorMessage = responseData?.error ?? responseData?.message ?? '';
-      // 如果没有错误信息，则会根据状态码进行提示
+      // If there is no error message, a prompt will be given based on the status code.
       message.error(errorMessage || msg);
     }),
   );
@@ -304,9 +304,9 @@ export const requestClient = createRequestClient(apiURL);
 export const baseRequestClient = new RequestClient({ baseURL: apiURL });
 ```
 
-### 多个接口地址
+### Multiple interface addresses
 
-只需要创建多个 `requestClient` 即可，如：
+Just create multiple `requestClient`, such as:
 
 ```ts
 const { apiURL, otherApiURL } = useAppConfig(
@@ -319,13 +319,13 @@ export const requestClient = createRequestClient(apiURL);
 export const otherRequestClient = createRequestClient(otherApiURL);
 ```
 
-## 刷新Token
+## Refresh Token
 
-项目中默认提供了刷新 Token 的逻辑，只需要按照下面的配置即可开启：
+The logic of refreshing Token is provided by default in the project. You only need to follow the following configuration to enable it:
 
-- 确保当前启用了刷新 Token 的配置
+- Ensure that the configuration of refreshing Token is currently enabled
 
-调整对应应用目录下的`preferences.ts`，确保`enableRefreshToken='true'`。
+Adjust `preferences.ts` in the corresponding application directory and ensure `enableRefreshToken='true'`.
 
 ```ts
 import { defineOverridesPreferences } from '@vben/preferences';
@@ -338,20 +338,20 @@ export const overridesPreferences = defineOverridesPreferences({
 });
 ```
 
-在 `src/api/request.ts` 中配置 `doRefreshToken` 方法即可:
+Just configure the `doRefreshToken` method in `src/api/request.ts`:
 
 ```ts
-// 这里调整为你的token格式
+//Adjust here to your token format
 function formatToken(token: null | string) {
   return token ? `Bearer ${token}` : null;
 }
 
 /**
- * 刷新token逻辑
+ * Refresh token logic
  */
 async function doRefreshToken() {
   const accessStore = useAccessStore();
-  // 这里调整为你的刷新token接口
+  //Adjust here to your refresh token interface
   const resp = await refreshTokenApi();
   const newToken = resp.data;
   accessStore.setAccessToken(newToken);
@@ -359,27 +359,27 @@ async function doRefreshToken() {
 }
 ```
 
-## 数据 Mock
+## Data Mock
 
-::: tip 生产环境 Mock
+::: tip Production environment Mock
 
-新版本不再支持生产环境 mock，请使用真实接口。
+The new version no longer supports production environment mocks, please use real interfaces.
 
 :::
 
-Mock 数据是前端开发过程中必不可少的一环，是分离前后端开发的关键链路。通过预先跟服务器端约定好的接口，模拟请求数据甚至逻辑，能够让前端开发独立自主，不会被服务端的开发进程所阻塞。
+Mock data is an essential part of the front-end development process and a key link that separates front-end and front-end development. By simulating request data and even logic through the interface agreed with the server in advance, front-end development can be made independent and will not be blocked by the development process of the server.
 
-项目使用 [Nitro](https://nitro.unjs.io/) 来进行本地 mock 数据处理。其原理是本地额外启动一个后端服务，是一个真实的后端服务，可以处理请求，返回数据。
+The project uses [Nitro](https://nitro.unjs.io/) for local mock data processing. The principle is to start an additional backend service locally, which is a real backend service that can process requests and return data.
 
-### Nitro 使用
+### Nitro use
 
-Mock 服务代码位于`apps/backend-mock`目录下，无需手动启动，已经集成在项目中，只需要在项目根目录下运行`pnpm dev`即可，运行成功之后，控制台会打印 `http://localhost:5320/api`, 访问该地址即可查看 mock 服务。
+The Mock service code is located in the `apps/backend-mock` directory. There is no need to start it manually. It has been integrated into the project. You only need to run `pnpm dev` in the project root directory. After successful operation, the console will print `http://localhost:5320/api`. Visit this address to view the mock service.
 
-[Nitro](https://nitro.unjs.io/) 语法简单，可以根据自己的需求进行配置及开发，具体配置可以查看 [Nitro 文档](https://nitro.unjs.io/)。
+[Nitro](https://nitro.unjs.io/) has simple syntax and can be configured and developed according to your own needs. For specific configuration, please view [Nitro Documentation](https://nitro.unjs.io/).
 
-## 关闭 Mock 服务
+## Close the Mock service
 
-mock的本质是一个真实的后端服务，如果不需要 mock 服务，可以在项目根目录下的 `.env.development` 文件中配置 `VITE_NITRO_MOCK=false` 即可关闭 mock 服务。
+The essence of mock is a real back-end service. If you do not need the mock service, you can configure `VITE_NITRO_MOCK=false` in the `.env.development` file in the project root directory to turn off the mock service.
 
 ```bash
 # .env.development

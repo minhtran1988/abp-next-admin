@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Identity.Application
 
-身份认证应用服务模块，提供身份认证相关的应用服务实现。
+The identity authentication application service module provides identity authentication-related application service implementation.
 
-## 功能特性
+## Features
 
-* 扩展Volo.Abp.Identity.AbpIdentityApplicationModule模块
-* 提供身份认证相关的应用服务实现
-* 集成AutoMapper对象映射
-* 支持用户头像URL扩展属性
+* Extend the Volo.Abp.Identity.AbpIdentityApplicationModule module
+* Provide application service implementation related to identity authentication
+* Integrate AutoMapper object mapping
+* Support user avatar URL extended attributes
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -22,27 +22,27 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 应用服务
+## Application Services
 
-* IdentityUserAppService - 用户管理服务
-* IdentityRoleAppService - 角色管理服务
-* IdentityClaimTypeAppService - 声明类型管理服务
-* IdentitySecurityLogAppService - 安全日志服务
-* IdentitySettingsAppService - 身份认证设置服务
-* ProfileAppService - 用户配置文件服务
+* IdentityUserAppService - User management service
+* IdentityRoleAppService - role management service
+* IdentityClaimTypeAppService - Claim type management service
+* IdentitySecurityLogAppService - Security log service
+* IdentitySettingsAppService - Identity authentication settings service
+* ProfileAppService - User profile service
 
-## 对象映射
+## Object mapping
 
-模块使用AutoMapper进行对象映射，主要映射包括：
+The module uses AutoMapper for object mapping. The main mappings include:
 
 * IdentityUser -> IdentityUserDto
 * IdentityRole -> IdentityRoleDto
 * IdentityClaimType -> IdentityClaimTypeDto
 * IdentitySecurityLog -> IdentitySecurityLogDto
 
-## 基本用法
+## Basic usage
 
-1. 使用用户管理服务
+1. Use user management services
 ```csharp
 public class YourService
 {
@@ -60,7 +60,7 @@ public class YourService
 }
 ```
 
-2. 使用角色管理服务
+2. Use the role management service
 ```csharp
 public class YourService
 {
@@ -78,6 +78,6 @@ public class YourService
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)

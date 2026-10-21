@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Notifications.Templating;
 /// <summary>
-/// 通知模板模型解析接口
+/// Notification template model parsing interface
 /// </summary>
 public interface INotificationTemplateResolver
 {
     /// <summary>
-    /// 解析模板数据
+    /// Parse template data
     /// </summary>
     /// <param name="template"></param>
     /// <returns></returns>

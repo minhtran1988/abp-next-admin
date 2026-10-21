@@ -7,23 +7,23 @@ public static class TencentBlobProviderConfigurationNames
     /// </summary>
     public const string AppId = "Tencent:OSS:AppId";
     /// <summary>
-    /// 区域
+    /// area
     /// </summary>
     public const string Region = "Tencent:OSS:Region";
     /// <summary>
-    /// 命名空间
+    /// namespace
     /// </summary>
     public const string BucketName = "Tencent:OSS:BucketName";
     /// <summary>
-    /// 命名空间不存在是否创建
+    /// Whether to create the namespace if it does not exist
     /// </summary>
     public const string CreateBucketIfNotExists = "Tencent:OSS:CreateBucketIfNotExists";
     /// <summary>
-    /// 创建命名空间时防盗链列表
+    /// Anti-hotlink list when creating namespace
     /// </summary>
     public const string CreateBucketReferer = "Tencent:OSS:CreateBucketReferer";
     /// <summary>
-    /// 生成预签名Uri的过期时间(s)
+    /// Generate the expiration time of the pre-signed Uri (s)
     /// </summary>
     public const string PresignedGetExpirySeconds = "Tencent:OSS:PresignedGetExpirySeconds";
 }

@@ -8,73 +8,73 @@ namespace LINGYUN.Abp.Account;
 public interface IAccountAppService : IApplicationService
 {
     /// <summary>
-    /// 通过手机号注册用户账户
+    /// Register a user account via mobile phone number
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task RegisterAsync(PhoneRegisterDto input);
     /// <summary>
-    /// 通过微信小程序注册用户账户
+    /// Register a user account through the WeChat applet
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task RegisterAsync(WeChatRegisterDto input);
     /// <summary>
-    /// 通过手机号重置用户密码
+    /// Reset user password via mobile phone number
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task ResetPasswordAsync(PhoneResetPasswordDto input);
     /// <summary>
-    /// 发送手机注册验证码短信
+    /// Send mobile phone registration verification code SMS
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendPhoneRegisterCodeAsync(SendPhoneRegisterCodeDto input);
     /// <summary>
-    /// 发送手机登录验证码短信
+    /// Send mobile phone login verification code SMS
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendPhoneSigninCodeAsync(SendPhoneSigninCodeDto input);
     /// <summary>
-    /// 发送手机重置密码验证码短信
+    /// Send mobile phone reset password verification code SMS
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendPhoneResetPasswordCodeAsync(SendPhoneResetPasswordCodeDto input);
     /// <summary>
-    /// 发送邮件注册验证码
+    /// Send email registration verification code
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendEmailRegisterCodeAsync(SendEmailRegisterCodeDto input);
     /// <summary>
-    /// 验证邮件注册验证码
+    /// Verification email registration verification code
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<bool> VerifyEmailRegisterCodeAsync(VerifyEmailRegisterCodeInput input);
     /// <summary>
-    /// 发送邮件登录验证码
+    /// Send email login verification code
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendEmailSigninCodeAsync(SendEmailSigninCodeDto input);
     /// <summary>
-    /// 发送确认邮件链接
+    /// Send confirmation email link
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendEmailConfirmLinkAsync(SendUserEmailConfirmCodeDto input);
     /// <summary>
-    /// 确认邮件地址
+    /// Confirm email address
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task ConfirmEmailAsync(ConfirmUserEmailInput input);
     /// <summary>
-    /// 获取用户二次认证提供者列表
+    /// Get the list of user secondary authentication providers
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>

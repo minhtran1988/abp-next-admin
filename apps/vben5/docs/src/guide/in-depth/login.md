@@ -2,17 +2,17 @@
 outline: deep
 ---
 
-# 登录
+# Login
 
-本文介绍如何去改造自己的应用程序登录页以及如何快速的对接登录页面接口。
+This article introduces how to transform your own application login page and how to quickly connect to the login page interface.
 
-## 登录页面调整
+## Login page adjustment
 
-如果你想调整登录页面的标题、描述和图标以及工具栏，你可以通过配置 `AuthPageLayout` 组件的参数来实现。
+If you want to adjust the title, description, icon and toolbar of the login page, you can do so by configuring the parameters of the `AuthPageLayout` component.
 
 ![login](/guide/login.png)
 
-只需要在应用下的 `src/layouts/auth.vue` 内，配置`AuthPageLayout`的 `props`参数即可：
+Just configure the `props` parameters of `AuthPageLayout` in `src/layouts/auth.vue` under the application:
 
 ```vue {2-7}
 <AuthPageLayout
@@ -27,9 +27,9 @@ outline: deep
 </AuthPageLayout>
 ```
 
-## 登录表单调整
+## Login form adjustment
 
-如果你想调整登录表单的相关内容，你可以在应用下的 `src/views/_core/authentication/login.vue` 内，配置`AuthenticationLogin` 组件参数即可：
+If you want to adjust the relevant content of the login form, you can configure the `AuthenticationLogin` component parameters in `src/views/_core/authentication/login.vue` under the application:
 
 ```vue
 <AuthenticationLogin
@@ -38,70 +38,70 @@ outline: deep
 />
 ```
 
-::: details AuthenticationLogin 组件参数
+::: details AuthenticationLogin component parameters
 
 ```ts
 {
   /**
-   * @zh_CN 验证码登录路径
+   * @zh_CN Verification code login path
    */
   codeLoginPath?: string;
   /**
-   * @zh_CN 忘记密码路径
+   * @zh_CN Forgot password path
    */
   forgetPasswordPath?: string;
 
   /**
-   * @zh_CN 是否处于加载处理状态
+   * @zh_CN Whether it is in loading processing state
    */
   loading?: boolean;
 
   /**
-   * @zh_CN 二维码登录路径
+   * @zh_CN QR code login path
    */
   qrCodeLoginPath?: string;
 
   /**
-   * @zh_CN 注册路径
+   * @zh_CN registration path
    */
   registerPath?: string;
 
   /**
-   * @zh_CN 是否显示验证码登录
+   * @zh_CN Whether to display verification code to log in
    */
   showCodeLogin?: boolean;
   /**
-   * @zh_CN 是否显示忘记密码
+   * @zh_CN Whether to display forgotten password?
    */
   showForgetPassword?: boolean;
 
   /**
-   * @zh_CN 是否显示二维码登录
+   * @zh_CN Whether to display QR code to log in
    */
   showQrcodeLogin?: boolean;
 
   /**
-   * @zh_CN 是否显示注册按钮
+   * @zh_CN Whether to display the registration button
    */
   showRegister?: boolean;
 
   /**
-   * @zh_CN 是否显示记住账号
+   * @zh_CN Whether to display remember account
    */
   showRememberMe?: boolean;
 
   /**
-   * @zh_CN 是否显示第三方登录
+   * @zh_CN Whether to display third-party login
    */
   showThirdPartyLogin?: boolean;
 
   /**
-   * @zh_CN 登录框子标题
+   * @zh_CN Login box subtitle
    */
   subTitle?: string;
 
   /**
-   * @zh_CN 登录框标题
+   * @zh_CN Login box title
    */
   title?: string;
 
@@ -112,22 +112,22 @@ outline: deep
 
 ::: tip Note
 
-如果这些配置不能满足你的需求，你可以自行实现登录表单及相关登录逻辑或者给我们提交 `PR`。
+If these configurations cannot meet your needs, you can implement the login form and related login logic by yourself or submit a `PR` to us.
 
 :::
 
-## 接口对接流程
+## Interface docking process
 
-这里将会快速的介绍如何快速对接自己的后端。
+Here we will quickly introduce how to quickly connect your own backend.
 
-### 前置条件
+### Preconditions
 
-- 首先文档用的后端服务，接口返回的格式统一如下：
+- First of all, the back-end service used by the document, the format returned by the interface is unified as follows:
 
 ```ts
 interface HttpResponse<T = any> {
   /**
-   * 0 表示成功 其他表示失败
+   * 0 means success, other means failure
    * 0 means success, others means fail
    */
   code: number;
@@ -136,9 +136,9 @@ interface HttpResponse<T = any> {
 }
 ```
 
-如果你不符合这个格式，你需要先阅读 [服务端交互](../essentials/server.md) 文档，改造你的`request.ts`配置。
+If you do not conform to this format, you need to read the [Server Interaction](../essentials/server.md) document first and modify your `request.ts` configuration.
 
-- 其次你需要在先将本地代理地址改为你的真实后端地址，你可以在应用下的 `vite.config.mts` 内配置：
+- Secondly, you need to change the local proxy address to your real backend address first. You can configure it in `vite.config.mts` under the application:
 
 ```ts
 import { defineConfig } from '@vben/vite-config';
@@ -151,7 +151,7 @@ export default defineConfig(async () => {
           '/api': {
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ''),
-            // 这里改为你的真实接口地址
+            //Change this to your real interface address
             target: 'http://localhost:5320/api',
             ws: true,
           },
@@ -162,47 +162,47 @@ export default defineConfig(async () => {
 });
 ```
 
-### 登录接口
+### Login interface
 
-为了能正常登录，你的后端最少需要提供 `2-3` 个接口：
+In order to log in normally, your backend needs to provide at least `2-3` interfaces:
 
-- 登录接口
+- Login interface
 
-接口地址可在应用下的 `src/api/core/auth` 内修改，以下为默认接口地址：
+The interface address can be modified in `src/api/core/auth` under the application. The following is the default interface address:
 
 ```ts
 /**
- * 登录
+ * Login
  */
 export async function loginApi(data: AuthApi.LoginParams) {
   return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
 }
 
-/** 只需要保证登录接口返回值有 `accessToken` 字段即可 */
+/** Just make sure that the return value of the login interface has the `accessToken` field */
 export interface LoginResult {
   accessToken: string;
 }
 ```
 
-- 获取用户信息接口
+- Obtain user information interface
 
-接口地址可在应用下的 `src/api/core/user` 内修改，以下为默认接口地址：
+The interface address can be modified in `src/api/core/user` under the application. The following is the default interface address:
 
 ```ts
 export async function getUserInfoApi() {
   return requestClient.get<UserInfo>('/user/info');
 }
 
-/** 只需要保证登录接口返回值有以下字段即可，多的字段可以自行使用 */
+/** Just make sure that the return value of the login interface has the following fields. You can use more fields by yourself */
 export interface UserInfo {
   roles: string[];
   realName: string;
 }
 ```
 
-- 获取权限码 (可选)
+- Obtain permission code (optional)
 
-这个接口用于获取用户的权限码，权限码是用于控制用户的权限的，接口地址可在应用下的 `src/api/core/auth` 内修改，以下为默认接口地址：
+This interface is used to obtain the user's permission code. The permission code is used to control the user's permissions. The interface address can be modified in `src/api/core/auth` under the application. The following is the default interface address:
 
 ```ts
 export async function getAccessCodesApi() {
@@ -210,11 +210,11 @@ export async function getAccessCodesApi() {
 }
 ```
 
-如果你不需要这个权限，你只需要把代码改为返回一个空数组即可。
+If you don't need this permission, you can simply change the code to return an empty array.
 
 ```ts {2}
 export async function getAccessCodesApi() {
-  // 这里返回一个空数组即可
+  // Just return an empty array here
   return [];
 }
 ```

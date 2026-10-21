@@ -41,45 +41,45 @@ class PreferenceManager {
   }
 
   /**
-   * 清除所有缓存的偏好设置
+   * Clear all cached preferences
    */
   clearCache = () => {
     Object.values(STORAGE_KEYS).forEach((key) => this.cache.removeItem(key));
   };
 
   /**
-   * 获取初始化偏好设置
+   * Get initialization preferences
    */
   getInitialPreferences = () => {
     return this.initialPreferences;
   };
 
   /**
-   * 获取当前偏好设置（只读）
+   * Get current preferences (read-only)
    */
   getPreferences = () => {
     return readonly(this.state);
   };
 
   /**
-   * 初始化偏好设置
-   * @param options - 初始化配置项
-   * @param options.namespace - 命名空间，用于隔离不同应用的配置
-   * @param options.overrides - 要覆盖的偏好设置
+   * Initialize preferences
+   * @param options - initialization configuration items
+   * @param options.namespace - namespace, used to isolate the configuration of different applications
+   * @param options.overrides - Preferences to override
    */
   initPreferences = async ({ namespace, overrides }: InitialOptions) => {
-    // 防止重复初始化
+    // Prevent repeated initialization
     if (this.isInitialized) {
       return;
     }
 
-    // 使用命名空间初始化存储管理器
+    // Initialize the storage manager using the namespace
     this.cache = new StorageManager({ prefix: namespace });
 
-    // 合并初始偏好设置
+    // Merge initial preferences
     this.initialPreferences = merge({}, overrides, defaultPreferences);
 
-    // 加载缓存的偏好设置并与初始配置合并
+    // Load cached preferences and merge with initial configuration
     const cachedPreferences = this.loadFromCache() || {};
     const mergedPreference = merge(
       {},
@@ -87,51 +87,51 @@ class PreferenceManager {
       this.initialPreferences,
     );
 
-    // 更新偏好设置
+    // Update preferences
     this.updatePreferences(mergedPreference);
 
-    // 设置监听器
+    // Set up the listener
     this.setupWatcher();
 
-    // 初始化平台标识
+    // Initialize platform identification
     this.initPlatform();
 
     this.isInitialized = true;
   };
 
   /**
-   * 重置偏好设置到初始状态
+   * Reset preferences to initial state
    */
   resetPreferences = () => {
-    // 将状态重置为初始偏好设置
+    // Reset state to initial preferences
     Object.assign(this.state, this.initialPreferences);
 
-    // 保存偏好设置至缓存
+    // Save preferences to cache
     this.saveToCache(this.state);
 
-    // 直接触发 UI 更新
+    // Directly trigger UI updates
     this.handleUpdates(this.state);
   };
 
   /**
-   * 更新偏好设置
-   * @param updates - 要更新的偏好设置
+   * Update preferences
+   * @param updates - Preferences to update
    */
   updatePreferences = (updates: DeepPartial<Preferences>) => {
-    // 深度合并更新内容和当前状态
+    // Deeply merge update content and current status
     const mergedState = merge({}, updates, markRaw(this.state));
     Object.assign(this.state, mergedState);
 
-    // 根据更新的值执行更新
+    // Perform updates based on updated values
     this.handleUpdates(updates);
 
-    // 保存到缓存
+    // Save to cache
     this.debouncedSave(this.state);
   };
 
   /**
-   * 处理更新
-   * @param updates - 更新的偏好设置
+   * Handle updates
+   * @param updates - updated preferences
    */
   private handleUpdates(updates: DeepPartial<Preferences>) {
     const { theme, app } = updates;
@@ -152,23 +152,23 @@ class PreferenceManager {
   }
 
   /**
-   * 初始化平台标识
+   * Initialize platform identification
    */
   private initPlatform() {
     document.documentElement.dataset.platform = isMacOs() ? 'macOs' : 'window';
   }
 
   /**
-   * 从缓存加载偏好设置
-   * @returns 缓存的偏好设置，如果不存在则返回 null
+   * Load preferences from cache
+   * @returns cached preferences, or null if they do not exist
    */
   private loadFromCache(): null | Preferences {
     return this.cache.getItem<Preferences>(STORAGE_KEYS.MAIN);
   }
 
   /**
-   * 保存偏好设置到缓存
-   * @param preference - 要保存的偏好设置
+   * Save preferences to cache
+   * @param preference - the preference to save
    */
   private saveToCache(preference: Preferences) {
     this.cache.setItem(STORAGE_KEYS.MAIN, preference);
@@ -177,14 +177,14 @@ class PreferenceManager {
   }
 
   /**
-   * 监听状态和系统偏好设置的变化
+   * Listen for changes in status and system preferences
    */
   private setupWatcher() {
     if (this.isInitialized) {
       return;
     }
 
-    // 监听断点，判断是否移动端
+    // Monitor breakpoints to determine whether the mobile terminal is
     const breakpoints = useBreakpoints(breakpointsTailwind);
     const isMobile = breakpoints.smaller('md');
 
@@ -198,17 +198,17 @@ class PreferenceManager {
       { immediate: true },
     );
 
-    // 监听系统主题偏好设置变化
+    // Monitor system theme preference changes
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', ({ matches: isDark }) => {
-        // 仅在自动模式下跟随系统主题
+        // Follow the system theme only in automatic mode
         if (this.state.theme.mode === 'auto') {
-          // 先应用实际的主题
+          // Apply the actual theme first
           this.updatePreferences({
             theme: { mode: isDark ? 'dark' : 'light' },
           });
-          // 再恢复为 auto 模式，保持跟随系统的状态
+          // Restore to auto mode and keep following the system
           this.updatePreferences({
             theme: { mode: 'auto' },
           });
@@ -217,8 +217,8 @@ class PreferenceManager {
   }
 
   /**
-   * 更新页面颜色模式（灰色、色弱）
-   * @param preference - 偏好设置
+   * Update page color mode (gray, color weak)
+   * @param preference - preference setting
    */
   private updateColorMode(preference: Preferences) {
     const { colorGrayMode, colorWeakMode } = preference.app;

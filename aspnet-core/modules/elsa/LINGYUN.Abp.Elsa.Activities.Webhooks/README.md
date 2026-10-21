@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Elsa.Activities.Webhooks
 
-Elsa工作流的Webhook活动集成模块
+Webhook activity integration module for Elsa workflow
 
-## 功能
+## Function
 
-* 提供 **PublishWebhook** 活动用于发布Webhook
-  * 支持发送数据到订阅者
-  * 支持自定义HTTP头部
-  * 支持JavaScript、JSON和Liquid语法
-  * 集成ABP框架的 `IWebhookPublisher` 接口
-  * 支持多租户
+* Provide **PublishWebhook** activity for publishing Webhook
+  * Support sending data to subscribers
+  * Support custom HTTP headers
+  * Support JavaScript, JSON and Liquid syntax
+  * Integrate the `IWebhookPublisher` interface of the ABP framework
+  *Support multi-tenancy
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(
@@ -27,17 +27,17 @@ public class YouProjectModule : AbpModule
 ```json
 {
     "Elsa": {
-        "PublishWebhook": true    // 启用Webhook活动
+        "PublishWebhook": true // Enable Webhook activity
     }
 }
 ```
 
-## 活动参数
+## Activity parameters
 
-* **WebhooName**: Webhook的唯一名称
-* **WebhookData**: 要发送的数据
-* **SendExactSameData**: 是否直接发送原始数据（如果为true，将直接发送参数中的数据给客户端）
-* **UseOnlyGivenHeaders**: 是否仅使用给定的头部（如果为true，将仅使用给定的头部；如果为false，给定的头部将添加到订阅中预定义的头部）
-* **Headers**: 要发送的HTTP头部（高级选项）
+* **WebhooName**: The unique name of the webhook
+* **WebhookData**: Data to be sent
+* **SendExactSameData**: Whether to send the original data directly (if true, the data in the parameters will be sent directly to the client)
+* **UseOnlyGivenHeaders**: Whether to use only the given headers (if true, only the given headers will be used; if false, the given headers will be added to the predefined headers in the subscription)
+* **Headers**: HTTP headers to send (advanced options)
 
 [English](./README.EN.md)

@@ -13,9 +13,9 @@ export function useResourcesApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询资源分页列表
-   * @param input 参数
-   * @returns 资源列表
+   * Query resource paging list
+   * @param input parameter
+   * @returns resource list
    */
   function getPagedListApi(
     input?: ResourceGetPagedListInput,
@@ -27,9 +27,9 @@ export function useResourcesApi() {
   }
 
   /**
-   * 查询资源
-   * @param name 资源名称
-   * @returns 查询的资源
+   * Query resources
+   * @param name resource name
+   * @returns queried resources
    */
   function getApi(name: string): Promise<ResourceDto> {
     return request<ResourceDto>(`/api/localization/resources/${name}`, {
@@ -38,8 +38,8 @@ export function useResourcesApi() {
   }
 
   /**
-   * 删除资源
-   * @param name 资源名称
+   * Delete resources
+   * @param name resource name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/localization/resources/${name}`, {
@@ -48,9 +48,9 @@ export function useResourcesApi() {
   }
 
   /**
-   * 创建资源
-   * @param input 参数
-   * @returns 创建的资源
+   * Create resources
+   * @param input parameter
+   * @returns created resources
    */
   function createApi(input: ResourceCreateDto): Promise<ResourceDto> {
     return request<ResourceDto>(`/api/localization/resources`, {
@@ -60,10 +60,10 @@ export function useResourcesApi() {
   }
 
   /**
-   * 编辑资源
-   * @param name 资源名称
-   * @param input 参数
-   * @returns 编辑的资源
+   * Edit resources
+   * @param name resource name
+   * @param input parameter
+   * @returns edited resources
    */
   function updateApi(
     name: string,

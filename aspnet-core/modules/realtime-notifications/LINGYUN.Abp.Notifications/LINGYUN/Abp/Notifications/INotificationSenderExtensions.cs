@@ -7,15 +7,15 @@ namespace LINGYUN.Abp.Notifications;
 public static class INotificationSenderExtensions
 {
     /// <summary>
-    /// 发送通知
+    /// Send notification
     /// </summary>
-    /// <param name="sender">发送接口</param>
-    /// <param name="name">名称</param>
-    /// <param name="data">数据</param>
-    /// <param name="user">用户,为空标识发给所有订阅用户</param>
-    /// <param name="tenantId">租户</param>
-    /// <param name="severity">严重级别</param>
-    /// <returns>通知标识</returns>
+    /// <param name="sender">Sending interface</param>
+    /// <param name="name">Name</param>
+    /// <param name="data">data</param>
+    /// <param name="user">User, the empty ID is sent to all subscribing users</param>
+    /// <param name="tenantId">Tenant</param>
+    /// <param name="severity">Severity level</param>
+    /// <returns>Notification ID</returns>
     public async static Task<string> SendNofiterAsync(
         [NotNull] this INotificationSender sender,
         [NotNull] string name,
@@ -36,15 +36,15 @@ public static class INotificationSenderExtensions
     }
 
     /// <summary>
-    /// 发送模板通知
+    /// Send template notification
     /// </summary>
-    /// <param name="sender">发送接口</param>
-    /// <param name="name">名称</param>
-    /// <param name="template">模板对象</param>
-    /// <param name="user">用户,为空发给所有订阅用户</param>
-    /// <param name="tenantId">租户</param>
-    /// <param name="severity">严重级别</param>
-    /// <returns>通知标识</returns>
+    /// <param name="sender">Sending interface</param>
+    /// <param name="name">Name</param>
+    /// <param name="template">Template object</param>
+    /// <param name="user">User, if empty, send to all subscribed users</param>
+    /// <param name="tenantId">Tenant</param>
+    /// <param name="severity">Severity level</param>
+    /// <returns>Notification ID</returns>
     public async static Task<string> SendNofiterAsync(
         [NotNull] this INotificationSender sender,
         [NotNull] string name,

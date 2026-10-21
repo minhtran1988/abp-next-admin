@@ -1,7 +1,7 @@
 import { requestClient } from '#/api/request';
 
 /**
- * 发起请求
+ * Initiate a request
  */
 async function getBigIntData() {
   return requestClient.get('/demo/bigint');

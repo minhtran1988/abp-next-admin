@@ -1,4 +1,4 @@
-<!-- 本组件用于获取缓存的route并保存到pinia -->
+<!-- This component is used to obtain the cached route and save it to pinia -->
 <script setup lang="ts">
 import type { VNode } from 'vue';
 import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 /**
- * 这是页面缓存组件，不做任何的的实际渲染
+ * This is a page cache component that does not do any actual rendering.
  */
 defineOptions({
   render() {

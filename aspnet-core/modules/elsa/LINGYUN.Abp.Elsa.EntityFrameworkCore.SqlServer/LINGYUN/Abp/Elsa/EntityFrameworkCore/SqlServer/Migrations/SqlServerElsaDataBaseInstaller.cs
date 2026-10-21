@@ -58,7 +58,7 @@ public class SqlServerElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransient
             await sqlConnection.OpenAsync();
         }
 
-        // 检查 Elsa schema
+        // Check Elsa schema
         using (var createSchemaCommand = new SqlCommand(@"
             IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'elsa')
             BEGIN
@@ -68,7 +68,7 @@ public class SqlServerElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransient
             await createSchemaCommand.ExecuteNonQueryAsync();
         }
 
-        // 检查表
+        // Checklist
         var tableParams = _installerOptions.InstallTables
             .Select((_, index) => $"@Table_{index}")
             .JoinAsString(",");
@@ -111,7 +111,7 @@ public class SqlServerElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransient
 
     public async virtual Task<string> CreateDataBaseIfNotExists(string dataBase, SqlConnectionStringBuilder connectionStringBuilder)
     {
-        // 切换主数据库查询数据库是否存在
+        // Switch the main database to query whether the database exists
         connectionStringBuilder.InitialCatalog = "master";
         using var sqlConnection = new SqlConnection(connectionStringBuilder.ConnectionString);
         if (sqlConnection.State == ConnectionState.Closed)

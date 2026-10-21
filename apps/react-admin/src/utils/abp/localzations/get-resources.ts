@@ -3,9 +3,9 @@ import type { Dictionary } from "#/abp-core/global";
 import useLocaleStore from "@/store/localeI18nStore";
 
 /**
- * 获取合并后的本地化资源
- * @param resourceNames 需要合并的资源名称
- * @returns 合并后的本地化资源
+ * Get merged localized resources
+ * @param resourceNames Resource names to be merged
+ * @returns merged localized resources
  */
 export function getResources(resourceNames?: string | string[]) {
 	const localizations = useLocaleStore.getState().localizations || {};

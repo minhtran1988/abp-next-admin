@@ -3,9 +3,9 @@ import type { PermissionProvider, PermissionResultDto, PermissionsUpdateDto } fr
 import requestClient from "../../request";
 
 /**
- * 查询权限
+ * Query permissions
  * @param provider
- * @returns 权限实体数据传输对象
+ * @returns permission entity data transfer object
  */
 export function getApi(provider: PermissionProvider): Promise<PermissionResultDto> {
 	return requestClient.get<PermissionResultDto>("/api/permission-management/permissions", {
@@ -14,7 +14,7 @@ export function getApi(provider: PermissionProvider): Promise<PermissionResultDt
 }
 
 /**
- * 更新权限
+ * Update permissions
  * @param provider
  * @param input
  */

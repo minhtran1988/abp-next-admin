@@ -1,63 +1,63 @@
-/** 用户权限 */
+/** User permissions */
 export const IdentityUserPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpIdentity.Users.Create',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpIdentity.Users.Delete',
-  /** 管理声明 */
+  /** Management Statement */
   ManageClaims: 'AbpIdentity.Users.ManageClaims',
-  /** 管理权限 */
+  /** Management permissions */
   ManagePermissions: 'AbpIdentity.Users.ManagePermissions',
-  /** 更新 */
+  /** Update */
   Update: 'AbpIdentity.Users.Update',
-  /** 模拟用户 */
+  /** Impersonate user */
   Impersonation: 'AbpIdentity.Users.Impersonation',
 };
-/** 角色权限 */
+/** Role permissions */
 export const IdentityRolePermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpIdentity.Roles.Create',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpIdentity.Roles.Delete',
-  /** 管理声明 */
+  /** Management Statement */
   ManageClaims: 'AbpIdentity.Roles.ManageClaims',
-  /** 管理权限 */
+  /** Management permissions */
   ManagePermissions: 'AbpIdentity.Roles.ManagePermissions',
-  /** 更新 */
+  /** Update */
   Update: 'AbpIdentity.Roles.Update',
 };
-/** 声明类型权限 */
+/** Declare type permissions */
 export const IdentityClaimTypePermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'AbpIdentity.IdentityClaimTypes.Create',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpIdentity.IdentityClaimTypes.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'AbpIdentity.IdentityClaimTypes.Update',
 };
-/** 组织机构权限 */
+/** Organization permissions */
 export const OrganizationUnitPermissions = {
-  /** 管理角色 */
+  /** Management role */
   ManageRoles: 'AbpIdentity.OrganizationUnits.ManageRoles',
-  /** 管理用户 */
+  /** Manage users */
   ManageUsers: 'AbpIdentity.OrganizationUnits.ManageUsers',
 };
-/** 安全日志权限 */
+/** Security log permissions */
 export const SecurityLogPermissions = {
   Default: 'AbpAuditing.SecurityLog',
-  /** 删除 */
+  /** Delete */
   Delete: 'AbpAuditing.SecurityLog.Delete',
 };
-/** 用户会话权限 */
+/** User session permissions */
 export const IdentitySessionPermissions = {
   Default: 'AbpIdentity.IdentitySessions',
-  /** 移除 */
+  /** Remove */
   Revoke: 'AbpIdentity.IdentitySessions.Revoke',
 };
 /**
- * 搜索用户权限
- * @deprecated 后台服务删除权限后将无法使用.
- * @todo 需要检查abp框架权限定义
+ * Search user permissions
+ * @deprecated The background service will not be able to be used after deleting permissions.
+ * @todo Need to check abp framework permission definition
  */
 export const UserLookupPermissions = {
   Default: 'AbpIdentity.UserLookup',

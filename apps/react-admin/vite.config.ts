@@ -71,7 +71,7 @@ export default defineConfig(({ mode }) => {
 			minify: "esbuild",
 			sourcemap: false,
 			cssCodeSplit: true,
-			chunkSizeWarningLimit: 1000, // 提高警告阈值到 1000 KB
+			chunkSizeWarningLimit: 1000, // Increase warning threshold to 1000 KB
 
 			rollupOptions: {
 				output: {

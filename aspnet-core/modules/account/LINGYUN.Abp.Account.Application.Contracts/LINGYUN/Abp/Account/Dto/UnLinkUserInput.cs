@@ -1,6 +1,6 @@
 ﻿namespace LINGYUN.Abp.Account.Dto;
 /// <summary>
-/// 取消关联用户Dto
+/// Unassociate user Dto
 /// </summary>
 public class UnLinkUserInput : LinkUserBaseDto
 {

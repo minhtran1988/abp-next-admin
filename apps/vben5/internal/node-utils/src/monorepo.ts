@@ -7,7 +7,7 @@ import {
 import { findUpSync } from 'find-up';
 
 /**
- * 查找大仓的根目录
+ * Find the root directory of Okura
  * @param cwd
  */
 function findMonorepoRoot(cwd: string = process.cwd()) {
@@ -19,7 +19,7 @@ function findMonorepoRoot(cwd: string = process.cwd()) {
 }
 
 /**
- * 获取大仓的所有包
+ * Get all packages from Okura
  */
 function getPackagesSync() {
   const root = findMonorepoRoot();
@@ -27,7 +27,7 @@ function getPackagesSync() {
 }
 
 /**
- * 获取大仓的所有包
+ * Get all packages from Okura
  */
 async function getPackages() {
   const root = findMonorepoRoot();
@@ -36,7 +36,7 @@ async function getPackages() {
 }
 
 /**
- * 获取大仓指定的包
+ * Get the package specified by Okura
  */
 async function getPackage(pkgName: string) {
   const { packages } = await getPackages();

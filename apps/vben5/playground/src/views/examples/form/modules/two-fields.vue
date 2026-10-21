@@ -16,19 +16,19 @@ function onChange() {
     <Select
       v-model:value="modelValue[0]"
       class="w-[80px]"
-      placeholder="类型"
+      placeholder="type"
       allow-clear
       :class="{ 'valid-success': !!modelValue[0] }"
       :options="[
-        { label: '个人', value: 'personal' },
-        { label: '工作', value: 'work' },
-        { label: '私密', value: 'private' },
+        { label: 'personal', value: 'personal' },
+        { label: 'work', value: 'work' },
+        { label: 'private', value: 'private' },
       ]"
       @blur="emit('blur')"
       @change="onChange"
     />
     <Input
-      placeholder="请输入11位手机号码"
+      placeholder="Please enter your 11-digit mobile phone number"
       class="flex-1"
       allow-clear
       :class="{ 'valid-success': modelValue[1]?.match(/^1[3-9]\d{9}$/) }"

@@ -1,33 +1,33 @@
-# 通知渠道数据 — 使用指南
+# Notification channel data — User guide
 
-> 框架设计说明见 [CHANNEL-DATA.md](./CHANNEL-DATA.md)
+> For frame design instructions, see [CHANNEL-DATA.md](./CHANNEL-DATA.md)
 
 ---
 
-## 0. 三个接入点
+## 0. Three access points
 
-| 角色 | 用哪个 API | 典型位置 |
+| Role | Which API to use | Typical locations |
 |---|---|---|
-| 生产者(业务代码) | `INotificationChannelDataSerializer.Write` 或渠道扩展方法 | 发送通知的 AppService / DomainService |
-| 通知定义 | `NotificationDefinition.WithProviders(...)` | `NotificationDefinitionProvider` |
-| 渠道实现 | `INotificationChannelDataResolver` | 各 `*NotificationPublishProvider` |
+| Producer (business code) | `INotificationChannelDataSerializer.Write` or channel extension method | AppService / DomainService to send notification |
+| Notification Definition | `NotificationDefinition.WithProviders(...)` | `NotificationDefinitionProvider` |
+| Channel implementation | `INotificationChannelDataResolver` | Each `*NotificationPublishProvider` |
 
-渠道数据是"生产者 → 渠道"的**单向约定**；通知定义负责决定**哪些渠道会收到**。
-两者是独立的：定义里没声明该渠道，渠道根本不会被调用。
+Channel data is a one-way contract of "producer → channel"; the notification definition is responsible for deciding which channels will receive it.
+The two are independent: if the channel is not declared in the definition, the channel will not be called at all.
 
 ---
 
-## 1. 场景一：企业微信渠道
+## 1. Scenario 1: Enterprise WeChat channel
 
-### 1.1 最简单——只用标准数据
+### 1.1 The simplest - only use standard data
 
-不写任何渠道数据，企业微信渠道会按通知定义的 `ContentType` 自动推导载体：
+Without writing any channel data, the enterprise WeChat channel will automatically derive the carrier according to the `ContentType` defined in the notification:
 
-| 定义的内容类型 | 自动生成的载体 |
+| Defined content types | Automatically generated vectors |
 |---|---|
-| `Text` | 文本消息(取 `message`) |
-| `Html` | 文本卡片消息(取 `title`/`description`/`message`) |
-| `Markdown` | markdown消息(取 `message`) |
+| `Text` | Text message (take `message`) |
+| `Html` | Text card message (take `title`/`description`/`message`) |
+| `Markdown` | markdown message (take `message`) |
 
 ```csharp
 public class MyAppService : ApplicationService
@@ -43,8 +43,8 @@ public class MyAppService : ApplicationService
     {
         var data = new NotificationData();
         data.WriteStandardData(
-            title: "构建完成",
-            message: "**v1.2.0** 已部署到生产环境",
+            title: "Build Complete",
+            message: "**v1.2.0** has been deployed to the production environment",
             createTime: Clock.Now,
             formUser: CurrentUser.UserName ?? "system");
 
@@ -56,99 +56,99 @@ public class MyAppService : ApplicationService
 }
 ```
 
-### 1.2 指定接收人 / 保密 / 去重
+### 1.2 Designate recipients / Confidentiality / Deduplication
 
-写入"投递选项"。这些选项在**持久化与失败重试后依然生效**：
+Write "Delivery Options". These options persist across persistence and failed retries:
 
 ```csharp
 var data = new NotificationData();
-data.WriteStandardData("标题", "内容", Clock.Now, "system");
+data.WriteStandardData("Title", "Content", Clock.Now, "system");
 
-data.TrySetData(WeChatWorkNotificationDataKeys.ToParty, "1|2");             // 指定部门
-data.TrySetData(WeChatWorkNotificationDataKeys.ToTag, "3");                 // 指定标签
-data.TrySetData(WeChatWorkNotificationDataKeys.Safe, true);                 // 保密消息
-data.TrySetData(WeChatWorkNotificationDataKeys.EnableIdTrans, true);        // 开启 id 转译
+data.TrySetData(WeChatWorkNotificationDataKeys.ToParty, "1|2"); // Specify department
+data.TrySetData(WeChatWorkNotificationDataKeys.ToTag, "3"); // Specify tag
+data.TrySetData(WeChatWorkNotificationDataKeys.Safe, true); // Confidential message
+data.TrySetData(WeChatWorkNotificationDataKeys.EnableIdTrans, true); // Enable id translation
 data.TrySetData(WeChatWorkNotificationDataKeys.EnableDuplicateCheck, true);
-data.TrySetData(WeChatWorkNotificationDataKeys.DuplicateCheckInterval, 600); // 秒
+data.TrySetData(WeChatWorkNotificationDataKeys.DuplicateCheckInterval, 600); // seconds
 
 await _notificationSender.SendNofiterAsync("BuildFinished", data, user);
 ```
 
-> 键名带本渠道前缀(`wx-work:`)；读取大小写不敏感。
-> 成员(`touser`)由企业微信身份绑定关系自动解析，**不由通知数据指定**。
-> `touser` / `toparty` / `totag` 三者不能同时为空。
+> The key name has the channel prefix (`wx-work:`); reading is not case-sensitive.
+> The member (`touser`) is automatically resolved by the enterprise WeChat identity binding relationship and is not specified by the notification data**.
+> `touser` / `toparty` / `totag` cannot be empty at the same time.
 
-### 1.3 文本卡片
+### 1.3 Text card
 
 ```csharp
 channelDataSerializer.Write(data, new WeChatWorkTextCardChannelData
 {
     TextCard = new TextCardMessage(
-        title: "审批通过",
-        description: "您的请假申请已通过，请前往查看",
+        title: "Approval Passed",
+        description: "Your leave application has been approved, please go and check",
         url: "https://example.com/leave/123",
-        buttonText: "去查看")
+        buttonText: "Go and check")
 });
 ```
 
-> `channelDataSerializer` 是注入的 `INotificationChannelDataSerializer`。
-> 它按载荷类型上标注的 <xref:NotificationChannelPropertyAttribute> 写入对应键，
-> 生产侧与渠道侧共用同一份契约定义。
+> `channelDataSerializer` is an injected `INotificationChannelDataSerializer`.
+> It writes the corresponding key according to the <xref:NotificationChannelPropertyAttribute> marked on the payload type,
+> The production side and the channel side share the same contract definition.
 
-### 1.4 模板卡片(推荐用于审批/告警类)
+### 1.4 Template card (recommended for approval/alarm type)
 
 ```csharp
 var card = new TextTemplateCard(
     new TemplateCardCardAction("https://example.com/approval/123"))
 {
-    MainTitle = new TemplateCardMainTitle("请假通过通知", "您的请假申请已通过"),
-    SubTitle = "请及时处理后续交接事项",
+    MainTitle = new TemplateCardMainTitle("Leave application notification", "Your leave application has been approved"),
+    SubTitle = "Please handle the follow-up handover matters in a timely manner",
     HorizontalContents = new List<TemplateCardHorizontalContent>
     {
-        TemplateCardHorizontalContent.None("审批单号", "QJ20251000000136"),
-        TemplateCardHorizontalContent.None("请假日期", "2025/10/01-2025/10/10"),
-        TemplateCardHorizontalContent.None("通过时间", "2025-10-01 15:30:00"),
-        // 也可以带跳转/素材/人员
-        TemplateCardHorizontalContent.FromUrl("详情", "https://example.com/oa/123", "点击查看"),
+        TemplateCardHorizontalContent.None("Approval Number", "QJ20251000000136"),
+        TemplateCardHorizontalContent.None("Leave Date", "2025/10/01-2025/10/10"),
+        TemplateCardHorizontalContent.None("Passing time", "2025-10-01 15:30:00"),
+        // You can also bring jump/material/personnel
+        TemplateCardHorizontalContent.FromUrl("Details", "https://example.com/oa/123", "Click to view"),
     },
     Jumps = new List<TemplateCardJump>
     {
-        new TemplateCardJump("去OA查看", "https://example.com/oa/123"),
+        new TemplateCardJump("Go to OA to view", "https://example.com/oa/123"),
     }
 };
 
 channelDataSerializer.Write(data, new WeChatWorkTemplateCardChannelData { TemplateCard = card });
 ```
 
-> 可用的 `TemplateCardHorizontalContent` 工厂：
+> Available `TemplateCardHorizontalContent` factories:
 > `None(keyName, value)`、`FromUrl(keyName, url, value)`、
 > `FromMedia(keyName, mediaId, value)`、`FromUser(keyName, userId, value)`。
-> `TemplateCardJump` 支持"跳转链接"与"跳转小程序"两个构造函数。
-> 完整可运行示例见你仓库中的
+> `TemplateCardJump` supports two constructors: "jump link" and "jump applet".
+> See the complete runnable example in your repository
 > `tests/LINGYUN.Abp.WeChat.Work.Tests/.../WeChatWorkMessageSender_Tests.cs`。
 
-### 1.5 小程序通知
+### 1.5 Mini Program Notification
 
 ```csharp
 channelDataSerializer.Write(data, new WeChatWorkMiniProgramNoticeChannelData
 {
     MiniProgram = new MiniProgramMessage(
         appId: "wx1234567890",
-        title: "订单已发货",
+        title: "Order has been shipped",
         page: "pages/order/detail?id=123",
-        description: "点击查看物流详情")
+        description: "Click to view logistics details")
     {
         EmphasisFirstItem = true,
         ContentItems = new List<MiniProgramContent>
         {
-            new MiniProgramContent("订单号", "SO20251001001"),
-            new MiniProgramContent("物流公司", "顺丰速运"),
+            new MiniProgramContent("Order Number", "SO20251001001"),
+            new MiniProgramContent("Logistics Company", "SF Express"),
         }
     }
 });
 ```
 
-### 1.6 图文 / 视频 / 语音 / 文件
+### 1.6 Graphics/Videos/Voices/Documents
 
 ```csharp
 channelDataSerializer.Write(data, new WeChatWorkMpNewChannelData
@@ -156,18 +156,18 @@ channelDataSerializer.Write(data, new WeChatWorkMpNewChannelData
     MpNewMessage = new MpNewMessagePayload(new List<MpNewMessage>
     {
         new MpNewMessage(
-            title: "月度报告",
+            title: "Monthly Report",
             thumbMediaId: "MEDIA_ID",
-            content: "<p>报告正文</p>",
-            author: "运营部",
+            content: "<p>Report text</p>",
+            author: "Operations Department",
             contentSourceUrl: "https://example.com/report",
-            description: "2025年10月经营月报")
+            description: "Monthly Business Report for October 2025")
     })
 });
 
 channelDataSerializer.Write(data, new WeChatWorkVideoChannelData
 {
-    Video = new VideoMessage("MEDIA_ID", "培训视频", "新人入职培训")
+    Video = new VideoMessage("MEDIA_ID", "Training Video", "Newcomer Induction Training")
 });
 
 channelDataSerializer.Write(data, new WeChatWorkVoiceChannelData
@@ -181,80 +181,80 @@ channelDataSerializer.Write(data, new WeChatWorkFileChannelData
 });
 ```
 
-### 1.7 可用的载荷类型与选项支持
+### 1.7 Available payload types and option support
 
-生产者只需选择合适的载荷类型；选项由渠道按载体能力自动取舍（不支持的字段**不会被设置**）。
+Producers only need to select the appropriate payload type; options are automatically selected by the channel based on carrier capabilities (unsupported fields will not be set).
 
-| 载荷类型 | 载体 | `safe` | `enable_id_trans` | `enable_duplicate_check` |
+| payload type | carrier | `safe` | `enable_id_trans` | `enable_duplicate_check` |
 |---|---|---|---|---|
-| `WeChatWorkTextCardChannelData` | 文本卡片 | ❌ | ✅ | ✅ |
-| `WeChatWorkTemplateCardChannelData` | 模板卡片 | ❌ | ✅ | ✅ |
-| `WeChatWorkMiniProgramNoticeChannelData` | 小程序通知 | ❌ | ✅ | ✅ |
-| `WeChatWorkMpNewChannelData` | 图文(mpnews) | ✅ | ✅ | ✅ |
-| `WeChatWorkVideoChannelData` | 视频 | ✅ | ❌ | ✅ |
-| `WeChatWorkFileChannelData` | 文件 | ✅ | ❌ | ✅ |
-| `WeChatWorkVoiceChannelData` | 语音 | ❌ | ❌ | ✅ |
-| (无，按 `ContentType=Markdown` 推导) | markdown | ❌ | ❌ | ✅ |
-| (无，按 `ContentType=Text` 推导) | 文本 | ✅ | ✅ | ✅ |
+| `WeChatWorkTextCardChannelData` | Text Card | ❌ | ✅ | ✅ |
+| `WeChatWorkTemplateCardChannelData` | Template Card | ❌ | ✅ | ✅ |
+| `WeChatWorkMiniProgramNoticeChannelData` | Mini Program Notification | ❌ | ✅ | ✅ |
+| `WeChatWorkMpNewChannelData` | Pictures and text (mpnews) | ✅ | ✅ | ✅ |
+| `WeChatWorkVideoChannelData` | Video | ✅ | ❌ | ✅ |
+| `WeChatWorkFileChannelData` | File | ✅ | ❌ | ✅ |
+| `WeChatWorkVoiceChannelData` | Voice | ❌ | ❌ | ✅ |
+| (None, derived by `ContentType=Markdown`) | markdown | ❌ | ❌ | ✅ |
+| (None, derived by `ContentType=Text`) | Text | ✅ | ✅ | ✅ |
 
-### 1.8 多个载荷同时存在怎么处理
+### 1.8 How to deal with multiple loads existing at the same time
 
-**全部都会发送**，顺序由载荷的 `Priority` 决定(固定值，见下表)：
+**All will be sent**, the order is determined by the `Priority` of the payload (fixed value, see table below):
 
-| 载荷 | Priority |
+| Load | Priority |
 |---|---|
-| 小程序通知 | 100 |
-| 图文(mpnews) | 200 |
-| 模板卡片 | 300 |
-| 文本卡片 | 400 |
-| 视频 | 500 |
-| 语音 | 600 |
-| 文件 | 700 |
+| Mini program notification | 100 |
+| Graphics (mpnews) | 200 |
+| Template Cards | 300 |
+| text card | 400 |
+| Video | 500 |
+| Voice | 600 |
+|File|700|
 
-即"同时设置文本卡片与小程序通知"会**发两条消息**。如果只想发一条，只写一个载荷。
-只有当**没有任何显式载荷**时，才回退到按 `ContentType` 推导的默认载体。
+That is, "setting text card and mini program notification at the same time" will **send two messages**. If you only want to send one message, write only one payload.
+Fallback to the default bearer deduced by `ContentType` is only done without any explicit payload.
 
 ---
 
-## 2. 场景二：其他内置渠道
+## 2. Scenario 2: Other built-in channels
 
-### 2.1 微信小程序订阅消息
+### 2.1 WeChat Mini Program Subscription News
 
-> 注意：`TemplateId` 等键沿用历史命名(**无前缀**)，读取已改为**大小写不敏感**。
+> Note: Keys such as `TemplateId` follow the historical naming (**no prefix**), and the reading has been changed to **case insensitive**.
 
 ```csharp
 var data = new NotificationData();
-data.WriteStandardData("订单发货", "您的订单已发货", Clock.Now, "system");
+data.WriteStandardData("Order Shipped", "Your order has been shipped", Clock.Now, "system");
 
-// 键带本渠道前缀 wx-mp:; 不写则用 AbpNotificationsWeChatMiniProgramOptions 的默认值
+// Key with this channel prefix wx-mp:; If not written, the default value of AbpNotificationsWeChatMiniProgramOptions will be used
 data.TrySetData(WeChatMiniProgramNotificationDataKeys.TemplateId, "TEMPLATE_ID");
 data.TrySetData(WeChatMiniProgramNotificationDataKeys.RedirectPage, "pages/order/detail?id=123");
 data.TrySetData(WeChatMiniProgramNotificationDataKeys.WeAppState, "developer");
 data.TrySetData(WeChatMiniProgramNotificationDataKeys.WeAppLanguage, "zh_CN");
 
-// 模板数据本身就取自属性包，按微信模板字段名写入
+//The template data itself is taken from the attribute package and written according to the WeChat template field name.
 data.TrySetData("character_string1", "SO20251001001");
-data.TrySetData("thing2", "顺丰速运");
+data.TrySetData("thing2", "SF Express");
 
 await _notificationSender.SendNofiterAsync("OrderShipped", data, user);
 ```
 
-> 模板数据键(`character_string1`、`thing2` …)由**微信模板定义**决定,
-> 不属于渠道自有键, 因此不加前缀。
+> Template data keys (`character_string1`, `thing2`...) are determined by **WeChat template definition**,
+> It does not belong to the channel's own key, so it is not prefixed.
 >
-> 早期版本使用的无前缀键(`TemplateId` 等)由渠道只读回退兼容
-> (见 `WeChatMiniProgramNotificationDataKeys.Legacy`), 新代码请使用带前缀的常量。
+> Unprefixed keys (`TemplateId` etc.) used by earlier versions are compatible with channel read-only fallback
+> (See `WeChatMiniProgramNotificationDataKeys.Legacy`), please use prefixed constants for new code.
 
 ### 2.2 WxPusher
 
 ```csharp
-// 方式一: 用序列化器(推荐)
+// Method 1: Use serializer (recommended)
 channelDataSerializer.Write(data, new WxPusherChannelData
 {
     Url = "https://example.com/detail/123"
 });
 
-// 方式二: 直接写键
+//Method 2: Write the key directly
 data.TrySetData(WxPusherNotificationDataKeys.Url, "https://example.com/detail/123");
 ```
 
@@ -268,43 +268,43 @@ channelDataSerializer.Write(data, new PushPlusChannelData
 });
 ```
 
-> PushPlus 的 `Presence` 是 `AnyDeclaredProperty`: 写入其中任意一个键即视为声明了载荷。
+> The `Presence` of PushPlus is `AnyDeclaredProperty`: writing any one of the keys is deemed to declare the payload.
 
-### 2.4 短信 / 邮件 / SignalR
+### 2.4 SMS / Email / SignalR
 
-**无渠道专属键**，只需要标准数据：
+**No channel exclusive key**, only standard data required:
 
 ```csharp
 var data = new NotificationData();
-data.WriteStandardData("告警", "CPU 使用率超过 90%", Clock.Now, "monitor");
+data.WriteStandardData("Alarm", "CPU usage exceeds 90%", Clock.Now, "monitor");
 
 await _notificationSender.SendNofiterAsync(NotifyNames.SystemAlarm, data, user);
 ```
 
-- 短信：只取 `message`
-- 邮件：`title` 作为主题，`message` 作为正文（`ContentType=Markdown` 时自动转 HTML）
-- SignalR：直接推送整个 `NotificationData`，由客户端解释
+- SMS: only get `message`
+- Email: `title` as subject, `message` as body (automatically converted to HTML when `ContentType=Markdown`)
+- SignalR: Push the entire `NotificationData` directly, interpreted by the client
 
 ---
 
-## 3. 场景三：企业微信 Webhook（群机器人）
+## 3. Scenario 3: Enterprise WeChat Webhook (group robot)
 
-项目：`LINGYUN.Abp.Notifications.Webhook.WeChat.Work`
+Project: `LINGYUN.Abp.Notifications.Webhook.WeChat.Work`
 
-### 3.1 与企业微信应用消息的区别
+### 3.1 Differences from enterprise WeChat application messages
 
-| | 应用消息 | Webhook（群机器人）|
+| | Application messages | Webhook (group robot) |
 |---|---|---|
-| 渠道名（通知定义里声明） | `WeChat.Work` | `Webhook` |
-| 载荷注册表键 | `WeChat.Work` | `WeChat.Work.Webhook` |
-| 数据键前缀 | `wx-work:` | `wx-work-hook:` |
-| 收件人 | 由身份绑定解析（`touser`） | 由 Webhook 定义决定（群）|
+| Channel name (declared in notification definition) | `WeChat.Work` | `Webhook` |
+| Payload registry key | `WeChat.Work` | `WeChat.Work.Webhook` |
+| Data key prefix | `wx-work:` | `wx-work-hook:` |
+| Recipients | Resolved by identity binding (`touser`) | Determined by webhook definition (group) |
 
-> **为什么要分成两个渠道**：两者是不同传输方式、不同载体模型。
-> 若共用注册表键与键前缀，同一个通知被两个渠道同时订阅时，
-> 载荷会被两边都解析并各发一条消息。
+> **Why are they divided into two channels**: The two are different transmission methods and different carrier models.
+> If the registry key and key prefix are shared and the same notification is subscribed by two channels at the same time,
+> The payload will be parsed by both sides and a message will be sent to each side.
 
-### 3.2 定义侧
+### 3.2 Define side
 
 ```csharp
 context.AddGroup("Monitor", L("Monitor"))
@@ -313,59 +313,59 @@ context.AddGroup("Monitor", L("Monitor"))
         "Webhook");   // WebhookNotificationPublishProvider.ProviderName
 ```
 
-Webhook 的投递目标由**订阅关系**决定（`IWebhookPublisher`），
-通知数据只负责"发什么"。
+The delivery target of Webhook is determined by **subscription relationship** (`IWebhookPublisher`),
+Notification data is only responsible for "what to send".
 
-### 3.3 生产者侧
+### 3.3 Producer side
 
 ```csharp
 var data = new NotificationData();
-data.WriteStandardData("构建失败", "构建 #1234 失败", Clock.Now, "ci");
+data.WriteStandardData("Build failed", "Build #1234 failed", Clock.Now, "ci");
 
-// 用序列化器写载荷(推荐)
+// Use serializer to write payload (recommended)
 channelDataSerializer.Write(data, new WeChatWorkWebhookTextChannelData
 {
-    Content = "构建 #1234 失败，请查看日志"
+    Content = "Build #1234 failed, please check the log"
 });
 
-// 也可以直接写键
-data.TrySetData(WeChatWorkWebhookNotificationDataKeys.Markdown, "**构建失败**");
+// You can also write the key directly
+data.TrySetData(WeChatWorkWebhookNotificationDataKeys.Markdown, "**Build failed**");
 ```
 
-### 3.4 可用的载荷类型
+### 3.4 Available payload types
 
-| 载荷类型 | `msgtype` | 用途 |
+| Payload type | `msgtype` | Purpose |
 |---|---|---|
-| `WeChatWorkWebhookTextChannelData` | `text` | 纯文本 |
+| `WeChatWorkWebhookTextChannelData` | `text` | Plain text |
 | `WeChatWorkWebhookMarkdownChannelData` | `markdown` | markdown |
-| `WeChatWorkWebhookMarkdownV2ChannelData` | `markdown_v2` | markdown_v2（支持表格、代码块）|
-| `WeChatWorkWebhookImageChannelData` | `image` | 图片（base64 + md5）|
-| `WeChatWorkWebhookNewsChannelData` | `news` | 图文 |
-| `WeChatWorkWebhookFileChannelData` | `file` | 文件（素材 ID）|
-| `WeChatWorkWebhookVoiceChannelData` | `voice` | 语音（素材 ID）|
-| `WeChatWorkWebhookTemplateCardChannelData` | `template_card` | 模板卡片 |
+| `WeChatWorkWebhookMarkdownV2ChannelData` | `markdown_v2` | markdown_v2 (supports tables and code blocks) |
+| `WeChatWorkWebhookImageChannelData` | `image` | Image (base64 + md5) |
+| `WeChatWorkWebhookNewsChannelData` | `news` | Graphics |
+| `WeChatWorkWebhookFileChannelData` | `file` | File (material ID) |
+| `WeChatWorkWebhookVoiceChannelData` | `voice` | Voice (material ID) |
+| `WeChatWorkWebhookTemplateCardChannelData` | `template_card` | Template card |
 
-**每种载荷 1:1 映射到自己的 `msgtype`，不做隐式降级。**
-（改造前只支持 `text` / `markdown` / `markdown_v2` 三种，其余内容类型被静默丢弃。）
+**Each payload is mapped 1:1 to its own `msgtype`, with no implicit degradation. **
+(Before the transformation, only `text` / `markdown` / `markdown_v2` were supported, and the remaining content types were silently discarded.)
 
-模板卡片示例：
+Template card example:
 
 ```csharp
 channelDataSerializer.Write(data, new WeChatWorkWebhookTemplateCardChannelData
 {
     TemplateCard = new WebhookTextNoticeCardMessage(
         action: WebhookTemplateCardAction.Link("https://example.com/build/1234"),
-        mainTitle: new WebhookTemplateCardMainTitle("构建失败", "请及时处理"),
-        subTitleText: "构建 #1234 于 15:30 失败",
+        mainTitle: new WebhookTemplateCardMainTitle("Build failed", "Please handle it in time"),
+        subTitleText: "Build #1234 failed at 15:30",
         horizontalContents: new List<WebhookTemplateCardHorizontalContent>
         {
-            WebhookTemplateCardHorizontalContent.Default("分支", "main"),
-            WebhookTemplateCardHorizontalContent.Default("提交", "a1b2c3d"),
+            WebhookTemplateCardHorizontalContent.Default("branch", "main"),
+            WebhookTemplateCardHorizontalContent.Default("submit", "a1b2c3d"),
         })
 });
 ```
 
-图文消息示例：
+Example of graphic message:
 
 ```csharp
 channelDataSerializer.Write(data, new WeChatWorkWebhookNewsChannelData
@@ -373,27 +373,27 @@ channelDataSerializer.Write(data, new WeChatWorkWebhookNewsChannelData
     News = new WebhookNewsMessage(new List<WebhookArticleMessage>
     {
         new WebhookArticleMessage(
-            title: "月度经营报告",
+            title: "Monthly Business Report",
             url: "https://example.com/report",
-            description: "2025年10月",
+            description: "October 2025",
             pictureUrl: "https://example.com/cover.png")
     })
 });
 ```
 
-### 3.5 向后兼容
+### 3.5 Backwards Compatibility
 
-**载荷缺失时**回退到按 `ContentType` 推导（即改造前的行为）：
+**When the payload is missing** fall back to derivation based on `ContentType` (that is, the behavior before transformation):
 
-| `ContentType` | 推导出的载体 |
+| `ContentType` | derived vector |
 |---|---|
 | `Text` | `text` |
-| `Html` | HTML → markdown，再按 `UseMarkdownV2` 决定 `markdown_v2` 或 `markdown` |
-| `Markdown` | 按 `UseMarkdownV2` 决定 `markdown_v2` 或 `markdown` |
+| `Html` | HTML → markdown, then press `UseMarkdownV2` to decide `markdown_v2` or `markdown` |
+| `Markdown` | Press `UseMarkdownV2` to decide `markdown_v2` or `markdown` |
 
-因此只写标准数据的历史生产者**无需改动**。
+Therefore historical producers that only write standard data do not need to be modified.
 
-`UseMarkdownV2` 默认 `true`，可在模块的 `PreConfigure` 中覆盖：
+`UseMarkdownV2` defaults to `true` and can be overridden in the module's `PreConfigure`:
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWebhookWeChatWorkModule))]
@@ -409,31 +409,31 @@ public class MyModule : AbpModule
 }
 ```
 
-### 3.6 一个 Webhook 只承载一条消息
+### 3.6 A Webhook only carries one message
 
-声明多个载荷时取 `Priority` 最小的那个：
+When declaring multiple payloads, take the one with the smallest `Priority`:
 
-| 载荷 | Priority |
+| Load | Priority |
 |---|---|
-| 文本 | 100 |
+| text | 100 |
 | markdown | 200 |
 | markdown_v2 | 300 |
-| 图片 | 400 |
-| 图文 | 500 |
-| 文件 | 600 |
-| 语音 | 700 |
-| 模板卡片 | 800 |
+| Pictures | 400 |
+| Graphics | 500 |
+|File|600|
+| Voice | 700 |
+| Template Card | 800 |
 
-> 这与企业微信**应用消息**渠道不同——后者多个载荷会**发多条**消息。
-> Webhook 一次发布对应一个订阅回调，因此只能承载一条。
+> This is different from the enterprise WeChat application messaging channel - the latter will send multiple messages with multiple payloads.
+> A Webhook publication corresponds to one subscription callback, so it can only carry one.
 
 ---
 
-## 4. 场景四：自定义渠道
+## 4. Scenario 4: Customized channels
 
-以一个"钉钉机器人"渠道为例。
+Take a "DingTalk Robot" channel as an example.
 
-### 4.1 定义载荷
+### 4.1 Define payload
 
 ```csharp
 using LINGYUN.Abp.Notifications;
@@ -458,24 +458,24 @@ public class DingTalkChannelData : NotificationChannelData
 }
 ```
 
-> ✅ **不需要实现 `IsSet`**。
-> 存在性由 `Presence` 声明式推导(默认"参与匹配的属性全部存在")。
-> 若希望"只写 atMobiles 也算声明", 改为:
+> ✅ **No need to implement `IsSet`**.
+> Existence is deduced declaratively by `Presence` (default "all matching attributes exist").
+> If you want "only writing atMobiles counts as a statement", change it to:
 > `[NotificationChannelData(..., Presence = NotificationChannelDataPresenceMode.AnyDeclaredProperty)]`。
 >
-> 若某属性只是可选读取项(不参与存在性判定), 给它加 `IgnoreWhenMatching = true`。
+> If a property is only an optional read item (does not participate in existence determination), add `IgnoreWhenMatching = true` to it.
 >
-> 若既未声明 `Presence`、又没有任何可匹配属性, **注册时会抛
-> `AbpNotificationChannelDataConfigurationException`**。这是刻意设计:
-> 把"忘了定义存在性"从生产环境静默丢消息变成启动即失败。
+> If `Presence` is neither declared nor any matching attributes, **will be thrown during registration
+> `AbpNotificationChannelDataConfigurationException`**. This is by design:
+> Change "forgot to define existence" from silently dropping messages in the production environment to failing at startup.
 >
-> 为什么不用"抽象静态方法强制实现"? C# 不允许 `static` 成员标记为 `abstract`(CS0112),
-> 基类无法强制派生类实现静态成员; 而提供"默认返回 false"的兜底实现会导致
-> **忘记实现者静默失效**。详见 [CHANNEL-DATA.md §3](./CHANNEL-DATA.md)。
+> Why not use "abstract static method enforcement"? C# does not allow `static` members to be marked as `abstract` (CS0112),
+> The base class cannot force the derived class to implement static members; and providing a "default return false" implementation will result in
+> **Forgot implementer silently invalidates**. See [CHANNEL-DATA.md §3](./CHANNEL-DATA.md) for details.
 
-### 4.2 注册
+### 4.2 Registration
 
-渠道模块在自己的 `AbpModule` 中用 `Configure<>` 声明载荷:
+The channel module declares the payload using `Configure<>` in its own `AbpModule`:
 
 ```csharp
 using LINGYUN.Abp.Notifications;
@@ -493,7 +493,7 @@ public class AbpNotificationsDingTalkModule : AbpModule
             options.PublishProviders.Add<DingTalkNotificationPublishProvider>();
         });
 
-        // 声明本渠道支持的载荷形态(注册期即校验存在性契约)
+        // Declare the payload formats supported by this platform (the registration period is to verify the existence contract)
         Configure<AbpNotificationChannelDataOptions>(options =>
         {
             options.Add<DingTalkChannelData>();
@@ -502,10 +502,10 @@ public class AbpNotificationsDingTalkModule : AbpModule
 }
 ```
 
-> `AbpNotificationChannelDataOptions` 是纯数据对象, 注册期的存在性校验只依赖声明元数据、
-> 不依赖任何服务, 因此 `Add()` 不要求任何初始化顺序, 也不需要额外的配置器类。
+> `AbpNotificationChannelDataOptions` is a pure data object. Existence verification during the registration period only relies on declaration metadata.
+> Does not depend on any service, so `Add()` does not require any initialization sequence and does not require additional configurator classes.
 
-### 4.3 在渠道实现中解析
+### 4.3 Parsing in channel implementation
 
 ```csharp
 public class DingTalkNotificationPublishProvider : NotificationPublishProvider
@@ -522,7 +522,7 @@ public class DingTalkNotificationPublishProvider : NotificationPublishProvider
     {
         var data = context.Notification.Data;
 
-        // ① 载荷已声明但解析失败 => 生产者数据非法，明确报错而不是静默回退
+        // ① The payload has been declared but parsing failed => the producer data is illegal, an error is reported clearly instead of silently falling back
         if (ChannelDataResolver.IsDeclared(data, typeof(DingTalkChannelData))
             && ChannelDataResolver.Resolve<DingTalkChannelData>(data) is not { } payload)
         {
@@ -531,7 +531,7 @@ public class DingTalkNotificationPublishProvider : NotificationPublishProvider
             return;
         }
 
-        // ② 未声明则走默认行为
+        // ② If not declared, the default behavior will be used
         var webhook = ChannelDataResolver.Resolve<DingTalkChannelData>(data)?.Webhook;
         if (webhook.IsNullOrWhiteSpace())
         {
@@ -539,7 +539,7 @@ public class DingTalkNotificationPublishProvider : NotificationPublishProvider
             return;
         }
 
-        // ③ 需要标量选项时用类型化读取(不要用 as)
+        // ③ Use typed reading when scalar options are required (do not use as)
         var timeout = ChannelDataResolver.GetValue<int>(data, "dingtalk:timeout") ?? 30;
 
         await SendAsync(webhook, context, cancellationToken);
@@ -547,7 +547,7 @@ public class DingTalkNotificationPublishProvider : NotificationPublishProvider
 }
 ```
 
-### 4.4 定义侧(必须声明渠道，否则渠道不会被调用)
+### 4.4 Definition side (channel must be declared, otherwise the channel will not be called)
 
 ```csharp
 public class MyNotificationDefinitionProvider : NotificationDefinitionProvider
@@ -563,13 +563,13 @@ public class MyNotificationDefinitionProvider : NotificationDefinitionProvider
 }
 ```
 
-### 4.5 生产者侧
+### 4.5 Producer side
 
 ```csharp
 var data = new NotificationData();
-data.WriteStandardData("订单发货", "您的订单已发货", Clock.Now, "system");
+data.WriteStandardData("Order Shipped", "Your order has been shipped", Clock.Now, "system");
 
-// 载荷由类型声明驱动(推荐)
+// Payload driven by type declaration (recommended)
 channelDataSerializer.Write(data, new DingTalkChannelData
 {
     Webhook = "https://oapi.dingtalk.com/robot/send?access_token=xxx",
@@ -579,62 +579,62 @@ channelDataSerializer.Write(data, new DingTalkChannelData
 await _notificationSender.SendNofiterAsync("OrderShipped", data, user);
 ```
 
-> **不要为渠道添加扩展方法**(如 `WithDingTalkRobot`)。
-> 本框架已移除所有渠道专属的写入扩展方法: 载荷类型 + 序列化器
-> 已经提供了带前缀、可校验、可发现的统一入口,
-> 再叠一层扩展方法只会造成两套并行的写入约定。
+> **Don't add extension methods** (such as `WithDingTalkRobot`) to channels.
+> This framework has removed all channel-specific write extension methods: payload type + serializer
+> A unified entrance with prefix, verifiable and discoverable has been provided.
+> Overlaying another layer of extension methods will only result in two sets of parallel writing conventions.
 
 ---
 
-## 5. 场景五：从旧写法迁移
+## 5. Scenario 5: Migrate from the old writing method
 
-### 5.1 渠道专属扩展方法已全部移除
+### 5.1 Channel-specific extension methods have all been removed
 
-早期版本在渠道模块中提供了一组写入/读取扩展方法:
+Earlier versions provided a set of write/read extension methods in the channel module:
 
-| 已移除 | 取代方式 |
+| Removed | Replacement |
 |---|---|
 | `data.WithTextCardMessage(...)`、`WithTemplateCardMessage`、`WithMiniProgramMessage`、`WithMpNewMessage`、`WithVideoMessage`、`WithVoiceMessage`、`WithFileMessage` | `channelDataSerializer.Write(data, new WeChatWorkXxxChannelData { ... })` |
 | `data.SetSafe(...)`、`SetEnableIdTrans`、`SetEnableDuplicateCheck`、`SetDuplicateCheckInterval` | `data.TrySetData(WeChatWorkNotificationDataKeys.Xxx, value)` |
 | `data.SetParty(...)`、`SetTag(...)` | `data.TrySetData(WeChatWorkNotificationDataKeys.ToParty / ToTag, value)` |
-| `data.SetUrl(...)` (WxPusher) | `data.TrySetData(WxPusherNotificationDataKeys.Url, value)` 或 `channelDataSerializer.Write(data, new WxPusherChannelData { ... })` |
+| `data.SetUrl(...)` (WxPusher) | `data.TrySetData(WxPusherNotificationDataKeys.Url, value)` or `channelDataSerializer.Write(data, new WxPusherChannelData { ... })` |
 | `data.SetWebhook(...)`、`SetCallbackUrl(...)` (PushPlus) | `data.TrySetData(PushPlusNotificationDataKeys.Webhook / CallbackUrl, value)` |
-| `GetSafe()`、`GetUrlOrNull()`、`TryGetMessagePayload()` 等读取方法 | `INotificationChannelDataResolver` |
+| `GetSafe()`, `GetUrlOrNull()`, `TryGetMessagePayload()` and other reading methods | `INotificationChannelDataResolver` |
 
-**键常量(`XxxNotificationDataKeys`)全部保留** —— 它们定义的是数据契约,
-不是便捷 API。渠道的 `NotificationDefinition` 扩展方法(如
-`WithAgentId`、`WithTag`)是**定义侧** API, 与数据键无关, 同样保留。
+**Key constants (`XxxNotificationDataKeys`) are all reserved** - they define the data contract,
+Not a convenience API. The channel's `NotificationDefinition` extension method (e.g.
+`WithAgentId`, `WithTag`) are **definition side** APIs, which have nothing to do with data keys and are also retained.
 
-### 5.2 渠道实现：替换裸转换
+### 5.2 Channel Implementation: Replace Naked Conversion
 
 ```csharp
-// ❌ 旧写法 —— 持久化后必然失效，且无日志
+// ❌ Old way of writing - it will inevitably become invalid after persistence, and there will be no log
 var safe = data.TryGetData("wx-work:safe") as byte? ?? 0;
 var url = data.TryGetData("wx-pusher:url")?.ToString();
 
-// ✅ 新写法(注入 INotificationChannelDataResolver)
+// ✅ New writing method (inject INotificationChannelDataResolver)
 var safe = channelDataResolver.GetValue<bool>(data, WeChatWorkNotificationDataKeys.Safe);
 var payload = channelDataResolver.Resolve<WxPusherChannelData>(data);
 var url = payload?.Url;
 ```
 
-### 5.3 破坏性变更清单
+### 5.3 List of breaking changes
 
-| 变更 | 影响 |
+| Changes | Impact |
 |---|---|
-| **渠道专属扩展方法已全部删除** | `NotificationDataWeChatWorkExtensions`、WxPusher / PushPlus 的 `NotificationDataExtensions` 均已移除。传递方式见 §4.1 对照表 |
-| **`NotificationChannelValues` 静态类已删除** | 全部能力改为实例服务: `INotificationChannelDataAccessor`(转换) 与 `INotificationChannelDataResolver`(渠道读取)。静态 API 无处可查即编译失败 |
-| 载荷不再需要(也不应再写) `IsSet` | 存在性改为 `Presence` 声明式; 旧 `IsSet` 不会被调用 |
-| `NotificationChannelDataSerializer.AddJsonConverter` 已移除 | 改为 `INotificationChannelDataJsonSerializer`; 抽象载荷的转换器注册到 JSON 选项 |
-| 企业微信 `agentId` 数据键 | 键常量保留(`WeChatWorkNotificationDataKeys.AgentId`); 仅写入扩展方法被移除 |
+| **All channel-specific extension methods have been deleted** | `NotificationDataWeChatWorkExtensions` and `NotificationDataExtensions` of WxPusher/PushPlus have been removed. For the delivery method, see §4.1 Comparison table |
+| **`NotificationChannelValues` static class has been deleted** | All capabilities changed to instance services: `INotificationChannelDataAccessor` (conversion) and `INotificationChannelDataResolver` (channel reading). Static API is nowhere to be found and compilation fails |
+| Payload no longer required (and should not be written) `IsSet` | Existence changed to `Presence` declarative; old `IsSet` will not be called |
+| `NotificationChannelDataSerializer.AddJsonConverter` has been removed | Changed to `INotificationChannelDataJsonSerializer`; Converter for abstract payload registered to JSON option |
+| Enterprise WeChat `agentId` data key | Key constants retained (`WeChatWorkNotificationDataKeys.AgentId`); only write extension methods are removed |
 
-> **保留**: `XxxNotificationDataKeys`(数据契约)、
-> `NotificationDefinition` 的渠道扩展方法(定义侧 API, 如 `WithAgentId`、`WithTag`)、
-> 各渠道的 `NotificationDefinitionProvider`。
+> **Reserved**: `XxxNotificationDataKeys` (data contract),
+> Channel extension method of `NotificationDefinition` (definition-side API, such as `WithAgentId`, `WithTag`),
+> `NotificationDefinitionProvider` for each channel.
 
-### 5.4 读取迁移对照表
+### 5.4 Read the migration comparison table
 
-| 旧扩展方法 | 新写法 |
+| Old extension method | New way of writing |
 |---|---|
 | `data.GetSafe()` | `resolver.GetValue(data, WeChatWorkNotificationDataKeys.Safe, false)` |
 | `data.GetEnableIdTrans()` / `GetEnableDuplicateCheck()` | `resolver.GetValue(data, WeChatWorkNotificationDataKeys.EnableIdTrans / EnableDuplicateCheck, false)` |
@@ -647,37 +647,37 @@ var url = payload?.Url;
 
 ---
 
-## 6. 常见问题
+## 6. FAQ
 
-| 现象 | 原因 | 处理 |
+| Phenomenon | Cause | Treatment |
 |---|---|---|
-| 渠道没被调用 | 通知定义没声明该渠道名 | `WithProviders(...)` 或发送时传 `useProviders` |
-| 载荷"写了但没生效" | 存在性判定把该键排除了(标了 `IgnoreWhenMatching`，或 `Presence` 与预期不符) | 检查 `Presence` 与 `IgnoreWhenMatching` 标注 |
-| 启动即抛 `AbpNotificationChannelDataConfigurationException` | 未声明 `Presence` 且没有可匹配属性；或同渠道 `Priority` 重复；或缺 `[NotificationChannelData]` | 按异常信息修正 |
-| 同时收到两条企业微信消息 | 写了多个载荷，每个都会发送 | 只保留一个载荷 |
-| 模板卡片报 `abstract class and cannot be instantiated` | 抽象类型缺少 JSON 转换器 | 由 `AbpNotificationsWeChatWorkModule` 自动注册到 `AbpSystemTextJsonSerializerOptions`；手工构建容器时需自行注册 |
-| 生产环境静默丢消息 | 载荷数据非法(解析失败) | 渠道侧用 `IsDeclared` + `Resolve` 组合明确报错；日志中会输出失败键名 |
+| The channel is not called | The notification definition does not declare the channel name | `WithProviders(...)` or `useProviders` is passed when sending |
+| Payload "written but not effective" | Existence determination excludes the key (marked `IgnoreWhenMatching`, or `Presence` is not as expected) | Check `Presence` and `IgnoreWhenMatching` annotations |
+| `AbpNotificationChannelDataConfigurationException` is thrown upon startup | `Presence` is not declared and there is no matching attribute; or the same channel `Priority` is repeated; or `[NotificationChannelData]` is missing | Correct according to the exception information |
+| Received two enterprise WeChat messages at the same time | Multiple payloads are written, each will be sent | Only one payload is retained |
+| Template card report `abstract class and cannot be instantiated` | The abstract type lacks a JSON converter | Automatically registered to `AbpSystemTextJsonSerializerOptions` by `AbpNotificationsWeChatWorkModule`; you need to register yourself when building a container manually |
+| The production environment silently loses messages | The payload data is illegal (parsing failed) | Use the `IsDeclared` + `Resolve` combination on the channel side to clearly report the error; the failure key name will be output in the log |
 
 ---
 
-## 7. 单元测试
+## 7. Unit testing
 
-### 7.1 按模块拆分
+### 7.1 Split by module
 
-测试项目与模块一一对应。**框架契约**与**具体渠道**分开测：
+Test projects correspond to modules one-to-one. **Framework Contract** and **Specific Channel** are tested separately:
 
-| 测试项目 | 覆盖范围 |
+| Test Project | Coverage |
 |---|---|
-| `tests/LINGYUN.Abp.Notifications.ChannelData.Tests` | **框架契约**: 弱类型转换、存在性判定(三种模式)、注册期校验、优先级排序、JSON 往返。用本文件内的 stub 载荷 |
-| `tests/LINGYUN.Abp.Notifications.WeChat.Work.Tests` | 企业微信**应用消息**渠道 |
-| `tests/LINGYUN.Abp.Notifications.Webhook.WeChat.Work.Tests` | 企业微信 **Webhook** 渠道 |
-| `tests/LINGYUN.Abp.Notifications.WeChat.MiniProgram.Tests` | 微信小程序订阅消息渠道 |
-| `tests/LINGYUN.Abp.Notifications.WxPusher.Tests` | WxPusher 渠道 |
-| `tests/LINGYUN.Abp.Notifications.PushPlus.Tests` | PushPlus 渠道 |
+| `tests/LINGYUN.Abp.Notifications.ChannelData.Tests` | **Framework Contract**: Weak type conversion, existence determination (three modes), registration period verification, priority sorting, JSON round-trip. Use the stub payload in this file |
+| `tests/LINGYUN.Abp.Notifications.WeChat.Work.Tests` | Enterprise WeChat **Application Message** Channel |
+| `tests/LINGYUN.Abp.Notifications.Webhook.WeChat.Work.Tests` | Enterprise WeChat **Webhook** Channel |
+| `tests/LINGYUN.Abp.Notifications.WeChat.MiniProgram.Tests` | WeChat mini program subscription message channel |
+| `tests/LINGYUN.Abp.Notifications.WxPusher.Tests` | WxPusher channel |
+| `tests/LINGYUN.Abp.Notifications.PushPlus.Tests` | PushPlus channel |
 
-### 7.2 统一的测试写法
+### 7.2 Unified test writing method
 
-每个渠道测试都走同一条路径：**先 new 消息对象 → 通过 `IJsonSerializer` 序列化写入通知数据 → 渠道侧验证**。
+Each channel test follows the same path: **First new message object → serialize and write notification data through `IJsonSerializer` → channel side verification**.
 
 ```csharp
 public class WeChatWorkChannelData_Tests : AbpNotificationsWeChatWorkTestsBase
@@ -685,17 +685,17 @@ public class WeChatWorkChannelData_Tests : AbpNotificationsWeChatWorkTestsBase
     [Fact]
     public void Should_Resolve_TextCard_Message()
     {
-        // 1. 先 new 消息对象
+        // 1. First new message object
         var message = new TextCardMessage(
-            title: "审批通过",
-            description: "您的请假申请已通过",
+            title: "Approval Passed",
+            description: "Your leave application has been approved",
             url: "https://example.com/leave/123",
-            buttonText: "去查看");
+            buttonText: "Go and check");
 
-        // 2. 经 IJsonSerializer 序列化写入通知数据的载荷键
+        // 2. Serialize and write the payload key of the notification data via IJsonSerializer
         var data = WriteChannelData(new WeChatWorkTextCardChannelData { TextCard = message });
 
-        // 3. 渠道侧验证还原结果
+        // 3. Verify the restoration result on the channel side
         var payload = ChannelDataResolver.Resolve<WeChatWorkTextCardChannelData>(data);
 
         payload.ShouldNotBeNull();
@@ -705,29 +705,29 @@ public class WeChatWorkChannelData_Tests : AbpNotificationsWeChatWorkTestsBase
 }
 ```
 
-公共基类 `NotificationChannelDataTestsBase<TStartupModule>`(位于
-`tests/LINGYUN.Abp.Notifications.Tests`)提供:
+Public base class `NotificationChannelDataTestsBase<TStartupModule>` (located in
+`tests/LINGYUN.Abp.Notifications.Tests`) provides:
 
-| 成员 | 说明 |
+| Members | Description |
 |---|---|
-| `JsonSerializer` | ABP 的 `IJsonSerializer`，用于断言 JSON 契约 |
-| `ChannelDataAccessor` | 生产侧写入(序列化) |
-| `ChannelDataResolver` | 渠道侧解析 |
-| `ChannelDataSerializer` | 生产者侧序列化器 |
-| `Serialize(payload)` | 仅序列化，用于断言字段名契约 |
-| `WriteChannelData(channelData)` | new → 序列化 → 写入，返回 `NotificationData` |
-| `MergeChannelData(data, channelData)` | 合并多个载荷到同一份通知数据 |
+| `JsonSerializer` | ABP's `IJsonSerializer` for asserting JSON contracts |
+| `ChannelDataAccessor` | Production side writing (serialization) |
+| `ChannelDataResolver` | Channel side analysis |
+| `ChannelDataSerializer` | Producer-side serializer |
+| `Serialize(payload)` | Serialization only, used to assert field name contracts |
+| `WriteChannelData(channelData)` | new → serialize → write, return `NotificationData` |
+| `MergeChannelData(data, channelData)` | Merge multiple payloads into the same notification data |
 
-> 测试基座是真实的 ABP 集成测试(`AbpIntegratedTest`)，因此 `IJsonSerializer`
-> 就是生产环境那一份 —— 包含全局 JSON 策略与渠道注册的转换器。
-> 渠道的**真实发送**被替换为捕获式假实现(`FakeSubscribeMessager` /
+> The test base is a real ABP integration test (`AbpIntegratedTest`), so `IJsonSerializer`
+> Just the one for the production environment - the converter that contains the global JSON policy and channel registration.
+> The channel's **real send** is replaced with a capture-style fake implementation (`FakeSubscribeMessager` /
 > `FakeWxPusherMessageSender` / `FakePushPlusMessageSender`)，
-> 从而能断言"渠道最终发出的消息内容"，而不真正调用第三方接口。
+> This enables us to assert "the content of the message finally sent by the channel" without actually calling the third-party interface.
 
-### 7.3 运行
+### 7.3 Run
 
 ```bash
-# 全部
+# all
 dotnet test aspnet-core/tests/LINGYUN.Abp.Notifications.ChannelData.Tests
 dotnet test aspnet-core/tests/LINGYUN.Abp.Notifications.WeChat.Work.Tests
 dotnet test aspnet-core/tests/LINGYUN.Abp.Notifications.Webhook.WeChat.Work.Tests

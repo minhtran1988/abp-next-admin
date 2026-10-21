@@ -10,26 +10,26 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 删除通知分组定义
- * @param name 通知分组名称
+ * Delete notification group definition
+ * @param name notification group name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/notifications/definitions/groups/${name}`);
 }
 
 /**
- * 查询通知分组定义
- * @param name 通知分组名称
- * @returns 通知分组定义数据传输对象
+ * Query notification group definition
+ * @param name notification group name
+ * @returns Notification group definition data transfer object
  */
 export function getApi(name: string): Promise<NotificationGroupDefinitionDto> {
 	return requestClient.get<NotificationGroupDefinitionDto>(`/api/notifications/definitions/groups/${name}`);
 }
 
 /**
- * 查询通知分组定义列表
- * @param input 通知分组过滤条件
- * @returns 通知分组定义数据传输对象列表
+ * Query notification group definition list
+ * @param input notification group filter conditions
+ * @returns Notification group definition data transfer object list
  */
 export function getListApi(
 	input?: NotificationGroupDefinitionGetListInput,
@@ -40,19 +40,19 @@ export function getListApi(
 }
 
 /**
- * 创建通知分组定义
- * @param input 通知分组定义参数
- * @returns 通知分组定义数据传输对象
+ * Create notification group definition
+ * @param input notification group definition parameters
+ * @returns Notification group definition data transfer object
  */
 export function createApi(input: NotificationGroupDefinitionCreateDto): Promise<NotificationGroupDefinitionDto> {
 	return requestClient.post<NotificationGroupDefinitionDto>("/api/notifications/definitions/groups", input);
 }
 
 /**
- * 更新通知分组定义
- * @param name 通知分组名称
- * @param input 通知分组定义参数
- * @returns 通知分组定义数据传输对象
+ * Update notification group definition
+ * @param name notification group name
+ * @param input notification group definition parameters
+ * @returns Notification group definition data transfer object
  */
 export function updateApi(
 	name: string,

@@ -3,15 +3,15 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Ingestion;
 
 /// <summary>
-/// _bulk 动作行
+/// _bulk action line
 /// </summary>
 /// <remarks>
-/// {"index":{"_index":"stream1"}}, 动作名(index/create/update)由外层字典的键决定
+/// {"index":{"_index":"stream1"}}, the action name (index/create/update) is determined by the key of the outer dictionary
 /// </remarks>
 public class JsonBulkRequest
 {
     /// <summary>
-    /// 数据流名称
+    /// Data stream name
     /// </summary>
     [JsonPropertyName("_index")]
     public string Index { get; set; } = default!;

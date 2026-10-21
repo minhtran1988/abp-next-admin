@@ -18,7 +18,7 @@ interface RowType {
 }
 
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   schema: [
     {
@@ -60,7 +60,7 @@ const formOptions: VbenFormProps = {
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
       },
       fieldName: 'color',
       label: 'Color',
@@ -71,14 +71,14 @@ const formOptions: VbenFormProps = {
       label: 'Date',
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
   submitButtonOptions: {
-    content: '查询',
+    content: 'query',
   },
-  // 是否在字段值改变时提交表单
+  // Whether to submit the form when the field value changes
   submitOnChange: false,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: false,
 };
 
@@ -88,7 +88,7 @@ const gridOptions: VxeGridProps<RowType> = {
     labelField: 'name',
   },
   columns: [
-    { title: '序号', type: 'seq', width: 50 },
+    { title: 'serial number', type: 'seq', width: 50 },
     { align: 'left', title: 'Name', type: 'checkbox', width: 100 },
     { field: 'category', title: 'Category' },
     { field: 'color', title: 'Color' },
@@ -111,8 +111,8 @@ const gridOptions: VxeGridProps<RowType> = {
     },
   },
   toolbarConfig: {
-    // 是否显示搜索表单控制按钮
-    // @ts-ignore 正式环境时有完整的类型声明
+    // Whether to display the search form control button
+    // @ts-ignore has a complete type declaration in the formal environment
     search: true,
   },
 };

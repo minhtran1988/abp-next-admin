@@ -1,14 +1,14 @@
 # LINGYUN.Abp.Aliyun.Features
 
-阿里云服务功能管理模块。
+Alibaba Cloud service function management module.
 
-## 功能特性
+## Features
 
-* 提供阿里云服务的功能定义和管理
-* 支持启用/禁用阿里云服务功能
-* 与ABP功能管理系统集成
+* Provide function definition and management of Alibaba Cloud services
+* Support enabling/disabling Alibaba Cloud service functions
+* Integrate with ABP function management system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAliyunFeaturesModule))]
@@ -18,20 +18,20 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 功能项
+## Function items
 
-* **Features:AlibabaCloud** - 阿里云服务功能组
-  * **Features:AlibabaCloud:IsEnabled** - 是否启用阿里云服务
-    * 默认值：false
-    * 描述：启用使应用程序拥有阿里云服务的能力
+* **Features:AlibabaCloud** - Alibaba Cloud Service Function Group
+  * **Features:AlibabaCloud:IsEnabled** - Whether to enable Alibaba Cloud services
+    *Default value: false
+    * Description: Enable the ability for applications to have Alibaba Cloud services
 
-## 配置项
+## Configuration items
 
-此模块主要用于功能定义，不包含配置项。
+This module is mainly used for function definition and does not contain configuration items.
 
-## 注意
+## Note
 
-* 此模块需要与LINGYUN.Abp.Aliyun模块配合使用
-* 启用阿里云服务功能后，还需要在LINGYUN.Abp.Aliyun模块中配置相应的服务参数
+* This module needs to be used in conjunction with the LINGYUN.Abp.Aliyun module
+* After enabling the Alibaba Cloud service function, you also need to configure the corresponding service parameters in the LINGYUN.Abp.Aliyun module
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

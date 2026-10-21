@@ -16,13 +16,13 @@ export function useNotifications() {
   const { publish, subscribe, unSubscribe } = useEventBus();
   const { init, off, on, onStart, stop } = useSignalR();
 
-  /** 注册通知 */
+  /** Registration notification */
   function register() {
     _registerEvents();
     _init();
   }
 
-  /** 释放通知 */
+  /** Release notification */
   function release() {
     _releaseEvents();
     stop();
@@ -37,18 +37,18 @@ export function useNotifications() {
     });
   }
 
-  /** 注册通知事件 */
+  /** Register notification event */
   function _registerEvents() {
     subscribe(Events.UserLogout, stop);
   }
 
-  /** 释放通知事件 */
+  /** Release notification event */
   function _releaseEvents() {
     unSubscribe(Events.UserLogout, stop);
     off(Events.GetNotification, _onNotifyReceived);
   }
 
-  /** 接收通知回调 */
+  /** Receive notification callback */
   function _onNotifyReceived(notificationInfo: NotificationInfo) {
     const notification = deserialize(notificationInfo);
     if (notification.type === NotificationType.ServiceCallback) {
@@ -59,7 +59,7 @@ export function useNotifications() {
     _notification(notification);
   }
 
-  /** 通知推送 */
+  /** Notification push */
   function _notification(notifier: Notification) {
     let message = notifier.message;
     switch (notifier.contentType) {

@@ -29,13 +29,13 @@ public class BlobContainer : AuditedAggregateRoot<Guid>, IMultiTenant
     }
 
     /// <summary>
-    /// 设置容器名称
+    /// Set container name
     /// </summary>
     public void SetName([NotNull] string name)
     {
         Name = Check.NotNullOrWhiteSpace(name, nameof(name), BlobContainerConsts.MaxNameLength);
 
-        // 容器名作为一级目录名参与路径组合
+        // The container name participates in path combination as a first-level directory name
         BlobManagementNameValidator.CheckName(Name, BlobManagementErrorCodes.Container.InvalidName);
     }
 

@@ -1,6 +1,6 @@
 <!--
- * @Description: 表单项布局控件
- * 千万不要在template下面的第一行加注释，因为这里拖动的第一个元素
+ * @Description: Form item layout control
+ * Never add comments on the first line below the template, because the first element dragged here
 -->
 
 <template>
@@ -96,7 +96,7 @@
         return colProps;
       });
       const list1 = computed(() => props.schema.columns);
-      // 计算布局元素，水平模式下为ACol，非水平模式下为div
+      // Calculate layout elements, ACol in horizontal mode, div in non-horizontal mode
       const layoutTag = computed(() => {
         return formConfig.value.layout === 'horizontal' ? 'Col' : 'div';
       });

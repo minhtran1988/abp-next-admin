@@ -1,22 +1,22 @@
 # LINGYUN.Abp.AspNetCore.Mvc.Localization
 
-ABP框架本地化管理模块，提供本地化资源的Web API接口。
+The ABP framework localization management module provides a Web API interface for localized resources.
 
-## 功能特性
+## Features
 
-* 提供本地化文本管理API接口
-* 支持多语言资源的查询和比较
-* 支持按资源名称和文化名称过滤
-* 支持外部本地化资源的集成
-* 支持本地化资源的差异对比
+* Provide localized text management API interface
+* Support query and comparison of multi-language resources
+* Supports filtering by resource name and culture name
+* Support the integration of external localization resources
+* Supports difference comparison of localized resources
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.AspNetCore.Mvc.Localization
 ```
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpAspNetCoreMvcLocalizationModule))]
@@ -26,27 +26,27 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API接口
+## API interface
 
-### 语言管理
+### Language management
 
-* GET /api/localization/languages - 获取所有可用语言
-* GET /api/localization/languages/{cultureName} - 获取指定语言信息
+* GET /api/localization/languages - Get all available languages
+* GET /api/localization/languages/{cultureName} - Get specified language information
 
-### 资源管理
+### Resource Management
 
-* GET /api/localization/resources - 获取所有本地化资源
-* GET /api/localization/resources/{name} - 获取指定本地化资源
+* GET /api/localization/resources - Get all localization resources
+* GET /api/localization/resources/{name} - Get the specified localization resource
 
-### 文本管理
+### Text Management
 
-* GET /api/localization/texts - 获取本地化文本列表
-* GET /api/localization/texts/by-key - 根据键获取本地化文本
-* GET /api/localization/texts/differences - 获取不同语言间的文本差异
+* GET /api/localization/texts - Get a list of localized texts
+* GET /api/localization/texts/by-key - Get localized text based on key
+* GET /api/localization/texts/differences - Get text differences between different languages
 
-## 基本用法
+## Basic usage
 
-1. 配置本地化资源
+1. Configure localized resources
 ```csharp
 Configure<AbpLocalizationOptions>(options =>
 {
@@ -56,7 +56,7 @@ Configure<AbpLocalizationOptions>(options =>
 });
 ```
 
-2. 注入并使用服务
+2. Inject and use the service
 ```csharp
 public class YourService
 {
@@ -80,7 +80,7 @@ public class YourService
 }
 ```
 
-## 更多信息
+## More information
 
 * [English Documentation](./README.EN.md)
-* [ABP本地化文档](https://docs.abp.io/zh-Hans/abp/latest/Localization)
+* [ABP Localization Document](https://docs.abp.io/zh-Hans/abp/latest/Localization)

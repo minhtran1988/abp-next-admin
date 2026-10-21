@@ -7,23 +7,23 @@ namespace LINGYUN.Platform.Menus;
 public class MenuDto : RouteDto
 {
     /// <summary>
-    /// 菜单编号
+    /// Menu number
     /// </summary>
     public string Code { get; set; } = default!;
     /// <summary>
-    /// 菜单布局页
+    /// Menu layout page
     /// </summary>
     public string Component { get; set; } = default!;
     /// <summary>
-    /// 框架
+    /// frame
     /// </summary>
     public string Framework { get; set; } = default!;
     /// <summary>
-    /// 父节点
+    /// Parent node
     /// </summary>
     public Guid? ParentId { get; set; }
     /// <summary>
-    /// 所属布局标识
+    /// The layout identifier to which it belongs
     /// </summary>
     public Guid LayoutId { get; set; }
 

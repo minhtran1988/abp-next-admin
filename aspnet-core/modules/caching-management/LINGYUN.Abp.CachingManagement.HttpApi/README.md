@@ -1,53 +1,53 @@
 # LINGYUN.Abp.CachingManagement.HttpApi
 
-缓存管理模块的 HTTP API 实现。
+HTTP API implementation of the cache management module.
 
-## API 接口
+## API interface
 
 ### /api/caching-management/cache
 
-* GET `/api/caching-management/cache/keys`: 获取缓存键列表
-  * 参数：
-    * prefix (string, optional): 键前缀
-    * filter (string, optional): 过滤条件
-    * marker (string, optional): 分页标记
-  * 权限：AbpCachingManagement.Cache
+* GET `/api/caching-management/cache/keys`: Get the cache key list
+  * Parameters:
+    * prefix (string, optional): key prefix
+    * filter (string, optional): filter conditions
+    * marker (string, optional): paging mark
+  * Permission: AbpCachingManagement.Cache
 
-* GET `/api/caching-management/cache/{key}`: 获取指定键的缓存值
-  * 参数：
-    * key (string, required): 缓存键
-  * 权限：AbpCachingManagement.Cache
+* GET `/api/caching-management/cache/{key}`: Get the cache value of the specified key
+  * Parameters:
+    * key (string, required): cache key
+  * Permission: AbpCachingManagement.Cache
 
-* POST `/api/caching-management/cache`: 设置缓存值
-  * 参数：
-    * key (string, required): 缓存键
-    * value (string, required): 缓存值
-    * absoluteExpiration (DateTime, optional): 绝对过期时间
-    * slidingExpiration (DateTime, optional): 滑动过期时间
-  * 权限：AbpCachingManagement.Cache.ManageValue
+* POST `/api/caching-management/cache`: Set cache value
+  * Parameters:
+    * key (string, required): cache key
+    * value (string, required): cache value
+    * absoluteExpiration (DateTime, optional): absolute expiration time
+    * slidingExpiration (DateTime, optional): sliding expiration time
+  * Permission: AbpCachingManagement.Cache.ManageValue
 
-* PUT `/api/caching-management/cache/refresh`: 刷新缓存
-  * 参数：
-    * key (string, required): 缓存键
-    * absoluteExpiration (DateTime, optional): 绝对过期时间
-    * slidingExpiration (DateTime, optional): 滑动过期时间
-  * 权限：AbpCachingManagement.Cache.Refresh
+* PUT `/api/caching-management/cache/refresh`: Refresh cache
+  * Parameters:
+    * key (string, required): cache key
+    * absoluteExpiration (DateTime, optional): absolute expiration time
+    * slidingExpiration (DateTime, optional): sliding expiration time
+  * Permission: AbpCachingManagement.Cache.Refresh
 
-* DELETE `/api/caching-management/cache`: 删除缓存
-  * 参数：
-    * key (string, required): 缓存键
-  * 权限：AbpCachingManagement.Cache.Delete
+* DELETE `/api/caching-management/cache`: delete cache
+  * Parameters:
+    * key (string, required): cache key
+  * Permission: AbpCachingManagement.Cache.Delete
 
-## 安装
+## Installation
 
 ```bash
 abp add-module LINGYUN.Abp.CachingManagement
 ```
 
-## 更多
+## More
 
-有关更多信息，请参阅以下资源：
+For more information, see the following resources:
 
-* [应用服务实现](../LINGYUN.Abp.CachingManagement.Application/README.md)
-* [应用服务契约](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
-* [领域层](../LINGYUN.Abp.CachingManagement.Domain/README.md)
+* [Application service implementation](../LINGYUN.Abp.CachingManagement.Application/README.md)
+* [Application Service Contract](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
+* [Domain layer](../LINGYUN.Abp.CachingManagement.Domain/README.md)

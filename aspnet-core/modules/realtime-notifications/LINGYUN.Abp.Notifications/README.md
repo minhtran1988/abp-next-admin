@@ -1,22 +1,22 @@
 # LINGYUN.Abp.Notifications
 
-[English](./README.EN.md) | 简体中文
+[English](./README.EN.md) | Simplified Chinese
 
-实时通知基础模块。
+Real-time notification basic module.
 
-## 功能
+## Function
 
-* 支持多种通知类型（系统、用户、应用、服务回调）
-* 支持多种通知生命周期（一次性、持久化）
-* 支持多种通知内容类型（文本、JSON、HTML、Markdown）
-* 支持多种通知严重级别（成功、信息、警告、错误、致命）
-* 支持通知订阅管理
-* 支持通知状态管理（已读/未读）
-* 支持多租户
-* 支持本地化
-* 支持自定义通知提供程序
+* Supports multiple notification types (system, user, application, service callback)
+* Supports multiple notification life cycles (one-time, persistent)
+* Supports multiple notification content types (text, JSON, HTML, Markdown)
+* Supports multiple notification severity levels (success, information, warning, error, fatal)
+* Support notification subscription management
+* Support notification status management (read/unread)
+*Support multi-tenancy
+* Support localization
+* Support custom notification providers
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpNotificationModule))]
@@ -26,9 +26,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-### 1. 发送通知
+### 1. Send notification
 
 ```csharp
 public class MyService
@@ -43,8 +43,8 @@ public class MyService
     public async Task SendNotificationAsync()
     {
         var data = new NotificationData();
-        data.TrySetData("title", "测试通知");
-        data.TrySetData("message", "这是一条测试通知");
+        data.TrySetData("title", "Test Notification");
+        data.TrySetData("message", "This is a test notification");
 
         await _notificationSender.SendNofiterAsync(
             "TestNotification",
@@ -54,7 +54,7 @@ public class MyService
 }
 ```
 
-### 2. 管理通知订阅
+### 2. Manage notification subscriptions
 
 ```csharp
 public class MyService
@@ -75,55 +75,55 @@ public class MyService
 }
 ```
 
-## 配置选项
+## Configuration options
 
 ```json
 {
   "Notifications": {
     "PublishProviders": [
-      "SignalR"  // 可选的通知提供程序
+      "SignalR" // Optional notification provider
     ]
   }
 }
 ```
 
-## 通知类型
+## Notification type
 
-* Application - 平台通知
-* System - 系统通知
-* User - 用户通知
-* ServiceCallback - 服务回调通知
+* Application - platform notification
+* System - system notification
+* User - user notification
+* ServiceCallback - service callback notification
 
-## 通知生命周期
+## Notification life cycle
 
-* OnlyOne - 一次性通知
-* Persistent - 持久化通知
+*OnlyOne - one-time notification
+* Persistent - persistent notification
 
-## 通知内容类型
+## Notification content type
 
-* Text - 文本
+* Text - text
 * Json - JSON
 * Html - HTML
 * Markdown - Markdown
 
-## 通知严重级别
+## Notification severity level
 
-* Success - 成功
-* Info - 信息
-* Warn - 警告
-* Fatal - 致命
-* Error - 错误
+* Success - success
+* Info - information
+* Warn - warning
+* Fatal - fatal
+* Error - error
 
-## 最佳实践
+## Best Practices
 
-1. 根据实际需求选择合适的通知类型和生命周期
-2. 合理使用通知严重级别，避免滥用高级别通知
-3. 为通知添加适当的本地化支持
-4. 定期清理过期的通知数据
+1. Choose the appropriate notification type and life cycle according to actual needs
+2. Use notification severity levels appropriately and avoid abusing high-level notifications
+3. Add proper localization support for notifications
+4. Regularly clean up expired notification data
 
-## 注意事项
+## Notes
 
-1. 持久化通知需要实现 INotificationStore 接口
-2. 自定义通知提供程序需要实现 INotificationPublishProvider 接口
-3. 通知名称应该具有唯一性和描述性
-4. 考虑多租户场景下的数据隔离
+1. Persistent notifications need to implement the INotificationStore interface
+2. Custom notification providers need to implement the INotificationPublishProvider interface
+3. Notification names should be unique and descriptive
+4. Consider data isolation in multi-tenant scenarios

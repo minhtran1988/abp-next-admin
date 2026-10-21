@@ -1,5 +1,5 @@
 <!--
- * @Description: 中间表单布局面板
+ * @Description: Middle form layout panel
  * https://github.com/SortableJS/vue.draggable.next/issues/138
 -->
 <template>
@@ -7,7 +7,7 @@
     <Empty
       class="empty-text"
       v-show="formConfig.schemas.length === 0"
-      description="从左侧选择控件添加"
+      description="Select a control from the left to add"
     />
     <Form v-bind="formConfig">
       <div class="draggable-box">
@@ -55,7 +55,7 @@
     setup(_, { emit }) {
       const { formConfig } = useFormDesignState() as Recordable;
       /**
-       * 拖拽完成事件
+       * Drag completion event
        * @param newIndex
        */
       const addItem = ({ newIndex }: any) => {
@@ -65,14 +65,14 @@
         emit('handleSetSelectItem', schemas[newIndex]);
       };
       /**
-       * 拖拽开始事件
-       * @param e {Object} 事件对象
+       * Drag start event
+       * @param e {Object} event object
        */
       const handleDragStart = (e: any) => {
         emit('handleSetSelectItem', formConfig.value.schemas[e.oldIndex]);
       };
-      // 获取祖先组件传递的currentItem
-      // 计算布局元素，水平模式下为ACol，非水平模式下为div
+      // Get the currentItem passed by the ancestor component
+      // Calculate layout elements, ACol in horizontal mode, div in non-horizontal mode
       const layoutTag = computed(() => {
         return formConfig.value.layout === 'horizontal' ? 'Col' : 'div';
       });
@@ -91,7 +91,7 @@
   @import url(../styles/drag.less);
 
   .v-form-container {
-    // 内联布局样式
+    // Inline layout style
     .ant-form-inline {
       .list-main {
         display: flex;
@@ -136,7 +136,7 @@
       .list-main {
         overflow: auto;
         height: 100%;
-        // 列表动画
+        // list animation
         .list-enter-active {
           transition: all 0.5s;
         }

@@ -1,35 +1,35 @@
 # LINGYUN.Abp.Saas.Jobs
 
-SaaS后台作业模块，提供租户资源监控和管理的后台作业实现。
+The SaaS background job module provides background job implementation for tenant resource monitoring and management.
 
-## 功能特性
+## Features
 
-* 租户使用监控作业(TenantUsageMonitoringJob)
-  * 监控租户资源使用情况
-  * 处理租户过期预警
-  * 处理过期租户资源回收
+* Tenant usage monitoring job (TenantUsageMonitoringJob)
+  * Monitor tenant resource usage
+  * Handle tenant expiration warnings
+  * Handle expired tenant resource recycling
 
-## 配置说明
+## Configuration instructions
 
-### 作业配置
+### Job configuration
 
 ```json
 {
   "Hangfire": {
     "TenantUsageMonitoring": {
-      "CronExpression": "0 0 * * *",  // 每天执行一次
-      "Queue": "default",              // 作业队列
-      "Enabled": true                  // 是否启用
+      "CronExpression": "0 0 * * *", // Execute once a day
+      "Queue": "default", // job queue
+      "Enabled": true // Whether to enable
     }
   }
 }
 ```
 
-### 作业参数
+### Job parameters
 
-* Saas:AdminEmail：管理员邮件地址，用于接收预警通知
-* Saas:TenantId：租户标识
+* Saas:AdminEmail: Administrator's email address, used to receive warning notifications
+* Saas:TenantId: tenant identification
 
-## 更多
+## More
 
 [English](README.EN.md)

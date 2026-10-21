@@ -2,7 +2,7 @@
 
 Implementation of ABP account module application services, providing complete account management functionality.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

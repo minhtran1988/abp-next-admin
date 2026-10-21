@@ -21,7 +21,7 @@ const TokenModal: React.FC<Props> = ({ visible, tokenId, onClose }) => {
 	const { t: $t } = useTranslation();
 	const [form] = Form.useForm();
 
-	// 获取Token详情和关联数据
+	// Get Token details and associated data
 	const { data: tokenData, isLoading } = useQuery({
 		queryKey: ["token", tokenId],
 		queryFn: async () => {
@@ -51,7 +51,7 @@ const TokenModal: React.FC<Props> = ({ visible, tokenId, onClose }) => {
 		enabled: visible && !!tokenId,
 	});
 
-	// 更新表单数据
+	// Update form data
 	useEffect(() => {
 		if (tokenData && tokenData.id === tokenId) {
 			form.setFieldsValue(tokenData);
@@ -119,7 +119,7 @@ const TokenModal: React.FC<Props> = ({ visible, tokenId, onClose }) => {
 				<Form
 					form={form}
 					layout="vertical"
-					disabled // 表单只读
+					disabled // form read-only
 				>
 					{formItems.map((item) => (
 						<Form.Item key={item.name} name={item.name} label={item.label}>

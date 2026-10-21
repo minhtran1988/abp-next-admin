@@ -3,9 +3,9 @@ import type { GetUserSessionsInput, IdentitySessionDto } from "#/management/iden
 import requestClient from "@/api/request";
 
 /**
- * 查询会话列表
- * @param { GetUserSessionsInput } input 查询参数
- * @returns { Promise<PagedResultDto<IdentitySessionDto>> } 用户会话列表
+ * Query session list
+ * @param { GetUserSessionsInput } input query parameter
+ * @returns { Promise<PagedResultDto<IdentitySessionDto>> } User session list
  */
 export function getSessionsApi(input?: GetUserSessionsInput): Promise<PagedResultDto<IdentitySessionDto>> {
 	return requestClient.get<PagedResultDto<IdentitySessionDto>>("/api/identity/sessions", {
@@ -13,8 +13,8 @@ export function getSessionsApi(input?: GetUserSessionsInput): Promise<PagedResul
 	});
 }
 /**
- * 撤销会话
- * @param { string } sessionId 会话id
+ * Cancel session
+ * @param { string } sessionId session id
  * @returns { Promise<void> }
  */
 export function revokeSessionApi(sessionId: string): Promise<void> {

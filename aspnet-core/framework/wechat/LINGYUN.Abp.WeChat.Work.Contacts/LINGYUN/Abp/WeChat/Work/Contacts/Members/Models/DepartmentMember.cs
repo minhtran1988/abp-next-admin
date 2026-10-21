@@ -4,33 +4,33 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 部门成员
+/// Department members
 /// </summary>
 public class DepartmentMember
 {
     /// <summary>
-    /// 成员UserID。对应管理端的账号
+    /// Member UserID. Account corresponding to the management side
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 成员名称，代开发自建应用需要管理员授权才返回
+    /// Member name. Self-built applications developed on behalf of the user require administrator authorization before returning.
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 成员所属部门列表。列表项为部门ID，32位整型
+    /// List of departments to which members belong. The list item is the department ID, a 32-bit integer
     /// </summary>
     [CanBeNull]
     [JsonProperty("department")]
     [JsonPropertyName("department")]
     public int[]? Department { get; set; }
     /// <summary>
-    /// 全局唯一
+    /// Globally unique
     /// </summary>
     [NotNull]
     [JsonProperty("open_userid")]

@@ -87,7 +87,7 @@ public class SnowflakeIdGenerator : IDistributedIdGenerator
 
             if (timestamp < _lastTimestamp)
             {
-                // 如果启用此选项, 发生时间回退时使用上一个时间戳
+                // If this option is enabled, the previous timestamp will be used when time rollback occurs
                 if (!Options.UsePreviousInTimeRollback)
                 {
                     throw new Exception(

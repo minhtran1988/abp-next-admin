@@ -7,19 +7,19 @@ public class AbpNotificationsPublishOptions
 {
     public const string DefaultDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
     /// <summary>
-    /// 自定义通知发布提供者集合
+    /// Custom notification publishing provider collection
     /// </summary>
     public ITypeList<INotificationPublishProvider> PublishProviders { get; }
     /// <summary>
-    /// 过期时间
-    /// 默认60天
+    /// Expiration time
+    /// Default 60 days
     /// </summary>
     public TimeSpan ExpirationTime { get; set; }
     /// <summary>
-    /// 默认时间日期序列化格式
+    /// Default time and date serialization format
     /// </summary>
     /// <remarks>
-    /// 默认: yyyy-MM-dd HH:mm:ss
+    /// Default: yyyy-MM-dd HH:mm:ss
     /// </remarks>
     public string DateTimeFormat { get; set; }
     public AbpNotificationsPublishOptions()

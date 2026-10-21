@@ -19,8 +19,8 @@ export function useProfileApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询个人信息
-   * @returns 个人信息
+   * Query personal information
+   * @returns personal information
    */
   function getApi(): Promise<ProfileDto> {
     return request<ProfileDto>('/api/account/my-profile', {
@@ -29,9 +29,9 @@ export function useProfileApi() {
   }
 
   /**
-   * 更新个人信息
-   * @param input 参数
-   * @returns 个人信息
+   * Update personal information
+   * @param input parameter
+   * @returns personal information
    */
   function updateApi(input: UpdateProfileDto): Promise<ProfileDto> {
     return request<ProfileDto>('/api/account/my-profile', {
@@ -41,8 +41,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 修改密码
-   * @param input 参数
+   * Change password
+   * @param input parameter
    */
   function changePasswordApi(input: ChangePasswordInput): Promise<void> {
     return request('/api/account/my-profile/change-password', {
@@ -52,8 +52,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 发送修改手机号验证码
-   * @param input 参数
+   *Send verification code to modify mobile phone number
+   * @param input parameter
    */
   function sendChangePhoneNumberCodeApi(
     input: SendChangePhoneNumberCodeInput,
@@ -65,8 +65,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 修改手机号
-   * @param input 参数
+   * Modify mobile phone number
+   * @param input parameter
    */
   function changePhoneNumberApi(input: ChangePhoneNumberInput): Promise<void> {
     return request('/api/account/my-profile/change-phone-number', {
@@ -76,8 +76,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 修改头像
-   * @param input 参数
+   * Modify avatar
+   * @param input parameter
    */
   function changePictureApi(input: ChangePictureInput): Promise<void> {
     return request('/api/account/my-profile/picture', {
@@ -90,8 +90,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 获取头像
-   * @returns 头像文件流
+   * Get avatar
+   * @returns avatar file stream
    */
   function getPictureApi(): Promise<Blob> {
     return request('/api/account/my-profile/picture', {
@@ -101,7 +101,7 @@ export function useProfileApi() {
   }
 
   /**
-   * 获取二次认证启用状态
+   * Get the two-step authentication activation status
    */
   function getTwoFactorEnabledApi(): Promise<TwoFactorEnabledDto> {
     return request<TwoFactorEnabledDto>('/api/account/my-profile/two-factor', {
@@ -110,7 +110,7 @@ export function useProfileApi() {
   }
 
   /**
-   * 设置二次认证启用状态
+   *Set the secondary authentication enabled status
    */
   function changeTwoFactorEnabledApi(
     input: TwoFactorEnabledDto,
@@ -122,8 +122,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 获取身份验证器配置
-   * @returns 身份验证器
+   * Get authenticator configuration
+   * @returns authenticator
    */
   function getAuthenticatorApi(): Promise<AuthenticatorDto> {
     return request<AuthenticatorDto>('/api/account/my-profile/authenticator', {
@@ -132,9 +132,9 @@ export function useProfileApi() {
   }
 
   /**
-   * 验证身份验证代码
-   * @param input 参数
-   * @returns 重置代码
+   * Verify authentication code
+   * @param input parameter
+   * @returns reset code
    */
   function verifyAuthenticatorCodeApi(
     input: VerifyAuthenticatorCodeInput,
@@ -149,7 +149,7 @@ export function useProfileApi() {
   }
 
   /**
-   * 重置验证器
+   * Reset validator
    */
   function resetAuthenticatorApi(): Promise<void> {
     return request('/api/account/my-profile/reset-authenticator', {
@@ -158,8 +158,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 发送邮件确认链接
-   * @param input 参数
+   *Send email confirmation link
+   * @param input parameter
    */
   function sendEmailConfirmLinkApi(
     input: SendEmailConfirmCodeDto,
@@ -171,8 +171,8 @@ export function useProfileApi() {
   }
 
   /**
-   * 确认邮件
-   * @param input 参数
+   * Confirmation email
+   * @param input parameter
    */
   function confirmEmailApi(input: ConfirmEmailInput) {
     return request('/api/account/my-profile/confirm-email', {

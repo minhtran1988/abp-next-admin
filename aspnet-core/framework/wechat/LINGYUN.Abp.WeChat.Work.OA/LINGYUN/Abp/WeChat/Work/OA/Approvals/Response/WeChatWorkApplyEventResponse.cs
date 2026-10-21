@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Response;
 /// <summary>
-/// 提交审批申请响应参数
+/// Submit approval application response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91853"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91853"/>
 /// </remarks>
 public class WeChatWorkApplyEventResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 表单提交成功后，返回的表单编号
+    /// After the form is submitted successfully, the form number returned
     /// </summary>
     [NotNull]
     [JsonProperty("sp_no")]

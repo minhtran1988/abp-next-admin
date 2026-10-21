@@ -67,7 +67,7 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpDataProtectionManagementEntityFrameworkCoreModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
     typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-    typeof(AbpIdentityEntityFrameworkCoreModule),// 用户角色权限需要引用包
+    typeof(AbpIdentityEntityFrameworkCoreModule),//User role permissions need to reference the package
     typeof(AbpLocalizationManagementEntityFrameworkCoreModule),
     typeof(AbpTextTemplatingEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCorePostgreSqlModule),

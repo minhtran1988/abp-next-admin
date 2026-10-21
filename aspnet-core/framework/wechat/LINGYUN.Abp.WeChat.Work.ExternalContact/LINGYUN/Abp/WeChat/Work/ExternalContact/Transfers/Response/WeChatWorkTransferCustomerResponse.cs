@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Response;
 /// <summary>
-/// 分配在职成员的客户响应结果
+/// Assign customer response results to active members
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92125" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92125" />
 /// </remarks>
 public class WeChatWorkTransferCustomerResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 分配客户
+    /// Assign customers
     /// </summary>
     [NotNull]
     [JsonProperty("customer")]

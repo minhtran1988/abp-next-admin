@@ -6,16 +6,16 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook MarkdownV2消息体
+/// Webhook MarkdownV2 message body
 /// </summary>
 public class WebhookMarkdownV2Message
 {
     /// <summary>
-    /// markdown_v2内容，最长不超过4096个字节，必须是utf8编码。
+    /// markdown_v2 content, the longest is no more than 4096 bytes, and must be utf8 encoded.
     /// </summary>
     /// <remarks>
-    /// 1. markdown_v2不支持字体颜色、@群成员的语法， 具体支持的语法可参考下面说明<br />
-    /// 2. 消息内容在客户端 4.1.36 版本以下(安卓端为4.1.38以下) 消息表现为纯文本，建议使用最新客户端版本体验
+    /// 1. markdown_v2 does not support font color and @group member syntax. For specific supported syntax, please refer to the instructions below<br />
+    /// 2. The message content is in the client version below 4.1.36 (Android version is below 4.1.38). The message appears as plain text. It is recommended to use the latest client version for experience.
     /// </remarks>
     [NotNull]
     [StringLength(4096)]
@@ -23,9 +23,9 @@ public class WebhookMarkdownV2Message
     [JsonPropertyName("content")]
     public string Content { get; set; }
     /// <summary>
-    /// 创建一个Webhook MarkdownV2消息体
+    /// Create a Webhook MarkdownV2 message body
     /// </summary>
-    /// <param name="content">markdown_v2内容，最长不超过4096个字节，必须是utf8编码</param>
+    /// <param name="content">markdown_v2 content, no longer than 4096 bytes, must be utf8 encoding</param>
     public WebhookMarkdownV2Message(string content)
     {
         Content = Check.NotNullOrWhiteSpace(content, nameof(content), 4096);

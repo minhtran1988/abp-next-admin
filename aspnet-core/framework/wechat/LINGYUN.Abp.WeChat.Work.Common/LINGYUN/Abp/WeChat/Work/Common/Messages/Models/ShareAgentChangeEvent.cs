@@ -3,12 +3,12 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 企业互联共享应用事件
+/// Enterprise Internet sharing application events
 /// </summary>
 /// <remarks>
-/// 本事件触发时机为：
-/// 1. 上级企业把自建应用共享给下级企业使用
-/// 2. 上级企业把下级企业从共享应用中移除
+/// The triggering time of this event is:
+/// 1. Higher-level enterprises share self-built applications with lower-level enterprises for use
+/// 2. The superior enterprise removes the subordinate enterprise from the shared application
 /// </remarks>
 [EventName("share_agent_change")]
 public class ShareAgentChangeEvent : WeChatWorkEventMessage

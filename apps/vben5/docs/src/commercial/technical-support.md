@@ -1,8 +1,8 @@
-# 技术支持
+# technical support
 
-## 问题反馈
+## Problem feedback
 
-在使用项目的过程中，如果遇到问题，你可以先详细阅读本文档，未找到解决方案时，可以通过以下方式获取技术支持：
+If you encounter problems while using the project, you can read this document in detail first. If you do not find a solution, you can obtain technical support through the following methods:
 
-- 通过 [GitHub Issues](https://github.com/vbenjs/vue-vben-admin/issues)
-- 通过 [GitHub Discussions](https://github.com/vbenjs/vue-vben-admin/discussions)
+- Via [GitHub Issues](https://github.com/vbenjs/vue-vben-admin/issues)
+- Via [GitHub Discussions](https://github.com/vbenjs/vue-vben-admin/discussions)

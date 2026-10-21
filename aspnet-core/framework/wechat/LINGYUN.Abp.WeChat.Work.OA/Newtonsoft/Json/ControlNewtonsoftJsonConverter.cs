@@ -36,7 +36,7 @@ internal class ControlNewtonsoftJsonConverter : JsonConverter<Control>
         {
             control.Property = propertyToken.ToObject<ControlInfo>(serializer)!;
         }
-        // 根据 Control 类型动态反序列化 Config
+        // Dynamically deserialize Config according to Control type
         if (jObject.TryGetValue("config", out var configToken) && configToken.Type != JTokenType.Null)
         {
             control.Config = ControlConfigFactory.CreateConfig(control.Property.Control, configToken)!;

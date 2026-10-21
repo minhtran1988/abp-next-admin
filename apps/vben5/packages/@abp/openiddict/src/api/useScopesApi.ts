@@ -12,9 +12,9 @@ import { useRequest } from '@abp/request';
 export function useScopesApi() {
   const { cancel, request } = useRequest();
   /**
-   * 新增范围
-   * @param input 参数
-   * @returns 范围实体数据传输对象
+   * New scope
+   * @param input parameter
+   * @returns scope entity data transfer object
    */
   function createApi(
     input: OpenIddictScopeCreateDto,
@@ -26,8 +26,8 @@ export function useScopesApi() {
   }
 
   /**
-   * 删除范围
-   * @param id 范围id
+   * Delete range
+   * @param id range id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/openiddict/scopes/${id}`, {
@@ -36,9 +36,9 @@ export function useScopesApi() {
   }
 
   /**
-   * 查询范围
-   * @param id 范围id
-   * @returns 范围实体数据传输对象
+   * Query scope
+   * @param id range id
+   * @returns scope entity data transfer object
    */
   function getApi(id: string): Promise<OpenIddictScopeDto> {
     return request<OpenIddictScopeDto>(`/api/openiddict/scopes/${id}`, {
@@ -47,9 +47,9 @@ export function useScopesApi() {
   }
 
   /**
-   * 更新范围
-   * @param id 范围id
-   * @returns 范围实体数据传输对象
+   *Update range
+   * @param id range id
+   * @returns scope entity data transfer object
    */
   function updateApi(
     id: string,
@@ -62,9 +62,9 @@ export function useScopesApi() {
   }
 
   /**
-   * 查询范围分页列表
-   * @param input 过滤参数
-   * @returns 范围实体数据传输对象分页列表
+   * Query range paging list
+   * @param input filter parameter
+   * @returns range entity data transfer object paginated list
    */
   function getPagedListApi(
     input?: OpenIddictScopeGetListInput,
@@ -79,8 +79,8 @@ export function useScopesApi() {
   }
 
   /**
-   * 查询可用范围列表
-   * @returns 可用范围实体数据传输对象列表
+   * Query the list of available ranges
+   * @returns List of available range entity data transfer objects
    */
   function getAssignableScopesApi(): Promise<
     ListResultDto<OpenIddictScopeDto>

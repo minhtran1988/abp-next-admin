@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信群聊文本消息
+/// Enterprise WeChat group chat text message
 /// </summary>
 public class WeChatWorkAppChatTextMessage : WeChatWorkAppChatMessage
 {
@@ -17,17 +17,17 @@ public class WeChatWorkAppChatTextMessage : WeChatWorkAppChatMessage
     }
 
     /// <summary>
-    /// 消息内容，最长不超过2048个字节，超过将截断（支持id转译）
+    /// Message content, up to 2048 bytes, will be truncated if exceeded (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("text")]
     [JsonPropertyName("text")]
     public TextMessage Text { get; set; }
     /// <summary>
-    /// 表示是否是保密消息，
-    /// 0表示可对外分享，
-    /// 1表示不能分享且内容显示水印，
-    /// 默认为0
+    /// Indicates whether it is confidential information,
+    /// 0 means it can be shared externally.
+    /// 1 means it cannot be shared and the content displays a watermark.
+    /// Default is 0
     /// </summary>
     [JsonProperty("safe")]
     [JsonPropertyName("safe")]

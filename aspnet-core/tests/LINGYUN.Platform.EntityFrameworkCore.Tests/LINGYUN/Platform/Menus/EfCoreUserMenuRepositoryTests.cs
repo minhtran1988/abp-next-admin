@@ -50,7 +50,7 @@ namespace LINGYUN.Platform.Menus
 
             using (CurrentTenant.Change(PlatformTestsConsts.TenantId))
             {
-                // 在租户范围不能查询到宿主数据
+                // Host data cannot be queried in the tenant scope
                 (await Repository.UserHasInMenuAsync(PlatformTestsConsts.User1Id, "admin")).ShouldBeFalse();
                 (await Repository.UserHasInMenuAsync(PlatformTestsConsts.User2Id, "saas")).ShouldBeFalse();
 
@@ -60,7 +60,7 @@ namespace LINGYUN.Platform.Menus
                 (await Repository.UserHasInMenuAsync(PlatformTestsConsts.User2Id, "admin")).ShouldBeFalse();
                 (await Repository.UserHasInMenuAsync(PlatformTestsConsts.User2Id, "saas")).ShouldBeTrue();
             }
-            // 在租户范围内处理了菜单数据不应该影响到宿主
+            // Menu data processed within the tenant scope should not affect the host
             (await Repository.UserHasInMenuAsync(PlatformTestsConsts.User2Id, "admin")).ShouldBeTrue();
         }
     }

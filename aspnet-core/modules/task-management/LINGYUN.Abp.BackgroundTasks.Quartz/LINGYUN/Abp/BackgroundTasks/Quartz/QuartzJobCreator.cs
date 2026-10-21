@@ -32,10 +32,10 @@ public class QuartzJobCreator : IQuartzJobCreator, ISingletonDependency
         var jobType = jobDefinition?.JobType ?? Type.GetType(job.Type);
         if (jobType == null)
         {
-            //Logger.LogWarning($"The task: {job.Group} - {job.Name}: {job.Type} is not registered and cannot create an instance of the performer type.");
-            //return null;
+            // Logger.LogWarning($"The task: {job.Group} - {job.Name}: {job.Type} is not registered and cannot create an instance of the performer type.");
+            // return null;
 
-            // 运行时搜寻本地作业
+            // Search for local jobs at runtime
             jobType = typeof(QuartzJobSearchJobAdapter);
         }
         else if (!typeof(IJob).IsAssignableFrom(jobType))
@@ -49,27 +49,27 @@ public class QuartzJobCreator : IQuartzJobCreator, ISingletonDependency
             return null;
         }
 
-        // 改为 JobId作为名称
+        // Change to JobId as name
         var jobBuilder = JobBuilder.Create(jobType)
                 .WithIdentity(KeyBuilder.CreateJobKey(job))
                 .WithDescription(job.Description);
-        // 多节点任务需要
+        // Multi-node tasks require
         jobBuilder.UsingJobData(nameof(JobInfo.NodeName), job.NodeName);
-        // 查询任务需要
+        // Query task needs
         jobBuilder.UsingJobData(nameof(JobInfo.Id), job.Id);
-        // 有些场景需要
+        // Some scenarios require
         jobBuilder.UsingJobData(nameof(JobInfo.Name), job.Name);
         jobBuilder.UsingJobData(nameof(JobInfo.Type), job.Type);
         jobBuilder.UsingJobData(nameof(JobInfo.Group), job.Group);
-        // 计算增量需要
+        // Calculate the increment required
         jobBuilder.UsingJobData(nameof(JobInfo.TriggerCount), job.TriggerCount);
-        // 独占任务需要
+        // Exclusive tasks require
         jobBuilder.UsingJobData(nameof(JobInfo.LockTimeOut), job.LockTimeOut);
-        // 传递的作业参数
+        // Passed job parameters
         jobBuilder.UsingJobData(new JobDataMap(job.Args));
         if (job.TenantId.HasValue)
         {
-            // 用于多租户场景
+            // Used in multi-tenant scenarios
             jobBuilder.UsingJobData(nameof(JobInfo.TenantId), job.TenantId.ToString());
         }
 
@@ -115,7 +115,7 @@ public class QuartzJobCreator : IQuartzJobCreator, ISingletonDependency
                     return null;
                 }
 
-                // Quartz 需要减一位
+                // Quartz needs to be decremented by one digit
                 maxCount -= 1;
                 if (maxCount < -1)
                 {
@@ -129,8 +129,8 @@ public class QuartzJobCreator : IQuartzJobCreator, ISingletonDependency
                     .ForJob(KeyBuilder.CreateJobKey(job))
                     .WithPriority((int)job.Priority);
                     
-                // 首次启动时间由 BeginTime 决定，不再使用 Interval 作为"延迟启动"。
-                // Interval 仅在 Persistent 周期任务中表示"重复间隔"。
+                // The first startup time is determined by BeginTime, Interval is no longer used as "delayed startup".
+                // Interval only represents "repeat interval" in Persistent periodic tasks.
                 if (job.BeginTime > Clock.Now)
                 {
                     triggerBuilder.StartAt(job.BeginTime);
@@ -140,10 +140,10 @@ public class QuartzJobCreator : IQuartzJobCreator, ISingletonDependency
                     triggerBuilder.StartNow();
                 }
                 
-                // Quartz约定. 重复间隔不能为0
+                // Quartz convention. Repeat interval cannot be 0
                 // fix throw Quartz.SchedulerException: Repeat Interval cannot be zero.
                 var scheduleBuilder = SimpleScheduleBuilder.Create();
-                // TODO: 不能用Quartz自带的重试机制
+                // TODO: Quartz's built-in retry mechanism cannot be used
                 // scheduleBuilder.WithRepeatCount(maxCount);
                 if (job.JobType == JobType.Persistent)
                 {

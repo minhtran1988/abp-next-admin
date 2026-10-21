@@ -7,43 +7,43 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Request;
 /// <summary>
-/// 批量获取客户详情请求参数
+/// Get customer details request parameters in batches
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92994" />
 /// </remarks>
 public class WeChatWorkCreateCustomerStrategyRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 父规则组id
+    /// Parent rule group id
     /// </summary>
     [CanBeNull]
     [JsonProperty("parent_id")]
     [JsonPropertyName("parent_id")]
     public int? ParentId { get; set; }
     /// <summary>
-    /// 规则组名称
+    /// Rule group name
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_name")]
     [JsonPropertyName("strategy_name")]
     public string StrategyName { get; }
     /// <summary>
-    /// 规则组管理员userid列表
+    /// Rule group administrator userid list
     /// </summary>
     [NotNull]
     [JsonProperty("admin_list")]
     [JsonPropertyName("admin_list")]
     public string[] AdminList { get; }
     /// <summary>
-    /// 规则组权限
+    /// Rule group permissions
     /// </summary>
     [NotNull]
     [JsonProperty("privilege")]
     [JsonPropertyName("privilege")]
     public CustomerStrategyPrivilege Privilege { get; }
     /// <summary>
-    /// 规则组管理范围
+    /// Rule group management scope
     /// </summary>
     [NotNull]
     [JsonProperty("range")]

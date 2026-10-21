@@ -5,22 +5,22 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Request;
 /// <summary>
-/// 获取成员ID列表请求参数
+/// Get member ID list request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/96067" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/96067" />
 /// </remarks>
 public class WeChatWorkGetUserIdListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用不填
+    /// Cursor used for paging query, string type, returned by the previous call, not filled in for the first call
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; set; }
     /// <summary>
-    /// 分页，预期请求的数据量，取值范围 1 ~ 10000
+    /// Paging, expected requested data amount, value range 1 ~ 10000
     /// </summary>
     [CanBeNull]
     [JsonProperty("limit")]

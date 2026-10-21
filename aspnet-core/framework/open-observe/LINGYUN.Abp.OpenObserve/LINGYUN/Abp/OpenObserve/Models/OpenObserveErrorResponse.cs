@@ -33,7 +33,7 @@ public class OpenObserveErrorResponse
     /// Closest valid alternatives (up to 3), ranked by similarity
     /// </summary>
     /// <remarks>
-    /// 实测为字符串数组, 如 ["service"]
+    /// The actual measurement is a string array, such as ["service"]
     /// </remarks>
     [JsonPropertyName("suggestions")]
     public string[]? Suggestions { get; set; }

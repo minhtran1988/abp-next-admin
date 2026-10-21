@@ -11,7 +11,7 @@ export const basicProps = {
     type: Object as PropType<Recordable>,
     default: () => ({}),
   },
-  // 标签宽度  固定宽度
+  // Label width fixed width
   labelWidth: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
@@ -21,7 +21,7 @@ export const basicProps = {
     default: () => [],
   },
   compact: propTypes.bool,
-  // 表单配置规则
+  // form configuration rules
   schemas: {
     type: Array as PropType<FormSchema[]>,
     default: () => [],
@@ -37,20 +37,20 @@ export const basicProps = {
     type: Object as PropType<Partial<ColEx>>,
   },
   autoSetPlaceHolder: propTypes.bool.def(true),
-  // 在INPUT组件上单击回车时，是否自动提交
+  // Whether to automatically submit when clicking Enter on the INPUT component
   autoSubmitOnEnter: propTypes.bool.def(false),
   submitOnReset: propTypes.bool,
   submitOnChange: propTypes.bool,
   size: propTypes.oneOf(['default', 'small', 'large']).def('default'),
-  // 禁用表单
+  // disable form
   disabled: propTypes.bool,
   emptySpan: {
     type: [Number, Object] as PropType<number | Recordable>,
     default: 0,
   },
-  // 是否显示收起展开按钮
+  // Whether to display the collapse expand button
   showAdvancedButton: propTypes.bool,
-  // 转化时间
+  // Conversion time
   transformDateFunc: {
     type: Function as PropType<Fn>,
     default: (date: any) => {
@@ -58,32 +58,32 @@ export const basicProps = {
     },
   },
   rulesMessageJoinLabel: propTypes.bool.def(true),
-  // 超过3行自动折叠
+  // Automatically collapse if more than 3 lines
   autoAdvancedLine: propTypes.number.def(3),
-  // 不受折叠影响的行数
+  // Number of rows not affected by folding
   alwaysShowLines: propTypes.number.def(1),
 
-  // 是否显示操作按钮
+  // Whether to display the operation button
   showActionButtonGroup: propTypes.bool.def(true),
-  // 操作列Col配置
+  // Operation column Col configuration
   actionColOptions: Object as PropType<Partial<ColEx>>,
-  // 显示重置按钮
+  // Show reset button
   showResetButton: propTypes.bool.def(true),
-  // 是否聚焦第一个输入框，只在第一个表单项为input的时候作用
+  // Whether to focus on the first input box only works when the first form item is input.
   autoFocusFirstItem: propTypes.bool,
-  // 重置按钮配置
+  // Reset button configuration
   resetButtonOptions: Object as PropType<Partial<ButtonProps>>,
 
-  // 显示确认按钮
+  // Show confirmation button
   showSubmitButton: propTypes.bool.def(true),
-  // 确认按钮配置
+  // Confirm button configuration
   submitButtonOptions: Object as PropType<Partial<ButtonProps>>,
 
-  // 自定义重置函数
+  // Custom reset function
   resetFunc: Function as PropType<() => Promise<void>>,
   submitFunc: Function as PropType<() => Promise<void>>,
 
-  // 以下为默认props
+  // The following are the default props
   hideRequiredMark: propTypes.bool,
 
   labelCol: Object as PropType<Partial<ColEx>>,
@@ -108,7 +108,7 @@ export const tabProps = {
     type: Object as PropType<Recordable>,
     default: {},
   },
-  // 标签宽度  固定宽度
+  // Label width fixed width
   labelWidth: {
     type: [Number, String] as PropType<number | string>,
     default: 0,
@@ -118,7 +118,7 @@ export const tabProps = {
     default: () => [],
   },
   compact: propTypes.bool,
-  // 表单配置规则
+  // form configuration rules
   schemas: {
     type: Array as PropType<TabFormSchema[]>,
     default: () => [],
@@ -134,19 +134,19 @@ export const tabProps = {
     type: Object as PropType<Partial<ColEx>>,
   },
   autoSetPlaceHolder: propTypes.bool.def(true),
-  // 在INPUT组件上单击回车时，是否自动提交
+  // Whether to automatically submit when clicking Enter on the INPUT component
   autoSubmitOnEnter: propTypes.bool.def(false),
   submitOnReset: propTypes.bool,
   size: propTypes.oneOf(['default', 'small', 'large']).def('default'),
-  // 禁用表单
+  // disable form
   disabled: propTypes.bool,
   emptySpan: {
     type: [Number, Object] as PropType<number>,
     default: 0,
   },
-  // 是否显示收起展开按钮
+  // Whether to display the collapse expand button
   showAdvancedButton: propTypes.bool,
-  // 转化时间
+  // Conversion time
   transformDateFunc: {
     type: Function as PropType<Fn>,
     default: (date: any) => {
@@ -154,30 +154,30 @@ export const tabProps = {
     },
   },
   rulesMessageJoinLabel: propTypes.bool.def(true),
-  // 超过3行自动折叠
+  // Automatically collapse if more than 3 lines
   autoAdvancedLine: propTypes.number.def(3),
 
-  // 是否显示操作按钮
+  // Whether to display the operation button
   showActionButtonGroup: propTypes.bool.def(true),
-  // 操作列Col配置
+  // Operation column Col configuration
   actionColOptions: Object as PropType<Partial<ColEx>>,
-  // 显示重置按钮
+  // Show reset button
   showResetButton: propTypes.bool.def(true),
-  // 是否聚焦第一个输入框，只在第一个表单项为input的时候作用
+  // Whether to focus on the first input box only works when the first form item is input.
   autoFocusFirstItem: propTypes.bool,
-  // 重置按钮配置
+  // Reset button configuration
   resetButtonOptions: Object as PropType<Partial<ButtonProps>>,
 
-  // 显示确认按钮
+  // Show confirmation button
   showSubmitButton: propTypes.bool.def(true),
-  // 确认按钮配置
+  // Confirm button configuration
   submitButtonOptions: Object as PropType<Partial<ButtonProps>>,
 
-  // 自定义重置函数
+  // Custom reset function
   resetFunc: Function as PropType<() => Promise<void>>,
   submitFunc: Function as PropType<() => Promise<void>>,
 
-  // 以下为默认props
+  // The following are the default props
   hideRequiredMark: propTypes.bool,
 
   labelCol: Object as PropType<Partial<ColEx>>,

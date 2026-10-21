@@ -1,33 +1,33 @@
-# LINGYUN.Abp.Authentication 认证模块
+# LINGYUN.Abp.Authentication authentication module
 
-本模块提供第三方社交登录认证功能，目前支持 QQ 和微信公众号登录，并与 ABP 身份系统深度集成。
+This module provides third-party social login authentication function, currently supports QQ and WeChat public account login, and is deeply integrated with the ABP identity system.
 
-## 模块概述
+## Module overview
 
-认证模块包含两个主要子模块：
+The authentication module contains two main sub-modules:
 
-1. **QQ 互联认证模块**
+1. **QQ Internet Authentication Module**
 
-   - 支持 QQ OAuth2.0 认证
-   - 适用于移动端和 PC 端登录
-   - 获取用户基本信息（昵称、性别、头像等）
+   -Support QQ OAuth2.0 authentication
+   - Suitable for mobile and PC login
+   - Obtain basic user information (nickname, gender, avatar, etc.)
 
-2. **微信公众号认证模块**
-   - 支持微信公众号 OAuth2.0 认证
-   - 获取用户详细信息（昵称、性别、地区、头像等）
-   - 支持 UnionId 机制，打通公众号与小程序账号体系
+2. **WeChat public account authentication module**
+   - Support WeChat public account OAuth2.0 authentication
+   - Obtain user details (nickname, gender, region, avatar, etc.)
+   - Support UnionId mechanism to connect the public account and mini program account system
 
-## 功能特性
+## Features
 
-- 第三方社交账号登录
-- 获取用户基本信息
-- 与 ABP 身份系统无缝集成
-- 灵活的配置选项
-- 支持多种登录场景（移动端、PC 端）
+- Log in with third-party social accounts
+- Obtain basic user information
+- Seamless integration with ABP identity system
+- Flexible configuration options
+-Supports multiple login scenarios (mobile terminal, PC terminal)
 
-## 快速开始
+## Quick start
 
-### 模块引用
+### Module reference
 
 ```csharp
 [DependsOn(
@@ -36,64 +36,64 @@
 )]
 public class YourProjectModule : AbpModule
 {
-    // 其他配置
+    //Other configuration
 }
 ```
 
-### 配置示例
+### Configuration example
 
-在 `appsettings.json` 中配置第三方登录参数：
+Configure third-party login parameters in `appsettings.json`:
 
 ```json
 {
   "Authentication": {
     "QQ": {
-      "AppId": "你的QQ互联AppId",
-      "AppKey": "你的QQ互联AppKey"
+      "AppId": "Your QQ Internet AppId",
+      "AppKey": "Your QQ Internet AppKey"
     },
     "WeChat": {
-      "AppId": "你的微信公众号AppId",
-      "AppSecret": "你的微信公众号AppSecret"
+      "AppId": "Your WeChat official account AppId",
+      "AppSecret": "Your WeChat official account AppSecret"
     }
   }
 }
 ```
 
-### 添加登录支持
+### Add login support
 
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
     context.Services.AddAuthentication()
-        .AddQQConnect()   // 添加QQ登录
-        .AddWeChat();     // 添加微信登录
+        .AddQQConnect() // Add QQ login
+        .AddWeChat(); // Add WeChat login
 }
 ```
 
-## 支持的用户信息
+## Supported user information
 
-### QQ 登录获取信息
+### QQ login to obtain information
 
-- OpenId - QQ 用户唯一标识
-- NickName - 用户昵称
-- Gender - 用户性别
-- AvatarUrl - 用户头像 URL
+- OpenId - QQ user unique identifier
+- NickName - user nickname
+- Gender - user gender
+- AvatarUrl - User avatar URL
 
-### 微信登录获取信息
+### Log in with WeChat to obtain information
 
-- OpenId - 微信用户唯一标识
-- UnionId - 微信开放平台唯一标识
-- NickName - 用户昵称
-- Sex - 用户性别
-- Country, Province, City - 地理信息
-- AvatarUrl - 用户头像 URL
+- OpenId - WeChat user's unique identifier
+- UnionId - the unique identifier of WeChat open platform
+- NickName - user nickname
+- Sex - user gender
+- Country, Province, City - Geographic information
+- AvatarUrl - User avatar URL
 
-## 参考文档
+## Reference documentation
 
-- [QQ 互联文档](https://wiki.connect.qq.com/)
-- [微信公众平台开发文档](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)
-- [ABP 认证文档](https://docs.abp.io/en/abp/latest/Authentication)
+- [QQ Connect Document](https://wiki.connect.qq.com/)
+- [WeChat Public Platform Development Documents](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)
+- [ABP Authentication Document](https://docs.abp.io/en/abp/latest/Authentication)
 
-## 许可证
+## License
 
-遵循项目的开源许可证
+Follow the project’s open source license

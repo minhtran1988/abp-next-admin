@@ -1,18 +1,18 @@
 # LINGYUN.Abp.WeChat.MiniProgram
 
-微信小程序SDK集成模块，提供微信小程序开发所需的功能支持。
+WeChat Mini Program SDK integration module provides functional support required for WeChat Mini Program development.
 
-## 功能特性
+## Features
 
-* 微信小程序登录认证
-* 小程序码生成
-* 订阅消息发送
-* 小程序数据统计
-* 小程序直播
-* 小程序支付集成
-* 统一服务消息
+* WeChat applet login authentication
+* Mini program code generation
+*Subscribe to send messages
+* Mini program data statistics
+* Mini program live broadcast
+* Mini program payment integration
+* Unified service message
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatMiniProgramModule))]
@@ -22,37 +22,37 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "MiniProgram": {
-      "AppId": "",                // 小程序AppId
-      "AppSecret": "",           // 小程序AppSecret
-      "Token": "",               // 小程序消息Token
-      "EncodingAESKey": "",      // 小程序消息加密密钥
-      "IsDebug": false,          // 是否开启调试模式
-      "DefaultEnvironment": "release" // 默认环境，可选值：develop（开发版）、trial（体验版）、release（正式版）
+      "AppId": "", // Mini program AppId
+      "AppSecret": "", // Mini program AppSecret
+      "Token": "", // Mini program message Token
+      "EncodingAESKey": "", // Mini program message encryption key
+      "IsDebug": false, // Whether to enable debugging mode
+      "DefaultEnvironment": "release" //Default environment, optional values: develop (development version), trial (experience version), release (official version)
     }
   }
 }
 ```
 
-#### 注意事项
+#### Notes
 
-在动态配置中有一个已知的问题: https://github.com/abpframework/abp/issues/6318  
-因此必须要重建一个动态变更 AbpWeChatMiniProgramOptions 的方法，请使用AbpWeChatMiniProgramOptionsFactory.CreateAsync()
+There is a known issue in dynamic configuration: https://github.com/abpframework/abp/issues/6318
+Therefore, it is necessary to recreate a method to dynamically change AbpWeChatMiniProgramOptions. Please use AbpWeChatMiniProgramOptionsFactory.CreateAsync()
 
-## Settings配置
+## SettingsConfiguration
 
-* `WeChat.MiniProgram.AppId`: 小程序AppId
-* `WeChat.MiniProgram.AppSecret`: 小程序AppSecret
-* `WeChat.MiniProgram.Token`: 小程序消息Token
-* `WeChat.MiniProgram.EncodingAESKey`: 小程序消息加密密钥
-* `WeChat.MiniProgram.IsDebug`: 是否开启调试模式
-* `WeChat.MiniProgram.DefaultEnvironment`: 默认环境
+* `WeChat.MiniProgram.AppId`: Mini Program AppId
+* `WeChat.MiniProgram.AppSecret`: Mini Program AppSecret
+* `WeChat.MiniProgram.Token`: Mini Program Message Token
+* `WeChat.MiniProgram.EncodingAESKey`: Mini program message encryption key
+* `WeChat.MiniProgram.IsDebug`: Whether to enable debugging mode
+* `WeChat.MiniProgram.DefaultEnvironment`: default environment
 
-## 更多文档
+## More documentation
 
-* [微信小程序模块文档](README.EN.md)
+* [WeChat Mini Program Module Document](README.EN.md)

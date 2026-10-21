@@ -1,52 +1,52 @@
 # LINGYUN.Abp.Dynamic.Queryable.Application.Contracts
 
-动态查询应用服务契约模块，定义了动态查询相关的接口和DTO。
+The dynamic query application service contract module defines dynamic query-related interfaces and DTOs.
 
-## 功能特性
+## Features
 
-* 定义动态查询应用服务接口 `IDynamicQueryableAppService<TEntityDto>`
-* 提供动态查询相关的DTO定义
-* 支持参数选项和比较运算符的定义
+* Define dynamic query application service interface `IDynamicQueryableAppService<TEntityDto>`
+* Provide DTO definitions related to dynamic query
+* Support the definition of parameter options and comparison operators
 
-## 配置使用
+## Configuration usage
 
-1. 安装 `LINGYUN.Abp.Dynamic.Queryable.Application.Contracts` NuGet包
+1. Install the `LINGYUN.Abp.Dynamic.Queryable.Application.Contracts` NuGet package
 
-2. 添加 `[DependsOn(typeof(AbpDynamicQueryableApplicationContractsModule))]` 到你的模块类
+2. Add `[DependsOn(typeof(AbpDynamicQueryableApplicationContractsModule))]` to your module class
 
-### 接口说明
+### Interface description
 
 ```csharp
 public interface IDynamicQueryableAppService<TEntityDto>
 {
-    // 获取可用字段列表
+    // Get the list of available fields
     Task<ListResultDto<DynamicParamterDto>> GetAvailableFieldsAsync();
 
-    // 根据动态条件查询数据
+    //Query data based on dynamic conditions
     Task<PagedResultDto<TEntityDto>> SearchAsync(GetListByDynamicQueryableInput dynamicInput);
 }
 ```
 
-### DTO说明
+### DTO Description
 
-* `DynamicParamterDto` - 动态参数DTO
-  * `Name` - 字段名称
-  * `Type` - 字段类型
-  * `Description` - 字段描述
-  * `JavaScriptType` - JavaScript类型
-  * `AvailableComparator` - 可用的比较运算符
-  * `Options` - 参数选项（用于枚举类型）
+* `DynamicParamterDto` - dynamic parameter DTO
+  * `Name` - field name
+  * `Type` - field type
+  * `Description` - field description
+  * `JavaScriptType` - JavaScript type
+  * `AvailableComparator` - available comparison operators
+  * `Options` - parameter options (for enumeration types)
 
-* `ParamterOptionDto` - 参数选项DTO
-  * `Key` - 选项键
-  * `Value` - 选项值
+* `ParamterOptionDto` - parameter option DTO
+  * `Key` - option key
+  * `Value` - option value
 
-* `GetListByDynamicQueryableInput` - 动态查询输入DTO
-  * `SkipCount` - 跳过记录数
-  * `MaxResultCount` - 最大返回记录数
-  * `Queryable` - 查询条件
+* `GetListByDynamicQueryableInput` - dynamic query input DTO
+  * `SkipCount` - number of skipped records
+  * `MaxResultCount` - the maximum number of records returned
+  * `Queryable` - query conditions
 
-## 相关链接
+## Related links
 
 * [LINGYUN.Linq.Dynamic.Queryable](../LINGYUN.Linq.Dynamic.Queryable/README.md)
 * [LINGYUN.Abp.Dynamic.Queryable.Application](../LINGYUN.Abp.Dynamic.Queryable.Application/README.md)

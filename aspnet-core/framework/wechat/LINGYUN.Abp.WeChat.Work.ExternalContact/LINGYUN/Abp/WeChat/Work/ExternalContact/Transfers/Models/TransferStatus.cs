@@ -2,29 +2,29 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Models;
 /// <summary>
-/// 接替状态
+/// Take over status
 /// </summary>
-[Description("接替状态")]
+[Description("Replacement status")]
 public enum TransferStatus
 {
     /// <summary>
-    /// 接替完毕
+    /// Succession completed
     /// </summary>
-    [Description("接替完毕")]
+    [Description("Replacement completed")]
     Completed = 1,
     /// <summary>
-    /// 等待接替
+    /// Waiting for replacement
     /// </summary>
-    [Description("等待接替")]
+    [Description("Waiting for replacement")]
     Pending = 2,
     /// <summary>
-    /// 客户拒绝
+    /// Customer rejects
     /// </summary>
-    [Description("客户拒绝")]
+    [Description("Customer Rejected")]
     CustomerReject = 3,
     /// <summary>
-    /// 接替成员客户达到上限
+    /// Replacement member customers reach the upper limit
     /// </summary>
-    [Description("接替成员客户达到上限")]
+    [Description("Replacement member customers have reached the upper limit")]
     ReachesLimit = 4
 }

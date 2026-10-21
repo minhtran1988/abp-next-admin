@@ -2,18 +2,18 @@
 
 namespace LINGYUN.Abp.BackgroundTasks.Activities;
 /// <summary>
-/// 作业行为过滤器
+/// Job behavior filter
 /// </summary>
 public interface IJobActionFilter
 {
     /// <summary>
-    /// 是否允许触发后操作
+    /// Whether to allow post-trigger operations
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
     Task<bool> CanAfterExecuted(JobEventContext context);
     /// <summary>
-    /// 是否允许触发前操作
+    /// Whether to allow pre-trigger operations
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>

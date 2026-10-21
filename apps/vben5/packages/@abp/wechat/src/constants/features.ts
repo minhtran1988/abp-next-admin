@@ -1,2 +1,2 @@
-/** 启用企业微信认证 */
+/** Enable enterprise WeChat authentication */
 export const WeixinWorkAuthEnable = 'Abp.Account.OAuth.WeCom.Enable';

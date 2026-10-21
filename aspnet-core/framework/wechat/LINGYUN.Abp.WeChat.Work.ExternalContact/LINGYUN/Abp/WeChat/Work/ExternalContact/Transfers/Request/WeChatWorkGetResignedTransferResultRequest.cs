@@ -5,29 +5,29 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Request;
 /// <summary>
-/// 查询离职成员的客户接替状态请求参数
+/// Query the customer replacement status request parameters of resigned members
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94082" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94082" />
 /// </remarks>
 public class WeChatWorkGetResignedTransferResultRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 原添加成员的userid
+    /// The userid of the original added member
     /// </summary>
     [NotNull]
     [JsonProperty("handover_userid")]
     [JsonPropertyName("handover_userid")]
     public string HandOverUserId { get; }
     /// <summary>
-    /// 接替成员的userid
+    /// The userid of the replacement member
     /// </summary>
     [NotNull]
     [JsonProperty("takeover_userid")]
     [JsonPropertyName("takeover_userid")]
     public string TakeOverUserId { get; }
     /// <summary>
-    /// 分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
+    /// Cursor for paging query, the data returned by each page will not exceed 1000; leaving it blank or empty means getting the first page
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]

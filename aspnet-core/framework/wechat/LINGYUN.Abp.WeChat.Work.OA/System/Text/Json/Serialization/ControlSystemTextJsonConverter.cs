@@ -10,12 +10,12 @@ internal class ControlSystemTextJsonConverter : JsonConverter<Control>
 
         var control = new Control();
 
-        // 反序列化基本字段
+        // Deserialize basic fields
         if (root.TryGetProperty("property", out var propertyElement))
         {
             control.Property = JsonSerializer.Deserialize<ControlInfo>(propertyElement.GetRawText(), options)!;
         }
-        // 根据 Control 类型动态反序列化 Config
+        // Dynamically deserialize Config according to Control type
         if (root.TryGetProperty("config", out var configElement) && configElement.ValueKind != JsonValueKind.Null)
         {
             control.Config = ControlConfigFactory.CreateConfig(control.Property.Control, configElement)!;

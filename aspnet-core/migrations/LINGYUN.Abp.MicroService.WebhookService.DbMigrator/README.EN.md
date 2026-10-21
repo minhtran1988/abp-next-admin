@@ -2,7 +2,7 @@
 
 Webhooks Management Database Migration Console Application, used for executing database migrations and initializing seed data for the webhooks management system.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

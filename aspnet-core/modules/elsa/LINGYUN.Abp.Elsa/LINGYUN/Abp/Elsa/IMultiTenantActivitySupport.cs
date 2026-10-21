@@ -2,10 +2,10 @@
 
 namespace LINGYUN.Abp.Elsa;
 /// <summary>
-/// 多租户支持
+/// Multi-tenant support
 /// </summary>
 /// <remarks>
-/// elsa与abp的兼容，还是最好指定多租户字段
+/// Is elsa compatible with abp, it is better to specify multi-tenant fields
 /// </remarks>
 public interface IMultiTenantActivitySupport
 {

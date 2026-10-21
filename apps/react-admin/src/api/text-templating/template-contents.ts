@@ -8,9 +8,9 @@ import type {
 import requestClient from "../request";
 
 /**
- * 获取模板内容
- * @param input 参数
- * @returns 模板内容数据传输对象
+ * Get template content
+ * @param input parameter
+ * @returns template content data transfer object
  */
 export function getApi(input: TextTemplateContentGetInput): Promise<TextTemplateContentDto> {
 	let url = "/api/text-templating/templates/content";
@@ -19,20 +19,20 @@ export function getApi(input: TextTemplateContentGetInput): Promise<TextTemplate
 }
 
 /**
- * 重置模板内容为默认值
- * @param name 模板名称
- * @param input 参数
- * @returns 模板定义数据传输对象列表
+ *Reset template content to default values
+ * @param name template name
+ * @param input parameter
+ * @returns Template definition data transfer object list
  */
 export function restoreToDefaultApi(name: string, input: TextTemplateRestoreInput): Promise<void> {
 	return requestClient.put(`/api/text-templating/templates/content/${name}/restore-to-default`, input);
 }
 
 /**
- * 更新模板内容
- * @param name 模板名称
- * @param input 参数
- * @returns 模板内容数据传输对象
+ * Update template content
+ * @param name template name
+ * @param input parameter
+ * @returns template content data transfer object
  */
 export function updateApi(name: string, input: TextTemplateContentUpdateDto): Promise<TextTemplateContentDto> {
 	return requestClient.put<TextTemplateContentDto>(`/api/text-templating/templates/content/${name}`, input);

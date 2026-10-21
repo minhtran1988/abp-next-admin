@@ -1,12 +1,12 @@
 # LINGYUN.Abp.BackgroundTasks.DistributedLocking
 
-后台任务（队列）模块分布式锁模块  
+Background task (queue) module distributed lock module
 
 See: [Distributed-Locking](https://docs.abp.io/en/abp/latest/Distributed-Locking)
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksDistributedLockingModule))]

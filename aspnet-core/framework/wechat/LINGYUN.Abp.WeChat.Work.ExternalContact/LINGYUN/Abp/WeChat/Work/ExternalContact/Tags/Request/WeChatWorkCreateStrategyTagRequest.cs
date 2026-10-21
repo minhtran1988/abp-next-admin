@@ -8,14 +8,14 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Request;
 public class WeChatWorkCreateStrategyTagRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 规则组id
+    /// Rule group id
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_id")]
     [JsonPropertyName("strategy_id")]
     public int StrategyId { get; }
     /// <summary>
-    /// 标签组id
+    /// Tag group id
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_id")]
@@ -24,7 +24,7 @@ public class WeChatWorkCreateStrategyTagRequest : WeChatWorkRequest
 
     private string? _groupName;
     /// <summary>
-    /// 标签组名称，最长为30个字符
+    /// Tag group name, up to 30 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_name")]
@@ -38,14 +38,14 @@ public class WeChatWorkCreateStrategyTagRequest : WeChatWorkRequest
         }
     }
     /// <summary>
-    /// 标签组排序的次序值，order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// The order value of the label group sorting, the order value with the larger order value is sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]
     [JsonPropertyName("order")]
     public int? Order { get; set; }
     /// <summary>
-    /// 添加的标签组
+    /// Added tag group
     /// </summary>
     [CanBeNull]
     [JsonProperty("tag")]
@@ -65,14 +65,14 @@ public class WeChatWorkCreateStrategyTagRequest : WeChatWorkRequest
 public class NewStrategyTag
 {
     /// <summary>
-    /// 添加的标签名称，最长为30个字符
+    /// Added label name, up to 30 characters
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; }
     /// <summary>
-    /// 标签次序值。order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// Tag order value. The ones with larger order values ​​are sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]

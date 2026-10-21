@@ -8,7 +8,7 @@ namespace LINGYUN.Abp.Localization.Xml;
 public static class LocalizationResourceExtensions
 {
     /// <summary>
-    /// 添加Xml虚拟文件系统支持
+    /// Add Xml virtual file system support
     /// </summary>
     /// <param name="localizationResource"></param>
     /// <param name="virtualPath"></param>
@@ -27,7 +27,7 @@ public static class LocalizationResourceExtensions
         return localizationResource;
     }
     /// <summary>
-    /// 添加Xml本地磁盘文件支持
+    /// Add Xml local disk file support
     /// </summary>
     /// <param name="localizationResource"></param>
     /// <param name="xmlFilePath"></param>

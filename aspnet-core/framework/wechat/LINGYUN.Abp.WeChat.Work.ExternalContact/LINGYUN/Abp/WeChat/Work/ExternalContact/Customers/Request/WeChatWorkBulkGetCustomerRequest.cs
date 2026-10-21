@@ -7,29 +7,29 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Request;
 /// <summary>
-/// 创建新的规则组请求参数
+/// Create new rule group request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E8%A7%84%E5%88%99%E7%BB%84" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E8%A7%84%E5%88%99%E7%BB%84" />
 /// </remarks>
 public class WeChatWorkBulkGetCustomerRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 企业成员的userid列表，字符串类型，最多支持100个
+    /// Userid list of enterprise members, string type, supports up to 100
     /// </summary>
     [NotNull]
     [JsonProperty("userid_list")]
     [JsonPropertyName("userid_list")]
     public List<string> UserIds { get; }
     /// <summary>
-    /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+    /// The cursor used for paging query, string type, returned by the last call, can be left blank for the first call
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; }
     /// <summary>
-    /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+    /// The maximum number of records returned, integer, maximum value 100, default value 50, take the maximum value when it exceeds the maximum value
     /// </summary>
     [CanBeNull]
     [JsonProperty("limit")]

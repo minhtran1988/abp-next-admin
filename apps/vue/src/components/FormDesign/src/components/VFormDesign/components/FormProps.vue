@@ -1,38 +1,38 @@
 <!--
- * @Description: 右侧属性面板控件 表单属性面板
+ * @Description: Right property panel control form property panel
 -->
 <template>
   <div class="properties-content">
     <Form class="properties-body" label-align="left" layout="vertical">
       <!--      <e-upload v-model="fileList"></e-upload>-->
 
-      <FormItem label="表单布局">
+      <FormItem label="Form layout">
         <RadioGroup button-style="solid" v-model:value="formConfig.layout">
-          <RadioButton value="horizontal">水平</RadioButton>
+          <RadioButton value="horizontal">horizontal</RadioButton>
           <RadioButton value="vertical" :disabled="formConfig.labelLayout === 'Grid'">
-            垂直
+            vertical
           </RadioButton>
           <RadioButton value="inline" :disabled="formConfig.labelLayout === 'Grid'">
-            行内
+            Inside the industry
           </RadioButton>
         </RadioGroup>
       </FormItem>
 
       <!-- <Row> -->
-      <FormItem label="标签布局">
+      <FormItem label="Label layout">
         <RadioGroup
           buttonStyle="solid"
           v-model:value="formConfig.labelLayout"
           @change="lableLayoutChange"
         >
-          <RadioButton value="flex">固定</RadioButton>
+          <RadioButton value="flex">Fixed</RadioButton>
           <RadioButton value="Grid" :disabled="formConfig.layout !== 'horizontal'">
-            栅格
+            grid
           </RadioButton>
         </RadioGroup>
       </FormItem>
       <!-- </Row> -->
-      <FormItem label="标签宽度（px）" v-show="formConfig.labelLayout === 'flex'">
+      <FormItem label="Label width (px)" v-show="formConfig.labelLayout === 'flex'">
         <InputNumber
           :style="{ width: '100%' }"
           v-model:value="formConfig.labelWidth"
@@ -48,29 +48,29 @@
           <Slider v-model:value="formConfig.wrapperCol!.span" :max="24" />
         </FormItem>
 
-        <FormItem label="标签对齐">
+        <FormItem label="Label alignment">
           <RadioGroup button-style="solid" v-model:value="formConfig.labelAlign">
-            <RadioButton value="left">靠左</RadioButton>
-            <RadioButton value="right">靠右</RadioButton>
+            <RadioButton value="left">Left</RadioButton>
+            <RadioButton value="right">Keep right</RadioButton>
           </RadioGroup>
         </FormItem>
 
-        <FormItem label="控件大小">
+        <FormItem label="Control size">
           <RadioGroup button-style="solid" v-model:value="formConfig.size">
-            <RadioButton value="default">默认</RadioButton>
-            <RadioButton value="small">小</RadioButton>
-            <RadioButton value="large">大</RadioButton>
+            <RadioButton value="default">Default</RadioButton>
+            <RadioButton value="small">small</RadioButton>
+            <RadioButton value="large">Large</RadioButton>
           </RadioGroup>
         </FormItem>
       </div>
-      <FormItem label="表单属性">
+      <FormItem label="Form Properties">
         <Col
           ><Checkbox v-model:checked="formConfig.colon" v-if="formConfig.layout == 'horizontal'"
-            >label后面显示冒号</Checkbox
+            >Display colon after label</Checkbox
           ></Col
         >
-        <Col><Checkbox v-model:checked="formConfig.disabled">禁用</Checkbox></Col>
-        <Col><Checkbox v-model:checked="formConfig.hideRequiredMark">隐藏必选标记</Checkbox></Col>
+        <Col><Checkbox v-model:checked="formConfig.disabled">disable</Checkbox></Col>
+        <Col><Checkbox v-model:checked="formConfig.hideRequiredMark">Hide required mark</Checkbox></Col>
       </FormItem>
     </Form>
   </div>

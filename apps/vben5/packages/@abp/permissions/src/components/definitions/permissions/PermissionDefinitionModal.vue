@@ -206,7 +206,7 @@ function onPropDelete(prop: PropertyInfo) {
       :wrapper-col="{ span: 18 }"
     >
       <Tabs v-model:active-key="activeTab">
-        <!-- 基本信息 -->
+        <!-- Basic information -->
         <TabPane key="basic" :tab="$t('AbpPermissionManagement.BasicInfo')">
           <FormItem
             :label="$t('AbpPermissionManagement.DisplayName:IsEnabled')"
@@ -300,7 +300,7 @@ function onPropDelete(prop: PropertyInfo) {
             />
           </FormItem>
         </TabPane>
-        <!-- 状态检查 -->
+        <!-- Status check -->
         <TabPane
           key="stateCheckers"
           :tab="$t('AbpPermissionManagement.StateCheckers')"
@@ -320,7 +320,7 @@ function onPropDelete(prop: PropertyInfo) {
             />
           </FormItem>
         </TabPane>
-        <!-- 属性 -->
+        <!-- Properties -->
         <TabPane key="props" :tab="$t('AbpPermissionManagement.Properties')">
           <PropertyTable
             :data="formModel.extraProperties"

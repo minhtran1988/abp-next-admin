@@ -25,14 +25,14 @@ interface UsePermission {
 
 export function usePermissions({ getPropsRef }: UsePermission) {
   const { L } = useLocalization('AbpPermissionManagement');
-  /** 弹出层标题 */
+  /** Popup layer title */
   const title = ref('');
-  /** 权限树 */
+  /** Permission tree */
   const permissionTree = ref<PermissionTree[]>([]);
   /**
-   * 获取授权数据
-   * @param name 授权提供者名称
-   * @param key  授权提供者标识
+   * Get authorization data
+   * @param name Authorized provider name
+   * @param key Authorization provider ID
    */
   function handleGetPermission(name: string, key?: string) {
     get({ providerName: name, providerKey: key }).then((res) => {
@@ -41,8 +41,8 @@ export function usePermissions({ getPropsRef }: UsePermission) {
     });
   }
 
-  /** 当前tab名称
-   * @description 格式：权限显示名称+(已授权数量)
+  /** Current tab name
+   * @description format: permission display name + (authorized quantity)
    */
   const permissionTab = computed(() => {
     return (tree: PermissionTree) => {
@@ -51,30 +51,30 @@ export function usePermissions({ getPropsRef }: UsePermission) {
     };
   });
 
-  /** 是否禁用所有权限复选框 */
+  /** Whether to disable all permission checkboxes */
   const permissionTreeDisabled = computed(() => {
     const abpStore = useAbpStoreWithOut();
     const props = unref(getPropsRef);
     const { currentUser } = abpStore.getApplication;
     // if (props.providerName === 'R') {
-    //   // 当前登录用户组禁止操作本身组权限
-    //   // 应该允许
+    // // The currently logged in user group is prohibited from operating its own group permissions
+    // // should be allowed
     //   return currentUser.roles.includes(props.providerKey!);
     // }
-    // 当前登录用户禁止操作本身权限
+    // The currently logged in user is prohibited from operating their own permissions
     return currentUser.id === props.providerKey;
   });
 
-  /** 当前tab下已授权权限节点标识（勾选复选框） */
+  /** Identification of the authorized node under the current tab (check the checkbox) */
   const permissionGrantKeys = computed(() => {
     return (tree: PermissionTree) => {
       return getGrantedPermissionKeys(tree.children);
     };
   });
 
-  /** 当前tab下权限复选框状态
-   * @returns checked 是否选中
-   * @returns indeterminate 是否不确定状态（半选）
+  /** The status of the permission checkbox under the current tab
+   * @returns checked whether selected
+   * @returns indeterminate Whether the state is uncertain (half-selected)
    */
   const permissionTabCheckState = computed(() => {
     return (tree: PermissionTree) => {
@@ -87,7 +87,7 @@ export function usePermissions({ getPropsRef }: UsePermission) {
     };
   });
 
-  /** 权限树复选框状态 */
+  /** Permission tree check box status */
   const permissionTreeCheckState = computed(() => {
     const treeList = unref(permissionTree);
     const grantCount = getGrantPermissionsCount(treeList);
@@ -98,36 +98,36 @@ export function usePermissions({ getPropsRef }: UsePermission) {
     };
   });
 
-  /** 变更所有授权数据 */
+  /** Change all authorization data */
   function handleGrantAllPermission(e) {
     if (!unref(permissionTreeDisabled)) {
       updateChildrenGrant(unref(permissionTree), e.target.checked);
     }
   }
 
-  /** 变更当前tab下的授权数据 */
+  /** Change the authorization data under the current tab */
   function handleGrantPermissions(tree, e) {
     if (!unref(permissionTreeDisabled)) {
       updateChildrenGrant(tree.children, e.target.checked);
     }
   }
 
-  /** 当选中某个授权节点时事件 */
+  /** Event when an authorized node is selected */
   function handlePermissionGranted(tree, _selectedKeys, info) {
     const permission = find(tree.children, info.node.eventKey) as PermissionTree;
     if (!permission) return;
     permission.isGranted = info.checked;
     if (permission.parentName && info.checked) {
-      // 子权限授权后父权限也必须授权
+      // After the child permission is authorized, the parent permission must also be authorized.
       updateParentGrant(tree, permission.parentName, true);
     }
     if (permission.children && !info.checked) {
-      // 父权限取消授权，子权限全部取消授权
+      // Cancel authorization for parent permissions, and cancel authorization for all child permissions
       updateChildrenGrant(permission.children, false);
     }
   }
 
-  /** 保存授权数据 */
+  /** Save authorization data */
   function handleSavePermission() {
     const props = unref(getPropsRef);
     const provider: PermissionProvider = {
@@ -140,7 +140,7 @@ export function usePermissions({ getPropsRef }: UsePermission) {
     });
   }
 
-  /** 监听授权提供者标识，重新检索权限 */
+  /** Monitor the authorization provider identification and retrieval permissions */
   watch(
     () => unref(getPropsRef).providerKey,
     (key) => {

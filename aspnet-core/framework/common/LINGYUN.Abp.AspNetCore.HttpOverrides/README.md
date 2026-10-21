@@ -1,22 +1,22 @@
 # LINGYUN.Abp.AspNetCore.HttpOverrides
 
-## 模块说明
+## Module description
 
-对于Http传输标头的一些重写类模块  
+Some overriding class modules for Http transport headers
 
-目前实现通过解析 **X-Forwarded-For** 标头获取反向代理中的真实客户地址,通常获取标头中的最后一个设置值  
+The current implementation obtains the real customer address in the reverse proxy by parsing the **X-Forwarded-For** header, usually obtaining the last setting value in the header.
 
-### 基础模块  
+### Basic module
 
-### 高阶模块  
+### High-level modules
 
-### 权限定义  
+### Permission definition
 
-### 功能定义  
+### Function definition
 
-### 配置定义  
+### Configuration definition
 
-### 如何使用
+### How to use
 
 
 ```csharp
@@ -29,4 +29,4 @@
 
 ```
 
-### 更新日志 
+### Update log

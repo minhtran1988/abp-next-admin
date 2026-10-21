@@ -15,9 +15,9 @@ export function useTextsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询文本列表
-   * @param input 参数
-   * @returns 文本列表
+   * Query text list
+   * @param input parameter
+   * @returns text list
    */
   function getListApi(
     input: GetTextsInput,
@@ -32,9 +32,9 @@ export function useTextsApi() {
   }
 
   /**
-   * 查询文本
-   * @param input 参数
-   * @returns 查询的文本
+   * Query text
+   * @param input parameter
+   * @returns query text
    */
   function getApi(input: GetTextByKeyInput): Promise<TextDto> {
     return request<TextDto>('/api/localization/texts/by-key', {
@@ -44,8 +44,8 @@ export function useTextsApi() {
   }
 
   /**
-   * 设置文本
-   * @param input 参数
+   * Set text
+   * @param input parameter
    */
   function setApi(input: SetTextInput): Promise<void> {
     return request('/api/localization/texts', {
@@ -55,8 +55,8 @@ export function useTextsApi() {
   }
 
   /**
-   * 删除文本
-   * @param input 参数
+   * Delete text
+   * @param input parameter
    */
   function deleteApi(input: DeleteTextInput): Promise<void> {
     return request('/api/localization/texts', {

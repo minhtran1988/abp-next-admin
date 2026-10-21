@@ -16,37 +16,37 @@ export interface BasicPageParams {
     isAvailable!: boolean;
   }
   
-  /** 授权接口 */
+  /** Authorization interface */
   export interface IPermission {
-    /** 权限名称 */
+    /** Permission name */
     name: string;
-    /** 是否授权 */
+    /** Authorization or not */
     isGranted: boolean;
   }
   
-  /** 作用于接口 */
+  /** Acts on the interface */
   export interface IScope {
-    /** 作用域 */
+    /** Scope */
     scope: string;
   }
   
-  /** 密钥 */
+  /** Key */
   export interface ISecret {
-    /** 密钥类型 */
+    /** Key type */
     type: string;
-    /** 密钥值 */
+    /** Key value */
     value: string;
-    /** 密钥说明 */
+    /** Key description */
     description: string | undefined;
-    /** 过期日期 */
+    /** Expiration date */
     expiration: Date | undefined;
   }
   
-  /** 令牌 */
+  /** Token */
   export interface IClaim {
-    /** 类型 */
+    /** Type */
     type: string;
-    /** 数值 */
+    /** Value */
     value: string;
   }
   

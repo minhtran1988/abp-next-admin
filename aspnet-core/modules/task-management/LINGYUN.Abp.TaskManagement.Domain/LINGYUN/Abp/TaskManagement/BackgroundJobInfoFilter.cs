@@ -4,72 +4,72 @@ using System;
 namespace LINGYUN.Abp.TaskManagement;
 
 /// <summary>
-/// 后台任务过滤
+/// Background task filtering
 /// </summary>
 public class BackgroundJobInfoFilter
 {
     /// <summary>
-    /// 其他过滤条件
+    /// Other filter conditions
     /// </summary>
     public string? Filter { get; set; }
     /// <summary>
-    /// 任务名称
+    /// Task name
     /// </summary>
     public string? Name { get; set; }
     /// <summary>
-    /// 任务分组
+    /// Task grouping
     /// </summary>
     public string? Group { get; set; }
     /// <summary>
-    /// 任务类型
+    /// Task type
     /// </summary>
     public string? Type { get; set; }
     /// <summary>
-    /// 节点名称
+    /// Node name
     /// </summary>
     public string? NodeName { get; set; }
     /// <summary>
-    /// 任务状态
+    /// Task status
     /// </summary>
     public JobStatus? Status { get; set; }
     /// <summary>
-    /// 开始时间
+    /// Start time
     /// </summary>
     public DateTime? BeginTime { get; set; }
     /// <summary>
-    /// 结束时间
+    /// End time
     /// </summary>
     public DateTime? EndTime { get; set; }
     /// <summary>
-    /// 上次起始触发时间
+    /// Last start trigger time
     /// </summary>
     public DateTime? BeginLastRunTime { get; set; }
     /// <summary>
-    /// 上次截止触发时间
+    /// Last trigger time
     /// </summary>
     public DateTime? EndLastRunTime { get; set; }
     /// <summary>
-    /// 起始创建时间
+    /// Starting creation time
     /// </summary>
     public DateTime? BeginCreationTime { get; set; }
     /// <summary>
-    /// 截止创建时间
+    /// Deadline creation time
     /// </summary>
     public DateTime? EndCreationTime { get; set; }
     /// <summary>
-    /// 是否已放弃任务
+    /// Whether the task has been abandoned
     /// </summary>
     public bool? IsAbandoned { get; set; }
     /// <summary>
-    /// 是否持续性任务
+    /// Whether it is a persistent task
     /// </summary>
     public JobType? JobType { get; set; }
     /// <summary>
-    /// 优先级
+    /// Priority
     /// </summary>
     public JobPriority? Priority { get; set; }
     /// <summary>
-    /// 作业来源
+    /// Job source
     /// </summary>
     public JobSource? Source { get; set; }
 }

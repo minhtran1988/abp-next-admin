@@ -8,10 +8,10 @@ import { BadgeJapaneseYen } from 'lucide-vue-next';
 
 function showPrompt() {
   prompt({
-    content: '请输入一些东西',
+    content: 'Please enter something',
   })
     .then((val) => {
-      alert(`已收到你的输入：${val}`);
+      alert(`Your input has been received: ${val}`);
     })
     .catch(() => {
       alert('Canceled');
@@ -21,7 +21,7 @@ function showPrompt() {
 function showSlotsPrompt() {
   prompt({
     component: () => {
-      // 获取弹窗上下文。注意：只能在setup或者函数式组件中调用
+      // Get the pop-up window context. Note: Can only be called in setup or functional components
       const { doConfirm } = useAlertContext();
       return h(
         Input,
@@ -29,12 +29,12 @@ function showSlotsPrompt() {
           onKeydown(e: KeyboardEvent) {
             if (e.key === 'Enter') {
               e.preventDefault();
-              // 调用弹窗提供的确认方法
+              // Call the confirmation method provided by the pop-up window
               doConfirm();
             }
           },
-          placeholder: '请输入',
-          prefix: '充值金额：',
+          placeholder: 'Please enter',
+          prefix: 'Recharge amount:',
           type: 'number',
         },
         {
@@ -43,11 +43,11 @@ function showSlotsPrompt() {
       );
     },
     content:
-      '此弹窗演示了如何使用自定义插槽，并且可以使用useAlertContext获取到弹窗的上下文。\n在输入框中按下回车键会触发确认操作。',
+      'This pop-up window demonstrates how to use a custom slot, and you can use useAlertContext to get the context of the pop-up window. \nPressing the Enter key in the input box will trigger the confirmation operation. ',
     icon: 'question',
     modelPropName: 'value',
   }).then((val) => {
-    if (val) alert(`你输入的是${val}`);
+    if (val) alert(`You entered ${val}`);
   });
 }
 
@@ -60,16 +60,16 @@ function showSelectPrompt() {
         { label: 'Option B', value: 'Option B' },
         { label: 'Option C', value: 'Option C' },
       ],
-      placeholder: '请选择',
-      // 弹窗会设置body的pointer-events为none，这回影响下拉框的点击事件
+      placeholder: 'Please select',
+      // The pop-up window will set the body's pointer-events to none, which will affect the click event of the drop-down box.
       popupClassName: 'pointer-events-auto',
     },
-    content: '此弹窗演示了如何使用component传递自定义组件',
+    content: 'This pop-up window demonstrates how to use component to pass custom components',
     icon: 'question',
     modelPropName: 'value',
   }).then((val) => {
     if (val) {
-      alert(`你选择了${val}`);
+      alert(`You selected ${val}`);
     }
   });
 }
@@ -83,10 +83,10 @@ function showAsyncPrompt() {
     async beforeClose(scope) {
       if (scope.isConfirm) {
         if (scope.value) {
-          // 模拟异步操作，如果不成功，可以返回false
+          // Simulate asynchronous operation, if unsuccessful, you can return false
           await sleep(2000);
         } else {
-          alert('请选择一个选项');
+          alert('Please select an option');
           return false;
         }
       }
@@ -100,11 +100,11 @@ function showAsyncPrompt() {
         { label: 'Option 3', value: 'option3' },
       ],
     },
-    content: '选择一个选项后再点击[确认]',
+    content: 'Select an option and click [Confirm]',
     icon: 'question',
     modelPropName: 'value',
   }).then((val) => {
-    alert(`${val} 已设置。`);
+    alert(`${val} is set.`);
   });
 }
 </script>

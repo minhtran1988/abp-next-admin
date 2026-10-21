@@ -1,18 +1,18 @@
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// markdown消息载荷
+/// markdown message payload
 /// </summary>
 /// <remarks>
-/// 不参与渠道解析: 由通知定义的 <c>ContentType</c> 推导,
-/// 生产者不需要为它准备任何渠道专属数据。
+/// Does not participate in channel resolution: deduced from the <c>ContentType</c> defined by the notification,
+/// The producer does not need to prepare any channel-specific data for it.
 /// </remarks>
 public class WeChatWorkMarkdownChannelData : WeChatWorkChannelData
 {
     public override WeChatWorkMessageKind Kind => WeChatWorkMessageKind.Markdown;
 
     /// <summary>
-    /// 消息内容, 为空时使用通知标准数据
+    /// Message content, if empty, use notification standard data
     /// </summary>
     public virtual string? Content { get; set; }
 }

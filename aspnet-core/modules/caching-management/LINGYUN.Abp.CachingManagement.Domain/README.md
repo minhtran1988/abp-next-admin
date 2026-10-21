@@ -1,44 +1,44 @@
 # LINGYUN.Abp.CachingManagement.Domain
 
-缓存管理模块的领域层实现。
+Domain layer implementation of cache management module.
 
-## 核心接口
+## Core interface
 
 ### ICacheManager
 
-缓存管理器接口，定义了缓存管理的核心功能：
+The cache manager interface defines the core functions of cache management:
 
-* `GetKeysAsync`: 获取缓存键列表
-* `GetValueAsync`: 获取缓存值
-* `SetAsync`: 设置缓存值
-* `RefreshAsync`: 刷新缓存
-* `RemoveAsync`: 删除缓存
+* `GetKeysAsync`: Get the cache key list
+* `GetValueAsync`: Get cached value
+* `SetAsync`: Set cache value
+* `RefreshAsync`: Refresh cache
+* `RemoveAsync`: delete cache
 
-## 领域服务
+## Domain Services
 
 ### CacheManager
 
-缓存管理器的抽象基类，提供了基础的缓存管理实现。具体的缓存提供程序（如Redis）需要继承此类并实现相应的方法。
+The abstract base class of cache manager provides basic cache management implementation. Concrete cache providers (such as Redis) need to inherit this class and implement the corresponding methods.
 
-## 安装
+## Installation
 
 ```bash
 abp add-module LINGYUN.Abp.CachingManagement
 ```
 
-## 扩展开发
+## Extension development
 
-如果需要支持新的缓存提供程序，需要：
+If you need to support a new cache provider, you need to:
 
-1. 创建新的项目，继承 `CacheManager` 类
-2. 实现所有抽象方法
-3. 注册为 `ICacheManager` 的实现（使用 `[Dependency(ReplaceServices = true)]`）
+1. Create a new project and inherit the `CacheManager` class
+2. Implement all abstract methods
+3. Register as an implementation of `ICacheManager` (using `[Dependency(ReplaceServices = true)]`)
 
-## 更多
+## More
 
-有关更多信息，请参阅以下资源：
+For more information, see the following resources:
 
-* [应用服务实现](../LINGYUN.Abp.CachingManagement.Application/README.md)
-* [应用服务契约](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
+* [Application service implementation](../LINGYUN.Abp.CachingManagement.Application/README.md)
+* [Application Service Contract](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
 * [HTTP API](../LINGYUN.Abp.CachingManagement.HttpApi/README.md)
-* [Redis实现](../LINGYUN.Abp.CachingManagement.StackExchangeRedis/README.md)
+* [Redis implementation](../LINGYUN.Abp.CachingManagement.StackExchangeRedis/README.md)

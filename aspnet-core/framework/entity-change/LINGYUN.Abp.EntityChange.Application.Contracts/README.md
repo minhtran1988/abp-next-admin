@@ -1,15 +1,15 @@
 # LINGYUN.Abp.EntityChange.Application.Contracts
 
-实体变更追踪与恢复的应用层契约模块。
+Application layer contract module for entity change tracking and recovery.
 
-## 功能
+## Function
 
-* 提供实体变更查询接口
-* 提供实体恢复接口
-* 提供实体变更相关DTO对象
-* 提供多语言本地化资源
+* Provide entity change query interface
+* Provide entity recovery interface
+* Provide DTO objects related to entity changes
+* Provide multi-language localization resources
 
-## 基本用法
+## Basic usage
 
 ```csharp
 [DependsOn(typeof(AbpEntityChangeApplicationContractsModule))]
@@ -24,19 +24,19 @@ public class YouProjectModule : AbpModule
 
 ## API
 
-* `IEntityChangeAppService`: 实体变更查询服务接口
-  * `GetListAsync`: 获取实体变更历史记录列表
+* `IEntityChangeAppService`: Entity change query service interface
+  * `GetListAsync`: Get the entity change history list
 
-* `IEntityRestoreAppService`: 实体恢复服务接口
-  * `RestoreEntityAsync`: 恢复单个实体到指定版本
-  * `RestoreEntitesAsync`: 批量恢复实体到指定版本
+* `IEntityRestoreAppService`: Entity recovery service interface
+  * `RestoreEntityAsync`: Restore a single entity to the specified version
+  * `RestoreEntitesAsync`: Batch restore entities to the specified version
 
-## 本地化
+## Localization
 
-模块提供了以下语言的本地化资源：
+The module provides localized resources in the following languages:
 * en
 * zh-Hans
 
-本地化资源位于 `/LINGYUN/Abp/EntityChange/Localization/Resources` 目录下。
+Localization resources are located in the `/LINGYUN/Abp/EntityChange/Localization/Resources` directory.
 
 [English](./README.EN.md)

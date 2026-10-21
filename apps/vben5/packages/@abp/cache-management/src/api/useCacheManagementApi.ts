@@ -10,14 +10,14 @@ import type {
 
 import { useRequest } from '@abp/request';
 
-/** 缓存管理API接口 */
+/** Cache management API interface */
 export function useCacheManagementApi() {
   const apiPrefix = '/api/caching-management/cache';
   const { cancel, request } = useRequest();
 
   /**
-   * 获取所有缓存键
-   * @param input 参数
+   * Get all cache keys
+   * @param input parameter
    */
   function getKeysApi(input?: GetCacheKeysInput): Promise<CacheKeysDto> {
     return request<CacheKeysDto>(`${apiPrefix}/keys`, {
@@ -27,8 +27,8 @@ export function useCacheManagementApi() {
   }
 
   /**
-   * 获取缓存值
-   * @param input 参数
+   * Get cached value
+   * @param input parameter
    */
   function getKeyValueApi(input: CacheKeyInput): Promise<CacheValueDto> {
     return request<CacheValueDto>(`${apiPrefix}/value`, {
@@ -38,8 +38,8 @@ export function useCacheManagementApi() {
   }
 
   /**
-   * 设置缓存值
-   * @param input 参数
+   * Set cache value
+   * @param input parameter
    */
   function setValueApi(input: CacheSetInput): Promise<void> {
     return request(`${apiPrefix}/set`, {
@@ -49,8 +49,8 @@ export function useCacheManagementApi() {
   }
 
   /**
-   * 刷新缓存
-   * @param input 参数
+   * Refresh cache
+   * @param input parameter
    */
   function refreshApi(input: CacheRefreshInput): Promise<void> {
     return request(`${apiPrefix}/refresh`, {
@@ -60,8 +60,8 @@ export function useCacheManagementApi() {
   }
 
   /**
-   * 移除缓存
-   * @param input 参数
+   * Remove cache
+   * @param input parameter
    */
   function removeApi(input: CacheKeyInput): Promise<void> {
     return request(`${apiPrefix}/remove`, {
@@ -71,8 +71,8 @@ export function useCacheManagementApi() {
   }
 
   /**
-   * 批量移除缓存
-   * @param input 参数
+   * Remove cache in batches
+   * @param input parameter
    */
   function bulkRemoveApi(input: CacheRemoveKeysInput): Promise<void> {
     return request(`${apiPrefix}/bulk/remove`, {

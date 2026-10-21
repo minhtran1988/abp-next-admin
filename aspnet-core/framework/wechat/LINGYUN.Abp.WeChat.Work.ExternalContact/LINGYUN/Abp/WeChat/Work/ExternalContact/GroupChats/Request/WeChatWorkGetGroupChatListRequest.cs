@@ -6,36 +6,36 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.GroupChats.Request;
 /// <summary>
-/// 获取客户群列表请求参数
+/// Get the customer group list request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92120" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92120" />
 /// </remarks>
 public class WeChatWorkGetGroupChatListRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 客户群跟进状态过滤
+    /// Customer group follow-up status filtering
     /// </summary>
     [CanBeNull]
     [JsonProperty("status_filter")]
     [JsonPropertyName("status_filter")]
     public StatusFilter? StatusFilter { get; set; }
     /// <summary>
-    /// 客户群跟进状态过滤
+    /// Customer group follow-up status filtering
     /// </summary>
     [CanBeNull]
     [JsonProperty("owner_filter")]
     [JsonPropertyName("owner_filter")]
     public OwnerFilter[]? OwnerFilter { get; set; }
     /// <summary>
-    /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用不填
+    /// Cursor used for paging query, string type, returned by the previous call, not filled in for the first call
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; set; }
     /// <summary>
-    /// 分页，预期请求的数据量，取值范围 1 ~ 1000
+    /// Paging, expected requested data amount, value range 1 ~ 1000
     /// </summary>
     [CanBeNull]
     [JsonProperty("limit")]

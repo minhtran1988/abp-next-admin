@@ -4,7 +4,7 @@ internal static class DateTimeTimeStampExtenssions
 {
     private readonly static DateTime _beginUnixTime = new DateTime(1970, 1, 1);
     /// <summary>
-    /// 获取Unix时间戳（秒）
+    /// Get Unix timestamp (seconds)
     /// </summary>
     /// <param name="dateTime"></param>
     /// <returns></returns>

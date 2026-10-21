@@ -1,10 +1,10 @@
-/** 设置定义权限 */
+/** Set definition permissions */
 export const SettingDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'SettingManagement.Definition.Create',
   Default: 'SettingManagement.Definition',
-  /** 还原或删除 */
+  /** Restore or delete */
   DeleteOrRestore: 'SettingManagement.Definition.DeleteOrRestore',
-  /** 更新 */
+  /** Update */
   Update: 'SettingManagement.Definition.Update',
 };

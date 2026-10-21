@@ -5,7 +5,7 @@ namespace LINGYUN.Abp.WeChat.Official.Account.Models;
 public class StringScene : Scene
 {
     /// <summary>
-    /// 场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
+    /// Scene value ID (ID in string form), string type, length limit is 1 to 64
     /// </summary>
     [JsonProperty("scene_str")]
     [JsonPropertyName("scene_str")]

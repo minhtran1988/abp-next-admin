@@ -53,4 +53,4 @@ public async Task YourMethod()
 }
 ```
 
-[简体中文](./README.md) | [English](./README.EN.md)
+[Simplified Chinese](./README.md) | [English](./README.EN.md)

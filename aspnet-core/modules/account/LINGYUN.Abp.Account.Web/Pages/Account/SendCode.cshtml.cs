@@ -66,7 +66,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
             var user = await SignInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                // 双因素信息验证失败,一般都是超时了或者用户信息变更
+                // Two-factor information verification fails, usually due to timeout or user information change.
                 Alerts.Warning(L["TwoFactorAuthenticationInvaidUser"]);
                 return Page();
             }
@@ -107,7 +107,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
 
             if (Input.SelectedProvider == "Authenticator")
             {
-                // 用户通过邮件/短信链接进入授权页面
+                // Users enter the authorization page through email/SMS link
                 return RedirectToPage("VerifyAuthenticatorCode", new
                 {
                     returnUrl = ReturnUrl,
@@ -115,7 +115,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
                     rememberMe = RememberMe,
                 });
             }
-            // 生成验证码
+            // Generate verification code
             var code = await UserManager.GenerateTwoFactorTokenAsync(user, Input.SelectedProvider);
             if (string.IsNullOrWhiteSpace(code))
             {
@@ -137,7 +137,7 @@ namespace LINGYUN.Abp.Account.Web.Pages.Account
                 var templateCode = await SettingProvider.GetOrNullAsync(IdentitySettingNames.User.SmsUserSignin);
                 Check.NotNullOrWhiteSpace(templateCode, nameof(IdentitySettingNames.User.SmsUserSignin));
 
-                // TODO: 以后扩展短信模板发送
+                // TODO: Extend SMS template sending in the future
                 var smsMessage = new SmsMessage(phoneNumber!, code);
                 smsMessage.Properties.Add("code", code);
                 smsMessage.Properties.Add("TemplateCode", templateCode);

@@ -72,7 +72,7 @@ onMounted(() => {
     flattenData.value = flatten(props.treeData, props.childrenField);
     updateTreeValue();
 
-    // 只在 treeData 变化时执行展开
+    // Execute expansion only when treeData changes
     const currentTreeData = JSON.stringify(props.treeData);
     if (lastTreeData !== currentTreeData) {
       lastTreeData = currentTreeData;
@@ -455,22 +455,22 @@ defineExpose({
   border: 1px solid #666;
 }
 
-/* 1. 声明过渡效果 */
+/* 1. Declare transition effect */
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-/* 2. 声明进入和离开的状态 */
+/* 2. Declare entering and leaving states */
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
   transform: scaleY(0.01) translate(30px, 0);
 }
 
-/* 3. 确保离开的项目被移除出了布局流
-      以便正确地计算移动时的动画效果。 */
+/* 3. Ensure that the leaving item is removed from the layout flow
+      In order to correctly calculate the animation effect when moving. */
 .fade-leave-active {
   position: absolute;
 }

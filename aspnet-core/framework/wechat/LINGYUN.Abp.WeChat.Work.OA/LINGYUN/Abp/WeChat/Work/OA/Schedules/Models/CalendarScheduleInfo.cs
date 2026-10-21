@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日历日程详情
+/// Calendar schedule details
 /// </summary>
 public class CalendarScheduleInfo : ScheduleInfo
 {
     /// <summary>
-    /// 日程编号，是一个自增数字
+    /// The schedule number is an auto-incrementing number
     /// </summary>
     [NotNull]
     [JsonProperty("sequence")]

@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Exporter;
 /// <summary>
-/// Excel数据导入提供者
+/// Excel data import provider
 /// </summary>
 public interface IExcelImporterProvider
 {
     /// <summary>
-    /// 数据导入
+    /// Data import
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="stream"></param>

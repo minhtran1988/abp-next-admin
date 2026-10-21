@@ -163,7 +163,7 @@ namespace PackageName.CompanyName.ProjectName.AIO.Host;
     typeof(AbpBackgroundWorkersHangfireModule),
     typeof(AbpBackgroundJobsHangfireModule),
 
-    //typeof(AbpOssManagementMinioModule), // 取消注释以使用Minio
+    // typeof(AbpOssManagementMinioModule), // Uncomment to use Minio
     typeof(AbpOssManagementFileSystemModule),
     // typeof(AbpOssManagementImagingModule),
     typeof(AbpOssManagementDomainModule),
@@ -214,7 +214,7 @@ namespace PackageName.CompanyName.ProjectName.AIO.Host;
     typeof(AbpPermissionManagementDomainOpenIddictModule),
     // typeof(AbpPermissionManagementDomainIdentityServerModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // 组织机构权限管理
+    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // Organization permission management
 
     typeof(AbpEntityFrameworkCorePostgreSqlModule),
 

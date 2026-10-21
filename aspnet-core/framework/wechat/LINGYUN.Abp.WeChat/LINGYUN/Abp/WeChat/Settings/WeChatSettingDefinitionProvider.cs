@@ -13,7 +13,7 @@ public class WeChatSettingDefinitionProvider : SettingDefinitionProvider
         context.Add(
             new SettingDefinition(
                 WeChatSettingNames.EnabledQuickLogin, 
-                // 默认启用
+                // enabled by default
                 true.ToString(),
                 L("DisplayName:WeChat.EnabledQuickLogin"),
                 L("Description:WeChat.EnabledQuickLogin"),

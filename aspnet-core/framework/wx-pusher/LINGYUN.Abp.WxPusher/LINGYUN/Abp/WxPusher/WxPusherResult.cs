@@ -7,22 +7,22 @@ namespace LINGYUN.Abp.WxPusher;
 public class WxPusherResult<T>
 {
     /// <summary>
-    /// 状态码
+    /// Status code
     /// </summary>
     [JsonProperty("code")]
     public int Code { get; set; }
     /// <summary>
-    /// 错误消息
+    /// Error message
     /// </summary>
     [JsonProperty("msg")]
     public string? Message { get; set; }
     /// <summary>
-    /// 返回数据
+    /// Return data
     /// </summary>
     [JsonProperty("data")]
     public T? Data { get; set; }
     /// <summary>
-    /// 是否调用成功
+    /// Whether the call is successful
     /// </summary>
     [JsonProperty("success")] 
     public bool Success { get; set; }

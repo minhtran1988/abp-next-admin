@@ -4,29 +4,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 模版卡片的主要内容
+/// The main content of the template card
 /// </summary>
 public class WebhookTemplateCardMainTitle
 {
     /// <summary>
-    /// 一级标题，建议不超过26个字。模版卡片主要内容的一级标题main_title.title和二级普通文本sub_title_text必须有一项填写
+    /// The first-level title is recommended to be no more than 26 words. One of the first-level title main_title.title and the second-level ordinary text sub_title_text of the main content of the template card must be filled in
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 标题辅助信息，建议不超过30个字
+    /// Title auxiliary information, it is recommended not to exceed 30 words
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]
     [JsonPropertyName("desc")]
     public string? Description { get; set; }
     /// <summary>
-    /// 创建一个模版卡片的主要内容
+    /// Create the main content of a template card
     /// </summary>
-    /// <param name="title">一级标题</param>
-    /// <param name="description">标题辅助信息</param>
+    /// <param name="title">First-level title</param>
+    /// <param name="description">Title auxiliary information</param>
     public WebhookTemplateCardMainTitle(string title, string? description = null)
     {
         Title = title;

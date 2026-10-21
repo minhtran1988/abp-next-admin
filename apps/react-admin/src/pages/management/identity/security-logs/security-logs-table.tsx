@@ -18,10 +18,10 @@ const SecurityLogs = () => {
 	const { t: $t } = useTranslation();
 	const actionRef = useRef<ActionType>();
 	const queryClient = useQueryClient();
-	//drawer
+	// drawer
 	const [drawerVisible, setDrawerVisible] = useState(false);
 	const [selectedLogId, setSelectedLogId] = useState<string | undefined>();
-	//Modal
+	// Modal
 	const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
 	const openDrawer = (id: string) => {
@@ -93,7 +93,7 @@ const SecurityLogs = () => {
 			hideInSearch: true,
 			render: (_, record) => (
 				<>
-					{/* 展示地址 */}
+					{/* display address */}
 					{record.extraProperties?.Location && <Tag color="blue">{record.extraProperties.Location}</Tag>}
 					<span>{record.clientIpAddress}</span>
 				</>
@@ -189,8 +189,8 @@ const SecurityLogs = () => {
 													.map((key) => `${key} ${antdOrderToAbpOrder(sorter[key])}`)
 													.join(", ")
 											: undefined,
-										startTime: startTime || undefined, // 转换为 startTime 参数
-										endTime: endTime || undefined, // 转换为 endTime 参数
+										startTime: startTime || undefined, // Convert to startTime parameter
+										endTime: endTime || undefined, // Convert to endTime parameter
 										...rest,
 									}),
 							});

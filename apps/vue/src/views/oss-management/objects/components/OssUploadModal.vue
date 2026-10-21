@@ -127,13 +127,13 @@
     uploader = new Uploader({
       target: uploadUrl,
       testChunks: false,
-      // 加重试机制防止网络波动
+      // Re-try mechanism to prevent network fluctuations
       maxChunkRetries: 3,
       chunkRetryInterval: null,
       successStatuses: [200, 201, 202, 204, 205],
       permanentErrors: [400, 401, 403, 404, 415, 500, 501],
       headers: {
-        // TODO: 使用缓存存储令牌类型?
+        // TODO: Use cache to store token type?
         Authorization: `Bearer ${userStore.getToken}`,
       },
       processParams: (params: any) => {
@@ -174,7 +174,7 @@
   }
 
   function _fileProgress(_, file, chunk) {
-    // 2024-09-29 处理上传失败的包装错误
+    // 2024-09-29 Handling packaging errors for failed uploads
     if (chunk.processedState?.res) {
       try {
         const result = JSON.parse(chunk.processedState.res) as Result<any>;

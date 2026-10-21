@@ -169,7 +169,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         #endregion
 
         #region AllowScope
-        // 删除未在身份资源和Api资源中的作用域
+        // Delete scopes that are not in identity resources and API resources
         client.AllowedScopes.RemoveAll(scope => !input.AllowedScopes.Any(inputScope => scope.Scope == inputScope.Scope));
         foreach (var inputScope in input.AllowedScopes)
         {
@@ -182,7 +182,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         #endregion
 
         #region RedirectUris
-        // 删除不存在的uri
+        // Delete non-existing uri
         client.RedirectUris.RemoveAll(uri => !input.RedirectUris.Any(inputRedirectUri => uri.RedirectUri == inputRedirectUri.RedirectUri));
         foreach (var inputRedirectUri in input.RedirectUris)
         {
@@ -195,7 +195,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         #endregion
 
         #region AllowedGrantTypes
-        // 删除不存在的验证类型
+        // Delete non-existing validation types
         client.AllowedGrantTypes.RemoveAll(grantType => !input.AllowedGrantTypes.Any(inputGrantType => grantType.GrantType == inputGrantType.GrantType));
         foreach (var inputGrantType in input.AllowedGrantTypes)
         {
@@ -208,7 +208,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         #endregion
 
         #region AllowedCorsOrigins
-        // 删除不存在的同源域名
+        // Delete non-existent same-origin domain names
         client.AllowedCorsOrigins.RemoveAll(corsOrigin => !input.AllowedCorsOrigins.Any(inputCorsOrigin => corsOrigin.Origin == inputCorsOrigin.Origin));
         foreach (var inputCorsOrigin in input.AllowedCorsOrigins)
         {
@@ -222,7 +222,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
 
         #region PostLogoutRedirectUris
 
-        // 删除不存在的登录重定向域名
+        // Delete the non-existent login redirect domain name
         client.PostLogoutRedirectUris.RemoveAll(uri => 
             !input.PostLogoutRedirectUris.Any(inputLogoutRedirectUri => uri.PostLogoutRedirectUri == inputLogoutRedirectUri.PostLogoutRedirectUri));
         foreach (var inputLogoutRedirectUri in input.PostLogoutRedirectUris)
@@ -237,7 +237,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
 
         #region IdentityProviderRestrictions
 
-        // 删除身份认证限制提供商
+        // Delete the authentication restriction provider
         client.IdentityProviderRestrictions.RemoveAll(provider => 
             !input.IdentityProviderRestrictions.Any(inputProvider => provider.Provider == inputProvider.Provider));
         foreach (var inputProvider in input.IdentityProviderRestrictions)
@@ -254,16 +254,16 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
 
         if (await IsGrantAsync(AbpIdentityServerPermissions.Clients.ManageSecrets))
         {
-            // 移除已经不存在的客户端密钥
+            // Remove the client key that no longer exists
             client.ClientSecrets.RemoveAll(secret => !input.ClientSecrets.Any(inputSecret => secret.Value == inputSecret.Value && secret.Type == inputSecret.Type));
             foreach (var inputSecret in input.ClientSecrets)
             {
-                // 先对加密过的进行过滤
+                // Filter the encrypted ones first
                 if (client.FindSecret(inputSecret.Value, inputSecret.Type) != null)
                 {
                     continue;
                 }
-                var inputSecretValue = inputSecret.Value.Sha256(); // TODO: 通过可选配置来加密
+                var inputSecretValue = inputSecret.Value.Sha256(); // TODO: Encryption via optional configuration
 
                 var clientSecret = client.FindSecret(inputSecretValue, inputSecret.Type);
                 if (clientSecret == null)
@@ -279,7 +279,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
 
         if (await IsGrantAsync(AbpIdentityServerPermissions.Clients.ManageProperties))
         {
-            // 移除不存在的属性
+            // Remove non-existing properties
             client.Properties.RemoveAll(prop => !input.Properties.Any(inputProp => prop.Key == inputProp.Key));
             foreach (var inputProp in input.Properties)
             {
@@ -302,7 +302,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
 
         if (await IsGrantAsync(AbpIdentityServerPermissions.Clients.ManageClaims))
         {
-            // 移除已经不存在的客户端声明
+            // Remove client declarations that no longer exist
             client.Claims.RemoveAll(secret => !input.Claims.Any(inputClaim => secret.Value == inputClaim.Value && secret.Type == inputClaim.Type));
             foreach (var inputClaim in input.Claims)
             {
@@ -323,10 +323,10 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
     }
 
     /// <summary>
-    /// 克隆客户端
+    /// Clone client
     /// </summary>
     /// <remarks>
-    /// 实现参考 Skoruba.IdentityServer4.Admin 项目
+    /// Implementation reference Skoruba.IdentityServer4.Admin project
     /// https://github.com/skoruba/IdentityServer4.Admin.git
     /// </remarks>
     /// <param name="id"></param>
@@ -455,7 +455,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         return ObjectMapper.Map<Client, ClientDto>(client);
     }
     /// <summary>
-    /// 查询可用的Api资源
+    /// Query available API resources
     /// </summary>
     /// <returns></returns>
     public async virtual Task<ListResultDto<string>> GetAssignableApiResourcesAsync()
@@ -465,7 +465,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         return new ListResultDto<string>(resourceNames);
     }
     /// <summary>
-    /// 查询可用的身份资源
+    /// Query available identity resources
     /// </summary>
     /// <returns></returns>
     public async virtual Task<ListResultDto<string>> GetAssignableIdentityResourcesAsync()
@@ -475,7 +475,7 @@ public class ClientAppService : AbpIdentityServerAppServiceBase, IClientAppServi
         return new ListResultDto<string>(resourceNames);
     }
     /// <summary>
-    /// 查询所有不重复的跨域地址
+    /// Query all unique cross-domain addresses
     /// </summary>
     /// <returns></returns>
     public async virtual Task<ListResultDto<string>> GetAllDistinctAllowedCorsOriginsAsync()

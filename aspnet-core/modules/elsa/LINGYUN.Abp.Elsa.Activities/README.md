@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Elsa.Activities
 
-常用Activity集成  
+Common Activity Integration
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 

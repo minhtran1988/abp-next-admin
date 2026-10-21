@@ -57,13 +57,13 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
         if (!isAsyncMethod)
         {
             // see: https://docs.dapr.io/developing-applications/sdks/dotnet/dotnet-actors/dotnet-actors-howto/
-            // Dapr Actor文档: Actor方法的返回类型必须为Task或Task<object>
+            // Dapr Actor documentation: The return type of an Actor method must be Task or Task<object>
             throw new AbpException("The return type of Actor method must be Task or Task<object>");
         }
         if (invocation.Arguments.Length > 1)
         {
             // see: https://docs.dapr.io/developing-applications/sdks/dotnet/dotnet-actors/dotnet-actors-howto/
-            // Dapr Actor文档: Actor方法最多可以有一个参数
+            // Dapr Actor documentation: Actor methods can have at most one parameter
             throw new AbpException("Actor method can have one argument at a maximum");
         }
         await MakeRequestAsync(invocation);
@@ -71,11 +71,11 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
 
     private async Task MakeRequestAsync(IAbpMethodInvocation invocation)
     {
-        // 获取Actor配置
+        // Get Actor configuration
         var actorProxyConfig = DaprActorProxyOptions.ActorProxies.GetOrDefault(typeof(TService)) ?? throw new AbpException($"Could not get DynamicDaprActorProxyConfig for {typeof(TService).FullName}.");
         var remoteServiceConfig = await RemoteServiceConfigurationProvider.GetConfigurationOrDefaultAsync(actorProxyConfig.RemoteServiceName);
 
-        // Actors的定义太多, 可以考虑使用默认的 BaseUrl 作为远程地址
+        // There are too many definitions of Actors, you can consider using the default BaseUrl as the remote address
         if (remoteServiceConfig.BaseUrl.IsNullOrWhiteSpace())
         {
             throw new AbpException($"Could not get BaseUrl for {actorProxyConfig.RemoteServiceName} Or Default.");
@@ -89,16 +89,16 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
             JsonSerializerOptions = JsonSerializerOptions.JsonSerializerOptions,
         };
 
-        // 自定义请求处理器
-        // 添加请求头用于传递状态
-        // TODO: Actor一次只能处理一个请求,使用状态管理来传递状态的可行性?
+        // Custom request handler
+        // Add request header to pass status
+        // TODO: Actor can only handle one request at a time. Is it feasible to use state management to transfer state?
         var httpClientHandler = new DaprHttpClientHandler();
 
         AddHeaders(httpClientHandler);
 
         httpClientHandler.PreConfigure(async (requestMessage) =>
         {
-            // 占位
+            // Placeholder
             var httpClient = HttpClientFactory.Create(AbpDaprActorsModule.DaprHttpClient);
 
             await ClientAuthenticator.Authenticate(
@@ -107,7 +107,7 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
                     requestMessage,
                     remoteServiceConfig,
                     actorProxyConfig.RemoteServiceName));
-            // 标头
+            // header
             if (requestMessage.Headers.Authorization == null &&
                 httpClient.DefaultRequestHeaders.Authorization != null)
             {
@@ -115,7 +115,7 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
             }
         });
 
-        // 代理工厂
+        // Agent factory
         var proxyFactory = new ActorProxyFactory(actorProxyOptions, (HttpMessageHandler)httpClientHandler);
 
         await MakeRequestAsync(invocation, proxyFactory);
@@ -128,7 +128,7 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
     {
         var invokeType = typeof(TService);
 
-        // 约定的 RemoteServiceAttribute 为Actor名称
+        // The agreed RemoteServiceAttribute is the Actor name
         var remoteServiceAttr = invokeType.GetTypeInfo().GetCustomAttribute<RemoteServiceAttribute>();
         var actorType = remoteServiceAttr != null
             ? remoteServiceAttr.Name
@@ -138,27 +138,27 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
 
         try
         {
-            // 创建强类型代理
+            // Create a strongly typed proxy
             var actorProxy = proxyFactory.CreateActorProxy<TService>(actorId, actorType);
-            // 远程调用
+            // Remote call
             var task = (Task)invocation.Method.Invoke(actorProxy, invocation.Arguments)!;
             await task;
 
-            // 存在返回值
+            // There is a return value
             if (!invocation.Method.ReturnType.GenericTypeArguments.IsNullOrEmpty())
             {
-                // 处理返回值
+                // handle return value
                 invocation.ReturnValue = typeof(Task<>)
                     .MakeGenericType(invocation.Method.ReturnType.GenericTypeArguments[0])
                     .GetProperty(nameof(Task<object>.Result), BindingFlags.Public | BindingFlags.Instance)!
                     .GetValue(task)!;
             }
         }
-        catch (ActorMethodInvocationException amie) // 其他异常忽略交给框架处理
+        catch (ActorMethodInvocationException amie) // Other exceptions are ignored and handed over to the framework for processing
         {
             if (amie.InnerException != null && amie.InnerException is ActorInvokeException aie)
             {
-                // Dapr 包装了远程服务异常
+                // Dapr wraps remote service exceptions
                 throw new AbpDaprActorCallException(
                     new RemoteServiceErrorInfo
                     {
@@ -173,14 +173,14 @@ public class DynamicDaprActorProxyInterceptor<TService> : AbpInterceptor, ITrans
 
     private void AddHeaders(DaprHttpClientHandler handler)
     {
-        //TenantId
+        // TenantId
         if (CurrentTenant.Id.HasValue)
         {
-            //TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
+            // TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
             handler.AddHeader(TenantResolverConsts.DefaultTenantKey, CurrentTenant.Id.Value.ToString());
         }
-        //Culture
-        //TODO: Is that the way we want? Couldn't send the culture (not ui culture)
+        // Culture
+        // TODO: Is that the way we want? Couldn't send the culture (not ui culture)
         var currentCulture = CultureInfo.CurrentUICulture.Name ?? CultureInfo.CurrentCulture.Name;
         if (!currentCulture.IsNullOrEmpty())
         {

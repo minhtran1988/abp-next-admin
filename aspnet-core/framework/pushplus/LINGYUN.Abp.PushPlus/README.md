@@ -1,12 +1,12 @@
 # LINGYUN.Abp.PushPlus
 
-集成PushPlus  
+Integrated PushPlus
 
-实现PushPlus相关Api文档,拥有PushPlus开放能力  
+Implement PushPlus related API documents and have PushPlus open capabilities
 
-详情见PushPlus文档: https://www.pushplus.plus/doc/guide/openApi.html#%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E  
+For details, see the PushPlus documentation: https://www.pushplus.plus/doc/guide/openApi.html#%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpPushPlusModule))]
@@ -18,49 +18,49 @@ public class YouProjectModule : AbpModule
 
 ## Features
 
-* PushPlus										PushPlus特性分组  
-* PushPlus.Message.Enable						全局启用PushPlus消息通道  
-* PushPlus.Channel.WeChat						微信公众号消息通道	
-* PushPlus.Channel.WeChat.Enable				启用微信公众号消息通道	
-* PushPlus.Channel.WeChat.SendLimit				微信公众号消息通道限制次数	
-* PushPlus.Channel.WeChat.SendLimitInterval		微信公众号消息通道限制周期(天)	
-* PushPlus.Channel.WeWork						企业微信消息通道	
-* PushPlus.Channel.WeWork.Enable				启用企业微信消息通道	
-* PushPlus.Channel.WeWork.SendLimit				企业微信消息通道限制次数	
-* PushPlus.Channel.WeWork.SendLimitInterval		企业微信消息通道限制周期(天)	
-* PushPlus.Channel.Webhook						Webhook消息通道	
-* PushPlus.Channel.Webhook.Enable				启用Webhook消息通道	
-* PushPlus.Channel.Webhook.SendLimit			Webhook消息通道限制次数	
-* PushPlus.Channel.Webhook.SendLimitInterval	Webhook消息通道限制周期(天)	
-* PushPlus.Channel.Email						Email消息通道	
-* PushPlus.Channel.Email.Enable					启用Email消息通道	
-* PushPlus.Channel.Email.SendLimit				Email消息通道限制次数	
-* PushPlus.Channel.Email.SendLimitInterval		Email消息通道限制周期(天)	
-* PushPlus.Channel.Sms							短信消息通道	
-* PushPlus.Channel.Sms.Enable					启用短信消息通道	
-* PushPlus.Channel.Sms.SendLimit				短信消息通道限制次数	
-* PushPlus.Channel.Sms.SendLimitInterval		短信消息通道限制周期(天)	
+* PushPlus PushPlus feature grouping
+* PushPlus.Message.Enable globally enables PushPlus message channel
+* PushPlus.Channel.WeChat WeChat public account message channel
+* PushPlus.Channel.WeChat.Enable enables WeChat public account message channel
+* PushPlus.Channel.WeChat.SendLimit WeChat public account message channel limit number
+* PushPlus.Channel.WeChat.SendLimitInterval WeChat public account message channel limit period (days)
+* PushPlus.Channel.WeWork Enterprise WeChat messaging channel
+* PushPlus.Channel.WeWork.Enable enables enterprise WeChat messaging channel
+* PushPlus.Channel.WeWork.SendLimit Enterprise WeChat message channel limit number
+* PushPlus.Channel.WeWork.SendLimitInterval Enterprise WeChat message channel limit period (days)
+* PushPlus.Channel.Webhook Webhook message channel
+* PushPlus.Channel.Webhook.Enable enables Webhook message channel
+* PushPlus.Channel.Webhook.SendLimit Webhook message channel limit number of times
+* PushPlus.Channel.Webhook.SendLimitInterval Webhook message channel limit period (days)
+* PushPlus.Channel.Email Email message channel
+* PushPlus.Channel.Email.Enable enables the Email message channel
+* PushPlus.Channel.Email.SendLimit Email message channel limit times
+* PushPlus.Channel.Email.SendLimitInterval Email message channel limit period (days)
+* PushPlus.Channel.Sms SMS message channel
+* PushPlus.Channel.Sms.Enable enables SMS message channel
+* PushPlus.Channel.Sms.SendLimit SMS message channel limit number
+* PushPlus.Channel.Sms.SendLimitInterval SMS message channel limit period (days)
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "PushPlus": {
     "Security": {
-      "Token": "你的PushPlus Token",      // PushPlus平台获取的Token
-      "SecretKey": "你的PushPlus密钥"     // PushPlus平台获取的密钥
+      "Token": "Your PushPlus Token", //Token obtained by PushPlus platform
+      "SecretKey": "Your PushPlus key" // The key obtained by the PushPlus platform
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置 PushPlus 凭证
-   * 在PushPlus平台获取Token和密钥
-   * 在配置文件中设置Token和密钥
+1. Configure PushPlus credentials
+   * Obtain Token and key on PushPlus platform
+   * Set Token and key in configuration file
 
-2. 发送消息
+2. Send a message
    ```csharp
    public class YourService
    {
@@ -73,50 +73,50 @@ public class YouProjectModule : AbpModule
 
        public async Task SendMessageAsync()
        {
-           // 发送微信消息
+           //Send WeChat message
            await _messageSender.SendWeChatAsync(
-               title: "消息标题",
-               content: "消息内容",
-               topic: "可选的主题",
+               title: "Message title",
+               content: "Message content",
+               topic: "optional topic",
                template: PushPlusMessageTemplate.Html
            );
 
-           // 发送企业微信消息
+           //Send corporate WeChat message
            await _messageSender.SendWeWorkAsync(
-               title: "消息标题",
-               content: "消息内容"
+               title: "Message title",
+               content: "Message content"
            );
 
-           // 发送邮件
+           // send email
            await _messageSender.SendEmailAsync(
-               title: "邮件标题",
-               content: "邮件内容"
+               title: "Email title",
+               content: "email content"
            );
 
-           // 发送短信
+           //Send SMS
            await _messageSender.SendSmsAsync(
-               title: "短信标题",
-               content: "短信内容"
+               title: "SMS title",
+               content: "SMS content"
            );
 
-           // 发送Webhook消息
+           //Send Webhook message
            await _messageSender.SendWebhookAsync(
-               title: "消息标题",
-               content: "消息内容",
-               webhook: "webhook地址"
+               title: "Message title",
+               content: "Message content",
+               webhook: "webhook address"
            );
        }
    }
    ```
 
-## 消息模板
+## Message template
 
-* Html - HTML格式（默认）
-* Text - 纯文本格式
-* Json - JSON格式
-* Markdown - Markdown格式
+* Html - HTML format (default)
+* Text - plain text format
+*Json - JSON format
+* Markdown - Markdown format
 
-## 更多信息
+## More information
 
-* [PushPlus官方文档](https://www.pushplus.plus/doc/guide/openApi.html)
-* [ABP框架](https://abp.io/)
+* [PushPlus official document](https://www.pushplus.plus/doc/guide/openApi.html)
+* [ABP Framework](https://abp.io/)

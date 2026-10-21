@@ -2,7 +2,7 @@
 
 Platform Management Database Migration Module, providing database migration functionality for the platform management system.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

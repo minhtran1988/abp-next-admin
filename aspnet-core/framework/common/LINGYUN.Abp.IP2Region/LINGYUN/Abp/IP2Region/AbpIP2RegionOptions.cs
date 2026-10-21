@@ -3,39 +3,39 @@ using IP2Region.Net.XDB;
 namespace LINGYUN.Abp.IP2Region;
 
 /// <summary>
-/// IP2Region 选项
+/// IP2Region options
 /// </summary>
 public class AbpIP2RegionOptions
 {
     /// <summary>
-    /// IPv4 数据库文件
+    /// IPv4 database file
     /// </summary>
     /// <remarks>
-    /// 支持物理文件路径与虚拟文件系统路径(默认使用内置的 ip2region_v4.xdb 资源):
-    /// * 传入物理文件路径时优先按物理文件加载, 便于替换/更新离线库;
-    /// * 否则从虚拟文件系统读取内置资源。
+    /// Supports physical file paths and virtual file system paths (the built-in ip2region_v4.xdb resource is used by default):
+    /// * When passing in the physical file path, priority is given to loading by physical file, which facilitates replacement/update of offline libraries;
+    /// * Otherwise read built-in resources from the virtual file system.
     /// </remarks>
     public string IPv4DatabaseFile { get; set; } = AbpIP2RegionModule.DefaultIPv4DatabaseFile;
 
     /// <summary>
-    /// IPv6 数据库文件
+    /// IPv6 database file
     /// </summary>
     /// <remarks>
-    /// 与 <see cref="IPv4DatabaseFile"/> 一致(物理文件优先);
-    /// IPv6 离线库可选, 文件不存在时 IPv6 查询返回 null。
+    /// Consistent with <see cref="IPv4DatabaseFile"/> (physical files take precedence);
+    /// The IPv6 offline library is optional. When the file does not exist, the IPv6 query returns null.
     /// </remarks>
     public string IPv6DatabaseFile { get; set; } = AbpIP2RegionModule.DefaultIPv6DatabaseFile;
 
     /// <summary>
-    /// 缓存策略
+    /// Caching strategy
     /// </summary>
     /// <remarks>
-    /// 默认 <see cref="CachePolicy.Content"/>: 将离线库全部加载到内存后再查询, 是**并发安全**的策略
-    /// (IPv4 库约 10MB、IPv6 库约 35MB)。
+    /// Default <see cref="CachePolicy.Content"/>: Load all offline libraries into memory before querying, which is a **concurrency security** strategy
+    /// (IPv4 library is about 10MB, IPv6 library is about 35MB).
     /// 
-    /// <see cref="CachePolicy.File"/> 与 <see cref="CachePolicy.VectorIndex"/> 基于"共享数据流 + Seek"实现,
-    /// 而 <c>ISearcher</c> 注册为单例, 多线程并发查询会互相打断数据流定位,
-    /// 仅在能够保证串行查询(或自行保证线程安全)时使用。
+    /// <see cref="CachePolicy.File"/> and <see cref="CachePolicy.VectorIndex"/> are implemented based on "shared data flow + Seek",
+    /// And <c>ISearcher</c> is registered as a singleton, and multi-threaded concurrent queries will interrupt each other's data flow positioning.
+    /// Only use when serial query can be guaranteed (or thread safety can be guaranteed by yourself).
     /// </remarks>
     public CachePolicy CachePolicy { get; set; } = CachePolicy.Content;
 }

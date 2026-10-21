@@ -22,7 +22,7 @@ import AInputSearch from './AInputSearch';
 import AYearPicker from './AYearPicker';
 
 /**
- * 检查触发源是否属于目标节点
+ * Check whether the trigger source belongs to the target node
  */
 function getEventTargetNode(evnt: any, container: HTMLElement, className: string) {
   let targetElem;
@@ -44,7 +44,7 @@ function getEventTargetNode(evnt: any, container: HTMLElement, className: string
 }
 
 /**
- * 事件兼容性处理
+ *Event compatibility handling
  */
 function handleClearEvent(
   params:
@@ -55,13 +55,13 @@ function handleClearEvent(
   const { $event } = params;
   const bodyElem = document.body;
   if (
-    // 下拉框
+    // drop-down box
     getEventTargetNode($event, bodyElem, 'ant-select-dropdown').flag ||
-    // 级联
+    // cascade
     getEventTargetNode($event, bodyElem, 'ant-cascader-menus').flag ||
-    // 日期
+    // date
     getEventTargetNode($event, bodyElem, 'ant-calendar-picker-container').flag ||
-    // 时间选择
+    // time selection
     getEventTargetNode($event, bodyElem, 'ant-time-picker-panel').flag
   ) {
     return false;
@@ -69,7 +69,7 @@ function handleClearEvent(
 }
 
 /**
- * 基于 vxe-table 表格的适配插件，用于兼容 ant-design-vue 组件库
+ * Adaptation plug-in based on vxe-table table for compatibility with ant-design-vue component library
  */
 export const VXETablePluginAntd = {
   install(vxetablecore: VXETableCore) {

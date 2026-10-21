@@ -4,7 +4,7 @@ using LINGYUN.Abp.WeChat.Work.Messages.Models;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 文件消息载荷
+/// File message payload
 /// </summary>
 [NotificationChannelData(WeChatWorkWebhookNotificationProvider.ProviderName, Priority = 600)]
 public class WeChatWorkWebhookFileChannelData : WeChatWorkWebhookChannelData
@@ -12,7 +12,7 @@ public class WeChatWorkWebhookFileChannelData : WeChatWorkWebhookChannelData
     public override WeChatWorkWebhookMessageKind Kind => WeChatWorkWebhookMessageKind.File;
 
     /// <summary>
-    /// 文件消息体(素材 ID)
+    /// File message body (material ID)
     /// </summary>
     [NotificationChannelProperty(WeChatWorkWebhookNotificationDataKeys.File)]
     public virtual WebhookFileMessage? File { get; set; }

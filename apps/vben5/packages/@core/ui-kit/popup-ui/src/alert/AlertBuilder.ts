@@ -42,7 +42,7 @@ export function vbenAlert(
       if (isString(arg1)) {
         options.title = arg1;
       } else if (!isString(arg1)) {
-        // 如果第二个参数是对象，则合并到选项中
+        // If the second parameter is an object, merge it into the options
         Object.assign(options, arg1);
       }
     }
@@ -50,26 +50,26 @@ export function vbenAlert(
     if (arg2 && !isString(arg2)) {
       Object.assign(options, arg2);
     }
-    // 创建容器元素
+    // Create container element
     const container = document.createElement('div');
     document.body.append(container);
 
-    // 创建一个引用，用于在回调中访问实例
+    // Create a reference for accessing the instance in callbacks
     const alertRef = { container, instance: null as any };
 
     const props: AlertProps & Recordable<any> = {
       onClosed: (isConfirm: boolean) => {
-        // 移除组件实例以及创建的所有dom（恢复页面到打开前的状态）
-        // 从alerts数组中移除该实例
+        // Remove the component instance and all DOM created (restore the page to the state before opening)
+        // Remove the instance from the alerts array
         alerts.value = alerts.value.filter((item) => item !== alertRef);
 
-        // 从DOM中移除容器
+        // Remove the container from the DOM
         render(null, container);
         if (container.parentNode) {
           container.remove();
         }
 
-        // 解析 Promise，传递用户操作结果
+        // Parse Promise and pass user operation results
         if (isConfirm) {
           resolve();
         } else {
@@ -81,16 +81,16 @@ export function vbenAlert(
       title: options.title ?? $t.value('prompt'),
     };
 
-    // 创建Alert组件的VNode
+    // Create the VNode of the Alert component
     const vnode = h(Alert, props);
 
-    // 渲染组件到容器
+    // Render the component to the container
     render(vnode, container);
 
-    // 保存组件实例引用
+    // Save component instance reference
     alertRef.instance = vnode.component?.proxy as Component;
 
-    // 将实例和容器添加到alerts数组中
+    // Add the instance and container to the alerts array
     alerts.value.push(alertRef);
   });
 }
@@ -151,7 +151,7 @@ export async function vbenPrompt<T = any>(
   const modelPropName = _modelPropName || 'modelValue';
   const componentProps = { ..._componentProps };
 
-  // 每次渲染时都会重新计算的内容函数
+  // Content function that will be recalculated every time it is rendered
   const contentRenderer = () => {
     const currentProps = {
       ...componentProps,
@@ -161,18 +161,18 @@ export async function vbenPrompt<T = any>(
       },
     };
 
-    // 设置当前值
+    // Set the current value
 
-    // 设置更新处理函数
+    // Set update processing function
 
-    // 创建输入组件
+    // Create input component
     inputComponentRef.value = h(
       _component || Input,
       currentProps,
       componentSlots,
     );
 
-    // 返回包含静态内容和输入组件的数组
+    // Return an array containing static content and input components
     return h(
       'div',
       { class: 'flex flex-col gap-2' },
@@ -190,7 +190,7 @@ export async function vbenPrompt<T = any>(
         });
       }
     },
-    // 使用函数形式，每次渲染都会重新计算内容
+    // Using function form, the content will be recalculated for each rendering
     content: contentRenderer,
     contentMasking: true,
     async onOpened() {
@@ -236,7 +236,7 @@ export async function vbenPrompt<T = any>(
 
 export function clearAllAlerts() {
   alerts.value.forEach((alert) => {
-    // 从DOM中移除容器
+    // Remove the container from the DOM
     render(null, alert.container);
     if (alert.container.parentNode) {
       alert.container.remove();

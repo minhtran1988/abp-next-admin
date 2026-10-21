@@ -1,24 +1,24 @@
 /**
- * @zh_CN 栈数据结构
+ * @zh_CN stack data structure
  */
 export class Stack<T> {
   /**
-   * @zh_CN 栈内元素数量
+   * @zh_CN Number of elements in the stack
    */
   get size() {
     return this.items.length;
   }
   /**
-   * @zh_CN 是否去重
+   * @zh_CN Whether to remove duplicates
    */
   private readonly dedup: boolean;
   /**
-   * @zh_CN 栈内元素
+   * @zh_CN stack elements
    */
   private items: T[] = [];
 
   /**
-   * @zh_CN 栈的最大容量
+   * @zh_CN The maximum capacity of the stack
    */
   private readonly maxSize?: number;
 
@@ -28,35 +28,35 @@ export class Stack<T> {
   }
 
   /**
-   * @zh_CN 清空栈内元素
+   * @zh_CN Clear the elements in the stack
    */
   clear() {
     this.items.length = 0;
   }
 
   /**
-   * @zh_CN 查看栈顶元素
-   * @returns 栈顶元素
+   * @zh_CN View the top element of the stack
+   * @returns top element of stack
    */
   peek(): T | undefined {
     return this.items[this.items.length - 1];
   }
 
   /**
-   * @zh_CN 出栈
-   * @returns 栈顶元素
+   * @zh_CN pop out of stack
+   * @returns top element of stack
    */
   pop(): T | undefined {
     return this.items.pop();
   }
 
   /**
-   * @zh_CN 入栈
-   * @param items 要入栈的元素
+   * @zh_CN push into stack
+   * @param items Elements to be pushed onto the stack
    */
   push(...items: T[]) {
     items.forEach((item) => {
-      // 去重
+      // Remove duplicates
       if (this.dedup) {
         const index = this.items.indexOf(item);
         if (index !== -1) {
@@ -70,23 +70,23 @@ export class Stack<T> {
     });
   }
   /**
-   * @zh_CN 移除栈内元素
-   * @param itemList 要移除的元素列表
+   * @zh_CN Remove elements from the stack
+   * @param itemList The list of elements to be removed
    */
   remove(...itemList: T[]) {
     this.items = this.items.filter((i) => !itemList.includes(i));
   }
   /**
-   * @zh_CN 保留栈内元素
-   * @param itemList 要保留的元素列表
+   * @zh_CN retain elements in the stack
+   * @param itemList The list of elements to retain
    */
   retain(itemList: T[]) {
     this.items = this.items.filter((i) => itemList.includes(i));
   }
 
   /**
-   * @zh_CN 转换为数组
-   * @returns 栈内元素数组
+   * @zh_CN Convert to array
+   * @returns array of elements in the stack
    */
   toArray(): T[] {
     return [...this.items];
@@ -94,10 +94,10 @@ export class Stack<T> {
 }
 
 /**
- * @zh_CN 创建一个栈实例
- * @param dedup 是否去重
- * @param maxSize 栈的最大容量
- * @returns 栈实例
+ * @zh_CN Create a stack instance
+ * @param dedup whether to remove duplicates
+ * @param maxSize the maximum capacity of the stack
+ * @returns stack instance
  */
 export const createStack = <T>(dedup = true, maxSize?: number) =>
   new Stack<T>(dedup, maxSize);

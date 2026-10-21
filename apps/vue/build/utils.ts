@@ -46,7 +46,7 @@ export function wrapperEnv(envConf: Recordable): ViteEnv {
 }
 
 /**
- * 获取当前环境下生效的配置文件名
+ * Get the configuration file name effective in the current environment
  */
 function getConfFiles() {
   const script = process.env.npm_lifecycle_script;

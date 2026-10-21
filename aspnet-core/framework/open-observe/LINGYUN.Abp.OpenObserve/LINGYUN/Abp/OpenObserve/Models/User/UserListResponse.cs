@@ -5,27 +5,27 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.User;
 
 /// <summary>
-/// 用户列表响应
+/// User list response
 /// </summary>
 /// <remarks>
-/// 实测响应为 {"data":[...]}, 文档示例为 {"list":[...]}, 两者都做兼容
+/// The measured response is {"data":[...]}, the document example is {"list":[...]}, both are compatible.
 /// </remarks>
 public class UserListResponse
 {
     /// <summary>
-    /// 用户列表
+    /// User list
     /// </summary>
     [JsonPropertyName("data")]
     public UserInfo[]? Data { get; set; }
 
     /// <summary>
-    /// 用户列表
+    /// User list
     /// </summary>
     [JsonPropertyName("list")]
     public UserInfo[]? List { get; set; }
 
     /// <summary>
-    /// 用户列表
+    /// User list
     /// </summary>
     [JsonIgnore]
     public UserInfo[] Users => Data ?? List ?? [];

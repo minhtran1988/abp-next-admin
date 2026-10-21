@@ -67,9 +67,9 @@ async function onSendCode() {
   });
 }
 /**
- * 异步处理登录操作
+ * Asynchronous processing of login operations
  * Asynchronously handle the login process
- * @param values 登录表单数据
+ * @param values login form data
  */
 async function handleLogin(values: Recordable<any>) {
   try {

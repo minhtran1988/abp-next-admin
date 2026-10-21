@@ -1,6 +1,6 @@
 # LINGYUN.Abp.AuditLogging.Elasticsearch
 
-[简体中文](./README.md) | English
+[Simplified Chinese](./README.md) | English
 
 Elasticsearch implementation for the audit logging module.
 

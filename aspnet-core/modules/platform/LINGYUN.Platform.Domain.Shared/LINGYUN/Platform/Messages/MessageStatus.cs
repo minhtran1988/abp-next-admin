@@ -2,15 +2,15 @@
 public enum MessageStatus
 {
     /// <summary>
-    /// 未发送
+    /// Not sent
     /// </summary>
     Pending = -1,
     /// <summary>
-    /// 已发送
+    /// Sent
     /// </summary>
     Sent = 0,
     /// <summary>
-    /// 发送失败
+    /// Sending failed
     /// </summary>
     Failed = 10
 }

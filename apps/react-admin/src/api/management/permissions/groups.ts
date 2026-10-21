@@ -10,26 +10,26 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 删除权限定义
- * @param name 权限名称
+ * Delete permission definition
+ * @param name permission name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/permission-management/definitions/groups/${name}`);
 }
 
 /**
- * 查询权限定义
- * @param name 权限名称
- * @returns 权限定义数据传输对象
+ * Query permission definition
+ * @param name permission name
+ * @returns permission definition data transfer object
  */
 export function getApi(name: string): Promise<PermissionGroupDefinitionDto> {
 	return requestClient.get<PermissionGroupDefinitionDto>(`/api/permission-management/definitions/groups/${name}`);
 }
 
 /**
- * 查询权限定义列表
- * @param input 权限过滤条件
- * @returns 权限定义数据传输对象列表
+ * Query permission definition list
+ * @param input permission filter conditions
+ * @returns Permission definition data transfer object list
  */
 export function getListApi(
 	input?: PermissionGroupDefinitionGetListInput,
@@ -43,19 +43,19 @@ export function getListApi(
 }
 
 /**
- * 创建权限定义
- * @param input 权限定义参数
- * @returns 权限定义数据传输对象
+ * Create permission definition
+ * @param input permission definition parameters
+ * @returns permission definition data transfer object
  */
 export function createApi(input: PermissionGroupDefinitionCreateDto): Promise<PermissionGroupDefinitionDto> {
 	return requestClient.post<PermissionGroupDefinitionDto>("/api/permission-management/definitions/groups", input);
 }
 
 /**
- * 更新权限定义
- * @param name 权限名称
- * @param input 权限定义参数
- * @returns 权限定义数据传输对象
+ * Update permission definitions
+ * @param name permission name
+ * @param input permission definition parameters
+ * @returns permission definition data transfer object
  */
 export function updateApi(
 	name: string,

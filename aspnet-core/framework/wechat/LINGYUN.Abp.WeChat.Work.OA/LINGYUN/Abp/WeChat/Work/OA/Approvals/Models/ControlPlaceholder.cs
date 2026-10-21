@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 控件说明
+/// Control description
 /// </summary>
 public class ControlPlaceholder
 {
     /// <summary>
-    /// 控件说明。需满足以下条件：长度不得超过80个字符。
+    /// Control description. The following conditions must be met: the length must not exceed 80 characters.
     /// </summary>
     [NotNull]
     [StringLength(80)]
@@ -18,7 +18,7 @@ public class ControlPlaceholder
     [JsonPropertyName("text")]
     public string Text { get; set; } = default!;
     /// <summary>
-    /// 显示语言，中文：zh_CN（注意不是zh-CN）；若text填写，则该项为必填
+    /// Display language, Chinese: zh_CN (note not zh-CN); if text is filled in, this item is required
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]

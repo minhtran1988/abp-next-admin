@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.Location.Tencent.Response;
 public class TencentIPGeocodeResponse : TencentLocationResponse
 {
     /// <summary>
-    /// IP定位结果
+    /// IP positioning results
     /// </summary>
     [JsonProperty("result")]
     public TencentIPGeocode Result { get; set; } = new TencentIPGeocode();

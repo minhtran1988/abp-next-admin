@@ -1,14 +1,14 @@
 # LINGYUN.Abp.Exporter.MiniSoftware
 
-数据导出接口的 [MiniExcel](https://github.com/mini-software/MiniExcel) 实现
+[MiniExcel](https://github.com/mini-software/MiniExcel) implementation of data export interface
 
-MiniExcel简单、高效避免OOM的.NET处理Excel查、写、填充数据工具。
+MiniExcel is a simple and efficient .NET tool for Excel query, writing and filling data that avoids OOM.
 
-目前主流框架大多需要将数据全载入到内存方便操作，但这会导致内存消耗问题，MiniExcel 尝试以 Stream 角度写底层算法逻辑，能让原本1000多MB占用降低到几MB，避免内存不够情况。
+Most of the current mainstream frameworks need to load all the data into memory for easy operation, but this will lead to memory consumption problems. MiniExcel tries to write the underlying algorithm logic from a Stream perspective, which can reduce the original 1,000 MB usage to a few MB and avoid insufficient memory.
 
-详情请参考 [MiniExcel 文档](https://github.com/mini-software/MiniExcel/blob/master/README.md)
+For details, please refer to [MiniExcel documentation](https://github.com/mini-software/MiniExcel/blob/master/README.md)
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp
@@ -20,14 +20,14 @@ MiniExcel简单、高效避免OOM的.NET处理Excel查、写、填充数据工�
     {
         Configure<AbpExporterMiniExcelOptions>(options =>
         {
-            // 配置类型数据导出
+            // Configuration type data export
             options.MapExportSetting(typeof(DemoClass), config =>
             {
                 config.DynamicColumns = new[]
                 {
-                    // 忽略Name字段
+                    // Ignore the Name field
                     new DynamicExcelColumn(nameof(DemoClass.Name)){ Ignore = true },
-                    // 其他配置
+                    //Other configuration
                 };
             });
         });

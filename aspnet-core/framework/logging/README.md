@@ -1,45 +1,45 @@
-# LINGYUN.Abp 日志模块
+# LINGYUN.Abp log module
 
-## 模块概述
+## Module overview
 
-日志模块提供日志接入与检索能力: 基于 Serilog 的日志写入与属性增强, 以及从持久化设施中检索日志的
-`ILoggingProvider` 实现（通过 `ILoggingManager` 对外提供统一查询接口）。
+The log module provides log access and retrieval capabilities: Serilog-based log writing and attribute enhancement, as well as retrieval of logs from persistence facilities
+`ILoggingProvider` implementation (providing a unified query interface to the outside through `ILoggingManager`).
 
-## 模块列表
+## Module list
 
-| 模块 | 说明 | 文档 |
+| Module | Description | Documentation |
 | --- | --- | --- |
-| LINGYUN.Abp.Logging | 日志基础设施, 定义并实现 `ILoggingManager`, 实现日志信息查询 | [README](./LINGYUN.Abp.Logging/README.md) |
-| LINGYUN.Abp.Logging.Serilog.Elasticsearch | `ILoggingProvider` 的 Elasticsearch 实现 | [README](./LINGYUN.Abp.Logging.Serilog.Elasticsearch/README.md) |
-| LINGYUN.Abp.Logging.Serilog.OpenObserve | `ILoggingProvider` 的 OpenObserve 实现 | [README](./LINGYUN.Abp.Logging.Serilog.OpenObserve/README.md) |
-| LINGYUN.Abp.Serilog.Enrichers.Application | 为日志属性添加应用程序标识 | [README](./LINGYUN.Abp.Serilog.Enrichers.Application/README.md) |
-| LINGYUN.Abp.Serilog.Enrichers.UniqueId | 为日志属性添加唯一标识（雪花算法） | [README](./LINGYUN.Abp.Serilog.Enrichers.UniqueId/README.md) |
+| LINGYUN.Abp.Logging | Logging infrastructure, defines and implements `ILoggingManager`, and implements log information query | [README](./LINGYUN.Abp.Logging/README.md) |
+| LINGYUN.Abp.Logging.Serilog.Elasticsearch | Elasticsearch implementation of `ILoggingProvider` | [README](./LINGYUN.Abp.Logging.Serilog.Elasticsearch/README.md) |
+| LINGYUN.Abp.Logging.Serilog.OpenObserve | OpenObserve implementation of `ILoggingProvider` | [README](./LINGYUN.Abp.Logging.Serilog.OpenObserve/README.md) |
+| LINGYUN.Abp.Serilog.Enrichers.Application | Add application identification to log properties | [README](./LINGYUN.Abp.Serilog.Enrichers.Application/README.md) |
+| LINGYUN.Abp.Serilog.Enrichers.UniqueId | Add a unique identifier to the log attribute (snowflake algorithm) | [README](./LINGYUN.Abp.Serilog.Enrichers.UniqueId/README.md) |
 
-## 功能特性
+## Features
 
-### 核心功能
+### Core functions
 
-- 统一的日志查询接口 `ILoggingManager`, 以及可替换的 `ILoggingProvider` 抽象
-- 支持多种日志字段查询（时间戳、日志级别、消息等）
-- 支持异常信息记录和查询
-- 支持丰富的日志字段信息（机器名称、环境名称、应用名称、请求上下文等）
-- 支持分页查询和计数统计
+- Unified log query interface `ILoggingManager`, and replaceable `ILoggingProvider` abstraction
+- Supports multiple log field queries (timestamp, log level, message, etc.)
+-Support exception information recording and query
+- Supports rich log field information (machine name, environment name, application name, request context, etc.)
+- Support paging query and counting statistics
 
-### 存储支持
+### Storage support
 
-- Elasticsearch 实现（Serilog 写入 + `ILoggingProvider` 检索）
-- OpenObserve 实现（Serilog 写入 + `ILoggingProvider` 检索）
+- Elasticsearch implementation (Serilog writing + `ILoggingProvider` retrieval)
+- OpenObserve implementation (Serilog writing + `ILoggingProvider` retrieval)
 
-> 两种实现都通过 `Logging:Provider` 指定检索实现。
+> Both implementations specify the retrieval implementation via `Logging:Provider`.
 
-### 日志属性增强
+### Log attribute enhancement
 
-- 应用名称（`WithApplicationName`）
-- 唯一标识（`WithUniqueId`, 雪花算法）
+- Application name (`WithApplicationName`)
+- Unique identifier (`WithUniqueId`, snowflake algorithm)
 
-## 模块引用
+## Module reference
 
-### 核心模块
+### Core module
 
 ```csharp
 [DependsOn(typeof(AbpLoggingModule))]
@@ -49,7 +49,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### Elasticsearch 模块
+### Elasticsearch module
 
 ```csharp
 [DependsOn(typeof(AbpLoggingSerilogElasticsearchModule))]
@@ -59,7 +59,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### OpenObserve 模块
+### OpenObserve module
 
 ```csharp
 [DependsOn(typeof(AbpLoggingSerilogOpenObserveModule))]
@@ -69,7 +69,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### 应用名称增强器
+### Apply Name Enhancer
 
 ```csharp
 [DependsOn(typeof(AbpSerilogEnrichersApplicationModule))]
@@ -82,7 +82,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### 唯一标识增强器
+### Unique ID Enhancer
 
 ```csharp
 [DependsOn(typeof(AbpSerilogEnrichersUniqueIdModule))]
@@ -92,22 +92,22 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置选项
+## Configuration options
 
-### 日志基础配置
+### Log basic configuration
 
 ```json
 {
   "Logging": {
-    "MachineName": "你的机器名称",
-    "EnvironmentName": "环境名称"
+    "MachineName": "Your machine name",
+    "EnvironmentName": "Environment Name"
   }
 }
 ```
 
-### Elasticsearch 配置
+### Elasticsearch configuration
 
-* AbpLoggingSerilogElasticsearchOptions.IndexFormat  必须和 Serilog 配置项中的 IndexFormat 相同, 否则无法定位到正确的索引
+* AbpLoggingSerilogElasticsearchOptions.IndexFormat must be the same as IndexFormat in the Serilog configuration item, otherwise the correct index cannot be located
 
 ```json
 {
@@ -122,10 +122,10 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### OpenObserve 配置
+### OpenObserve configuration
 
-* AbpLoggingSerilogOpenObserveOptions.Stream  存储日志的 stream 名称
-* AbpLoggingSerilogOpenObserveOptions.Organization  存储日志的 organization 名称
+* AbpLoggingSerilogOpenObserveOptions.Stream is the stream name for storing logs.
+* AbpLoggingSerilogOpenObserveOptions.Organization The name of the organization where logs are stored
 
 ```json
 {
@@ -145,24 +145,24 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### 唯一标识配置
+### Unique identification configuration
 
-* AbpSerilogUniqueIdConsts.UniqueIdPropertyName  唯一标识字段的名称, 默认为 "UniqueId"
+* AbpSerilogUniqueIdConsts.UniqueIdPropertyName The name of the unique identification field, the default is "UniqueId"
 
 ```json
 {
   "UniqueId": {
     "Snowflake": {
-      "WorkerId": 1,        // 工作机器ID
-      "DatacenterId": 1,    // 数据中心ID
-      "Sequence": 0,        // 序列号
-      "BaseTime": "2020-01-01 00:00:00"  // 基准时间
+      "WorkerId": 1, // Worker machine ID
+      "DatacenterId": 1, // Data center ID
+      "Sequence": 0, // sequence number
+      "BaseTime": "2020-01-01 00:00:00" // Base time
     }
   }
 }
 ```
 
-### 日志属性增强（Serilog Enrich）
+### Log attribute enhancement (Serilog Enrich)
 
 ```json
 {
@@ -175,9 +175,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 注入 `ILoggingManager` 接口：
+1. Inject the `ILoggingManager` interface:
 
 ```csharp
 public class YourService
@@ -191,10 +191,10 @@ public class YourService
 }
 ```
 
-2. 查询日志：
+2. Query log:
 
 ```csharp
-// 获取日志列表
+// Get the log list
 var logs = await _loggingManager.GetListAsync(
     startTime: DateTime.Now.AddDays(-1),
     maxResultCount: 10,
@@ -204,65 +204,65 @@ var logs = await _loggingManager.GetListAsync(
     application: "YourApp"
 );
 
-// 获取日志总数
+// Get the total number of logs
 var count = await _loggingManager.GetCountAsync(
     startTime: DateTime.Now.AddDays(-1),
     level: LogLevel.Error
 );
 
-// 获取单条日志
+// Get a single log
 var log = await _loggingManager.GetAsync(id);
 ```
 
-### 支持的查询条件
+### Supported query conditions
 
-* 时间范围（startTime、endTime）
-* 日志级别（level）
-* 机器名称（machineName）
-* 环境名称（environment）
-* 应用名称（application）
-* 上下文（context）
-* 请求ID（requestId）
-* 请求路径（requestPath）
-* 关联ID（correlationId）
-* 进程ID（processId）
-* 线程ID（threadId）
-* 是否包含异常（hasException）
+* Time range (startTime, endTime)
+* Log level (level)
+* Machine name (machineName)
+* Environment name (environment)
+* Application name (application)
+* context
+* Request ID (requestId)
+* Request path (requestPath)
+* Correlation ID (correlationId)
+* Process ID (processId)
+* Thread ID (threadId)
+* Whether it contains exceptions (hasException)
 
-## 日志字段说明
+## Log field description
 
-* TimeStamp - 日志时间戳
-* Level - 日志级别
-* Message - 日志消息
-* Fields - 日志字段信息
-  * Id - 日志唯一标识
-  * MachineName - 机器名称
-  * Environment - 环境名称
-  * Application - 应用名称
-  * Context - 上下文
-  * ActionId - 操作ID
-  * ActionName - 操作名称
-  * RequestId - 请求ID
-  * RequestPath - 请求路径
-  * ConnectionId - 连接ID
-  * CorrelationId - 关联ID
-  * ClientId - 客户端ID
-  * UserId - 用户ID
-  * ProcessId - 进程ID
-  * ThreadId - 线程ID
-* Exceptions - 异常信息列表
+* TimeStamp - log timestamp
+* Level - log level
+* Message - log message
+* Fields - log field information
+  *Id - the unique identifier of the log
+  * MachineName - machine name
+  * Environment - environment name
+  *Application - application name
+  * Context - context
+  * ActionId - Action ID
+  * ActionName - action name
+  * RequestId - request ID
+  * RequestPath - request path
+  * ConnectionId - connection ID
+  * CorrelationId - Correlation ID
+  * ClientId - client ID
+  *UserId - User ID
+  * ProcessId - Process ID
+  * ThreadId - Thread ID
+* Exceptions - Exception information list
 
-## 特殊说明
+## Special instructions
 
-- Elasticsearch 实现: `IndexFormat` 必须与 Serilog 配置保持一致（默认 `logstash-{0:yyyy.MM.dd}`）;
-  支持多租户, 会根据当前租户ID过滤日志; 查询支持分页、排序与请求路径模糊匹配
-- OpenObserve 实现: 支持按 `Stream`/`Organization` 检索; 写入侧受服务端 `ZO_INGEST_ALLOWED_UPTO`
-  （默认 5 小时）限制; 存储为 append-only, 不支持按记录删除
-- 应用名称增强器: 应用名称为静态值, 一旦设置对该应用的所有日志条目生效; 仅当日志事件不存在该属性时才写入
-- 唯一标识增强器: 雪花算法生成的 ID 趋势递增但不保证严格递增; 工作机器ID与数据中心ID在集群中必须唯一;
-  基准时间设置后不可修改
+- Elasticsearch implementation: `IndexFormat` must be consistent with Serilog configuration (default `logstash-{0:yyyy.MM.dd}`);
+  Supports multi-tenancy, logs will be filtered based on the current tenant ID; query supports paging, sorting and request path fuzzy matching
+- OpenObserve implementation: supports retrieval by `Stream`/`Organization`; writes to the server side `ZO_INGEST_ALLOWED_UPTO`
+  (default 5 hours) limit; storage is append-only, deletion by record is not supported
+- Application name enhancer: The application name is a static value, once set it takes effect for all log entries of the application; it is only written if the attribute does not exist for the log event
+- Unique identification enhancer: The ID generated by the snowflake algorithm tends to increase but does not guarantee strict increment; the work machine ID and the data center ID must be unique in the cluster;
+  The base time cannot be modified after it is set.
 
-## 相关模块
+## Related modules
 
-* 审计日志的 OpenObserve 实现: [LINGYUN.Abp.AuditLogging.OpenObserve](../auditing/LINGYUN.Abp.AuditLogging.OpenObserve/README.md)
-* 审计日志的 Elasticsearch 实现: [LINGYUN.Abp.AuditLogging.Elasticsearch](../auditing/LINGYUN.Abp.AuditLogging.Elasticsearch/README.md)
+* OpenObserve implementation of audit log: [LINGYUN.Abp.AuditLogging.OpenObserve](../auditing/LINGYUN.Abp.AuditLogging.OpenObserve/README.md)
+* Elasticsearch implementation of audit log: [LINGYUN.Abp.AuditLogging.Elasticsearch](../auditing/LINGYUN.Abp.AuditLogging.Elasticsearch/README.md)

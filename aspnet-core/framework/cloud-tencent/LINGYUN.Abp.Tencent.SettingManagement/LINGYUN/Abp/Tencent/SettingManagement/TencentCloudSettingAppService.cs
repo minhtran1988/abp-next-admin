@@ -47,12 +47,12 @@ public class TencentCloudSettingAppService : ApplicationService, ITencentCloudSe
     {
         var settingGroups = new SettingGroupResult();
 
-        // 无权限返回空结果,直接报错的话,网关聚合会抛出异常
+        // Return an empty result without permission. If an error is reported directly, the gateway aggregation will throw an exception.
         if (await PermissionChecker.IsGrantedAsync(TencentCloudSettingPermissionNames.Settings))
         {
             var settingGroup = new SettingGroupDto(L["DisplayName:TenantCloud"], L["DisplayName:TenantCloud"]);
 
-            #region 基本设置
+            #region Basic settings
 
             var basicSetting = settingGroup.AddSetting(L["DisplayName:TenantCloud.BasicSetting"], L["Description:TenantCloud.BasicSetting"]);
 
@@ -84,7 +84,7 @@ public class TencentCloudSettingAppService : ApplicationService, ITencentCloudSe
 
             #endregion
 
-            #region 连接信息
+            #region connection information
 
             var connectionSetting = settingGroup.AddSetting(
                 L["DisplayName:TenantCloud.ConnectionSetting"], L["Description:TenantCloud.ConnectionSetting"]);
@@ -112,7 +112,7 @@ public class TencentCloudSettingAppService : ApplicationService, ITencentCloudSe
 
             #endregion
 
-            #region 短信设置
+            #region SMS settings
 
             if (await FeatureChecker.IsEnabledAsync(TencentCloudFeatures.Sms.Enable))
             {
@@ -142,7 +142,7 @@ public class TencentCloudSettingAppService : ApplicationService, ITencentCloudSe
 
             #endregion
 
-            #region QQ互联
+            #region QQ Internet
 
             var qqSetting = settingGroup.AddSetting(
                 L["DisplayName:TenantCloud.QQConnect"], L["Description:TenantCloud.QQConnect"]);
@@ -168,7 +168,7 @@ public class TencentCloudSettingAppService : ApplicationService, ITencentCloudSe
 
             #endregion
 
-            #region 验证码
+            #region verification code
 
             var captchaSetting = settingGroup.AddSetting(
                 L["Settings:TenantCloud.Captcha"], L["Settings:TenantCloud.Captcha"]);

@@ -26,8 +26,8 @@ export function setDefaultModalProps(props: Partial<ModalProps>) {
 export function useVbenModal<TParentModalProps extends ModalProps = ModalProps>(
   options: ModalApiOptions = {},
 ) {
-  // Modal一般会抽离出来，所以如果有传入 connectedComponent，则表示为外部调用，与内部组件进行连接
-  // 外部的Modal通过provide/inject传递api
+  // Modal is generally extracted, so if connectedComponent is passed in, it is represented as an external call to connect to the internal component.
+  // External Modal passes the API through provide/inject
 
   const { connectedComponent } = options;
   if (connectedComponent) {
@@ -37,8 +37,8 @@ export function useVbenModal<TParentModalProps extends ModalProps = ModalProps>(
       (props: TParentModalProps, { attrs, slots }) => {
         provide(USER_MODAL_INJECT_KEY, {
           extendApi(api: ExtendedModalApi) {
-            // 不能直接给 reactive 赋值，会丢失响应
-            // 不能用 Object.assign,会丢失 api 的原型函数
+            // You cannot directly assign a value to reactive, otherwise the response will be lost.
+            // Cannot use Object.assign, the prototype function of the api will be lost
             Object.setPrototypeOf(extendedApi, api);
           },
           consumed: false,
@@ -75,7 +75,7 @@ export function useVbenModal<TParentModalProps extends ModalProps = ModalProps>(
   }
 
   let injectData = inject<any>(USER_MODAL_INJECT_KEY, {});
-  // 这个数据已经被使用了，说明这个弹窗是嵌套的弹窗，不应该merge上层的配置
+  // This data has been used, indicating that this pop-up window is a nested pop-up window and the upper-layer configuration should not be merged.
   if (injectData.consumed) {
     injectData = {};
   } else {
@@ -150,7 +150,7 @@ async function checkProps(api: ExtendedModalApi, attrs: Record<string, any>) {
 
   for (const attr of Object.keys(attrs)) {
     if (stateKeys.has(attr) && !['class'].includes(attr)) {
-      // connectedComponent存在时，不要传入Modal的props，会造成复杂度提升，如果你需要修改Modal的props，请使用 useModal 或者api
+      // When connectedComponent exists, do not pass in Modal props, which will increase complexity. If you need to modify Modal props, please use useModal or api
       console.warn(
         `[Vben Modal]: When 'connectedComponent' exists, do not set props or slots '${attr}', which will increase complexity. If you need to modify the props of Modal, please use useVbenModal or api.`,
       );

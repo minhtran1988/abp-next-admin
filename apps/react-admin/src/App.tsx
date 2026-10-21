@@ -24,7 +24,7 @@ function App() {
 		async function initializeI18n() {
 			await setLocale(defaultLng as LocalEnum, i18n);
 		}
-		initializeI18n(); //触发abp语言包加载
+		initializeI18n(); //Trigger abp language package loading
 	}, [defaultLng, i18n, setLocale]);
 	return (
 		<ThemeProvider adapters={[AntdAdapter]}>

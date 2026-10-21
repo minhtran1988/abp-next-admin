@@ -92,7 +92,7 @@ public class ChatAppService : ApplicationService, IChatAppService
 
     public async virtual Task<ChatMessageSendResultDto> SendMessageAsync(ChatMessage input)
     {
-        // TODO：向其他租户发送消息?
+        // TODO: Send messages to other tenants?
         input.TenantId ??= CurrentTenant.Id;
 
         var messageId = await MessageSender.SendMessageAsync(input);

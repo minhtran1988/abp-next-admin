@@ -1,8 +1,8 @@
 $(function () {
-    // 初始化选择的 Scope
+    // Initialize the selected Scope
     updateSelectedScopes();
 
-    // 监听 Scope 选择变化
+    // Monitor Scope selection changes
     $('.scope-checkbox').change(function () {
         updateSelectedScopes();
     });
@@ -10,12 +10,12 @@ $(function () {
     function updateSelectedScopes() {
         var selected = [];
 
-        // 获取必需的 Scope
+        // Get the required Scope
         $('input[name="selectedScopeValues"]').each(function () {
             selected.push($(this).val());
         });
 
-        // 获取用户选择的 Scope
+        // Get the Scope selected by the user
         $('.scope-checkbox:checked').each(function () {
             var value = $(this).data('scope-value');
             if (!selected.includes(value)) {
@@ -23,7 +23,7 @@ $(function () {
             }
         });
 
-        // 更新隐藏字段
+        // Update hidden fields
         $('#selected_scopes').val(selected.join(' '));
     }
 });

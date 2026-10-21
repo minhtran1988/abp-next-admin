@@ -51,11 +51,11 @@ namespace LINGYUN.Abp.MicroService.AuthServer;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpAccountApplicationModule),
     typeof(AbpAccountHttpApiModule),
-    // 使用 LazyCaptcha 验证码组件
+    // Use LazyCaptcha verification code component
     typeof(AbpAccountWebLazyCaptchaModule),
-    // 使用 腾讯云验证码组件, 需配置好腾讯云相关参数
+    // To use the Tencent Cloud verification code component, Tencent Cloud related parameters need to be configured.
     typeof(AbpAccountWebTencentCaptchaModule),
-    // 使用 阿里云验证码组件, 需配置好阿里云相关参数
+    // To use the Alibaba Cloud verification code component, you need to configure Alibaba Cloud related parameters
     typeof(AbpAccountWebAliyunCaptchaModule),
     typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpAccountWebOAuthModule),
@@ -77,7 +77,7 @@ namespace LINGYUN.Abp.MicroService.AuthServer;
     typeof(AbpPermissionManagementDomainIdentityModule),
     typeof(AuthServerMigrationsEntityFrameworkCoreModule),
     typeof(AbpDataDbMigratorModule),
-    typeof(AbpAuditLoggingElasticsearchModule), // 放在 AbpIdentity 模块之后,避免被覆盖,
+    typeof(AbpAuditLoggingElasticsearchModule), // Place it after the AbpIdentity module to avoid being overwritten.
     typeof(AbpAuditLoggingIPLocationModule),
     typeof(AbpIP2RegionModule),
     typeof(AbpLocalizationCultureMapModule),

@@ -3,15 +3,15 @@
 public enum PushPlusUserSendLimit
 {
     /// <summary>
-    /// 未限制
+    /// Unlimited
     /// </summary>
     None = 1,
     /// <summary>
-    /// 短期限制
+    /// Short term limit
     /// </summary>
     Short = 2,
     /// <summary>
-    /// 永久限制
+    /// Permanent restrictions
     /// </summary>
     Permanent = 3,
 }

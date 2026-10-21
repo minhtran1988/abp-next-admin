@@ -7,7 +7,7 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace LINGYUN.Abp.AspNetCore.Mvc.Validation
 {
-    [Obsolete("用于测试模型绑定与验证相关的类,无需引用")]
+    [Obsolete("Classes used to test model binding and validation, no need to quote")]
     [DependsOn(
         typeof(AbpAspNetCoreMvcModule))]
     public class AbpAspNetCoreMvcValidationModule : AbpModule

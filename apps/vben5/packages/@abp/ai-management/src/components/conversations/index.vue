@@ -205,12 +205,12 @@ const conversationsMenuConfig: NonNullable<ConversationsProps['menu']> = (
 });
 const conversations = ref<ConversationDto[]>([]);
 const conversationsCount = ref(0);
-// 定义分组优先级
+// Define grouping priority
 const priorityMap: Record<string, number> = {
-  今天: 1,
-  昨天: 2,
-  '7天内': 3,
-  '30天内': 4,
+  Today: 1,
+  Yesterday: 2,
+  'Within 7 days': 3,
+  'Within 30 days': 4,
 };
 
 const updateConversationFn = useInterval(10_000, {
@@ -250,20 +250,20 @@ const conversationsItems = computed<Conversation[]>(() => {
       key: item.id,
     };
     if (targetDate.format('YYYY-MM-DD') === nowTime.format('YYYY-MM-DD')) {
-      conversation.group = '今天';
+      conversation.group = 'Today';
     } else if (
       targetDate.format('YYYY-MM-DD') ===
       nowTime.subtract(1, 'day').format('YYYY-MM-DD')
     ) {
-      conversation.group = '昨天';
+      conversation.group = 'Yesterday';
     } else {
       const diffDays = nowTime
         .startOf('day')
         .diff(targetDate.startOf('day'), 'day');
       if (diffDays <= 7) {
-        conversation.group = '7天内';
+        conversation.group = 'Within 7 days';
       } else if (diffDays <= 30) {
-        conversation.group = '30天内';
+        conversation.group = 'Within 30 days';
       } else {
         conversation.group = targetDate.format('YYYY-MM');
       }
@@ -329,7 +329,7 @@ const searchWorkspaces = useDebounceFn((filter?: string) => {
 
 const [NewConversationForm, conversationFormApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
@@ -482,7 +482,7 @@ const onConversationClick: ConversationsProps['onActiveChange'] = async (
   }
 };
 
-// 附件变更
+// Attachment changes
 // const handleFileChange: AttachmentsProps['onChange'] = (info) =>
 //   (attachedFiles.value = info.fileList);
 
@@ -558,7 +558,7 @@ onMounted(onInit);
         <span :style="styles['logo-span']">{{ preferences.app.name }}</span>
       </div>
 
-      <!-- 🌟 添加会话 -->
+      <!-- 🌟 Add conversation -->
       <Button
         v-access:code="[ConversationPermissions.Create]"
         type="link"
@@ -570,7 +570,7 @@ onMounted(onInit);
         {{ $t('AIManagement.Conversations:New') }}
       </Button>
 
-      <!-- 🌟 会话管理 -->
+      <!-- 🌟 Session Management -->
       <Conversations
         :menu="conversationsMenuConfig"
         :groupable="conversationsGroupable"
@@ -582,7 +582,7 @@ onMounted(onInit);
     </div>
 
     <div :style="styles.chat">
-      <!-- 🌟 消息列表 -->
+      <!-- 🌟 Message list -->
       <Bubble.List
         ref="bubbleRef"
         :items="bubbleItems"
@@ -590,7 +590,7 @@ onMounted(onInit);
         :style="styles.messages"
       />
 
-      <!-- 🌟 输入框 -->
+      <!-- 🌟 Input box -->
       <Sender
         :value="content"
         :style="styles.sender"

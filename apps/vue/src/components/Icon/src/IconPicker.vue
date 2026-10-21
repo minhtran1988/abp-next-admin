@@ -81,7 +81,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import svgIcons from 'virtual:svg-icons-names';
 
-  // 没有使用别名引入，是因为WebStorm当前版本还不能正确识别，会报unused警告
+  // No alias is used to introduce it because the current version of WebStorm cannot correctly identify it and an unused warning will be reported.
   const AInput = Input;
   const APopover = Popover;
   const APagination = Pagination;
@@ -109,7 +109,7 @@
     pageSize: propTypes.number.def(140),
     copy: propTypes.bool.def(false),
     mode: propTypes.oneOf<('svg' | 'iconify')[]>(['svg', 'iconify']).def('iconify'),
-    // 仅在datas中定义的图标
+    // Only icons defined in datas
     onlyDefineIcons: propTypes.bool.def(true),
   });
 

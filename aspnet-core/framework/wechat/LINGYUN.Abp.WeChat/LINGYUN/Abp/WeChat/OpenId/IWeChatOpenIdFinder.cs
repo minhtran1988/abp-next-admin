@@ -6,11 +6,11 @@ public interface IWeChatOpenIdFinder
 {
     Task<WeChatOpenId?> FindAsync(string code, string appId, string appSecret);
     /// <summary>
-    /// 获取当前登录用户OpenId
+    /// Get the current logged in user OpenId
     /// </summary>
-    /// <param name="appId">应用标识</param>
+    /// <param name="appId">Application ID</param>
     /// <returns></returns>
-    /// <exception cref="Volo.Abp.Authorization.AbpAuthorizationException">用户未登录时</exception>
-    /// <exception cref="Volo.Abp.AbpException">微信sessionKey过期时</exception>
+    /// <exception cref="Volo.Abp.Authorization.AbpAuthorizationException">When the user is not logged in</exception>
+    /// <exception cref="Volo.Abp.AbpException">When WeChat sessionKey expires</exception>
     Task<WeChatOpenId?> FindAsync(string appId);
 }

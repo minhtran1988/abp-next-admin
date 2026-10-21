@@ -5,29 +5,29 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Request;
 /// <summary>
-/// 获取规则组管理范围请求参数
+/// Get the rule group management scope request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E8%8E%B7%E5%8F%96%E8%A7%84%E5%88%99%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94883#%E8%8E%B7%E5%8F%96%E8%A7%84%E5%88%99%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4" />
 /// </remarks>
 public class WeChatWorkGetCustomerStrategyRangeRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 规则组id
+    /// Rule group id
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_id")]
     [JsonPropertyName("strategy_id")]
     public int StrategyId { get; }
     /// <summary>
-    /// 分页查询游标，首次调用可不填
+    /// Paging query cursor, you don’t need to fill it in for the first time.
     /// </summary>
     [CanBeNull]
     [JsonProperty("cursor")]
     [JsonPropertyName("cursor")]
     public string? Cursor { get; }
     /// <summary>
-    /// 每个分页的成员/部门节点数，默认为1000，最大为1000
+    /// The number of member/department nodes per page, the default is 1000, the maximum is 1000
     /// </summary>
     [CanBeNull]
     [JsonProperty("limit")]

@@ -13,10 +13,10 @@ using Volo.Abp.Specifications;
 
 namespace PackageName.CompanyName.ProjectName.EntityFrameworkCore;
 /// <summary>
-/// 实现基本接口
+/// Implement the basic interface
 /// </summary>
-/// <typeparam name="TEntity">实体类型</typeparam>
-/// <typeparam name="TKey">实体主键类型</typeparam>
+/// <typeparam name="TEntity">Entity type</typeparam>
+/// <typeparam name="TKey">Entity primary key type</typeparam>
 public abstract class EfCoreProjectNameRepository<TEntity, TKey> :
     EfCoreDataProtectionRepository<IProjectNameDbContext, TEntity, TKey>,
     IProjectNameBasicRepository<TEntity, TKey>

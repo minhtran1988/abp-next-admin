@@ -1,16 +1,16 @@
 # LINGYUN.Abp.WeChat.Official.Senparc
 
-微信公众号Senparc SDK集成模块，提供与Senparc.Weixin SDK的集成支持。
+WeChat public account Senparc SDK integration module provides integration support with Senparc.Weixin SDK.
 
-## 功能特性
+## Features
 
-* Senparc.Weixin SDK集成
-* 兼容Senparc消息处理机制
-* 兼容Senparc事件处理机制
-* 支持Senparc配置体系
-* 支持Senparc缓存策略
+* Senparc.Weixin SDK integration
+* Compatible with Senparc message processing mechanism
+* Compatible with Senparc event processing mechanism
+* Support Senparc configuration system
+* Support Senparc caching strategy
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatOfficialSenparcModule))]
@@ -20,17 +20,17 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Official": {
       "Senparc": {
-        "IsEnabled": true,           // 是否启用Senparc集成
+        "IsEnabled": true, // Whether to enable Senparc integration
         "Cache": {
-          "Type": "Local",          // 缓存类型：Local/Redis/Memcached
-          "Configuration": ""        // 缓存配置字符串
+          "Type": "Local", // Cache type: Local/Redis/Memcached
+          "Configuration": "" // Cache configuration string
         }
       }
     }
@@ -38,17 +38,17 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## Senparc兼容性
+## Senparc Compatibility
 
-本模块与Senparc.Weixin SDK保持兼容，可以：
+This module is compatible with Senparc.Weixin SDK and can:
 
-* 使用Senparc的消息处理器
-* 使用Senparc的事件处理器
-* 使用Senparc的API调用方式
-* 使用Senparc的缓存机制
-* 使用Senparc的扩展功能
+* Use Senparc's message processor
+* Use Senparc's event handler
+* Use Senparc’s API calling method
+* Use Senparc's caching mechanism
+* Use Senparc's extended functionality
 
-## 更多文档
+## More documentation
 
-* [微信公众号Senparc集成模块文档](README.EN.md)
-* [Senparc.Weixin SDK文档](https://github.com/JeffreySu/WeiXinMPSDK)
+* [WeChat public account Senparc integration module document](README.EN.md)
+* [Senparc.Weixin SDK Documentation](https://github.com/JeffreySu/WeiXinMPSDK)

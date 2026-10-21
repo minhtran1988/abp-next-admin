@@ -27,14 +27,14 @@ const props = defineProps<{
 
 const { getChangeTypeColor, getChangeTypeValue } = useAuditlogs();
 
-/** 实体变更表格分页配置 */
+/** Entity change table paging configuration */
 const pagerConfig = reactive<VxeGridPropTypes.PagerConfig>({
   currentPage: 1,
   pageSize: 10,
   pageSizes: [10, 25, 50, 100],
   total: 0,
 });
-/** 实体变更表格数据列配置 */
+/** Entity change table data column configuration */
 const columnsConfig = reactive<VxeGridPropTypes.Columns<EntityChangeDto>>([
   {
     align: 'left',
@@ -91,7 +91,7 @@ const columnsConfig = reactive<VxeGridPropTypes.Columns<EntityChangeDto>>([
     width: 280,
   },
 ]);
-/** 属性变更表格数据列配置 */
+/** Attribute change table data column configuration */
 const subColumnsConfig = reactive<VxeGridPropTypes.Columns<PropertyChange>>([
   {
     align: 'left',
@@ -124,14 +124,14 @@ const subColumnsConfig = reactive<VxeGridPropTypes.Columns<PropertyChange>>([
     width: 220,
   },
 ]);
-/** 实体变更表格数据源(计算分页) */
+/** Entity change table data source (calculated paging) */
 const getEntityChanges = computed(() => {
   const entityChanges = props.data ?? [];
   const current = pagerConfig.currentPage ?? 1;
   const pageSize = pagerConfig.pageSize ?? 10;
   return entityChanges.slice((current - 1) * pageSize, pageSize * current);
 });
-/** 页码变更事件 */
+/** Page number change event */
 function onPageChange(
   params: VxeGridDefines.PageChangeEventParams<EntityChangeDto>,
 ) {

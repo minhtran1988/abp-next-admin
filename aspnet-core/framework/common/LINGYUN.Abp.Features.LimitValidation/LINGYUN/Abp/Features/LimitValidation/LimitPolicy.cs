@@ -3,27 +3,27 @@
 public enum LimitPolicy : byte
 {
     /// <summary>
-    /// 按分钟限制
+    /// Limit by minutes
     /// </summary>
     Minute = 0,
     /// <summary>
-    /// 按小时限制
+    /// Limit by hour
     /// </summary>
     Hours = 10,
     /// <summary>
-    /// 按天限制
+    /// Limited by day
     /// </summary>
     Days = 20,
     /// <summary>
-    /// 按周限制
+    /// Limited by week
     /// </summary>
     Weeks = 30,
     /// <summary>
-    /// 按月限制
+    /// Monthly limit
     /// </summary>
     Month = 40,
     /// <summary>
-    /// 按年限制
+    /// Limited by year
     /// </summary>
     Years = 50
 }

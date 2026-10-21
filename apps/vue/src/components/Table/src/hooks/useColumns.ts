@@ -264,7 +264,7 @@ export function useColumns(
     cacheColumns = columns.filter((item) => !item.flag);
   }
   /**
-   * 拖拽列宽修改列的宽度
+   * Drag the column width to modify the width of the column
    */
   function setColumnWidth(w: number, col: ColumnType<BasicColumn>) {
     col.width = w;
@@ -297,11 +297,11 @@ function sortFixedColumn(columns: BasicColumn[]) {
     }
     defColumns.push(column);
   }
-  // 筛选逻辑
+  // Filter logic
   const filterFunc = (item) => !item.defaultHidden;
-  // 筛选首层显示列（1级表头）
+  // Filter the first-level display columns (level 1 header)
   const viewColumns = [...fixedLeftColumns, ...defColumns, ...fixedRightColumns].filter(filterFunc);
-  // 筛选>=2级表头（深度优先）
+  // Filter >= level 2 header (depth first)
   const list = [...viewColumns];
   while (list.length) {
     const current = list[0];

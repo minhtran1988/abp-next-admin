@@ -2,7 +2,7 @@
 
 Webhook management application service module that provides application layer implementation for webhook management.
 
-[简体中文](README.md)
+[Simplified Chinese](README.md)
 
 ## Features
 

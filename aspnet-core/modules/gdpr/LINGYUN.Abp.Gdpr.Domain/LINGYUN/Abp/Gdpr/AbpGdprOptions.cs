@@ -3,30 +3,30 @@ using System.Collections.Generic;
 
 namespace LINGYUN.Abp.Gdpr;
 /// <summary>
-/// AbpGdpr选项
+/// AbpGdpr options
 /// See: https://abp.io/docs/latest/modules/gdpr#abpgdproptions
 /// </summary>
 public class AbpGdprOptions
 {
     /// <summary>
-    /// 用于指示允许的请求时间间隔.<br />
-    /// 如果要增加或减少个人数据请求间隔,可以配置此属性.<br />
-    /// 默认情况下, 用户可以每天请求一次其个人数据<br />
-    /// 默认值: 1 天
+    /// Used to indicate the allowed request interval.<br />
+    /// If you want to increase or decrease the personal data request interval, you can configure this property.<br />
+    /// By default, users can request their personal data once per day<br />
+    /// Default: 1 day
     /// </summary>
     public TimeSpan RequestTimeInterval { get; set; }
     /// <summary>
-    /// 由于 GDPR 模块旨在支持分布式方案, 因此收集和准备个人数据应该需要一段时间.
-    /// 如果要根据应用程序的大小增加或减少数据准备时间, 可以配置此属性.<br />
-    /// 默认值: 60 分钟
+    /// Since the GDPR module is designed to support distributed scenarios, collecting and preparing personal data should take some time.
+    /// If you want to increase or decrease data preparation time based on the size of your application, you can configure this property.<br />
+    /// Default: 60 minutes
     /// </summary>
     public TimeSpan MinutesForDataPreparation { get; set; }
     /// <summary>
-    /// 用户数据提供者列表
+    /// User data provider list
     /// </summary>
     public IList<IGdprUserDataProvider> GdprUserDataProviders { get; }
     /// <summary>
-    /// 用户账户提供者列表
+    /// User account provider list
     /// </summary>
     public IList<IGdprUserAccountProvider> GdprUserAccountProviders { get; }
     public AbpGdprOptions()

@@ -1,30 +1,30 @@
 # LINGYUN.Abp.Localization.Xml
 
-## 模块说明
+## Module description
 
-本地化组件的XML文档集成模块，提供基于XML文件的本地化资源支持。内置了物理文件提供程序（PhysicalFileProvider）和虚拟文件提供程序（VirtualFileProvider）的实现。
+The XML document integration module of the localization component provides localization resource support based on XML files. Built-in implementation of the physical file provider (PhysicalFileProvider) and virtual file provider (VirtualFileProvider).
 
-## 功能特性
+## Features
 
-* 支持从XML文件读取本地化资源
-* 支持虚拟文件系统中的XML文件
-* 支持物理文件系统中的XML文件
-* 支持XML文件的序列化和反序列化
-* 支持UTF-8编码的XML文件
+* Support reading localized resources from XML files
+* Support XML files in virtual file system
+* Support XML files in physical file system
+* Supports serialization and deserialization of XML files
+* Support UTF-8 encoded XML files
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Localization.Xml
 ```
 
-## 基础模块
+## Basic module
 
 * Volo.Abp.Localization
 
-## 使用方法
+## How to use
 
-1. 添加模块依赖：
+1. Add module dependencies:
 
 ```csharp
 [DependsOn(
@@ -42,61 +42,61 @@ public class YouProjectModule : AbpModule
         {
             options.Resources
                 .Add<YouResource>("en")
-                // 当前项目中的虚拟文件系统目录
-                // 详情见: https://docs.abp.io/zh-Hans/abp/latest/Virtual-File-System
+                //The virtual file system directory in the current project
+                // For details, see: https://docs.abp.io/zh-Hans/abp/latest/Virtual-File-System
                 .AddVirtualXml("/LINGYUN/Abp/Localization/Xml/Resources")
-                // 一般配置在宿主项目中, 写入宿主项目中存储xml文件的绝对路径
-                // 详情见: https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider
+                // Generally configured in the host project, write the absolute path to the xml file stored in the host project
+                // For details, see: https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider
                 .AddPhysicalXml(Path.Combine(Directory.GetCurrentDirectory(), "Resources"));
         });
     }
 }
 ```
 
-## XML文件格式
+## XML file format
 
-本模块使用 [XmlLocalizationFile](./LINGYUN/Abp/Localization/Xml/XmlLocalizationFile.cs) 类型来序列化和反序列化XML文件。
+This module uses the [XmlLocalizationFile](./LINGYUN/Abp/Localization/Xml/XmlLocalizationFile.cs) type to serialize and deserialize XML files.
 
-示例XML文件格式：
+Example XML file format:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <localization>
     <culture name="zh-Hans"/>
     <texts>
-        <text name="Welcome">欢迎</text>
-        <text name="HelloWorld">你好，世界！</text>
-        <text name="ThisFieldIsRequired">这是必填字段</text>
+        <text name="Welcome">Welcome</text>
+        <text name="HelloWorld">Hello, world! </text>
+        <text name="ThisFieldIsRequired">This is a required field</text>
     </texts>
 </localization>
 ```
 
-## 扩展方法
+##Extension methods
 
-模块提供了两个扩展方法来添加XML本地化资源：
+The module provides two extension methods to add XML localization resources:
 
-1. AddVirtualXml：添加虚拟文件系统中的XML文件
+1. AddVirtualXml: Add XML files in the virtual file system
 ```csharp
 localizationResource.AddVirtualXml("/YourVirtualPath/Localization");
 ```
 
-2. AddPhysicalXml：添加物理文件系统中的XML文件
+2. AddPhysicalXml: Add XML files in the physical file system
 ```csharp
 localizationResource.AddPhysicalXml("C:/YourPath/Localization");
 ```
 
-## 最佳实践
+## Best Practices
 
-1. 虚拟文件推荐用法：
-   * 将XML文件嵌入到程序集中
-   * 适用于默认的、不需要动态修改的本地化资源
+1. Recommended usage of virtual files:
+   * Embed XML file into assembly
+   * Applicable to default localized resources that do not require dynamic modification
 
-2. 物理文件推荐用法：
-   * 存放在宿主项目的特定目录中
-   * 适用于需要动态修改或由外部系统管理的本地化资源
+2. Recommended usage of physical files:
+   * Stored in a specific directory of the host project
+   * Suitable for localized resources that need to be dynamically modified or managed by external systems
 
-## 更多信息
+## More information
 
 * [English Documentation](./README.EN.md)
-* [ABP本地化文档](https://docs.abp.io/zh-Hans/abp/latest/Localization)
-* [ABP虚拟文件系统](https://docs.abp.io/zh-Hans/abp/latest/Virtual-File-System)
+* [ABP Localization Document](https://docs.abp.io/zh-Hans/abp/latest/Localization)
+* [ABP Virtual File System](https://docs.abp.io/zh-Hans/abp/latest/Virtual-File-System)

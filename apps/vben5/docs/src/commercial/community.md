@@ -1,29 +1,29 @@
-# 社区交流
+#Community communication
 
-社区交流群主要是为了方便大家交流，提问，解答问题，分享经验等。偏自助方式，如果你有问题，可以通过以下方式加入社区交流群：
+The community communication group is mainly to facilitate everyone to communicate, ask questions, answer questions, share experiences, etc. It’s a self-help approach. If you have any questions, you can join the community communication group in the following ways:
 
-- [QQ频道](https://pd.qq.com/s/16p8lvvob)：推荐！！！主要提供问题解答，分享经验等。
-- QQ群：[大群](https://qm.qq.com/q/MEmHoCLbG0)，[1群](https://qm.qq.com/q/YacMHPYAMu)、[2群](https://qm.qq.com/q/ajVKZvFICk)、[3群](https://qm.qq.com/q/36zdwThP2E)，[4群](https://qm.qq.com/q/sCzSlm3504)，[5群](https://qm.qq.com/q/ya9XrtbS6s)，主要的使用者交流群。
-- [Discord](https://discord.com/invite/VU62jTecad): 主要提供问题解答，分享经验等。
+- [QQ Channel](https://pd.qq.com/s/16p8lvvob): Recommended! ! ! Mainly provide answers to questions, share experiences, etc.
+- QQ group: [Large group](https://qm.qq.com/q/MEmHoCLbG0), [1 group](https://qm.qq.com/q/YacMHPYAMu), [2 group](https://qm.qq.com/q/ajVKZvFICk), [3 group ](https://qm.qq.com/q/36zdwThP2E), [Group 4](https://qm.qq.com/q/sCzSlm3504), [Group 5](https://qm.qq.com/q/ya9XrtbS6s), the main user communication group.
+- [Discord](https://discord.com/invite/VU62jTecad): Mainly provides answers to questions, shares experiences, etc.
 
 ::: tip
 
-免费QQ群人数上限200，将会不定期清理。推荐加入QQ频道进行交流
+The free QQ group has a maximum number of 200 members and will be cleared from time to time. It is recommended to join the QQ channel for communication
 
 :::
 
-## 微信群
+## WeChat group
 
-作者主要通过微信群提供帮助，如果你有问题，可以通过以下方式加入微信群。
+The author mainly provides help through the WeChat group. If you have questions, you can join the WeChat group in the following ways.
 
-通过微信联系作者，注明加群来意：
+Contact the author via WeChat and indicate your purpose of joining the group:
 
 ::: tip
 
-因为微信群人数有限制，加微信群要求：
+Because there is a limit on the number of people in a WeChat group, the requirements for joining a WeChat group are:
 
-- 通过[赞助](../sponsor/personal.md)任意金额。
-- 发送赞助`截图`，备注`加入微信群`即可。
+- Any amount via [Sponsor](../sponsor/personal.md).
+- Send sponsorship `screenshot` and remark `Join WeChat group`.
 
 :::
 

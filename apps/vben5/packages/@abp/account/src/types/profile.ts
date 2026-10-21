@@ -1,38 +1,38 @@
 import type { ExtensibleObject, IHasConcurrencyStamp } from '@abp/core';
 
 interface ProfileDto extends ExtensibleObject, IHasConcurrencyStamp {
-  /** 电子邮件 */
+  /** Email */
   email: string;
   hasPassword: boolean;
-  /** 是否外部用户 */
+  /** Whether it is an external user */
   isExternal: boolean;
-  /** 名称 */
+  /** name */
   name?: string;
-  /** 手机号码 */
+  /** Mobile phone number */
   phoneNumber?: string;
-  /** 姓氏 */
+  /** Last name */
   surname?: string;
-  /** 用户名 */
+  /** Username */
   userName: string;
 }
 
 interface UpdateProfileDto extends ExtensibleObject, IHasConcurrencyStamp {
-  /** 电子邮件 */
+  /** Email */
   email: string;
-  /** 名称 */
+  /** name */
   name?: string;
-  /** 手机号码 */
+  /** Mobile phone number */
   phoneNumber?: string;
-  /** 姓氏 */
+  /** Last name */
   surname?: string;
-  /** 用户名 */
+  /** Username */
   userName: string;
 }
 
 interface ChangePasswordInput {
-  /** 当前密码 */
+  /** Current password */
   currentPassword: string;
-  /** 新密码 */
+  /** New password */
   newPassword: string;
 }
 
@@ -50,7 +50,7 @@ interface ChangePictureInput {
 }
 
 interface TwoFactorEnabledDto {
-  /** 是否启用二次认证 */
+  /** Whether to enable two-step authentication */
   enabled: boolean;
 }
 

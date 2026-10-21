@@ -1,25 +1,25 @@
 # LINGYUN.Abp.AspNetCore.Mvc.Wrapper
 
-包装器 MVC 实现模块，用于统一包装ASP.NET Core MVC的响应结果。
+Wrapper MVC implementation module, used to uniformly wrap the response results of ASP.NET Core MVC.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动包装MVC响应结果
-* 支持自定义包装规则
-* 支持异常结果包装
-* 支持本地化错误消息
-* 支持API文档包装描述
-* 支持忽略特定控制器、命名空间、返回类型的包装
+* Automatically wrap MVC response results
+* Support custom packaging rules
+* Support abnormal result packaging
+* Support localized error messages
+* Support API document packaging description
+* Supports packaging that ignores specific controllers, namespaces, and return types
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.AspNetCore.Mvc.Wrapper
 ```
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpAspNetCoreMvcWrapperModule))]
@@ -29,19 +29,19 @@ public class YouProjectModule : AbpModule
     {
         Configure<AbpWrapperOptions>(options =>
         {
-            // 启用包装器
+            // enable wrapper
             options.IsEnabled = true;
             
-            // 忽略特定返回类型
+            // Ignore specific return types
             options.IgnoreReturnTypes.Add<IRemoteStreamContent>();
             
-            // 忽略特定控制器
+            // Ignore specific controllers
             options.IgnoreControllers.Add<AbpApiDefinitionController>();
             
-            // 忽略特定URL前缀
+            // Ignore specific URL prefixes
             options.IgnorePrefixUrls.Add("/connect");
             
-            // 自定义空结果消息
+            // Customize empty result message
             options.MessageWithEmptyResult = (serviceProvider) =>
             {
                 var localizer = serviceProvider.GetRequiredService<IStringLocalizer<AbpMvcWrapperResource>>();
@@ -52,30 +52,30 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-* `IsEnabled`: 是否启用包装器
-* `IsWrapUnauthorizedEnabled`: 是否包装未授权响应
-* `HttpStatusCode`: 包装响应的HTTP状态码
-* `IgnoreReturnTypes`: 忽略包装的返回类型列表
-* `IgnoreControllers`: 忽略包装的控制器列表
-* `IgnoreNamespaces`: 忽略包装的命名空间列表
-* `IgnorePrefixUrls`: 忽略包装的URL前缀列表
-* `IgnoreExceptions`: 忽略包装的异常类型列表
-* `ErrorWithEmptyResult`: 空结果是否返回错误信息
-* `CodeWithEmptyResult`: 空结果的错误代码
-* `MessageWithEmptyResult`: 空结果的错误消息
-* `CodeWithSuccess`: 成功时的代码
+* `IsEnabled`: Whether to enable the wrapper
+* `IsWrapUnauthorizedEnabled`: whether to wrap unauthorized responses
+* `HttpStatusCode`: wraps the HTTP status code of the response
+* `IgnoreReturnTypes`: Ignore the wrapped return type list
+* `IgnoreControllers`: Ignore the wrapped controller list
+* `IgnoreNamespaces`: Ignore the wrapped namespace list
+* `IgnorePrefixUrls`: Ignore the wrapped URL prefix list
+* `IgnoreExceptions`: Ignore the wrapped exception type list
+* `ErrorWithEmptyResult`: whether an empty result returns an error message
+* `CodeWithEmptyResult`: error code for empty results
+* `MessageWithEmptyResult`: error message for empty results
+* `CodeWithSuccess`: code on success
 
-## 高级用法
+## Advanced usage
 
-### 1. 使用特性标记忽略包装
+### 1. Use attribute tag to ignore packaging
 
 ```csharp
 [IgnoreWrapResult]
 public class TestController : AbpController
 {
-    // 该控制器下所有Action都不会被包装
+    // All Actions under this controller will not be wrapped
 }
 
 public class TestController : AbpController
@@ -83,16 +83,16 @@ public class TestController : AbpController
     [IgnoreWrapResult]
     public IActionResult Test()
     {
-        // 该Action不会被包装
+        // This Action will not be wrapped
     }
 }
 ```
 
-### 2. 通过请求头控制包装
+### 2. Control packaging through request headers
 
-* 添加 `_AbpDontWrapResult` 请求头可以禁用包装
-* 添加 `_AbpWrapResult` 请求头可以强制启用包装
+* Add `_AbpDontWrapResult` request header to disable wrapping
+* Add `_AbpWrapResult` request header to force wrapping to be enabled
 
-## 源码位置
+## Source code location
 
 [LINGYUN.Abp.AspNetCore.Mvc.Wrapper](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/framework/mvc/LINGYUN.Abp.AspNetCore.Mvc.Wrapper)

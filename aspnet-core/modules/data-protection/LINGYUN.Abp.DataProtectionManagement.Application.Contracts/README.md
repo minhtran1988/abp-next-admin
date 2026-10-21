@@ -1,36 +1,36 @@
 # LINGYUN.Abp.DataProtectionManagement.Application.Contracts
 
-数据权限管理应用服务契约模块，提供数据权限管理的应用服务接口和DTO。
+The data rights management application service contract module provides application service interfaces and DTOs for data rights management.
 
-## 功能
+## Function
 
-* 数据权限管理应用服务接口
-* 数据权限DTO定义
-* 数据权限查询定义
+* Data rights management application service interface
+* Data permission DTO definition
+* Data permission query definition
 
-## 应用服务接口
+## Application service interface
 
-* `IDataProtectionAppService` - 数据权限应用服务接口
-  * `GetAsync` - 获取数据权限
-  * `GetListAsync` - 获取数据权限列表
-  * `CreateAsync` - 创建数据权限
-  * `UpdateAsync` - 更新数据权限
-  * `DeleteAsync` - 删除数据权限
+* `IDataProtectionAppService` - Data permission application service interface
+  * `GetAsync` - Get data permissions
+  * `GetListAsync` - Get the data permission list
+  * `CreateAsync` - Create data permissions
+  * `UpdateAsync` - update data permissions
+  * `DeleteAsync` - Delete data permission
 
-## DTO定义
+## DTO definition
 
-* `DataProtectionDto` - 数据权限DTO
-  * `Id` - 主键
-  * `Name` - 名称
-  * `DisplayName` - 显示名称
-  * `Description` - 描述
-  * `AllowProperties` - 允许的属性列表
-  * `FilterGroup` - 过滤规则组
+* `DataProtectionDto` - data permission DTO
+  * `Id` - primary key
+  * `Name` - name
+  * `DisplayName` - display name
+  * `Description` - description
+  * `AllowProperties` - list of allowed properties
+  * `FilterGroup` - filtering rule group
 
-* `DataProtectionCreateDto` - 创建数据权限DTO
-* `DataProtectionUpdateDto` - 更新数据权限DTO
-* `DataProtectionGetListInput` - 获取数据权限列表输入DTO
+* `DataProtectionCreateDto` - Create data permission DTO
+* `DataProtectionUpdateDto` - update data permission DTO
+* `DataProtectionGetListInput` - Get data permission list input DTO
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

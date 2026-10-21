@@ -106,7 +106,7 @@ public class SerilogElasticsearchLoggingProvider : ILoggingProvider
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="id">时间类型或者转换为timestamp都可以查询</param>
+    /// <param name="id">You can query the time type or convert it to timestamp</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public async virtual Task<LogInfo?> GetAsync(
@@ -170,9 +170,9 @@ public class SerilogElasticsearchLoggingProvider : ILoggingProvider
     }
 
     /// <summary>
-    /// 获取日志列表
+    /// Get the log list
     /// </summary>
-    /// <param name="sorting">排序字段</param>
+    /// <param name="sorting">Sort field</param>
     /// <param name="maxResultCount"></param>
     /// <param name="skipCount"></param>
     /// <param name="startTime"></param>
@@ -216,7 +216,7 @@ public class SerilogElasticsearchLoggingProvider : ILoggingProvider
         {
             sorting = $"{ElasticsearchJsonFormatter.TimestampPropertyName} DESC";
         }
-        // 额外处理一下timestamp字段
+        // Additionally process the timestamp field
         else if (sorting.Contains("timestamp", StringComparison.CurrentCultureIgnoreCase))
         {
             sorting = sorting

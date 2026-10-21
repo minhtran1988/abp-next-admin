@@ -52,10 +52,10 @@ public class SelectAccountModel : AccountPageModel
 
     public async virtual Task<IActionResult> OnGetAsync()
     {
-        // 检查用户是否已登录
+        // Check if the user is logged in
         if (User.Identity?.IsAuthenticated == false)
         {
-            // 未登录，重定向到登录页面
+            // Not logged in, redirect to login page
             return RedirectToPage("/Account/Login", new
             {
                 ReturnUrl = Url.Page("/Account/SelectAccount", new { RedirectUri }),
@@ -98,7 +98,7 @@ public class SelectAccountModel : AccountPageModel
             Alerts.Warning(L["NoAvailableAccounts"]);
         }
 
-        // 仅关联一个账户时直接登录
+        // Log in directly when only one account is associated
         if (AvailableAccounts.Count == 1)
         {
             return await HandleLoginAsync(currentUser, Input.RememberMe, Input.RememberSelection);
@@ -152,18 +152,18 @@ public class SelectAccountModel : AccountPageModel
 
     protected async virtual Task<IActionResult> HandleLoginAsync(IdentityUser user, bool rememberMe = false, bool rememberSelection = false)
     {
-        // 检查是否已经是当前用户
+        // Check if it is already the current user
         var currentUser = await UserManager.GetUserAsync(User);
         if (currentUser == null || currentUser.Id == user.Id)
         {
-            // 使用选择的账户登录
-            // TODO: 实现 RememberMe
+            // Log in with the selected account
+            // TODO: Implement RememberMe
             await SignInManager.SignInAsync(user, rememberMe);
 
             // TODO: date format
             user.SetProperty(LastLoginTimeFieldName, Clock.Now.ToString(DefaultDateFormat));
 
-            // TODO: 实现 RememberSelection
+            // TODO: Implement RememberSelection
             if (rememberSelection)
             {
                 await SaveAccountSelectionAsync(Input.ClientId, user);
@@ -184,7 +184,7 @@ public class SelectAccountModel : AccountPageModel
             await IdentityDynamicClaimsPrincipalContributorCache.ClearAsync(user.Id, user.TenantId);
         }
 
-        // 重定向回原始授权请求
+        // Redirect back to the original authorization request
         var originalAuthorizeUrl = await ReconstructOriginalAuthorizeUrlAsync();
 
         return Redirect(originalAuthorizeUrl);
@@ -196,7 +196,7 @@ public class SelectAccountModel : AccountPageModel
         {
             return Input.RedirectUri;
         }
-        // 构建完整的授权请求 URL
+        // Build the complete authorization request URL
         var authorizeUrl = "/connect/authorize";
         var parameters = new Dictionary<string, string?>
         {
@@ -207,10 +207,10 @@ public class SelectAccountModel : AccountPageModel
             ["state"] = _originalRequest.State,
             ["code_challenge"] = _originalRequest.CodeChallenge,
             ["code_challenge_method"] = _originalRequest.CodeChallengeMethod,
-            ["prompt"] = "none" // 用户已认证，不需要再次提示
+            ["prompt"] = "none" // The user has been authenticated and does not need to be prompted again.
         };
 
-        // 添加可选的 nonce 参数
+        // Add optional nonce parameter
         if (!string.IsNullOrEmpty(_originalRequest.Nonce))
         {
             parameters["nonce"] = _originalRequest.Nonce;
@@ -240,7 +240,7 @@ public class SelectAccountModel : AccountPageModel
                 }
                 else
                 {
-                    // 没有查询参数，尝试直接解析整个字符串
+                    // Without query parameters, try parsing the entire string directly
                     queryString = RedirectUri;
                 }
             }
@@ -265,7 +265,7 @@ public class SelectAccountModel : AccountPageModel
                 queryString = RedirectUri;
             }
 
-            // 解析查询参数
+            // Parse query parameters
             if (!string.IsNullOrWhiteSpace(queryString))
             {
                 var query = QueryHelpers.ParseQuery(queryString);
@@ -308,7 +308,7 @@ public class SelectAccountModel : AccountPageModel
             }
         };
 
-        // 获取客户端允许的租户
+        // Get the tenants allowed by the client
         var allowedTenants = await GetAllowedTenantsForClientAsync(clientId);
 
         foreach (var tenant in allowedTenants)
@@ -320,7 +320,7 @@ public class SelectAccountModel : AccountPageModel
             }
         }
 
-        // 按最后登录时间排序，当前账户排第一
+        // Sort by last login time, current account ranks first
         return accounts
             .OrderByDescending(a => a.IsCurrentAccount)
             .ThenByDescending(a => a.LastLoginTime)
@@ -334,7 +334,7 @@ public class SelectAccountModel : AccountPageModel
             var user = await UserManager.FindByNameAsync(userName);
             if (user != null)
             {
-                // 检查用户是否有效
+                // Check if the user is valid
                 if (user.IsActive && !await UserManager.IsLockedOutAsync(user))
                 {
                     var lastLoginTime = user.GetProperty<DateTime?>(LastLoginTimeFieldName);
@@ -396,7 +396,7 @@ public class SelectAccountModel : AccountPageModel
 
     protected virtual TenantUser ParseSelectedAccountId(string selectedAccountId)
     {
-        // 解析账户格式为: UserId@TenantId
+        // The parsing account format is: UserId@TenantId
         if (string.IsNullOrWhiteSpace(selectedAccountId))
         {
             return new TenantUser();
@@ -452,7 +452,7 @@ public class SelectAccountModel : AccountPageModel
 
     protected virtual Task SaveAccountSelectionAsync(string clientId, IdentityUser user)
     {
-        // TODO: 保存用户当前选择账户, 下次选择账户时默认选择此账户
+        // TODO: Save the user's currently selected account. This account will be selected by default the next time the user selects an account.
         return Task.CompletedTask;
     }
 

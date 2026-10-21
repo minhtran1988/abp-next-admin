@@ -1,65 +1,65 @@
 # LINGYUN.Abp.BlobStoring.Tencent
 
-腾讯云对象存储（COS）模块，集成腾讯云对象存储服务到ABP BlobStoring系统。
+Tencent Cloud Object Storage (COS) module integrates Tencent Cloud object storage service into the ABP BlobStoring system.
 
-## 功能特性
+## Features
 
-* 支持腾讯云对象存储服务
-* 支持多租户配置
-* 支持自动创建存储桶（Bucket）
-* 支持存储桶防盗链配置
-* 支持多区域配置
-* 支持文件大小限制
-* 支持按租户隔离存储
+* Support Tencent Cloud object storage service
+* Support multi-tenant configuration
+* Support automatic creation of buckets (Bucket)
+* Support bucket anti-leeching configuration
+* Support multi-region configuration
+* Support file size limit
+* Supports storage isolation by tenant
 
-## 配置项说明
+## Configuration item description
 
-### 基础配置
+### Basic configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud": {
-      "SecretId": "您的腾讯云SecretId", // 从腾讯云控制台获取
-      "SecretKey": "您的腾讯云SecretKey", // 从腾讯云控制台获取
-      "DurationSecond": "600" // 会话持续时长，单位秒
+      "SecretId": "Your Tencent Cloud SecretId", // Get it from the Tencent Cloud console
+      "SecretKey": "Your Tencent Cloud SecretKey", // Get it from the Tencent Cloud console
+      "DurationSecond": "600" // Session duration, in seconds
     }
   }
 }
 ```
 
-### 对象存储配置
+### Object storage configuration
 
 ```json
 {
   "Tencent": {
     "OSS": {
-      "AppId": "", // 腾讯云AppId
-      "Region": "", // 存储桶所在地域
-      "BucketName": "", // 存储桶名称
-      "CreateBucketIfNotExists": false, // 存储桶不存在时是否创建
-      "CreateBucketReferer": [] // 创建存储桶时的防盗链设置
+      "AppId": "", // Tencent Cloud AppId
+      "Region": "", // The region where the bucket is located
+      "BucketName": "", // Bucket name
+      "CreateBucketIfNotExists": false, // Whether to create the bucket if it does not exist
+      "CreateBucketReferer": [] // Anti-leeching settings when creating a bucket
     }
   }
 }
 ```
 
-### 存储桶命名规范
+### Bucket naming convention
 
-* 仅支持小写英文字母和数字，即[a-z，0-9]、中划线"-"及其组合
-* 不能以短划线（-）开头或结尾
-* 存储桶名称的最大允许字符受到地域简称和APPID的字符数影响，组成的完整请求域名字符数总计最多60个字符
-* 更多规范请参考[腾讯云存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)
+* Only lowercase English letters and numbers are supported, namely [a-z, 0-9], dash "-" and their combinations
+* cannot start or end with a dash (-)
+* The maximum allowed characters of the bucket name are affected by the number of characters in the region abbreviation and APPID. The total number of characters in the complete requested domain name is up to 60 characters.
+* For more specifications, please refer to [Tencent Cloud Storage Bucket Naming Specification](https://cloud.tencent.com/document/product/436/13312)
 
-### 对象命名规范
+### Object naming convention
 
-* 不允许以正斜线/或者反斜线\\开头
-* 对象键中不支持ASCII控制字符中的字符上(↑)，字符下(↓)，字符右(→)，字符左(←)
-* 更多规范请参考[腾讯云对象命名规范](https://cloud.tencent.com/document/product/436/13324)
+* It is not allowed to start with a forward slash / or a backslash \\
+* The object key does not support the character up (↑), character down (↓), character right (→), and character left (←) in the ASCII control characters
+* For more specifications, please refer to [Tencent Cloud Object Naming Specification](https://cloud.tencent.com/document/product/436/13324)
 
-## 基本用法
+## Basic usage
 
-1. 添加模块依赖
+1. Add module dependencies
 ```csharp
 [DependsOn(typeof(AbpBlobStoringTencentCloudModule))]
 public class YourModule : AbpModule
@@ -68,7 +68,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置腾讯云对象存储
+2. Configure Tencent Cloud Object Storage
 ```csharp
 Configure<AbpBlobStoringOptions>(options =>
 {
@@ -76,7 +76,7 @@ Configure<AbpBlobStoringOptions>(options =>
     {
         container.UseTencentCloud(tencent =>
         {
-            tencent.AppId = "您的腾讯云AppId";
+            tencent.AppId = "Your Tencent Cloud AppId";
             tencent.Region = "ap-guangzhou";
             tencent.BucketName = "your-bucket-name";
             tencent.CreateBucketIfNotExists = true;
@@ -90,7 +90,7 @@ Configure<AbpBlobStoringOptions>(options =>
 });
 ```
 
-3. 使用BLOB存储
+3. Use BLOB storage
 ```csharp
 public class YourService
 {
@@ -113,25 +113,25 @@ public class YourService
 }
 ```
 
-## 高级特性
+## Advanced features
 
-### 多租户支持
+### Multi-tenant support
 
-模块支持按租户隔离存储，存储路径格式如下：
-* 宿主：`host/{blobName}`
-* 租户：`tenants/{tenantId}/{blobName}`
+The module supports isolated storage by tenant, and the storage path format is as follows:
+* Host: `host/{blobName}`
+* Tenants: `tenants/{tenantId}/{blobName}`
 
-### 特性管理
+### Feature Management
 
-模块提供以下特性开关：
+The module provides the following feature switches:
 
-* TencentBlobStoring - 控制腾讯云对象存储服务的启用/禁用
-* TencentBlobStoringMaximumStreamSize - 控制上传文件的最大大小限制（MB）
+* TencentBlobStoring - Controls the enabling/disabling of Tencent Cloud object storage service
+* TencentBlobStoringMaximumStreamSize - Controls the maximum size limit of uploaded files (MB)
 
-## 更多文档
+## More documentation
 
-* [腾讯云对象存储](https://cloud.tencent.com/document/product/436)
-* [腾讯云COS控制台](https://console.cloud.tencent.com/cos)
-* [ABP BlobStoring系统](https://docs.abp.io/en/abp/latest/Blob-Storing)
+* [Tencent Cloud Object Storage](https://cloud.tencent.com/document/product/436)
+* [Tencent Cloud COS Console](https://console.cloud.tencent.com/cos)
+* [ABP BlobStoring system](https://docs.abp.io/en/abp/latest/Blob-Storing)
 
 [English](./README.EN.md)

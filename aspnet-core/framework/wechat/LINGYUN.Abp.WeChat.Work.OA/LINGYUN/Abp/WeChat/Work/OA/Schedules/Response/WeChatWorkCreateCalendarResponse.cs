@@ -5,22 +5,22 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Response;
 /// <summary>
-/// 创建日历响应参数
+/// Create calendar response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93647"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93647"/>
 /// </remarks>
 public class WeChatWorkCreateCalendarResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 日历ID
+    /// Calendar ID
     /// </summary>
     [NotNull]
     [JsonProperty("cal_id")]
     [JsonPropertyName("cal_id")]
     public string CalId { get; set; } = default!;
     /// <summary>
-    /// 无效的输入内容
+    /// Invalid input content
     /// </summary>
     [NotNull]
     [JsonProperty("fail_result")]

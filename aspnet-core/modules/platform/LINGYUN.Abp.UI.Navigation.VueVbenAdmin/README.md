@@ -1,27 +1,27 @@
 # LINGYUN.Abp.UI.Navigation.VueVbenAdmin
 
-适用于 **abp-vue-vben-admin** 的导航菜单初始化模块。本模块提供了与VueVbenAdmin前端框架集成所需的菜单数据初始化功能。
+Navigation menu initialization module for **abp-vue-vben-admin**. This module provides the menu data initialization function required to integrate with the VueVbenAdmin front-end framework.
 
-## 功能特性
+## Features
 
-* 菜单数据初始化
-  * 预设菜单结构
-  * 自动注册布局
-  * 动态菜单配置
+* Menu data initialization
+  * Default menu structure
+  * Automatically register layout
+  * Dynamic menu configuration
 
-* VueVbenAdmin集成
-  * 布局组件配置
-  * UI主题适配
-  * 菜单项定制
+* VueVbenAdmin integration
+  * Layout component configuration
+  * UI theme adaptation
+  * Menu item customization
 
-* 扩展性支持
-  * 自定义菜单提供者
-  * 菜单数据重写
-  * 布局配置扩展
+* Extensibility support
+  * Custom menu provider
+  * Menu data rewriting
+  * Layout configuration extension
 
-## 快速开始
+## Quick start
 
-1. 引用模块
+1. Reference module
 ```csharp
 [DependsOn(typeof(AbpUINavigationVueVbenAdminModule))]
 public class YouProjectModule : AbpModule
@@ -30,51 +30,51 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置选项
+2. Configuration options
 ```csharp
 Configure<AbpUINavigationVueVbenAdminOptions>(options =>
 {
-    // UI名称配置
+    //UI name configuration
     options.UI = "Vue Vben Admin";
-    // 布局名称配置
+    // Layout name configuration
     options.LayoutName = "Vben Admin Layout";
-    // 布局组件配置
+    // Layout component configuration
     options.LayoutPath = "LAYOUT";
 });
 ```
 
-## 配置项说明
+## Configuration item description
 
 * `AbpUINavigationVueVbenAdminOptions.UI`
-  * 说明：UI名称
-  * 默认值：Vue Vben Admin
-  * 注意：不建议变更，需要与前端保持一致
+  * Description: UI name
+  *Default: Vue Vben Admin
+  * Note: Changes are not recommended and need to be consistent with the front end
 
 * `AbpUINavigationVueVbenAdminOptions.LayoutName`
-  * 说明：布局名称
-  * 默认值：Vben Admin Layout
-  * 注意：不建议变更，需要与前端保持一致
+  * Description: Layout name
+  *Default: Vben Admin Layout
+  * Note: Changes are not recommended and need to be consistent with the front end
 
 * `AbpUINavigationVueVbenAdminOptions.LayoutPath`
-  * 说明：布局组件路径
-  * 默认值：LAYOUT
-  * 注意：不建议变更，需要与前端保持一致
+  * Description: Layout component path
+  *Default value: LAYOUT
+  * Note: Changes are not recommended and need to be consistent with the front end
 
-## 使用说明
+## Instructions for use
 
-1. 菜单初始化
-   * 模块会自动注册默认的菜单数据
-   * 可以通过实现 `INavigationDataSeedContributor` 接口来添加自定义菜单
+1. Menu initialization
+   * The module will automatically register default menu data
+   * Custom menus can be added by implementing the `INavigationDataSeedContributor` interface
 
-2. 布局配置
-   * 布局配置需要与前端的路由配置相匹配
-   * 修改布局配置时需要同步修改前端相关配置
+2. Layout configuration
+   * The layout configuration needs to match the front-end routing configuration
+   * When modifying the layout configuration, you need to modify the front-end related configuration simultaneously.
 
-3. 扩展开发
-   * 可以通过继承 `VueVbenAdminNavigationDataSeeder` 类来自定义菜单初始化逻辑
-   * 支持通过依赖注入覆盖默认实现
+3. Extension development
+   * You can customize the menu initialization logic by inheriting the `VueVbenAdminNavigationDataSeeder` class
+   * Supports overriding default implementation through dependency injection
 
-## 更多信息
+## More information
 
-* [VueVbenAdmin官方文档](https://doc.vvbin.cn/)
-* [ABP官方文档](https://docs.abp.io/)
+* [VueVbenAdmin official document](https://doc.vvbin.cn/)
+* [ABP official document](https://docs.abp.io/)

@@ -3,31 +3,31 @@
 public class EntityPropertyInfoModel
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public string DisplayName { get; set; } = default!;
     /// <summary>
-    /// 类型全名
+    /// Type full name
     /// </summary>
     public string TypeFullName { get; set; } = default!;
     /// <summary>
-    /// JavaScript类型
+    /// JavaScript type
     /// </summary>
     public string JavaScriptType { get; set; } = default!;
     /// <summary>
-    /// JavaScript名称
+    /// JavaScript name
     /// </summary>
     public string JavaScriptName { get; set; } = default!;
     /// <summary>
-    /// 枚举列表
+    /// enumeration list
     /// </summary>
     public EntityEnumInfoModel[]? Enums { get; set; }
     /// <summary>
-    /// 允许的过滤操作列表
+    /// List of allowed filter operations
     /// </summary>
     public DataAccessFilterOperate[]? Operates { get; set; }
 }

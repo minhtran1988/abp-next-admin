@@ -87,7 +87,7 @@ public class WeChatWorkMessageAppService : ApplicationService, IWeChatWorkMessag
         if (result.Message == null)
         {
             Logger.LogWarning(input.Data);
-            Logger.LogWarning("解析消息失败, 无法处理企业微信消息.");
+            Logger.LogWarning("Failed to parse the message and cannot process the enterprise WeChat message.");
         }
         else
         {

@@ -123,7 +123,7 @@ function onChange(value: string) {
           label: $t(
             'component.simple_state_checking.requireFeatures.featureNames',
           ),
-          // TODO: vben应该做到用户能自定义验证器, 在组件的适配器中而不是单独使用时
+          // TODO: vben should allow users to customize the validator, in the adapter of the component rather than when used alone
           rules: z
             .object({
               featureNames: z.array(z.string()),
@@ -148,7 +148,7 @@ function onChange(value: string) {
           label: $t(
             'component.simple_state_checking.requireFeatures.featureNames',
           ),
-          // TODO: vben应该做到用户能自定义验证器, 在组件的适配器中而不是单独使用时
+          // TODO: vben should allow users to customize the validator, in the adapter of the component rather than when used alone
           rules: z
             .object({
               globalFeatureNames: z.array(z.string()),
@@ -173,7 +173,7 @@ function onChange(value: string) {
           label: $t(
             'component.simple_state_checking.requirePermissions.permissions',
           ),
-          // TODO: vben应该做到用户能自定义验证器, 在组件的适配器中而不是单独使用时
+          // TODO: vben should allow users to customize the validator, in the adapter of the component rather than when used alone
           rules: z
             .object({
               permissions: z.array(z.string()),

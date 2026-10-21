@@ -71,7 +71,7 @@
           })
           .finally(() => changeLoading(false));
       }
-      // 不加延迟在下次请求不会携带租户标识
+      // Without any delay, the next request will not carry the tenant ID.
       setTimeout(() => {
         abpStore
           .initlizeAbpApplication()

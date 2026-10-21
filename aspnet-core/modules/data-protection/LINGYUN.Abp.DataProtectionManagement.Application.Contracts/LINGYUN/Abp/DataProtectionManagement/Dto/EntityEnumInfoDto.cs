@@ -6,15 +6,15 @@ namespace LINGYUN.Abp.DataProtectionManagement;
 public class EntityEnumInfoDto : EntityDto<Guid>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public string DisplayName { get; set; } = default!;
     /// <summary>
-    /// 枚举值
+    /// enumeration value
     /// </summary>
     public string Value { get; set; } = default!;
 }

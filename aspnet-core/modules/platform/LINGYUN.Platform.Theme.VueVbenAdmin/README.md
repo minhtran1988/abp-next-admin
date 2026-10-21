@@ -1,47 +1,47 @@
 # LINGYUN.Platform.Theme.VueVbenAdmin
 
-VueVbenAdmin前端框架的主题管理模块，提供主题、布局、菜单等相关配置的管理功能。
+The theme management module of the VueVbenAdmin front-end framework provides management functions for themes, layouts, menus and other related configurations.
 
-## 功能特性
+## Features
 
-* 主题设置
-  * 暗黑模式
-  * 灰色模式
-  * 色弱模式
-  * 主题色配置
+* Theme settings
+  * Dark mode
+  * Gray mode
+  * Color weak mode
+  * Theme color configuration
 
-* 布局设置
-  * 全屏模式
-  * 内容模式
-  * 页面加载状态
-  * 页脚显示
-  * 返回顶部
+* Layout settings
+  * Full screen mode
+  * Content mode
+  * Page loading status
+  * Footer display
+  * Back to top
 
-* 菜单设置
-  * 菜单模式
-  * 菜单主题
-  * 菜单宽度
-  * 菜单折叠
-  * 菜单拆分
-  * 菜单拖拽
+* Menu settings
+  * Menu mode
+  * Menu theme
+  * Menu width
+  * Menu collapse
+  * Menu split
+  * Menu drag and drop
 
-* 标题栏设置
-  * 固定头部
-  * 头部主题
-  * 全屏按钮
-  * 文档按钮
-  * 通知按钮
-  * 搜索按钮
+* Title bar settings
+  * Fixed head
+  * Header theme
+  * Full screen button
+  * Document button
+  * Notification button
+  *Search button
 
-* 多标签页设置
-  * 标签页缓存
-  * 标签页拖拽
-  * 标签页刷新
-  * 标签页折叠
+*Multi-tab settings
+  *Tab cache
+  *Tab drag and drop
+  *Tab page refresh
+  *Tab folding
 
-## 快速开始
+## Quick start
 
-1. 引用模块
+1. Reference module
 ```csharp
 [DependsOn(typeof(PlatformThemeVueVbenAdminModule))]
 public class YouProjectModule : AbpModule
@@ -50,7 +50,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置选项
+2. Configuration options
 ```json
 {
   "Theme": {
@@ -92,39 +92,39 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 使用说明
+## Instructions for use
 
-1. 主题配置
-   * 支持多种主题模式切换
-   * 可自定义主题色
-   * 提供主题持久化存储
+1. Theme configuration
+   *Support multiple theme mode switching
+   * Customizable theme color
+   * Provide theme persistent storage
 
-2. 布局配置
-   * 灵活的布局模式
-   * 可配置的页面元素显示
-   * 支持响应式布局
+2. Layout configuration
+   * Flexible layout mode
+   * Configurable page element display
+   *Support responsive layout
 
-3. 菜单配置
-   * 多样的菜单显示模式
-   * 支持菜单拖拽排序
-   * 菜单主题自定义
+3. Menu configuration
+   * Various menu display modes
+   * Support menu drag and drop sorting
+   * Menu theme customization
 
-4. 扩展开发
-   * 支持自定义主题配置提供者
-   * 可扩展的主题设置项
-   * 主题数据本地化支持
+4. Extension development
+   * Support custom theme configuration provider
+   * Extensible theme settings
+   * Topic data localization support
 
-## 注意事项
+## Notes
 
-1. 主题配置
-   * 主题配置会影响所有用户的界面显示
-   * 建议根据实际需求选择合适的主题模式
+1. Theme configuration
+   * Theme configuration will affect the interface display for all users
+   * It is recommended to choose the appropriate theme mode according to actual needs
 
-2. 性能考虑
-   * 合理配置标签页缓存数量
-   * 适当使用页面加载动画
+2. Performance considerations
+   * Properly configure the number of tab caches
+   * Use page loading animation appropriately
 
-## 更多信息
+## More information
 
-* [VueVbenAdmin主题配置文档](https://doc.vvbin.cn/guide/design.html)
-* [ABP官方文档](https://docs.abp.io/)
+* [VueVbenAdmin theme configuration document](https://doc.vvbin.cn/guide/design.html)
+* [ABP official document](https://docs.abp.io/)

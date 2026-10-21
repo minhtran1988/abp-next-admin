@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.DataProtection;
 /// <summary>
-/// 数据权限验证服务
+/// Data permission verification service
 /// </summary>
 public interface IDataAuthorizationService
 {
     /// <summary>
-    /// 验证操作实体数据权限
+    /// Verify permission to operate entity data
     /// </summary>
-    /// <param name="operation">数据权限操作</param>
-    /// <param name="entities">检查实体列表</param>
-    /// <typeparam name="TEntity">实体类型</typeparam>
+    /// <param name="operation">Data permission operation</param>
+    /// <param name="entities">Check entity list</param>
+    /// <typeparam name="TEntity">Entity type</typeparam>
     /// <returns></returns>
     Task<AuthorizationResult> AuthorizeAsync<TEntity>(DataAccessOperation operation, IEnumerable<TEntity> entities);
 }

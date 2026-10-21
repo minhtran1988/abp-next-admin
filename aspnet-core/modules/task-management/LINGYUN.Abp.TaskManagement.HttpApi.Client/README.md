@@ -1,45 +1,45 @@
 # LINGYUN.Abp.TaskManagement.HttpApi.Client
 
-任务管理模块的HTTP API客户端实现，提供远程API调用的客户端代理服务。
+The HTTP API client implementation of the task management module provides client proxy services for remote API calls.
 
-## 功能
+## Function
 
-### HTTP客户端代理
-- 自动生成应用程序契约的代理
-- 类型安全的客户端接口
-- 强类型DTO
+### HTTP client proxy
+- Automatically generate proxies for application contracts
+- Type-safe client interface
+- Strongly typed DTO
 
-### 远程服务配置
-- 远程服务名称配置
-- 服务端点配置
-- 客户端选项配置
+### Remote service configuration
+- Remote service name configuration
+- Service endpoint configuration
+- Client option configuration
 
-### 身份认证
-- 基于令牌的身份认证支持
-- 认证头处理
-- 安全通信
+### Identity authentication
+- Token-based authentication support
+- Authentication header processing
+- secure communication
 
-### 服务集成
-- 与ABP框架的无缝集成
-- 动态HTTP客户端配置
-- 自动服务注册
+### Service integration
+- Seamless integration with ABP framework
+- Dynamic HTTP client configuration
+- Automatic service registration
 
-### 错误处理
-- 异常转换
-- 错误响应处理
-- 重试策略
+### Error handling
+- Exception conversion
+- Error response handling
+- Retry strategy
 
-### 客户端功能
-- 异步操作
-- 请求/响应拦截器
-- 自动内容协商
+### Client functions
+- Asynchronous operations
+- Request/response interceptor
+- Automatic content negotiation
 
-### 依赖注入
-- 自动依赖注册
-- 作用域服务生命周期
-- 服务解析
+### Dependency injection
+- Automatic dependency registration
+- Scope service life cycle
+- Service analysis
 
-### 模块配置
-- 模块依赖管理
-- 服务配置
-- 客户端代理配置
+### Module configuration
+- Module dependency management
+- Service configuration
+- Client proxy configuration

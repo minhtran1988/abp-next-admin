@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.OpenObserve;
 
 /// <summary>
-/// 测试用 HTTP 消息处理器
+/// HTTP message handler for testing
 /// </summary>
 /// <remarks>
-/// 记录请求并按队列返回预设响应, 用于验证接口路径/参数/请求体, 不产生真实网络请求
+/// Record the request and return the preset response according to the queue, which is used to verify the interface path/parameters/request body and does not generate real network requests.
 /// </remarks>
 public class FakeHttpMessageHandler : HttpMessageHandler
 {

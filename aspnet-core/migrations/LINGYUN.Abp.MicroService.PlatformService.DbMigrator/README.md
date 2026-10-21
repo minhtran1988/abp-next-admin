@@ -1,23 +1,23 @@
 # LY.MicroService.Platform.DbMigrator
 
-平台管理数据库迁移控制台应用程序，用于执行平台管理系统的数据库迁移和初始化种子数据。
+The platform management database migration console application is used to perform database migration and initialize seed data of the platform management system.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 初始化系统必要的种子数据
-* 支持命令行参数配置
-* 集成Autofac依赖注入容器
-* 继承平台管理系统的所有迁移功能
-* 支持数据字典管理
-* 支持组织机构管理
-* 支持菜单管理
-* 支持版本管理
-* 支持Vue Vben Admin UI导航
+* Automatically perform database migration
+* Initialize the necessary seed data for the system
+* Support command line parameter configuration
+* Integrate Autofac dependency injection container
+* Inherit all migration functions of the platform management system
+* Support data dictionary management
+* Support organizational management
+*Support menu management
+*Support version management
+* Support Vue Vben Admin UI navigation
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -26,46 +26,46 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "PlatformDbMigrator": "你的数据库连接字符串"
+    "PlatformDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置PlatformDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the PlatformDbMigrator connection string in appsettings.json
 
-2. 运行迁移程序
+2. Run the migration program
    ```bash
    dotnet run
    ```
 
-## 命令行参数
+## Command line parameters
 
 * --database-provider
-  * 指定数据库提供程序 (默认: MySQL)
+  * Specify database provider (default: MySQL)
 * --connection-string
-  * 指定数据库连接字符串
+  * Specify database connection string
 * --skip-db-migrations
-  * 跳过数据库迁移
+  * Skip database migration
 * --skip-seed-data
-  * 跳过种子数据初始化
+  * Skip seed data initialization
 
-## 种子数据
+## Seed data
 
-* 默认数据字典
-* 基础组织机构
-* 系统菜单
-* 默认版本配置
-* UI导航配置
+*Default data dictionary
+*Basic organizational structure
+* System menu
+*Default version configuration
+* UI navigation configuration
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [Vue Vben Admin文档](https://doc.vvbin.cn/)
+* [ABP Documentation](https://docs.abp.io)
+* [Vue Vben Admin Document](https://doc.vvbin.cn/)

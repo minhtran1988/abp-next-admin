@@ -3,18 +3,18 @@
 namespace LINGYUN.Abp.IM.Messages;
 
 /// <summary>
-/// 消息处理器
+/// Message processor
 /// </summary>
 public interface IMessageProcessor
 {
     /// <summary>
-    /// 撤回
+    /// Withdraw
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
     Task ReCallAsync(ChatMessage message);
     /// <summary>
-    /// 消息已读
+    /// The message has been read
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>

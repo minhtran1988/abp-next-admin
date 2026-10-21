@@ -4,35 +4,35 @@ public static class AbpSaasErrorCodes
 {
     public const string Namespace = "Saas";
     /// <summary>
-    /// 已经存在名为 {DisplayName} 的版本!
+    /// A version named {DisplayName} already exists!
     /// </summary>
     public const string DuplicateEditionDisplayName = Namespace + ":010001";
     /// <summary>
-    /// 试图删除正在使用的版本: {DisplayName}!
+    /// Attempting to delete the version in use: {DisplayName}!
     /// </summary>
     public const string DeleteUsedEdition = Namespace + ":010002";
     /// <summary>
-    /// 已经存在名为 {Name} 的租户!
+    /// A tenant named {Name} already exists!
     /// </summary>
     public const string DuplicateTenantName = Namespace + ":020001";
     /// <summary>
-    /// 租户: {Tenant} 不存在!
+    /// Tenant: {Tenant} does not exist!
     /// </summary>
     public const string TenantIdOrNameNotFound = Namespace + ":020002";
     /// <summary>
-    /// 无法打开默认连接字符串指向的数据库连接
+    /// Unable to open the database connection pointed to by the default connection string
     /// </summary>
     public const string InvalidDefaultConnectionString = Namespace + ":020101";
     /// <summary>
-    /// 默认连接字符串指向的数据库已经存在
+    /// The database pointed to by the default connection string already exists
     /// </summary>
     public const string DefaultConnectionStringDatabaseExists = Namespace + ":020102";
     /// <summary>
-    /// {Name} 的连接字符串无效
+    /// The connection string for {Name} is invalid
     /// </summary>
     public const string InvalidConnectionString = Namespace + ":020103";
     /// <summary>
-    /// 不支持 {Name} 类型的数据库连接检查
+    /// Database connection check of type {Name} is not supported
     /// </summary>
     public const string ConnectionStringProviderNotSupport = Namespace + ":020104";
 }

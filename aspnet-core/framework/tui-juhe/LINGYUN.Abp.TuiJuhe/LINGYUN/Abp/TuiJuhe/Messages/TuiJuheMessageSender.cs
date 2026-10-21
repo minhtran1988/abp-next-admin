@@ -32,7 +32,7 @@ public class TuiJuheMessageSender : ITuiJuheMessageSender, ITransientDependency
         TokenProvider = tokenProvider;
     }
 
-    // 消息发送频率（请求限制）：单位小时内不超过50次
+    // Message sending frequency (request limit): no more than 50 times per hour
     [RequiresFeature(TuiJuheFeatureNames.Message.Enable)]
     [RequiresLimitFeature(
         TuiJuheFeatureNames.Message.SendLimit,

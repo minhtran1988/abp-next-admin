@@ -21,9 +21,9 @@ export function useOrganizationUnitsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 新增组织机构
-   * @param input 参数
-   * @returns 组织机构实体数据传输对象
+   * Add new organizational structure
+   * @param input parameter
+   * @returns Organization entity data transfer object
    */
   function createApi(
     input: OrganizationUnitCreateDto,
@@ -35,8 +35,8 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 删除组织机构
-   * @param id 组织机构id
+   * Delete organization
+   * @param id organization id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/identity/organization-units/${id}`, {
@@ -45,9 +45,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询组织机构
-   * @param id 组织机构id
-   * @returns 组织机构实体数据传输对象
+   * Query organization structure
+   * @param id organization id
+   * @returns Organization entity data transfer object
    */
   function getApi(id: string): Promise<OrganizationUnitDto> {
     return request<OrganizationUnitDto>(
@@ -59,9 +59,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 更新组织机构
-   * @param id 组织机构id
-   * @returns 组织机构实体数据传输对象
+   * Update organizational structure
+   * @param id organization id
+   * @returns Organization entity data transfer object
    */
   function updateApi(
     id: string,
@@ -77,9 +77,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询组织机构分页列表
-   * @param input 过滤参数
-   * @returns 组织机构实体数据传输对象分页列表
+   * Query the paging list of organizations
+   * @param input filter parameter
+   * @returns Organization entity data transfer object paginated list
    */
   function getPagedListApi(
     input?: GetOrganizationUnitPagedListInput,
@@ -94,8 +94,8 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询根组织机构列表
-   * @returns 组织机构实体数据传输对象列表
+   * Query the list of root organizations
+   * @returns Organization entity data transfer object list
    */
   function getRootListApi(): Promise<ListResultDto<OrganizationUnitDto>> {
     return request<ListResultDto<OrganizationUnitDto>>(
@@ -107,8 +107,8 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询组织机构列表
-   * @returns 组织机构实体数据传输对象列表
+   * Query the list of organizations
+   * @returns Organization entity data transfer object list
    */
   function getAllListApi(): Promise<ListResultDto<OrganizationUnitDto>> {
     return request<ListResultDto<OrganizationUnitDto>>(
@@ -120,9 +120,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询下级组织机构列表
-   * @param input 查询参数
-   * @returns 组织机构实体数据传输对象列表
+   * Query the list of subordinate organizations
+   * @param input query parameters
+   * @returns Organization entity data transfer object list
    */
   function getChildrenApi(
     input: OrganizationUnitGetChildrenDto,
@@ -137,10 +137,10 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询组织机构用户列表
-   * @param id 组织机构id
-   * @param input 查询过滤参数
-   * @returns 用户实体数据传输对象分页列表
+   * Query the organization user list
+   * @param id organization id
+   * @param input query filter parameters
+   * @returns User entity data transfer object paginated list
    */
   function getUserListApi(
     id: string,
@@ -156,9 +156,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询未加入组织机构的用户列表
-   * @param input 查询过滤参数
-   * @returns 用户实体数据传输对象分页列表
+   * Query the list of users who have not joined the organization
+   * @param input query filter parameters
+   * @returns User entity data transfer object paginated list
    */
   function getUnaddedUserListApi(
     input: GetUnaddedUserListInput,
@@ -173,9 +173,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 用户添加到组织机构
-   * @param id 组织机构id
-   * @param input 用户id列表
+   * Add user to organization
+   * @param id organization id
+   * @param input user id list
    */
   function addMembers(
     id: string,
@@ -188,10 +188,10 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询组织机构角色列表
-   * @param id 组织机构id
-   * @param input 查询过滤参数
-   * @returns 角色实体数据传输对象分页列表
+   * Query the list of organizational roles
+   * @param id organization id
+   * @param input query filter parameters
+   * @returns paging list of role entity data transfer objects
    */
   function getRoleListApi(
     id: string,
@@ -207,9 +207,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 查询未加入组织机构的角色列表
-   * @param input 查询过滤参数
-   * @returns 角色实体数据传输对象分页列表
+   * Query the list of roles that have not joined the organization
+   * @param input query filter parameters
+   * @returns paging list of role entity data transfer objects
    */
   function getUnaddedRoleListApi(
     input: GetUnaddedRoleListInput,
@@ -224,9 +224,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 角色添加到组织机构
-   * @param id 组织机构id
-   * @param input 角色id列表
+   * Add roles to the organization
+   * @param id organization id
+   * @param input role id list
    */
   function addRoles(
     id: string,
@@ -239,9 +239,9 @@ export function useOrganizationUnitsApi() {
   }
 
   /**
-   * 移动组织机构
-   * @param id 组织机构id
-   * @param parentId 父级组织机构id
+   *Mobile organization
+   * @param id organization id
+   * @param parentId parent organization id
    */
   function moveTo(id: string, parentId?: string): Promise<void> {
     return request(`api/identity/organization-units/${id}/move`, {

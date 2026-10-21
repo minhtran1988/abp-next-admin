@@ -4,46 +4,46 @@ import { message } from 'ant-design-vue';
 import { useVbenForm } from '#/adapter/form';
 
 const [BaseForm] = useVbenForm({
-  // 所有表单项共用，可单独在表单内覆盖
+  // Common to all form items, they can be overridden individually within the form.
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
-  // 提交函数
+  // Submit function
   handleSubmit: onSubmit,
-  // 垂直布局，label和input在不同行，值为vertical
-  // 水平布局，label和input在同一行
+  // Vertical layout, label and input are on different lines, the value is vertical
+  // Horizontal layout, label and input are on the same line
   layout: 'horizontal',
   schema: [
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'Input',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        placeholder: '请输入用户名',
+        placeholder: 'Please enter username',
       },
-      // 字段名
+      // Field name
       fieldName: 'username',
-      // 界面显示的label
-      label: '字符串',
+      // Label displayed on the interface
+      label: 'string',
     },
     {
       component: 'InputPassword',
       componentProps: {
-        placeholder: '请输入密码',
+        placeholder: 'Please enter password',
       },
       fieldName: 'password',
-      label: '密码',
+      label: 'password',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'number',
-      label: '数字(带后缀)',
+      label: 'Number (with suffix)',
       suffix: () => '¥',
     },
     {
@@ -53,36 +53,36 @@ const [BaseForm] = useVbenForm({
         filterOption: true,
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       fieldName: 'options',
-      label: '下拉选',
+      label: 'drop-down selection',
     },
     {
       component: 'RadioGroup',
       componentProps: {
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'radioGroup',
-      label: '单选组',
+      label: 'radio group',
     },
     {
       component: 'Radio',
@@ -100,17 +100,17 @@ const [BaseForm] = useVbenForm({
         name: 'cname',
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'checkboxGroup',
-      label: '多选组',
+      label: 'Multiple selection group',
     },
     {
       component: 'Checkbox',
@@ -118,7 +118,7 @@ const [BaseForm] = useVbenForm({
       label: '',
       renderComponentContent: () => {
         return {
-          default: () => ['我已阅读并同意'],
+          default: () => ['I have read and agree'],
         };
       },
     },
@@ -135,15 +135,15 @@ const [BaseForm] = useVbenForm({
             value: 'zombieJ',
           },
         ],
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'mentions',
-      label: '提及',
+      label: 'mentions',
     },
     {
       component: 'Rate',
       fieldName: 'rate',
-      label: '评分',
+      label: 'rating',
     },
     {
       component: 'Switch',
@@ -151,28 +151,28 @@ const [BaseForm] = useVbenForm({
         class: 'w-auto',
       },
       fieldName: 'switch',
-      label: '开关',
+      label: 'switch',
     },
     {
       component: 'DatePicker',
       fieldName: 'datePicker',
-      label: '日期选择框',
+      label: 'Date selection box',
     },
     {
       component: 'RangePicker',
       fieldName: 'rangePicker',
-      label: '范围选择器',
+      label: 'range selector',
     },
     {
       component: 'TimePicker',
       fieldName: 'timePicker',
-      label: '时间选择框',
+      label: 'Time selection box',
     },
     {
       component: 'TreeSelect',
       componentProps: {
         allowClear: true,
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
         treeData: [
           {
@@ -213,7 +213,7 @@ const [BaseForm] = useVbenForm({
         treeNodeFilterProp: 'label',
       },
       fieldName: 'treeSelect',
-      label: '树选择',
+      label: 'tree selection',
     },
   ],
   wrapperClass: 'grid-cols-1',

@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 图文消息（mp）载体
+/// Graphic message (mp) carrier
 /// </summary>
 public class MpNewMessagePayload
 {
     /// <summary>
-    /// 图文消息（mp）列表
+    /// Graphic message (mp) list
     /// </summary>
     [NotNull]
     [JsonProperty("articles")]
@@ -25,7 +25,7 @@ public class MpNewMessagePayload
     }
 }
 /// <summary>
-/// 图文消息（mp）
+/// Graphic message (mp)
 /// </summary>
 public class MpNewMessage
 {
@@ -48,42 +48,42 @@ public class MpNewMessage
     }
 
     /// <summary>
-    /// 标题，不超过128个字节，超过会自动截断（支持id转译）
+    /// Title, no more than 128 bytes, will be automatically truncated if exceeded (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 图文消息缩略图的media_id, 可以通过素材管理接口获得。此处thumb_media_id即上传接口返回的media_id
+    /// The media_id of the graphic message thumbnail can be obtained through the material management interface. Here thumb_media_id is the media_id returned by the upload interface
     /// </summary>
     [NotNull]
     [JsonProperty("thumb_media_id")]
     [JsonPropertyName("thumb_media_id")]
     public string ThumbMediaId { get; set; } = default!;
     /// <summary>
-    /// 图文消息的作者，不超过64个字节
+    /// The author of the graphic message, no more than 64 bytes
     /// </summary>
     [CanBeNull]
     [JsonProperty("author")]
     [JsonPropertyName("author")]
     public string? Author { get; set; }
     /// <summary>
-    /// 图文消息点击“阅读原文”之后的页面链接
+    /// The page link after clicking "Read the original text" in the graphic message
     /// </summary>
     [CanBeNull]
     [JsonProperty("content_source_url")]
     [JsonPropertyName("content_source_url")]
     public string? ContentSourceUrl { get; set; }
     /// <summary>
-    /// 图文消息的内容，支持html标签，不超过666 K个字节（支持id转译）
+    /// The content of the graphic message supports html tags and does not exceed 666 K bytes (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("content")]
     [JsonPropertyName("content")]
     public string Content { get; set; } = default!;
     /// <summary>
-    /// 图文消息的描述，不超过512个字节，超过会自动截断（支持id转译）
+    /// Description of graphic message, no more than 512 bytes, will be automatically truncated if exceeded (supports id translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("digest")]

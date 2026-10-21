@@ -11,50 +11,50 @@ public class ApplicationMenu : IHasMenuItems, IHasExtraProperties
 {
     public const int DefaultOrder = 1000;
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     [NotNull] 
     public string Name { get; }
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     [NotNull] 
     public string DisplayName { get; }
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     [CanBeNull]
     public string? Description { get; }
     /// <summary>
-    /// 路径
+    /// path
     /// </summary>
     [NotNull]
     public string Url { get; }
     /// <summary>
-    /// 组件
+    /// Component
     /// </summary>
     [CanBeNull]
     public string? Component { get;  }
     /// <summary>
-    /// 重定向
+    /// Redirect
     /// </summary>
     [CanBeNull]
     public string? Redirect { get; }
     /// <summary>
-    /// 图标
+    /// icon
     /// </summary>
     [CanBeNull] 
     public string? Icon { get; set; }
     /// <summary>
-    /// 排序
+    /// Sort
     /// </summary>
     public int Order { get; set; }
     /// <summary>
-    /// 是否禁用
+    /// Whether to disable
     /// </summary>
     public bool IsDisabled { get; set; }
     /// <summary>
-    /// 是否可视
+    /// Is it visible?
     /// </summary>
     public bool IsVisible { get; set; }
 

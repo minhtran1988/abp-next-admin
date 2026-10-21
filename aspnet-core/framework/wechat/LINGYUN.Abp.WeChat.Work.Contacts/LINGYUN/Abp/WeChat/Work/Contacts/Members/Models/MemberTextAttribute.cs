@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 文本类型的成员属性
+/// Member properties of text type
 /// </summary>
 public class MemberTextAttribute : MemberAttribute
 {
     /// <summary>
-    /// 文本
+    /// text
     /// </summary>
     [NotNull]
     [JsonProperty("text")]
@@ -20,7 +20,7 @@ public class MemberTextAttribute : MemberAttribute
 public class MemberTextModel
 {
     /// <summary>
-    /// 文本
+    /// text
     /// </summary>
     [NotNull]
     [JsonProperty("value")]

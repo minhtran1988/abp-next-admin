@@ -6,69 +6,69 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 报表信息
+/// Report information
 /// </summary>
 public class ReportInfo
 {
     /// <summary>
-    /// 报表标识(KSUID)
+    /// Report identification (KSUID)
     /// </summary>
     [JsonPropertyName("report_id")]
     public string? ReportId { get; set; }
 
     /// <summary>
-    /// 报表名称
+    /// Report name
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     /// <summary>
-    /// 展示标题
+    /// Display title
     /// </summary>
     [JsonPropertyName("title")]
     public string? Title { get; set; }
 
     /// <summary>
-    /// 所属文件夹
+    /// The folder to which it belongs
     /// </summary>
     [JsonPropertyName("folder_id")]
     public string? FolderId { get; set; }
 
     /// <summary>
-    /// 关联的仪表盘
+    /// Associated dashboard
     /// </summary>
     /// <remarks>
-    /// 列表接口返回字符串数组, 创建/更新接口为对象数组, 因此使用自由 JSON
+    /// The list interface returns a string array, and the create/update interface is an object array, so use free JSON
     /// </remarks>
     [JsonPropertyName("dashboards")]
     public JsonNode? Dashboards { get; set; }
 
     /// <summary>
-    /// 调度频率
+    /// Scheduling frequency
     /// </summary>
     [JsonPropertyName("frequency")]
     public ReportFrequency? Frequency { get; set; }
 
     /// <summary>
-    /// 是否启用
+    /// Whether to enable
     /// </summary>
     [JsonPropertyName("enabled")]
     public bool Enabled { get; set; }
 
     /// <summary>
-    /// 所有者
+    /// Owner
     /// </summary>
     [JsonPropertyName("owner")]
     public string? Owner { get; set; }
 
     /// <summary>
-    /// 上次触发时间(微秒)
+    /// Last trigger time (microseconds)
     /// </summary>
     [JsonPropertyName("last_triggered_at")]
     public long? LastTriggeredAt { get; set; }
 
     /// <summary>
-    /// 未在模型中声明的字段
+    /// Fields not declared in the model
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? ExtraProperties { get; set; }

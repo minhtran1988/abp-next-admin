@@ -5,32 +5,32 @@ using System.IO;
 namespace LINGYUN.Abp.MaxMindGeoIP2;
 
 /// <summary>
-/// MaxMind GeoIP2 选项
+/// MaxMind GeoIP2 options
 /// </summary>
 public class AbpMaxMindGeoIP2Options
 {
     /// <summary>
-    /// GeoIP2 数据库文件(mmdb)的物理路径
+    /// Physical path of GeoIP2 database file (mmdb)
     /// </summary>
     /// <remarks>
-    /// 需要由使用方提供:
-    /// * 本模块**不再内置** GeoLite2 离线库(GeoLite2 受 MaxMind 许可约束, 不得随包分发),
-    ///   请自行从 MaxMind 下载并接受其许可协议(https://www.maxmind.com/en/geolite2/eula);
-    /// * 通过配置节 <c>MaxMindGeoIP2:DatabaseFile</c>(或此处)指向解压后的 <c>GeoLite2-City.mmdb</c>;
-    /// * 文件不存在时使用 <see cref="EmptyGeoIP2DatabaseReader"/>, 解析结果为空并记录警告日志。
+    /// Needs to be provided by the user:
+    /// * This module ** no longer has built-in ** GeoLite2 offline library (GeoLite2 is subject to the MaxMind license and may not be distributed with the package),
+    /// Please download it from MaxMind and accept its license agreement (https://www.maxmind.com/en/geolite2/eula);
+    /// * Point to the decompressed <c>GeoLite2-City.mmdb</c> through the configuration section <c>MaxMindGeoIP2:DatabaseFile</c> (or here);
+    /// * Use <see cref="EmptyGeoIP2DatabaseReader"/> when the file does not exist, the parsing result will be empty and a warning log will be recorded.
     /// </remarks>
     public string DatabaseFile { get; set; } = string.Empty;
 
     /// <summary>
-    /// 物理数据库文件的访问模式
+    /// Access mode of physical database files
     /// </summary>
     /// <remarks>
-    /// 默认 <see cref="FileAccessMode.MemoryMapped"/>(内存映射), 查询器为单例且线程安全
+    /// Default <see cref="FileAccessMode.MemoryMapped"/>(memory mapped), the query is singleton and thread-safe
     /// </remarks>
     public FileAccessMode FileAccessMode { get; set; } = FileAccessMode.MemoryMapped;
 
     /// <summary>
-    /// 数据库文件是否存在
+    /// Whether the database file exists
     /// </summary>
     public virtual bool DatabaseFileExists()
     {

@@ -18,15 +18,15 @@ enum LockType {
   Days = 86_400,
   Hours = 3600,
   Minutes = 60,
-  Months = 2_678_400, // 按31天计算
+  Months = 2_678_400, // Calculated based on 31 days
   Seconds = 1,
-  Years = 32_140_800, // 按31*12天计算
+  Years = 32_140_800, // Calculated based on 31*12 days
 }
 
 const { cancel, lockApi } = useUsersApi();
 const [Form, formApi] = useVbenForm({
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
@@ -52,7 +52,7 @@ const [Form, formApi] = useVbenForm({
       component: 'Select',
       componentProps: {
         options: [
-          // TODO: 本地化
+          // TODO: localization
           {
             label: $t('AbpIdentity.LockType:Seconds'),
             value: LockType.Seconds,

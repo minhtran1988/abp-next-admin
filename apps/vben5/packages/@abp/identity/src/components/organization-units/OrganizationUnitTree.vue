@@ -70,7 +70,7 @@ const [OrganizationUnitPermissionModal, permissionModalApi] = useVbenModal({
   connectedComponent: PermissionModal,
 });
 
-/** 刷新组织机构树 */
+/** Refresh the organization tree */
 async function onRefresh() {
   loadedKeys.value = [];
   const { items } = await getRootListApi();
@@ -84,7 +84,7 @@ async function onRefresh() {
   });
 }
 
-/** 加载组织机构树节点 */
+/** Load organizational tree nodes */
 async function onLoad(node: EventDataNode) {
   const nodeKey = String(node.key);
   const { items } = await getChildrenApi({ id: nodeKey });
@@ -101,24 +101,24 @@ async function onLoad(node: EventDataNode) {
   loadedKeys.value.push(nodeKey);
 }
 
-/** 右键点击事件 */
+/** Right click event */
 function onRightClick() {
-  // 阻止默认事件
+  // Prevent default event
 }
 
-/** 创建组织机构树 */
+/** Create organization tree */
 function onCreate(parentId?: string) {
   editModalApi.setData({ parentId });
   editModalApi.open();
 }
 
-/** 编辑组织机构树 */
+/** Edit organization tree */
 function onUpdate(id: string) {
   editModalApi.setData({ id });
   editModalApi.open();
 }
 
-/** 编辑组织机构树权限 */
+/** Edit organization tree permissions */
 async function onPermissions(id: string) {
   const dto = await getApi(id);
   permissionModalApi.setData({
@@ -129,7 +129,7 @@ async function onPermissions(id: string) {
   permissionModalApi.open();
 }
 
-/** 删除组织机构 */
+/** Delete organization */
 function onDelete(id: string) {
   Modal.confirm({
     centered: true,
@@ -144,12 +144,12 @@ function onDelete(id: string) {
   });
 }
 
-/** 右键菜单点击事件 */
+/** Right-click menu click event */
 function onMenuClick(id: string, eventKey: Key) {
   actionsMap[eventKey]!(id);
 }
 
-/** 组织机构选择变化事件 */
+/** Organization selection change event */
 function onSelectChange(selectedKeys: Key[]) {
   if (selectedKeys.length === 0) {
     selectedKey.value = undefined;
@@ -158,7 +158,7 @@ function onSelectChange(selectedKeys: Key[]) {
   selectedKey.value = String(selectedKeys[0]);
 }
 
-/** 组织机构节点拖动事件 */
+/** Organization node drag event */
 function onDrop(info: AntTreeNodeDropEvent) {
   if (!info.dragNode.eventKey) {
     return;

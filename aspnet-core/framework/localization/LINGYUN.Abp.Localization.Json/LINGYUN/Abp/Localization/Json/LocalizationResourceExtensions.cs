@@ -7,7 +7,7 @@ namespace LINGYUN.Abp.Localization.Json
     public static class LocalizationResourceExtensions
     {
         /// <summary>
-        /// 添加Json本地磁盘文件支持
+        /// Add Json local disk file support
         /// </summary>
         /// <param name="localizationResource"></param>
         /// <param name="jsonFilePath"></param>

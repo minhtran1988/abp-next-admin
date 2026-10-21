@@ -43,16 +43,16 @@ describe('storageManager', () => {
   });
 
   it('should clear expired items', () => {
-    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 1000); // 1秒过期
-    vi.advanceTimersByTime(1001); // 快进时间
+    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 1000); // Expires in 1 second
+    vi.advanceTimersByTime(1001); // Fast forward time
     storageManager.clearExpiredItems();
     const user = storageManager.getItem('user');
     expect(user).toBeNull();
   });
 
   it('should not clear non-expired items', () => {
-    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 10_000); // 10秒过期
-    vi.advanceTimersByTime(5000); // 快进时间
+    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 10_000); // Expires in 10 seconds
+    vi.advanceTimersByTime(5000); // Fast forward time
     storageManager.clearExpiredItems();
     const user = storageManager.getItem('user');
     expect(user).toEqual({ age: 30, name: 'John Doe' });
@@ -86,23 +86,23 @@ describe('storageManager', () => {
   });
 
   it('should remove expired items when accessed', () => {
-    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 1000); // 1秒过期
-    vi.advanceTimersByTime(1001); // 快进时间
+    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 1000); // Expires in 1 second
+    vi.advanceTimersByTime(1001); // Fast forward time
     const user = storageManager.getItem('user');
     expect(user).toBeNull();
   });
 
   it('should not remove non-expired items when accessed', () => {
-    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 10_000); // 10秒过期
-    vi.advanceTimersByTime(5000); // 快进时间
+    storageManager.setItem('user', { age: 30, name: 'John Doe' }, 10_000); // Expires in 10 seconds
+    vi.advanceTimersByTime(5000); // Fast forward time
     const user = storageManager.getItem('user');
     expect(user).toEqual({ age: 30, name: 'John Doe' });
   });
 
   it('should handle multiple items with different expiry times', () => {
-    storageManager.setItem('user1', { age: 30, name: 'John Doe' }, 1000); // 1秒过期
-    storageManager.setItem('user2', { age: 25, name: 'Jane Doe' }, 2000); // 2秒过期
-    vi.advanceTimersByTime(1500); // 快进时间
+    storageManager.setItem('user1', { age: 30, name: 'John Doe' }, 1000); // Expires in 1 second
+    storageManager.setItem('user2', { age: 25, name: 'Jane Doe' }, 2000); // Expires in 2 seconds
+    vi.advanceTimersByTime(1500); // Fast forward time
     storageManager.clearExpiredItems();
     const user1 = storageManager.getItem('user1');
     const user2 = storageManager.getItem('user2');
@@ -112,7 +112,7 @@ describe('storageManager', () => {
 
   it('should handle items with no expiry', () => {
     storageManager.setItem('user', { age: 30, name: 'John Doe' });
-    vi.advanceTimersByTime(10_000); // 快进时间
+    vi.advanceTimersByTime(10_000); // Fast forward time
     storageManager.clearExpiredItems();
     const user = storageManager.getItem('user');
     expect(user).toEqual({ age: 30, name: 'John Doe' });

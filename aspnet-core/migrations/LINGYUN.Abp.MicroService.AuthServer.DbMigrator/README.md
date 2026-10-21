@@ -1,18 +1,18 @@
 # LINGYUN.Abp.MicroService.AuthServer.DbMigrator
 
-认证服务器数据库迁移控制台应用程序，用于执行认证服务器的数据库迁移和初始化种子数据。
+Authentication server database migration console application, used to perform database migration and initialize seed data of the authentication server.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动执行数据库迁移
-* 初始化系统必要的种子数据
-* 支持命令行参数配置
-* 集成Autofac依赖注入容器
-* 继承认证服务器的所有迁移功能
+* Automatically perform database migration
+* Initialize the necessary seed data for the system
+* Support command line parameter configuration
+* Integrate Autofac dependency injection container
+* Inherit all migration functions of the authentication server
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -21,12 +21,12 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "AuthServerDbMigrator": "你的数据库连接字符串"
+    "AuthServerDbMigrator": "Your database connection string"
   },
   "IdentityServer": {
     "Clients": {
@@ -38,29 +38,29 @@
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置AuthServerDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the AuthServerDbMigrator connection string in appsettings.json
 
-2. 运行迁移程序
+2. Run the migration program
    ```bash
    dotnet run
    ```
 
-## 命令行参数
+## Command line parameters
 
 * --database-provider
-  * 指定数据库提供程序 (默认: MySQL)
+  * Specify database provider (default: MySQL)
 * --connection-string
-  * 指定数据库连接字符串
+  * Specify database connection string
 * --skip-db-migrations
-  * 跳过数据库迁移
+  * Skip database migration
 * --skip-seed-data
-  * 跳过种子数据初始化
+  * Skip seed data initialization
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [EF Core迁移文档](https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/)
-* [IdentityServer4文档](https://identityserver4.readthedocs.io)
+* [ABP Documentation](https://docs.abp.io)
+* [EF Core Migration Document](https://docs.microsoft.com/zh-cn/ef/core/managing-schemas/migrations/)
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io)

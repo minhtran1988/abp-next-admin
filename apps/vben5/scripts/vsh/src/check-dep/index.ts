@@ -4,9 +4,9 @@ import { getPackages } from '@vben/node-utils';
 
 import depcheck from 'depcheck';
 
-// 默认配置
+// Default configuration
 const DEFAULT_CONFIG = {
-  // 需要忽略的依赖匹配
+  // Dependency matching that needs to be ignored
   ignoreMatches: [
     'vite',
     'vitest',
@@ -17,7 +17,7 @@ const DEFAULT_CONFIG = {
     '@types/*',
     '@vben-core/design',
   ],
-  // 需要忽略的包
+  // Packages that need to be ignored
   ignorePackages: [
     '@vben/backend-mock',
     '@vben/commitlint-config',
@@ -30,7 +30,7 @@ const DEFAULT_CONFIG = {
     '@vben/vite-config',
     '@vben/vsh',
   ],
-  // 需要忽略的文件模式
+  // File modes that need to be ignored
   ignorePatterns: ['dist', 'node_modules', 'public'],
 };
 
@@ -54,14 +54,14 @@ interface PackageInfo {
 }
 
 /**
- * 清理依赖检查结果
- * @param unused - 依赖检查结果
+ * Clean up dependency check results
+ * @param unused - dependency check result
  */
 function cleanDepcheckResult(unused: DepcheckResult): void {
-  // 删除file:前缀的依赖提示，该依赖是本地依赖
+  // Delete the dependency prompt of the file: prefix. The dependency is a local dependency.
   Reflect.deleteProperty(unused.missing, 'file:');
 
-  // 清理路径依赖
+  // Clean up path dependencies
   Object.keys(unused.missing).forEach((key) => {
     unused.missing[key] = (unused.missing[key] || []).filter(
       (item: string) => !item.startsWith('/'),
@@ -73,9 +73,9 @@ function cleanDepcheckResult(unused: DepcheckResult): void {
 }
 
 /**
- * 格式化依赖检查结果
- * @param pkgName - 包名
- * @param unused - 依赖检查结果
+ * Format dependency check results
+ * @param pkgName - package name
+ * @param unused - dependency check result
  */
 function formatDepcheckResult(pkgName: string, unused: DepcheckResult): void {
   const hasIssues =
@@ -109,8 +109,8 @@ function formatDepcheckResult(pkgName: string, unused: DepcheckResult): void {
 }
 
 /**
- * 运行依赖检查
- * @param config - 配置选项
+ * Run dependency check
+ * @param config - configuration options
  */
 async function runDepcheck(config: DepcheckConfig = {}): Promise<void> {
   try {
@@ -125,7 +125,7 @@ async function runDepcheck(config: DepcheckConfig = {}): Promise<void> {
 
     await Promise.all(
       packages.map(async (pkg: PackageInfo) => {
-        // 跳过需要忽略的包
+        // Skip packets that need to be ignored
         if (finalConfig.ignorePackages.includes(pkg.packageJson.name)) {
           return;
         }
@@ -161,8 +161,8 @@ async function runDepcheck(config: DepcheckConfig = {}): Promise<void> {
 }
 
 /**
- * 定义依赖检查命令
- * @param cac - CAC实例
+ * Define dependency checking commands
+ * @param cac - CAC instance
  */
 function defineDepcheckCommand(cac: CAC): void {
   cac

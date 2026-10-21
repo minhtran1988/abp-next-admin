@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Identity.Domain
 
-身份认证领域模块，提供身份认证相关的核心功能实现。
+The identity authentication field module provides the implementation of core functions related to identity authentication.
 
-## 功能特性
+## Features
 
-* 扩展Volo.Abp.Identity.AbpIdentityDomainModule模块
-* 提供身份会话管理功能
-* 提供身份会话清理功能
-* 支持分布式事件
+* Extend the Volo.Abp.Identity.AbpIdentityDomainModule module
+* Provide identity session management function
+* Provide identity session cleaning function
+* Support distributed events
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -21,7 +21,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ### IdentitySessionCleanupOptions
 
@@ -30,9 +30,9 @@ public class YouProjectModule : AbpModule
   "Identity": {
     "Session": {
       "Cleanup": {
-        "IsEnabled": false,           // 是否启用会话清理，默认：false
-        "CleanupPeriod": 3600000,    // 会话清理间隔（毫秒），默认：1小时
-        "InactiveTimeSpan": "30.00:00:00" // 不活跃会话保持时长，默认：30天
+        "IsEnabled": false, // Whether to enable session cleaning, default: false
+        "CleanupPeriod": 3600000, // Session cleanup interval (milliseconds), default: 1 hour
+        "InactiveTimeSpan": "30.00:00:00" // How long to keep inactive sessions, default: 30 days
       }
     }
   }
@@ -46,36 +46,36 @@ public class YouProjectModule : AbpModule
   "Identity": {
     "Session": {
       "SignIn": {
-        "AuthenticationSchemes": ["Identity.Application"], // 用于处理的身份认证方案
-        "SignInSessionEnabled": false,     // 是否启用SignInManager登录会话，默认：false
-        "SignOutSessionEnabled": false     // 是否启用SignInManager登出会话，默认：false
+        "AuthenticationSchemes": ["Identity.Application"], // Identity authentication schemes used for processing
+        "SignInSessionEnabled": false, // Whether to enable SignInManager login session, default: false
+        "SignOutSessionEnabled": false // Whether to enable SignInManager logout session, default: false
       }
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置身份会话管理
+1. Configure identity session management
 ```csharp
 Configure<IdentitySessionSignInOptions>(options =>
 {
-    options.SignInSessionEnabled = true;    // 启用登录会话
-    options.SignOutSessionEnabled = true;   // 启用登出会话
+    options.SignInSessionEnabled = true; // Enable login session
+    options.SignOutSessionEnabled = true; // Enable logout session
 });
 ```
 
-2. 配置会话清理
+2. Configure session cleanup
 ```csharp
 Configure<IdentitySessionCleanupOptions>(options =>
 {
-    options.IsCleanupEnabled = true;    // 启用会话清理
-    options.CleanupPeriod = 3600000;    // 设置清理间隔为1小时
-    options.InactiveTimeSpan = TimeSpan.FromDays(7);  // 设置不活跃会话保持时间为7天
+    options.IsCleanupEnabled = true; // Enable session cleanup
+    options.CleanupPeriod = 3600000; //Set the cleanup interval to 1 hour
+    options.InactiveTimeSpan = TimeSpan.FromDays(7); // Set the inactive session retention time to 7 days
 });
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)

@@ -5,68 +5,68 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 审批申请单数据
+/// Approval application data
 /// </summary>
 public class ApprovalControlValue
 {
     /// <summary>
-    /// 文本内容，即申请人在此控件填写的文本内容
+    /// Text content, that is, the text content filled in by the applicant in this control
     /// </summary>
     [CanBeNull]
     [JsonProperty("text")]
     [JsonPropertyName("text")]
     public string? Text { get; set; }
     /// <summary>
-    /// 数字内容，即申请人在此控件填写的数字内容
+    /// Digital content, that is, the digital content filled in by the applicant in this control
     /// </summary>
     [CanBeNull]
     [JsonProperty("new_number")]
     [JsonPropertyName("new_number")]
     public decimal? NewNumber { get; set; }
     /// <summary>
-    /// 金额内容，即申请人在此控件填写的金额内容
+    /// Amount content, that is, the amount content filled in by the applicant in this control
     /// </summary>
     [CanBeNull]
     [JsonProperty("new_money")]
     [JsonPropertyName("new_money")]
     public decimal? NewMoney { get; set; }
     /// <summary>
-    /// 所选成员内容，即申请人在此控件选择的成员，多选模式下可以有多个
+    /// Selected member content, that is, the members selected by the applicant in this control, there can be multiple in multi-select mode
     /// </summary>
     [NotNull]
     [JsonProperty("members")]
     [JsonPropertyName("members")]
     public List<MemberValue> Members { get; set; } = default!;
     /// <summary>
-    /// 所选部门内容，即申请人在此控件选择的部门，多选模式下可能有多个
+    /// The content of the selected department, that is, the department selected by the applicant in this control, there may be multiple in multi-select mode
     /// </summary>
     [NotNull]
     [JsonProperty("departments")]
     [JsonPropertyName("departments")]
     public List<DepartmentValue> Departments { get; set; } = default!;
     /// <summary>
-    /// 附件列表
+    /// Attachment list
     /// </summary>
     [NotNull]
     [JsonProperty("files")]
     [JsonPropertyName("files")]
     public List<FileValue> Files { get; set; } = default!;
     /// <summary>
-    /// 明细内容，一个明细控件可能包含多个子明细
+    /// Detail content, a detail control may contain multiple sub-details
     /// </summary>
     [NotNull]
     [JsonProperty("children")]
     [JsonPropertyName("children")]
     public List<ApprovalDataChildrenValue> Children { get; set; } = default!;
     /// <summary>
-    /// 选择内容
+    /// Select content
     /// </summary>
     [CanBeNull]
     [JsonProperty("selector")]
     [JsonPropertyName("selector")]
     public SelectorValue? Selector { get; set; }
     /// <summary>
-    /// 关联审批单
+    /// Associated approval form
     /// </summary>
     [NotNull]
     [JsonProperty("related_approval")]
@@ -77,7 +77,7 @@ public class ApprovalControlValue
 public class ApprovalDataChildrenValue
 {
     /// <summary>
-    /// 明细内容，一个明细控件可能包含多个子明细
+    /// Detail content, a detail control may contain multiple sub-details
     /// </summary>
     [NotNull]
     [JsonProperty("list")]

@@ -1,15 +1,15 @@
-# 企业微信消息通知
+# Enterprise WeChat message notification
 
-## 功能特性
+## Features
 
-* [发送应用消息](https://developer.work.weixin.qq.com/document/path/90236)
-* [发送群聊消息](https://developer.work.weixin.qq.com/document/path/90248)
-* [发送Webhook消息](https://developer.work.weixin.qq.com/document/path/99110)
+* [Send application message](https://developer.work.weixin.qq.com/document/path/90236)
+* [Send group chat message](https://developer.work.weixin.qq.com/document/path/90248)
+* [Send Webhook message](https://developer.work.weixin.qq.com/document/path/99110)
 
 
-## 使用方法
+## How to use
 
-- 发送Webhook消息
+- Send Webhook messages
 ```csharp
 public class Demo
 {
@@ -27,25 +27,25 @@ public class Demo
             new WeChatWorkWebhookTemplateCardMessage(
                 new WebhookTextNoticeCardMessage(
                     WebhookTemplateCardAction.Link("https://developer.work.weixin.qq.com/document/path/99110"),
-                    new WebhookTemplateCardMainTitle("请假通过通知", "您的请假申请已通过,请前往查看!"),
-                    source: WebhookTemplateCardSource.Black("https://wwcdn.weixin.qq.com/node/wework/images/wecom-logo.a61830413b.svg", "企业微信"),
+                    new WebhookTemplateCardMainTitle("Leave application approval notification", "Your leave application has been approved, please go and check it!"),
+                    source: WebhookTemplateCardSource.Black("https://wwcdn.weixin.qq.com/node/wework/images/wecom-logo.a61830413b.svg", "Enterprise WeChat"),
                     horizontalContents: new List<WebhookTemplateCardHorizontalContent>
                     {
-                        WebhookTemplateCardHorizontalContent.Default("审批单号", "QJ20251000000136"),
-                        WebhookTemplateCardHorizontalContent.Default("请假日期", "2025/10/01-2025/10/10"),
-                        WebhookTemplateCardHorizontalContent.Default("通过时间", "2025-10-01 15:30:00"),
-                        WebhookTemplateCardHorizontalContent.Default("审批备注", "做好考勤及交接事项"),
+                        WebhookTemplateCardHorizontalContent.Default("Approval Number", "QJ20251000000136"),
+                        WebhookTemplateCardHorizontalContent.Default("Leave Date", "2025/10/01-2025/10/10"),
+                        WebhookTemplateCardHorizontalContent.Default("Passed time", "2025-10-01 15:30:00"),
+                        WebhookTemplateCardHorizontalContent.Default("Approval Notes", "Do a good job in attendance and handover matters"),
                     },
                     jumps: new List<WebhookTemplateCardJump>
                     {
-                        WebhookTemplateCardJump.Link("去OA查看", "https://developer.work.weixin.qq.com/document/path/99110")
+                        WebhookTemplateCardJump.Link("Go to OA to view", "https://developer.work.weixin.qq.com/document/path/99110")
                     })));
 	}
 }
 ```
 
 
-## 更多文档
+## More documentation
 
-* [企业微信文档](https://developer.work.weixin.qq.com/document/path/90664)
+* [Enterprise WeChat Document](https://developer.work.weixin.qq.com/document/path/90664)
 

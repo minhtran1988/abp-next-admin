@@ -24,15 +24,15 @@ public class FlutterModelScriptGenerator : IFlutterModelScriptGenerator, ITransi
         ControllerApiDescriptionModel actionModel)
     {
         var modelScriptBuilder = new StringBuilder();
-        // dto基类
+        // dto base class
         modelScriptBuilder.AppendLine("import 'package:core/models/abp.dto.dart';");
-        // json库
+        // json library
         // flutter pub add json_annotation
         // flutter pub add build_runner --dev
         // flutter pub add json_serializable --dev
         // flutter pub run build_runner build --delete-conflicting-outputs
         modelScriptBuilder.AppendLine("import 'package:json_annotation/json_annotation.dart';");
-        // json库实现, 
+        // json library implementation,
         modelScriptBuilder.AppendLine("part 'models.g.dart';");
         // modelScriptBuilder.AppendLine($"part '{actionModel.ControllerName.ToSnakeCase()}.g.dart';");
         modelScriptBuilder.AppendLine();
@@ -60,13 +60,13 @@ public class FlutterModelScriptGenerator : IFlutterModelScriptGenerator, ITransi
                         modelTypes.AddIfNotContains(modelTypeName);
                     }
 
-                    // 字段类型
+                    // Field type
                     foreach (var propertity in modelType.Properties)
                     {
                         modelBaseTypes.AddIfNotContains(FindBaseTypes(appModel, propertity));
                     }
 
-                    // 类型基类
+                    // type base class
                     modelBaseTypes.AddIfNotContains(FindBaseTypes(appModel, modelType));
                 }
             }
@@ -88,19 +88,19 @@ public class FlutterModelScriptGenerator : IFlutterModelScriptGenerator, ITransi
                         modelTypes.AddIfNotContains(modelTypeName);
                     }
 
-                    // 字段类型
+                    // Field type
                     foreach (var propertity in modelType.Properties)
                     {
                         modelBaseTypes.AddIfNotContains(FindBaseTypes(appModel, propertity));
                     }
 
-                    // 类型基类
+                    // type base class
                     modelBaseTypes.AddIfNotContains(FindBaseTypes(appModel, modelType));
                 }
             }
 
 
-            // 返回类型
+            // return type
             var returnType = action.Value.ReturnValue.TypeSimple;
             var abpBaseType = TypeScriptModelGenerator.AbpBaseTypes.FirstOrDefault(basType => returnType.StartsWith(basType));
             if (!abpBaseType.IsNullOrWhiteSpace())
@@ -134,7 +134,7 @@ public class FlutterModelScriptGenerator : IFlutterModelScriptGenerator, ITransi
             modelBaseTypes.AddIfNotContains(returnType);
         }
 
-        // 基类导出
+        // Base class export
         foreach (var baseType in modelBaseTypes)
         {
             if (appModel.Types.TryGetValue(baseType, out var modelType))
@@ -286,7 +286,7 @@ public class FlutterModelScriptGenerator : IFlutterModelScriptGenerator, ITransi
                 propTypeName += "?";
             }
             modelScript.AppendFormat("  {0}", propTypeName);
-            //var propCharacter = properties[index].IsRequired ? " " : "? ";
+            // var propCharacter = properties[index].IsRequired ? " " : "? ";
             modelScript.AppendFormat("{0}{1};", " ", properties[index].Name.ToCamelCase());
             modelScript.AppendLine("");
         }

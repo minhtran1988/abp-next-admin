@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 视频消息
+/// Video message
 /// </summary>
 public class VideoMessage
 {
@@ -21,21 +21,21 @@ public class VideoMessage
     }
 
     /// <summary>
-    /// 视频消息的标题，不超过128个字节，超过会自动截断
+    /// The title of the video message should not exceed 128 bytes. If it exceeds 128 bytes, it will be automatically truncated.
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 视频消息的描述，不超过512个字节，超过会自动截断
+    /// Description of the video message, no more than 512 bytes, it will be automatically truncated if it exceeds
     /// </summary>
     [CanBeNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 视频媒体文件id，可以调用上传临时素材接口获取
+    /// Video media file id, which can be obtained by calling the upload temporary material interface.
     /// </summary>
     [NotNull]
     [JsonProperty("media_id")]

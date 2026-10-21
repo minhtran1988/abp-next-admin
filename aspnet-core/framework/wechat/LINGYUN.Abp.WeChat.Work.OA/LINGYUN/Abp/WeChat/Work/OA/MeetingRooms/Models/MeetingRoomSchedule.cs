@@ -4,47 +4,47 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Models;
 /// <summary>
-/// 会议室预定情况
+/// Conference room reservation status
 /// </summary>
 public class MeetingRoomSchedule
 {
     /// <summary>
-    /// 开始时间的时间戳
+    /// Timestamp of start time
     /// </summary>
     [NotNull]
     [JsonProperty("start_time")]
     [JsonPropertyName("start_time")]
     public long StartTime { get; set; }
     /// <summary>
-    /// 结束时间的时间戳
+    /// Timestamp of end time
     /// </summary>
     [NotNull]
     [JsonProperty("end_time")]
     [JsonPropertyName("end_time")]
     public long EndTime { get; set; }
     /// <summary>
-    /// 预定人的userid
+    /// The userid of the reservation person
     /// </summary>
     [NotNull]
     [JsonProperty("booker")]
     [JsonPropertyName("booker")]
     public string Booker { get; set; } = default!;
     /// <summary>
-    /// 会议室的预定状态
+    /// Reservation status of the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("status")]
     [JsonPropertyName("status")]
     public MeetingRoomScheduleStatus Status { get; set; }
     /// <summary>
-    /// 会议室的预定id
+    /// Reservation id of the conference room
     /// </summary>
     [NotNull]
     [JsonProperty("booking_id")]
     [JsonPropertyName("booking_id")]
     public string BookingId { get; set; } = default!;
     /// <summary>
-    /// 会议关联日程的id
+    /// The id of the conference associated schedule
     /// </summary>
     [CanBeNull]
     [JsonProperty("schedule_id")]

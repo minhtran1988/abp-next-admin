@@ -30,6 +30,6 @@ public class NullWeChatWorkUserClaimProvider : IWeChatWorkUserClaimProvider
         string weChatUserId,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException("请使用 AbpIdentityWeChatWorkModule 模块实现企业微信用户绑定!");
+        throw new NotImplementedException("Please use the AbpIdentityWeChatWorkModule module to implement enterprise WeChat user binding!");
     }
 }

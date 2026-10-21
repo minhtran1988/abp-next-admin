@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.Domain.Shared
 
-通知系统的共享领域层模块，提供了通知系统的共享常量、枚举和其他领域对象。
+The shared domain layer module of the notification system provides shared constants, enumerations and other domain objects of the notification system.
 
-## 功能特性
+## Features
 
-* 通知类型定义
-* 通知严重程度定义
-* 通知状态定义
-* 通知生命周期定义
-* 通知常量定义
+*Notification type definition
+* Definition of notification severity
+* Notification status definition
+* Notification life cycle definition
+* Notification constant definition
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsDomainSharedModule))]
@@ -20,39 +20,39 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 枚举定义
+## Enumeration definition
 
 ### NotificationType
 
-* Application - 应用程序通知
-* System - 系统通知
-* User - 用户通知
+*Application - application notification
+* System - system notification
+* User - user notification
 
 ### NotificationSeverity
 
-* Info - 信息
-* Success - 成功
-* Warn - 警告
-* Error - 错误
-* Fatal - 致命错误
+* Info - information
+* Success - success
+* Warn - warning
+* Error - error
+* Fatal - Fatal error
 
 ### NotificationLifetime
 
-* Persistent - 持久化通知
-* OnlyOne - 一次性通知
+* Persistent - persistent notification
+*OnlyOne - one-time notification
 
-## 基本用法
+## Basic usage
 
-1. 使用通知类型
+1. Use notification types
 ```csharp
 var notificationType = NotificationType.Application;
 ```
 
-2. 使用通知严重程度
+2. Use notification severity
 ```csharp
 var severity = NotificationSeverity.Info;
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
+* [ABP Documentation](https://docs.abp.io)

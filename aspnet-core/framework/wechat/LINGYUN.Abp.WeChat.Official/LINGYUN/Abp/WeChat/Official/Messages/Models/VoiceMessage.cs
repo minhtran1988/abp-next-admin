@@ -4,27 +4,27 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages.Models;
 /// <summary>
-/// 语音消息
+/// Voice message
 /// </summary>
 [EventName("voice")]
 public class VoiceMessage : WeChatOfficialGeneralMessage
 {
     /// <summary>
-    /// 语音格式，如amr，speex等
+    /// Voice format, such as amr, speex, etc.
     /// </summary>
     [XmlElement("Format")]
     public string Format { get; set; } = default!;
     /// <summary>
-    /// 语音识别结果，UTF8编码
+    /// Speech recognition results, UTF8 encoding
     /// </summary>
     /// <remarks>
-    /// 开通语音识别后，用户每次发送语音给公众号时，微信会在推送的语音消息XML数据包中，增加一个Recognition字段（
-    /// 注：由于客户端缓存，开发者开启或者关闭语音识别功能，对新关注者立刻生效，对已关注用户需要24小时生效。开发者可以重新关注此账号进行测试）。
+    /// After enabling speech recognition, every time the user sends a voice to the official account, WeChat will add a Recognition field (
+    /// Note: Due to client caching, developers can enable or disable the speech recognition function, which will take effect immediately for new followers and will take 24 hours to take effect for already followed users. Developers can re-follow this account for testing).
     /// </remarks>
     [XmlElement("Recognition")]
     public string Recognition { get; set; } = default!;
     /// <summary>
-    /// 语音消息媒体id，可以调用获取临时素材接口拉取该媒体
+    /// Voice message media id, you can call the temporary material interface to pull the media
     /// </summary>
     [XmlElement("MediaId")]
     public string MediaId { get; set; } = default!;

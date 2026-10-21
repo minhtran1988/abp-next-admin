@@ -17,7 +17,7 @@
       :wrapper-col="{ span: 18 }"
     >
       <Tabs v-model:activeKey="tabActivedKey" @change="handleChangeTab">
-        <!-- Api 资源基本信息 -->
+        <!-- Basic information of Api resources -->
         <TabPane key="basic" :tab="L('Basics')">
           <FormItem name="enabled" :label="L('Resource:Enabled')">
             <Checkbox v-model:checked="resourceRef.enabled">{{ L('Resource:Enabled') }}</Checkbox>
@@ -44,17 +44,17 @@
           </FormItem>
         </TabPane>
 
-        <!-- Api 资源用户声明 -->
+        <!-- Api resource user declaration -->
         <TabPane key="claim" :tab="L('UserClaim')">
           <UserClaim :target-claims="targetClaims" @change="handleClaimChange" />
         </TabPane>
 
-        <!-- Api 资源范围 -->
+        <!-- Api resource scope -->
         <TabPane key="scope" :tab="L('Scope')">
           <ApiResourceScope :target-scopes="targetScopes" @change="handleScopeChange" />
         </TabPane>
 
-        <!-- Api 资源密钥/属性 -->
+        <!-- Api resource key/property -->
         <TabPane key="advanced">
           <template #tab>
             <Dropdown>

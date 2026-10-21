@@ -6,19 +6,19 @@ namespace LINGYUN.Abp.PushPlus.Message;
 public interface IPushPlusMessageProvider
 {
     /// <summary>
-    /// 查询消息发送结果
+    /// Query message sending results
     /// </summary>
-    /// <param name="shortCode">消息短链码</param>
+    /// <param name="shortCode">Message short chain code</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<SendPushPlusMessageResult> GetSendResultAsync(
         string shortCode,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 消息列表
+    /// Message list
     /// </summary>
-    /// <param name="current">当前所在分页数</param>
-    /// <param name="pageSize">每页大小，最大值为50</param>
+    /// <param name="current">Current page number</param>
+    /// <param name="pageSize">The size of each page, the maximum value is 50</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<PushPlusPagedResponse<PushPlusMessage>> GetMessageListAsync(

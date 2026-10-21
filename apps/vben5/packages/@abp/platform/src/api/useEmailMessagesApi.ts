@@ -10,9 +10,9 @@ import { useRequest } from '@abp/request';
 export function useEmailMessagesApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取邮件消息分页列表
-   * @param {EmailMessageGetListInput} input 参数
-   * @returns {Promise<PagedResultDto<EmailMessageDto>>} 邮件消息列表
+   * Get the paging list of email messages
+   * @param {EmailMessageGetListInput} input parameter
+   * @returns {Promise<PagedResultDto<EmailMessageDto>>} email message list
    */
   function getPagedListApi(
     input?: EmailMessageGetListInput,
@@ -26,9 +26,9 @@ export function useEmailMessagesApi() {
     );
   }
   /**
-   * 获取邮件消息
+   * Get email messages
    * @param id Id
-   * @returns {EmailMessageDto} 邮件消息
+   * @returns {EmailMessageDto} email message
    */
   function getApi(id: string): Promise<EmailMessageDto> {
     return request<EmailMessageDto>(`/api/platform/messages/email/${id}`, {
@@ -36,7 +36,7 @@ export function useEmailMessagesApi() {
     });
   }
   /**
-   * 删除邮件消息
+   * Delete email message
    * @param id Id
    * @returns {void}
    */
@@ -46,7 +46,7 @@ export function useEmailMessagesApi() {
     });
   }
   /**
-   * 发送邮件消息
+   * Send email message
    * @param id Id
    * @returns {void}
    */

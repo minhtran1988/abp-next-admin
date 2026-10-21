@@ -1,19 +1,19 @@
 # LINGYUN.Abp.FeatureManagement.HttpApi
 
-功能管理HTTP API模块，提供了功能定义管理的REST API接口。
+The function management HTTP API module provides a REST API interface for function definition management.
 
-## 功能特性
+## Features
 
-* 功能定义管理API
-  * 创建、更新、删除功能定义
-  * 查询功能定义列表
-* 功能组定义管理API
-  * 创建、更新、删除功能组定义
-  * 查询功能组定义列表
-* 支持本地化
-* 集成ABP功能管理模块
+* Function definition management API
+  * Create, update, delete function definitions
+  * Query function definition list
+* Functional group definition management API
+  * Create, update, and delete function group definitions
+  * Query function group definition list
+* Support localization
+* Integrated ABP function management module
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -24,9 +24,9 @@ public class AbpFeatureManagementHttpApiModule : AbpModule
 }
 ```
 
-## API路由
+## API routing
 
-### 功能定义
+### Function definition
 
 * GET /api/feature-management/definitions
 * GET /api/feature-management/definitions/{name}
@@ -34,7 +34,7 @@ public class AbpFeatureManagementHttpApiModule : AbpModule
 * PUT /api/feature-management/definitions/{name}
 * DELETE /api/feature-management/definitions/{name}
 
-### 功能组定义
+### Functional group definition
 
 * GET /api/feature-management/group-definitions
 * GET /api/feature-management/group-definitions/{name}
@@ -42,15 +42,15 @@ public class AbpFeatureManagementHttpApiModule : AbpModule
 * PUT /api/feature-management/group-definitions/{name}
 * DELETE /api/feature-management/group-definitions/{name}
 
-## 本地化配置
+## Localization configuration
 
-模块使用ABP的本地化系统，主要使用以下资源：
+The module uses ABP's localization system and mainly uses the following resources:
 * AbpFeatureManagementResource
 * AbpValidationResource
 
-## 更多信息
+## More information
 
-* [ABP Web API文档](https://docs.abp.io/en/abp/latest/API/Auto-API-Controllers)
-* [ABP功能管理文档](https://docs.abp.io/en/abp/latest/Features)
+* [ABP Web API Documentation](https://docs.abp.io/en/abp/latest/API/Auto-API-Controllers)
+* [ABP Function Management Document](https://docs.abp.io/en/abp/latest/Features)
 
 [English](README.EN.md)

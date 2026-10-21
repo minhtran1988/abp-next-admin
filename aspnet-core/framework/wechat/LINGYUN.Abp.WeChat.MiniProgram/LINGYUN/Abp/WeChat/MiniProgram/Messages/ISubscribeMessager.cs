@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.WeChat.MiniProgram.Messages;
 
 /// <summary>
-/// 小程序模板消息
-/// 详情: https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html
+/// Mini program template message
+/// Details: https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html
 /// </summary>
 /// <remarks>
-/// 暂时仅实现发送订阅消息
+/// Only sending subscription messages is implemented for the time being.
 /// </remarks>
 public interface ISubscribeMessager
 {
     /// <summary>
-    /// 发送订阅消息
+    /// Send subscription message
     /// </summary>
     /// <param name="message"></param>
     /// <param name="cancellation"></param>
     /// <returns></returns>
     Task SendAsync(SubscribeMessage message, CancellationToken cancellation = default);
     /// <summary>
-    /// 发送订阅消息
+    /// Send subscription message
     /// </summary>
-    /// <param name="toUser">用户</param>
-    /// <param name="templateId">模板</param>
-    /// <param name="page">跳转页面</param>
-    /// <param name="lang">语言</param>
-    /// <param name="state">类型</param>
-    /// <param name="data">数据</param>
+    /// <param name="toUser">User</param>
+    /// <param name="templateId">Template</param>
+    /// <param name="page">Jump page</param>
+    /// <param name="lang">Language</param>
+    /// <param name="state">Type</param>
+    /// <param name="data">data</param>
     /// <param name="cancellation"></param>
     /// <returns></returns>
     Task SendAsync(

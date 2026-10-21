@@ -14,7 +14,7 @@ public class AbpNotificationsPushPlusTestsModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 用捕获式假实现替换真实发送, 避免真正调用 PushPlus 接口
+        // Replace the real sending with a capturing fake implementation to avoid actually calling the PushPlus interface
         context.Services.Replace(
             ServiceDescriptor.Singleton<IPushPlusMessageSender, FakePushPlusMessageSender>());
     }

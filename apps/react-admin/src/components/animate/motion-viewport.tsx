@@ -6,11 +6,11 @@ interface Props extends MotionProps {
 	className?: string;
 }
 /**
- * [whileInView: 元素可以在进出视口时设置动画](https://www.framer.com/motion/scroll-animations/#scroll-triggered-animations)
+ * [whileInView: Elements can be animated when entering and exiting the viewport](https://www.framer.com/motion/scroll-animations/#scroll-triggered-animations)
  *
- * + viewport: [视口](https://www.framer.com/motion/scroll-animations/###viewport)
+ * + viewport: [viewport](https://www.framer.com/motion/scroll-animations/###viewport)
  *
- *    + once: 仅触发一次
+ * + once: trigger only once
  */
 export default function MotionViewport({ children, className, ...other }: Props) {
 	return (

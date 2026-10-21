@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Attachments.Models;
 /// <summary>
-/// 附件类型
+/// Attachment type
 /// </summary>
-[Description("附件类型")]
+[Description("Attachment Type")]
 public enum AttachmentType
 {
     /// <summary>
-    /// 朋友圈
+    /// Moments
     /// </summary>
-    [Description("朋友圈")]
+    [Description("Moments")]
     Moments = 1,
     /// <summary>
-    /// 商品图册
+    /// Product album
     /// </summary>
-    [Description("商品图册")]
+    [Description("Product Album")]
     ProductCatalogue = 2,
 }

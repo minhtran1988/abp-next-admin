@@ -2,19 +2,19 @@
 public class AliyunSmsVerifyCodeResponse
 {
     /// <summary>
-    /// 请求状态码, OK代表请求成功
+    /// Request status code, OK means the request is successful
     /// </summary>
     public string Code { get; set; } = default!;
     /// <summary>
-    /// 状态码的描述
+    /// Description of status code
     /// </summary>
     public string Message { get; set; } = default!;
     /// <summary>
-    /// 请求是否成功
+    /// Whether the request was successful
     /// </summary>
     public bool Success { get; set; }
     /// <summary>
-    /// 请求结果数据
+    /// Request result data
     /// </summary>
     public AliyunSmsVerifyCodeModel Model { get; set; } = default!;
 }
@@ -22,19 +22,19 @@ public class AliyunSmsVerifyCodeResponse
 public class AliyunSmsVerifyCodeModel
 {
     /// <summary>
-    /// 请求Id
+    /// Request ID
     /// </summary>
     public string RequestId { get; set; } = default!;
     /// <summary>
-    /// 业务Id
+    /// Business ID
     /// </summary>
     public string? BizId { get; set; }
     /// <summary>
-    /// 外部流水号
+    /// External serial number
     /// </summary>
     public string? OutId { get; set; }
     /// <summary>
-    /// 验证码, 仅当使用阿里云短信验证服务生成验证码时携带
+    /// Verification code, carried only when the verification code is generated using Alibaba Cloud SMS Verification Service
     /// </summary>
     public string? VerifyCode { get; set; }
 }

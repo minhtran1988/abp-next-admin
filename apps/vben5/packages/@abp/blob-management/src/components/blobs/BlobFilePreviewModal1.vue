@@ -74,7 +74,7 @@ function onError(error: Error) {
         @error="onError"
       />
 
-      <!-- 下载按钮 -->
+      <!-- Download button -->
       <div v-if="errorMsg && previewUrl" class="download-button">
         <Button type="primary" @click="handleDownload">
           {{ $t('BlobManagement.Blobs:Download') }}

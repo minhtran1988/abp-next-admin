@@ -11,31 +11,31 @@ namespace LINGYUN.Abp.DataProtectionManagement;
 public class EntityPropertyInfo : Entity<Guid>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public virtual string DisplayName { get; protected set; } = default!;
     /// <summary>
-    /// 类型全名
+    /// Type full name
     /// </summary>
     public virtual string TypeFullName { get; protected set; } = default!;
     /// <summary>
-    /// Js类型
+    /// Js type
     /// </summary>
     public virtual string JavaScriptType { get; protected set; } = default!;
     /// <summary>
-    /// 所属类型
+    /// Type
     /// </summary>
     public virtual EntityTypeInfo TypeInfo { get; protected set; } = default!;
     /// <summary>
-    /// 所属类型标识
+    /// Type identification
     /// </summary>
     public virtual Guid TypeInfoId { get; protected set; }
     /// <summary>
-    /// 枚举列表
+    /// enumeration list
     /// </summary>
     public virtual ICollection<EntityEnumInfo> Enums { get; protected set; }
 

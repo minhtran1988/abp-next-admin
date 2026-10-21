@@ -1,24 +1,24 @@
-/** 作业管理权限 */
+/** Job management permissions */
 export const BackgroundJobsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'TaskManagement.BackgroundJobs.Create',
   Default: 'TaskManagement.BackgroundJobs',
-  /** 删除 */
+  /** Delete */
   Delete: 'TaskManagement.BackgroundJobs.Delete',
-  /** 管理触发器 */
+  /** Management triggers */
   ManageActions: 'TaskManagement.BackgroundJobs.ManageActions',
-  /** 管理系统作业 */
+  /** Management system jobs */
   ManageSystemJobs: 'TaskManagement.BackgroundJobs.ManageSystemJobs',
-  /** 暂停 */
+  /** Pause */
   Pause: 'TaskManagement.BackgroundJobs.Pause',
-  /** 恢复 */
+  /** Restore */
   Resume: 'TaskManagement.BackgroundJobs.Resume',
-  /** 启动 */
+  /** Start */
   Start: 'TaskManagement.BackgroundJobs.Start',
-  /** 停止 */
+  /** Stop */
   Stop: 'TaskManagement.BackgroundJobs.Stop',
-  /** 触发 */
+  /** trigger */
   Trigger: 'TaskManagement.BackgroundJobs.Trigger',
-  /** 修改 */
+  /** Modify */
   Update: 'TaskManagement.BackgroundJobs.Update',
 };

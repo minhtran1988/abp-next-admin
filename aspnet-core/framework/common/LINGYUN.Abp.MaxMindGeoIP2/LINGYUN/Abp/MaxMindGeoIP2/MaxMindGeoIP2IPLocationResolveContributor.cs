@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.MaxMindGeoIP2;
 
 /// <summary>
-/// MaxMind GeoIP2 位置解析贡献者
+/// MaxMind GeoIP2 location analysis contributor
 /// </summary>
 /// <remarks>
 public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContributorBase
@@ -28,7 +28,7 @@ public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContri
         {
             if (!reader.TryCity(context.IpAddress, out response) || response == null)
             {
-                // 内网、保留地址以及未收录的地址在离线库中没有记录
+                // Intranet, reserved addresses and uncollected addresses are not recorded in the offline library
                 context.Location = new IPLocation();
 
                 return Task.CompletedTask;
@@ -36,7 +36,7 @@ public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContri
         }
         catch (Exception exception)
         {
-            // 离线库读取异常(例如文件损坏)不阻断业务, 记录日志后按无数据返回
+            // Offline library reading exceptions (such as file corruption) do not interrupt the business. After recording the log, return with no data.
             context.ServiceProvider
                 .GetService<ILogger<MaxMindGeoIP2IPLocationResolveContributor>>()
                 ?.LogWarning(exception, "Failed to query the MaxMind GeoIP2 database for {IpAddress}.", context.IpAddress);
@@ -56,7 +56,7 @@ public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContri
     }
 
     /// <summary>
-    /// 获取当前文化的名称, 没有对应文化时回退到 <see cref="NamedEntity.Name"/>
+    /// Get the name of the current culture. If there is no corresponding culture, fall back to <see cref="NamedEntity.Name"/>
     /// </summary>
     protected virtual string? GetName(NamedEntity? entity)
     {
@@ -67,7 +67,7 @@ public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContri
 
         var culture = CultureInfo.CurrentUICulture;
 
-        // 先按完整文化名称匹配(如 zh-CN), 再按语言名称匹配(如 zh), 最后回退到离线库默认名称
+        // First match by the complete cultural name (such as zh-CN), then match by the language name (such as zh), and finally fall back to the default name of the offline library
         var name = GetNameByCulture(entity, culture.Name)
             ?? GetNameByCulture(entity, culture.TwoLetterISOLanguageName)
             ?? entity.Name;
@@ -76,7 +76,7 @@ public class MaxMindGeoIP2IPLocationResolveContributor : IPLocationResolveContri
     }
 
     /// <summary>
-    /// 从 <see cref="NamedEntity.Names"/> 中获取指定文化的名称(键大小写不敏感)
+    /// Get the name of the specified culture from <see cref="NamedEntity.Names"/> (keys are not case-sensitive)
     /// </summary>
     protected virtual string? GetNameByCulture(NamedEntity entity, string? culture)
     {

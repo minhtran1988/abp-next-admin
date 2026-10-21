@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Microsoft.AspNetCore.Authentication.QQ;
 
 /// <summary>
-/// QQ互联实现
+/// QQ interconnection implementation
 /// </summary>
 public class QQConnectOAuthHandler : OAuthHandler<QQConnectOAuthOptions>
 {
@@ -34,7 +34,7 @@ public class QQConnectOAuthHandler : OAuthHandler<QQConnectOAuthOptions>
     {
         var options = await TencentQQOptionsFactory.CreateAsync();
 
-        // 用配置项重写
+        // Rewrite with configuration items
         Options.ClientId = options.AppId;
         Options.ClientSecret = options.AppKey;
         Options.IsMobile = options.IsMobile;
@@ -44,7 +44,7 @@ public class QQConnectOAuthHandler : OAuthHandler<QQConnectOAuthOptions>
     }
 
     /// <summary>
-    ///  构建用户授权地址
+    /// Construct user authorization address
     /// </summary> 
     protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
     {
@@ -58,7 +58,7 @@ public class QQConnectOAuthHandler : OAuthHandler<QQConnectOAuthOptions>
     }
 
     /// <summary>
-    /// code换取access_token
+    /// code in exchange for access_token
     /// </summary> 
     protected override async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
     {

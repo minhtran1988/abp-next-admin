@@ -8,7 +8,7 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace LINGYUN.Abp.WeChat.Work.OA;
 /// <summary>
-/// 企业微信办公模块
+/// Enterprise WeChat office module
 /// </summary>
 [DependsOn(typeof(AbpWeChatWorkModule))]
 public class AbpWeChatWorkOAModule : AbpModule

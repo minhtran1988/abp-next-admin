@@ -4,42 +4,42 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages;
 /// <summary>
-/// 企业微信消息
+/// Enterprise WeChat message
 /// </summary>
 public abstract class WeChatWorkMessage : WeChatWorkRequest
 {
     /// <summary>
-    /// 指定接收消息的成员，成员ID列表（多个接收者用‘|’分隔，最多支持1000个）。
-    /// 特殊情况：指定为"@all"，则向该企业应用的全部成员发送
+    /// Specify the member to receive the message, member ID list (multiple receivers are separated by '|', up to 1000 are supported).
+    /// Special case: Specify "@all" to send to all members of the enterprise application
     /// </summary>
     [JsonProperty("touser")]
     [JsonPropertyName("touser")]
     public virtual string? ToUser { get; set; }
     /// <summary>
-    /// 指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。
-    /// 当touser为"@all"时忽略本参数
+    /// Specify the department to receive the message, department ID list, multiple recipients separated by '|', up to 100 are supported.
+    /// This parameter is ignored when touser is "@all"
     /// </summary>
     [JsonProperty("toparty")]
     [JsonPropertyName("toparty")]
     public virtual string? ToParty { get; set; }
     /// <summary>
-    /// 指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。
-    /// 当touser为"@all"时忽略本参数
+    /// Specify the tag to receive the message, tag ID list, multiple receivers separated by '|', up to 100 are supported.
+    /// This parameter is ignored when touser is "@all"
     /// </summary>
     [JsonProperty("totag")]
     [JsonPropertyName("totag")]
     public virtual string? ToTag { get; set; }
     /// <summary>
-    /// 消息类型
+    /// Message type
     /// </summary>
     [NotNull]
     [JsonProperty("msgtype")]
     [JsonPropertyName("msgtype")]
     public virtual string MsgType { get; protected set; }
     /// <summary>
-    /// 企业应用的id，整型。
-    /// 企业内部开发，可在应用的设置页面查看；
-    /// 第三方服务商，可通过接口 获取企业授权信息 获取该参数值
+    /// The id of the enterprise application, integer type.
+    /// Developed internally by the company, it can be viewed on the application’s settings page;
+    /// Third-party service providers can obtain enterprise authorization information through the interface to obtain this parameter value.
     /// </summary>
     [NotNull]
     [JsonProperty("agentid")]

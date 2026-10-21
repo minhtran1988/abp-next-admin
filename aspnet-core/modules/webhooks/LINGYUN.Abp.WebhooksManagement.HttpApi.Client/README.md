@@ -1,17 +1,17 @@
 # LINGYUN.Abp.WebhooksManagement.HttpApi.Client
 
-Webhook管理HTTP API客户端模块，提供对Webhook管理HTTP API的动态代理客户端。
+Webhook management HTTP API client module provides a dynamic proxy client for Webhook management HTTP API.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 动态API客户端代理
-* 自动HTTP客户端配置
-* 支持远程服务调用
-* 集成ABP动态C# API客户端
+* Dynamic API client proxy
+* Automatic HTTP client configuration
+* Support remote service calling
+* Integrate ABP dynamic C# API client
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementHttpApiClientModule))]
@@ -21,21 +21,21 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "RemoteServices": {
     "WebhooksManagement": {
-      "BaseUrl": "http://localhost:44315/"  // Webhook管理服务的基础URL
+      "BaseUrl": "http://localhost:44315/" //The base URL of the Webhook management service
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置远程服务
+1. Configure remote services
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
 {
@@ -49,7 +49,7 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-2. 使用HTTP客户端
+2. Use HTTP client
 ```csharp
 public class YourService
 {
@@ -62,14 +62,14 @@ public class YourService
 
     public async Task CallRemoteApi()
     {
-        // 创建订阅
+        //Create subscription
         await _webhookSubscriptionAppService.CreateAsync(new WebhookSubscriptionCreateDto
         {
             WebhookUri = "https://your-webhook-endpoint",
             Webhooks = new[] { "YourWebhook" }
         });
 
-        // 查询订阅
+        // Query subscription
         var subscriptions = await _webhookSubscriptionAppService.GetListAsync(
             new WebhookSubscriptionGetListInput());
     }

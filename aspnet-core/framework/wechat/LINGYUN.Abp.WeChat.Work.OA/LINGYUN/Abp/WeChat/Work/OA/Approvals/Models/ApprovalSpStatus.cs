@@ -2,43 +2,43 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 申请单状态
+/// Application status
 /// </summary>
 public enum ApprovalSpStatus : byte
 {
     /// <summary>
-    /// 审批中
+    /// Under approval
     /// </summary>
-    [Description("审批中")]
+    [Description("Under Approval")]
     UnderApproval = 1,
     /// <summary>
-    /// 已通过
+    /// Passed
     /// </summary>
-    [Description("已通过")]
+    [Description("Passed")]
     Passed = 2,
     /// <summary>
-    /// 已驳回
+    /// Rejected
     /// </summary>
-    [Description("已驳回")]
+    [Description("Rejected")]
     Rejected = 3,
     /// <summary>
-    /// 已撤销
+    /// Canceled
     /// </summary>
-    [Description("已撤销")]
+    [Description("Revoked")]
     Revoked = 4,
     /// <summary>
-    /// 通过后撤销
+    /// Cancel after passing
     /// </summary>
-    [Description("通过后撤销")]
+    [Description("Cancel after passing")]
     RevokeAfterApproval = 6,
     /// <summary>
-    /// 已删除
+    /// Deleted
     /// </summary>
-    [Description("已删除")]
+    [Description("Deleted")]
     Deleted = 7,
     /// <summary>
-    /// 已支付
+    /// Paid
     /// </summary>
-    [Description("已支付")]
+    [Description("Paid")]
     Paid = 10,
 }

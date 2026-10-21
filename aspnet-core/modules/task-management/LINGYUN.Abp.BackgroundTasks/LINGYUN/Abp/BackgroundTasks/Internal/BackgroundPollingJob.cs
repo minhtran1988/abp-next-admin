@@ -31,16 +31,16 @@ public class BackgroundPollingJob : IJobRunnable
             }
 
             /* changes: 2023-04-06
-             * 作业轮询接口会轮询所有节点作业
-             * 之前的设计为通过 IJobPublisher 发布到作业调度器
-             * 而作业在运行中不是当前节点作业会被忽略, 造成作业实际上永远不会被执行
+             * The job polling interface will poll all node jobs
+             * The previous design was to publish to the job scheduler through IJobPublisher
+             * If the job is not running on the current node, it will be ignored, causing the job to never actually be executed.
              * 
-             * 改进方法为新建一个接口 IJobDispatcher, 轮询到的非当前节点作业通过它来调度
-             * 而实现者为分布式事件作业调度器, 只有目标节点才会接收作业并启动
+             * The improvement method is to create a new interface IJobDispatcher, through which the polled non-current node jobs are scheduled.
+             * The implementer is the distributed event job scheduler, only the target node will receive the job and start it
              * 
              */
 
-            // 当前节点作业发布
+            // Current node job release
             var scheduleJobs = waitingJobs.Where(job => string.Equals(job.NodeName, options.NodeName) || job.NodeName.IsNullOrWhiteSpace());
             var jobPublisher = context.ServiceProvider.GetRequiredService<IJobPublisher>();
             foreach (var job in scheduleJobs)
@@ -48,7 +48,7 @@ public class BackgroundPollingJob : IJobRunnable
                 await jobPublisher.PublishAsync(job, context.CancellationToken);
             }
 
-            // 非当前节点作业调度
+            // Non-current node job scheduling
             var dispatchJobs = waitingJobs.Where(job => !job.NodeName.IsNullOrWhiteSpace() && !string.Equals(job.NodeName, options.NodeName));
             if (dispatchJobs.Any())
             {

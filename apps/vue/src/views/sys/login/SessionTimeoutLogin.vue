@@ -29,7 +29,7 @@
   };
 
   onMounted(() => {
-    // 记录当前的UserId
+    // Record the current UserId
     userId.value = userStore.getUserInfo?.userId;
     console.log('Mounted', userStore.getUserInfo);
     go(`/login?redirect=${path}`);
@@ -37,10 +37,10 @@
 
   onBeforeUnmount(() => {
     if (userId.value && userId.value !== userStore.getUserInfo.userId) {
-      // 登录的不是同一个用户，刷新整个页面以便丢弃之前用户的页面状态
+      // If the user is not logged in, refresh the entire page to discard the previous user's page status.
       document.location.reload();
     } else if (isBackMode() && permissionStore.getLastBuildMenuTime === 0) {
-      // 后台权限模式下，没有成功加载过菜单，就重新加载整个页面。这通常发生在会话过期后按F5刷新整个页面后载入了本模块这种场景
+      // In background permission mode, if the menu is not successfully loaded, the entire page will be reloaded. This usually occurs when the module is loaded after pressing F5 to refresh the entire page after the session has expired.
       document.location.reload();
     }
   });

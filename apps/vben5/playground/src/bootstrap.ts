@@ -18,57 +18,57 @@ import App from './app.vue';
 import { initTimezone } from './timezone-init';
 
 async function bootstrap(namespace: string) {
-  // 初始化组件适配器
+  // Initialize component adapter
   await initComponentAdapter();
 
-  // 初始化表单组件
+  // Initialize form components
   await initSetupVbenForm();
 
-  // 设置弹窗的默认配置
+  // Set the default configuration of the pop-up window
   // setDefaultModalProps({
   //   fullscreenButton: false,
   // });
-  // 设置抽屉的默认配置
+  // Set the default configuration of the drawer
   // setDefaultDrawerProps({
   //   zIndex: 1020,
   // });
 
   const app = createApp(App);
 
-  // 注册v-loading指令
+  // Register v-loading directive
   registerLoadingDirective(app, {
-    loading: 'loading', // 在这里可以自定义指令名称，也可以明确提供false表示不注册这个指令
+    loading: 'loading', // You can customize the command name here, or you can explicitly provide false to indicate not to register this command.
     spinning: 'spinning',
   });
 
-  // 国际化 i18n 配置
+  // Internationalization i18n configuration
   await setupI18n(app);
 
-  // 配置 pinia-tore
+  // Configure pinia-tore
   await initStores(app, { namespace });
 
-  // 初始化时区HANDLER
+  // Initialize time zone HANDLER
   initTimezone();
 
-  // 安装权限指令
+  // Install permission instructions
   registerAccessDirective(app);
 
-  // 初始化 tippy
+  // Initialize tippy
   const { initTippy } = await import('@vben/common-ui/es/tippy');
   initTippy(app);
 
-  // 配置路由及路由守卫
+  // Configure routing and routing guards
   app.use(router);
 
-  // 配置@tanstack/vue-query
+  // Configure @tanstack/vue-query
   const { VueQueryPlugin } = await import('@tanstack/vue-query');
   app.use(VueQueryPlugin);
 
-  // 配置Motion插件
+  // Configure Motion plug-in
   const { MotionPlugin } = await import('@vben/plugins/motion');
   app.use(MotionPlugin);
 
-  // 动态更新标题
+  // Dynamically update title
   watchEffect(() => {
     if (preferences.app.dynamicTitle) {
       const routeTitle = router.currentRoute.value.meta?.title;

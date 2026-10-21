@@ -46,7 +46,7 @@ type WorkspaceDefinitionVto = Omit<
   'creationTime'
 > & { apiKey?: string };
 
-// 默认表单数据
+// Default form data
 const defaultModel: WorkspaceDefinitionVto = {
   id: '',
   name: '',
@@ -66,20 +66,20 @@ const { deserialize: deserializeLocalizableString } =
 const { getPagedListApi: getAIToolPagedListApi } = useAIToolsApi();
 const { createApi, updateApi, getApi, getAvailableProviderListApi } =
   useWorkspaceDefinitionsApi();
-// 表单允许编辑
+// Form allows editing
 const isAllowUpdate = ref(false);
-// 表单
+// form
 const form = useTemplateRef<FormInstance>('formEl');
-// 表单数据
+// form data
 const formModel = ref<WorkspaceDefinitionVto>({ ...defaultModel });
-// 模型提供者选项
+// Model provider options
 const providerOptions = ref<NonNullable<SelectProps['options']>>([]);
-// 模型选项
+// Model options
 const modelOptions = ref<NonNullable<SelectProps['options']>>([]);
-// AI工具
+// AI tools
 const aiToolOptions = ref<NonNullable<SelectProps['options']>>([]);
 
-// 工作区编辑模态框
+// Workspace edit modal box
 const [Modal, modalApi] = useVbenModal({
   title: $t('AIManagement.Workspaces:New'),
   class: 'w-1/2',
@@ -91,7 +91,7 @@ const [Modal, modalApi] = useVbenModal({
     isOpen && (await onInit());
   },
 });
-/** 初始化工作区数据 */
+/** Initialize workspace data */
 async function onInit() {
   try {
     modalApi.setState({
@@ -119,7 +119,7 @@ async function onInit() {
     });
   }
 }
-/** 初始化模型选项 */
+/** Initialize model options */
 async function onInitProviderOptions() {
   modelOptions.value = [];
   const { items } = await getAvailableProviderListApi();
@@ -137,7 +137,7 @@ async function onInitProviderOptions() {
   });
 }
 
-/** 初始化AI工具选项 */
+/** Initialize AI tool options */
 const onSearchAIToolOptions = debounce((filter?: string) => {
   getAIToolPagedListApi({ isEnabled: true, filter }).then((res) => {
     aiToolOptions.value = res.items.map((item) => {
@@ -162,7 +162,7 @@ function onProviderChange(_: SelectValue, option: DefaultOptionType) {
   modelOptions.value = option.models;
 }
 
-/** 提交表单 */
+/** Submit form */
 async function onSubmit() {
   await form.value?.validate();
   try {

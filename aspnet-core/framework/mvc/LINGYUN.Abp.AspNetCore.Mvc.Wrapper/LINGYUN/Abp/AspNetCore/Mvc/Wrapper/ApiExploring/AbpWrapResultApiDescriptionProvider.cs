@@ -100,10 +100,10 @@ public class AbpWrapResultApiDescriptionProvider : IApiDescriptionProvider, ITra
                         });
                     }
                 }
-                // TODO: 是否有必要对其他响应代码定义包装结果?
-                // 例外1: 当用户传递 _AbpDontWrapResult 请求头时, 响应结果与预期不一致
-                // 例外2: 当控制器Url在被忽略Url中, 响应结果与预期不一致
-                // 例外3: 当引发异常在被忽略异常中, 响应结果为 RemoteServiceErrorResponse 对象, 与预期不一致
+                // TODO: Is it necessary to define wrapped results for other response codes?
+                // Exception 1: When the user passes the _AbpDontWrapResult request header, the response result is inconsistent with expectations
+                // Exception 2: When the controller Url is in the ignored Url, the response result is inconsistent with expectations
+                // Exception 3: When an exception is thrown in an ignored exception, the response result is a RemoteServiceErrorResponse object, which is inconsistent with expectations
 
                 result.SupportedResponseTypes.RemoveAll(x => x.StatusCode == responseType.StatusCode);
                 result.SupportedResponseTypes.AddIfNotContains(

@@ -80,16 +80,16 @@ public abstract class FileProviderWorkflowsResolveContributor : WorkflowsResolve
         var fileInfo = FileProvider?.GetFileInfo(ruleFile);
         if (fileInfo != null && fileInfo.Exists)
         {
-            // 规则文件监控
+            // Rule file monitoring
             ChangeToken.OnChange(
                 () => FileProvider!.Watch(ruleFile),
                 (int ruleId) =>
                 {
-                    // 清除规则缓存
+                    // Clear rule cache
                     RulesCache.Remove(ruleId);
                 }, ruleId);
 
-            // 打开文本流
+            // Open text stream
             using var stream = fileInfo.CreateReadStream();
             var result = new byte[stream.Length];
 #if NETSTANDARD2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
@@ -98,7 +98,7 @@ public abstract class FileProviderWorkflowsResolveContributor : WorkflowsResolve
             await stream.ReadExactlyAsync(result, 0, result.Length, cancellationToken);
 #endif
             var ruleDsl = Encoding.UTF8.GetString(result);
-            // 解析
+            // parse
             return JsonSerializer.Deserialize<Workflow[]>(ruleDsl);
         }
         return new Workflow[0];

@@ -6,23 +6,23 @@ namespace LINGYUN.Abp.TaskManagement;
 public class BackgroundJobActionDefinitionDto
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 类型
+    /// Type
     /// </summary>
     public JobActionType Type { get; set; }
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public string? DisplayName { get; set; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     public string? Description { get; set; }
     /// <summary>
-    /// 参数列表
+    /// Parameter list
     /// </summary>
     public IList<BackgroundJobActionParamterDto> Paramters { get; set; } = new List<BackgroundJobActionParamterDto>();
 }

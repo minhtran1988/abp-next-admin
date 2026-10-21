@@ -23,7 +23,7 @@ function RegisterForm() {
 			emailAddress: values.email,
 		});
 
-		//	三方注册成功后直接登录
+		// Log in directly after successful third-party registration
 		await externalSignIn();
 	};
 

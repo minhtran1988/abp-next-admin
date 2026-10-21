@@ -10,32 +10,32 @@ public class DataProtectedResourceCacheItem
 {
     private const string CacheKeyFormat = "sn:{0};si:{1},e:{2},o:{3}";
     /// <summary>
-    /// 权限主体
+    /// Authorization subject
     /// </summary>
     public string SubjectName { get; set; } = default!;
 
     /// <summary>
-    /// 权限主体标识
+    /// Permission subject identification
     /// </summary>
     public string SubjectId { get; set; } = default!;
 
     /// <summary>
-    /// 实体类型全名
+    /// Entity type full name
     /// </summary>
     public string EntityTypeFullName { get; set; } = default!;
 
     /// <summary>
-    /// 数据权限操作
+    /// Data permission operations
     /// </summary>
     public DataAccessOperation Operation { get; set; }
 
     /// <summary>
-    /// 获取或设置 数据过滤规则
+    /// Get or set data filtering rules
     /// </summary>
     public DataAccessFilterGroup? FilterGroup { get; set; }
 
     /// <summary>
-    /// 允许操作的属性列表
+    /// List of properties that are allowed to operate
     /// </summary>
     public List<string> AccessdProperties { get; set; }
     public DataProtectedResourceCacheItem()

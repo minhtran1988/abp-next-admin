@@ -10,17 +10,17 @@ namespace LINGYUN.Abp.OpenObserve;
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 创建函数
+    /// Create function
     /// </summary>
     /// <remarks>
     /// POST /api/{organization}/functions
-    /// 参考: https://openobserve.ai/docs/reference/api/function/
+    /// Reference: https://openobserve.ai/docs/reference/api/function/
     /// </remarks>
-    /// <param name="name">函数名称</param>
-    /// <param name="function">函数体</param>
-    /// <param name="transType">函数语言: 0 = VRL, 1 = JavaScript</param>
-    /// <param name="streams">函数生效的数据流</param>
-    /// <param name="order">执行顺序(文档示例字段, 当前实现未使用)</param>
+    /// <param name="name">Function name</param>
+    /// <param name="function">Function body</param>
+    /// <param name="transType">Functional language: 0 = VRL, 1 = JavaScript</param>
+    /// <param name="streams">Data streams where the function takes effect</param>
+    /// <param name="order">Execution order (document example field, not used by the current implementation)</param>
     public async virtual Task<OpenObserveCodeMessageResponse> CreateFunctionAsync(
         string name,
         string function,
@@ -52,11 +52,11 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 更新函数
+    /// Update function
     /// </summary>
     /// <remarks>
     /// PUT /api/{organization}/functions/{name}
-    /// 参考: https://openobserve.ai/docs/reference/api/function/
+    /// Reference: https://openobserve.ai/docs/reference/api/function/
     /// </remarks>
     public async virtual Task<OpenObserveCodeMessageResponse> UpdateFunctionAsync(
         string name,
@@ -89,14 +89,14 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 删除函数
+    /// Delete function
     /// </summary>
     /// <remarks>
     /// DELETE /api/{organization}/functions/{name}
-    /// 当流水线依赖该函数时返回 409
-    /// 参考: https://openobserve.ai/docs/reference/api/function/
+    /// Return 409 when the pipeline depends on this function
+    /// Reference: https://openobserve.ai/docs/reference/api/function/
     /// </remarks>
-    /// <param name="force">实现声明了该参数用于强制删除, 当前版本服务端未使用</param>
+    /// <param name="force">The implementation declares that this parameter is used for forced deletion, and the current version of the server does not use it</param>
     public async virtual Task<OpenObserveCodeMessageResponse> DeleteFunctionAsync(
         string name,
         bool? force = null,
@@ -111,11 +111,11 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 列出函数
+    /// List functions
     /// </summary>
     /// <remarks>
     /// GET /api/{organization}/functions
-    /// 参考: https://openobserve.ai/docs/reference/api/function/
+    /// Reference: https://openobserve.ai/docs/reference/api/function/
     /// </remarks>
     public async virtual Task<FunctionListResponse> GetFunctionsAsync(
         string? organization = null,
@@ -127,15 +127,15 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 测试函数
+    /// Test function
     /// </summary>
     /// <remarks>
     /// POST /api/{org_id}/functions/test
-    /// 注意: 该接口未出现在 API 文档中, 来自实现源码
+    /// Note: This interface does not appear in the API document and comes from the implementation source code
     /// </remarks>
-    /// <param name="function">函数体</param>
-    /// <param name="events">用于测试的样例数据</param>
-    /// <param name="transType">函数语言, 不传时由服务端自动识别</param>
+    /// <param name="function">Function body</param>
+    /// <param name="events">Sample data for testing</param>
+    /// <param name="transType">Function language, automatically recognized by the server when not passed</param>
     public async virtual Task<TestFunctionResponse> TestFunctionAsync(
         string function,
         JsonNode[] events,

@@ -1,37 +1,37 @@
 # LINGYUN.Abp.Saas.Application
 
-SaaS应用服务层模块，实现了租户和版本管理的应用服务接口。
+The SaaS application service layer module implements the application service interface for tenant and version management.
 
-## 功能特性
+## Features
 
-* 租户管理服务(TenantAppService)
-  * 创建租户
-  * 更新租户
-  * 删除租户
-  * 获取租户列表
-  * 获取租户详情
-  * 管理租户连接字符串
-  * 管理租户功能
+* Tenant management service (TenantAppService)
+  * Create tenant
+  * Update tenant
+  * Delete tenant
+  * Get tenant list
+  * Get tenant details
+  * Manage tenant connection strings
+  * Manage tenant functions
 
-* 版本管理服务(EditionAppService)
-  * 创建版本
-  * 更新版本
-  * 删除版本
-  * 获取版本列表
-  * 获取版本详情
-  * 管理版本功能
+* Version management service (EditionAppService)
+  * Create version
+  *Updated version
+  * delete version
+  * Get version list
+  * Get version details
+  *Manage version function
 
-## 权限验证
+## Permission verification
 
-所有应用服务方法都已添加相应的权限验证，确保只有具有对应权限的用户才能访问。
+Corresponding permission verification has been added to all application service methods to ensure that only users with corresponding permissions can access.
 
-## 对象映射
+## Object mapping
 
-使用AutoMapper实现了以下对象映射：
+The following object mapping is implemented using AutoMapper:
 * Edition <-> EditionDto
 * Tenant <-> TenantDto
 * TenantConnectionString <-> TenantConnectionStringDto
 
-## 更多
+## More
 
 [English](README.EN.md)

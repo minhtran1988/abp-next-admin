@@ -9,7 +9,7 @@ namespace LINGYUN.Abp.TaskManagement;
 public interface IBackgroundJobLogRepository : IRepository<BackgroundJobLog, long>
 {
     /// <summary>
-    /// 获取过滤后的任务日志数量
+    /// Get the number of filtered task logs
     /// </summary>
     /// <param name="specification"></param>
     /// <param name="cancellationToken"></param>
@@ -18,7 +18,7 @@ public interface IBackgroundJobLogRepository : IRepository<BackgroundJobLog, lon
         ISpecification<BackgroundJobLog> specification,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取过滤后的任务日志列表
+    /// Get the filtered task log list
     /// </summary>
     /// <param name="specification"></param>
     /// <param name="sorting"></param>

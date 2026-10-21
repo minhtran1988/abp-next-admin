@@ -1,27 +1,27 @@
 # LINGYUN.Abp.Rules.NRules
 
-## 模块说明
+## Module description
 
-基于 [NRules](https://github.com/NRules/NRules) 的规则引擎实现模块。
+Rule engine implementation module based on [NRules](https://github.com/NRules/NRules).
 
-### 基础模块  
+### Basic module
 
 * LINGYUN.Abp.Rules
 
-### 功能定义  
+### Function definition
 
-* 提供基于 NRules 的规则引擎实现
-* 支持通过依赖注入自动注册规则
-* 支持规则的动态加载和执行
+* Provide rule engine implementation based on NRules
+* Support automatic registration rules through dependency injection
+* Support dynamic loading and execution of rules
 
-### 配置定义  
+### Configuration definition
 
 * AbpNRulesOptions
-  * DefinitionRules - 定义规则列表，用于存储所有通过依赖注入注册的规则类型
+  * DefinitionRules - Definition rule list, used to store all rule types registered through dependency injection
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpNRulesModule` 依赖
+1. Add `AbpNRulesModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpNRulesModule))]
@@ -30,23 +30,23 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 创建规则类
+2. Create a rule class
 
 ```csharp
 public class YourRule : RuleBase
 {
     public override void Define()
     {
-        // 定义规则条件和动作
+        //Define rule conditions and actions
         When()
             .Match<YourInput>(x => x.SomeCondition);
         Then()
-            .Do(ctx => /* 执行规则动作 */);
+            .Do(ctx => /* Execute rule action */);
     }
 }
 ```
 
-3. 注册规则并执行
+3. Register rules and execute them
 
 ```csharp
 public class YourService 
@@ -61,10 +61,10 @@ public class YourService
     public async Task ProcessAsync()
     {
         var input = new YourInput();
-        // 执行规则验证
+        //Execute rule verification
         await _ruleProvider.ExecuteAsync(input);
     }
 }
 ```
 
-[返回目录](../../../README.md)
+[Return to directory](../../../README.md)

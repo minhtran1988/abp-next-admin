@@ -59,8 +59,8 @@ class HomePage extends BasePage<HomeController> {
                   favoriteMenu.name,
                   favoriteMenu.path,
                   aliasName: favoriteMenu.aliasName,
-                  //icon: favoriteMenu.icon,
-                  // TODO: 需要各个模块自行提供本地图标
+                  // icon: favoriteMenu.icon,
+                  // TODO: Each module needs to provide its own local icon
                   icon: 'res/images/setting.png',
                   color: favoriteMenu.color,
                   displayName: favoriteMenu.displayName,

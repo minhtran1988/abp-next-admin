@@ -13,8 +13,8 @@ import { WeixinWorkAuthEnable } from '../../constants/features';
 
 const emits = defineEmits<{
   /**
-   * 用户扫码登录成功回调事件
-   * @params code 企业微信授权码
+   * Callback event if the user scans the QR code to log in successfully
+   * @params code Enterprise WeChat authorization code
    */
   (event: 'onLogin', code: string): void;
 }>();

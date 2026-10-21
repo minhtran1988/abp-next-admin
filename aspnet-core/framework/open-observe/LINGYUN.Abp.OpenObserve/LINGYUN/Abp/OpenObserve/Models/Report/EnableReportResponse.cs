@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 启用/禁用报表响应
+/// Enable/disable report response
 /// </summary>
 public class EnableReportResponse
 {

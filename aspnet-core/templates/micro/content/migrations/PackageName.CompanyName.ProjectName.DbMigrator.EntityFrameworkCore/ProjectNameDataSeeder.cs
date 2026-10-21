@@ -23,7 +23,7 @@ public class ProjectNameDataSeeder : ITransientDependency
 
     public virtual Task SeedAsync(DataSeedContext context)
     {
-        // TODO: 此处执行你的数据种子
+        // TODO: Execute your data seed here
         return Task.CompletedTask;
     }
 }

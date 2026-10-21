@@ -11,7 +11,7 @@ export interface ListItem {
   color?: string;
 }
 
-// tab的list
+// list of tabs
 export function getSettingList() {
   const { L } = useLocalization('AbpAccount');
   return [
@@ -43,7 +43,7 @@ export function getSettingList() {
   ];
 }
 
-// 基础设置 form
+// Basic settings form
 export function getBaseSetschemas(): FormSchema[] {
   const { settingProvider } = useSettings();
   const { L } = useLocalization('AbpAccount');
@@ -99,7 +99,7 @@ export function getBaseSetschemas(): FormSchema[] {
   ];
 }
 
-// 安全设置 list
+// security settings list
 export function getSecureSettingList(): ListItem[] {
   const { L } = useLocalization('AbpAccount');
   return [
@@ -112,7 +112,7 @@ export function getSecureSettingList(): ListItem[] {
     {
       key: '2',
       title: L('DisplayName:PhoneNumber'),
-      description: '已绑定手机：：138****8293',
+      description: 'Binded mobile phone::138****8293',
       extra: L('Edit'),
     },
   ];
@@ -120,79 +120,79 @@ export function getSecureSettingList(): ListItem[] {
 export const secureSettingList: ListItem[] = [
   {
     key: '1',
-    title: '账户密码',
-    description: '当前密码强度：：强',
-    extra: '修改',
+    title: 'Account Password',
+    description: 'Current password strength::strong',
+    extra: 'modify',
   },
   {
     key: '2',
-    title: '密保手机',
-    description: '已绑定手机：：138****8293',
-    extra: '修改',
+    title: 'Secret mobile phone',
+    description: 'Binded mobile phone::138****8293',
+    extra: 'modify',
   },
   {
     key: '3',
-    title: '密保问题',
-    description: '未设置密保问题，密保问题可有效保护账户安全',
-    extra: '修改',
+    title: 'Security issue',
+    description: 'No security questions are set, security questions can effectively protect account security',
+    extra: 'modify',
   },
   {
     key: '4',
-    title: '备用邮箱',
-    description: '已绑定邮箱：：ant***sign.com',
-    extra: '修改',
+    title: 'Alternate Email',
+    description: 'Binded email address: ant***sign.com',
+    extra: 'modify',
   },
   {
     key: '5',
-    title: 'MFA 设备',
-    description: '未绑定 MFA 设备，绑定后，可以进行二次确认',
-    extra: '修改',
+    title: 'MFA Device',
+    description: 'The MFA device is not bound. After binding, you can confirm again',
+    extra: 'modify',
   },
 ];
 
-// 账号绑定 list
+// Account binding list
 export const accountBindList: ListItem[] = [
   {
     key: '1',
-    title: '绑定淘宝',
-    description: '当前未绑定淘宝账号',
-    extra: '绑定',
+    title: 'Bind Taobao',
+    description: 'Currently no Taobao account is bound',
+    extra: 'binding',
     avatar: 'ri:taobao-fill',
     color: '#ff4000',
   },
   {
     key: '2',
-    title: '绑定支付宝',
-    description: '当前未绑定支付宝账号',
-    extra: '绑定',
+    title: 'Bind Alipay',
+    description: 'Alipay account is not currently bound',
+    extra: 'binding',
     avatar: 'fa-brands:alipay',
     color: '#2eabff',
   },
   {
     key: '3',
-    title: '绑定钉钉',
-    description: '当前未绑定钉钉账号',
-    extra: '绑定',
+    title: 'Binding DingTalk',
+    description: 'Currently no DingTalk account is bound',
+    extra: 'binding',
     avatar: 'ri:dingding-fill',
     color: '#2eabff',
   },
 ];
 
-// 新消息通知 list
+// New message notification list
 export const msgNotifyList: ListItem[] = [
   {
     key: '1',
-    title: '账户密码',
-    description: '其他用户的消息将以站内信的形式通知',
+    title: 'Account Password',
+    description: 'Messages from other users will be notified in the form of site messages',
   },
   {
     key: '2',
-    title: '系统消息',
-    description: '系统消息将以站内信的形式通知',
+    title: 'System Message',
+    description: 'System messages will be notified in the form of site messages',
   },
   {
     key: '3',
-    title: '待办任务',
-    description: '待办任务将以站内信的形式通知',
+    title: 'To-do tasks',
+    description: 'To-do tasks will be notified in the form of in-site messages',
   },
 ];

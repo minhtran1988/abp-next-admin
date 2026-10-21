@@ -13,8 +13,8 @@ export function useWebhookGroupDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除Webhook分组定义
-   * @param name Webhook分组名称
+   * Delete Webhook group definition
+   * @param name Webhook group name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/webhooks/definitions/groups/${name}`, {
@@ -23,9 +23,9 @@ export function useWebhookGroupDefinitionsApi() {
   }
 
   /**
-   * 查询Webhook分组定义
-   * @param name Webhook分组名称
-   * @returns Webhook分组定义数据传输对象
+   * Query Webhook group definition
+   * @param name Webhook group name
+   * @returns Webhook grouping defines data transfer object
    */
   function getApi(name: string): Promise<WebhookGroupDefinitionDto> {
     return request<WebhookGroupDefinitionDto>(
@@ -37,9 +37,9 @@ export function useWebhookGroupDefinitionsApi() {
   }
 
   /**
-   * 查询Webhook分组定义列表
-   * @param input Webhook分组过滤条件
-   * @returns Webhook分组定义数据传输对象列表
+   * Query the Webhook group definition list
+   * @param input Webhook grouping filter conditions
+   * @returns Webhook group definition data transfer object list
    */
   function getListApi(
     input?: WebhookGroupDefinitionGetListInput,
@@ -54,9 +54,9 @@ export function useWebhookGroupDefinitionsApi() {
   }
 
   /**
-   * 创建Webhook分组定义
-   * @param input Webhook分组定义参数
-   * @returns Webhook分组定义数据传输对象
+   * Create Webhook group definition
+   * @param input Webhook group definition parameters
+   * @returns Webhook grouping defines data transfer object
    */
   function createApi(
     input: WebhookGroupDefinitionCreateDto,
@@ -71,10 +71,10 @@ export function useWebhookGroupDefinitionsApi() {
   }
 
   /**
-   * 更新Webhook分组定义
-   * @param name Webhook分组名称
-   * @param input Webhook分组定义参数
-   * @returns Webhook分组定义数据传输对象
+   * Update Webhook group definition
+   * @param name Webhook group name
+   * @param input Webhook group definition parameters
+   * @returns Webhook grouping defines data transfer object
    */
   function updateApi(
     name: string,

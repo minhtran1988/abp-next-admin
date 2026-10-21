@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.Authorize;
 /// <summary>
-/// 企业微信用户身份提供者
+/// Enterprise WeChat user identity provider
 /// </summary>
 public interface IWeChatWorkUserClaimProvider
 {
     /// <summary>
-    /// 通过用户标识查询企业微信用户标识
+    /// Query the enterprise WeChat user ID through user ID
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="cancellationToken"></param>
@@ -19,7 +19,7 @@ public interface IWeChatWorkUserClaimProvider
         Guid userId, 
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 通过用户标识列表查询企业微信用户标识列表
+    /// Query the enterprise WeChat user ID list through the user ID list
     /// </summary>
     /// <param name="userIdList"></param>
     /// <param name="cancellationToken"></param>
@@ -28,10 +28,10 @@ public interface IWeChatWorkUserClaimProvider
         IEnumerable<Guid> userIdList,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 绑定用户企业微信
+    /// Bind user enterprise WeChat
     /// </summary>
-    /// <param name="userId">用户Id</param>
-    /// <param name="weChatUserId">企业微信用户Id</param>
+    /// <param name="userId">UserId</param>
+    /// <param name="weChatUserId">Enterprise WeChat user ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task BindUserAsync(

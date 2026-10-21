@@ -17,7 +17,7 @@ namespace LINGYUN.Abp.BackgroundTasks.Jobs;
 
 public abstract class HttpRequestJobBase
 {
-    // 可选, 请求时指定区域性
+    // Optional, specify culture when requesting
     public const string PropertyCulture = "culture";
 
     protected ICurrentTenant CurrentTenant { get; set; } = default!;
@@ -114,9 +114,9 @@ public abstract class HttpRequestJobBase
         var httpRequestMesasge = new HttpRequestMessage(httpMethod, requestUrl);
         if (data != null)
         {
-            // TODO: 需要支持表单类型
+            // TODO: Need to support form type
 
-            // application/json 支持
+            // application/json support
             httpRequestMesasge.Content = new StringContent(
                 Serialize(data),
                 Encoding.UTF8,
@@ -144,7 +144,7 @@ public abstract class HttpRequestJobBase
                 requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value);
             }
         }
-        // 不包装请求结果
+        // Do not wrap request results
         requestMessage.Headers.TryAddWithoutValidation("_AbpDontWrapResult", "true");
         requestMessage.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(CultureInfo.CurrentCulture.Name));
     }

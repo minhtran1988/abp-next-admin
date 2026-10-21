@@ -12,7 +12,7 @@ export function flattenTrees<T extends { children?: T[] }>(trees: T[] = []): T[]
 	}, trees);
 }
 
-//将平铺的节点列表转换为树形结构
+// Convert the tiled node list into a tree structure
 
 interface TreeHelperConfig {
 	children: string;
@@ -29,7 +29,7 @@ const getConfig = (config: Partial<TreeHelperConfig>) => Object.assign({}, DEFAU
 
 //
 // /**
-//  * 注意此函数会在list原始数据上操作，会改变原始数据
+// * Note that this function will operate on the original data of the list and will change the original data.
 //  * @param list
 //  * @param config
 //  * @returns
@@ -60,7 +60,7 @@ export function listToTree<T = any>(list: any[], config: Partial<TreeHelperConfi
 	const result: T[] = [];
 	const { id, pid, children } = conf;
 
-	// 创建 list 的深拷贝，避免修改原始数据
+	// Create a deep copy of the list to avoid modifying the original data
 	const clonedList = list.map((node) => ({ ...node }));
 
 	for (const node of clonedList) {

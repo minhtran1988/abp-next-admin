@@ -61,7 +61,7 @@ public class DataItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
         switch (ValueType)
         {
             case ValueType.Array:
-                DefaultValue = "";// 当数据类型为数组对象时，需要前端来做转换了，约定的分隔符为英文逗号
+                DefaultValue = "";// When the data type is an array object, the front end is required to do the conversion. The agreed separator is the English comma.
                 break;
             case ValueType.Boolean:
                 DefaultValue = "false";
@@ -72,7 +72,7 @@ public class DataItem : FullAuditedAggregateRoot<Guid>, IMultiTenant
             case ValueType.DateTime:
                 if (!AllowBeNull)
                 {
-                    DefaultValue = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // TODO: 以当前时间作为默认值?
+                    DefaultValue = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // TODO: Use the current time as the default value?
                 }
                 DefaultValue = !AllowBeNull ? DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") : "";
                 break;

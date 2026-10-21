@@ -5,23 +5,23 @@ namespace LINGYUN.Abp.IM.Contract;
 public class UserFriend : UserCard
 {
     /// <summary>
-    /// 好友标识
+    /// Friend ID
     /// </summary>
     public Guid FriendId { get; set; }
     /// <summary>
-    /// 已添加黑名单
+    /// Blacklist added
     /// </summary>
     public bool Black { get; set; }
     /// <summary>
-    /// 特别关注
+    /// Special attention
     /// </summary>
     public bool SpecialFocus { get; set; }
     /// <summary>
-    /// 消息免打扰
+    /// Do not disturb messages
     /// </summary>
     public bool DontDisturb { get; set; }
     /// <summary>
-    /// 备注名称
+    /// Remark name
     /// </summary>
     public string? RemarkName { get; set; }
 

@@ -16,10 +16,10 @@ public class OpenObserveAuditLogManager_Tests : AuditLogManager_Tests<AbpAuditLo
     }
 
     /// <summary>
-    /// OpenObserve 不支持删除记录
+    /// OpenObserve does not support deleting records
     /// </summary>
     /// <remarks>
-    /// 共享用例末尾会清理数据, 此处覆写并断言抛出的业务异常与错误码
+    /// The data will be cleaned at the end of the shared use case, and the thrown business exception and error code will be overwritten and asserted here.
     /// </remarks>
     protected override async Task DeleteAsync(Guid id)
     {

@@ -25,12 +25,12 @@ public static class IdentityUserManagerExtensions
             var hasAuthenticatorEnabled = user.GetProperty(userManager.Options.Tokens.AuthenticatorTokenProvider, false);
             var phoneNumberConfirmed = await userManager.IsPhoneNumberConfirmedAsync(user);
             var emailAddressConfirmed = await userManager.IsEmailConfirmedAsync(user);
-            // 如果其中一个安全选项未确认,无法启用双因素验证
+            // Two-factor authentication cannot be enabled if one of the security options is not confirmed
             if (!hasAuthenticatorEnabled && !phoneNumberConfirmed && !emailAddressConfirmed)
             {
                 var localizer = userManager.ServiceProvider.GetRequiredService<IStringLocalizer<IdentityResource>>();
 
-                //throw new IdentityException(
+                // throw new IdentityException(
                 //    LINGYUN.Abp.Identity.IdentityErrorCodes.ChangeTwoFactorWithMFANotBound,
                 //    details: phoneNumberConfirmed ? "phone number not confirmed" : "email address not confirmed");
 

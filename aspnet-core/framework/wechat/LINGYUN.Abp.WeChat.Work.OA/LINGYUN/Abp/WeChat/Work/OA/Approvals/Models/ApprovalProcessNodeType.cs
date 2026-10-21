@@ -2,23 +2,23 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 节点类型
+/// Node type
 /// </summary>
 public enum ApprovalProcessNodeType : byte
 {
     /// <summary>
-    /// 审批人
+    /// Approver
     /// </summary>
-    [Description("审批人")]
+    [Description("Approver")]
     Approver = 1,
     /// <summary>
-    /// 抄送人
+    /// CC person
     /// </summary>
-    [Description("抄送人")]
+    [Description("Cc")]
     CC = 2,
     /// <summary>
-    /// 办理人
+    /// handler
     /// </summary>
-    [Description("办理人")]
+    [Description("handler")]
     Handler = 3,
 }

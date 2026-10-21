@@ -48,7 +48,7 @@
         labelField: 'uiCultureName',
         valueField: 'cultureName',
         onChange: (key) => {
-          // 当文化变更时，检查键值是否有目标值
+          // When the culture changes, check whether the key value has the target value
           const model = unref(modelRef);
           if (model?.key) {
             getByCulture({

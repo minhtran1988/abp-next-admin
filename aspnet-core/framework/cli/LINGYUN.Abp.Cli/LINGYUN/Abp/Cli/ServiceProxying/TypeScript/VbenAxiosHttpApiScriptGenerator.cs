@@ -7,7 +7,7 @@ using Volo.Abp.Http.Modeling;
 
 namespace LINGYUN.Abp.Cli.ServiceProxying.TypeScript;
 
-// 用于vben原生axios代理生成
+// Used for vben native axios proxy generation
 public class VbenAxiosHttpApiScriptGenerator : IHttpApiScriptGenerator, ITransientDependency
 {
     public const string Name = "vben-axios";
@@ -84,7 +84,7 @@ public class VbenAxiosHttpApiScriptGenerator : IHttpApiScriptGenerator, ITransie
                     apiScriptBuilder.Append(", ");
                 }
 
-                // 需要格式化url
+                // Need to format url
                 var formatUrlPath = string.Concat("{", paramter.Name, "}");
                 if (url.Contains(formatUrlPath))
                 {

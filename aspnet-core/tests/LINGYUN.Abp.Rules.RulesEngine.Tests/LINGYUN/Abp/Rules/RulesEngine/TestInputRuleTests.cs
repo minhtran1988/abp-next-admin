@@ -30,9 +30,9 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(1);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("字段 Required 必须输入!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("Field Required must be entered!");
         }
 
         [Fact]
@@ -50,9 +50,9 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(1);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("字段 Integer1 必须大于100!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("Field Integer1 must be greater than 100!");
         }
 
         [Fact]
@@ -70,9 +70,9 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(1);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("字段 Integer2 必须小于100!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("Field Integer2 must be less than 100!");
         }
 
         [Fact]
@@ -90,9 +90,9 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(1);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("字段 Integer1 与 Integer2 之和 必须大于150!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("The sum of fields Integer1 and Integer2 must be greater than 150!");
         }
 
         [Fact]
@@ -110,9 +110,9 @@ namespace LINGYUN.Abp.Rules.RulesEngine
                 await _ruleProvider.ExecuteAsync(input);
             });
 
-            exception.Message.ShouldBe("一个或多个规则未通过");
+            exception.Message.ShouldBe("One or more rules failed");
             exception.ValidationErrors.Count.ShouldBe(1);
-            exception.ValidationErrors[0].ErrorMessage.ShouldBe("字段 Length 长度必须大于5!");
+            exception.ValidationErrors[0].ErrorMessage.ShouldBe("Field Length length must be greater than 5!");
         }
     }
 }

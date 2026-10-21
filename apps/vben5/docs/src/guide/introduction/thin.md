@@ -2,13 +2,13 @@
 outline: deep
 ---
 
-# 精简版本
+# Lite version
 
-从 `5.0` 版本开始，我们不再提供精简的仓库或者分支。我们的目标是提供一个更加一致的开发体验，同时减少维护成本。在这里，我们将如何介绍自己的项目，如何去精简以及移除不需要的功能。
+Starting from `5.0` version, we no longer provide streamlined repositories or branches. Our goal is to provide a more consistent development experience while reducing maintenance costs. Here, we will introduce our project, how to streamline and remove unnecessary functions.
 
-## 应用精简
+## Application Streamline
 
-首先，确认你需要的 `UI` 组件库版本，然后删除对应的应用，比如你选择使用 `Ant Design Vue`，那么你可以删除其他应用， 只需要删除下面两个文件夹即可：
+First, confirm the `UI` component library version you need, and then delete the corresponding application. For example, if you choose to use `Ant Design Vue`, then you can delete other applications. You only need to delete the following two folders:
 
 ```bash
 apps/web-ele
@@ -18,40 +18,40 @@ apps/web-naive
 
 ::: tip
 
-如果项目没有内置你需要的 `UI` 组件库应用，你可以直接全部删除其他应用。然后自行新建应用即可。
+If the project does not have the `UI` component library application you need built-in, you can directly delete all other applications. Then you can create a new application yourself.
 
 :::
 
-## 演示代码精简
+## Demo code streamlining
 
-如果你不需要演示代码，你可以直接删除 `playground` 文件夹。
+If you don't need the demo code, you can just delete the `playground` folder.
 
-## 文档精简
+## Document simplification
 
-如果你不需要文档，你可以直接删除`docs`文件夹。
+If you don't need the documentation, you can just delete the `docs` folder.
 
-## Mock 服务精简
+## Mock service streamlining
 
-如果你不需要`Mock`服务，你可以直接删除`apps/backend-mock`文件夹。同时在你的应用下`.env.development`文件中删除`VITE_NITRO_MOCK`变量。
+If you don't need the `Mock` service, you can delete the `apps/backend-mock` folder directly. At the same time, delete the `VITE_NITRO_MOCK` variable in the `.env.development` file under your application.
 
 ```bash
-# 是否开启 Nitro Mock服务，true 为开启，false 为关闭
+# Whether to enable Nitro Mock service, true means open, false means closed
 VITE_NITRO_MOCK=false
 ```
 
-## 安装依赖
+## Install dependencies
 
-到这里，你已经完成了精简操作，接下来你可以安装依赖，并启动你的项目：
+At this point, you have completed the streamlining operation. Next, you can install dependencies and start your project:
 
 ```bash
-# 根目录下执行
+# Execute in the root directory
 pnpm install
 
 ```
 
-## 命令调整
+## Command adjustment
 
-在精简后，你可能需要根据你的项目调整命令，在根目录下的`package.json`文件中，你可以调整`scripts`字段，移除你不需要的命令。
+After streamlining, you may need to adjust the commands according to your project. In the `package.json` file in the root directory, you can adjust the `scripts` field to remove commands you don’t need.
 
 ```json
 {
@@ -71,25 +71,25 @@ pnpm install
 }
 ```
 
-## 其他
+## Others
 
-如果你想更进一步精简，你可以删除参考以下文件或者文件夹的作用，判断自己是否需要，不需要删除即可：
+If you want to further streamline, you can delete and refer to the functions of the following files or folders to determine whether you need them. There is no need to delete them:
 
-- `.changeset` 文件夹用于管理版本变更
-- `.github` 文件夹用于存放 GitHub 的配置文件
-- `.vscode` 文件夹用于存放 VSCode 的配置文件，如果你使用其他编辑器，可以删除
-- `./scripts/deploy` 文件夹用于存放部署脚本，如果你不需要docker部署，可以删除
+- `.changeset` folder is used to manage version changes
+- The `.github` folder is used to store GitHub configuration files
+- The `.vscode` folder is used to store VSCode configuration files. If you use another editor, you can delete it.
+- The `./scripts/deploy` folder is used to store deployment scripts. If you do not need docker deployment, you can delete it.
 
-## 应用精简
+## Application Streamline
 
-当你确定了某个应用，你还可以进一步精简：
+Once you have identified an application, you can further refine it:
 
-### 删除不需要的路由及页面
+### Delete unnecessary routes and pages
 
-- 在应用的 `src/router/routes` 文件中，你可以删除不需要的路由。其中 `core` 文件夹内，如果只需要登录和忘记密码，你可以删除其他路由，如忘记密码、注册等。路由删除后，你可以删除对应的页面文件，在 `src/views/_core` 文件夹中。
+- In your application's `src/router/routes` file, you can delete unnecessary routes. In the `core` folder, if you only need to log in and forget your password, you can delete other routes, such as forgetting your password, registration, etc. After the route is deleted, you can delete the corresponding page file in the `src/views/_core` folder.
 
-- 在应用的 `src/router/routes` 文件中，你可以按需求删除不需要的路由，如`demos`、`vben` 目录等。路由删除后，你可以在 `src/views` 文件夹中删除对应的页面文件。
+- In the application's `src/router/routes` file, you can delete unnecessary routes as needed, such as `demos`, `vben` directories, etc. After the route is deleted, you can delete the corresponding page file in the `src/views` folder.
 
-### 删除不需要的组件
+### Delete unnecessary components
 
-- 在应用的 `packages/effects/common-ui/src/ui` 文件夹中，你可以删除不需要的组件，如`about`、`dashboard` 目录等。删除之前请先确保你的路由中没有引用到这些组件。
+- In the application's `packages/effects/common-ui/src/ui` folder, you can delete unnecessary components, such as `about`, `dashboard` directories, etc. Before deleting, please make sure that these components are not referenced in your routing.

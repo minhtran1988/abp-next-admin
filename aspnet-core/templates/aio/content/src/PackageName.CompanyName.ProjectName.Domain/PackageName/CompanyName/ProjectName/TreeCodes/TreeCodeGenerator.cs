@@ -8,17 +8,17 @@ using Volo.Abp.Domain.Repositories;
 namespace PackageName.CompanyName.ProjectName.TreeCodes
 {
     /// <summary>
-    /// 树形编码生成器
+    /// Tree encoding generator
     /// </summary>
     public class TreeCodeGenerator : ITreeCodeGenerator, ISingletonDependency
     {
         /// <summary>
-        /// 生成树形编码
+        /// Generate tree encoding
         /// </summary>
-        /// <typeparam name="TEntity">实体类型</typeparam>
-        /// <param name="repository">仓储</param>
-        /// <param name="parentId">父级Id</param>
-        /// <returns>生成的树形编码</returns>
+        /// <typeparam name="TEntity">Entity type</typeparam>
+        /// <param name="repository">Repository</param>
+        /// <param name="parentId">ParentId</param>
+        /// <returns>Generated tree encoding</returns>
         public async virtual Task<string> GenerateAsync<TEntity>(
             IRepository<TEntity, Guid> repository,
             Guid? parentId)
@@ -26,12 +26,12 @@ namespace PackageName.CompanyName.ProjectName.TreeCodes
         {
             if (!parentId.HasValue)
             {
-                // 生成根节点编码
+                // Generate root node code
                 return await GenerateRootCodeAsync(repository);
             }
             else
             {
-                // 生成子节点编码
+                // Generate child node code
                 return await GenerateChildCodeAsync(repository, parentId.Value);
             }
         }
@@ -79,12 +79,12 @@ namespace PackageName.CompanyName.ProjectName.TreeCodes
                 newCode = (maxCode + 1).ToString("D4");
             }
 
-            // 构建完整的TreeCode: 父TreeCode.新编码
+            // Build a complete TreeCode: parent TreeCode.New encoding
             return $"{parent.TreeCode}.{newCode}";
         }
 
         /// <summary>
-        /// 更新节点及其所有子节点的TreeCode
+        /// Update the TreeCode of the node and all its child nodes
         /// </summary>
         public async virtual Task UpdateTreeCodesAsync<TEntity>(
             IRepository<TEntity, Guid> repository,
@@ -98,7 +98,7 @@ namespace PackageName.CompanyName.ProjectName.TreeCodes
 
             foreach (var child in children)
             {
-                // 获取子节点编码（TreeCode最后一部分）或生成新编码
+                // Get the child node code (the last part of TreeCode) or generate a new code
                 string childCode = child.TreeCode.Contains('.')
                     ? child.TreeCode.Split('.').Last()
                     : child.TreeCode;
@@ -106,7 +106,7 @@ namespace PackageName.CompanyName.ProjectName.TreeCodes
                 child.TreeCode = $"{entity.TreeCode}.{childCode}";
                 await repository.UpdateAsync(child);
 
-                // 递归更新子节点
+                // Recursively update child nodes
                 await UpdateTreeCodesAsync(repository, child.Id);
             }
         }

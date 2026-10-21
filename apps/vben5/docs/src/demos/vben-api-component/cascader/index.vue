@@ -5,72 +5,72 @@ import { Cascader } from 'ant-design-vue';
 
 const treeData: Record<string, any> = [
   {
-    label: '浙江',
+    label: 'Zhejiang',
     value: 'zhejiang',
     children: [
       {
         value: 'hangzhou',
-        label: '杭州',
+        label: 'Hangzhou',
         children: [
           {
             value: 'xihu',
-            label: '西湖',
+            label: 'West Lake',
           },
           {
             value: 'sudi',
-            label: '苏堤',
+            label: 'Sudi',
           },
         ],
       },
       {
         value: 'jiaxing',
-        label: '嘉兴',
+        label: 'Jiaxing',
         children: [
           {
             value: 'wuzhen',
-            label: '乌镇',
+            label: 'Wuzhen',
           },
           {
             value: 'meihuazhou',
-            label: '梅花洲',
+            label: 'Meihuazhou',
           },
         ],
       },
       {
         value: 'zhoushan',
-        label: '舟山',
+        label: 'Zhoushan',
         children: [
           {
             value: 'putuoshan',
-            label: '普陀山',
+            label: 'Putuo Mountain',
           },
           {
             value: 'taohuadao',
-            label: '桃花岛',
+            label: 'Peach Blossom Island',
           },
         ],
       },
     ],
   },
   {
-    label: '江苏',
+    label: 'Jiangsu',
     value: 'jiangsu',
     children: [
       {
         value: 'nanjing',
-        label: '南京',
+        label: 'Nanjing',
         children: [
           {
             value: 'zhonghuamen',
-            label: '中华门',
+            label: 'China Gate',
           },
           {
             value: 'zijinshan',
-            label: '紫金山',
+            label: 'Purple Mountain',
           },
           {
             value: 'yuhuatai',
-            label: '雨花台',
+            label: 'Yuhuatai',
           },
         ],
       },
@@ -78,7 +78,7 @@ const treeData: Record<string, any> = [
   },
 ];
 /**
- * 模拟请求接口
+ * Simulate request interface
  */
 function fetchApi(): Promise<Record<string, any>> {
   return new Promise((resolve) => {

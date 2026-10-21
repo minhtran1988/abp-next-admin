@@ -4,7 +4,7 @@ import type { AxiosResponse } from 'axios';
 export function useErrorFormat(response: AxiosResponse) {
   const _defaultErrorHeaderKey: string = '_abperrorformat';
   const { data, headers } = response;
-  /** 是否请求错误 */
+  /** Whether the request is wrong */
   function hasError(): boolean {
     if (
       typeof headers.has === 'function' &&
@@ -14,13 +14,13 @@ export function useErrorFormat(response: AxiosResponse) {
     }
     return false;
   }
-  /** 如果请求错误,抛出异常 */
+  /** If the request is wrong, throw an exception */
   function throwIfError(): void {
     if (!hasError()) return;
     throw Object.assign({}, response, { message: getErrorMessage(), response });
   }
 
-  /** 获取错误消息 */
+  /** Get error message */
   function getErrorMessage(): string | undefined {
     if (!hasError()) return undefined;
     const errorJson = data.error as RemoteServiceErrorInfo;

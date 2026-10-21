@@ -20,49 +20,49 @@ type OptionsItem = {
 };
 
 interface Props {
-  /** 组件 */
+  /** Components */
   component: Component;
-  /** 是否将value从数字转为string */
+  /** Whether to convert value from number to string */
   numberToString?: boolean;
-  /** 获取options数据的函数 */
+  /** Function to obtain options data */
   api?: (arg?: any) => Promise<OptionsItem[] | Record<string, any>>;
-  /** 传递给api的参数 */
+  /** Parameters passed to api */
   params?: Record<string, any>;
-  /** 从api返回的结果中提取options数组的字段名 */
+  /** Extract the field names of the options array from the results returned by the api */
   resultField?: string;
-  /** label字段名 */
+  /** label field name */
   labelField?: string;
-  /** children字段名，需要层级数据的组件可用 */
+  /** children field name, available for components that require hierarchical data */
   childrenField?: string;
-  /** value字段名 */
+  /** value field name */
   valueField?: string;
-  /** disabled字段名 */
+  /** disabled field name */
   disabledField?: string;
-  /** 组件接收options数据的属性名 */
+  /** The attribute name of the component that receives options data */
   optionsPropName?: string;
-  /** 是否立即调用api */
+  /** Whether to call the api immediately */
   immediate?: boolean;
-  /** 每次`visibleEvent`事件发生时都重新请求数据 */
+  /** Request data every time a `visibleEvent` event occurs */
   alwaysLoad?: boolean;
-  /** 在api请求之前的回调函数 */
+  /** Callback function before api request */
   beforeFetch?: AnyPromiseFunction<any, any>;
-  /** 在api请求之后的回调函数 */
+  /** Callback function after api request */
   afterFetch?: AnyPromiseFunction<any, any>;
-  /** 直接传入选项数据，也作为api返回空数据时的后备数据 */
+  /** Pass in option data directly and also serve as backup data when the API returns empty data */
   options?: OptionsItem[];
-  /** 组件的插槽名称，用来显示一个"加载中"的图标 */
+  /** The slot name of the component, used to display a "loading" icon */
   loadingSlot?: string;
-  /** 触发api请求的事件名 */
+  /** The event name that triggers the api request */
   visibleEvent?: string;
-  /** 组件的v-model属性名，默认为modelValue。部分组件可能为value */
+  /** The v-model attribute name of the component, the default is modelValue. Some components may be value */
   modelPropName?: string;
   /**
-   * 自动选择
-   * - `first`：自动选择第一个选项
-   * - `last`：自动选择最后一个选项
-   * - `one`: 当请求的结果只有一个选项时，自动选择该选项
-   * - 函数：自定义选择逻辑，函数的参数为请求的结果数组，返回值为选择的选项
-   * - false：不自动选择(默认)
+   * Automatic selection
+   * - `first`: automatically select the first option
+   * - `last`: automatically select the last option
+   * - `one`: When the requested result has only one option, automatically select this option
+   * - Function: Customize the selection logic. The parameter of the function is the requested result array, and the return value is the selected option.
+   * - false: no automatic selection (default)
    */
   autoSelect?:
     | 'first'
@@ -105,9 +105,9 @@ const attrs = useAttrs();
 const innerParams = ref({});
 const refOptions = ref<OptionsItem[]>([]);
 const loading = ref(false);
-// 首次是否加载过了
+// Has it been loaded for the first time?
 const isFirstLoaded = ref(false);
-// 标记是否有待处理的请求
+// Mark if there are pending requests
 const hasPendingRequest = ref(false);
 
 const getOptions = computed(() => {
@@ -165,7 +165,7 @@ async function fetchApi() {
     return;
   }
 
-  // 如果正在加载，标记有待处理的请求并返回
+  // If loading, mark pending requests and return
   if (loading.value) {
     hasPendingRequest.value = true;
     return;
@@ -198,10 +198,10 @@ async function fetchApi() {
     isFirstLoaded.value = false;
   } finally {
     loading.value = false;
-    // 如果有待处理的请求，立即触发新的请求
+    // If there is a pending request, trigger a new request immediately
     if (hasPendingRequest.value) {
       hasPendingRequest.value = false;
-      // 使用 nextTick 确保状态更新完成后再触发新请求
+      // Use nextTick to ensure that the status update is completed before triggering a new request
       await nextTick();
       fetchApi();
     }
@@ -270,13 +270,13 @@ function emitChange() {
 }
 const componentRef = ref();
 defineExpose({
-  /** 获取options数据 */
+  /** Get options data */
   getOptions: () => unref(getOptions),
-  /** 获取当前值 */
+  /** Get the current value */
   getValue: () => unref(modelValue),
-  /** 获取被包装的组件实例 */
+  /** Get the packaged component instance */
   getComponentRef: <T = any,>() => componentRef.value as T,
-  /** 更新Api参数 */
+  /** Update API parameters */
   updateParam(newParams: Record<string, any>) {
     innerParams.value = newParams;
   },

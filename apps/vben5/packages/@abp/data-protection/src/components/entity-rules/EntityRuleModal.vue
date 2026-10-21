@@ -27,15 +27,15 @@ const [Form, formApi] = useVbenForm({
       componentProps: {
         options: [
           {
-            label: '查询',
+            label: 'query',
             value: DataAccessOperation.Read,
           },
           {
-            label: '编辑',
+            label: 'edit',
             value: DataAccessOperation.Write,
           },
           {
-            label: '删除',
+            label: 'delete',
             value: DataAccessOperation.Delete,
           },
         ],

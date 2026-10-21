@@ -57,7 +57,7 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpIP2RegionModule),
     typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
-    // 设置管理
+    // Setting management
     typeof(AbpAliyunSettingManagementModule),
     typeof(AbpTencentCloudSettingManagementModule),
     // typeof(AbpWeChatSettingManagementModule),
@@ -83,11 +83,11 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpCachingManagementApplicationModule),
     typeof(AbpCachingManagementHttpApiModule),
     typeof(AbpCachingManagementStackExchangeRedisModule),
-    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // 组织机构权限管理
+    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // Organization permission management
     typeof(AbpPermissionManagementDomainIdentityModule),
     typeof(AbpPermissionManagementDomainOpenIddictModule),
 
-    // 重写模板引擎支持外部本地化
+    // Rewrite the template engine to support external localization
     typeof(AbpTextTemplatingScribanModule),
 
     typeof(AdminServiceMigrationsEntityFrameworkCoreModule),

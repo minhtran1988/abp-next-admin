@@ -2,59 +2,59 @@
 public enum DynamicComparison
 {
     /// <summary>
-    /// 等于
+    /// equal to
     /// </summary>
     Equal = 0,
     /// <summary>
-    /// 不等于
+    /// Not equal to
     /// </summary>
     NotEqual = 1,
     /// <summary>
-    /// 小于
+    /// Less than
     /// </summary>
     LessThan = 2,
     /// <summary>
-    /// 小于等于
+    /// Less than or equal to
     /// </summary>
     LessThanOrEqual = 3,
     /// <summary>
-    /// 大于
+    /// Greater than
     /// </summary>
     GreaterThan = 4,
     /// <summary>
-    /// 大于等于
+    /// Greater than or equal to
     /// </summary>
     GreaterThanOrEqual = 5,
     /// <summary>
-    /// 左包含
+    /// Left contains
     /// </summary>
     StartsWith = 6,
     /// <summary>
-    /// 左不包含
+    /// Left does not contain
     /// </summary>
     NotStartsWith = 7,
     /// <summary>
-    /// 右包含
+    /// right contains
     /// </summary>
     EndsWith = 8,
     /// <summary>
-    /// 右不包含
+    /// The right does not contain
     /// </summary>
     NotEndsWith = 9,
     /// <summary>
-    /// 包含
+    /// Contains
     /// </summary>
     Contains = 10,
     /// <summary>
-    /// 不包含
+    /// Does not contain
     /// </summary>
     NotContains = 11,
     /// <summary>
-    /// 空值
+    /// null value
     /// </summary>
     Null = 12,
     /// <summary>
-    /// 非空
+    /// Not empty
     /// </summary>
     NotNull = 13
 }

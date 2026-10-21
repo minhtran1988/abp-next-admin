@@ -10,23 +10,23 @@ namespace LINGYUN.Abp.DataProtectionManagement;
 public class EntityTypeInfo : AuditedAggregateRoot<Guid>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public virtual string DisplayName { get; protected set; } = default!;
     /// <summary>
-    /// 类型全名
+    /// Type full name
     /// </summary>
     public virtual string TypeFullName { get; protected set; } = default!;
     /// <summary>
-    /// 是否启用数据审计
+    /// Whether to enable data auditing
     /// </summary>
     public virtual bool IsAuditEnabled { get; protected set; }
     /// <summary>
-    /// 实体属性列表
+    /// Entity attribute list
     /// </summary>
     public virtual ICollection<EntityPropertyInfo> Properties { get; protected set; }
     protected EntityTypeInfo()

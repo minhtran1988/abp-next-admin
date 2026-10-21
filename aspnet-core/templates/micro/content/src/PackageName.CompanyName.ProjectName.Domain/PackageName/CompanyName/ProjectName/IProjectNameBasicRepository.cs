@@ -7,15 +7,15 @@ using Volo.Abp.Specifications;
 
 namespace PackageName.CompanyName.ProjectName;
 /// <summary>
-/// 实体仓储接口
+/// Entity warehousing interface
 /// </summary>
-/// <typeparam name="TEntity">实体类型</typeparam>
-/// <typeparam name="TKey">实体主键类型</typeparam>
+/// <typeparam name="TEntity">Entity type</typeparam>
+/// <typeparam name="TKey">Entity primary key type</typeparam>
 public interface IProjectNameBasicRepository<TEntity, TKey> : IBasicRepository<TEntity, TKey>
     where TEntity : class, IEntity<TKey>
 {
     /// <summary>
-    /// 获取过滤后的实体数量
+    /// Get the number of filtered entities
     /// </summary>
     /// <param name="specification"></param>
     /// <param name="cancellationToken"></param>
@@ -24,7 +24,7 @@ public interface IProjectNameBasicRepository<TEntity, TKey> : IBasicRepository<T
         ISpecification<TEntity> specification,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取过滤后的实体列表(分页)
+    /// Get the filtered entity list (pagination)
     /// </summary>
     /// <param name="specification"></param>
     /// <param name="sorting"></param>

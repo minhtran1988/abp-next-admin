@@ -27,7 +27,7 @@ public class AbpAIToolsModule : AbpModule
 
         Configure<AbpAIToolsOptions>(options =>
         {
-            // 自定义函数工具
+            // Custom function tool
             options.AIToolProviders.Add<FunctionAIToolProvider>();
         });
 
@@ -44,10 +44,10 @@ public class AbpAIToolsModule : AbpModule
                         config.ToolMode = ChatToolMode.Auto;
                         config.AllowMultipleToolCalls = true;
 
-                        // 添加发现的工具
+                        // Add discovered tools
                         config.Tools = workspaceAITools;
                     })
-                    // 启用以支持函数式工具
+                    // Enable support for functional tools
                     .UseFunctionInvocation();
             });
         });

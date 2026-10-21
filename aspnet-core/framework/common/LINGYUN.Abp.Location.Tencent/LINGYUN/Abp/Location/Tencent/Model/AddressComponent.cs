@@ -3,37 +3,37 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// 地址部件，address不满足需求时可自行拼接
+/// Address component, you can splice it yourself if the address does not meet the requirements.
 /// </summary>
 public class AddressComponent
 {
     /// <summary>
-    /// 国家
+    /// Country
     /// </summary>
     [JsonProperty("nation")]
     public string? Nation { get; set; }
     /// <summary>
-    /// 省
+    /// Province
     /// </summary>
     [JsonProperty("province")]
     public string? Province { get; set; }
     /// <summary>
-    /// 市
+    /// City
     /// </summary>
     [JsonProperty("city")]
     public string? City { get; set; }
     /// <summary>
-    /// 区，可能为空字串
+    /// Area, may be an empty string
     /// </summary>
     [JsonProperty("district")]
     public string? District { get; set; }
     /// <summary>
-    /// 街道，可能为空字串
+    /// Street, may be an empty string
     /// </summary>
     [JsonProperty("street")]
     public string? Street { get; set; }
     /// <summary>
-    /// 门牌，可能为空字串
+    /// House number, may be an empty string
     /// </summary>
     [JsonProperty("street_number")]
     public string? StreetNumber { get; set; }

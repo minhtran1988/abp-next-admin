@@ -1,16 +1,16 @@
 interface SettingBase {
-  /** 名称 */
+  /** name */
   name: string;
-  /** 当前设置值 */
+  /** Current setting value */
   value: string;
 }
 
-/** 配置变更对象 */
+/** Configuration change object */
 type SettingUpdateInput = SettingBase;
 
-/** 配置变更集合对象 */
+/** Configuration change collection object */
 interface SettingsUpdateInput {
-  /** 配置集合 */
+  /** Configuration collection */
   settings: SettingUpdateInput[];
 }
 

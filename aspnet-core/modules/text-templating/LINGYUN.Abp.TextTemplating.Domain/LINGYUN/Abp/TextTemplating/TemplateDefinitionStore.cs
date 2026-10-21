@@ -77,7 +77,7 @@ public class TemplateDefinitionStore : ITemplateDefinitionStore, IDynamicTemplat
             if (templateDefinitionRecord != null)
             {
                 await TextTemplateDefinitionRepository.DeleteAsync(templateDefinitionRecord, cancellationToken: GetCancellationToken(cancellationToken));
-                // 及时更新便于下次检索刷新缓存
+                // Update in time to facilitate the next retrieval and refresh the cache
                 TemplateDefinitionStoreCache.LastCheckTime = DateTime.Now.Add(-TemplatingCachingOptions.TemplateDefinitionsCacheRefreshInterval);
             }
         }

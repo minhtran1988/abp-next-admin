@@ -27,25 +27,25 @@ public class ProjectNameApplicationTestModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // //设置ILogger为NullLogger
+        // //Set ILogger to NullLogger
         context.Services.AddLogging(builder => builder.AddProvider(NullLoggerProvider.Instance));
         context.Services.AddTransient<IProjectNameDataSeeder, ProjectNameDataSeeder>();
         context.Services.AddLogging(builder => builder.AddProvider(NullLoggerProvider.Instance));
         context.Services.AddTransient<IHostEnvironment, TestHostEnvironment>();
         context.Services.AddTransient<IFileProvider, TestFileProvider>();
         
-        // 增加配置文件定义,在新建租户时需要
+        // Add configuration file definition, required when creating a new tenant
         Configure<IdentityOptions>(options =>
         {
-            // 允许中文用户名
+            // Allow Chinese usernames
             options.User.AllowedUserNameCharacters = null;
-            // 支持弱密码
+            // Support weak passwords
             options.Password.RequireDigit = false;
             options.Password.RequiredLength = 1;
             options.Password.RequireLowercase = false;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
-            // 添加默认的双因素令牌提供者配置
+            // Add default two-factor token provider configuration
             options.Tokens.ProviderMap.Add("Default", new TokenProviderDescriptor(typeof(EmailTokenProvider<IdentityUser>)));
         });
         Configure<AbpClaimsPrincipalFactoryOptions>(options =>
@@ -56,7 +56,7 @@ public class ProjectNameApplicationTestModule : AbpModule
         {
             options.IsCleanupEnabled = true;
         });
-        // 配置Hangfire
+        // Configure Hangfire
         context.Services.AddHangfire(config =>
         {
             config.UseMemoryStorage();

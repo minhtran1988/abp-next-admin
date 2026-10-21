@@ -6,42 +6,42 @@ namespace LINGYUN.Abp.PushPlus.Topic;
 public class PushPlusTopicUser
 {
     /// <summary>
-    /// 用户编号；可用于删除用户
+    /// User number; can be used to delete users
     /// </summary>
     [JsonProperty("id")]
     public int Id { get; set; }
     /// <summary>
-    /// 昵称
+    /// Nickname
     /// </summary>
     [JsonProperty("nickName")]
     public string? NickName { get; set; }
     /// <summary>
-    /// 用户微信openId
+    /// User WeChat openId
     /// </summary>
     [JsonProperty("openId")]
     public string? OpenId { get; set; }
     /// <summary>
-    /// 头像url地址
+    /// Avatar url address
     /// </summary>
     [JsonProperty("headImgUrl")]
     public string? HeadImgUrl { get; set; }
     /// <summary>
-    /// 头像url地址
+    /// Avatar url address
     /// </summary>
     [JsonProperty("userSex")]
     public PushPlusUserSex? UserSex { get; set; }
     /// <summary>
-    /// 是否绑定手机；0-未绑定，1-已绑定
+    /// Whether to bind the mobile phone; 0-not bound, 1-bound
     /// </summary>
     [JsonProperty("havePhone")]
     public PushPlusUserPhoneBindStatus? HavePhone { get; set; }
     /// <summary>
-    /// 是否关注微信公众号；0-未关注，1-已关注
+    /// Whether to follow the WeChat official account; 0-not following, 1-already following
     /// </summary>
     [JsonProperty("isFollow")]
     public PushPlusUserFollowStatus? IsFollow { get; set; }
     /// <summary>
-    /// 邮箱验证状态；0-未验证，1-待验证，2-已验证
+    /// Email verification status; 0-not verified, 1-to be verified, 2-verified
     /// </summary>
     [JsonProperty("emailStatus")]
     public PushPlusUserEmailStatus? EmailStatus { get; set; }

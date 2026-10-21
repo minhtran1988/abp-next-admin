@@ -229,5 +229,5 @@ const FeatureGroupDefinitionTable: React.FC = () => {
 		</>
 	);
 };
-//TODO 添加功能-给自添加分组
+// TODO add function-add group to self
 export default FeatureGroupDefinitionTable;

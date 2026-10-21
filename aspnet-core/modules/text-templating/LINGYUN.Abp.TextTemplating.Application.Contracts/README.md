@@ -1,54 +1,54 @@
 # LINGYUN.Abp.TextTemplating.Application.Contracts
 
-## 模块说明
+## Module description
 
-文本模板应用服务契约模块，提供文本模板管理相关的接口定义和DTO。
+The text template application service contract module provides interface definitions and DTOs related to text template management.
 
-### 基础模块
+### Basic module
 
 * Volo.Abp.TextTemplating
 * Volo.Abp.Ddd.Application.Contracts
 
-### 功能定义
+### Function definition
 
-* 提供文本模板管理的应用服务接口
-  * ITextTemplateDefinitionAppService - 模板定义管理服务接口
-  * ITextTemplateContentAppService - 模板内容管理服务接口
-* 提供文本模板相关的DTO定义
-  * TextTemplateDefinitionDto - 模板定义DTO
-  * TextTemplateContentDto - 模板内容DTO
-  * TextTemplateDefinitionCreateDto - 创建模板定义DTO
-  * TextTemplateDefinitionUpdateDto - 更新模板定义DTO
-  * TextTemplateContentUpdateDto - 更新模板内容DTO
-* 提供文本模板管理相关的权限定义
+* Provide application service interface for text template management
+  * ITextTemplateDefinitionAppService - Template definition management service interface
+  * ITextTemplateContentAppService - Template content management service interface
+* Provide DTO definitions related to text templates
+  * TextTemplateDefinitionDto - template definition DTO
+  * TextTemplateContentDto - template content DTO
+  * TextTemplateDefinitionCreateDto - Create a template definition DTO
+  * TextTemplateDefinitionUpdateDto - update template definition DTO
+  * TextTemplateContentUpdateDto - Update template content DTO
+* Provide permission definitions related to text template management
 
-### 权限定义
+### Permission definition
 
 * AbpTextTemplating.TextTemplateDefinitions
-  * Create - 创建模板定义
-  * Update - 更新模板定义
-  * Delete - 删除模板定义
+  * Create - Create a template definition
+  * Update - Update template definition
+  * Delete - delete template definition
 * AbpTextTemplating.TextTemplateContents
-  * Update - 更新模板内容
-  * Delete - 删除模板内容
+  * Update - update template content
+  * Delete - delete template content
 
-### 应用服务接口
+### Application service interface
 
 * ITextTemplateDefinitionAppService
-  * GetAsync - 获取模板定义
-  * GetListAsync - 获取模板定义列表
-  * CreateAsync - 创建模板定义
-  * UpdateAsync - 更新模板定义
-  * DeleteAsync - 删除模板定义
+  * GetAsync - Get template definition
+  * GetListAsync - Get the template definition list
+  * CreateAsync - Create template definition
+  * UpdateAsync - Update template definition
+  * DeleteAsync - delete template definition
 * ITextTemplateContentAppService
-  * GetAsync - 获取模板内容
-  * UpdateAsync - 更新模板内容
-  * DeleteAsync - 删除模板内容
-  * RestoreAsync - 恢复模板内容
+  * GetAsync - Get template content
+  * UpdateAsync - Update template content
+  * DeleteAsync - delete template content
+  * RestoreAsync - restore template content
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingApplicationContractsModule` 依赖
+1. Add `AbpTextTemplatingApplicationContractsModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingApplicationContractsModule))]
@@ -57,7 +57,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 注入并使用模板服务接口
+2. Inject and use the template service interface
 
 ```csharp
 public class YourService
@@ -71,11 +71,11 @@ public class YourService
 
     public async Task ManageTemplateAsync()
     {
-        // 获取模板定义列表
+        // Get the template definition list
         var templates = await _templateDefinitionAppService.GetListAsync(
             new TextTemplateDefinitionGetListInput());
     }
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

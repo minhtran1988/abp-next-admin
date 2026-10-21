@@ -2,7 +2,7 @@
 
 ABP notification module implemented through WxPusher, providing real-time notification functionality via WxPusher.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

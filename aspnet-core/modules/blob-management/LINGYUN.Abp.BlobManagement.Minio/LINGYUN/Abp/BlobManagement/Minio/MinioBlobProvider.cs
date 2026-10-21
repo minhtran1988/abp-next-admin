@@ -98,7 +98,7 @@ public class MinioBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // Minio没有目录的概念,新建对象时可以模拟目录
+        // Minio does not have the concept of a directory. It can simulate a directory when creating a new object.
         return Task.CompletedTask;
     }
 
@@ -162,7 +162,7 @@ public class MinioBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // Minio没有目录的概念,新建对象时可以模拟目录
+        // Minio does not have the concept of a directory. It can simulate a directory when creating a new object.
         return Task.CompletedTask;
     }
 

@@ -3,41 +3,41 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据属性元数据
+/// Channel data attribute metadata
 /// </summary>
 /// <remarks>
-/// 由 <see cref="NotificationChannelPropertyAttribute"/> 推导而来,
-/// 描述"写入/读取哪个键、类型是什么、是否参与存在性判定"。
+/// Derived from <see cref="NotificationChannelPropertyAttribute"/>,
+/// Describe "which key is written/read, what type it is, and whether it participates in existence determination".
 /// </remarks>
 public sealed class NotificationChannelDataProperty
 {
     /// <summary>
-    /// 数据键名
+    /// Data key name
     /// </summary>
     public string Key { get; }
 
     /// <summary>
-    /// 属性声明类型
+    /// Property declaration type
     /// </summary>
     public Type PropertyType { get; }
 
     /// <summary>
-    /// 存储格式
+    /// Storage format
     /// </summary>
     public NotificationChannelDataFormat Format { get; }
 
     /// <summary>
-    /// 是否在存在性判定时忽略本属性
+    /// Whether to ignore this attribute when determining existence
     /// </summary>
     public bool IgnoreWhenMatching { get; }
 
     /// <summary>
-    /// 读取委托
+    /// Read delegate
     /// </summary>
     public Func<object, object?> GetValue { get; }
 
     /// <summary>
-    /// 写入委托
+    /// Write delegate
     /// </summary>
     public Action<object, object?> SetValue { get; }
 

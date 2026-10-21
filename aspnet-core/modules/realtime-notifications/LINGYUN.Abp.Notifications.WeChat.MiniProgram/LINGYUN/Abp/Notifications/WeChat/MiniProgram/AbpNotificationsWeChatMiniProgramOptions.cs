@@ -1,20 +1,20 @@
 ﻿namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram;
 
 /// <summary>
-/// TODO: 后期改进,配置项集成到 <see cref="LINGYUN.Abp.WeChat.MiniProgram.AbpWeChatMiniProgramOptions"/>
+/// TODO: Later improvements, configuration items are integrated into <see cref="LINGYUN.Abp.WeChat.MiniProgram.AbpWeChatMiniProgramOptions"/>
 /// </summary>
 public class AbpNotificationsWeChatMiniProgramOptions
 {
     /// <summary>
-    /// 默认小程序模板
+    /// Default applet template
     /// </summary>
     public string DefaultTemplateId { get; set; } = default!;
     /// <summary>
-    /// 默认跳转小程序类型
+    /// Default jump applet type
     /// </summary>
     public string DefaultState { get; set; } = "developer";
     /// <summary>
-    /// 默认小程序语言
+    /// Default applet language
     /// </summary>
     public string DefaultLanguage { get; set; } = "zh_CN";
 }

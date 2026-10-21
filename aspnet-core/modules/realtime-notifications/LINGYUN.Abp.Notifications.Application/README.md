@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.Application
 
-通知系统的应用层模块，提供了通知系统的应用服务实现。
+The application layer module of the notification system provides the application service implementation of the notification system.
 
-## 功能特性
+## Features
 
-* 通知管理服务
-* 通知订阅服务
-* 通知发布服务
-* 通知查询服务
-* 通知状态管理服务
+* Notification management service
+* Notification subscription service
+*Notification publishing service
+*Notification inquiry service
+* Notification status management service
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsApplicationModule))]
@@ -20,26 +20,26 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 应用服务
+## Application Services
 
 ### INotificationAppService
 
-* GetAsync - 获取通知详情
-* GetListAsync - 获取通知列表
-* DeleteAsync - 删除通知
-* MarkReadAsync - 标记通知为已读
-* MarkAllReadAsync - 标记所有通知为已读
+* GetAsync - Get notification details
+* GetListAsync - Get notification list
+* DeleteAsync - delete notification
+* MarkReadAsync - mark notification as read
+* MarkAllReadAsync - Mark all notifications as read
 
 ### INotificationSubscriptionAppService
 
-* SubscribeAsync - 订阅通知
-* UnSubscribeAsync - 取消订阅通知
-* GetAssignableSubscribersAsync - 获取可分配的订阅者列表
-* GetSubscribedListAsync - 获取已订阅的通知列表
+* SubscribeAsync - subscribe to notifications
+* UnSubscribeAsync - Unsubscribe notification
+* GetAssignableSubscribersAsync - Get the list of assignable subscribers
+* GetSubscribedListAsync - Get the subscribed notification list
 
-## 基本用法
+## Basic usage
 
-1. 发送通知
+1. Send notification
 ```csharp
 await NotificationAppService.PublishAsync(
     name: "YourNotification",
@@ -47,12 +47,12 @@ await NotificationAppService.PublishAsync(
     userIds: new[] { CurrentUser.Id });
 ```
 
-2. 管理通知订阅
+2. Manage notification subscriptions
 ```csharp
 await NotificationSubscriptionAppService.SubscribeAsync(
     notificationName: "YourNotification");
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
+* [ABP Documentation](https://docs.abp.io)

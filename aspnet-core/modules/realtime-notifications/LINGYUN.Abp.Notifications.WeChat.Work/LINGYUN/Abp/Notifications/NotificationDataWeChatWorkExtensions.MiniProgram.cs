@@ -8,10 +8,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string MiniProgramMessage = Prefix + "mini_program_message";
 
     /// <summary>
-    /// 小程序通知
+    /// Mini program notification
     /// </summary>
-    /// <param name="notificationData">通知内容</param>
-    /// <param name="miniProgramMessage">小程序通知消息</param>
+    /// <param name="notificationData">Notification content</param>
+    /// <param name="miniProgramMessage">Mini program notification message</param>
     public static void WithMiniProgramMessage(
         this NotificationData notificationData,
         MiniProgramMessage miniProgramMessage)
@@ -20,7 +20,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试获取小程序消息
+    /// Try to get mini program messages
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="workMiniProgramMessage"></param>

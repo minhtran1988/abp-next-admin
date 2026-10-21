@@ -60,7 +60,7 @@ public class PostgreSqlElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransien
         }
 
         var tableParams = _installerOptions.InstallTables.Select((_, index) => $"@Table_{index}").JoinAsString(",");
-        // ElsaContext中默认使用Elsa作为默认Schema
+        // Elsa is used as the default Schema in ElsaContext by default
         using (var npgsqlCommand = new NpgsqlCommand($"SELECT COUNT(1) FROM information_schema.tables WHERE table_catalog = @DataBaseName AND table_schema = 'Elsa' AND table_name IN ({tableParams});", npgsqlConnection))
         {
             npgsqlCommand.Parameters.Add("@DataBaseName", NpgsqlDbType.Text).Value = dataBaseName;
@@ -79,7 +79,7 @@ public class PostgreSqlElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransien
 
         var sqlScript = await GetInitSqlScript();
 
-        // ${DataBase} 替换
+        // ${DataBase} replacement
         sqlScript = sqlScript.ReplaceFirst("${DataBase}", dataBaseName);
 
         using (var npgsqlCommand = new NpgsqlCommand(sqlScript, npgsqlConnection))
@@ -94,7 +94,7 @@ public class PostgreSqlElsaDataBaseInstaller : IElsaDataBaseInstaller, ITransien
 
     public async virtual Task<string> CreateDataBaseIfNotExists(string dataBase, NpgsqlConnectionStringBuilder connectionStringBuilder)
     {
-        // 切换主数据库查询数据库是否存在
+        // Switch the main database to query whether the database exists
         connectionStringBuilder.Database = "postgres";
         using var npgsqlConnection = new NpgsqlConnection(connectionStringBuilder.ConnectionString);
         if (npgsqlConnection.State == ConnectionState.Closed)

@@ -18,8 +18,8 @@ const avatar = computed(() => {
 </script>
 
 <template>
-  <Page description="用于前端简单的拖动校验场景" title="滑块旋转校验">
-    <Card class="mb-5" title="基本示例">
+  <Page description="For front-end simple drag verification scenario" title="Slider rotation verification">
+    <Card class="mb-5" title="Basic example">
       <div class="flex items-center justify-center p-4">
         <SliderRotateCaptcha :src="avatar" @success="handleSuccess" />
       </div>

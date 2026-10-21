@@ -1,5 +1,5 @@
 <template>
-  <Card title="转化率" :loading="loading">
+  <Card title="Conversion Rate" :loading="loading">
     <div ref="chartRef" :style="{ width, height }"></div>
   </Card>
 </template>
@@ -29,7 +29,7 @@
       setOptions({
         legend: {
           bottom: 0,
-          data: ['访问', '购买'],
+          data: ['Visit', 'Purchase'],
         },
         tooltip: {},
         radar: {
@@ -37,22 +37,22 @@
           splitNumber: 8,
           indicator: [
             {
-              name: '电脑',
+              name: 'computer',
             },
             {
-              name: '充电器',
+              name: 'charger',
             },
             {
-              name: '耳机',
+              name: 'headphones',
             },
             {
-              name: '手机',
+              name: 'mobile phone',
             },
             {
               name: 'Ipad',
             },
             {
-              name: '耳机',
+              name: 'headphones',
             },
           ],
         },
@@ -70,14 +70,14 @@
             data: [
               {
                 value: [90, 50, 86, 40, 50, 20],
-                name: '访问',
+                name: 'Visit',
                 itemStyle: {
                   color: '#b6a2de',
                 },
               },
               {
                 value: [70, 75, 70, 76, 20, 85],
-                name: '购买',
+                name: 'Purchase',
                 itemStyle: {
                   color: '#5ab1ef',
                 },

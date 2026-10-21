@@ -12,13 +12,13 @@ const [Modal, modalApi] = useVbenModal({
     message.info('onConfirm');
     // modalApi.close();
   },
-  title: '动态修改配置示例',
+  title: 'Dynamic modification configuration example',
 });
 
 const state = modalApi.useStore();
 
 function handleUpdateTitle() {
-  modalApi.setState({ title: '内部动态标题' });
+  modalApi.setState({ title: 'Internal dynamic title' });
 }
 
 function handleToggleFullscreen() {
@@ -31,10 +31,10 @@ function handleToggleFullscreen() {
   <Modal>
     <div class="flex-col-center">
       <Button class="mb-3" type="primary" @click="handleUpdateTitle()">
-        内部动态修改标题
+        Dynamically modify the title internally
       </Button>
       <Button class="mb-3" type="primary" @click="handleToggleFullscreen()">
-        {{ state.fullscreen ? '退出全屏' : '打开全屏' }}
+        {{ state.fullscreen ? 'Exit full screen' : 'Open full screen' }}
       </Button>
     </div>
   </Modal>

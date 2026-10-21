@@ -19,7 +19,7 @@ public class NotificationCleanupJob : IJobRunnable
     #endregion
     public const string Name = "NotificationCleanupJob";
     /// <summary>
-    /// 每次清除记录大小
+    /// Clear the record size each time
     /// </summary>
     public const string PropertyBatchCount = "BatchCount";
 

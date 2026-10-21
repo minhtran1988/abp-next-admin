@@ -1,11 +1,11 @@
 # LINGYUN.Abp.WeChat.Work.ExternalContact
 
-企业微信客户联系模块，提供企业微信应用开发的客户联系功能实现。  
+The enterprise WeChat customer contact module provides customer contact function implementation for enterprise WeChat application development.  
 
-## 功能特性
+## Features
 
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkExternalContactModule))]
@@ -15,15 +15,15 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 
-## 消息处理
+## Message processing
 
 
-## 事件处理
+## Event handling
 
 
-## 更多文档
+## More documentation
 
-* [企业微信客户联系文档](https://developer.work.weixin.qq.com/document/path/92109)
+* [Enterprise WeChat Customer Contact Document](https://developer.work.weixin.qq.com/document/path/92109)

@@ -5,7 +5,7 @@ using Volo.Abp.Content;
 
 namespace LINGYUN.Abp.WeChat.Work.Media;
 /// <summary>
-/// 素材管理接口
+/// Material management interface
 /// </summary>
 /// <remarks>
 /// API: <see href="https://developer.work.weixin.qq.com/document/path/91054"/>
@@ -13,13 +13,13 @@ namespace LINGYUN.Abp.WeChat.Work.Media;
 public interface IWeChatWorkMediaProvider
 {
     /// <summary>
-    /// 上传临时素材
+    /// Upload temporary materials
     /// </summary>
     /// <remarks>
     /// API: <see href="https://developer.work.weixin.qq.com/document/path/90253"/>
     /// </remarks>
-    /// <param name="type">媒体文件类型</param>
-    /// <param name="media">待上传文件</param>
+    /// <param name="type">Media file type</param>
+    /// <param name="media">File to be uploaded</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkMediaResponse> UploadAsync(
@@ -27,12 +27,12 @@ public interface IWeChatWorkMediaProvider
         IRemoteStreamContent media,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取临时素材
+    /// Get temporary materials
     /// </summary>
     /// <remarks>
     /// API: <see href="https://developer.work.weixin.qq.com/document/path/90254"/>
     /// </remarks>
-    /// <param name="mediaId">媒体文件id</param>
+    /// <param name="mediaId">Media file id</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// 
@@ -40,12 +40,12 @@ public interface IWeChatWorkMediaProvider
         string mediaId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 上传图片
+    /// Upload pictures
     /// </summary>
     /// <remarks>
     /// API: <see href="https://developer.work.weixin.qq.com/document/path/90256"/>
     /// </remarks>
-    /// <param name="image">待上传图片</param>
+    /// <param name="image">Image to be uploaded</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkImageResponse> UploadImageAsync(

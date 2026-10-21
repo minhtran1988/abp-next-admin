@@ -5,15 +5,15 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 客户群成员入群事件推送
+/// Push event of customer group members joining the group
 /// </summary>
 [EventName("external_chat_add_member")]
 public class ExternalChatAddMemberEvent : ExternalChatChangeMemberEvent
 {
     /// <summary>
-    /// 当是成员入群时有值。表示成员的入群方式<br />
-    /// 0 - 由成员邀请入群（包括直接邀请入群和通过邀请链接入群）<br />
-    /// 3 - 通过扫描群二维码入群<br />
+    /// Has value when a member joins the group. Indicates how members join the group<br />
+    /// 0 - Invited to the group by a member (including direct invitation to the group and joining the group through an invitation link)<br />
+    /// 3 - Join the group by scanning the group QR code<br />
     /// </summary>
     [XmlElement("JoinScene")]
     public ExternalChatMemberJoinScene JoinScene { get; set; }

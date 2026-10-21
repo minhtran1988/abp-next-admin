@@ -5,82 +5,82 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals;
 /// <summary>
-/// 审批模板接口
+/// Approval template interface
 /// </summary>
 /// <remarks>
-/// 详情见: https://developer.work.weixin.qq.com/document/path/91854
+/// For details, see: https://developer.work.weixin.qq.com/document/path/91854
 /// </remarks>
 public interface IWeChatWorkApprovalTemplateProvider
 {
     /// <summary>
-    /// 创建审批模板
+    /// Create approval template
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/97437
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/97437
     /// </remarks>
-    /// <param name="request">创建审批模板请求参数</param>
+    /// <param name="request">Create approval template request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>创建审批模板响应参数</returns>
+    /// <returns>Create approval template response parameters</returns>
     Task<WeChatWorkCreateTemplateResponse> CreateTemplateAsync(
         WeChatWorkCreateTemplateRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 更新审批模板
+    /// Update approval template
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/97438
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/97438
     /// </remarks>
-    /// <param name="request">更新审批模板请求参数</param>
+    /// <param name="request">Update approval template request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>更新审批模板响应参数</returns>
+    /// <returns>Update approval template response parameters</returns>
     Task<WeChatWorkResponse> UpdateTemplateAsync(
         WeChatWorkCreateTemplateRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取审批模板详情
+    /// Get approval template details
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/91982
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/91982
     /// </remarks>
-    /// <param name="request">获取审批模板请求参数</param>
+    /// <param name="request">Get approval template request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>审批模板响应参数</returns>
+    /// <returns>Approval template response parameters</returns>
     Task<WeChatWorkTemplateResponse> GetTemplateAsync(
         WeChatWorkGetTemplateRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 批量获取审批单号
+    /// Get approval order numbers in batches
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/91816
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/91816
     /// </remarks>
-    /// <param name="request">批量获取审批单号请求参数</param>
+    /// <param name="request">Batch acquisition of approval order number request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>批量获取审批单号响应参数</returns>
+    /// <returns>Get approval order number response parameters in batches</returns>
     Task<WeChatWorkGetApprovalInfoResponse> GetApprovalInfoAsync(
         WeChatWorkGetApprovalInfoRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取审批申请详情
+    /// Get approval application details
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/91983
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/91983
     /// </remarks>
-    /// <param name="request">获取审批申请详情请求参数</param>
+    /// <param name="request">Get approval application details request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>获取审批申请详情响应参数</returns>
+    /// <returns>Get approval application details response parameters</returns>
     Task<WeChatWorkGetApprovalDetailResponse> GetApprovalDetailAsync(
         WeChatWorkGetApprovalDetailRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 提交审批申请
+    /// Submit application for approval
     /// </summary>
     /// <remarks>
-    /// 详情见：https://developer.work.weixin.qq.com/document/path/91853
+    /// For details, see: https://developer.work.weixin.qq.com/document/path/91853
     /// </remarks>
-    /// <param name="request">提交审批申请请求参数</param>
+    /// <param name="request">Submit approval application request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>提交审批申请响应参数</returns>
+    /// <returns>Submit approval application response parameters</returns>
     Task<WeChatWorkApplyEventResponse> ApplyEventAsync(
         WeChatWorkApplyEventRequest request,
         CancellationToken cancellationToken = default);

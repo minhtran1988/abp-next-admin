@@ -7,21 +7,21 @@ public static class SaasFeatureNames
     {
         public const string Default = GroupName + ".Tenants";
         /// <summary>
-        /// 资源回收策略
+        /// Resource recovery strategy
         /// </summary>
         public const string RecycleStrategy = Default + ".RecycleStrategy";
         /// <summary>
-        /// 过期回收时长
+        /// Expired recycling time
         /// </summary>
         /// <remarks>
-        /// 当资源快过期时, 需要邮件通知对应租户管理员, 超期多久没有处理, 将回收租户资源
+        /// When the resource is about to expire, the corresponding tenant administrator needs to be notified by email. If the resource is not processed for how long after the expiration, the tenant resource will be recycled.
         /// </remarks>
         public const string ExpiredRecoveryTime = Default + ".ExpiredRecoveryTime";
         /// <summary>
-        /// 过期预警天数
+        /// Expiration warning days
         /// </summary>
         /// <remarks>
-        /// 当资源还有多少天过期时, 给管理员发送提醒
+        /// When the resource expires in how many days, send a reminder to the administrator
         /// </remarks>
         public const string ExpirationReminderDays = Default + ".ExpirationReminderDays";
     }

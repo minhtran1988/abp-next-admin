@@ -12,11 +12,11 @@ using Volo.Abp.Features;
 namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram;
 
 /// <summary>
-/// 微信小程序消息推送提供者
+/// WeChat applet message push provider
 /// </summary>
 /// <remarks>
-/// 小程序订阅消息的模板数据本身就是动态键值对, 因此载荷只声明标量字段,
-/// 模板数据仍然直接取自通知数据的属性包。
+/// The template data of the applet's subscription message itself is a dynamic key-value pair, so the payload only declares scalar fields.
+/// The template data is still taken directly from the property bag of the notification data.
 /// </remarks>
 public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishProvider
 {
@@ -44,8 +44,8 @@ public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishP
 
     protected async override Task PublishAsync(NotificationPublishContext context, CancellationToken cancellationToken = default)
     {
-        // 微信不支持推送到所有用户
-        // 在小程序里用户订阅消息后通过 api/subscribes/subscribe 接口订阅对应模板消息
+        // WeChat does not support pushing to all users
+        // After the user subscribes to the message in the mini program, he subscribes to the corresponding template message through the api/subscribes/subscribe interface.
         var channelData = ResolveChannelData(context.Notification.Data);
 
         foreach (var identifier in context.Users)
@@ -63,12 +63,12 @@ public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishP
             Logger.LogDebug($"Get wechat weapp state: {channelData.WeAppState ?? null}");
             Logger.LogDebug($"Get wechat weapp language: {channelData.WeAppLanguage ?? null}");
 
-            // TODO: 如果微信端发布通知,请组装好 openid 字段在通知数据内容里面
+            // TODO: If WeChat publishes a notification, please assemble the openid field in the notification data content.
             var openId = ChannelDataResolver.GetOrNull(context.Notification.Data, AbpWeChatClaimTypes.OpenId);
 
             if (openId.IsNullOrWhiteSpace())
             {
-                // 发送小程序订阅消息
+                // Send mini program subscription message
                 await SubscribeMessager
                     .SendAsync(
                         identifier.UserId,
@@ -88,12 +88,12 @@ public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishP
                     channelData.WeAppState,
                     channelData.WeAppLanguage);
 
-                // 写入模板数据
+                // Write template data
                 weChatWeAppNotificationData.WriteData(context.Notification.Data.ExtraProperties);
 
                 Logger.LogDebug($"Sending wechat weapp notification: {context.Notification.Name}");
 
-                // 发送小程序订阅消息
+                // Send mini program subscription message
                 await SubscribeMessager.SendAsync(weChatWeAppNotificationData, cancellationToken);
 
                 Logger.LogDebug("The notification: {0} with provider: {1} has successfully published!", context.Notification.Name, Name);
@@ -102,19 +102,19 @@ public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishP
     }
 
     /// <summary>
-    /// 解析小程序渠道数据
+    /// Parse mini program channel data
     /// </summary>
     /// <remarks>
-    /// 键名带本渠道前缀, 读取大小写不敏感;
-    /// 为了让已安装的生产者平滑升级, 这里对历史遗留的**无前缀键**做只读回退;
-    /// 缺省值来自渠道配置。
+    /// The key name has the prefix of this channel, and the reading is not case-sensitive;
+    /// In order to allow installed producers to upgrade smoothly, here is a read-only rollback for the historical **no prefix keys**;
+    /// Default value comes from channel configuration.
     /// </remarks>
     protected virtual WeChatMiniProgramSubscribeChannelData ResolveChannelData(NotificationData notificationData)
     {
         var channelData = ChannelDataResolver.Resolve<WeChatMiniProgramSubscribeChannelData>(notificationData)
             ?? new WeChatMiniProgramSubscribeChannelData();
 
-        // 历史遗留的无前缀键只读回退
+        // Historical unprefixed key read-only fallback
         ApplyLegacyKeys(channelData, notificationData);
 
         if (channelData.TemplateId.IsNullOrWhiteSpace())
@@ -134,12 +134,12 @@ public class WeChatMiniProgramNotificationPublishProvider : NotificationPublishP
     }
 
     /// <summary>
-    /// 回退读取历史遗留的无前缀键
+    /// Fall back to reading the unprefixed keys left over from the history
     /// </summary>
     /// <remarks>
     /// <para>
-    /// 早期版本使用 <c>TemplateId</c> 这类无前缀键, 已安装的生产者可能仍在写入。
-    /// 带前缀的键优先; 命中遗留键时记录一次警告以便推动迁移。
+    /// Earlier versions used unprefixed keys such as <c>TemplateId</c>, which installed producers may still be writing to.
+    /// Prefixed keys take precedence; log a warning when a legacy key is hit to facilitate migration.
     /// </para>
     /// </remarks>
 #pragma warning disable CS0618 // Type or member is obsolete: the only sanctioned read site for legacy keys

@@ -36,19 +36,19 @@ public class JobExecutedEvent : JobEventBase<JobExecutedEvent>, ITransientDepend
         job.Result = context.EventData.Result ?? "OK";
         job.Status = JobStatus.Running;
 
-        // 任务异常后可重试
+        // You can retry after the task is abnormal
         if (context.EventData.Exception != null)
         {
             job.TryCount += 1;
             job.IsAbandoned = false;
             job.Result = GetExceptionMessage(context.EventData.Exception);
 
-            // 周期性任务不用改变重试策略
+            // There is no need to change the retry strategy for periodic tasks
             if (job.JobType != JobType.Period)
             {
-                // 将任务标记为运行中, 会被轮询重新进入队列
+                // Mark the task as running and will be polled to re-enter the queue
                 job.Status = JobStatus.FailedRetry;
-                // 多次异常后需要重新计算优先级
+                // Priority needs to be recalculated after multiple exceptions
                 if (job.TryCount <= (job.MaxTryCount / 2) &&
                     job.TryCount > (job.MaxTryCount / 3))
                 {
@@ -59,7 +59,7 @@ public class JobExecutedEvent : JobEventBase<JobExecutedEvent>, ITransientDepend
                     job.Priority = JobPriority.Low;
                 }
 
-                // 等待时间调整
+                // Waiting time adjustment
                 if (job.Interval <= 0)
                 {
                     job.Interval = 50;
@@ -69,7 +69,7 @@ public class JobExecutedEvent : JobEventBase<JobExecutedEvent>, ITransientDepend
                 job.Interval = Convert.ToInt32(retryInterval);
             }
 
-            // 当未设置最大重试次数时不会标记停止
+            // Will not mark stop when maximum retries are not set
             if (job.MaxTryCount > 0 && job.TryCount >= job.MaxTryCount)
             {
                 job.Status = JobStatus.Stopped;
@@ -79,34 +79,34 @@ public class JobExecutedEvent : JobEventBase<JobExecutedEvent>, ITransientDepend
             }
             else
             {
-                // 周期性作业已经在队列中, 需要忽略
+                // The periodic job is already in the queue and needs to be ignored
                 if (job.JobType != JobType.Period)
                 {
-                    // 失败的作业需要由当前节点来调度
+                    // Failed jobs need to be scheduled by the current node
                     await ScheduleJobAsync(context, job, context.EventData.CancellationToken);
                 }
             }
         }
         else
         {
-            // 成功一次重置重试次数
+            // Reset the number of retries after one success
             job.TryCount = 0;
             var jobCompleted = false;
 
-            // 尝试达到上限则标记已完成
+            // Mark completed when trying to reach the upper limit
             if (job.Status == JobStatus.FailedRetry &&
                 job.TryCount >= job.MaxTryCount)
             {
                 jobCompleted = true;
             }
 
-            // 所有任务达到上限则标记已完成
+            // When all tasks reach the upper limit, mark them as completed
             if (job.MaxCount > 0 && job.TriggerCount >= job.MaxCount)
             {
                 jobCompleted = true;
             }
 
-            // 一次性任务执行一次后标记为已完成
+            // Mark the one-time task as completed after executing it once
             if (job.JobType == JobType.Once)
             {
                 jobCompleted = true;

@@ -5,13 +5,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 删除成员事件
+/// Delete member event
 /// </summary>
 [EventName("delete_user")]
 public class DeleteUserEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 变更信息的成员UserID
+    /// Member UserID of change information
     /// </summary>
     [XmlElement("UserID")]
     public string UserId { get; set; } = default!;

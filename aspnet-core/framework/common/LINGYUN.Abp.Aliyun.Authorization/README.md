@@ -1,19 +1,19 @@
 # LINGYUN.Abp.Aliyun.Authorization
 
-阿里云基础认证模块, 目前只需要访问控制功能, 因此只定义了AppKeyId和AccessKeySecret。
+Alibaba Cloud's basic authentication module currently only requires access control functions, so only AppKeyId and AccessKeySecret are defined.
 
-## 配置使用
+## Configuration usage
 
-模块按需引用，使用到阿里云的模块基本都需要依赖于此
+Modules are referenced on demand. Modules that use Alibaba Cloud basically need to rely on this.
 
-事先定义**appsettings.json**文件
+Define the **appsettings.json** file in advance
 
 ```json
 {
   "Aliyun": {
     "Auth": {
-      "AccessKeyId": "你的阿里云访问标识",
-      "AccessKeySecret": "你的阿里云访问密钥"
+      "AccessKeyId": "Your Alibaba Cloud access ID",
+      "AccessKeySecret": "Your Alibaba Cloud access key"
     }
   }
 }

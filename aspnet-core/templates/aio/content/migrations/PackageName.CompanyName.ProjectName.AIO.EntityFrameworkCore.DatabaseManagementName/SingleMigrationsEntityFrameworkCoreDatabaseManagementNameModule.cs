@@ -60,7 +60,7 @@ public class SingleMigrationsEntityFrameworkCoreDatabaseManagementNameModule : A
             options.UseOracle();
             options.UseOracle<ProjectNameDbContext>();
 #elif PostgreSql
-            System.AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);//解决PostgreSql设置为utc时间后无法写入local时区的问题
+            System.AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);//Solve the problem that PostgreSql cannot write to the local time zone after setting it to utc time
             options.UseNpgsql();
             options.UseNpgsql<ProjectNameDbContext>();
 #endif

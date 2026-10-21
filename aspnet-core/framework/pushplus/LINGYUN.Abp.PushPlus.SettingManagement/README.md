@@ -1,22 +1,22 @@
 # LINGYUN.Abp.PushPlus.SettingManagement
 
-PushPlus 设置管理模块，提供 PushPlus 配置的管理界面和API接口。
+PushPlus settings management module provides the management interface and API interface for PushPlus configuration.
 
-## 功能特性
+## Features
 
-* 提供 PushPlus 配置管理接口
-* 支持全局配置管理
-* 支持租户配置管理
-* 支持多语言
-* 集成 ABP 设置管理模块
+* Provide PushPlus configuration management interface
+* Support global configuration management
+* Support tenant configuration management
+* Support multiple languages
+* Integrate ABP settings management module
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.PushPlus.SettingManagement
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpPushPlusSettingManagementModule))]
@@ -26,55 +26,55 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API接口
+## API interface
 
-### 获取全局配置
+### Get global configuration
 
 ```http
 GET /api/setting-management/push-plus/by-global
 ```
 
-响应示例：
+Response example:
 ```json
 {
   "name": "PushPlus",
-  "displayName": "PushPlus配置",
+  "displayName": "PushPlus Configuration",
   "settings": [
     {
       "name": "PushPlus.Security.Token",
       "value": "your-token",
       "displayName": "Token",
-      "description": "PushPlus平台获取的Token"
+      "description": "Token obtained by PushPlus platform"
     },
     {
       "name": "PushPlus.Security.SecretKey",
       "value": "your-secret",
-      "displayName": "密钥",
-      "description": "PushPlus平台获取的密钥"
+      "displayName": "Key",
+      "description": "Key obtained by PushPlus platform"
     }
   ]
 }
 ```
 
-### 获取租户配置
+### Get tenant configuration
 
 ```http
 GET /api/setting-management/push-plus/by-current-tenant
 ```
 
-响应格式同全局配置。
+The response format is the same as the global configuration.
 
-## 权限
+## Permissions
 
-* Abp.PushPlus.ManageSetting - 管理PushPlus配置的权限
+* Abp.PushPlus.ManageSetting - Permission to manage PushPlus configuration
 
-## 本地化
+## Localization
 
-模块支持以下语言：
-* 中文简体
-* 英文
+The module supports the following languages:
+* Simplified Chinese
+*English
 
-## 更多信息
+## More information
 
 * [LINGYUN.Abp.PushPlus](../LINGYUN.Abp.PushPlus/README.md)
-* [ABP设置管理](https://docs.abp.io/en/abp/latest/Settings)
+* [ABP Settings Management](https://docs.abp.io/en/abp/latest/Settings)

@@ -1,38 +1,38 @@
 # LINGYUN.Abp.IdGenerator
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.IdGenerator` 是一个分布式ID生成器模块，主要实现了雪花算法（Snowflake）来生成分布式唯一ID。
+`LINGYUN.Abp.IdGenerator` is a distributed ID generator module that mainly implements the Snowflake algorithm to generate distributed unique IDs.
 
-## 功能
+## Function
 
-* 雪花算法ID生成器 (`SnowflakeIdGenerator`)
-  * 支持自定义工作机器ID和数据中心ID
-  * 支持自定义序列号位数
-  * 支持时间回退处理
-  * 提供分布式环境下的唯一ID生成
+* Snowflake algorithm ID generator (`SnowflakeIdGenerator`)
+  * Support custom work machine ID and data center ID
+  * Support custom serial number digits
+  * Support time rollback processing
+  * Provide unique ID generation in a distributed environment
 
-## 配置项
+## Configuration items
 
 ### SnowflakeIdOptions
 
-* `WorkerIdBits` (默认: 5) - 工作机器ID位数
-* `DatacenterIdBits` (默认: 5) - 数据中心ID位数
-* `Sequence` (默认: 0) - 序列号起始值
-* `SequenceBits` (默认: 12) - 序列号位数
-* `UsePreviousInTimeRollback` (默认: true) - 是否在时间回退时使用上一个时间戳
-* `WorkerId` - 工作机器ID，如未指定则从环境变量WORKERID获取或随机生成
-* `DatacenterId` - 数据中心ID，如未指定则从环境变量DATACENTERID获取或随机生成
+* `WorkerIdBits` (default: 5) - Number of digits in the worker machine ID
+* `DatacenterIdBits` (default: 5) - Number of data center ID bits
+* `Sequence` (default: 0) - starting sequence number value
+* `SequenceBits` (default: 12) - number of sequence number digits
+* `UsePreviousInTimeRollback` (default: true) - whether to use the previous timestamp when rolling back time
+* `WorkerId` - Worker machine ID, if not specified, it is obtained from the environment variable WORKERID or randomly generated
+* `DatacenterId` - Data center ID, if not specified, it is obtained from the environment variable DATACENTERID or randomly generated
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.IdGenerator
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpIdGeneratorModule))]` 到你的模块类上。
+1. Add `[DependsOn(typeof(AbpIdGeneratorModule))]` to your module class.
 
 ```csharp
 [DependsOn(typeof(AbpIdGeneratorModule))]
@@ -49,7 +49,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 注入并使用ID生成器：
+2. Inject and use the ID generator:
 
 ```csharp
 public class YourService
@@ -68,6 +68,6 @@ public class YourService
 }
 ```
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)

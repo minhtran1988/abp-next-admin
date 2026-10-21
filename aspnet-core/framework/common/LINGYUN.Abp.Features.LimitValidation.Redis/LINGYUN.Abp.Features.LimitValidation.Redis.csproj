@@ -11,7 +11,7 @@
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<RootNamespace />
-		<Description>功能限制验证组件Redis实现</Description>
+		<Description>Redis implementation of functional restriction verification component</Description>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -14,9 +14,9 @@ export function useWorkspaceDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取工作区详情
-   * @param id 工作区id
-   * @returns 工作区详情
+   * Get workspace details
+   * @param id workspace id
+   * @returns workspace details
    */
   function getApi(id: string): Promise<WorkspaceDefinitionRecordDto> {
     return request<WorkspaceDefinitionRecordDto>(
@@ -28,9 +28,9 @@ export function useWorkspaceDefinitionsApi() {
   }
 
   /**
-   * 获取工作区分页列表
-   * @param input 查询过滤参数
-   * @returns 工作区分页列表
+   * Get the workspace page list
+   * @param input query filter parameters
+   * @returns workspace page list
    */
   function getPagedListApi(
     input?: WorkspaceDefinitionRecordGetPagedListInput,
@@ -45,8 +45,8 @@ export function useWorkspaceDefinitionsApi() {
   }
 
   /**
-   * 获取可用模型提供者列表
-   * @returns 模型提供者列表
+   * Get the list of available model providers
+   * @returns model provider list
    */
   function getAvailableProviderListApi(): Promise<
     ListResultDto<ChatClientProviderDto>
@@ -60,8 +60,8 @@ export function useWorkspaceDefinitionsApi() {
   }
 
   /**
-   * 删除工作区
-   * @param id 工作区id
+   * Delete workspace
+   * @param id workspace id
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/ai-management/workspaces/${id}`, {
@@ -70,9 +70,9 @@ export function useWorkspaceDefinitionsApi() {
   }
 
   /**
-   * 新增工作区
-   * @param input 参数
-   * @returns 工作区详情
+   * Add new workspace
+   * @param input parameter
+   * @returns workspace details
    */
   function createApi(
     input: WorkspaceDefinitionRecordCreateDto,
@@ -87,10 +87,10 @@ export function useWorkspaceDefinitionsApi() {
   }
 
   /**
-   * 编辑工作区
-   * @param id 工作区id
-   * @param input 参数
-   * @returns 工作区详情
+   * Edit workspace
+   * @param id workspace id
+   * @param input parameter
+   * @returns workspace details
    */
   function updateApi(
     id: string,

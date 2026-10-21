@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.BlobManagement.Dtos;
 public class BlobFileChunkCreateDto : BlobFileChunkCreateBaseDto
 {
     /// <summary>
-    /// 容器Id
+    /// ContainerId
     /// </summary>
     [Required]
     public Guid ContainerId { get; set; }

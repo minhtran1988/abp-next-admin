@@ -1,7 +1,7 @@
 ﻿namespace LINGYUN.Abp.ExceptionHandling;
 
 /// <summary>
-/// 需要发送异常通知的自定义异常需要实现此接口
+/// Custom exceptions that need to send exception notifications need to implement this interface
 /// </summary>
 public interface IHasNotifierErrorMessage
 {

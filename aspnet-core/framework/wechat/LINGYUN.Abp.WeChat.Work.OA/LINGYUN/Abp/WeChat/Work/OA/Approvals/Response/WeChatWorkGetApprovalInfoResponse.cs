@@ -5,22 +5,22 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Response;
 /// <summary>
-/// 批量获取审批单号响应参数
+/// Get approval order number response parameters in batches
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91816"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91816"/>
 /// </remarks>
 public class WeChatWorkGetApprovalInfoResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 审批单号列表，包含满足条件的审批申请
+    /// Approval order number list, including approval applications that meet the conditions
     /// </summary>
     [NotNull]
     [JsonProperty("sp_no_list")]
     [JsonPropertyName("sp_no_list")]
     public List<string> SpNos { get; set; } = default!;
     /// <summary>
-    /// 后续请求查询的游标，当返回结果没有该字段时表示审批单已经拉取完
+    /// The cursor for subsequent request queries. When the returned result does not have this field, it means that the approval form has been fetched.
     /// </summary>
     [CanBeNull]
     [JsonProperty("new_next_cursor")]

@@ -10,8 +10,8 @@ export function useFeaturesApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除功能
-   * @param {FeatureProvider} provider 参数
+   * Delete function
+   * @param {FeatureProvider} provider parameter
    * @returns {Promise<void>}
    */
   function deleteApi(provider: FeatureProvider): Promise<void> {
@@ -22,9 +22,9 @@ export function useFeaturesApi() {
   }
 
   /**
-   * 查询功能
-   * @param {FeatureProvider} provider 参数
-   * @returns {Promise<GetFeatureListResultDto>} 功能实体数据传输对象
+   * Query function
+   * @param {FeatureProvider} provider parameter
+   * @returns {Promise<GetFeatureListResultDto>} Function entity data transfer object
    */
   function getApi(provider: FeatureProvider): Promise<GetFeatureListResultDto> {
     return request<GetFeatureListResultDto>(
@@ -37,9 +37,9 @@ export function useFeaturesApi() {
   }
 
   /**
-   * 更新功能
+   *Update function
    * @param {FeatureProvider} provider
-   * @param {UpdateFeaturesDto} input 参数
+   * @param {UpdateFeaturesDto} input parameter
    * @returns {Promise<void>}
    */
   function updateApi(

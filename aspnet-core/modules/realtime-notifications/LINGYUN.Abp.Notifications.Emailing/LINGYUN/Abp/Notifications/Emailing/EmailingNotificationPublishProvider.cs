@@ -58,7 +58,7 @@ public class EmailingNotificationPublishProvider : NotificationPublishProvider
             Logger.LogWarning(context.Reason);
             return;
         }
-        // markdown进行处理
+        // markdown is processed
         if (context.Notification.ContentType == NotificationContentType.Markdown)
         {
             notificationData.Message = Markdown.ToHtml(notificationData.Message);

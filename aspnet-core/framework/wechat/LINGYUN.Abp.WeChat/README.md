@@ -1,15 +1,15 @@
 # LINGYUN.Abp.WeChat
 
-微信基础模块，提供微信应用开发的基础功能和配置。
+WeChat basic module provides basic functions and configurations for WeChat application development.
 
-## 功能特性
+## Features
 
-* 微信基础配置管理
-* 统一的微信API调用接口
-* 微信AccessToken管理
-* 统一的错误处理机制
+* WeChat basic configuration management
+* Unified WeChat API calling interface
+* WeChat AccessToken management
+* Unified error handling mechanism
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatModule))]
@@ -19,26 +19,26 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
-    "BaseUrl": "https://api.weixin.qq.com",  // 微信API基础地址
-    "DefaultTimeout": 30000,                  // 默认超时时间（毫秒）
-    "RetryCount": 3,                         // 重试次数
-    "RetryMilliseconds": 1000                // 重试间隔（毫秒）
+    "BaseUrl": "https://api.weixin.qq.com", // WeChat API base address
+    "DefaultTimeout": 30000, //Default timeout (milliseconds)
+    "RetryCount": 3, //Number of retries
+    "RetryMilliseconds": 1000 //Retry interval (milliseconds)
   }
 }
 ```
 
-## Settings配置
+## SettingsConfiguration
 
-* `WeChat.BaseUrl` : 微信API基础地址
-* `WeChat.DefaultTimeout` : 默认超时时间
-* `WeChat.RetryCount` : 重试次数
-* `WeChat.RetryMilliseconds` : 重试间隔
+* `WeChat.BaseUrl`: WeChat API base address
+* `WeChat.DefaultTimeout`: Default timeout
+* `WeChat.RetryCount`: Number of retries
+* `WeChat.RetryMilliseconds` : retry interval
 
-## 更多文档
+## More documentation
 
-* [微信基础模块文档](README.EN.md)
+* [WeChat basic module document](README.EN.md)

@@ -2,34 +2,34 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 /// <summary>
-/// 日程参与者的接受状态
+/// Acceptance status of schedule participants
 /// </summary>
-[Description("日程参与者的接受状态")]
+[Description("Schedule participant acceptance status")]
 public enum ScheduleAttendeeResponseStatus : uint
 {
     /// <summary>
-    /// 未处理
+    /// Not processed
     /// </summary>
-    [Description("未处理")]
+    [Description("Unprocessed")]
     UnProcessed = 0,
     /// <summary>
-    /// 待定
+    /// TBD
     /// </summary>
-    [Description("待定")]
+    [Description("TBD")]
     Determined = 1,
     /// <summary>
-    /// 全部接受
+    /// Accept all
     /// </summary>
-    [Description("全部接受")]
+    [Description("Accept all")]
     AcceptAll = 2,
     /// <summary>
-    /// 仅接受一次
+    /// Accept only once
     /// </summary>
-    [Description("仅接受一次")]
+    [Description("Accept only once")]
     AcceptedOnce = 3,
     /// <summary>
-    /// 拒绝
+    /// reject
     /// </summary>
-    [Description("拒绝")]
+    [Description("deny")]
     Refuse = 4,
 }

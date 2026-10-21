@@ -36,27 +36,27 @@ public class JobExecutedFailedProvider : JobExecutedProvider, ITransientDependen
 
     public const string PropertyFrom = "from";
     /// <summary>
-    /// 接收者
+    /// Receiver
     /// </summary>
     public const string PropertyTo = "to";
     /// <summary>
-    /// 必须，邮件主体
+    /// Required, email body
     /// </summary>
     public const string PropertySubject = "subject";
     /// <summary>
-    /// 消息内容, 文本消息时必须
+    /// Message content, required for text messages
     /// </summary>
     public const string PropertyBody = "body";
     /// <summary>
-    /// 发送模板消息
+    /// Send template message
     /// </summary>
     public const string PropertyTemplate = "template";
     /// <summary>
-    /// 可选, 模板消息中的上下文参数
+    /// Optional, context parameters in the template message
     /// </summary>
     public const string PropertyContext = "context";
     /// <summary>
-    /// 可选, 模板消息中的区域性
+    /// Optional, culture in template message
     /// </summary>
     public const string PropertyCulture = "culture";
 
@@ -92,7 +92,7 @@ public class JobExecutedFailedProvider : JobExecutedProvider, ITransientDependen
                 // var message = eventData.Args.GetOrDefault(SendEmailJob.PropertyBody)?.ToString() ?? "";
                 // await EmailSender.SendAsync(from, to, subject, message, false);
                 // return;
-                // 默认使用内置模板发送错误
+                // By default, built-in templates are used to send errors
                 template = JobExceptionHandlingTemplates.JobExceptionNotifier;
             }
 

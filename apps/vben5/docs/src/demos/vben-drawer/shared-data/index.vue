@@ -4,15 +4,15 @@ import { useVbenDrawer, VbenButton } from '@vben/common-ui';
 import ExtraDrawer from './drawer.vue';
 
 const [Drawer, drawerApi] = useVbenDrawer({
-  // 连接抽离的组件
+  // Connect the detached components
   connectedComponent: ExtraDrawer,
 });
 
 function open() {
   drawerApi
     .setData({
-      content: '外部传递的数据 content',
-      payload: '外部传递的数据 payload',
+      content: 'Externally passed data content',
+      payload: 'Externally passed data payload',
     })
     .open();
 }

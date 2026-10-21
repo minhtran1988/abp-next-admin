@@ -3,32 +3,32 @@ using LINGYUN.Abp.WeChat.Work.Messages;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信消息构造上下文
+/// Enterprise WeChat message construction context
 /// </summary>
 public class WeChatWorkMessageFactoryContext
 {
     /// <summary>
-    /// 通知消息
+    /// Notification message
     /// </summary>
     public NotificationInfo Notification { get; }
 
     /// <summary>
-    /// 通知标准数据(已完成本地化与模板渲染)
+    /// Notify standard data (localization and template rendering completed)
     /// </summary>
     public NotificationStandardData StandardData { get; }
 
     /// <summary>
-    /// 渠道数据(载荷)
+    /// Channel data (load)
     /// </summary>
     public WeChatWorkChannelData ChannelData { get; }
 
     /// <summary>
-    /// 消息接收者
+    /// Message receiver
     /// </summary>
     public WeChatWorkNotificationContact Contact { get; }
 
     /// <summary>
-    /// 消息公共选项
+    /// Message public options
     /// </summary>
     public WeChatWorkMessageOptions Options { get; }
 

@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.EntityFrameworkCore
 
-通知系统的EntityFrameworkCore模块，提供了通知系统的数据访问实现。
+The EntityFrameworkCore module of the notification system provides the data access implementation of the notification system.
 
-## 功能特性
+## Features
 
-* 通知实体映射配置
-* 通知仓储实现
-* 通知订阅仓储实现
-* 支持多数据库
-* 支持自定义仓储扩展
+* Notify entity mapping configuration
+* Notify warehousing implementation
+* Notification subscription warehousing implementation
+* Support multiple databases
+* Support custom warehousing expansion
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsEntityFrameworkCoreModule))]
@@ -20,28 +20,28 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 实体映射
+## Entity mapping
 
 ### NotificationEfCoreEntityTypeConfiguration
 
-* Notification - 通知实体映射
-  * Id - 主键映射
-  * NotificationName - 通知名称映射
-  * Data - 通知数据映射
-  * CreationTime - 创建时间映射
-  * Type - 通知类型映射
-  * Severity - 通知严重程度映射
+* Notification - Notification entity mapping
+  *Id - primary key mapping
+  * NotificationName - Notification name mapping
+  * Data - notification data mapping
+  * CreationTime - Creation time mapping
+  * Type - notification type mapping
+  * Severity - Notification severity mapping
 
 ### NotificationSubscriptionEfCoreEntityTypeConfiguration
 
-* NotificationSubscription - 通知订阅实体映射
-  * UserId - 用户标识映射
-  * NotificationName - 通知名称映射
-  * CreationTime - 创建时间映射
+* NotificationSubscription - notification subscription entity mapping
+  * UserId - User ID mapping
+  * NotificationName - Notification name mapping
+  * CreationTime - Creation time mapping
 
-## 基本用法
+## Basic usage
 
-1. 配置DbContext
+1. Configure DbContext
 ```csharp
 public class YourDbContext : AbpDbContext<YourDbContext>
 {
@@ -57,7 +57,7 @@ public class YourDbContext : AbpDbContext<YourDbContext>
 }
 ```
 
-2. 配置连接字符串
+2. Configure the connection string
 ```json
 {
   "ConnectionStrings": {
@@ -66,7 +66,7 @@ public class YourDbContext : AbpDbContext<YourDbContext>
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [Entity Framework Core文档](https://docs.microsoft.com/ef/core/)
+* [ABP Documentation](https://docs.abp.io)
+* [Entity Framework Core Documentation](https://docs.microsoft.com/ef/core/)

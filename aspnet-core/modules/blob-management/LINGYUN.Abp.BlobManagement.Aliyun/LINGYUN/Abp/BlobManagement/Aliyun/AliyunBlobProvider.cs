@@ -102,7 +102,7 @@ public class AliyunBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // 阿里云Oss没有目录的概念,新建对象时可以模拟目录
+        // Alibaba Cloud Oss does not have the concept of a directory. You can simulate a directory when creating a new object.
         return Task.CompletedTask;
     }
 
@@ -111,23 +111,23 @@ public class AliyunBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        //using var ossClient = await CreateClientAsync();
-        //var bucket = NormalizeContainerName(containerName);
-        //var objectName = CalculateBlobName(blobName);
+        // using var ossClient = await CreateClientAsync();
+        // var bucket = NormalizeContainerName(containerName);
+        // var objectName = CalculateBlobName(blobName);
 
-        //if (!await ObjectExists(ossClient, bucket, objectName, cancellationToken))
+        // if (!await ObjectExists(ossClient, bucket, objectName, cancellationToken))
         //{
         //    return null;
         //}
 
-        //var result = await ossClient.GetObjectAsync(
+        // var result = await ossClient.GetObjectAsync(
         //    new GetObjectRequest
         //    {
         //        Bucket = bucket,
         //        Key = objectName,
         //    });
 
-        //return result.Body;
+        // return result.Body;
 
         var configuration = GetBlobConfiguration();
 
@@ -153,8 +153,8 @@ public class AliyunBlobProvider : IBlobProvider
         bool isAttachmentContent = true,
         CancellationToken cancellationToken = default)
     {
-        // TODO: 阿里云SDK2.0不支持Bucket跨域配置, 不启用阿里云的预览方式
-        //return InternalGeneratePresignedUrlAsync(
+        // TODO: Alibaba Cloud SDK2.0 does not support Bucket cross-domain configuration and does not enable Alibaba Cloud's preview method
+        // return InternalGeneratePresignedUrlAsync(
         //    containerName,
         //    blobName,
         //    expiration,
@@ -168,7 +168,7 @@ public class AliyunBlobProvider : IBlobProvider
         string blobName,
         CancellationToken cancellationToken = default)
     {
-        // 阿里云Oss没有目录的概念,新建对象时可以模拟目录
+        // Alibaba Cloud Oss does not have the concept of a directory. You can simulate a directory when creating a new object.
         // https://cloud.tencent.com/document/product/436/13324
         return Task.CompletedTask;
     }

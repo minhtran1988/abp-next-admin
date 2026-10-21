@@ -5,19 +5,19 @@ import mitt from '../utils/mitt';
 const emitter = mitt();
 
 interface EventBus {
-  /** 发布事件 */
+  /** Publish event */
   publish(type: '*', event?: any): void;
-  /** 发布事件 */
+  /** Publish event */
   publish<T = any>(type: EventType, event?: T): void;
 
-  /** 订阅事件 */
+  /** Subscribe to events */
   subscribe(type: '*', handler: WildcardHandler): void;
-  /** 订阅事件 */
+  /** Subscribe to events */
   subscribe<T = any>(type: EventType, handler: Handler<T>): void;
 
-  /** 退订事件 */
+  /** Unsubscribe event */
   unSubscribe(type: '*', handler: WildcardHandler): void;
-  /** 退订事件 */
+  /** Unsubscribe event */
   unSubscribe<T = any>(type: EventType, handler: Handler<T>): void;
 }
 

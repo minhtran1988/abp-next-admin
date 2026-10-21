@@ -8,30 +8,30 @@ namespace LINGYUN.Abp.AI.Tools;
 public class AIToolDefinition : IHasSimpleStateCheckers<AIToolDefinition>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     [NotNull]
     public string Name { get; }
     /// <summary>
-    /// 提供者
+    /// provider
     /// </summary>
     [NotNull]
     public string Provider { get; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     public ILocalizableString? Description { get; set; }
     /// <summary>
-    /// 属性
+    /// Properties
     /// </summary>
     [NotNull]
     public Dictionary<string, object?> Properties { get; }
     /// <summary>
-    /// 启用/禁用工具
+    /// Enable/disable tools
     /// </summary>
     public bool IsEnabled { get; set; }
     /// <summary>
-    /// 全局工具
+    /// Global tools
     /// </summary>
     public bool IsGlobal { get; set; }
 

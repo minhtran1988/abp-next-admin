@@ -5,23 +5,23 @@ namespace LINGYUN.Abp.Account.Dto;
 public class VerifyLinkUserDto
 {
     /// <summary>
-    /// 关联用户Id
+    /// Associated user ID
     /// </summary>
     public Guid? LinkUserId { get; set; }
     /// <summary>
-    /// 关联用户名
+    /// Associated username
     /// </summary>
     public string? LinkUserName { get; set; }
     /// <summary>
-    /// 关联租户Id
+    /// Associated tenant ID
     /// </summary>
     public Guid? LinkTenantId { get; set; }
     /// <summary>
-    /// 关联租户名
+    /// Associated tenant name
     /// </summary>
     public string? LinkTenantName { get; set; }
     /// <summary>
-    /// 是否已关联
+    /// Whether it is associated
     /// </summary>
     public bool IsLinked { get; set; }
 }

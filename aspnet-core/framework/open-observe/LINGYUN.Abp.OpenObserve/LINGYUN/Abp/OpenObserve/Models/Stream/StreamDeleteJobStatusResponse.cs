@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 按时间范围删除数据任务状态
+/// Delete data task status by time range
 /// </summary>
 public class StreamDeleteJobStatusResponse
 {
@@ -13,7 +13,7 @@ public class StreamDeleteJobStatusResponse
     public string Id { get; set; } = default!;
 
     /// <summary>
-    /// 任务状态
+    /// Task status
     /// </summary>
     /// <remarks>
     /// Completed / Pending
@@ -22,13 +22,13 @@ public class StreamDeleteJobStatusResponse
     public string Status { get; set; } = default!;
 
     /// <summary>
-    /// 各集群/区域的执行明细
+    /// Execution details of each cluster/region
     /// </summary>
     [JsonPropertyName("metadata")]
     public StreamDeleteJobMetadata[]? Metadata { get; set; }
 
     /// <summary>
-    /// 执行错误
+    /// Execution error
     /// </summary>
     [JsonPropertyName("errors")]
     public StreamDeleteJobError[]? Errors { get; set; }

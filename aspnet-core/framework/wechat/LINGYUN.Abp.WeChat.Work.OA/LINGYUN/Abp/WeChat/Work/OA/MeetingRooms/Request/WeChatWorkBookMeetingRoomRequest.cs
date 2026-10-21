@@ -7,54 +7,54 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Request;
 /// <summary>
-/// 预定会议室请求参数
+/// Reservation meeting room request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/93620#%E9%A2%84%E5%AE%9A%E4%BC%9A%E8%AE%AE%E5%AE%A4"/>
 /// </remarks>
 public class WeChatWorkBookMeetingRoomRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 参与人的userid列表
+    /// List of userids of participants
     /// </summary>
     private readonly static List<string> _attendees = new List<string>();
     /// <summary>
-    /// 会议室id
+    /// Conference room id
     /// </summary>
     [NotNull]
     [JsonProperty("meetingroom_id")]
     [JsonPropertyName("meetingroom_id")]
     public int MeetingRoomId { get; }
     /// <summary>
-    /// 预定开始时间
+    /// Scheduled start time
     /// </summary>
     [NotNull]
     [JsonProperty("start_time")]
     [JsonPropertyName("start_time")]
     public long StartTime { get; }
     /// <summary>
-    /// 预定结束时间
+    /// Scheduled end time
     /// </summary>
     [NotNull]
     [JsonProperty("end_time")]
     [JsonPropertyName("end_time")]
     public long EndTime { get; }
     /// <summary>
-    /// 预定人的userid
+    /// The userid of the reservation person
     /// </summary>
     [NotNull]
     [JsonProperty("booker")]
     [JsonPropertyName("booker")]
     public string Booker { get; }
     /// <summary>
-    /// 会议主题
+    /// Conference theme
     /// </summary>
     [CanBeNull]
     [JsonProperty("subject")]
     [JsonPropertyName("subject")]
     public string? Subject { get; }
     /// <summary>
-    /// 参与人的userid列表
+    /// List of userids of participants
     /// </summary>
     [NotNull]
     [JsonProperty("attendees")]
@@ -74,7 +74,7 @@ public class WeChatWorkBookMeetingRoomRequest : WeChatWorkRequest
         Subject = subject;
     }
     /// <summary>
-    /// 添加一个参与人
+    /// Add a participant
     /// </summary>
     /// <param name="userId"></param>
     public void AddAttendee(string userId)
@@ -82,7 +82,7 @@ public class WeChatWorkBookMeetingRoomRequest : WeChatWorkRequest
         _attendees.AddIfNotContains(userId);
     }
     /// <summary>
-    /// 移除一个参与人
+    /// Remove a participant
     /// </summary>
     /// <param name="userId"></param>
     public void RemoveAttendee(string userId)
@@ -90,7 +90,7 @@ public class WeChatWorkBookMeetingRoomRequest : WeChatWorkRequest
         _attendees.RemoveAll(attendee => string.Equals(attendee, userId));
     }
     /// <summary>
-    /// 清空参与人
+    /// Clear participants
     /// </summary>
     public void ClearAttendee()
     {

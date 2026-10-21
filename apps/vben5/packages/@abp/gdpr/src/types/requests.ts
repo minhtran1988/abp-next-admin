@@ -1,16 +1,16 @@
 import type { EntityDto, PagedAndSortedResultRequestDto } from '@abp/core';
 
 interface GdprRequestDto extends EntityDto<string> {
-  /** 创建时间 */
+  /** Creation time */
   creationTime: string;
-  /** 就绪时间 */
+  /** Ready time */
   readyTime: string;
 }
 
 interface GdprRequestGetListInput extends PagedAndSortedResultRequestDto {
-  /** 创建时间 */
+  /** Creation time */
   creationTime?: string;
-  /** 就绪时间 */
+  /** Ready time */
   readyTime?: string;
 }
 

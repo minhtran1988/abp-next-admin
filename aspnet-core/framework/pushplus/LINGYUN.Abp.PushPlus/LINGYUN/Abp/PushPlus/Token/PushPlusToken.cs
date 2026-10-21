@@ -5,12 +5,12 @@ namespace LINGYUN.Abp.PushPlus.Token;
 public class PushPlusToken
 {
     /// <summary>
-    /// 访问令牌，后续请求需加到header中
+    /// Access token, subsequent requests need to be added to the header
     /// </summary>
     [JsonProperty("accessKey")]
     public string AccessKey { get; set; } = default!;
     /// <summary>
-    /// 过期时间，过期后需要重新获取
+    /// Expiration time, need to be obtained again after expiration
     /// </summary>
     [JsonProperty("expiresIn")]
     public int ExpiresIn { get; set; }

@@ -74,20 +74,20 @@ public static class ObjectQueryableExtensions
                         typeof(string).GetMethod(nameof(String.StartsWith), new[] { typeof(string) })!,
                         GetValue(paramter, propertyType));
 
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NOT NULL) AND (Field LIKE 'Value%'))
-                    //var startsWithNotNullExp = Expression.Not(
+                    // var startsWithNotNullExp = Expression.Not(
                     //    Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType)));
 
-                    //var startsWithExp = Expression.Call(
+                    // var startsWithExp = Expression.Call(
                     //    leftParamter,
                     //    typeof(string).GetMethod(nameof(String.StartsWith), new[] { typeof(string) }),
                     //    rightParamter);
 
-                    //exp = Expression.AndAlso(startsWithNotNullExp, startsWithExp);
+                    // exp = Expression.AndAlso(startsWithNotNullExp, startsWithExp);
 
                     break;
                 case DynamicComparison.NotStartsWith:
@@ -100,20 +100,20 @@ public static class ObjectQueryableExtensions
                             typeof(string).GetMethod(nameof(String.StartsWith), new[] { typeof(string) })!,
                             GetValue(paramter, propertyType)));
 
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NULL) OR NOT (Field LIKE 'Value%'))
-                    //var notStartsWithNullExp = Expression.Equal(leftParamter,
+                    // var notStartsWithNullExp = Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType));
 
-                    //var notStartsWithExp = Expression.Not(
+                    // var notStartsWithExp = Expression.Not(
                     //    Expression.Call(
                     //        leftParamter,
                     //        typeof(string).GetMethod(nameof(String.StartsWith), new[] { typeof(string) }),
                     //        rightParamter));
 
-                    //exp = Expression.OrElse(notStartsWithNullExp, notStartsWithExp);
+                    // exp = Expression.OrElse(notStartsWithNullExp, notStartsWithExp);
                     break;
                 case DynamicComparison.EndsWith:
                     // For example(MySql): 
@@ -123,20 +123,20 @@ public static class ObjectQueryableExtensions
                         typeof(string).GetMethod(nameof(String.EndsWith), new[] { typeof(string) })!,
                         GetValue(paramter, propertyType));
 
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NOT NULL) AND (Field LIKE '%Value'))
-                    //var endsWithNotNullExp = Expression.Not(
+                    // var endsWithNotNullExp = Expression.Not(
                     //    Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType)));
 
-                    //var endsWithExp = Expression.Call(
+                    // var endsWithExp = Expression.Call(
                     //    leftParamter,
                     //    typeof(string).GetMethod(nameof(String.EndsWith), new[] { typeof(string) }),
                     //    rightParamter);
 
-                    //exp = Expression.AndAlso(endsWithNotNullExp, endsWithExp);
+                    // exp = Expression.AndAlso(endsWithNotNullExp, endsWithExp);
                     break;
                 case DynamicComparison.NotEndsWith:
                     // For example(MySql): 
@@ -147,20 +147,20 @@ public static class ObjectQueryableExtensions
                             typeof(string).GetMethod(nameof(String.EndsWith), new[] { typeof(string) })!,
                             GetValue(paramter, propertyType)));
 
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NULL) OR NOT (Field LIKE '%Value'))
-                    //var notEndsWithNullExp = Expression.Equal(leftParamter,
+                    // var notEndsWithNullExp = Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType));
 
-                    //var notEndsWithExp = Expression.Not(
+                    // var notEndsWithExp = Expression.Not(
                     //    Expression.Call(
                     //        leftParamter,
                     //        typeof(string).GetMethod(nameof(String.EndsWith), new[] { typeof(string) }),
                     //        rightParamter));
 
-                    //exp = Expression.OrElse(notEndsWithNullExp, notEndsWithExp);
+                    // exp = Expression.OrElse(notEndsWithNullExp, notEndsWithExp);
                     break;
                 case DynamicComparison.Contains:
                     // For example(MySql): 
@@ -170,20 +170,20 @@ public static class ObjectQueryableExtensions
                         typeof(string).GetMethod(nameof(String.Contains), new[] { typeof(string) })!,
                         GetValue(paramter, propertyType));
 
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NOT NULL) AND (Field LIKE '%Value%'))
-                    //var containsNotNullExp = Expression.Not(
+                    // var containsNotNullExp = Expression.Not(
                     //    Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType)));
 
-                    //var containsExp = Expression.Call(
+                    // var containsExp = Expression.Call(
                     //    leftParamter,
                     //    typeof(string).GetMethod(nameof(String.Contains), new[] { typeof(string) }),
                     //    rightParamter);
 
-                    //exp = Expression.AndAlso(containsNotNullExp, containsExp);
+                    // exp = Expression.AndAlso(containsNotNullExp, containsExp);
                     break;
                 case DynamicComparison.NotContains:
                     // For example(MySql): 
@@ -193,27 +193,27 @@ public static class ObjectQueryableExtensions
                            leftParamter,
                            typeof(string).GetMethod(nameof(String.Contains), new[] { typeof(string) })!,
                            GetValue(paramter, propertyType)));
-                    // TODO: 单元测试通过
+                    // TODO: unit test passed
                     // For example(MySql): 
                     // ...Other ((Field IS NULL) OR (Field NOT LIKE '%Value%'))
 
-                    //var notContainsNullExp = Expression.Equal(leftParamter,
+                    // var notContainsNullExp = Expression.Equal(leftParamter,
                     //        Expression.Convert(
                     //            Expression.Constant(null), propertyType));
 
-                    //var notContainsExp = Expression.Not(
+                    // var notContainsExp = Expression.Not(
                     //    Expression.Call(
                     //        leftParamter,
                     //        typeof(string).GetMethod(nameof(String.Contains), new[] { typeof(string) }),
                     //        rightParamter));
 
-                    //exp = Expression.OrElse(notContainsNullExp, notContainsExp);
+                    // exp = Expression.OrElse(notContainsNullExp, notContainsExp);
                     break;
                 case DynamicComparison.Null:
                     // For example(MySql): 
                     // ...Other (Field IS NULL)
 
-                    // 非空字段设定为比对默认值
+                    // Non-empty fields are set as default values for comparison
                     exp = Expression.Equal(leftParamter,
                         Expression.Constant(GetDefaultValue(propertyType)));
                     break;
@@ -261,7 +261,7 @@ public static class ObjectQueryableExtensions
     {
         if (propertyType == typeof(string))
         {
-            // 字符串比较: Field < Value
+            // String comparison: Field < Value
             return Expression.LessThan(
                 Expression.Call(
                     member,
@@ -271,7 +271,7 @@ public static class ObjectQueryableExtensions
         }
         if (propertyType.IsNullableType())
         {
-            // 可空类型比较: Field < Value
+            // Comparison of nullable types: Field < Value
             var underlyingType = Nullable.GetUnderlyingType(propertyType)!;
 
             var hasValue = Expression.Property(member, "HasValue");
@@ -285,7 +285,7 @@ public static class ObjectQueryableExtensions
         }
         else
         {
-            // 数值比较: Field < Value
+            // Numeric comparison: Field < Value
             return Expression.LessThan(
                 member,
                 GetValue(paramter, propertyType));
@@ -296,7 +296,7 @@ public static class ObjectQueryableExtensions
     {
         if (propertyType == typeof(string))
         {
-            // 字符串比较: Field <= Value
+            // String comparison: Field <= Value
             return Expression.LessThanOrEqual(
                 Expression.Call(
                     member,
@@ -306,7 +306,7 @@ public static class ObjectQueryableExtensions
         }
         if (propertyType.IsNullableType())
         {
-            // 可空类型比较: Field <= Value
+            // Comparison of nullable types: Field <= Value
             var underlyingType = Nullable.GetUnderlyingType(propertyType)!;
 
             var hasValue = Expression.Property(member, "HasValue");
@@ -320,7 +320,7 @@ public static class ObjectQueryableExtensions
         }
         else
         {
-            // 数值比较: Field <= Value
+            // Numeric comparison: Field <= Value
             return Expression.LessThanOrEqual(
                 member,
                 GetValue(paramter, propertyType));
@@ -331,7 +331,7 @@ public static class ObjectQueryableExtensions
     {
         if (propertyType == typeof(string))
         {
-            // 字符串比较: Field > Value
+            // String comparison: Field > Value
             return Expression.GreaterThan(
                 Expression.Call(
                     member,
@@ -341,7 +341,7 @@ public static class ObjectQueryableExtensions
         }
         if (propertyType.IsNullableType())
         {
-            // 可空类型比较: Field > Value
+            // Comparison of nullable types: Field > Value
             var underlyingType = Nullable.GetUnderlyingType(propertyType)!;
 
             var hasValue = Expression.Property(member, "HasValue");
@@ -355,7 +355,7 @@ public static class ObjectQueryableExtensions
         }
         else
         {
-            // 数值比较: Field > Value
+            // Numeric comparison: Field > Value
             return Expression.GreaterThan(
                 member,
                 GetValue(paramter, propertyType));
@@ -366,7 +366,7 @@ public static class ObjectQueryableExtensions
     {
         if (propertyType == typeof(string))
         {
-            // 字符串比较: Field >= Value
+            // String comparison: Field >= Value
             return Expression.GreaterThanOrEqual(
                 Expression.Call(
                     member,
@@ -377,7 +377,7 @@ public static class ObjectQueryableExtensions
 
         if (propertyType.IsNullableType())
         {
-            // 可空类型比较: Field >= Value
+            // Comparison of nullable types: Field >= Value
             var underlyingType = Nullable.GetUnderlyingType(propertyType)!;
 
             var hasValue = Expression.Property(member, "HasValue");
@@ -391,7 +391,7 @@ public static class ObjectQueryableExtensions
         }
         else
         {
-            // 数值比较: Field >= Value
+            // Numeric comparison: Field >= Value
             return Expression.GreaterThanOrEqual(
                 member,
                 GetValue(paramter, propertyType));
@@ -413,7 +413,7 @@ public static class ObjectQueryableExtensions
 
     private static object? GetDefaultValue(Type type)
     {
-        // TODO: 非空字段此处返回默认值
+        // TODO: Return the default value for non-empty fields here
         if (type.IsNullableType())
         {
             return null;

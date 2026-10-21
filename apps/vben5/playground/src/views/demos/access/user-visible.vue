@@ -4,8 +4,8 @@ import { Fallback } from '@vben/common-ui';
 
 <template>
   <Fallback
-    description="当前页面仅 User 账号可见"
+    description="The current page is only visible to the User account"
     status="coming-soon"
-    title="页面访问测试"
+    title="Page access test"
   />
 </template>

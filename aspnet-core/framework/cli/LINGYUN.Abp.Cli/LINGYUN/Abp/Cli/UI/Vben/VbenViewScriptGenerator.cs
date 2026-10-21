@@ -86,7 +86,7 @@ public class VbenViewScriptGenerator : IVbenViewScriptGenerator, ISingletonDepen
             .Select(action => action.Value)
             .FirstOrDefault();
 
-        // 高级查询
+        // Advanced query
         var getAvailableFieldsAction = controllerModel.Actions
             .Where(action => action.Value.Name.Equals("GetAvailableFieldsAsync"))
             .Select(action => action.Value)

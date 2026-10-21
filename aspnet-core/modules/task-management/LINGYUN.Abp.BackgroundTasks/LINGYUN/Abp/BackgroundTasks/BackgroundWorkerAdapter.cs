@@ -75,7 +75,7 @@ public class BackgroundWorkerAdapter<TWorker> : BackgroundWorkerBase, IBackgroun
             Interval = period.Value / 1000,
             MaxCount = 0,
             MaxTryCount = 10,
-            // 确保不会被轮询入队
+            // Make sure not to be polled into the queue
             Status = JobStatus.None,
             Type = typeof(BackgroundWorkerAdapter<TWorker>).AssemblyQualifiedName!,
         };

@@ -20,8 +20,8 @@ interface TimezoneHandler {
 }
 
 /**
- * 默认时区处理模块
- * 时区存储基于pinia存储插件
+ *Default time zone processing module
+ * Time zone storage is based on pinia storage plug-in
  */
 const getDefaultTimezoneHandler = (): TimezoneHandler => {
   return {
@@ -39,7 +39,7 @@ const getDefaultTimezoneHandler = (): TimezoneHandler => {
 };
 
 /**
- * 自定义时区处理模块
+ * Custom time zone processing module
  */
 let customTimezoneHandler: null | Partial<TimezoneHandler> = null;
 const setTimezoneHandler = (handler: Partial<TimezoneHandler>) => {
@@ -47,7 +47,7 @@ const setTimezoneHandler = (handler: Partial<TimezoneHandler>) => {
 };
 
 /**
- * 获取时区处理模块
+ * Get the time zone processing module
  */
 const getTimezoneHandler = () => {
   return {
@@ -57,7 +57,7 @@ const getTimezoneHandler = () => {
 };
 
 /**
- * timezone支持模块
+ * timezone support module
  */
 const useTimezoneStore = defineStore(
   'core-timezone',
@@ -65,7 +65,7 @@ const useTimezoneStore = defineStore(
     const timezoneRef = ref(getCurrentTimezone());
 
     /**
-     * 初始化时区
+     * Initialization time zone
      * Initialize the timezone
      */
     async function initTimezone() {
@@ -74,25 +74,25 @@ const useTimezoneStore = defineStore(
       if (timezone) {
         timezoneRef.value = timezone;
       }
-      // 设置dayjs默认时区
+      // Set dayjs default time zone
       setCurrentTimezone(unref(timezoneRef));
     }
 
     /**
-     * 设置时区
+     * Set time zone
      * Set the timezone
-     * @param timezone 时区字符串
+     * @param timezone time zone string
      */
     async function setTimezone(timezone: string) {
       const timezoneHandler = getTimezoneHandler();
       await timezoneHandler.setTimezone?.(timezone);
       timezoneRef.value = timezone;
-      // 设置dayjs默认时区
+      // Set dayjs default time zone
       setCurrentTimezone(timezone);
     }
 
     /**
-     * 获取时区选项
+     * Get time zone options
      * Get the timezone options
      */
     async function getTimezoneOptions() {
@@ -117,7 +117,7 @@ const useTimezoneStore = defineStore(
   },
   {
     persist: {
-      // 持久化
+      // persistence
       pick: ['timezone'],
     },
   },
@@ -125,7 +125,7 @@ const useTimezoneStore = defineStore(
 
 export { setTimezoneHandler, useTimezoneStore };
 
-// 解决热更新问题
+// Solve the hot update problem
 const hot = import.meta.hot;
 if (hot) {
   hot.accept(acceptHMRUpdate(useTimezoneStore, hot));

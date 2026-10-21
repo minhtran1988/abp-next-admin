@@ -27,8 +27,8 @@ public class AbpDemoDomainModule : AbpModule
                 .AddBaseTypes(typeof(DataProtectionResource));
         });
 
-        // 分布式事件
-        //Configure<AbpDistributedEntityEventOptions>(options =>
+        // Distributed events
+        // Configure<AbpDistributedEntityEventOptions>(options =>
         //{
         //    options.AutoEventSelectors.Add<Text>();
         //    options.EtoMappings.Add<Text, TextEto>();
@@ -36,7 +36,7 @@ public class AbpDemoDomainModule : AbpModule
 
         Configure<AbpDataProtectionOptions>(options =>
         {
-            // 外键属性不可设定规则
+            // Rules cannot be set for foreign key attributes
             options.EntityIgnoreProperties.Add(typeof(Book), new []{ nameof(Book.AuthorId) } );
         });
     }

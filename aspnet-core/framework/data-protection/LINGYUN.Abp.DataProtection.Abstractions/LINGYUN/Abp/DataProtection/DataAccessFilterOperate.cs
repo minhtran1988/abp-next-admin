@@ -2,58 +2,58 @@
 
 namespace LINGYUN.Abp.DataProtection;
 /// <summary>
-/// 数据过滤操作
+/// Data filtering operation
 /// </summary>
 public enum DataAccessFilterOperate
 {
     /// <summary>
-    /// 等于
+    /// equal to
     /// </summary>
-    [Description("等于")]
+    [Description("equal to")]
     Equal = 1,
     /// <summary>
-    /// 不等于
+    /// Not equal to
     /// </summary>
-    [Description("不等于")]
+    [Description("not equal to")]
     NotEqual = 2,
     /// <summary>
-    /// 小于
+    /// Less than
     /// </summary>
-    [Description("小于")]
+    [Description("less than")]
     Less = 3,
     /// <summary>
-    /// 小于或等于
+    /// Less than or equal to
     /// </summary>
-    [Description("小于等于")]
+    [Description("Less than or equal to")]
     LessOrEqual = 4,
     /// <summary>
-    /// 大于
+    /// Greater than
     /// </summary>
-    [Description("大于")]
+    [Description("greater than")]
     Greater = 5,
     /// <summary>
-    /// 大于或等于
+    /// Greater than or equal to
     /// </summary>
-    [Description("大于等于")]
+    [Description("Greater than or equal to")]
     GreaterOrEqual = 6,
     /// <summary>
-    /// 左包含
+    /// Left contains
     /// </summary>
-    [Description("左包含")]
+    [Description("left contains")]
     StartsWith = 7,
     /// <summary>
-    /// 右包含
+    /// right contains
     /// </summary>
-    [Description("右包含")]
+    [Description("right contains")]
     EndsWith = 8,
     /// <summary>
-    /// 包含
+    /// Contains
     /// </summary>
-    [Description("包含")]
+    [Description("includes")]
     Contains = 9,
     /// <summary>
-    /// 不包含
+    /// Does not contain
     /// </summary>
-    [Description("不包含")]
+    [Description("does not contain")]
     NotContains = 10,
 }

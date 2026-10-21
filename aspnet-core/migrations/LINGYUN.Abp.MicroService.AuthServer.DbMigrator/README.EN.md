@@ -2,7 +2,7 @@
 
 Authentication Server Database Migration Console Application, used for executing database migrations and initializing seed data for the authentication server.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

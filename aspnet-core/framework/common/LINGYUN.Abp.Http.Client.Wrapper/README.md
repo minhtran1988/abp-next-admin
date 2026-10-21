@@ -1,22 +1,22 @@
 # LINGYUN.Abp.Http.Client.Wrapper
 
-HTTP客户端包装器模块，用于在HTTP客户端请求中自动添加包装器请求头。
+HTTP client wrapper module for automatically adding wrapper request headers in HTTP client requests.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 自动添加包装器请求头
-* 与ABP HTTP客户端集成
-* 支持全局配置包装器开关
+* Automatically add wrapper request headers
+* Integrated with ABP HTTP client
+* Support global configuration wrapper switch
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Http.Client.Wrapper
 ```
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpHttpClientWrapperModule))]
@@ -26,20 +26,20 @@ public class YouProjectModule : AbpModule
     {
         Configure<AbpWrapperOptions>(options =>
         {
-            // 启用包装器
+            // enable wrapper
             options.IsEnabled = true;
         });
     }
 }
 ```
 
-## 工作原理
+## Working principle
 
-当启用包装器时（`AbpWrapperOptions.IsEnabled = true`），模块会自动为所有HTTP客户端请求添加 `_AbpWrapResult` 请求头。
-当禁用包装器时（`AbpWrapperOptions.IsEnabled = false`），模块会自动为所有HTTP客户端请求添加 `_AbpDontWrapResult` 请求头。
+When the wrapper is enabled (`AbpWrapperOptions.IsEnabled = true`), the module automatically adds the `_AbpWrapResult` request header to all HTTP client requests.
+When the wrapper is disabled (`AbpWrapperOptions.IsEnabled = false`), the module automatically adds the `_AbpDontWrapResult` request header to all HTTP client requests.
 
-这样可以确保HTTP客户端的请求结果与服务器端的包装配置保持一致。
+This ensures that the HTTP client's request results are consistent with the server-side packaging configuration.
 
-## 源码位置
+## Source code location
 
 [LINGYUN.Abp.Http.Client.Wrapper](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/framework/common/LINGYUN.Abp.Http.Client.Wrapper)

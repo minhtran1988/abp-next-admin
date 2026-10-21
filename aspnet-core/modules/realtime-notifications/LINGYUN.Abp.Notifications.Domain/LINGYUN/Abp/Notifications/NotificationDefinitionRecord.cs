@@ -10,52 +10,52 @@ namespace LINGYUN.Abp.Notifications;
 public class NotificationDefinitionRecord : BasicAggregateRoot<Guid>, IHasExtraProperties
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; set; } = default!;
     /// <summary>
-    /// 分组名称
+    /// Group name
     /// </summary>
     public virtual string GroupName { get; set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     /// <remarks>
-    /// 如果为空,回退到Name
+    /// If it is empty, fall back to Name
     /// </remarks>
     public virtual string? DisplayName { get; set; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     /// <remarks>
-    /// 如果为空,回退到Name
+    /// If it is empty, fall back to Name
     /// </remarks>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 通知模板
+    /// Notification template
     /// </summary>
     public virtual string? Template { get; set; }
     /// <summary>
-    /// 存活类型
+    /// Survival type
     /// </summary>
     public virtual NotificationLifetime NotificationLifetime { get; set; }
     /// <summary>
-    /// 通知类型
+    /// Notification type
     /// </summary>
     public virtual NotificationType NotificationType { get; set; }
     /// <summary>
-    /// 通知内容类型
+    /// Notification content type
     /// </summary>
     public virtual NotificationContentType ContentType { get; set; }
     /// <summary>
-    /// 通知提供者
+    /// Notify provider
     /// </summary>
     /// <remarks>
-    /// 多个之间用;分隔
+    /// Separate multiple items with ;
     /// </remarks>
     public virtual string? Providers { get; set; }
     /// <summary>
-    /// 允许客户端订阅
+    /// Allow clients to subscribe
     /// </summary>
     public virtual bool AllowSubscriptionToClients { get; set; }
     public ExtraPropertyDictionary ExtraProperties { get; protected set; }

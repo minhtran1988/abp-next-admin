@@ -25,38 +25,38 @@ using Volo.Abp.Users;
 namespace LINGYUN.Abp.EventBus.CAP;
 
 /// <summary>
-/// CAP分布式事件总线
+/// CAP distributed event bus
 /// </summary>
 [Dependency(ServiceLifetime.Singleton, ReplaceServices = true)]
 [ExposeServices(typeof(IDistributedEventBus), typeof(CAPDistributedEventBus))]
 public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEventBus
 {
     /// <summary>
-    /// CAP消息发布接口
+    /// CAP message publishing interface
     /// </summary>
     protected ICapPublisher CapPublisher { get; }
     /// <summary>
-    /// 自定义事件注册接口
+    /// Custom event registration interface
     /// </summary>
     protected ICustomDistributedEventSubscriber CustomDistributedEventSubscriber { get; }
     /// <summary>
-    /// 本地事件处理器工厂对象集合
+    /// Local event handler factory object collection
     /// </summary>
     protected ConcurrentDictionary<Type, List<IEventHandlerFactory>> HandlerFactories { get; }
     /// <summary>
-    /// 本地动态事件处理器工厂对象集合
+    /// Local dynamic event handler factory object collection
     /// </summary>
     protected ConcurrentDictionary<string, List<IEventHandlerFactory>> DynamicHandlerFactories { get; }
     /// <summary>
-    /// 本地事件集合
+    /// Local event collection
     /// </summary>
     protected ConcurrentDictionary<string, Type> EventTypes { get; }
     /// <summary>
-    /// 当前用户
+    /// Current user
     /// </summary>
     protected ICurrentUser CurrentUser { get; }
     /// <summary>
-    /// 当前客户端
+    /// Current client
     /// </summary>
     protected ICurrentClient CurrentClient { get; }
     /// <summary>
@@ -64,7 +64,7 @@ public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEvent
     /// </summary>
     protected IJsonSerializer JsonSerializer { get; }
     /// <summary>
-    /// 取消令牌
+    /// Cancel token
     /// </summary>
     protected ICancellationTokenProvider CancellationTokenProvider { get; }
     /// <summary>
@@ -122,7 +122,7 @@ public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEvent
         EventTypes = new ConcurrentDictionary<string, Type>();
     }
     /// <summary>
-    /// 订阅事件
+    /// Subscribe to events
     /// </summary>
     /// <param name="eventType"></param>
     /// <param name="factory"></param>
@@ -132,41 +132,41 @@ public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEvent
         return NullDisposable.Instance;
     }
     /// <summary>
-    /// 退订事件
+    /// Unsubscribe event
     /// </summary>
-    /// <typeparam name="TEvent">事件类型</typeparam>
+    /// <typeparam name="TEvent">Event type</typeparam>
     /// <param name="action"></param>
     public override void Unsubscribe<TEvent>(Func<TEvent, Task> action)
     {
     }
     /// <summary>
-    /// 退订事件
+    /// Unsubscribe event
     /// </summary>
-    /// <param name="eventType">事件类型</param>
-    /// <param name="handler">事件处理器</param>
+    /// <param name="eventType">Event type</param>
+    /// <param name="handler">Event handler</param>
     public override void Unsubscribe(Type eventType, IEventHandler handler)
     {
     }
     /// <summary>
-    /// 退订事件
+    /// Unsubscribe event
     /// </summary>
-    /// <param name="eventType">事件类型</param>
-    /// <param name="factory">事件处理器工厂</param>
+    /// <param name="eventType">Event type</param>
+    /// <param name="factory">Event handler factory</param>
     public override void Unsubscribe(Type eventType, IEventHandlerFactory factory)
     {
     }
     /// <summary>
-    /// 退订所有事件
+    /// Unsubscribe from all events
     /// </summary>
-    /// <param name="eventType">事件类型</param>
+    /// <param name="eventType">Event type</param>
     public override void UnsubscribeAll(Type eventType)
     {
     }
     /// <summary>
-    /// 发布事件
+    /// Publish event
     /// </summary>
-    /// <param name="eventType">事件类型</param>
-    /// <param name="eventData">事件数据对象</param>
+    /// <param name="eventType">Event type</param>
+    /// <param name="eventData">Event data object</param>
     /// <returns></returns>
     protected override async Task PublishToEventBusAsync(Type eventType, object eventData)
     {
@@ -174,7 +174,7 @@ public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEvent
     }
 
     /// <summary>
-    /// 获取事件处理器工厂列表
+    /// Get the event handler factory list
     /// </summary>
     /// <param name="eventType"></param>
     /// <returns></returns>
@@ -351,14 +351,14 @@ public class CAPDistributedEventBus : DistributedEventBusBase, IDistributedEvent
 
     private static bool ShouldTriggerEventForHandler(Type targetEventType, Type handlerEventType)
     {
-        //Should trigger same type
+        // Should trigger same type
         if (handlerEventType == targetEventType)
         {
             return true;
         }
 
-        //TODO: Support inheritance? But it does not support on subscription to RabbitMq!
-        //Should trigger for inherited types
+        // TODO: Support inheritance? But it does not support on subscription to RabbitMq!
+        // Should trigger for inherited types
         if (handlerEventType.IsAssignableFrom(targetEventType))
         {
             return true;

@@ -6,27 +6,27 @@ namespace LINGYUN.Abp.ExceptionHandling.Emailing;
 public class AbpEmailExceptionHandlingOptions
 {
     /// <summary>
-    /// 发送堆栈信息
+    /// Send stack information
     /// </summary>
     public bool SendStackTrace { get; set; } = false;
     /// <summary>
-    /// 默认邮件标题
+    /// Default email title
     /// </summary>
     public string? DefaultTitle { get; set; }
     /// <summary>
-    /// 默认邮件内容头
+    /// Default email content header
     /// </summary>
     public string? DefaultContentHeader { get; set; }
     /// <summary>
-    /// 默认邮件内容底
+    /// Default email content
     /// </summary>
     public string? DefaultContentFooter { get; set; }
     /// <summary>
-    /// 默认异常收件人
+    /// Default exception recipient
     /// </summary>
     public string? DefaultReceiveEmail { get; set; }
     /// <summary>
-    /// 异常类型指定收件人处理映射列表
+    /// The exception type specifies the recipient processing mapping list
     /// </summary>
     public IDictionary<Type, string> Handlers { get; set; }
     public AbpEmailExceptionHandlingOptions()
@@ -35,19 +35,19 @@ public class AbpEmailExceptionHandlingOptions
     }
 
     /// <summary>
-    /// 把需要接受异常通知的用户加进处理列表
+    /// Add users who need to receive exception notifications to the processing list
     /// </summary>
-    /// <typeparam name="TException">处理的异常类型</typeparam>
-    /// <param name="receivedEmails">接收邮件的用户类别,群发用,符号分隔</param>
+    /// <typeparam name="TException">Exception type handled</typeparam>
+    /// <param name="receivedEmails">User categories for receiving emails, for group sending, separated by symbols</param>
     public void HandReceivedException<TException>(string receivedEmails) where TException : Exception
     {
         HandReceivedException(typeof(TException), receivedEmails);
     }
     /// <summary>
-    /// 把需要接受异常通知的用户加进处理列表
+    /// Add users who need to receive exception notifications to the processing list
     /// </summary>
-    /// <param name="ex">处理的异常类型</param>
-    /// <param name="receivedEmails">接收邮件的用户类别,群发用,符号分隔</param>
+    /// <param name="ex">Exception type handled</param>
+    /// <param name="receivedEmails">User categories for receiving emails, for group sending, separated by symbols</param>
     public void HandReceivedException(Type exceptionType, string receivedEmails)
     {
         if (Handlers.ContainsKey(exceptionType))

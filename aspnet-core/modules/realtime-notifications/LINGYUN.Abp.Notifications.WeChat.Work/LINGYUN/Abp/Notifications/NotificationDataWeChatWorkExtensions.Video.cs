@@ -8,10 +8,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string VideoMessage = Prefix + "video_message";
 
     /// <summary>
-    /// 视频消息通知
+    /// Video message notification
     /// </summary>
-    /// <param name="notificationData">通知内容</param>
-    /// <param name="videoMessage">视频消息</param>
+    /// <param name="notificationData">Notification content</param>
+    /// <param name="videoMessage">Video message</param>
     public static void WithVideoMessage(
         this NotificationData notificationData,
         VideoMessage videoMessage)
@@ -20,7 +20,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试获取视频消息
+    /// Try to get the video message
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="videoMessage"></param>

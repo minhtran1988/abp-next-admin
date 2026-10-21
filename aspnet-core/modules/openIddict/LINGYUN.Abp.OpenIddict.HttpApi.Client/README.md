@@ -3,35 +3,35 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcolinin%2Fabp-next-admin%2Fmaster%2Faspnet-core%2Fmodules%2FopenIddict%2FLINGYUN.Abp.OpenIddict.HttpApi.Client%2FLINGYUN.Abp.OpenIddict.HttpApi.Client.csproj)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/LINGYUN.Abp.OpenIddict.HttpApi.Client.svg?style=flat-square)](https://www.nuget.org/packages/LINGYUN.Abp.OpenIddict.HttpApi.Client)
 
-## 简介
+## Introduction
 
-`LINGYUN.Abp.OpenIddict.HttpApi.Client` 是 OpenIddict 的 HTTP API 客户端模块，提供了远程调用 OpenIddict HTTP API 的客户端代理。
+`LINGYUN.Abp.OpenIddict.HttpApi.Client` is the HTTP API client module of OpenIddict, which provides a client proxy for remotely calling the OpenIddict HTTP API.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* HTTP API 客户端代理
-  * 自动生成 HTTP 客户端代理
-  * 支持远程服务调用
-  * 集成 ABP 动态 HTTP 客户端代理
+* HTTP API client proxy
+  * Automatically generate HTTP client proxy
+  * Support remote service calling
+  * Integrated ABP dynamic HTTP client proxy
 
-* 远程服务配置
-  * 支持配置远程服务地址
-  * 支持配置认证方式
-  * 支持配置请求头
+* Remote service configuration
+  * Support configuring remote service address
+  *Support configuration authentication method
+  * Support configuration request header
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenIddict.HttpApi.Client
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpOpenIddictHttpApiClientModule))]` 到你的模块类。
+1. Add `[DependsOn(typeof(AbpOpenIddictHttpApiClientModule))]` to your module class.
 
-2. 配置远程服务:
+2. Configure remote service:
 
 ```csharp
 public override void ConfigureServices(ServiceConfigurationContext context)
@@ -48,10 +48,10 @@ public override void ConfigureServices(ServiceConfigurationContext context)
 }
 ```
 
-3. 使用示例:
+3. Usage example:
 
 ```csharp
-// 注入客户端代理
+//Inject client proxy
 private readonly IOpenIddictApplicationAppService _applicationService;
 
 public YourService(IOpenIddictApplicationAppService applicationService)
@@ -59,25 +59,25 @@ public YourService(IOpenIddictApplicationAppService applicationService)
     _applicationService = applicationService;
 }
 
-// 调用远程服务
+// Call remote service
 var input = new OpenIddictApplicationCreateDto
 {
     ClientId = "your-client-id",
     DisplayName = "Your App",
-    // ... 其他属性
+    // ...other properties
 };
 var result = await _applicationService.CreateAsync(input);
 ```
 
-## 配置项
+## Configuration items
 
 * RemoteServices
-  * Default:BaseUrl - 默认远程服务地址
-  * OpenIddict:BaseUrl - OpenIddict 远程服务地址
+  * Default:BaseUrl - the default remote service address
+  * OpenIddict:BaseUrl - OpenIddict remote service address
 
-## 注意事项
+## Notes
 
-* 需要配置正确的远程服务地址
-* 如果远程服务需要认证，需要配置相应的认证信息
-* 建议在生产环境中使用 HTTPS
-* 客户端代理会自动处理认证令牌的传递
+* Need to configure the correct remote service address
+* If the remote service requires authentication, the corresponding authentication information needs to be configured
+* It is recommended to use HTTPS in production environments
+* The client agent will automatically handle the delivery of the authentication token

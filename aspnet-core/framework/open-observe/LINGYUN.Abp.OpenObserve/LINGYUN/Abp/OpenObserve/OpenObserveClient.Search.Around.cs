@@ -10,15 +10,15 @@ namespace LINGYUN.Abp.OpenObserve;
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 查询某条记录前后的数据
+    /// Query the data before and after a record
     /// </summary>
     /// <remarks>
     /// GET /api/{organization}/{stream}/_around
-    /// 以 key(_timestamp) 对应的记录为中心, 前后各 5 分钟范围内查询
-    /// 参考: https://openobserve.ai/docs/reference/api/search/
+    /// Center the record corresponding to key(_timestamp) and query within 5 minutes before and after
+    /// Reference: https://openobserve.ai/docs/reference/api/search/
     /// </remarks>
-    /// <param name="key">中心记录的 _timestamp(微秒)</param>
-    /// <param name="size">返回的条数</param>
+    /// <param name="key">_timestamp (microseconds) recorded by the center</param>
+    /// <param name="size">Number of items returned</param>
     public async virtual Task<SearchResponse<THint>> AroundAsync<THint>(
         string stream,
         long key,

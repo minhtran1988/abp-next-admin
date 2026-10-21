@@ -1,15 +1,15 @@
 <template>
   <div>
-    <p class="desc">选择能发起该审批的人员/部门，不选则默认开放给所有人</p>
+    <p class="desc">Select the person/department that can initiate the approval. If not selected, it will be open to everyone by default</p>
     <Button size="small" @click="selectOrg" type="primary" round>
       <template #icon>
         <PlusOutlined />
       </template>
-      请选择</Button
+      Please select</Button
     >
     <OrgItems v-model:value="select" />
     <OrgPicker
-      title="请选择可发起本审批的人员/部门"
+      title="Please select the person/department that can initiate this approval"
       multiple
       ref="orgPickerRef"
       :selected="select"

@@ -9,17 +9,17 @@ namespace LINGYUN.Abp.WxPusher.QrCode;
 public class CreateQrcodeRequest
 {
     /// <summary>
-    /// 应用的标志
+    /// Application flag
     /// </summary>
     [JsonProperty("appToken")]
     public string AppToken { get; }
     /// <summary>
-    /// 二维码携带的参数，最长64位
+    /// Parameters carried by the QR code, up to 64 bits
     /// </summary>
     [JsonProperty("extra")]
     public string Extra { get; }
     /// <summary>
-    /// 二维码有效时间，s为单位，最大30天。
+    /// The validity time of the QR code, in s, is up to 30 days.
     /// </summary>
     [JsonProperty("validTime")]
     public int ValidTime { get; }

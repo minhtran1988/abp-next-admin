@@ -1,6 +1,6 @@
 # Monolithic Service Startup Guide
 
-English | [简体中文](startup-aio-readme.md)
+English | [Chinese](startup-aio-readme.zh-CN.md)
 
 ## Table of Contents
 
@@ -34,7 +34,17 @@ English | [简体中文](startup-aio-readme.md)
   - PostgreSQL
 - Redis
 
-### Install CLI Tool
+### Install Templates
+
+```bash
+# Install the microservice template: lam
+dotnet new install LINGYUN.Abp.MicroService.Templates
+
+# Install the monolithic application template: laa
+dotnet new install LINGYUN.Abp.AllInOne.Templates
+```
+
+### Install the labp CLI Tool
 
 ```bash
 dotnet tool install --global LINGYUN.Abp.Cli
@@ -300,7 +310,7 @@ Taking PostgreSQL as an example:
 }
 ```
 
-### 2. Authentication Configuration
+### Authentication Configuration
 
 #### OpenIddict Configuration
 
@@ -347,7 +357,7 @@ Taking PostgreSQL as an example:
 }
 ```
 
-### 3. Feature Management Configuration
+#### Feature Management Configuration
 
 ```json
 {
@@ -363,7 +373,7 @@ Taking PostgreSQL as an example:
 }
 ```
 
-### 4. Logging Configuration
+#### Logging Configuration
 
 ```json
 {

@@ -1,7 +1,7 @@
 import { useSettings } from '/@/hooks/abp/useSettings';
 /**
- * 摘自 https://www.html5tricks.com/demo/js-passwd-generator/index.html
- * 侵权请联系删除
+ * Taken from https://www.html5tricks.com/demo/js-passwd-generator/index.html
+ * Please contact us for deletion if there is any infringement.
  */
 export function useRandomPassword() {
   const randomFunc = {
@@ -31,18 +31,18 @@ export function useRandomPassword() {
 
   function generatePassword() {
     const { settingProvider } = useSettings();
-    // 根据配置项生成随机密码
-    // 密码长度
+    // Generate a random password based on configuration items
+    // Password length
     const length = settingProvider.getNumber('Abp.Identity.Password.RequiredLength');
-    // 需要小写字母
+    // requires lowercase letters
     const lower = settingProvider.isTrue('Abp.Identity.Password.RequireLowercase');
-    // 需要大写字母
+    // Requires uppercase letters
     const upper = settingProvider.isTrue('Abp.Identity.Password.RequireUppercase');
-    // 需要数字
+    // requires numbers
     const number = settingProvider.isTrue('Abp.Identity.Password.RequireDigit');
-    // 需要符号
+    // requires symbols
     const symbol = settingProvider.isTrue('Abp.Identity.Password.RequireNonAlphanumeric');
-    // 默认生成数字
+    // generate numbers by default
     const defaultNumber = !lower && !upper && !number && !symbol;
 
     let generatedPassword = '';

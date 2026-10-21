@@ -25,7 +25,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.Handlers.Local
         public async Task HandleEventAsync(EntityCreatedEventData<UserEto> eventData)
         {
             var userIdentifer = new UserIdentifier(eventData.Entity.Id, eventData.Entity.UserName);
-            // 订阅用户欢迎消息
+            // Subscribe to user welcome message
             await SubscribeInternalNotifers(userIdentifer, eventData.Entity.TenantId);
 
             await _notificationSender.SendNofiterAsync(
@@ -44,7 +44,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.Handlers.Local
 
         private async Task SubscribeInternalNotifers(UserIdentifier userIdentifer, Guid? tenantId = null)
         {
-            // 订阅内置通知
+            // Subscribe to built-in notifications
             await _notificationSubscriptionManager
                 .SubscribeAsync(
                     tenantId,
@@ -61,7 +61,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.Handlers.Local
                     userIdentifer,
                     DefaultNotifications.ActivityNotice);
 
-            // 订阅用户欢迎消息
+            // Subscribe to user welcome message
             await _notificationSubscriptionManager
                 .SubscribeAsync(
                     tenantId,

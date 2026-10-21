@@ -21,7 +21,7 @@ public class WeChatOfficialController : AbpControllerBase
 
 
     /// <summary>
-    /// 微信后台验证地址（使用Get），微信后台的“接口配置信息”的Url填写如：http://weixin.senparc.com/weixin
+    /// WeChat backend verification address (use Get), fill in the Url of "Interface Configuration Information" of WeChat backend like: http://weixin.senparc.com/weixin
     /// </summary>
     [HttpGet]
     public async Task<IActionResult> Get(PostModel postModel, string echostr)
@@ -29,19 +29,19 @@ public class WeChatOfficialController : AbpControllerBase
         var options = await _optionsFactory.CreateAsync();
         if (CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, options.Token))
         {
-            return Content(echostr); //返回随机字符串则表示验证通过
+            return Content(echostr); //Returning a random string indicates that the verification is passed
         }
         else
         {
             return Content(
                 "failed:" + postModel.Signature + "," + 
                 CheckSignature.GetSignature(postModel.Timestamp, postModel.Nonce, options.Token) + "。" +
-                "如果你在浏览器中看到这句话，说明此地址可以被作为微信公众账号后台的Url，请注意保持Token一致。");
+                "If you see this sentence in the browser, it means that this address can be used as the Url in the backend of the WeChat public account. Please pay attention to keeping the Token consistent.");
         }
     }
 
     /// <summary>
-    /// 用户发送消息后，微信平台自动Post一个请求到这里，并等待响应XML。
+    /// After the user sends a message, the WeChat platform automatically posts a request here and waits for the response XML.
     /// </summary>
     [HttpPost]
     public async Task<IActionResult> Post(PostModel postModel)
@@ -49,32 +49,32 @@ public class WeChatOfficialController : AbpControllerBase
         var options = await _optionsFactory.CreateAsync();
         if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, options.Token))
         {
-            return Content("参数错误！");
+            return Content("Parameter error!");
         }
 
-        postModel.Token = options.Token;//根据自己后台的设置保持一致
-        postModel.EncodingAESKey = options.EncodingAESKey;//根据自己后台的设置保持一致
-        postModel.AppId = options.AppId;//根据自己后台的设置保持一致
+        postModel.Token = options.Token;//Remain consistent according to your own background settings
+        postModel.EncodingAESKey = options.EncodingAESKey;//Stay consistent according to your own background settings
+        postModel.AppId = options.AppId;//Keep it consistent according to your own background settings
 
-        //自定义MessageHandler，对微信请求的详细判断操作都在这里面。
-        var messageHandler = new WeChatOfficialMessageHandler(Request.Body, postModel);//接收消息
+        // Customized MessageHandler, detailed judgment operations on WeChat requests are all here.
+        var messageHandler = new WeChatOfficialMessageHandler(Request.Body, postModel);//Receive messages
 
-        #region 设置消息去重设置 + 优先调用同步、异步方法设置
+        #region Set message deduplication settings + Prioritize calling synchronous and asynchronous method settings
 
-        /* 如果需要添加消息去重功能，只需打开OmitRepeatedMessage功能，SDK会自动处理。
-         * 收到重复消息通常是因为微信服务器没有及时收到响应，会持续发送2-5条不等的相同内容的 RequestMessage */
-        messageHandler.OmitRepeatedMessage = true;//默认已经是开启状态，此处仅作为演示，也可以设置为 false 在本次请求中停用此功能
+        /* If you need to add message deduplication function, just turn on the OmitRepeatedMessage function and the SDK will automatically handle it.
+         * Receiving duplicate messages is usually because the WeChat server does not receive a response in time and will continue to send 2-5 RequestMessages with the same content */
+        messageHandler.OmitRepeatedMessage = true;//It is already enabled by default. This is only for demonstration. It can also be set to false to disable this function in this request.
 
-        //当同步方法被重写，且异步方法未被重写时，尝试调用同步方法
+        // When the synchronous method is overridden and the asynchronous method is not overridden, try to call the synchronous method
         messageHandler.DefaultMessageHandlerAsyncEvent = DefaultMessageHandlerAsyncEvent.SelfSynicMethod;
 
         #endregion
 
-        messageHandler.SaveRequestMessageLog();//记录 Request 日志（可选）
+        messageHandler.SaveRequestMessageLog();//Record Request log (optional)
 
-        await messageHandler.ExecuteAsync(HttpContext.RequestAborted);//执行微信处理过程（关键，第二步）
+        await messageHandler.ExecuteAsync(HttpContext.RequestAborted);//Execute WeChat processing (key, second step)
 
-        messageHandler.SaveResponseMessageLog();//记录 Response 日志（可选）
+        messageHandler.SaveResponseMessageLog();//Record Response log (optional)
 
         return Ok();
     }

@@ -8,17 +8,17 @@ namespace Microsoft.AspNetCore.Authentication.QQ;
 public class QQConnectOAuthOptions : OAuthOptions
 {
     /// <summary>
-    /// 是否移动端样式
+    /// Whether to use mobile style
     /// </summary>
     public bool IsMobile { get; set; }
     /// <summary>
-    /// 获取用户OpenID_OAuth2.0
+    /// Get user OpenID_OAuth2.0
     /// </summary>
     public string OpenIdEndpoint { get; set; }
 
     public QQConnectOAuthOptions()
     {
-        // 用于防止初始化错误,会在OAuthHandler.InitializeHandlerAsync中进行重写
+        // Used to prevent initialization errors, it will be rewritten in OAuthHandler.InitializeHandlerAsync
         ClientId = "QQConnect";
         ClientSecret = "QQConnect";
 
@@ -32,11 +32,11 @@ public class QQConnectOAuthOptions : OAuthOptions
 
         Scope.Add("get_user_info");
 
-        // 这个原始的属性一定要写进去,框架关联判断是否绑定QQ
+        // This original attribute must be written in, and the framework association determines whether to bind QQ.
         ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "openid");
         ClaimActions.MapJsonKey(ClaimTypes.Name, "nickname");
 
-        // 把自定义的身份标识写进令牌
+        // Write the custom identity into the token
         ClaimActions.MapJsonKey(AbpQQClaimTypes.OpenId, "openid");
         ClaimActions.MapJsonKey(AbpQQClaimTypes.NickName, "nickname");
         ClaimActions.MapJsonKey(AbpQQClaimTypes.Gender, "gender");

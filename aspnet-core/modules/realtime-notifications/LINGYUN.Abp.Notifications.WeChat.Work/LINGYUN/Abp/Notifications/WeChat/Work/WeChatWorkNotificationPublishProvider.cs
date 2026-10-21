@@ -16,7 +16,7 @@ using Volo.Abp.Settings;
 namespace LINGYUN.Abp.Notifications.WeChat.Work;
 
 /// <summary>
-/// 企业微信通知发布渠道
+/// Enterprise WeChat notification release channel
 /// </summary>
 public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
 {
@@ -73,7 +73,7 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
         var contact = await ResolveContactAsync(context, notificationDefine, cancellationToken);
         if (contact.IsEmpty())
         {
-            // touser、toparty、totag不能同时为空：https://developer.work.weixin.qq.com/document/path/90236
+            // touser, toparty, and totag cannot be empty at the same time: https://developer.work.weixin.qq.com/document/path/90236
             context.Cancel("Unable to send work weixin messages because The recipient/department/label cannot be empty simultaneously.");
             Logger.LogWarning(context.Reason);
             return;
@@ -99,7 +99,7 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
 
                 if (!response.IsSuccessed)
                 {
-                    // 企业微信以业务错误码返回失败, 必须让上层感知, 否则失败会被记录为成功
+                    // Enterprise WeChat returns failure with a business error code, which must be perceived by the upper layer, otherwise the failure will be recorded as success.
                     context.Cancel(
                         $"Unable to send work weixin messages, error code: {response.ErrorCode}, error message: {response.ErrorMessage}");
 
@@ -133,10 +133,10 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
     }
 
     /// <summary>
-    /// 解析消息接收者
+    /// Parse the message receiver
     /// </summary>
     /// <remarks>
-    /// 成员标识由企业微信身份绑定关系解析, 部门与标签优先取通知数据, 其次取通知定义。
+    /// The member identification is parsed by the enterprise WeChat identity binding relationship. Departments and labels get notification data first, and notification definitions second.
     /// </remarks>
     protected async virtual Task<WeChatWorkNotificationContact> ResolveContactAsync(
         NotificationPublishContext context,
@@ -160,11 +160,11 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
     }
 
     /// <summary>
-    /// 解析待发送的消息载体集合
+    /// Parse the collection of message carriers to be sent
     /// </summary>
     /// <remarks>
-    /// 优先使用生产者显式声明的渠道数据(载荷);
-    /// 未声明时按通知内容类型推导默认载体, 保证既有生产者的行为不变。
+    /// Prioritize using channel data (payload) explicitly declared by the producer;
+    /// When not declared, the default carrier is deduced according to the notification content type to ensure that the behavior of existing producers remains unchanged.
     /// </remarks>
     protected virtual List<WeChatWorkMessageFactoryResult> ResolveMessages(
         NotificationPublishContext context,
@@ -202,11 +202,11 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
     }
 
     /// <summary>
-    /// 解析渠道数据(载荷)
+    /// Parse channel data (load)
     /// </summary>
     /// <remarks>
-    /// 区分"生产者未写入载荷"与"载荷已写入但无法解析":
-    /// 后者是生产者错误, 必须明确报错, 而不是静默回退到默认载体。
+    /// Distinguish between "the producer did not write the payload" and "the payload was written but could not be parsed":
+    /// The latter is a producer error and must be reported explicitly instead of silently falling back to the default carrier.
     /// </remarks>
     protected virtual bool TryResolveChannelData(
         NotificationPublishContext context,
@@ -238,7 +238,7 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
     }
 
     /// <summary>
-    /// 按通知内容类型推导默认的消息载体
+    /// Derivation of default message carrier based on notification content type
     /// </summary>
     protected virtual WeChatWorkChannelData? CreateDefaultChannelData(
         NotificationPublishContext context,
@@ -257,9 +257,9 @@ public class WeChatWorkNotificationPublishProvider : NotificationPublishProvider
                 {
                     TextCard = new TextCardMessage(
                         standardData.Title ?? string.Empty,
-                        // 旧实现丢弃了 description, 这里补全文本卡片的描述
+                        // The old implementation discarded description, here we complete the description of the text card
                         standardData.Description.IsNullOrWhiteSpace() ? standardData.Message : standardData.Description!,
-                        // 跳转地址应由生产者通过载荷显式指定, 默认不可点击
+                        // The jump address should be explicitly specified by the producer through the payload. It is not clickable by default.
                         "javascript:;")
                 };
 

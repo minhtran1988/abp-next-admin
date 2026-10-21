@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Aliyun.SettingManagement
 
-阿里云配置管理模块，引用此模块可管理阿里云相关的配置，可通过网关聚合对外公布的API接口。
+Alibaba Cloud configuration management module. This module can be used to manage Alibaba Cloud-related configurations and aggregate publicly announced API interfaces through the gateway.
 
-## 功能特性
+## Features
 
-* 提供阿里云服务配置的查询接口
-* 支持通过API接口获取阿里云配置信息
-* 与ABP设置管理系统集成
+* Provide query interface for Alibaba Cloud service configuration
+* Supports obtaining Alibaba Cloud configuration information through API interface
+* Integrated with ABP settings management system
 
-## API接口
+## API interface
 
-* **GET api/setting-management/aliyun** - 获取阿里云配置信息
+* **GET api/setting-management/aliyun** - Get Alibaba Cloud configuration information
 
-## 模块引用
+## Module reference
 
-模块按需引用，建议在配置管理承载服务引用此模块。
+The module is referenced on demand. It is recommended to reference this module in the configuration management hosting service.
 
 ```csharp
 [DependsOn(typeof(AbpAliyunSettingManagementModule))]
@@ -24,10 +24,10 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 注意
+## Note
 
-* 因后台管理模块负责管理所有配置，此模块仅提供查询接口
-* 需要与LINGYUN.Abp.Aliyun模块配合使用
-* 建议在配置管理承载服务中引用此模块
+* Since the background management module is responsible for managing all configurations, this module only provides a query interface
+* Need to be used in conjunction with LINGYUN.Abp.Aliyun module
+* It is recommended to reference this module in the configuration management hosting service
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

@@ -1,19 +1,19 @@
 # LINGYUN.Abp.Logging.Serilog.OpenObserve
 
-简体中文 | [English](./README.EN.md)
+Simplified Chinese | [English](./README.EN.md)
 
-ILoggingProvider 接口的OpenObserve实现, 从OpenObserve中检索日志信息  
+OpenObserve implementation of the ILoggingProvider interface, retrieving log information from OpenObserve
 
-## 功能特性
+## Features
 
-* 基于OpenObserve的日志存储和检索
-* 支持多种日志级别（Debug、Information、Warning、Error、Critical）
-* 支持Serilog和Microsoft.Extensions.Logging日志级别的自动映射
-* 支持丰富的查询条件（时间范围、日志级别、机器名称、环境名称等）
-* 支持异常信息的存储和检索
-* 支持多租户
+* Log storage and retrieval based on OpenObserve
+* Supports multiple log levels (Debug, Information, Warning, Error, Critical)
+* Support automatic mapping of Serilog and Microsoft.Extensions.Logging log levels
+* Supports rich query conditions (time range, log level, machine name, environment name, etc.)
+* Supports storage and retrieval of exception information
+*Support multi-tenancy
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpLoggingSerilogOpenObserveModule))]
@@ -23,10 +23,10 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-*  AbpLoggingSerilogOpenObserveOptions.Stream	  存储日志的stream名称
-*  AbpLoggingSerilogOpenObserveOptions.Organization	  存储日志的organization名称
+* AbpLoggingSerilogOpenObserveOptions.Stream stream name to store logs
+* AbpLoggingSerilogOpenObserveOptions.Organization organization name where logs are stored
 
 ## appsettings.json
 
@@ -48,9 +48,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 注入 ILoggingManager 接口：
+1. Inject the ILoggingManager interface:
 ```csharp
 public class YourService
 {
@@ -63,9 +63,9 @@ public class YourService
 }
 ```
 
-2. 查询日志：
+2. Query log:
 ```csharp
-// 获取日志列表
+// Get the log list
 var logs = await _loggingManager.GetListAsync(
     startTime: DateTime.Now.AddDays(-1),
     maxResultCount: 10,
@@ -75,35 +75,35 @@ var logs = await _loggingManager.GetListAsync(
     application: "YourApp"
 );
 
-// 获取日志总数
+// Get the total number of logs
 var count = await _loggingManager.GetCountAsync(
     startTime: DateTime.Now.AddDays(-1),
     level: LogLevel.Error
 );
 
-// 获取单条日志
+// Get a single log
 var log = await _loggingManager.GetAsync(id);
 ```
 
-## 支持的查询条件
+## Supported query conditions
 
-* 时间范围（startTime、endTime）
-* 日志级别（level）
-* 机器名称（machineName）
-* 环境名称（environment）
-* 应用名称（application）
-* 上下文（context）
-* 请求ID（requestId）
-* 请求路径（requestPath）
-* 关联ID（correlationId）
-* 进程ID（processId）
-* 线程ID（threadId）
-* 是否包含异常（hasException）
+* Time range (startTime, endTime)
+* Log level (level)
+* Machine name (machineName)
+* Environment name (environment)
+* Application name (application)
+* context
+* Request ID (requestId)
+* Request path (requestPath)
+* Correlation ID (correlationId)
+* Process ID (processId)
+* Thread ID (threadId)
+* Whether it contains exceptions (hasException)
 
-## 依赖的公共组件
+## Dependent public components
 
-* 连接与序列化: `LINGYUN.Abp.OpenObserve`（`OpenObserveClient`、`IOpenObserveSerializer`、`AbpOpenObserveOptions`）
-* 查询条件与 SQL 构建: `LINGYUN.Abp.OpenObserve.Utils` 下的 `ExpressionParser`、`Condition`、`ComparisonOp`
-  以及 `OpenObserveSqlBuilder`
+* Connection and serialization: `LINGYUN.Abp.OpenObserve` (`OpenObserveClient`, `IOpenObserveSerializer`, `AbpOpenObserveOptions`)
+* Query conditions and SQL construction: `ExpressionParser`, `Condition`, `ComparisonOp` under `LINGYUN.Abp.OpenObserve.Utils`
+  and `OpenObserveSqlBuilder`
 
-## 注意事项
+## Notes

@@ -18,7 +18,7 @@ public class AbpSaasEntityFrameworkCoreModule : AbpModule
 
         Configure<AbpDbConnectionOptions>(options =>
         {
-            // 将租户管理连接字符串聚合到 Saas 模块中
+            // Aggregate tenant management connection strings into Saas modules
             options.Databases.Configure(AbpSaasDbProperties.ConnectionStringName,
                 database =>
                 {

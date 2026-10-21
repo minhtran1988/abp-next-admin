@@ -32,19 +32,19 @@ import { LockScreenModal } from '../lock-screen';
 
 interface Props {
   /**
-   * 头像
+   * Avatar
    */
   avatar?: string;
   /**
-   * @zh_CN 描述
+   * @zh_CN Description
    */
   description?: string;
   /**
-   * 是否启用快捷键
+   * Whether to enable shortcut keys
    */
   enableShortcutKey?: boolean;
   /**
-   * 菜单数组
+   * Menu array
    */
   menus?: Array<{
     handler: AnyFunction;
@@ -53,16 +53,16 @@ interface Props {
   }>;
 
   /**
-   * 标签文本
+   * Label text
    */
   tagText?: string;
   /**
-   * 文本
+   * text
    */
   text?: string;
-  /** 触发方式 */
+  /** Trigger method */
   trigger?: 'both' | 'click' | 'hover';
-  /** hover触发时，延迟响应的时间 */
+  /** When hover is triggered, delay the response time */
   hoverDelay?: number;
 }
 

@@ -6,7 +6,7 @@ using Volo.Abp.Identity;
 namespace LINGYUN.Abp.Gdpr.Identity;
 
 /// <summary>
-/// 身份标识模块用户账户提供者
+/// Identity module user account provider
 /// </summary>
 public class AbpGdprIdentityUserAccountProvider : GdprUserAccountProviderBase
 {
@@ -20,8 +20,8 @@ public class AbpGdprIdentityUserAccountProvider : GdprUserAccountProviderBase
 
         var identityUser = await identityUserManager.GetByIdAsync(context.UserId);
 
-        // 默认管理员账号保留
-        // TODO: 保留统一维护的地方?
+        // The default administrator account is retained
+        // TODO: Keep a place for unified maintenance?
         if (identityUser.UserName != "admin")
         {
             (await identityUserManager.DeleteAsync(identityUser)).CheckErrors();

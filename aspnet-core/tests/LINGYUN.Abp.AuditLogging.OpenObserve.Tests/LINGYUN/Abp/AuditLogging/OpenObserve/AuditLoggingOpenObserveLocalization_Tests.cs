@@ -22,7 +22,7 @@ public class AuditLoggingOpenObserveLocalization_Tests : AbpAuditLoggingOpenObse
         {
             _localizer[AuditLoggingOpenObserveErrorCodes.DeleteNotSupported]
                 .Value
-                .ShouldBe("当前日志设施不支持删除记录!");
+                .ShouldBe("The current logging facility does not support deleting records!");
         }
     }
 }

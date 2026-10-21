@@ -53,38 +53,38 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
 
     private async Task CreateDefaultScopeAsync()
     {
-        // OpenID Connect核心scope - 用于标识这是一个OIDC请求
+        // OpenID Connect core scope - used to identify this is an OIDC request
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.OpenId,
-            DisplayName = "OpenID Connect", // 友好的显示名称
+            DisplayName = "OpenID Connect", // Friendly display name
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "身份认证",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Identity Authentication",
                 [CultureInfo.GetCultureInfo("en")] = "OpenID Connect"
             },
-            Description = "使用OpenID Connect协议进行身份验证",
+            Description = "Using OpenID Connect protocol for authentication",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序使用您的身份信息进行登录",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to use your identity information to log in",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to authenticate you using OpenID Connect"
             }
         });
 
-        // Profile scope - 用户基本信息
+        // Profile scope - basic user information
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.Profile,
-            DisplayName = "个人资料",
+            DisplayName = "Profile",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "个人资料",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Personal information",
                 [CultureInfo.GetCultureInfo("en")] = "Profile"
             },
-            Description = "访问您的基本个人资料信息",
+            Description = "Access your basic profile information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序访问您的姓名、头像等基本信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access basic information such as your name, avatar, etc.",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your basic profile information like name and picture"
             }
         });
@@ -93,16 +93,16 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.Email,
-            DisplayName = "电子邮件",
+            DisplayName = "email",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "电子邮件",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Email",
                 [CultureInfo.GetCultureInfo("en")] = "Email"
             },
-            Description = "访问您的电子邮件地址",
+            Description = "Access your email address",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序访问您的电子邮件地址",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your email address",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your email address"
             }
         });
@@ -111,16 +111,16 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.Phone,
-            DisplayName = "电话号码",
+            DisplayName = "Phone number",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "电话号码",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Phone number",
                 [CultureInfo.GetCultureInfo("en")] = "Phone"
             },
-            Description = "访问您的电话号码",
+            Description = "Access your phone number",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序访问您的电话号码",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your phone number",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your phone number"
             }
         });
@@ -129,16 +129,16 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.Address,
-            DisplayName = "地址信息",
+            DisplayName = "Address information",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "地址信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Address information",
                 [CultureInfo.GetCultureInfo("en")] = "Address"
             },
-            Description = "访问您的地址信息",
+            Description = "Access your address information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序访问您的地址信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your address information",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your address information"
             }
         });
@@ -147,34 +147,34 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.Roles,
-            DisplayName = "角色信息",
+            DisplayName = "Role Information",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "角色信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Character information",
                 [CultureInfo.GetCultureInfo("en")] = "Roles"
             },
-            Description = "访问您的角色信息",
+            Description = "Access your role information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序访问您的角色和权限信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your role and permission information",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your roles and permissions"
             }
         });
 
-        // Offline Access scope - 用于获取刷新令牌
+        // Offline Access scope - used to obtain refresh token
         await CreateScopesAsync(new OpenIddictScopeDescriptor
         {
             Name = OpenIddictConstants.Scopes.OfflineAccess,
-            DisplayName = "离线访问",
+            DisplayName = "Offline access",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "离线访问",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Offline access",
                 [CultureInfo.GetCultureInfo("en")] = "Offline Access"
             },
-            Description = "在您未登录时访问您的信息",
+            Description = "Access your information when you are not logged in",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序在您未登录时访问您的信息",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your information when you are not logged in",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your information while you are offline"
             }
         });
@@ -188,13 +188,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Single Applications",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "单体应用程序",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Single application",
                 [CultureInfo.GetCultureInfo("en")] = "Single Applications"
             },
-            Description = "适用于单体应用程序的接口授权",
+            Description = "Interface authorization for single applications",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "允许应用程序使用单体应用程序的接口",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allows applications to use the interface of a single application",
                 [CultureInfo.GetCultureInfo("en")] = "Allow applications to use the interface of monolithic applications"
             },
             Resources =
@@ -237,7 +237,7 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
                 OpenIddictConstants.GrantTypes.Implicit,
                 OpenIddictConstants.GrantTypes.Password,
                 OpenIddictConstants.GrantTypes.RefreshToken,
-                // TODO: 引用项目?
+                // TODO: Reference project?
                 "link_user"],
                 [OpenIddictConstants.Scopes.OpenId,
                 OpenIddictConstants.Scopes.Email,
@@ -301,7 +301,7 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
                 null,
                 [OpenIddictConstants.GrantTypes.AuthorizationCode,
                  OpenIddictConstants.GrantTypes.RefreshToken,
-                // TODO: 引用项目?
+                // TODO: Reference project?
                 "link_user"],
                 [OpenIddictConstants.Scopes.OpenId,
                 OpenIddictConstants.Scopes.Email,

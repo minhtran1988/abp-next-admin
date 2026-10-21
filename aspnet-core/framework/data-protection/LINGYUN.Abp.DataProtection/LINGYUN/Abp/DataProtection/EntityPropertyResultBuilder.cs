@@ -56,7 +56,7 @@ public class EntityPropertyResultBuilder : IEntityPropertyResultBuilder, ITransi
             allowProperties.AddIfNotContains(entityIgnoreProps);
         }
         
-        // 默认实体相关标识需要带上, 否则无法返回查询结果
+        // The default entity related identifier needs to be brought, otherwise the query results cannot be returned
         allowProperties.AddIfNotContains(_options.GlobalIgnoreProperties);
 
         var memberBindings = new List<MemberBinding>();
@@ -103,7 +103,7 @@ public class EntityPropertyResultBuilder : IEntityPropertyResultBuilder, ITransi
             allowProperties.AddIfNotContains(entityIgnoreProps);
         }
 
-        // 默认实体相关标识需要带上, 否则无法返回查询结果
+        // The default entity related identifier needs to be brought, otherwise the query results cannot be returned
         allowProperties.AddIfNotContains(_options.GlobalIgnoreProperties);
 
         var param = Expression.Parameter(typeof(TEntity), "e");
@@ -125,7 +125,7 @@ public class EntityPropertyResultBuilder : IEntityPropertyResultBuilder, ITransi
 
     private bool ShouldApplyFilter(Type entityType, DataAccessOperation operation)
     {
-        // TODO: 使用一个范围标志来确定当前需要禁用的数据权限操作
+        // TODO: Use a scope flag to determine which data permission operations currently need to be disabled
         if (!_dataFilter.IsEnabled<IDataProtected>())
         {
             return false;

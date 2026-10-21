@@ -61,7 +61,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
             throw new UserFriendlyException(L["TenantCannotChangeGlobalSetting"]);
         }
 
-        // 增加特性检查
+        // Add feature check
         await CheckFeatureAsync();
 
         foreach (var setting in input.Settings)
@@ -71,7 +71,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         CurrentUnitOfWork!.OnCompleted(async () =>
         {
-            // 发送刷新用户缓存事件
+            // Send refresh user cache event
             await EventBus.PublishAsync(new CurrentApplicationConfigurationCacheResetEventData());
         });
 
@@ -81,7 +81,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
     [Authorize(AbpSettingManagementPermissions.Settings.Manager)]
     public async virtual Task SetCurrentTenantAsync(UpdateSettingsDto input)
     {
-        // 增加特性检查
+        // Add feature check
         await CheckFeatureAsync();
 
         if (CurrentTenant.IsAvailable)
@@ -93,7 +93,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
             CurrentUnitOfWork!.OnCompleted(async () =>
             {
-                // 发送刷新用户缓存事件
+                // Send refresh user cache event
                 await EventBus.PublishAsync(new CurrentApplicationConfigurationCacheResetEventData());
             });
 
@@ -120,22 +120,22 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
          * 2020-11-19
          * colin@foxmail.com
          * 
-         * 之所以重构为这种看似硬编码的设计,是因为硬编码的都是常用的自带的配置
+         * The reason why it is refactored into this seemingly hard-coded design is because the hard-coded configurations are commonly used built-in configurations.
          * 
-         * 自定义的应用模块可以实现返回相同Dto的配置服务,然后通过路由的聚合功能,
-         * 轻松加入到前端的设置管理(因为vue前端已设计为动态表单页面)
+         * Customized application modules can implement configuration services that return the same Dto, and then use the routing aggregation function to
+         * Easily join the front-end settings management (because the vue front-end has been designed as a dynamic form page)
          * 
-         * 最初的设计才是不合理的,前端不能硬编码设置管理界面,这应该是后端的事情
+         * The original design is unreasonable. The front-end cannot hard-code the management interface. This should be a matter of the back-end.
          */ 
 
-        // 2021-12-11 重新约定返回格式, 当用户明确只需要对应提供者设置才返回，否则为空数组
+        // 2021-12-11 Re-agreed the return format, when the user clearly needs only the corresponding provider settings to return, otherwise it will be an empty array
 
         var settingGroups = new SettingGroupResult();
 
-        #region 系统设置
+        #region System Settings
 
         var sysSettingGroup = new SettingGroupDto(L["DisplayName:System"], L["Description:System"]);
-        // 语言
+        // language
         var languageSetting = sysSettingGroup.AddSetting(L["DisplayName:System.Language"], L["Description:System.Language"]);
         languageSetting.AddDetail(
             await SettingDefinitionManager.GetAsync(LocalizationSettingNames.DefaultLanguage),
@@ -144,7 +144,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
             ValueType.Option,
             providerName)
             ?.AddOptions(LocalizationOptions.Languages.Select(l => new OptionDto(l.DisplayName, l.CultureName)));
-        // 时区
+        // time zone
         var timezones = TimeZoneHelper.GetTimezones(TimezoneProvider.GetIanaTimezones());
         timezones.Insert(0, new NameValue
         {
@@ -164,13 +164,13 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 安全设置
+        #region Security Settings
 
         var securitySettingGroup = new SettingGroupDto(L["DisplayName:Security"], L["Description:Security"]);
 
-        // 用户账户
+        // User account
         var accountSetting = securitySettingGroup.AddSetting(L["DisplayName:Security.Account"], L["Description:Security.Account"]);
-        // 启用本地登录
+        // Enable local login
         accountSetting.AddDetail(
             await SettingDefinitionManager.GetAsync(AccountSettingNames.EnableLocalLogin),
             StringLocalizerFactory,
@@ -188,12 +188,12 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 身份标识设置
+        #region Identity Settings
 
-        // 身份标识设置
+        // Identity setting
         var identitySetting = new SettingGroupDto(L["DisplayName:Identity"], L["Description:Identity"]);
 
-        #region 用户锁定
+        #region User Lockout
 
         var lockoutSetting = identitySetting.AddSetting(L["DisplayName:Identity.Lockout"], L["Description:Identity.Lockout"]);
         lockoutSetting.AddDetail(
@@ -217,7 +217,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 用户
+        #region users
 
         var userSetting = identitySetting.AddSetting(L["DisplayName:Identity.User"], L["Description:Identity.User"]);
         userSetting.AddDetail(
@@ -265,7 +265,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 登录
+        #region Login
 
         var signinSetting = identitySetting.AddSetting(L["DisplayName:Identity.SignIn"], L["Description:Identity.SignIn"]);
         signinSetting.AddDetail(
@@ -295,7 +295,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 会话
+        #region session
 
         var sessionSetting = identitySetting.AddSetting(L["DisplayName:Identity.Session"], L["Description:Identity.Session"]);
         sessionSetting.AddDetail(
@@ -317,7 +317,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 密码
+        #region Password
 
         var passwordSetting = identitySetting.AddSetting(L["DisplayName:Identity.Password"], L["Description:Identity.Password"]);
         passwordSetting.AddDetail(
@@ -383,11 +383,11 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 双因素
+        #region two factors
 
         // Removed See: https://github.com/abpframework/abp/pull/7719
-        //var twoFactorSetting = identitySetting.AddSetting(L["DisplayName:Identity.TwoFactor"], L["Description:Identity.TwoFactor"]);
-        //twoFactorSetting.AddDetail(
+        // var twoFactorSetting = identitySetting.AddSetting(L["DisplayName:Identity.TwoFactor"], L["Description:Identity.TwoFactor"]);
+        // twoFactorSetting.AddDetail(
         //    SettingDefinitionManager.Get(IdentitySettingNames.TwoFactor.Behaviour),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(IdentitySettingNames.TwoFactor.Behaviour, providerName, providerKey),
@@ -395,7 +395,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
         //    .AddOption(IdentityTwoFactorBehaviour.Optional.ToString(), IdentityTwoFactorBehaviour.Optional.ToString())
         //    .AddOption(IdentityTwoFactorBehaviour.Forced.ToString(), IdentityTwoFactorBehaviour.Forced.ToString())
         //    .AddOption(IdentityTwoFactorBehaviour.Disabled.ToString(), IdentityTwoFactorBehaviour.Disabled.ToString());
-        //twoFactorSetting.AddDetail(
+        // twoFactorSetting.AddDetail(
         //    SettingDefinitionManager.Get(IdentitySettingNames.TwoFactor.UsersCanChange),
         //    StringLocalizerFactory,
         //    await SettingManager.GetOrNullAsync(IdentitySettingNames.TwoFactor.UsersCanChange, providerName, providerKey),
@@ -403,7 +403,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 组织机构
+        #region Organization
 
         var ouSetting = identitySetting.AddSetting(L["DisplayName:Identity.OrganizationUnit"], L["Description:Identity.OrganizationUnit"]);
         ouSetting.AddDetail(
@@ -415,7 +415,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 链接
+        #region link
 
         var linkSetting = identitySetting.AddSetting(L["DisplayName:Identity.Link"], L["Description:Identity.Link"]);
         linkSetting.AddDetail(
@@ -431,7 +431,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 邮件设置
+        #region Mail Settings
 
         if (!CurrentTenant.IsAvailable || 
             await FeatureChecker.IsEnabledAsync(true, [SettingManagementFeatures.Enable, SettingManagementFeatures.AllowChangingEmailSettings]))
@@ -454,7 +454,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
                 providerName)
                 ?.RequiredPermission("SettingManagement.Emailing");
 
-            // 防止邮件设置泄露
+            // Prevent email settings from being leaked
             if (await AuthorizationService.IsGrantedAsync(AbpSettingManagementPermissions.Settings.Manager))
             {
                 var smtpSetting = emailSettingGroup.AddSetting(L["DisplayName:Emailing.Smtp"], L["Description:Emailing.Smtp"]);
@@ -506,7 +506,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
                     ValueType.String,
                     providerName)
                     ?.RequiredPermission("SettingManagement.Emailing");
-                // 一个占位符,用于展现发送测试邮件
+                // A placeholder used to display sending test emails
                 smtpSetting.AddDetail(
                     new SettingDefinition(
                         name: "SendTestEmail",
@@ -526,7 +526,7 @@ public class SettingAppService : ApplicationService, ISettingAppService, ISettin
 
         #endregion
 
-        #region 外部登录
+        #region External login
 
         var oauthSettingDto = new SettingGroupDto(L["Settings:ExternalOAuthLogin"], L["Settings:ExternalOAuthLogin"]);
 

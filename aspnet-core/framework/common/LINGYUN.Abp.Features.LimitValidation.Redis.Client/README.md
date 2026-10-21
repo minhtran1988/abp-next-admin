@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Features.LimitValidation.Redis.Client
 
-基于Redis的客户端功能限制验证组件
+Redis-based client function restriction verification component
 
-## 功能特性
+## Features
 
-* 继承自LINGYUN.Abp.Features.LimitValidation.Redis的所有功能
-* 专门针对客户端应用的功能限制验证
-* 支持客户端特定的限制策略
+* All functions inherited from LINGYUN.Abp.Features.LimitValidation.Redis
+* Function restriction verification specifically for client applications
+* Support client-specific restriction policies
 
-## 配置使用
+## Configuration usage
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpFeaturesValidationRedisClientModule))]
@@ -20,7 +20,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置Redis选项（与LINGYUN.Abp.Features.LimitValidation.Redis相同）
+2. Configure Redis options (same as LINGYUN.Abp.Features.LimitValidation.Redis)
 
 ```json
 {
@@ -35,15 +35,15 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 使用示例
+## Usage example
 
 ```csharp
-// 限制客户端某个功能每天最多调用1000次
+//Limit the client to call a certain function up to 1,000 times a day
 [RequiresLimitFeature("YourClientFeature.DailyLimit", "YourClientFeature.Interval", LimitPolicy.Days)]
 public async Task YourClientMethod()
 {
-    // 客户端业务逻辑
+    //Client business logic
 }
 ```
 
-[简体中文](./README.md) | [English](./README.EN.md)
+[Simplified Chinese](./README.md) | [English](./README.EN.md)

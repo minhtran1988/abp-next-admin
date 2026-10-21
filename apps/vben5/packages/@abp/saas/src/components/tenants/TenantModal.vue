@@ -88,7 +88,7 @@ const getFormRules = computed(() => {
     }),
   };
 });
-/** 启用时间不可晚于禁用时间 */
+/** The enable time cannot be later than the disable time */
 const getDisabledEnableTime = (current: dayjs.Dayjs) => {
   if (!tenant.value.disableTime) {
     return false;
@@ -98,7 +98,7 @@ const getDisabledEnableTime = (current: dayjs.Dayjs) => {
     current > dayjs(tenant.value.disableTime).add(-1, 'day').endOf('day')
   );
 };
-/** 禁用时间不可早于启用时间 */
+/** The disable time cannot be earlier than the enable time */
 const getDisabledDisableTime = (current: dayjs.Dayjs) => {
   if (!tenant.value.enableTime) {
     return false;

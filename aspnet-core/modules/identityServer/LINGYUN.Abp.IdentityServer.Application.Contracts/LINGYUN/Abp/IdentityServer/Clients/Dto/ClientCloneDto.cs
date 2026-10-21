@@ -7,56 +7,56 @@ namespace LINGYUN.Abp.IdentityServer.Clients;
 public class ClientCloneDto
 {
     /// <summary>
-    /// 客户端标识
+    /// Client ID
     /// </summary>
     [Required]
     [DynamicStringLength(typeof(ClientConsts), nameof(ClientConsts.ClientIdMaxLength))]
     public string ClientId { get; set; } = default!;
     /// <summary>
-    /// 客户端名称
+    /// Client name
     /// </summary>
     [Required]
     [DynamicStringLength(typeof(ClientConsts), nameof(ClientConsts.ClientNameMaxLength))]
     public string ClientName { get; set; } = default!;
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     [DynamicStringLength(typeof(ClientConsts), nameof(ClientConsts.DescriptionMaxLength))]
     public string? Description { get; set; }
     /// <summary>
-    /// 复制客户端授权类型
+    /// Copy client authorization type
     /// </summary>
     public bool CopyAllowedGrantType { get; set; }
     /// <summary>
-    /// 复制客户端重定向 Uri
+    /// Copy client redirect Uri
     /// </summary>
     public bool CopyRedirectUri { get; set; }
     /// <summary>
-    /// 复制客户端作用域
+    /// Copy client scope
     /// </summary>
     public bool CopyAllowedScope { get; set; }
     /// <summary>
-    /// 复制客户端声明
+    /// Copy client statement
     /// </summary>
     public bool CopyClaim { get; set; }
     /// <summary>
-    /// 复制客户端密钥
+    /// Copy client key
     /// </summary>
     public bool CopySecret { get; set; }
     /// <summary>
-    /// 复制客户端跨域来源
+    /// Copy client cross-domain source
     /// </summary>
     public bool CopyAllowedCorsOrigin { get; set; }
     /// <summary>
-    /// 复制客户端注销重定向 Uri
+    /// Copy client logout redirect Uri
     /// </summary>
     public bool CopyPostLogoutRedirectUri { get; set; }
     /// <summary>
-    /// 复制客户端属性
+    /// Copy client properties
     /// </summary>
     public bool CopyPropertie { get; set; }
     /// <summary>
-    /// 复制客户端 IdP 限制
+    /// Copy client IdP restrictions
     /// </summary>
     public bool CopyIdentityProviderRestriction { get; set; }
     public ClientCloneDto()

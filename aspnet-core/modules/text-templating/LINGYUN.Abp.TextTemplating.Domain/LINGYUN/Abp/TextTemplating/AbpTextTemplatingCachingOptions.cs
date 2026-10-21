@@ -5,11 +5,11 @@ namespace LINGYUN.Abp.TextTemplating;
 public class AbpTextTemplatingCachingOptions
 {
     /// <summary>
-    /// 文本模板缓存最小过期时间
+    /// Minimum expiration time of text template cache
     /// </summary>
     public TimeSpan? MinimumCacheDuration { get; set; }
     /// <summary>
-    /// 文本模板缓存绝对过期时间
+    /// Text template cache absolute expiration time
     /// </summary>
     public TimeSpan? MaximumCacheDuration { get; set; }
     /// <summary>
@@ -21,17 +21,17 @@ public class AbpTextTemplatingCachingOptions
     /// </summary>
     public bool IsDynamicTemplateDefinitionStoreEnabled { get; set; }
     /// <summary>
-    /// 缓存刷新时间
+    /// Cache refresh time
     /// default: 2 hours
     /// </summary>
     public TimeSpan TemplateDefinitionsCacheRefreshInterval { get; set; }
     /// <summary>
-    /// 申请时间戳超时时间
+    /// Application timestamp timeout
     /// default: 1 minutes
     /// </summary>
     public TimeSpan TemplateDefinitionsCacheStampTimeOut { get; set; }
     /// <summary>
-    /// 时间戳过期时间
+    /// Timestamp expiration time
     /// default: 30 days
     /// </summary>
     public TimeSpan TemplateDefinitionsCacheStampExpiration { get; set; }

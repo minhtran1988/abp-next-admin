@@ -6,8 +6,8 @@ export function useTimeZoneSettingsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询系统时区设置
-   * @returns 系统时区
+   * Query system time zone settings
+   * @returns system time zone
    */
   function getApi(): Promise<string> {
     return request<string>(`/api/setting-management/timezone`, {
@@ -16,8 +16,8 @@ export function useTimeZoneSettingsApi() {
   }
 
   /**
-   * 查询当前用户时区设置
-   * @returns 用户时区
+   * Query the current user time zone settings
+   * @returns user time zone
    */
   function getMyTimezoneApi(): Promise<string> {
     return request<string>(`/api/setting-management/timezone/my-timezone`, {
@@ -26,8 +26,8 @@ export function useTimeZoneSettingsApi() {
   }
 
   /**
-   * 查询时区列表
-   * @returns 时区列表
+   * Query time zone list
+   * @returns time zone list
    */
   function getTimezonesApi(): Promise<NameValue<string>[]> {
     return request<NameValue<string>[]>(
@@ -39,8 +39,8 @@ export function useTimeZoneSettingsApi() {
   }
 
   /**
-   * 更新时区
-   * @param timezone 时区名称
+   * Update time zone
+   * @param timezone time zone name
    */
   function updateApi(timezone: string): Promise<void> {
     return request(`/api/setting-management/timezone?timezone=${timezone}`, {
@@ -49,8 +49,8 @@ export function useTimeZoneSettingsApi() {
   }
 
   /**
-   * 更新当前用户时区
-   * @param timezone 时区名称
+   * Update current user time zone
+   * @param timezone time zone name
    */
   function updateMyTimezoneApi(timezone: string): Promise<void> {
     return request(

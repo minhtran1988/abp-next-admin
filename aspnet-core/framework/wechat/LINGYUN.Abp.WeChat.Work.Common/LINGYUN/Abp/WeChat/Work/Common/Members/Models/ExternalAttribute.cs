@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Members.Models;
 /// <summary>
-/// 成员对外属性
+/// Member external attributes
 /// </summary>
 public abstract class ExternalAttribute
 {
     /// <summary>
-    /// 属性名称： 需要先确保在管理端有创建该属性，否则会忽略
+    /// Attribute name: You need to ensure that this attribute is created on the management side first, otherwise it will be ignored
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 属性类型
+    /// Property type
     /// </summary>
     [NotNull]
     [JsonProperty("type")]

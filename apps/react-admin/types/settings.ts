@@ -2,28 +2,28 @@ import type { NameValue } from "./abp-core";
 
 type SettingValue = NameValue<string>;
 /**
- * 设置接口
+ * Set interface
  */
 interface ISettingProvider {
 	/**
-	 * 获取设定值结合
-	 * @param names 过滤的设置名称
+	 * Get the set value combination
+	 * @param names Filter setting name
 	 */
 	getAll(...names: string[]): SettingValue[];
 	/**
-	 * 查询 number 类型设定值
-	 * @param name 设置名称
-	 * @returns 返回类型为 number 的设定值, 默认0
+	 * Query the number type setting value
+	 * @param name set name
+	 * @returns The return type is the set value of number, default 0
 	 */
 	getNumber(name: string): number;
 	/**
-	 * 获取设定值,如果为空返回空字符串
-	 * @param name 设置名称
+	 * Get the setting value, if it is empty, return an empty string
+	 * @param name set name
 	 */
 	getOrEmpty(name: string): string;
 	/**
-	 * 查询 boolean 类型设定值
-	 * @param name 设置名称
+	 * Query the boolean type setting value
+	 * @param name set name
 	 */
 	isTrue(name: string): boolean;
 }

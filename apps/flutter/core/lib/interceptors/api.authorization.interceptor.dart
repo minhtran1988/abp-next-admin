@@ -23,7 +23,7 @@ class ApiAuthorizationInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    // 需要处理401错误
+    // Need to handle 401 errors
     if (err.response?.statusCode == 401) {
       var token = SessionService.to.token;
       if (token == null || token.refreshToken.isNullOrWhiteSpace() == true)
@@ -33,8 +33,8 @@ class ApiAuthorizationInterceptor extends Interceptor {
       var authService = AuthService.to;
       authService.refreshToken(RefreshTokenParams(token.refreshToken!))
         .then((value) {
-          //SessionService.to.setToken(value);
-          //err.requestOptions
+          // SessionService.to.setToken(value);
+          // err.requestOptions
           RestService.to.dio.request(
             err.requestOptions.path,
             data: err.requestOptions.data,

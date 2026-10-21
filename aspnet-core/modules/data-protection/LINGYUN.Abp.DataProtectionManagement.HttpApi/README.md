@@ -1,32 +1,32 @@
 # LINGYUN.Abp.DataProtectionManagement.HttpApi
 
-数据权限管理HTTP API模块，提供数据权限管理的REST API接口。
+The data permission management HTTP API module provides a REST API interface for data permission management.
 
-## 功能
+## Function
 
-* 数据权限管理REST API
-  * 创建数据权限
-  * 更新数据权限
-  * 删除数据权限
-  * 查询数据权限
+* Data rights management REST API
+  * Create data permissions
+  * Update data permissions
+  * Delete data permission
+  * Query data permissions
 
-## API控制器
+## API Controller
 
-* `DataProtectionController` - 数据权限控制器
-  * `GET /api/data-protection-management/data-protection/{id}` - 获取指定数据权限
-  * `GET /api/data-protection-management/data-protection` - 获取数据权限列表
-  * `POST /api/data-protection-management/data-protection` - 创建数据权限
-  * `PUT /api/data-protection-management/data-protection/{id}` - 更新数据权限
-  * `DELETE /api/data-protection-management/data-protection/{id}` - 删除数据权限
+* `DataProtectionController` - data permission controller
+  * `GET /api/data-protection-management/data-protection/{id}` - Get the specified data permissions
+  * `GET /api/data-protection-management/data-protection` - Get the data permission list
+  * `POST /api/data-protection-management/data-protection` - Create data permissions
+  * `PUT /api/data-protection-management/data-protection/{id}` - update data permissions
+  * `DELETE /api/data-protection-management/data-protection/{id}` - delete data permission
 
-## 权限验证
+## Permission verification
 
-* 所有API都需要认证
-* 创建数据权限需要 `DataProtectionManagement.DataProtection.Create` 权限
-* 更新数据权限需要 `DataProtectionManagement.DataProtection.Update` 权限
-* 删除数据权限需要 `DataProtectionManagement.DataProtection.Delete` 权限
-* 查询数据权限需要 `DataProtectionManagement.DataProtection` 权限
+* All APIs require authentication
+* Creating data permissions requires the `DataProtectionManagement.DataProtection.Create` permission
+*Updating data permission requires `DataProtectionManagement.DataProtection.Update` permission
+* Delete data permission requires `DataProtectionManagement.DataProtection.Delete` permission
+* Querying data permission requires `DataProtectionManagement.DataProtection` permission
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

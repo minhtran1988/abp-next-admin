@@ -44,15 +44,15 @@ public class RouteConsts
         set;
     } = 255;
     /// <summary>
-    /// 层级深度
+    /// Level depth
     /// </summary>
     public const int MaxDepth = 16;
     /// <summary>
-    /// 编码长度
+    /// Encoding length
     /// </summary>
     public const int CodeUnitLength = 5;
     /// <summary>
-    /// 编号最大长度
+    /// Maximum number length
     /// </summary>
     public const int MaxCodeLength = MaxDepth * (CodeUnitLength + 1) - 1;
 }

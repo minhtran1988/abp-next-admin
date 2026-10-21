@@ -3,17 +3,17 @@
 namespace LINGYUN.Abp.Location.Tencent.Model;
 
 /// <summary>
-/// 行政区划中心点坐标
+/// Administrative division center point coordinates
 /// </summary>
 public class Location
 {
     /// <summary>
-    /// 纬度
+    /// Latitude
     /// </summary>
     [JsonProperty("lat")]
     public double Lat { get; set; }
     /// <summary>
-    /// 经度
+    /// Longitude
     /// </summary>
     [JsonProperty("lng")]
     public double Lng { get; set; }

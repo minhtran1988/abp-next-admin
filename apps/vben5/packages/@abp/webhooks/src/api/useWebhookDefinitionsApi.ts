@@ -13,8 +13,8 @@ export function useWebhookDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除Webhook定义
-   * @param name Webhook名称
+   * Delete Webhook definition
+   * @param name Webhook name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/webhooks/definitions/${name}`, {
@@ -23,9 +23,9 @@ export function useWebhookDefinitionsApi() {
   }
 
   /**
-   * 查询Webhook定义
-   * @param name Webhook名称
-   * @returns Webhook定义数据传输对象
+   * Query Webhook definition
+   * @param name Webhook name
+   * @returns Webhook defines data transfer object
    */
   function getApi(name: string): Promise<WebhookDefinitionDto> {
     return request<WebhookDefinitionDto>(`/api/webhooks/definitions/${name}`, {
@@ -34,9 +34,9 @@ export function useWebhookDefinitionsApi() {
   }
 
   /**
-   * 查询Webhook定义列表
-   * @param input Webhook过滤条件
-   * @returns Webhook定义数据传输对象列表
+   * Query Webhook definition list
+   * @param input Webhook filter conditions
+   * @returns Webhook defines a list of data transfer objects
    */
   function getListApi(
     input?: WebhookDefinitionGetListInput,
@@ -51,9 +51,9 @@ export function useWebhookDefinitionsApi() {
   }
 
   /**
-   * 创建Webhook定义
-   * @param input Webhook定义参数
-   * @returns Webhook定义数据传输对象
+   * Create Webhook definition
+   * @param input Webhook definition parameters
+   * @returns Webhook defines data transfer object
    */
   function createApi(
     input: WebhookDefinitionCreateDto,
@@ -65,10 +65,10 @@ export function useWebhookDefinitionsApi() {
   }
 
   /**
-   * 更新Webhook定义
-   * @param name Webhook名称
-   * @param input Webhook定义参数
-   * @returns Webhook定义数据传输对象
+   * Update Webhook definition
+   * @param name Webhook name
+   * @param input Webhook definition parameters
+   * @returns Webhook defines data transfer object
    */
   function updateApi(
     name: string,

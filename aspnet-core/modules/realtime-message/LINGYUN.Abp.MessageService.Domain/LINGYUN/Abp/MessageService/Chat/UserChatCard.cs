@@ -8,48 +8,48 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.MessageService.Chat;
 
 /// <summary>
-/// 用户卡片
+/// User card
 /// </summary>
 public class UserChatCard : AuditedAggregateRoot<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     public virtual Guid UserId { get; protected set; }
     /// <summary>
-    /// 用户名
+    /// Username
     /// </summary>
     public virtual string UserName { get; protected set; } = default!;
     /// <summary>
-    /// 性别
+    /// Gender
     /// </summary>
     public virtual Sex Sex { get; set; }
     /// <summary>
-    /// 签名
+    /// Signature
     /// </summary>
     public virtual string? Sign { get; set; }
     /// <summary>
-    /// 昵称
+    /// Nickname
     /// </summary>
     public virtual string? NickName { get; set; }
     /// <summary>
-    /// 说明
+    /// Description
     /// </summary>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 头像地址
+    /// Avatar address
     /// </summary>
     public virtual string? AvatarUrl { get; protected set; }
     /// <summary>
-    /// 生日
+    /// birthday
     /// </summary>
     public virtual DateTime? Birthday { get; protected set; }
     /// <summary>
-    /// 年龄
+    /// age
     /// </summary>
     public virtual int Age { get; protected set; }
 

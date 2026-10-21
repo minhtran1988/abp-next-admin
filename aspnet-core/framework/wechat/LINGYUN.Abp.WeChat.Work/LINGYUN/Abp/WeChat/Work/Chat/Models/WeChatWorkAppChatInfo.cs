@@ -6,25 +6,25 @@ namespace LINGYUN.Abp.WeChat.Work.Chat.Models;
 public class WeChatWorkAppChatInfo
 {
     /// <summary>
-    /// 群聊名
+    /// Group chat name
     /// </summary>
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public virtual string Name { get; set; } = default!;
     /// <summary>
-    /// 群主id
+    /// Group owner id
     /// </summary>
     [JsonProperty("owner")]
     [JsonPropertyName("owner")]
     public virtual string Owner { get; set; } = default!;
     /// <summary>
-    /// 群成员id列表
+    /// Group member id list
     /// </summary>
     [JsonProperty("userlist")]
     [JsonPropertyName("userlist")]
     public virtual List<string> Users { get; set; } = default!;
     /// <summary>
-    /// 群聊唯一标志
+    /// The only flag for group chat
     /// </summary>
     [JsonProperty("chatid")]
     [JsonPropertyName("chatid")]

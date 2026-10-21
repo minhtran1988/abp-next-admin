@@ -1,59 +1,59 @@
-# MySQL 数据库迁移指南
+# MySQL Database Migration Guide
 
-本指南将帮助您使用迁移脚本来管理 MySQL 数据库的迁移操作。
+This guide will help you use migration scripts to manage MySQL database migration operations.
 
-## 前置条件
+## Preconditions
 
-1. 确保已安装 .NET Core SDK
-2. 确保已安装 Entity Framework Core 工具
+1. Make sure .NET Core SDK is installed
+2. Make sure the Entity Framework Core tools are installed
    ```powershell
    dotnet tool install --global dotnet-ef
    ```
-3. 确保已正确配置 MySQL 连接字符串
+3. Make sure the MySQL connection string is configured correctly
 
-## 使用说明
+## Instructions for use
 
-### 1. 创建新的迁移
+### 1. Create a new migration
 
-1. 在 `aspnet-core/migrations` 目录下运行迁移脚本：
+1. Run the migration script in the `aspnet-core/migrations` directory:
    ```powershell
-   # 使用中文版本
+   # Use Chinese version
    .\Migrate.ps1
    
-   # 或使用英文版本
+   # Or use the English version
    .\MigrateEn.ps1
    ```
 
-2. 在菜单中选择 MySQL 数据库上下文：
+2. Select the MySQL database context in the menu:
    ```
    [1] LINGYUN.Abp.MicroService.AllInOne.EntityFrameworkCore.MySql
    ```
 
-3. 输入迁移名称（可选）：
-   - 直接回车将使用默认名称：`AddNewMigration_yyyyMMdd_HHmmss`
-   - 或输入自定义名称，如：`AddNewFeature`
+3. Enter a migration name (optional):
+   - Enter directly and the default name will be used: `AddNewMigration_yyyyMMdd_HHmmss`
+   - Or enter a custom name, such as: `AddNewFeature`
 
-### 2. 生成 SQL 脚本
+### 2. Generate SQL script
 
-在创建迁移后，脚本会询问是否需要生成 SQL 脚本：
+After creating the migration, the script asks if it needs to generate a SQL script:
 
-1. 选择是否生成 SQL 脚本 (Y/N)
-2. 如果选择 Y，将提供以下选项：
-   - `[A]` - 生成所有迁移的 SQL 脚本
-   - `[L]` - 仅生成最新迁移的 SQL 脚本
-   - `[0-9]` - 从指定的迁移版本开始生成
+1. Select whether to generate SQL script (Y/N)
+2. If you select Y, the following options will be available:
+   - `[A]` - Generate SQL scripts for all migrations
+   - `[L]` - Generate SQL script for latest migration only
+   - `[0-9]` - start building from the specified migration version
 
-生成的 SQL 脚本将保存在：
+The generated SQL script will be saved in:
 ```
 aspnet-core/InitSql/LINGYUN.Abp.MicroService.AllInOne.EntityFrameworkCore.MySql/
 ```
 
-### 3. 应用迁移
+### 3. Application migration
 
-生成的 SQL 脚本可以通过以下方式应用到数据库：
+The generated SQL script can be applied to the database in the following ways:
 
-1. 使用 MySQL 客户端工具直接执行 SQL 脚本
-2. 或使用命令行：
+1. Use MySQL client tools to directly execute SQL scripts
+2. Or use the command line:
    ```powershell
    mysql -u your_username -p your_database < your_script.sql
    ```

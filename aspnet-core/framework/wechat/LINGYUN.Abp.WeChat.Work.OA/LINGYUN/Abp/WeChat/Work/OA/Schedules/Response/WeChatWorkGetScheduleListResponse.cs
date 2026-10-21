@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Response;
 /// <summary>
-/// 获取日程详情响应参数
+/// Get schedule details response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97724"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97724"/>
 /// </remarks>
 public class WeChatWorkGetScheduleListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 日程列表
+    /// Schedule list
     /// </summary>
     [NotNull]
     [JsonProperty("schedule_list")]

@@ -109,7 +109,7 @@ namespace LINGYUN.Abp.MicroService.MessageService;
     typeof(AbpWeChatOfficialHandlersModule),
     typeof(AbpIdentityNotificationsModule),
 
-    // 重写模板引擎支持外部本地化
+    // Rewrite the template engine to support external localization
     typeof(AbpTextTemplatingScribanModule),
 
     typeof(AbpCAPEventBusModule),

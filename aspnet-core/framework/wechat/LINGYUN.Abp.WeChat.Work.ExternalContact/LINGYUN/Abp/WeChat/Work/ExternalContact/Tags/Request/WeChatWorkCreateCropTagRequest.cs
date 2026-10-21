@@ -7,15 +7,15 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Request;
 /// <summary>
-/// 添加企业客户标签请求参数
+/// Add enterprise customer tag request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92117#%E6%B7%BB%E5%8A%A0%E4%BC%81%E4%B8%9A%E5%AE%A2%E6%88%B7%E6%A0%87%E7%AD%BE" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92117#%E6%B7%BB%E5%8A%A0%E4%BC%81%E4%B8%9A%E5%AE%A2%E6%88%B7%E6%A0%87%E7%AD%BE" />
 /// </remarks>
 public class WeChatWorkCreateCropTagRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 标签组id
+    /// Tag group id
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_id")]
@@ -24,7 +24,7 @@ public class WeChatWorkCreateCropTagRequest : WeChatWorkRequest
 
     private string? _groupName;
     /// <summary>
-    /// 标签组名称，最长为30个字符
+    /// Tag group name, up to 30 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("group_name")]
@@ -38,21 +38,21 @@ public class WeChatWorkCreateCropTagRequest : WeChatWorkRequest
         }
     }
     /// <summary>
-    /// 标签组排序的次序值，order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// The order value of the label group sorting, the order value with the larger order value is sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]
     [JsonPropertyName("order")]
     public int? Order { get; set; }
     /// <summary>
-    /// 授权方安装的应用agentid。仅旧的第三方多应用套件需要填此参数
+    /// The agentid of the application installed by the authorized party. Only old third-party multi-application suites need to fill in this parameter
     /// </summary>
     [CanBeNull]
     [JsonProperty("agentid")]
     [JsonPropertyName("agentid")]
     public string? AgentId { get; set; }
     /// <summary>
-    /// 添加的标签组
+    /// Added tag group
     /// </summary>
     [CanBeNull]
     [JsonProperty("tag")]
@@ -77,14 +77,14 @@ public class WeChatWorkCreateCropTagRequest : WeChatWorkRequest
 public class NewCropTag
 {
     /// <summary>
-    /// 添加的标签名称，最长为30个字符
+    /// Added label name, up to 30 characters
     /// </summary>
     [NotNull]
     [JsonProperty("name")]
     [JsonPropertyName("name")]
     public string Name { get; }
     /// <summary>
-    /// 标签次序值。order值大的排序靠前。有效的值范围是[0, 2^32)
+    /// Tag order value. The ones with larger order values ​​are sorted first. Valid value range is [0, 2^32)
     /// </summary>
     [CanBeNull]
     [JsonProperty("order")]

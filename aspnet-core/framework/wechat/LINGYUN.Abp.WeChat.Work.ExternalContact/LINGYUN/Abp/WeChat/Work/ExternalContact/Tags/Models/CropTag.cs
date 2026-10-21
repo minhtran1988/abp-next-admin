@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Models;
 public class CropTag : Tag
 {
     /// <summary>
-    /// 标签是否已经被删除，只在指定tag_id/group_id进行查询时返回
+    /// Whether the tag has been deleted will only be returned when querying by specifying tag_id/group_id
     /// </summary>
     [NotNull]
     [JsonProperty("deleted")]

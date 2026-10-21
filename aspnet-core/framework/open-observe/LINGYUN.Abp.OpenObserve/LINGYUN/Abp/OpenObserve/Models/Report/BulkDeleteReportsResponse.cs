@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 批量删除响应
+/// Batch delete responses
 /// </summary>
 public class BulkDeleteReportsResponse
 {
@@ -17,7 +17,7 @@ public class BulkDeleteReportsResponse
     public string[] Unsuccessful { get; set; } = [];
 
     /// <summary>
-    /// 错误信息
+    /// Error message
     /// </summary>
     [JsonPropertyName("err")]
     public string? Error { get; set; }

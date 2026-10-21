@@ -44,7 +44,7 @@
           <HeaderCell :column="column" />
         </slot>
       </template>
-       <!-- 增加对antdv3.x兼容 -->
+       <!-- Add antdv3.x compatibility -->
       <template #bodyCell="data">
         <slot name="bodyCell" v-bind="data || {}"></slot>
       </template>
@@ -211,7 +211,7 @@
       function handleTableChange(pagination: any, filters: any, sorter: any, extra: any) {
         onTableChange(pagination, filters, sorter);
         emit('change', pagination, filters, sorter);
-        // 解决通过useTable注册onChange时不起作用的问题
+        // Solve the problem that onChange does not work when registering through useTable
         const { onChange } = unref(getProps);
         onChange && isFunction(onChange) && onChange(pagination, filters, sorter, extra);
       }
@@ -502,7 +502,7 @@
       overflow-x: hidden;
 
       // .ant-table-body {
-      //   overflow: auto !important; // 注释解决列头宽度不一致问题
+      // overflow: auto !important; // Comments solve the problem of inconsistent column header widths
       // }
 
       &-title {
@@ -514,7 +514,7 @@
       }
 
       //.ant-table-tbody > tr.ant-table-row-selected td {
-      //background-color: fade(@primary-color, 8%) !important;
+      // background-color: fade(@primary-color, 8%) !important;
       //}
     }
 

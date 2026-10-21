@@ -3,52 +3,52 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcolinin%2Fabp-next-admin%2Fmaster%2Faspnet-core%2Fmodules%2FopenIddict%2FLINGYUN.Abp.OpenIddict.LinkUser%2FLINGYUN.Abp.OpenIddict.LinkUser.csproj)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/LINGYUN.Abp.OpenIddict.LinkUser.svg?style=flat-square)](https://www.nuget.org/packages/LINGYUN.Abp.OpenIddict.LinkUser)
 
-## 简介
+## Introduction
 
-`LINGYUN.Abp.OpenIddict.LinkUser` 是 OpenIddict 的用户链接扩展模块，提供了用户之间的链接认证功能。
+`LINGYUN.Abp.OpenIddict.LinkUser` is the user link extension module of OpenIddict, which provides link authentication function between users.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 用户链接认证
-  * 支持用户之间的链接认证
-  * 支持跨租户用户链接
-  * 支持访问令牌交换
+* User link authentication
+  * Support link authentication between users
+  * Support cross-tenant user linking
+  * Support access token exchange
 
-* 扩展授权类型
-  * 添加 link_user 授权类型
-  * 支持自定义授权流程
-  * 安全日志记录
+* Extended authorization types
+  * Add link_user authorization type
+  * Support custom authorization process
+  * Security logging
 
-* 多语言支持
-  * 集成 ABP 本地化框架
-  * 支持自定义错误消息
+*Multi-language support
+  * Integrate ABP localization framework
+  * Support custom error messages
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenIddict.LinkUser
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpOpenIddictLinkUserModule))]` 到你的模块类。
+1. Add `[DependsOn(typeof(AbpOpenIddictLinkUserModule))]` to your module class.
 
-2. 配置 OpenIddict 服务器:
+2. Configure OpenIddict server:
 
 ```csharp
 public override void PreConfigureServices(ServiceConfigurationContext context)
 {
     PreConfigure<OpenIddictServerBuilder>(builder =>
     {
-        // 允许 link_user 授权类型
+        //Allow link_user authorization type
         builder.AllowLinkUserFlow();
     });
 }
 ```
 
-3. 使用示例:
+3. Usage example:
 
 ```http
 POST /connect/token
@@ -61,28 +61,28 @@ LinkTenantId=target-tenant-id&
 scope=openid profile
 ```
 
-## 参数说明
+## Parameter description
 
-* access_token (必填)
-  * 当前用户的访问令牌
-  * 用于验证当前用户身份
+* access_token (required)
+  * The access token of the current user
+  * Used to verify the identity of the current user
 
-* LinkUserId (必填)
-  * 目标链接用户的ID
-  * 必须是有效的GUID格式
+* LinkUserId (required)
+  * ID of target link user
+  * Must be in valid GUID format
 
-* LinkTenantId (可选)
-  * 目标链接用户所属的租户ID
-  * 如果指定，必须是有效的GUID格式
+* LinkTenantId (optional)
+  * Tenant ID to which the target link user belongs
+  * If specified, must be in valid GUID format
 
-* scope (可选)
-  * 请求的权限范围
-  * 默认包含 openid profile
+* scope (optional)
+  * Requested permission scope
+  * Includes openid profile by default
 
-## 注意事项
+## Notes
 
-* 必须提供有效的访问令牌
-* 目标用户必须与当前用户存在链接关系
-* 跨租户链接时需要指定正确的租户ID
-* 所有操作都会记录安全日志
-* 建议在生产环境中使用 HTTPS
+* A valid access token must be provided
+* The target user must have a link relationship with the current user
+* You need to specify the correct tenant ID when linking across tenants
+* All operations will be recorded in security logs
+* It is recommended to use HTTPS in production environments

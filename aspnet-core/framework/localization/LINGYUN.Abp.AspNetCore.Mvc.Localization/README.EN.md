@@ -82,5 +82,5 @@ public class YourService
 
 ## More Information
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)
 * [ABP Localization Documentation](https://docs.abp.io/en/abp/latest/Localization)

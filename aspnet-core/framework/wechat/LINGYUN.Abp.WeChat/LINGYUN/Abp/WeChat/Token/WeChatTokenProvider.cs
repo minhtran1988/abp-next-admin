@@ -67,7 +67,7 @@ public class WeChatTokenProvider : IWeChatTokenProvider, ISingletonDependency
 
         var response = await client.RequestWeChatCodeTokenAsync(request, cancellationToken);
         var responseContent = await response.Content.ReadAsStringAsync();
-        // 改为直接引用 Newtownsoft.Json
+        // Change to directly reference Newtownsoft.Json
         var weChatTokenResponse = JsonConvert.DeserializeObject<WeChatTokenResponse>(responseContent)!;
         var weChatToken = weChatTokenResponse.ToWeChatToken();
         cacheItem = new WeChatTokenCacheItem(appId, weChatToken);
@@ -76,7 +76,7 @@ public class WeChatTokenProvider : IWeChatTokenProvider, ISingletonDependency
 
         var cacheOptions = new DistributedCacheEntryOptions
         {
-            // 设置绝对过期时间为Token有效期剩余的二分钟
+            // Set the absolute expiration time to the remaining two minutes of the Token's validity period
             AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(weChatToken.ExpiresIn - 120)
         };
 

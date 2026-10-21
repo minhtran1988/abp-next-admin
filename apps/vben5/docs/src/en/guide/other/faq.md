@@ -50,7 +50,7 @@ This issue occurs because route switching animations are enabled, and the corres
 </template>
 ```
 
-**正确示例**
+**Correct example**
 
 ```vue
 <template>

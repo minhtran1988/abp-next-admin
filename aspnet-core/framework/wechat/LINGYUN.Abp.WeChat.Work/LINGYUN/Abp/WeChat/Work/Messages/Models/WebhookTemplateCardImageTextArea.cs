@@ -5,54 +5,54 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 左图右文样式
+/// Left picture and right text style
 /// </summary>
 public class WebhookTemplateCardImageTextArea
 {
     /// <summary>
-    /// 左图右文样式区域点击事件，0或不填代表没有点击事件，1 代表跳转url，2 代表跳转小程序
+    /// Click event in the left image and right text style area, 0 or not filled in means there is no click event, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public int? Type { get; set; }
     /// <summary>
-    /// 左图右文样式的图片url
+    /// Image url with left image and right text style
     /// </summary>
     [NotNull]
     [JsonProperty("image_url")]
     [JsonPropertyName("image_url")]
     public string ImageUrl { get; set; }
     /// <summary>
-    /// 点击跳转的url，type是1时必填
+    /// Click to jump to the url, required when type is 1
     /// </summary>
     [NotNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的appid，type是2时必填
+    /// The appid of the mini program that you click to jump to. Required when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的pagepath，type是2时选填
+    /// Click to jump to the pagepath of the applet. Optional when type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]
     [JsonPropertyName("pagepath")]
     public string? PagePath { get; set; }
     /// <summary>
-    /// 左图右文样式的标题
+    /// Title with left image and right text style
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 左图右文样式的描述
+    /// Description of the left image and right text style
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]
@@ -77,12 +77,12 @@ public class WebhookTemplateCardImageTextArea
         Description = description;
     }
     /// <summary>
-    /// 创建一个跳转链接左图右文样式
+    /// Create a jump link with left image and right text style
     /// </summary>
-    /// <param name="imageUrl">左图右文样式的图片url</param>
-    /// <param name="url">点击跳转的url</param>
-    /// <param name="title">左图右文样式的标题</param>
-    /// <param name="description">左图右文样式的描述</param>
+    /// <param name="imageUrl">Image url with left image and right text style</param>
+    /// <param name="url">Click to jump to the url</param>
+    /// <param name="title">Title with left image and right text style</param>
+    /// <param name="description">Description of the left image and right text style</param>
     /// <returns></returns>
     public static WebhookTemplateCardImageTextArea Link(
         string imageUrl,
@@ -96,13 +96,13 @@ public class WebhookTemplateCardImageTextArea
         return new WebhookTemplateCardImageTextArea(imageUrl, 1, url: url, title: title, description: description);
     }
     /// <summary>
-    /// 创建一个跳转小程序左图右文样式
+    /// Create a jump applet with left image and right text style
     /// </summary>
-    /// <param name="imageUrl">左图右文样式的图片url</param>
-    /// <param name="appId">小程序AppId</param>
-    /// <param name="pagePath">小程序PagePath</param>
-    /// <param name="title">左图右文样式的标题</param>
-    /// <param name="description">左图右文样式的描述</param>
+    /// <param name="imageUrl">Image url with left image and right text style</param>
+    /// <param name="appId">Mini program AppId</param>
+    /// <param name="pagePath">Mini program PagePath</param>
+    /// <param name="title">Title with left image and right text style</param>
+    /// <param name="description">Description of the left image and right text style</param>
     /// <returns></returns>
     public static WebhookTemplateCardImageTextArea MiniProgram(
         string imageUrl, 

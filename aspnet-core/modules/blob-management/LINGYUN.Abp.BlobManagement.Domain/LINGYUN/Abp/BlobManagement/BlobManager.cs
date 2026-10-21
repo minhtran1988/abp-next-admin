@@ -256,39 +256,39 @@ public class BlobManager : DomainService
 
         try
         {
-            // 创建分片文件缓存目录
+            // Create shard file cache directory
             DirectoryHelper.CreateIfNotExists(tempFilePath);
 
             var cancellationToken = GetCancellationToken();
 
-            // 创建分片文件
+            // Create shard file
             var tempSavedFile = Path.Combine(tempFilePath, $"{chunkNumber}.chunk");
-            // 分片传输中断重续时删除原文件
+            // Delete the original file when fragmented transfer is interrupted and resumed
             FileHelper.DeleteIfExists(tempSavedFile);
-            // 当前分片文件缓存
+            // Cache the current fragment file
             using (var fs = File.OpenWrite(tempSavedFile))
             {
                 await file.GetStream().CopyToAsync(fs, cancellationToken);
             }
-            // 最后一个分片时合并文件
+            // Merge files on the last shard
             if (chunkNumber == totalChunks)
             {
                 var mergeTmpFile = Path.Combine(tempFilePath, name);
                 FileHelper.DeleteIfExists(mergeTmpFile);
-                // 创建临时合并文件流
+                // Create a temporary merged file stream
                 using (var mergeFileStream = new FileStream(mergeTmpFile, FileMode.Create, FileAccess.ReadWrite))
                 {
-                    // 获取并排序所有分片文件
+                    // Get and sort all shard files
                     var mergeFiles = Directory.GetFiles(tempFilePath, "*.chunk").OrderBy(name => name);
-                    // 创建临时合并文件
+                    // Create temporary merge file
                     foreach (var mergeFile in mergeFiles)
                     {
-                        // 写入到合并文件流
+                        // Write to merged file stream
                         await mergeFileStream.WriteAsync(await FileHelper.ReadAllBytesAsync(mergeFile), cancellationToken);
-                        // 删除已参与合并的临时文件分片
+                        // Delete the temporary file fragments that have participated in the merge
                         FileHelper.DeleteIfExists(mergeFile);
                     }
-                    // 创建Blob对象
+                    // Create Blob object
                     BlobContainer blobContainer;
                     Blob? parentBlob = null;
                     if (Guid.TryParse(containerIdOrName, out var containerId))
@@ -310,18 +310,18 @@ public class BlobManager : DomainService
                         mergeFileStream.Length,
                         parentBlob);
 
-                    // 多分片文件流合并上传
+                    // Multiple fragment file streams are merged and uploaded
                     mergeFileStream.Seek(0, SeekOrigin.Begin);
 
                     await UploadBlobAsync(blobContainer, blob, mergeFileStream, compareMd5);
                 }
-                // 文件保存之后删除临时文件目录
+                // Delete the temporary file directory after saving the file
                 DirectoryHelper.DeleteIfExists(tempFilePath, true);
             }
         }
         catch
         {
-            // 发生异常删除临时文件目录
+            // Delete the temporary file directory when an exception occurs
             DirectoryHelper.DeleteIfExists(tempFilePath, true);
             throw;
         }
@@ -363,7 +363,7 @@ public class BlobManager : DomainService
 
             if (downloadUrl.IsNullOrWhiteSpace())
             {
-                // 特殊对象存储提供者（FileSystem）无法生成下载链接, 回退指定的请求Url
+                // The special object storage provider (FileSystem) cannot generate a download link and falls back to the specified request Url.
                 downloadUrl = $"{fallbackUrlPrefix.EnsureEndsWith('/')}{cacheKey}";
             }
 

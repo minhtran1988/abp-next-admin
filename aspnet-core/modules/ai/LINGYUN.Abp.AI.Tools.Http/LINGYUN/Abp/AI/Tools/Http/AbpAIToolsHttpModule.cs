@@ -26,7 +26,7 @@ public class AbpAIToolsHttpModule : AbpModule
 
         Configure<AbpAIToolsOptions>(options =>
         {
-            // Http工具
+            // HTTP tools
             options.AIToolProviders.Add<HttpAIToolProvider>();
         });
 

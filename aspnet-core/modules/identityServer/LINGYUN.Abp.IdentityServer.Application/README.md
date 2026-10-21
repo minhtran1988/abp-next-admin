@@ -1,37 +1,37 @@
 # LINGYUN.Abp.IdentityServer.Application
 
-IdentityServer应用服务模块，提供IdentityServer4资源管理相关功能的应用层实现。
+The IdentityServer application service module provides application layer implementation of IdentityServer4 resource management related functions.
 
-## 功能特性
+## Features
 
-* 客户端管理服务
-  * 客户端密钥管理
-  * 客户端作用域管理
-  * 客户端授权类型管理
-  * 客户端跨域来源管理
-  * 客户端重定向URI管理
-  * 客户端登出重定向URI管理
-  * 客户端身份提供程序限制管理
-  * 客户端声明管理
-  * 客户端属性管理
+* Client management services
+  * Client key management
+  * Client scope management
+  * Client authorization type management
+  * Client cross-domain source management
+  * Client redirect URI management
+  * Client logout redirect URI management
+  * Client identity provider restriction management
+  * Client claim management
+  * Client attribute management
 
-* API资源管理服务
-  * API资源属性管理
-  * API资源密钥管理
-  * API资源作用域管理
-  * API资源声明管理
+* API resource management service
+  * API resource attribute management
+  * API resource key management
+  * API resource scope management
+  * API resource declaration management
 
-* API作用域管理服务
-  * API作用域声明管理
-  * API作用域属性管理
+* API scope management service
+  * API scope declaration management
+  * API scope attribute management
 
-* 身份资源管理服务
-  * 身份资源声明管理
-  * 身份资源属性管理
+* Identity resource management services
+  * Identity resource claim management
+  * Identity resource attribute management
 
-* 持久授权管理服务
+* Persistent authorization management service
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -43,19 +43,19 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `AbpIdentityServerApplicationContractsModule` - IdentityServer应用服务契约模块
-* `AbpIdentityServerDomainModule` - IdentityServer领域模块
-* `AbpDddApplicationModule` - ABP DDD应用服务基础模块
-* `AbpAutoMapperModule` - ABP AutoMapper对象映射模块
+* `AbpIdentityServerApplicationContractsModule` - IdentityServer application service contract module
+* `AbpIdentityServerDomainModule` - IdentityServer domain module
+* `AbpDddApplicationModule` - ABP DDD application service basic module
+* `AbpAutoMapperModule` - ABP AutoMapper object mapping module
 
-## 配置使用
+## Configuration usage
 
-模块实现了IdentityServer4资源的CRUD操作，主要用于管理IdentityServer4的配置资源。
+The module implements the CRUD operation of IdentityServer4 resources and is mainly used to manage the configuration resources of IdentityServer4.
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [ABP授权文档](https://docs.abp.io/en/abp/latest/Authorization)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [ABP Authorization Document](https://docs.abp.io/en/abp/latest/Authorization)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

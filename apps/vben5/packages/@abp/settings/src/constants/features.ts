@@ -1,2 +1,2 @@
-/** 启用系统设置 */
+/** Enable system settings */
 export const SettingManagementEnable = 'SettingManagement.Enable';

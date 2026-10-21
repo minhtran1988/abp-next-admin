@@ -27,7 +27,7 @@ const { cancel, deleteApi, deleteManyApi, getPagedListApi } =
 
 const selectedKeys = ref<string[]>([]);
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   fieldMappingTime: [['creationTime', ['startTime', 'endTime'], 'YYYY-MM-DD']],
   schema: [
@@ -68,9 +68,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpAuditLogging.CorrelationId'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
   wrapperClass: 'grid-cols-4',
 };

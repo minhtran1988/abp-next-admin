@@ -37,7 +37,7 @@ type EchartsThemeType = 'dark' | 'light' | null;
 function useEcharts(chartRef: Ref<EchartsUIType>) {
   let chartInstance: echarts.ECharts | null = null;
   let cacheOptions: EChartsOption = {};
-  // echart是否处于激活状态
+  // Is echart active?
   const isActiveRef = ref(false);
 
   const { isDark } = usePreferences();
@@ -127,18 +127,18 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
 
   const updateData = (
     option: EChartsOption,
-    notMerge = false, // false = 合并（保留动画），true = 完全替换
-    lazyUpdate = false, // true 时不立即重绘，适合短时间内多次调用
+    notMerge = false, // false = merge (preserve animation), true = complete replacement
+    lazyUpdate = false, // does not redraw immediately when true, suitable for multiple calls in a short period of time
   ): Promise<echarts.ECharts | null> => {
     return new Promise((resolve) => {
       nextTick(() => {
         if (!chartInstance) {
-          // 还没初始化 → 当作首次渲染
+          // Not initialized yet → treated as first rendering
           renderEcharts(option).then(resolve);
           return;
         }
 
-        // 合并你原有的全局配置（比如 backgroundColor）
+        // Merge your original global configuration (such as backgroundColor)
         const finalOption = {
           ...option,
           ...getOptions.value,
@@ -147,7 +147,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
         chartInstance.setOption(finalOption, {
           notMerge,
           lazyUpdate,
-          // silent: true,     // 如果追求极致性能可开启（关闭所有事件）
+          // silent: true, // If you are pursuing ultimate performance, you can turn it on (turn off all events)
         });
 
         resolve(chartInstance);
@@ -184,7 +184,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
   });
 
   tryOnUnmounted(() => {
-    // 销毁实例，释放资源
+    // Destroy the instance and release resources
     chartInstance?.dispose();
   });
   return {

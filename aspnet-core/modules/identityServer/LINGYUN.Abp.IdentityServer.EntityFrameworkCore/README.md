@@ -1,25 +1,25 @@
 # LINGYUN.Abp.IdentityServer.EntityFrameworkCore
 
-IdentityServer EntityFrameworkCore模块，提供IdentityServer4的Entity Framework Core实现。
+The IdentityServer EntityFrameworkCore module provides the Entity Framework Core implementation of IdentityServer4.
 
-## 功能特性
+## Features
 
-* 仓储实现
-  * API资源仓储 - `EfCoreApiResourceRepository`
-    * 获取API资源名称列表
-    * 继承自ABP框架的API资源仓储基类
+* Warehousing implementation
+  * API resource storage - `EfCoreApiResourceRepository`
+    * Get the list of API resource names
+    * API resource warehousing base class inherited from the ABP framework
 
-  * 身份资源仓储 - `EfCoreIdentityResourceRepository`
-    * 继承自ABP框架的身份资源仓储基类
+  * Identity resource storage - `EfCoreIdentityResourceRepository`
+    * Identity resource storage base class inherited from ABP framework
 
-  * 持久授权仓储 - `EfCorePersistentGrantRepository`
-    * 继承自ABP框架的持久授权仓储基类
+  * Persistent grant repository - `EfCorePersistentGrantRepository`
+    * Persistent authorization repository base class inherited from ABP framework
 
-* 数据库上下文
-  * 使用ABP框架的`IIdentityServerDbContext`
-  * 支持多租户数据隔离
+* Database context
+  * Use `IIdentityServerDbContext` of ABP framework
+  * Support multi-tenant data isolation
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -31,14 +31,14 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `LINGYUN.Abp.IdentityServer.AbpIdentityServerDomainModule` - IdentityServer领域模块
-* `Volo.Abp.IdentityServer.EntityFrameworkCore.AbpIdentityServerEntityFrameworkCoreModule` - ABP IdentityServer EntityFrameworkCore模块
+* `LINGYUN.Abp.IdentityServer.AbpIdentityServerDomainModule` - IdentityServer domain module
+* `Volo.Abp.IdentityServer.EntityFrameworkCore.AbpIdentityServerEntityFrameworkCoreModule` - ABP IdentityServer EntityFrameworkCore module
 
-## 配置使用
+## Configuration usage
 
-### 配置数据库上下文
+### Configure database context
 
 ```csharp
 public class YourDbContext : AbpDbContext<YourDbContext>, IIdentityServerDbContext
@@ -64,8 +64,8 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IIdentityServerDbConte
 }
 ```
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [ABP EntityFrameworkCore文档](https://docs.abp.io/en/abp/latest/Entity-Framework-Core)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [ABP EntityFrameworkCore Documentation](https://docs.abp.io/en/abp/latest/Entity-Framework-Core)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

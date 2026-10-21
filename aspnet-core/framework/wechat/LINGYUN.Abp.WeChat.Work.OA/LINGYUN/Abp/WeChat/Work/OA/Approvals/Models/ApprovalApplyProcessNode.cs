@@ -4,29 +4,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 申请流程节点
+/// Application process node
 /// </summary>
 public class ApprovalApplyProcessNode
 {
     /// <summary>
-    /// 节点类型 1:审批人 2:抄送人 3:办理人
+    /// Node type 1: Approver 2: Copy person 3: Handler
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public ApprovalProcessNodeType Type { get; set; }
     /// <summary>
-    /// 多人审批方式 1-会签；2-或签 3-依次审批
+    /// Multi-person approval method 1-countersign; 2-or sign 3-approval in sequence
     /// </summary>
     /// <remarks>
-    /// type为1、3时必填	
+    /// Required when type is 1 or 3
     /// </remarks>
     [NotNull]
     [JsonProperty("apv_rel")]
     [JsonPropertyName("apv_rel")]
     public byte? ApvRel { get; set; }
     /// <summary>
-    /// 用户id
+    /// user id
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
@@ -44,29 +44,29 @@ public class ApprovalApplyProcessNode
         ApvRel = apvRel;
     }
     /// <summary>
-    /// 审批人节点
+    /// Approver node
     /// </summary>
-    /// <param name="userId">审批人Id</param>
-    /// <param name="apvRel">多人审批方式 1-会签；2-或签 3-依次审批</param>
+    /// <param name="userId">Approver Id</param>
+    /// <param name="apvRel">Multi-person approval method 1-countersign; 2-or sign 3-approval in sequence</param>
     /// <returns></returns>
     public static ApprovalApplyProcessNode Approver(string userId, byte apvRel)
     {
         return new ApprovalApplyProcessNode(ApprovalProcessNodeType.Approver, userId, apvRel);
     }
     /// <summary>
-    /// 办理人节点
+    /// Manager node
     /// </summary>
-    /// <param name="userId">办理人Id</param>
-    /// <param name="apvRel">多人审批方式 1-会签；2-或签 3-依次审批</param>
+    /// <param name="userId">Handler Id</param>
+    /// <param name="apvRel">Multi-person approval method 1-countersign; 2-or sign 3-approval in sequence</param>
     /// <returns></returns>
     public static ApprovalApplyProcessNode Handler(string userId, byte apvRel)
     {
         return new ApprovalApplyProcessNode(ApprovalProcessNodeType.Handler, userId, apvRel);
     }
     /// <summary>
-    /// 抄送人节点
+    /// Cc node
     /// </summary>
-    /// <param name="userId">抄送人Id</param>
+    /// <param name="userId">CCI Id</param>
     /// <returns></returns>
     public static ApprovalApplyProcessNode To(string userId)
     {

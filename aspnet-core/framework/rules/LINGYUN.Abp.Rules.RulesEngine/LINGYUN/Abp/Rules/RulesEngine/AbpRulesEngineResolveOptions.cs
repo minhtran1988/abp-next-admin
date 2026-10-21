@@ -6,14 +6,14 @@ namespace LINGYUN.Abp.Rules.RulesEngine;
 public class AbpRulesEngineResolveOptions
 {
     /// <summary>
-    /// 合并规则  
-    /// 如果为 true,在上一个提供者解析规则之后继续执行下一个提供者  
-    /// 如果为 false,在上一个提供者解析规则之后立即执行规则  
-    /// 默认：false
+    /// Merge rules
+    /// If true, continue executing the next provider after the previous provider parses the rules.
+    /// If false, execute the rule immediately after the previous provider parsed the rule
+    /// Default: false
     /// </summary>
     public bool MergingWorkflows { get; set; }
     /// <summary>
-    /// 规则解析提供者
+    /// Rule parsing provider
     /// </summary>
     [NotNull]
     public List<IWorkflowsResolveContributor> WorkflowsResolvers { get; }

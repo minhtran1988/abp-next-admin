@@ -28,7 +28,7 @@ const PermissionGroupDefinitionModal: React.FC<Props> = ({ visible, onClose, onC
 	const [isEditModel, setIsEditModel] = useState(false);
 	const [activeTab, setActiveTab] = useState<TabKeys>("basic");
 
-	// 获取权限组详情 getApi 用 useMutation
+	// Get permission group details getApi using useMutation
 	const { mutateAsync: fetchGroup, isPending: isFetching } = useMutation({
 		mutationFn: getApi,
 		onMutate: () => {
@@ -40,7 +40,7 @@ const PermissionGroupDefinitionModal: React.FC<Props> = ({ visible, onClose, onC
 		},
 	});
 
-	// 创建权限组
+	// Create permission group
 	const { mutateAsync: createGroup, isPending: isCreating } = useMutation({
 		mutationFn: createApi,
 		onSuccess: (res) => {
@@ -51,7 +51,7 @@ const PermissionGroupDefinitionModal: React.FC<Props> = ({ visible, onClose, onC
 		},
 	});
 
-	// 更新权限组
+	// Update permission group
 	const { mutateAsync: updateGroup, isPending: isUpdating } = useMutation({
 		mutationFn: (data: PermissionGroupDefinitionDto) => updateApi(data.name, data),
 		onSuccess: (res) => {

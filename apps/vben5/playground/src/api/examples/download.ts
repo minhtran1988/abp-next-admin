@@ -3,7 +3,7 @@ import type { RequestResponse } from '@vben/request';
 import { requestClient } from '../request';
 
 /**
- * 下载文件，获取Blob
+ * Download files and get Blobs
  * @returns Blob
  */
 async function downloadFile1() {
@@ -13,7 +13,7 @@ async function downloadFile1() {
 }
 
 /**
- * 下载文件，获取完整的Response
+ * Download the file and get the complete Response
  * @returns RequestResponse<Blob>
  */
 async function downloadFile2() {

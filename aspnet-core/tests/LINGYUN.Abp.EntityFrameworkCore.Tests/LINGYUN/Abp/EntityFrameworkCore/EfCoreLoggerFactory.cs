@@ -13,7 +13,7 @@ namespace LINGYUN.Abp.EntityFrameworkCore.Tests
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new EfCoreLogger(categoryName);//创建EFLogger类的实例
+            return new EfCoreLogger(categoryName);//Create an instance of the EFLogger class
         }
 
         public void Dispose()

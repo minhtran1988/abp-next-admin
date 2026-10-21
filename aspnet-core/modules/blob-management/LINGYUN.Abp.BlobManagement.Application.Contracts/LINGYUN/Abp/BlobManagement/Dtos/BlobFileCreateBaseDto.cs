@@ -9,21 +9,21 @@ namespace LINGYUN.Abp.BlobManagement.Dtos;
 public abstract class BlobFileCreateBaseDto
 {
     /// <summary>
-    /// 用于服务端验证上传文件
+    /// Used for server-side verification of uploaded files
     /// </summary>
     public string? CompareMd5 { get; set; }
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     [Required]
     [DynamicStringLength(typeof(BlobConsts), nameof(BlobConsts.MaxNameLength))]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 所属BlobId
+    /// Owning BlobId
     /// </summary>
     public Guid? ParentId { get; set; }
     /// <summary>
-    /// 文件内容
+    /// File content
     /// </summary>
     [DisableAuditing]
     [DisableValidation]

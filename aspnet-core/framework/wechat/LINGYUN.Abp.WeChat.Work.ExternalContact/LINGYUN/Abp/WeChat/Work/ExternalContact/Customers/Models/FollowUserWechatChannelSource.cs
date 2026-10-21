@@ -2,29 +2,29 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 视频号添加场景
+/// Add scene to video number
 /// </summary>
-[Description("视频号添加场景")]
+[Description("Add scene to video number")]
 public enum FollowUserWechatChannelSource
 {
     /// <summary>
-    /// 未知
+    /// Unknown
     /// </summary>
-    [Description("未知")]
+    [Description("Unknown")]
     None = 0,
     /// <summary>
-    /// 视频号主页
+    /// Video account homepage
     /// </summary>
-    [Description("视频号主页")]
+    [Description("Video account homepage")]
     Home = 1,
     /// <summary>
-    /// 视频号直播间
+    /// Video account live room
     /// </summary>
-    [Description("视频号直播间")]
+    [Description("Video Account Live Room")]
     LiveRoom = 2,
     /// <summary>
-    /// 视频号留资服务
+    /// Video account capital retention service
     /// </summary>
-    [Description("视频号留资服务")]
+    [Description("Video Account Retention Service")]
     RetentionService = 3
 }

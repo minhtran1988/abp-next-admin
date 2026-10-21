@@ -40,7 +40,7 @@ public class QuartzJobListener : JobListenerSupport, ISingletonDependency
             jobName = !jobType.IsGenericType ? jobType.Name : jobType.GetGenericArguments()[0].Name;
         }
         
-        // 作业被锁定才记录warn事件
+        // The warn event is only recorded when the job is locked
         if (context.TryGetCache("JobLocked", out var time) && time != null && int.TryParse(time.ToString(), out var lockTime))
         {
             Logger.LogWarning($"The task {jobName} could not be performed, Because it is being scheduled by another job scheduler");
@@ -61,7 +61,7 @@ public class QuartzJobListener : JobListenerSupport, ISingletonDependency
 
             if (context.Trigger is ISimpleTrigger simpleTrigger)
             {
-                // 增量数据写入临时数据, 仅对长期作业有效, 一次性作业永远为1
+                // Incremental data is written into temporary data, which is only valid for long-term jobs. It is always 1 for one-time jobs.
                 context.Put(nameof(JobInfo.TriggerCount), simpleTrigger.TimesTriggered);
             }
 

@@ -7,10 +7,10 @@ using Volo.Abp.Modularity;
 namespace LINGYUN.Abp.IP2Region;
 
 /// <summary>
-/// 用于验证"物理文件优先"加载逻辑的测试模块
+/// Test module used to verify the "physical file first" loading logic
 /// </summary>
 /// <remarks>
-/// 将内置的离线库释放为物理文件后, 通过 <see cref="AbpIP2RegionOptions"/> 指向这些文件
+/// After releasing the built-in offline libraries into physical files, point to these files through <see cref="AbpIP2RegionOptions"/>
 /// </remarks>
 [DependsOn(
     typeof(AbpIP2RegionModule),
@@ -44,7 +44,7 @@ public class AbpIP2RegionPhysicalFileTestModule : AbpModule
         using var resourceStream = assembly.GetManifestResourceStream(resourceName)!;
         if (File.Exists(filePath) && new FileInfo(filePath).Length == resourceStream.Length)
         {
-            // 已释放过且大小一致, 直接复用
+            // Already released and of the same size, reuse directly
             return filePath;
         }
 

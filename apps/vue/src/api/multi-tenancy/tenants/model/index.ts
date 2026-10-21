@@ -1,34 +1,34 @@
-/** 租户查询过滤对象 */
+/** Tenant query filter object */
 export interface TenantGetByPaged extends PagedAndSortedResultRequestDto {
-    /** 查询过滤字段 */
+    /** Query filter field */
     filter?: string;
   }
   
-  /** 租户创建对象 */
+  /** Tenant creation object */
   export interface TenantCreateOrEdit {
-    /** 管理员邮件地址 */
+    /** Administrator email address */
     adminEmailAddress: string;
-    /** 管理员密码 */
+    /** Administrator password */
     adminPassword: string;
-    /** 租户名称 */
+    /** Tenant name */
     name: string;
-    /** 使用共享数据库 */
+    /** Use shared database */
     useSharedDatabase: boolean;
-    /** 默认连接字符串 */
+    /**Default connection string */
     defaultConnectionString?: string;
   }
   
-  /** 租户对象 */
+  /** Tenant object */
   export interface TenantDto extends FullAuditedEntityDto<string> {
-    /** 租户名称 */
+    /** Tenant name */
     name: string;
   }
   
-  /** 租户连接字符串 */
+  /** Tenant connection string */
   export interface TenantConnectionString {
-    /** 名称 */
+    /** name */
     name: string;
-    /** 值 */
+    /** value */
     value: string;
   }
   

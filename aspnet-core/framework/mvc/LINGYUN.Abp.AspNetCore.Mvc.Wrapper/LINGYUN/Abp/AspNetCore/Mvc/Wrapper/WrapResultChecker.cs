@@ -62,13 +62,13 @@ public class WrapResultChecker : IWrapResultChecker, ISingletonDependency
             return false;
         }
 
-        // 用户传递不包装
+        // User passes without packaging
         if (context.HttpContext.Request.Headers.ContainsKey(AbpHttpWrapConsts.AbpDontWrapResult))
         {
             return false;
         }
 
-        // 用户传递需要包装
+        // User delivery requires packaging
         if (context.HttpContext.Request.Headers.ContainsKey(AbpHttpWrapConsts.AbpWrapResult))
         {
             return true;
@@ -184,7 +184,7 @@ public class WrapResultChecker : IWrapResultChecker, ISingletonDependency
 
     protected virtual string BuildUrl(HttpContext httpContext)
     {
-        //TODO: Add options to include/exclude query, schema and host
+        // TODO: Add options to include/exclude query, schema and host
 
         var uriBuilder = new UriBuilder();
 

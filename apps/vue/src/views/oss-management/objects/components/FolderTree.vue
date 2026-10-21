@@ -183,8 +183,8 @@
   }
 
   function refresh(path: string) {
-    // 刷新目录的方式为收起目录，并设置为未加载状态
-    // 当用户手动展开目录时重载目录结果
+    // The way to refresh the directory is to close the directory and set it to the unloaded state
+    // Reload the directory results when the user manually expands the directory
     const keys = expandedKeys.value;
     const findIndex = keys.findLastIndex((key) => key === path);
     if (findIndex >= 0) {

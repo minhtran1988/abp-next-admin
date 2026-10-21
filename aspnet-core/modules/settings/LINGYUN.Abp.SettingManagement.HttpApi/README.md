@@ -1,51 +1,51 @@
 # LINGYUN.Abp.SettingManagement.HttpApi
 
-## 模块说明
+## Module description
 
-设置管理 HTTP API 模块，提供设置管理的 RESTful API 接口。
+The setting management HTTP API module provides a RESTful API interface for setting management.
 
-### 基础模块
+### Basic module
 
 * LINGYUN.Abp.SettingManagement.Application.Contracts
 * Volo.Abp.AspNetCore.Mvc
 
-### 功能定义
+### Function definition
 
-* 提供设置管理的 API 控制器
-  * SettingController - 通用设置管理控制器
-  * UserSettingController - 用户设置管理控制器
-  * SettingDefinitionController - 设置定义管理控制器
+* API controller that provides settings management
+  * SettingController - Universal settings management controller
+  * UserSettingController - User setting management controller
+  * SettingDefinitionController - Setting definition management controller
 
-### API 接口
+### API interface
 
 * /api/setting-management/settings
-  * GET /by-global - 获取全局设置
-  * GET /by-tenant - 获取租户设置
-  * GET /by-user - 获取用户设置
-  * GET /groups - 获取所有设置组
-  * PUT /{providerName}/{providerKey} - 更新设置
+  * GET /by-global - Get global settings
+  * GET /by-tenant - Get tenant settings
+  * GET /by-user - Get user settings
+  * GET /groups - Get all settings groups
+  * PUT /{providerName}/{providerKey} - update settings
 * /api/setting-management/users
-  * GET - 获取用户设置
-  * PUT - 更新用户设置
-  * DELETE - 删除用户设置
+  * GET - Get user settings
+  * PUT - Update user settings
+  * DELETE - delete user settings
 * /api/setting-management/definitions
-  * GET - 获取设置定义列表
-  * POST - 创建设置定义
-  * PUT - 更新设置定义
-  * DELETE - 删除设置定义
-  * GET /{name} - 获取指定设置定义
+  * GET - Get a list of settings definitions
+  * POST - Create settings definition
+  * PUT - Update settings definition
+  * DELETE - delete a setting definition
+  * GET /{name} - Get the specified setting definition
 
-### 权限要求
+### Permission requirements
 
 * SettingManagement.Settings
-  * Update - 更新设置
-  * ManageGroup - 管理设置组
+  * Update - update settings
+  * ManageGroup - Management settings group
 * SettingManagement.ManageFeatures
-  * ManageHostFeatures - 管理主机功能
+  * ManageHostFeatures - Manage host features
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpSettingManagementHttpApiModule` 依赖
+1. Add `AbpSettingManagementHttpApiModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpSettingManagementHttpApiModule))]
@@ -54,7 +54,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用 API 接口
+2. Use API interface
 
 ```csharp
 public class YourService
@@ -68,11 +68,11 @@ public class YourService
 
     public async Task ManageSettingsAsync()
     {
-        // 获取全局设置
+        // Get global settings
         var response = await _httpClient.GetAsync("/api/setting-management/settings/by-global");
         var settings = await response.Content.ReadFromJsonAsync<ListResultDto<SettingGroupDto>>();
 
-        // 更新用户设置
+        //Update user settings
         await _httpClient.PutAsJsonAsync("/api/setting-management/users", new UpdateSettingDto
         {
             Name = "SettingName",
@@ -82,4 +82,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

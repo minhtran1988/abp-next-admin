@@ -2,7 +2,7 @@
 
 Webhook event bus integration module that provides integration with the ABP event bus.
 
-[简体中文](README.md)
+[Simplified Chinese](README.md)
 
 ## Features
 

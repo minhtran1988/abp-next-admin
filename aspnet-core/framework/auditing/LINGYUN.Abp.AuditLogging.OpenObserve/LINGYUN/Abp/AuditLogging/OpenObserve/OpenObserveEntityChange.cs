@@ -5,20 +5,20 @@ using Volo.Abp.Data;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 展平的实体变更记录(写入 OpenObserve 实体变更数据流)
+/// Flattened entity change records (written to the OpenObserve entity change data stream)
 /// </summary>
 /// <remarks>
-/// 纯数据对象, 不包含序列化逻辑(见 <see cref="OpenObserveEntityChangeConverter"/>);
-/// 因为 OpenObserve 会把嵌套数组保存为 JSON 字符串列,
-/// <see cref="EntityChange.PropertyChanges"/> 以 JSON 字符串形式保存
+/// Pure data object, does not contain serialization logic (see <see cref="OpenObserveEntityChangeConverter"/>);
+/// Because OpenObserve will save nested arrays as JSON string columns,
+/// <see cref="EntityChange.PropertyChanges"/> Save as JSON string
 /// </remarks>
 public class OpenObserveEntityChange
 {
     /// <summary>
-    /// OpenObserve 文档时间(微秒)
+    /// OpenObserve document time (microseconds)
     /// </summary>
     /// <remarks>
-    /// 由 <see cref="EntityChange.ChangeTime"/> 覆盖; 为 null 时使用服务端写入时间
+    /// Overridden by <see cref="EntityChange.ChangeTime"/>; when null, use the server-side write time
     /// </remarks>
     [JsonPropertyName("_timestamp")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -35,7 +35,7 @@ public class OpenObserveEntityChange
     public DateTime ChangeTime { get; set; }
 
     /// <summary>
-    /// 变更类型(<see cref="EntityChangeType"/> 的名称)
+    /// Change type (name of <see cref="EntityChangeType"/>)
     /// </summary>
     public string ChangeType { get; set; }
 
@@ -44,17 +44,17 @@ public class OpenObserveEntityChange
     public string? EntityTypeFullName { get; set; }
 
     /// <summary>
-    /// 审计日志所属用户
+    /// The user to whom the audit log belongs
     /// </summary>
     public Guid? UserId { get; set; }
 
     /// <summary>
-    /// 审计日志所属用户名
+    /// The username to which the audit log belongs
     /// </summary>
     public string? UserName { get; set; }
 
     /// <summary>
-    /// 属性变更明细(JSON 字符串, 由 <see cref="OpenObserveEntityChangeConverter"/> 处理)
+    /// Property change details (JSON string, processed by <see cref="OpenObserveEntityChangeConverter"/>)
     /// </summary>
     [JsonPropertyName("propertychanges")]
     public string? PropertyChangesJson { get; set; }

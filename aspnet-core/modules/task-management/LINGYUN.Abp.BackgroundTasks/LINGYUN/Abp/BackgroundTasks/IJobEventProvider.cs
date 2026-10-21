@@ -3,12 +3,12 @@
 namespace LINGYUN.Abp.BackgroundTasks;
 
 /// <summary>
-/// 任务事件提供者
+/// Task event provider
 /// </summary>
 public interface IJobEventProvider
 {
     /// <summary>
-    /// 返回所有任务事件注册接口
+    /// Returns all task event registration interfaces
     /// </summary>
     /// <returns></returns>
     IReadOnlyCollection<IJobEvent> GetAll();

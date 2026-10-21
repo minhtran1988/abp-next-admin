@@ -4,13 +4,13 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages.Models;
 /// <summary>
-/// 点击菜单跳转链接时的事件推送
+/// Event push when clicking menu jump link
 /// </summary>
 [EventName("menu_click_jump_link")]
 public class MenuClickJumpLinkEvent : WeChatEventMessage
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;

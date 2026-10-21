@@ -4,23 +4,23 @@ namespace LINGYUN.Abp.WeChat.Work.Media.Models;
 public class WeChatWorkMediaResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 媒体文件类型
+    /// Media file type
     /// </summary>
     /// <remarks>
-    /// 图片（image）
-    /// 语音（voice）
-    /// 视频（video）
-    /// 普通文件(file)
+    /// Picture (image)
+    /// Voice (voice)
+    /// Video (video)
+    /// Ordinary file (file)
     /// </remarks>
     [JsonProperty("type")]
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 媒体文件上传后获取的唯一标识，3天内有效
+    /// The unique identifier obtained after the media file is uploaded, valid within 3 days
     /// </summary>
     [JsonProperty("media_id")]
     public string MediaId { get; set; } = default!;
     /// <summary>
-    /// 媒体文件上传时间戳
+    /// Media file upload timestamp
     /// </summary>
     [JsonProperty("created_at")]
     public string CreatedAt { get; set; } = default!;

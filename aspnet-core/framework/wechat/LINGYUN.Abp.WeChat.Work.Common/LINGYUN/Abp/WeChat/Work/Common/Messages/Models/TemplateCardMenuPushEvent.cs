@@ -4,33 +4,33 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 通用模板卡片右上角菜单事件推送
+/// Menu event push in the upper right corner of the universal template card
 /// </summary>
 [EventName("template_card_menu_event")]
 public class TemplateCardMenuPushEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 与发送模板卡片消息时指定的task_id相同
+    /// The same as the task_id specified when sending the template card message
     /// </summary>
     [XmlElement("TaskId")]
     public string TaskId { get; set; } = default!;
     /// <summary>
-    /// 通用模板卡片的类型，
-    /// 类型有
+    /// Type of universal template card,
+    /// The type is
     /// "text_notice", 
     /// "news_notice", 
     /// "button_interaction"
-    /// 三种
+    /// Three types
     /// </summary>
     [XmlElement("CardType")]
     public string CardType { get; set; } = default!;
     /// <summary>
-    /// 用于调用更新卡片接口的ResponseCode
+    /// ResponseCode used to call the update card interface
     /// </summary>
     [XmlElement("ResponseCode")]
     public string ResponseCode { get; set; } = default!;
     /// <summary>
-    /// 与发送模板卡片右上角菜单的按钮key值相同
+    /// The same key value as the button key in the menu in the upper right corner of the send template card
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;

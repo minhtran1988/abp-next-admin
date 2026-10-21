@@ -3,7 +3,7 @@
 public class SystemInfoModel
 {
     /// <summary>
-    /// 组件状态集合
+    /// Component state collection
     /// </summary>
     public ComponentInfoModel[] Components { get; set; } = default!;
 }

@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 节点类型
+/// Node type
 /// </summary>
-[Description("节点类型")]
+[Description("NodeType")]
 public enum CustomerStrategyRangeType
 {
     /// <summary>
-    /// 成员
+    /// members
     /// </summary>
-    [Description("成员")]
+    [Description("Member")]
     Member = 1,
     /// <summary>
-    /// 部门
+    /// Department
     /// </summary>
-    [Description("部门")]
+    [Description("Department")]
     Part = 2
 }

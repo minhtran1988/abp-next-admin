@@ -67,7 +67,7 @@
       label: L('Claims:Value'),
       colProps: { span: 24 },
       required: true,
-      // TODO: 选择的type ValueType变化时需要调整输入控件类型
+      // TODO: The input control type needs to be adjusted when the selected type ValueType changes.
     },
   ];
   const columns: BasicColumn[] = [

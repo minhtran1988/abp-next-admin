@@ -43,7 +43,7 @@ export function useModal({ modelIdRef, formElRef, tabActivedKey }: UseModal) {
   watch(
     () => unref(modelIdRef),
     (id) => {
-      // 初始值
+      // initial value
       modelRef.value = Object.assign({
         enabled: true,
         enableLocalLogin: true,

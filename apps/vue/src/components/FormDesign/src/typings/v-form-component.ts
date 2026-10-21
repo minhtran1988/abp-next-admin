@@ -15,69 +15,69 @@ type ColSpanType = number | string;
 
 declare type Value = [number, number] | number;
 /**
- * 组件属性
+ * Component properties
  */
 export interface IVFormComponent {
   // extends Omit<FormSchema, 'component' | 'label' | 'field' | 'rules'> {
-  // 对应的字段
+  // Corresponding fields
   field?: string;
-  // 组件类型
+  // component type
   component: string;
-  // 组件label
+  // component label
   label?: string;
-  // 自定义组件控件实例
+  // Custom component control instance
   componentInstance?: ComponentOptions<any>;
-  // 组件icon
+  // component icon
   icon?: string;
-  // 组件校验规则
+  // Component verification rules
   rules?: Partial<IValidationRule>[];
-  // 是否隐藏
+  // Whether to hide
   hidden?: boolean;
-  // 隐藏label
+  // hide label
   hiddenLabel?: boolean;
-  // 组件宽度
+  // component width
   width?: string;
-  // 是否必选
+  // Is it required?
   required?: boolean;
-  // 必选提示
+  // Required prompt
   message?: string;
-  // 提示信息
+  // Prompt message
   helpMessage?: string;
-  // 传给给组件的属性，默认会吧所有的props都传递给控件
+  // Attributes passed to the component. By default, all props will be passed to the control.
   componentProps?: IAnyObject;
-  // 监听组件事件对象，以v-on方式传递给控件
+  // Listen to the component event object and pass it to the control in v-on mode
   on?: IAnyObject<(...any: []) => void>;
-  // 组件选项
+  // component options
   options?: IAnyObject;
-  // 唯一标识
+  // unique identifier
   key?: string;
   // Reference formModelItem
   itemProps?: Partial<FormItem>;
 
   colProps?: Partial<ColEx>;
-  // 联动字段
+  // Linkage field
   link?: string[];
-  // 联动属性变化的回调
+  // Callback for linkage attribute changes
   update?: (value: any, formItem: IVFormComponent, fApi: IVFormMethods) => void;
-  // 控件栅格数
+  // Number of control grids
   // span?: number;
-  // 标签布局
+  // Label layout
   labelCol?: IAnyObject;
-  // 组件布局
+  // component layout
   wrapperCol?: IAnyObject;
-  // 子控件
+  // child control
   columns?: Array<{ span: number; children: any[] }>;
 }
 
 declare type namesType = string | string[];
 
 /**
- * 表单配置
+ * Form configuration
  */
 export interface IFormConfig {
-  // 表单项配置列表
+  // Form item configuration list
   // schemas: IVFormComponent[];
-  // 表单配置
+  // form configuration
   // config: {
   layout?: LayoutType;
   labelLayout?: labelLayout;
@@ -92,7 +92,7 @@ export interface IFormConfig {
   // Internal component size of the form
   size?: 'default' | 'small' | 'large';
   // };
-  // 当前选中项
+  // currently selected item
   currentItem?: IVFormComponent;
   activeKey?: PropsTabKey;
   colon?: boolean;

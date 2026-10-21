@@ -13,8 +13,8 @@ export function useNotificationDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除通知定义
-   * @param name 通知名称
+   * Delete notification definition
+   * @param name notification name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/notifications/definitions/notifications/${name}`, {
@@ -23,9 +23,9 @@ export function useNotificationDefinitionsApi() {
   }
 
   /**
-   * 查询通知定义
-   * @param name 通知名称
-   * @returns 通知定义数据传输对象
+   * Query notification definition
+   * @param name notification name
+   * @returns notification definition data transfer object
    */
   function getApi(name: string): Promise<NotificationDefinitionDto> {
     return request<NotificationDefinitionDto>(
@@ -37,9 +37,9 @@ export function useNotificationDefinitionsApi() {
   }
 
   /**
-   * 查询通知定义列表
-   * @param input 通知过滤条件
-   * @returns 通知定义数据传输对象列表
+   * Query notification definition list
+   * @param input notification filter conditions
+   * @returns Notification definition data transfer object list
    */
   function getListApi(
     input?: NotificationDefinitionGetListInput,
@@ -54,9 +54,9 @@ export function useNotificationDefinitionsApi() {
   }
 
   /**
-   * 创建通知定义
-   * @param input 通知定义参数
-   * @returns 通知定义数据传输对象
+   * Create notification definition
+   * @param input notification definition parameters
+   * @returns notification definition data transfer object
    */
   function createApi(
     input: NotificationDefinitionCreateDto,
@@ -71,10 +71,10 @@ export function useNotificationDefinitionsApi() {
   }
 
   /**
-   * 更新通知定义
-   * @param name 通知名称
-   * @param input 通知定义参数
-   * @returns 通知定义数据传输对象
+   * Update notification definition
+   * @param name notification name
+   * @param input notification definition parameters
+   * @returns notification definition data transfer object
    */
   function updateApi(
     name: string,

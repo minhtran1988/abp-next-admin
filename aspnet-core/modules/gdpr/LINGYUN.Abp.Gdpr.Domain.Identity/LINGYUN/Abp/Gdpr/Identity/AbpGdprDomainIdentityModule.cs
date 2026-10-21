@@ -27,9 +27,9 @@ public class AbpGdprDomainIdentityModule : AbpModule
 
         Configure<AbpGdprOptions>(options =>
         {
-            // 用户数据提供者
+            // User data provider
             options.GdprUserDataProviders.Add(new AbpGdprIdentityUserDataProvider());
-            // 用户账户提供者
+            // User account provider
             options.GdprUserAccountProviders.Add(new AbpGdprIdentityUserAccountProvider());
         });
     }

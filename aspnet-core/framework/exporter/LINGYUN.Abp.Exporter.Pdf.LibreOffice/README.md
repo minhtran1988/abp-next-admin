@@ -2,9 +2,9 @@
 
 > LibreOffice is Free and Open Source Software. Development is open to new talent and new ideas, and our software is tested and used daily by a large and devoted user community.  
 
-此模块使用本地 `LibreOffice` 命令行实现将Excel转换为Pdf, 请引用此模块前确保已安装有 `LibreOffice`, 如未安装在默认目录, 请在使用前手动指定安装目录.  
+This module uses the local `LibreOffice` command line to convert Excel to Pdf. Please ensure that `LibreOffice` is installed before using this module. If it is not installed in the default directory, please manually specify the installation directory before use.
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp
@@ -16,7 +16,7 @@
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            // 手动指定安装目录
+            // Manually specify the installation directory
             LibreOfficeCommands.WindowsCliDir = "path\\to\\libreoffice";
             LibreOfficeCommands.UnixCliDir = "path/to/libreoffice";
         }

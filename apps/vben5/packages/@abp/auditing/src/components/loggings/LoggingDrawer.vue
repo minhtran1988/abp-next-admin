@@ -51,7 +51,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
   },
   title: $t('AbpAuditLogging.AuditLog'),
 });
-/** 异常信息表格配置 */
+/** Exception information table configuration */
 const exceptionsGridOptions: VxeGridProps<LogExceptionDto> = {
   border: true,
   columns: [

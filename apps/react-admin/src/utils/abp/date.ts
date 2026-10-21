@@ -15,12 +15,12 @@ export function formatToDate(date?: dayjs.ConfigType, format = DATE_FORMAT): str
 	return dayjs(normalizedDate).format(format);
 }
 /**
- * 获取指定日期
- * @param days 天数
- * @returns 返回指定天数之后的日期
+ * Get the specified date
+ * @param days Number of days
+ * @returns Returns the date after the specified number of days
  */
 export function getAppointDate(days: number): dayjs.Dayjs {
-	const today = new Date(); // 获取当前日期
+	const today = new Date(); // Get the current date
 	const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + days);
 	return dayjs(tomorrow);
 }

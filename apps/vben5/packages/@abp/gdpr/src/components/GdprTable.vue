@@ -132,7 +132,7 @@ const onDeleteData = () => {
           centered: true,
           content: $t('AbpGdpr.PersonalDataDeleteRequestReceived'),
           onOk: () => {
-            // 刷新页面重载用户信息
+            // Refresh the page and reload user information
             window.location.reload();
           },
           title: $t('AbpGdpr.RequestedSuccessfully'),

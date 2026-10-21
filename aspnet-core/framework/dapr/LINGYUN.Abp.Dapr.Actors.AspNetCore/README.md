@@ -1,19 +1,19 @@
 # LINGYUN.Abp.Dapr.Actors.AspNetCore
 
-Dapr.Asp.NetCore的Abp框架集成,扫描程序集内部实现的Actor服务列表,批量注册为Dapr.Actors  
+Abp framework integration of Dapr.Asp.NetCore scans the list of Actor services implemented within the assembly and registers them as Dapr.Actors in batches
 
-## 功能特性
+## Features
 
-* 自动Actor服务注册
-* 与ABP依赖注入系统集成
-* 通过`RemoteServiceAttribute`支持自定义Actor类型名称
-* 通过`ActorRuntimeOptions`配置Actor运行时
-* 自动Actor端点映射
-* Actor接口验证
+* Automatic Actor service registration
+* Integrated with ABP dependency injection system
+* Support custom Actor type names through `RemoteServiceAttribute`
+* Configure the Actor runtime through `ActorRuntimeOptions`
+* Automatic Actor endpoint mapping
+* Actor interface verification
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpDaprActorsAspNetCoreModule))]
@@ -21,7 +21,7 @@ public class YouProjectModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
-        // 配置Actor运行时选项
+        //Configure Actor runtime options
         PreConfigure<ActorRuntimeOptions>(options =>
         {
             options.ActorIdleTimeout = TimeSpan.FromMinutes(60);
@@ -34,12 +34,12 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 实现示例
+## Implementation example
 
-1. 定义Actor接口
+1. Define Actor interface
 
 ```csharp
-[RemoteService("counter")] // 可选：自定义Actor类型名称
+[RemoteService("counter")] // Optional: Custom Actor type name
 public interface ICounterActor : IActor
 {
     Task<int> GetCountAsync();
@@ -47,7 +47,7 @@ public interface ICounterActor : IActor
 }
 ```
 
-2. 实现Actor
+2. Implement Actor
 
 ```csharp
 public class CounterActor : Actor, ICounterActor
@@ -72,31 +72,31 @@ public class CounterActor : Actor, ICounterActor
 }
 ```
 
-模块将自动：
-1. 检测`CounterActor`实现
-2. 将其注册到Dapr.Actors
-3. 配置Actor运行时
-4. 映射Actor端点
+The module will automatically:
+1. Detect `CounterActor` implementation
+2. Register it to Dapr.Actors
+3. Configure Actor runtime
+4. Mapping Actor endpoints
 
-## Actor运行时配置
+## Actor runtime configuration
 
-模块通过`ActorRuntimeOptions`支持所有标准的Dapr Actor运行时配置：
+The module supports all standard Dapr Actor runtime configurations via `ActorRuntimeOptions`:
 
 ```csharp
 PreConfigure<ActorRuntimeOptions>(options =>
 {
-    // Actor超时设置
+    // Actor timeout settings
     options.ActorIdleTimeout = TimeSpan.FromMinutes(60);
     options.ActorScanInterval = TimeSpan.FromSeconds(30);
     
-    // 清理设置
+    // Clean up settings
     options.DrainOngoingCallTimeout = TimeSpan.FromSeconds(30);
     options.DrainRebalancedActors = true;
     
-    // 提醒器设置
+    // Reminder settings
     options.RemindersStoragePartitions = 7;
     
-    // 自定义序列化设置
+    // Custom serialization settings
     options.JsonSerializerOptions = new JsonSerializerOptions
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -104,17 +104,17 @@ PreConfigure<ActorRuntimeOptions>(options =>
 });
 ```
 
-## 重要说明
+## IMPORTANT NOTE
 
-* Actor实现必须在依赖注入容器中注册
-* Actor接口必须继承自`IActor`
-* Actor类型名称可以使用`RemoteServiceAttribute`自定义
-* 模块使用ABP的端点路由系统自动映射Actor端点
-* Actor运行时选项应在`PreConfigureServices`阶段配置
+* Actor implementation must be registered in the dependency injection container
+* Actor interface must inherit from `IActor`
+* Actor type name can be customized using `RemoteServiceAttribute`
+* The module uses ABP's endpoint routing system to automatically map Actor endpoints
+* Actor runtime options should be configured in the `PreConfigureServices` phase
 
-## 端点映射
+## Endpoint mapping
 
-模块自动映射以下Actor端点：
+The module automatically maps the following Actor endpoints:
 * `/dapr/actors/{actorType}/{actorId}/method/{methodName}`
 * `/dapr/actors/{actorType}/{actorId}/state`
 * `/dapr/actors/{actorType}/{actorId}/reminders/{reminderName}`

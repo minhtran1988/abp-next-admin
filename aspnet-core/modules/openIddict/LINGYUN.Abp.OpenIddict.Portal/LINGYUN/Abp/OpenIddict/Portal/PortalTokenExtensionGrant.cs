@@ -70,7 +70,7 @@ public class PortalTokenExtensionGrant : ITokenExtensionGrant
                     },
                     new Dictionary<string, object?>
                     {
-                        // 是否可直接选择的模式
+                        // Whether the mode can be directly selected
                         { "Enterprises", JsonConvert.SerializeObject(enterprises.Select(x => new { Id = x.Id, Name = x.Name, Logo = x.Logo })) },
                     }
                 );

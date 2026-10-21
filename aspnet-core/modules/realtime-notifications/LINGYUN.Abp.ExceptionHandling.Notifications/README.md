@@ -1,18 +1,18 @@
 # LINGYUN.Abp.ExceptionHandling.Notifications
 
-基于abp框架底层的**IExceptionSubscriber**的实时通知类型，用于将异常信息通过实时通知方式发送给用户。
+The real-time notification type based on **IExceptionSubscriber** at the bottom of the abp framework is used to send exception information to users through real-time notification.
 
-## 功能特性
+## Features
 
-* 支持异常实时通知
-* 支持多租户
-* 支持通知模板
-* 支持系统级通知
-* 集成了通用通知模块
+* Support real-time notification of exceptions
+*Support multi-tenancy
+* Support notification templates
+* Support system level notifications
+* Integrated universal notification module
 
-## 配置使用
+## Configuration usage
 
-使用前需要配置**AbpExceptionHandlingOptions**定义需要发送通知的异常。
+Before use, you need to configure **AbpExceptionHandlingOptions** to define the exceptions that need to be notified.
 
 ```csharp
     [DependsOn(
@@ -22,45 +22,45 @@
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // 自定义需要处理的异常
+            // Customize the exceptions that need to be handled
             Configure<AbpExceptionHandlingOptions>(options =>
             {
-                //  加入需要处理的异常类型
+                //Add the exception types that need to be handled
                 options.Handlers.Add<AbpException>();
             });
         }
     }
 ```
 
-## 通知内容
+## Notification content
 
-异常通知包含以下信息：
-* `header`: 异常通知头部信息
-* `footer`: 异常通知底部信息
-* `loglevel`: 日志级别
-* `stackTrace`: 异常堆栈信息
+Exception notifications contain the following information:
+* `header`: Exception notification header information
+* `footer`: Exception notification bottom information
+* `loglevel`: log level
+* `stackTrace`: Exception stack information
 
-## 通知名称
+## Notification name
 
-模块使用以下通知名称：
-* `NotificationsCommonNotificationNames.ExceptionHandling`: 异常处理通知名称
+Modules use the following notification names:
+* `NotificationsCommonNotificationNames.ExceptionHandling`: exception handling notification name
 
-## 通知模板
+## Notification template
 
-* 发送者: System
-* 通知级别: Error
-* 支持多租户: 是
+*Sender: System
+* Notification level: Error
+*Support multi-tenancy: Yes
 
-## 依赖模块
+## Dependent modules
 
-* `AbpExceptionHandlingModule`: 基础异常处理模块
-* `AbpNotificationsCommonModule`: 通用通知模块
+* `AbpExceptionHandlingModule`: basic exception handling module
+* `AbpNotificationsCommonModule`: Common notification module
 
-## 相关链接
+## Related links
 
-* [基础异常处理模块](../../../framework/common/LINGYUN.Abp.ExceptionHandling/README.md)
-* [异常邮件通知模块](../../../framework/common/LINGYUN.Abp.ExceptionHandling.Emailing/README.md)
+* [Basic exception handling module](../../../framework/common/LINGYUN.Abp.ExceptionHandling/README.md)
+* [Exception email notification module](../../../framework/common/LINGYUN.Abp.ExceptionHandling.Emailing/README.md)
 
-## 更多
+## More
 
-有关更多信息和配置示例，请参阅[文档](https://github.com/colinin/abp-next-admin)。
+See [Documentation](https://github.com/colinin/abp-next-admin) for more information and configuration examples.

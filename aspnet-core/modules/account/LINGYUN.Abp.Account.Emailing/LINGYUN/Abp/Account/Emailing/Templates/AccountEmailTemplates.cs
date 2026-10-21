@@ -3,11 +3,11 @@
 public static class AccountEmailTemplates
 {
     /// <summary>
-    /// 邮件地址确认
+    /// Email address confirmation
     /// </summary>
     public const string MailConfirmLink = "Abp.Account.MailConfirmLink";
     /// <summary>
-    /// 邮件安全验证
+    /// Email security verification
     /// </summary>
     public const string MailSecurityVerifyLink = "Abp.Account.MailSecurityVerifyLink";
 }

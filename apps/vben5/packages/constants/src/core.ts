@@ -1,5 +1,5 @@
 /**
- * @zh_CN 登录页面 url 地址
+ * @zh_CN login page url address
  */
 export const LOGIN_PATH = '/auth/login';
 
@@ -13,7 +13,7 @@ export interface LanguageOption {
  */
 export const SUPPORT_LANGUAGES: LanguageOption[] = [
   {
-    label: '简体中文',
+    label: 'Simplified Chinese',
     value: 'zh-CN',
   },
   {

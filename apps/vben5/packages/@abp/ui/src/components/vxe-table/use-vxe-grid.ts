@@ -43,11 +43,11 @@ export function useVbenVxeGrid<
       inheritAttrs: false,
       slots: Object as SlotsType<
         {
-          // 表格标题
+          // table title
           'table-title': undefined;
-          // 工具栏左侧部分
+          // The left part of the toolbar
           'toolbar-actions': VxeGridSlotTypes.DefaultSlotParams<T>;
-          // 工具栏右侧部分
+          // Right part of the toolbar
           'toolbar-tools': VxeGridSlotTypes.DefaultSlotParams<T>;
         } & FilteredSlots<T>
       >,

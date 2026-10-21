@@ -7,7 +7,7 @@
           :config="selectNode.props"
         />
       </TabPane>
-      <!-- <TabPane label="表单权限设置" name="permissions">
+      <!-- <TabPane label="Form permission settings" name="permissions">
         <form-authority-config/>
       </TabPane> -->
     </Tabs>
@@ -25,7 +25,7 @@
   import { useFlowStoreWithOut } from '/@/store/modules/flow';
   import Approval from './ApprovalNodeConfig.vue';
   import Trigger from './TriggerNodeConfig.vue';
-  //import FormAuthorityConfig from './FormAuthorityConfig.vue'
+  // import FormAuthorityConfig from './FormAuthorityConfig.vue'
   import Root from './RootNodeConfig.vue';
   import HttpEndPoint from './HttpEndPointNodeConfig.vue';
 
@@ -46,11 +46,11 @@
   const name = computed(() => {
     switch (selectNode.value.type) {
       case 'ROOT':
-        return '设置发起人';
+        return 'Set initiator';
       case 'APPROVAL':
-        return '设置审批人';
+        return 'Set approver';
       case 'CC':
-        return '设置抄送人';
+        return 'Set CC';
       default:
         return undefined;
     }

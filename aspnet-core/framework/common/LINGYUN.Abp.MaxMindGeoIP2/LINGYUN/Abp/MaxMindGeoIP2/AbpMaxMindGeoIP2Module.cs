@@ -8,12 +8,12 @@ using Volo.Abp.Modularity;
 namespace LINGYUN.Abp.MaxMindGeoIP2;
 
 /// <summary>
-/// MaxMind GeoIP2 模块
+/// MaxMind GeoIP2 module
 /// </summary>
 /// <remarks>
-/// 离线库(GeoLite2-City.mmdb)受 MaxMind 许可约束, 不由本模块分发:
-/// 使用方需通过 <c>MaxMindGeoIP2:DatabaseFile</c> 指定文件路径,
-/// 文件不存在时使用 <see cref="EmptyGeoIP2DatabaseReader"/> 并记录警告日志
+/// The offline library (GeoLite2-City.mmdb) is subject to the MaxMind license and is not distributed by this module:
+/// The user needs to specify the file path through <c>MaxMindGeoIP2:DatabaseFile</c>.
+/// Use <see cref="EmptyGeoIP2DatabaseReader"/> when the file does not exist and log a warning
 /// </remarks>
 [DependsOn(typeof(AbpIPLocationModule))]
 public class AbpMaxMindGeoIP2Module : AbpModule
@@ -44,7 +44,7 @@ public class AbpMaxMindGeoIP2Module : AbpModule
                 return new DatabaseReader(options.DatabaseFile, options.FileAccessMode);
             }
 
-            // 未提供离线库(或文件不存在)时使用空解读器, 避免阻断业务
+            // Use an empty interpreter when no offline library is provided (or the file does not exist) to avoid blocking the business
             logger?.LogWarning(
                 "The MaxMind GeoIP2 database file was not found: {DatabaseFile}, " +
                 "IP location resolution will return empty results. " +

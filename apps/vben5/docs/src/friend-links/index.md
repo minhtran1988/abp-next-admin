@@ -1,26 +1,26 @@
-# 友情链接
+# Friendly links
 
-如果您的网站是与 Vben Admin 相关的，也属于开源项目，欢迎联系我们，我们会将与您的网站加入交换友情链接。
+If your website is related to Vben Admin and is an open source project, please contact us and we will add and exchange friendly links with your website.
 
-## 交换方式
+## Exchange method
 
-### 添加作者，并注明来意
+### Add the author and indicate the purpose of the visit
 
-- 通过邮箱联系作者： [ann.vben@gmail.com](mailto:ann.vben@gmail.com)
-- 通过微信联系作者：
+- Contact the author via email: [ann.vben@gmail.com](mailto:ann.vben@gmail.com)
+- Contact the author via WeChat:
 
  <img src="https://unpkg.com/@vbenjs/static-source@0.1.7/source/wechat.jpg" style="width: 300px;"/>
 
-### 提供资料
+### Provide information
 
-提供您的网站名称、链接、描述、LOGO（可选）等信息，我们会在第一时间添加您的网站。
+Provide your website name, link, description, LOGO (optional) and other information, and we will add your website as soon as possible.
 
-### 友情链接
+### Friendly links
 
-- 在您的网站上添加我们的友情链接，链接如下：
-  - 名称：Vben Admin
-  - 链接：https://www.vben.pro
-  - 描述：Vben Admin 企业级开箱即用的中后台前端解决方案
+- Add our friendly link on your website, the link is as follows:
+  - Name: Vben Admin
+  - Link: https://www.vben.pro
+  - Description: Vben Admin enterprise-level out-of-the-box mid-, back-end and front-end solution
   - Logo：https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp
 
-我们将定期的检查友情链接，如果发现您的网站已经删除了我们的友情链接以及链接地址是否正确。
+We will check the friendly links regularly. If we find that your website has deleted our friendly links and whether the link address is correct.

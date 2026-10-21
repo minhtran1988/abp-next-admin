@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 关联审批单控件配置
+/// Associated approval order control configuration
 /// </summary>
 public class RelatedApprovalControlConfig : ControlConfig
 {
     /// <summary>
-    /// 关联审批单控件
+    /// Associated approval order control
     /// </summary>
     [NotNull]
     [JsonProperty("related_approval")]
@@ -29,7 +29,7 @@ public class RelatedApprovalControlConfig : ControlConfig
 public class RelatedApprovalConfig
 {
     /// <summary>
-    /// 关联审批单的template_id ，不填时表示可以关联所有模版，该template_id可通过获取审批模版接口获取
+    /// The template_id associated with the approval form. If not filled in, it means that all templates can be associated. The template_id can be obtained through the Get Approval Template interface.
     /// </summary>
     [NotNull]
     [JsonProperty("template_id")]

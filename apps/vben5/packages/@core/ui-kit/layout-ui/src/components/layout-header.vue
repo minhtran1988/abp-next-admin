@@ -5,31 +5,31 @@ import { computed, useSlots } from 'vue';
 
 interface Props {
   /**
-   * 横屏
+   * Horizontal screen
    */
   fullWidth: boolean;
   /**
-   * 高度
+   * height
    */
   height: number;
   /**
-   * 是否移动端
+   * Whether it is mobile
    */
   isMobile: boolean;
   /**
-   * 是否显示
+   * Whether to display
    */
   show: boolean;
   /**
-   * 侧边菜单宽度
+   * Side menu width
    */
   sidebarWidth: number;
   /**
-   * 主题
+   * theme
    */
   theme: string | undefined;
   /**
-   * 宽度
+   * Width
    */
   width: string;
   /**

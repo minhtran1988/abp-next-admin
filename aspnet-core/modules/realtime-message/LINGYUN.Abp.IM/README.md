@@ -1,25 +1,25 @@
 # LINGYUN.Abp.IM
 
-即时通讯模块的基础模块。
+The basic module of instant messaging module.
 
-## 功能特性
+## Features
 
-* 提供即时通讯基础设施
-* 提供消息发送者提供程序接口
-* 可扩展的消息发送者提供程序
+* Provide instant messaging infrastructure
+* Provide message sender provider interface
+* Extensible message sender provider
 
-## 配置使用
+## Configuration usage
 
-模块配置使用 `AbpIMOptions` 选项类:
+Module configuration uses the `AbpIMOptions` option class:
 
 ```csharp
 Configure<AbpIMOptions>(options =>
 {
-    // 添加自定义消息发送者提供程序
+    //Add custom message sender provider
     options.Providers.Add<CustomMessageSenderProvider>();
 });
 ```
 
-## 更多
+## More
 
 [English document](README.EN.md)

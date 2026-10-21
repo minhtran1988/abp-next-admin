@@ -2,24 +2,24 @@ import type { MenuRecordRaw } from '@vben-core/typings';
 
 interface NormalMenuProps {
   /**
-   * 菜单数据
+   * Menu data
    */
   activePath?: string;
   /**
-   * 是否折叠
+   * Whether to fold
    */
   collapse?: boolean;
   /**
-   * 菜单项
+   * Menu items
    */
   menus?: MenuRecordRaw[];
   /**
-   * @zh_CN 是否圆润风格
+   * @zh_CN Is it round style?
    * @default true
    */
   rounded?: boolean;
   /**
-   * 主题
+   * theme
    */
   theme?: 'dark' | 'light';
 }

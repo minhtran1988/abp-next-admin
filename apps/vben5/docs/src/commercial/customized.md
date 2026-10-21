@@ -1,12 +1,12 @@
-# 定制开发
+# Custom development
 
-我们提供基于 Vben Admin 的技术支持服务及定制开发，基本需求我们都可以满足。
+We provide technical support services and customized development based on Vben Admin, and we can meet all basic needs.
 
-详细需求可添加作者了解，并注明来意：
+For detailed requirements, please add the author to understand and indicate the purpose of your visit:
 
-- 通过邮箱联系开发者： [ann.vben@gmail.com](mailto:ann.vben@gmail.com)
-- 通过微信联系开发者：
+- Contact the developer via email: [ann.vben@gmail.com](mailto:ann.vben@gmail.com)
+- Contact the developer via WeChat:
 
  <img src="https://unpkg.com/@vbenjs/static-source@0.1.7/source/wechat.jpg" style="width: 300px;"/>
 
-我们会在第一时间回复您，定制费用根据需求而定。
+We will reply to you as soon as possible, and the customization fee is based on demand.

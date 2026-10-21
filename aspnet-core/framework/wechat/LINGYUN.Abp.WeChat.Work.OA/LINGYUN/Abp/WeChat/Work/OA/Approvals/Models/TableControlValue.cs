@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 明细控件值
+/// Detailed control value
 /// </summary>
 public class TableControlValue : ControlValue
 {
     /// <summary>
-    /// 明细内容，一个明细控件可能包含多个子明细
+    /// Detail content, a detail control may contain multiple sub-details
     /// </summary>
     [NotNull]
     [JsonProperty("children")]
@@ -30,10 +30,10 @@ public class TableControlValue : ControlValue
 public class TableValue
 {
     /// <summary>
-    /// 子明细列表，在此填写子明细的所有子控件的值，子控件的数据结构同一般控件。
+    /// Sub-detail list, fill in the values of all sub-controls of the sub-detail here. The data structure of sub-controls is the same as that of general controls.
     /// </summary>
     /// <remarks>
-    /// 注意：不能为空数组，至少需要包含一个子明细，子明细中必须包括模板中设置的全部子控件，如果子明细为空，则需要将所有子控件的值设为空
+    /// Note: It cannot be an empty array. It must contain at least one sub-detail. The sub-detail must include all sub-controls set in the template. If the sub-detail is empty, the values of all sub-controls need to be set to empty.
     /// </remarks>
     [NotNull]
     [JsonProperty("list")]

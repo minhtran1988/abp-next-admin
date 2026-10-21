@@ -22,24 +22,24 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddCAPEventBus(this IServiceCollection services, Action<CapOptions> capAction)
     {
         services.AddCap(capAction);
-        // 替换为自己的实现
+        // Replace with your own implementation
         services.AddSingleton<ISubscribeInvoker, AbpCAPSubscribeInvoker>();
         services.AddSingleton<ISerializer, AbpCapSerializer>();
 
-        // 移除默认CAP启动接口
+        // Remove the default CAP startup interface
         services.RemoveAll(service =>
         {
             if (service.ServiceType.IsAssignableFrom(typeof(IBootstrapper)))
             {
                 return true;
             }
-            // 默认Bootstrapper
+            // Default Bootstrapper
             if (service.ImplementationType != null &&
                 service.ImplementationType.IsAssignableTo(typeof(IBootstrapper)))
             {
                 return true;
             }
-            // 默认Bootstrapper HostService
+            // Default Bootstrapper HostService
             if (service.ImplementationFactory != null &&
                 service.ImplementationFactory.Method.ReturnType.IsAssignableTo(typeof(IBootstrapper)))
             {
@@ -48,7 +48,7 @@ public static class ServiceCollectionExtensions
 
             return false;
         });
-        // 使用重写的接口,不使用BackgroundService
+        // Use the rewritten interface, do not use BackgroundService
         services.AddSingleton<AbpCAPBootstrapper>();
         services.AddSingleton<IBootstrapper>(sp => sp.GetRequiredService<AbpCAPBootstrapper>());
 

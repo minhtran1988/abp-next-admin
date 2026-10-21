@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Notifications.WeChat.MiniProgram
 
-微信小程序通知发布模块，提供通过微信小程序向用户发送订阅消息的功能。
+The WeChat applet notification publishing module provides the function of sending subscription messages to users through the WeChat applet.
 
-## 功能特性
+## Features
 
-* 微信小程序订阅消息发送
-* 支持自定义消息模板
-* 支持多语言消息
-* 支持不同环境（开发版、体验版、正式版）
-* 集成ABP通知系统
+* WeChat applet subscription message sending
+* Support custom message templates
+* Support multi-language messages
+* Support different environments (development version, trial version, official version)
+* Integrated ABP notification system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWeChatMiniProgramModule))]
@@ -20,28 +20,28 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
-> 注意：此配置项将在下一个微信相关大版本移除，合并到 LINGYUN.Abp.WeChat.MiniProgram.AbpWeChatMiniProgramOptions
+> Note: This configuration item will be removed in the next WeChat-related major version and merged into LINGYUN.Abp.WeChat.MiniProgram.AbpWeChatMiniProgramOptions
 
 ```json
 {
   "Notifications": {
     "WeChat": {
       "MiniProgram": {
-        "DefaultMsgPrefix": "",           // 默认消息头部标记
-        "DefaultTemplateId": "",          // 默认小程序模板ID
-        "DefaultState": "developer",      // 默认跳转小程序类型：developer（开发版）、trial（体验版）、formal（正式版）
-        "DefaultLanguage": "zh_CN"        // 默认小程序语言
+        "DefaultMsgPrefix": "", //Default message header mark
+        "DefaultTemplateId": "", //Default applet template ID
+        "DefaultState": "developer", //Default jump applet type: developer (development version), trial (experience version), formal (formal version)
+        "DefaultLanguage": "zh_CN" //Default applet language
       }
     }
   }
 }
 ```
 
-## 使用方式
+## Usage
 
-### 发送通知
+### Send notification
 
 ```csharp
 public class YourService
@@ -56,16 +56,16 @@ public class YourService
     public async Task SendNotificationAsync()
     {
         await _notificationPublisher.PublishAsync(
-            "WeChatMiniProgram.Notification", // 通知名称
-            new NotificationData(),           // 通知数据
-            userIds: new[] { "userId" },      // 接收用户ID列表
-            tenantIds: new[] { "tenantId" }   // 租户ID列表
+            "WeChatMiniProgram.Notification", // notification name
+            new NotificationData(), // notification data
+            userIds: new[] { "userId" }, // Receive user ID list
+            tenantIds: new[] { "tenantId" } // Tenant ID list
         );
     }
 }
 ```
 
-### 自定义通知处理
+### Custom notification processing
 
 ```csharp
 public class YourNotificationHandler : 
@@ -74,12 +74,12 @@ public class YourNotificationHandler :
     public async Task HandleNotificationAsync(
         WeChatMiniProgramNotification notification)
     {
-        // 处理通知
+        // Handle notification
     }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [微信小程序通知发布模块文档](README.EN.md)
-* [微信小程序订阅消息开发文档](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html)
+* [WeChat Mini Program Notification Release Module Document](README.EN.md)
+* [WeChat Mini Program Subscription Message Development Document](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html)

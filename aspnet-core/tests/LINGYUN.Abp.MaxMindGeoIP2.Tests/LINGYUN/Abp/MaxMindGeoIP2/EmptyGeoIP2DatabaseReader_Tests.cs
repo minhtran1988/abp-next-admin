@@ -8,10 +8,10 @@ using Xunit;
 namespace LINGYUN.Abp.MaxMindGeoIP2;
 
 /// <summary>
-/// 空 GeoIP2 解读器
+/// Empty GeoIP2 interpreter
 /// </summary>
 /// <remarks>
-/// 未提供离线库文件时使用, 相当于解读了一份空内容: 所有查询都返回"无数据"
+/// Used when no offline library file is provided, which is equivalent to interpreting an empty content: all queries return "no data"
 /// </remarks>
 public class EmptyGeoIP2DatabaseReader_Tests
 {
@@ -56,7 +56,7 @@ public class EmptyGeoIP2DatabaseReader_Tests
     }
 
     /// <summary>
-    /// 非 Try 方法与真实解读器未命中时的行为一致: 抛出 AddressNotFoundException
+    /// Non-Try methods behave as if they were a real interpreter miss: throw AddressNotFoundException
     /// </summary>
     [Fact]
     public void Should_Throw_Address_Not_Found()
@@ -75,7 +75,7 @@ public class EmptyGeoIP2DatabaseReader_Tests
     }
 
     /// <summary>
-    /// 空解读器不提供数据库元数据
+    /// The empty interpreter does not provide database metadata
     /// </summary>
     [Fact]
     public void Should_Not_Provide_Metadata()
@@ -84,7 +84,7 @@ public class EmptyGeoIP2DatabaseReader_Tests
     }
 
     /// <summary>
-    /// 选项: 未指定数据库文件时判定为不存在
+    /// Option: If the database file is not specified, it is determined that it does not exist.
     /// </summary>
     [Fact]
     public void Should_Check_Database_File()

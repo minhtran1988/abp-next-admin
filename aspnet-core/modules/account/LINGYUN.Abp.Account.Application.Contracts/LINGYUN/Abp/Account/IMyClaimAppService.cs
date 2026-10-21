@@ -6,13 +6,13 @@ namespace LINGYUN.Abp.Account;
 public interface IMyClaimAppService : IApplicationService
 {
     /// <summary>
-    /// 查询绑定状态
+    /// Query binding status
     /// </summary>
     /// <param name="claimType"></param>
     /// <returns></returns>
     Task<GetUserClaimStateDto> GetStateAsync(string claimType);
     /// <summary>
-    /// 重置绑定状态
+    /// Reset binding status
     /// </summary>
     /// <param name="claimType"></param>
     /// <returns></returns>

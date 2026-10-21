@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Response;
 /// <summary>
-/// 获取加入企业二维码响应参数
+/// Get the response parameters of joining the enterprise QR code
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91714" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91714" />
 /// </remarks>
 public class WeChatWorkGetJoinQrCodeResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 二维码链接，有效期7天
+    /// QR code link, valid for 7 days
     /// </summary>
     [NotNull]
     [JsonProperty("join_qrcode")]

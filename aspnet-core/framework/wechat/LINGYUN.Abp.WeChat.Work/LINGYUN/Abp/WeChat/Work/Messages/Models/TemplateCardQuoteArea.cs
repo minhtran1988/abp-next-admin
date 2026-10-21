@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 引用文献样式
+/// Citation style
 /// </summary>
 public class TemplateCardQuoteArea
 {
@@ -26,42 +26,42 @@ public class TemplateCardQuoteArea
         Text = text;
     }
     /// <summary>
-    /// 引用文献样式区域点击事件，0或不填代表没有点击事件，1 代表跳转url，2 代表跳转小程序
+    /// Click event in the cited document style area, 0 or not filled in means there is no click event, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte? Type { get; }
     /// <summary>
-    /// 点击跳转的url，quote_area.type是1时必填
+    /// Click to jump to the url, required when quote_area.type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的appid，必须是与当前应用关联的小程序，quote_area.type是2时必填
+    /// The appid of the applet that clicks to jump must be the applet associated with the current application. It is required when quote_area.type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 点击跳转的小程序的pagepath，quote_area.type是2时选填
+    /// Click the pagepath of the mini program to jump. Optional when quote_area.type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]
     [JsonPropertyName("pagepath")]
     public string? PagePath { get; set; }
     /// <summary>
-    /// 引用文献样式的标题
+    /// Citation document style title
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 引用文献样式的引用文案
+    /// Citation copy in citation style
     /// </summary>
     [CanBeNull]
     [JsonProperty("quote_text")]

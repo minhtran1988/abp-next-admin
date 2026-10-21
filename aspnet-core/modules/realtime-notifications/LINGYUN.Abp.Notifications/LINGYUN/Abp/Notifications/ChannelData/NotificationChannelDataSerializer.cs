@@ -5,16 +5,16 @@ using Volo.Abp.DependencyInjection;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)序列化器
+/// Notification channel data (payload) serializer
 /// </summary>
 /// <remarks>
 /// <para>
-/// 生产者侧的统一入口, 负责把强类型载荷写入 <see cref="NotificationData"/>。
+/// The unified entrance on the producer side is responsible for writing strong type payloads into <see cref="NotificationData"/>.
 /// </para>
 /// <para>
-/// 载荷的写入是"声明式"的: 载荷类型上的 <see cref="NotificationChannelPropertyAttribute"/>
-/// 决定写入哪些键以及如何转换, 因此生产者与渠道实现共用同一份契约定义,
-/// 不会出现"一方写了键、另一方永远读不到"的情况。
+/// The writing of the payload is "declarative": <see cref="NotificationChannelPropertyAttribute"/> on the payload type
+/// Decide which keys to write and how to convert them, so the producer and channel implementation share the same contract definition,
+/// There will be no situation where "one party writes the key, but the other party can never read it".
 /// </para>
 /// </remarks>
 public class NotificationChannelDataSerializer : INotificationChannelDataSerializer, ISingletonDependency

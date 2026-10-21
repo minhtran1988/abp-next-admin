@@ -6,14 +6,14 @@ namespace LINGYUN.Abp.OpenObserve;
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 内部指标(Prometheus 文本格式)
+    /// Internal indicator (Prometheus text format)
     /// </summary>
     /// <remarks>
-    /// GET /metrics, 注意该接口不在 /api 前缀下
-    /// 需要服务端开启 ZO_PROMETHEUS_ENABLE=true, 未开启时返回空内容
-    /// 参考: https://openobserve.ai/docs/reference/api/metrics/
+    /// GET /metrics, note that this interface is not under the /api prefix
+    /// The server needs to be turned on ZO_PROMETHEUS_ENABLE=true, and empty content will be returned if it is not turned on.
+    /// Reference: https://openobserve.ai/docs/reference/api/metrics/
     /// </remarks>
-    /// <returns>Prometheus 文本格式内容(text/plain; version=0.0.4)</returns>
+    /// <returns>Prometheus text format content (text/plain; version=0.0.4)</returns>
     public async virtual Task<string> GetMetricsAsync(
         CancellationToken cancellationToken = default)
     {

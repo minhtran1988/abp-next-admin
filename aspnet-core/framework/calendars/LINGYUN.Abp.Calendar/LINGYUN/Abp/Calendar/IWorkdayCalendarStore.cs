@@ -6,13 +6,13 @@ namespace LINGYUN.Abp.Calendar;
 public interface IWorkdayCalendarStore
 {
     /// <summary>
-    /// 获取特殊日期
+    /// Get special date
     /// </summary>
-    /// <param name="date">日期</param>
+    /// <param name="date">Date</param>
     /// <returns></returns>
     Task<SpecialDateInfo?> FindSpecialDateAsync(DateOnly date);
     /// <summary>
-    /// 获取默认工作日历
+    /// Get the default work calendar
     /// </summary>
     Task<WorkdayCalendarInfo?> FindDefaultCalendarAsync();
 }

@@ -11,19 +11,19 @@ public class BackgroundJobAction : AuditedAggregateRoot<Guid>, IMultiTenant
 {
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 作业标识
+    /// Job ID
     /// </summary>
     public virtual string JobId { get; protected set; } = default!;
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 是否启用
+    /// Whether to enable
     /// </summary>
     public virtual bool IsEnabled { get; set; }
     /// <summary>
-    /// 参数
+    /// Parameters
     /// </summary>
     public virtual ExtraPropertyDictionary Paramters { get; set; } = default!;
 

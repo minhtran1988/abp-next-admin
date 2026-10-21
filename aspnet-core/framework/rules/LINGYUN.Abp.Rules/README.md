@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Rules
 
-## 模块说明
+## Module description
 
-规则引擎基础模块
+Rule engine basic module
 
-### 基础模块  
+### Basic module
 
-### 高阶模块  
+### High-level modules
 
-### 权限定义  
+### Permission definition
 
-### 功能定义  
+### Function definition
 
-### 配置定义  
+### Configuration definition
 
-### 如何使用
+### How to use
 
 
 ```csharp
@@ -37,18 +37,18 @@
         public async Task DoAsync()
         {
             var input = new YouInput();
-            // 规则校验
+            //Rule verification
             await _ruleProvider.ExecuteAsync(input);
 
             var inputParams = new object[1]
             {
                 new InputParam()
             };
-            // 带参数规则校验
+            // Rule verification with parameters
             await _ruleProvider.ExecuteAsync(input, inputParams);
         }
     }
 
 ```
 
-### 更新日志 
+### Update log

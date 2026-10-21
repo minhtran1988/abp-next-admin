@@ -1,25 +1,25 @@
 export interface JsonViewerProps {
-  /** 要展示的结构数据 */
+  /** Structural data to be displayed */
   value: any;
-  /** 展开深度 */
+  /** Expand depth */
   expandDepth?: number;
-  /** 是否可复制 */
+  /** Whether it can be copied */
   copyable?: boolean;
-  /** 是否排序 */
+  /** Whether to sort */
   sort?: boolean;
-  /** 显示边框 */
+  /** Show border */
   boxed?: boolean;
-  /** 主题 */
+  /** Topic */
   theme?: string;
-  /** 是否展开 */
+  /** Whether to expand */
   expanded?: boolean;
-  /** 时间格式化函数 */
+  /** Time formatting function */
   timeformat?: (time: Date | number | string) => string;
-  /** 预览模式 */
+  /** Preview mode */
   previewMode?: boolean;
-  /** 显示数组索引 */
+  /** Display array index */
   showArrayIndex?: boolean;
-  /** 显示双引号 */
+  /** Display double quotes */
   showDoubleQuotes?: boolean;
 }
 
@@ -37,8 +37,8 @@ export interface JsonViewerValue {
 }
 
 export interface JsonViewerToggle {
-  /** 鼠标事件 */
+  /** Mouse events */
   event: MouseEvent;
-  /** 当前展开状态 */
+  /** Current expansion status */
   open: boolean;
 }

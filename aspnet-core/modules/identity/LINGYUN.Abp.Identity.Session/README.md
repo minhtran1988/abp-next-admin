@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Identity.Session
 
-用户会话基础模块,提供相关的通用接口   
+User session basic module, providing relevant common interfaces
 
 
-## 功能特性
+## Features
 
-* 提供用户会话管理的基础接口
-* 提供会话缓存与持久化同步机制
-* 支持会话访问时间追踪
-* 依赖AbpCachingModule模块
+* Provide basic interface for user session management
+* Provide session caching and persistence synchronization mechanism
+* Support session access time tracking
+* Depends on AbpCachingModule module
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpIdentitySessionModule))]
@@ -20,14 +20,14 @@ public class YouProjectModule : AbpModule
     {
         Configure<IdentitySessionCheckOptions>(options =>
         {
-            // 设置会话缓存与持久化设施刷新间隔为10分钟
+            //Set the session cache and persistence facility refresh interval to 10 minutes
             options.KeepAccessTimeSpan = TimeSpan.FromMinutes(10);
         });
     }
 }
 ```
 
-## 配置项
+## Configuration items
 
 ### IdentitySessionCheckOptions
 
@@ -36,14 +36,14 @@ public class YouProjectModule : AbpModule
   "Identity": {
     "Session": {
       "Check": {
-        "KeepAccessTimeSpan": "00:01:00",    // 保持访问时长（刷新缓存会话间隔），默认：1分钟
-        "SessionSyncTimeSpan": "00:10:00"    // 会话同步间隔（从缓存同步到持久化），默认：10分钟
+        "KeepAccessTimeSpan": "00:01:00", //Keep access time (refresh cache session interval), default: 1 minute
+        "SessionSyncTimeSpan": "00:10:00" // Session synchronization interval (from cache synchronization to persistence), default: 10 minutes
       }
     }
   }
 }
 ```
 
-## 更多信息
+## More information
 
-* [ABP身份认证文档](https://docs.abp.io/en/abp/latest/Identity)
+* [ABP Identity Authentication Document](https://docs.abp.io/en/abp/latest/Identity)

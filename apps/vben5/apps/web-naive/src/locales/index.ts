@@ -17,8 +17,8 @@ const localesMap = loadLocalesMapFromDir(
 );
 
 /**
- * 加载应用特有的语言包
- * 这里也可以改造为从服务端获取翻译数据
+ * Load application-specific language packs
+ * This can also be modified to obtain translation data from the server
  * @param lang
  */
 async function loadMessages(lang: SupportedLanguagesType) {

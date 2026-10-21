@@ -2,33 +2,33 @@
 outline: deep
 ---
 
-# Vben EllipsisText 省略文本
+# Vben EllipsisText omit text
 
-框架提供的文本展示组件，可配置超长省略、tooltip提示、展开收起等功能。
+The text display component provided by the framework can be configured with functions such as super long omission, tooltip prompt, expansion and collapse, etc.
 
-> 如果文档内没有参数说明，可以尝试在在线示例内寻找
+> If there is no parameter description in the document, you can try to find it in the online examples
 
-## 基础用法
+## Basic usage
 
-通过默认插槽设置文本内容，`maxWidth`属性设置最大宽度。
+Set the text content through the default slot, and the `maxWidth` property sets the maximum width.
 
 <DemoPreview dir="demos/vben-ellipsis-text/line" />
 
-## 可折叠的文本块
+## Collapsible text block
 
-通过`line`设置折叠后的行数，`expand`属性设置是否支持展开收起。
+Use `line` to set the number of folded lines, and the `expand` attribute sets whether to support expansion and collapse.
 
 <DemoPreview dir="demos/vben-ellipsis-text/expand" />
 
-## 自定义提示浮层
+## Custom prompt floating layer
 
-通过名为`tooltip`的插槽定制提示信息。
+Customize the tooltip information through the slot named `tooltip`.
 
 <DemoPreview dir="demos/vben-ellipsis-text/tooltip" />
 
-## 自动显示 tooltip
+## Automatically display tooltip
 
-通过`tooltip-when-ellipsis`设置，仅在文本长度超出导致省略号出现时才触发 tooltip。
+With the `tooltip-when-ellipsis` setting, the tooltip is only triggered when the text length is exceeded causing an ellipsis to appear.
 
 <DemoPreview dir="demos/vben-ellipsis-text/auto-display" />
 
@@ -36,29 +36,29 @@ outline: deep
 
 ### Props
 
-| 属性名 | 描述 | 类型 | 默认值 |
+| Property name | Description | Type | Default value |
 | --- | --- | --- | --- |
-| expand | 支持点击展开或收起 | `boolean` | `false` |
-| line | 文本最大行数 | `number` | `1` |
-| maxWidth | 文本区域最大宽度 | `number \| string` | `'100%'` |
-| placement | 提示浮层的位置 | `'bottom'\|'left'\|'right'\|'top'` | `'top'` |
-| tooltip | 启用文本提示 | `boolean` | `true` |
-| tooltipWhenEllipsis | 内容超出，自动启用文本提示 | `boolean` | `false` |
-| ellipsisThreshold | 设置 tooltipWhenEllipsis 后才生效，文本截断检测的像素差异阈值，越大则判断越严格，如果碰见异常情况可以自己设置阈值 | `number` | `3` |
-| tooltipBackgroundColor | 提示文本的背景颜色 | `string` | - |
-| tooltipColor | 提示文本的颜色 | `string` | - |
-| tooltipFontSize | 提示文本的大小 | `string` | - |
-| tooltipMaxWidth | 提示浮层的最大宽度。如不设置则保持与文本宽度一致 | `number` | - |
-| tooltipOverlayStyle | 提示框内容区域样式 | `CSSProperties` | `{ textAlign: 'justify' }` |
+| expand | Support click to expand or collapse | `boolean` | `false` |
+| line | Maximum number of lines of text | `number` | `1` |
+| maxWidth | Maximum width of text area | `number \| string` | `'100%'' |
+| placement | Prompt the position of the floating layer | `'bottom'\|'left'\|'right'\|'top'` | `'top'` |
+| tooltip | enable text tips | `boolean` | `true` |
+| tooltipWhenEllipsis | When the content exceeds, text prompts are automatically enabled | `boolean` | `false` |
+| ellipsisThreshold | It takes effect after tooltipWhenEllipsis is set. The larger the pixel difference threshold for text truncation detection, the more stringent the judgment. If you encounter an abnormal situation, you can set the threshold yourself | `number` | `3` |
+| tooltipBackgroundColor | tooltip text background color | `string` | - |
+| tooltipColor | tooltip text color | `string` | - |
+| tooltipFontSize | tooltip text size | `string` | - |
+| tooltipMaxWidth | Tips for the maximum width of the floating layer. If not set, it will remain consistent with the text width | `number` | - |
+| tooltipOverlayStyle | Tip box content area style | `CSSProperties` | `{ textAlign: 'justify' }` |
 
 ### Events
 
-| 事件名       | 描述         | 类型                       |
+| Event name | Description | Type |
 | ------------ | ------------ | -------------------------- |
-| expandChange | 展开状态改变 | `(isExpand:boolean)=>void` |
+| expandChange | Expand state change | `(isExpand:boolean)=>void` |
 
 ### Slots
 
-| 插槽名  | 描述                             |
+| slot name | description |
 | ------- | -------------------------------- |
-| tooltip | 启用文本提示时，用来定制提示内容 |
+| tooltip | When text prompts are enabled, used to customize the prompt content |

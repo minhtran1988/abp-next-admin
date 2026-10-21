@@ -10,24 +10,24 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.OpenObserve;
 
 /// <summary>
-/// 报表接口
+/// Report interface
 /// </summary>
 /// <remarks>
-/// 报表接口使用 /api/v2 前缀
-/// 参考: https://openobserve.ai/docs/reference/api/report/
+/// The report interface uses the /api/v2 prefix
+/// Reference: https://openobserve.ai/docs/reference/api/report/
 /// </remarks>
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 列出报表
+    /// List reports
     /// </summary>
     /// <remarks>
     /// GET /api/v2/{org_id}/reports
-    /// 响应为裸数组, 无分页包装
+    /// The response is a naked array, no paging packaging
     /// </remarks>
-    /// <param name="folder">按文件夹过滤, 省略时返回多个文件夹的报表</param>
-    /// <param name="dashboardId">仅返回指向该仪表盘的报表</param>
-    /// <param name="cache">为 true 时仅返回无投递目标(仅缓存)的报表</param>
+    /// <param name="folder">Filter by folder, return reports of multiple folders when omitted</param>
+    /// <param name="dashboardId">Only return reports pointing to this dashboard</param>
+    /// <param name="cache">When true, only reports without delivery targets (cache only) will be returned</param>
     public async virtual Task<ReportInfo[]> GetReportsAsync(
         string? organization = null,
         string? folder = null,
@@ -46,17 +46,17 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 创建报表
+    /// Create report
     /// </summary>
     /// <remarks>
     /// POST /api/v2/{org_id}/reports
     /// </remarks>
-    /// <param name="name">报表名称(组织内唯一)</param>
-    /// <param name="frequency">调度频率</param>
-    /// <param name="dashboards">关联的仪表盘(必填)</param>
-    /// <param name="destinations">投递目标(必填)</param>
-    /// <param name="startTime">生成起始时间, 转换为微秒提交</param>
-    /// <param name="folder">目标文件夹, Enterprise 版必填</param>
+    /// <param name="name">Report name (unique within the organization)</param>
+    /// <param name="frequency">Scheduling frequency</param>
+    /// <param name="dashboards">Associated dashboards (required)</param>
+    /// <param name="destinations">Delivery destination (required)</param>
+    /// <param name="startTime">Generate start time, converted to microsecond submission</param>
+    /// <param name="folder">Destination folder, required for Enterprise version</param>
     public async virtual Task<OpenObserveCodeMessageResponse> CreateReportAsync(
         string name,
         ReportFrequency frequency,
@@ -85,7 +85,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 获取报表
+    /// Get the report
     /// </summary>
     /// <remarks>
     /// GET /api/v2/{org_id}/reports/{report_id}
@@ -104,13 +104,13 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 更新报表
+    /// Update report
     /// </summary>
     /// <remarks>
     /// PUT /api/v2/{org_id}/reports/{report_id}
-    /// 需要提供完整的报表内容
+    /// Need to provide complete report content
     /// </remarks>
-    /// <param name="folder">传入时同时移动报表到该文件夹</param>
+    /// <param name="folder">Move the report to this folder when passing in</param>
     public async virtual Task<OpenObserveCodeMessageResponse> UpdateReportAsync(
         string reportId,
         string name,
@@ -140,7 +140,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 删除报表
+    /// Delete report
     /// </summary>
     /// <remarks>
     /// DELETE /api/v2/{org_id}/reports/{report_id}
@@ -159,11 +159,11 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 批量删除报表
+    /// Delete reports in batches
     /// </summary>
     /// <remarks>
     /// DELETE /api/v2/{org_id}/reports/bulk
-    /// 删除是幂等的, 不存在的标识也会被报告为成功
+    /// Deletion is idempotent, and non-existing identifiers will also be reported as successful.
     /// </remarks>
     public async virtual Task<BulkDeleteReportsResponse> BulkDeleteReportsAsync(
         IEnumerable<string> ids,
@@ -180,7 +180,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 移动报表
+    /// Mobile report
     /// </summary>
     /// <remarks>
     /// PATCH /api/v2/{org_id}/reports/move
@@ -205,7 +205,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 启用/禁用报表
+    /// Enable/disable reports
     /// </summary>
     /// <remarks>
     /// PATCH /api/v2/{org_id}/reports/{report_id}/enable?value=true
@@ -231,7 +231,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 手动触发表报
+    /// Manually trigger the report
     /// </summary>
     /// <remarks>
     /// PUT /api/v2/{org_id}/reports/{report_id}/trigger
@@ -254,7 +254,7 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 组装报表请求
+    /// Assemble report request
     /// </summary>
     protected virtual SaveReportRequest CreateReportRequest(
         string name,

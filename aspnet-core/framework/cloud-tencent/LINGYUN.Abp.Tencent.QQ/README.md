@@ -1,46 +1,46 @@
 # LINGYUN.Abp.Tencent.QQ
 
-腾讯QQ互联模块，集成腾讯QQ互联服务到ABP应用程序。
+Tencent QQ Internet module integrates Tencent QQ Internet services into ABP applications.
 
-## 功能特性
+## Features
 
-* 支持QQ互联快速登录
-* 支持多租户配置
-* 提供QQ互联客户端工厂，支持动态创建客户端
+* Support QQ Internet quick login
+* Support multi-tenant configuration
+* Provide QQ Internet client factory to support dynamic creation of clients
 
-## 配置项说明
+## Configuration item description
 
-### 基础配置
+### Basic configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud": {
-      "SecretId": "您的腾讯云SecretId", // 从腾讯云控制台获取
-      "SecretKey": "您的腾讯云SecretKey", // 从腾讯云控制台获取
-      "DurationSecond": "600" // 会话持续时间（秒）
+      "SecretId": "Your Tencent Cloud SecretId", // Get it from the Tencent Cloud console
+      "SecretKey": "Your Tencent Cloud SecretKey", // Get it from the Tencent Cloud console
+      "DurationSecond": "600" // Session duration (seconds)
     }
   }
 }
 ```
 
-### QQ互联配置
+### QQ interconnection configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud.QQConnect": {
-      "AppId": "", // QQ互联应用ID，从QQ互联管理中心获取
-      "AppKey": "", // QQ互联应用密钥，从QQ互联管理中心获取
-      "IsMobile": "false" // 是否使用移动端样式，默认为PC端样式
+      "AppId": "", // QQ Internet application ID, obtained from QQ Internet Management Center
+      "AppKey": "", // QQ Internet application key, obtained from QQ Internet Management Center
+      "IsMobile": "false" // Whether to use mobile style, the default is PC style
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 添加模块依赖
+1. Add module dependencies
 ```csharp
 [DependsOn(typeof(AbpTencentQQModule))]
 public class YourModule : AbpModule
@@ -49,11 +49,11 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置QQ互联服务
+2. Configure QQ interconnection service
 
-参考上述配置项说明进行相应配置。
+Refer to the above configuration item descriptions to configure accordingly.
 
-3. QQ互联服务使用示例
+3. QQ Internet service usage examples
 ```csharp
 public class YourService
 {
@@ -67,15 +67,15 @@ public class YourService
     public async Task QQConnectAsync()
     {
         var qqClient = await _qqClientFactory.CreateAsync();
-        // 使用qqClient调用QQ互联服务API
-        // 详细API使用方法请参考QQ互联开发文档
+        // Use qqClient to call QQ Internet service API
+        // For detailed API usage, please refer to QQ Internet development documentation
     }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [QQ互联开放平台](https://connect.qq.com/)
-* [QQ互联开发文档](https://wiki.connect.qq.com/)
+* [QQ Internet Open Platform](https://connect.qq.com/)
+* [QQ Internet Development Documents](https://wiki.connect.qq.com/)
 
 [English](./README.EN.md)

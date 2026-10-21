@@ -5,53 +5,53 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers;
 /// <summary>
-/// 离职继承接口
+/// Resignation inheritance interface
 /// </summary>
 public interface IWeChatWorkResignExtendProvider
 {
     /// <summary>
-    /// 获取待分配的离职成员列表
+    /// Get the list of resigned members to be assigned
     /// </summary>
     /// <remarks>
-    /// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92124"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92124"/>
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkGetUnassignedListResponse> GetUnassignedListAsync(
         WeChatWorkGetUnassignedListRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 分配离职成员的客户
+    /// Assign the customer of the resigned member
     /// </summary>
     /// <remarks>
-    /// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94081"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94081"/>
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkResignedTransferCustomerResponse> ResignedTransferCustomerAsync(
         WeChatWorkResignedTransferCustomerRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 查询客户接替状态
+    /// Query customer replacement status
     /// </summary>
     /// <remarks>
-    /// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/94082"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/94082"/>
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkGetResignedTransferResultResponse> GetResignedTransferResultAsync(
         WeChatWorkGetResignedTransferResultRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 分配离职成员的客户群
+    /// Assign the customer group to the resigned member
     /// </summary>
     /// <remarks>
-    /// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92127"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92127"/>
     /// </remarks>
-    /// <param name="request">请求参数</param>
+    /// <param name="request">Request parameters</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<WeChatWorkGroupChatTransferResponse> GroupChatTransferAsync(

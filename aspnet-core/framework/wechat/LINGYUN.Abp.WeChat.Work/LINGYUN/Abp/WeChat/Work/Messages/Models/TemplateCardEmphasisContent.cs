@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 关键数据样式
+/// Key data style
 /// </summary>
 public class TemplateCardEmphasisContent
 {
@@ -19,14 +19,14 @@ public class TemplateCardEmphasisContent
     }
 
     /// <summary>
-    /// 关键数据样式的数据内容，建议不超过14个字
+    /// The data content of the key data style is recommended to be no more than 14 characters.
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 关键数据样式的数据描述内容，建议不超过22个字
+    /// The data description content of the key data style is recommended to be no more than 22 words.
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]

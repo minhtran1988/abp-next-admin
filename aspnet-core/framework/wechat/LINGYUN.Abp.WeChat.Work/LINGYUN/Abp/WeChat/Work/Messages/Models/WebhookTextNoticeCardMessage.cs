@@ -6,35 +6,35 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook 文本通知模版卡片消息体
+/// Webhook text notification template card message body
 /// </summary>
 public class WebhookTextNoticeCardMessage : WebhookTemplateCardMessage
 {
     /// <summary>
-    /// 二级普通文本，建议不超过112个字。模版卡片主要内容的一级标题main_title.title和二级普通文本sub_title_text必须有一项填写
+    /// Second-level ordinary text, it is recommended not to exceed 112 words. One of the first-level title main_title.title and the second-level ordinary text sub_title_text of the main content of the template card must be filled in
     /// </summary>
     [CanBeNull]
     [JsonProperty("sub_title_text")]
     [JsonPropertyName("sub_title_text")]
     public string? SubTitleText { get; set; }
     /// <summary>
-    /// 关键数据样式
+    /// Key data style
     /// </summary>
     [CanBeNull]
     [JsonProperty("emphasis_content")]
     [JsonPropertyName("emphasis_content")]
     public WebhookTemplateCardEmphasisContent? EmphasisContent { get; set; }
     /// <summary>
-    /// 创建一个Webhook 文本通知模版卡片消息体
+    /// Create a Webhook text notification template card message body
     /// </summary>
-    /// <param name="action">整体卡片的点击跳转事件</param>
-    /// <param name="mainTitle">模版卡片的主要内容</param>
-    /// <param name="subTitleText">二级普通文本</param>
-    /// <param name="emphasisContent">关键数据样式</param>
-    /// <param name="source">卡片来源样式信息</param>
-    /// <param name="quoteArea">引用文献样式</param>
-    /// <param name="horizontalContents">二级标题+文本列表,列表长度不超过6</param>
-    /// <param name="jumps">跳转指引样式的列表,列表长度不超过3</param>
+    /// <param name="action">Click jump event of the overall card</param>
+    /// <param name="mainTitle">The main content of the template card</param>
+    /// <param name="subTitleText">Level two ordinary text</param>
+    /// <param name="emphasisContent">Key data style</param>
+    /// <param name="source">Card source style information</param>
+    /// <param name="quoteArea">Quotation style</param>
+    /// <param name="horizontalContents">Second-level title + text list, the list length does not exceed 6</param>
+    /// <param name="jumps">List of jump guide styles, the length of the list should not exceed 3</param>
     /// <exception cref="ArgumentException"></exception>
     public WebhookTextNoticeCardMessage(
         WebhookTemplateCardAction action,

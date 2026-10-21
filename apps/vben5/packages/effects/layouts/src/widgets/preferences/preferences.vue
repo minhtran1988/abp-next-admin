@@ -16,7 +16,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
 });
 
 /**
- * preferences 转成 vue props
+ * Convert preferences to vue props
  * preferences.widget.fullscreen=>widgetFullscreen
  */
 const attrs = computed(() => {
@@ -30,7 +30,7 @@ const attrs = computed(() => {
 });
 
 /**
- * preferences 转成 vue listener
+ * Convert preferences to vue listener
  * preferences.widget.fullscreen=>@update:widgetFullscreen
  */
 const listen = computed(() => {

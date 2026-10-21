@@ -1,105 +1,105 @@
-/** 授权请求数据模型 */
+/** Authorization request data model */
 interface TokenRequest {
-  /** 客户端id */
+  /** client id */
   clientId: string;
-  /** 客户端密钥 */
+  /** Client key */
   clientSecret: string;
 }
-/** 用户密码授权请求数据模型 */
+/** User password authorization request data model */
 interface PasswordTokenRequest extends TokenRequest {
-  /** 用户密码 */
+  /** User password */
   password: string;
-  /** 授权范围 */
+  /** Authorization scope */
   scope?: string;
-  /** 用户名 */
+  /** Username */
   userName: string;
 }
-/** 手机号授权请求数据模型 */
+/** Mobile phone number authorization request data model */
 interface PhoneNumberTokenRequest {
   [key: string]: any;
-  /** 验证码 */
+  /** Verification code */
   code: string;
-  /** 手机号 */
+  /** Mobile phone number */
   phoneNumber: string;
 }
-/** 扫码登录授权请求数据模型 */
+/** Scan QR code to log in authorization request data model */
 interface QrCodeTokenRequest {
   [key: string]: any;
-  /** 二维码Key */
+  /** QR code Key */
   key: string;
-  /** 租户Id */
+  /** Tenant ID */
   tenantId?: string;
 }
-/** 用户密码授权请求数据模型 */
+/** User password authorization request data model */
 interface PasswordTokenRequestModel {
   [key: string]: any;
-  /** 用户密码 */
+  /** User password */
   password: string;
-  /** 用户名 */
+  /** Username */
   username: string;
 }
-/** 关联用户授权请求数据模型 */
+/** Associated user authorization request data model */
 interface LinkUserTokenRequest {
-  /** 当前用户访问令牌 */
+  /** Current user access token */
   accessToken?: string;
-  /** 关联用户租户Id */
+  /** Associated user tenant ID */
   linkTenantId?: string;
-  /** 关联用户Id */
+  /** Associated user ID */
   linkUserId: string;
 }
-/** 模拟用户授权请求数据模型 */
+/** Simulate user authorization request data model */
 interface ImpersonationTokenRequest {
-  /** 当前用户访问令牌 */
+  /** Current user access token */
   accessToken?: string;
-  /** 模拟租户Id */
+  /** Simulate tenant ID */
   tenantId?: string;
-  /** 模拟租户用户名 */
+  /** Impersonate tenant username */
   tenantUserName?: string;
-  /** 委托用户Id */
+  /** Delegate user ID */
   userDelegationId?: string;
-  /** 模拟用户Id */
+  /** Simulate user ID */
   userId?: string;
 }
-/** 令牌撤销请求数据类型 */
+/** Token revocation request data type */
 interface RevokeTokenRequest {
-  /** 令牌 */
+  /** Token */
   token: string;
-  /** 令牌类型 */
+  /** Token type */
   tokenType?: 'access_token' | 'refresh_token';
 }
-/** 令牌返回数据模型 */
+/** Token return data model */
 interface TokenResult {
-  /** 访问令牌 */
+  /** Access token */
   accessToken: string;
-  /** 过期时间 */
+  /** Expiration time */
   expiresIn: number;
-  /** 刷新令牌 */
+  /** Refresh token */
   refreshToken: string;
-  /** 令牌类型 */
+  /** Token type */
   tokenType: string;
 }
 interface OAuthTokenRefreshModel {
-  /** 刷新令牌 */
+  /** Refresh token */
   refreshToken: string;
 }
-/** oauth标准令牌返回结构 */
+/** oauth standard token return structure */
 interface OAuthTokenResult {
-  /** 访问令牌 */
+  /** Access token */
   access_token: string;
-  /** 过期时间 */
+  /** Expiration time */
   expires_in: number;
-  /** 刷新令牌 */
+  /** Refresh token */
   refresh_token: string;
-  /** 令牌类型 */
+  /** Token type */
   token_type: string;
 }
 
 interface OAuthError {
-  /** 错误类型 */
+  /** Error type */
   error: string;
-  /** 错误描述 */
+  /** Error description */
   error_description: string;
-  /** 错误描述链接 */
+  /** Error description link */
   error_uri?: string;
 }
 

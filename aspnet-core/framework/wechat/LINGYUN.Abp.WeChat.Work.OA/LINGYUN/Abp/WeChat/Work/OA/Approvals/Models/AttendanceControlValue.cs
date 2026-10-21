@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 假勤组件-出差/外出/加班组件值
+/// Leave component - business trip/outing/overtime component value
 /// </summary>
 public class AttendanceControlValue : ControlValue
 {
     /// <summary>
-    /// 时长
+    /// Duration
     /// </summary>
     [NotNull]
     [JsonProperty("attendance")]
@@ -30,21 +30,21 @@ public class AttendanceControlValue : ControlValue
 public class AttendanceValue
 {
     /// <summary>
-    /// 假勤组件时间选择范围
+    /// Time selection range of holiday component
     /// </summary>
     [NotNull]
     [JsonProperty("date_range")]
     [JsonPropertyName("date_range")]
     public DateRangeValue DateRange { get; set; } = default!;
     /// <summary>
-    /// 假勤组件类型：1-请假；3-出差；4-外出；5-加班
+    /// Leave and attendance component types: 1-leave; 3-business trip; 4-outing; 5-overtime
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 非必填。时长分片信息
+    /// Optional. Duration slice information
     /// </summary>
     [CanBeNull]
     [JsonProperty("slice_info")]
@@ -55,14 +55,14 @@ public class AttendanceValue
 public class AttendanceSliceInfo
 {
     /// <summary>
-    /// 假勤组件类型：1-请假；3-出差；4-外出；5-加班
+    /// Leave and attendance component types: 1-leave; 3-business trip; 4-outing; 5-overtime
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 某一天的分片
+    /// Fragmentation on a certain day
     /// </summary>
     [NotNull]
     [JsonProperty("day_items")]
@@ -83,14 +83,14 @@ public class AttendanceSliceInfo
 public class AttendanceSliceDayItem
 {
     /// <summary>
-    /// 当天零点时间戳 （当天的东八区的零点时间戳）
+    /// The zero o'clock timestamp of the day (the zero o'clock timestamp of the East Eighth District of the day)
     /// </summary>
     [NotNull]
     [JsonProperty("daytime")]
     [JsonPropertyName("daytime")]
     public long Daytime { get; set; }
     /// <summary>
-    /// 某一天的时长，秒数，可以为0，（type为halfday时：加班：需为8640整倍数，其他：需为43200的整倍数，type为hour时需为360的整倍数）
+    /// The length of a certain day, in seconds, can be 0, (when type is halfday: overtime: it needs to be an integer multiple of 8640, others: it needs to be an integer multiple of 43200, when type is hour, it needs to be an integer multiple of 360)
     /// </summary>
     [NotNull]
     [JsonProperty("duration")]

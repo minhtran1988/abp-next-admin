@@ -121,12 +121,12 @@ const computedSchema = computed(
       const keepIndex = keepFormItemIndex.value;
 
       const hidden =
-        // 折叠状态 & 显示折叠按钮 & 当前索引大于保留索引
+        // Collapse state & display fold button & current index is greater than reserved index
         props.showCollapseButton && !!formCollapsed.value && keepIndex
           ? keepIndex <= index
           : false;
 
-      // 处理函数形式的formItemClass
+      // Process formItemClass in function form
       let resolvedSchemaFormItemClass = schema.formItemClass;
       if (isFunction(schema.formItemClass)) {
         try {

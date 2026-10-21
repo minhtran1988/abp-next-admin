@@ -1,23 +1,23 @@
-# 为什么选择我们?
+# Why choose us?
 
-::: info 写在前面
+::: info is written in front
 
-我们不会去和其他框架做比较。我们认为每个框架都有自己的特点，适合不同的场景。我们的目标是提供一个简单、易用的框架，让开发者可以快速上手，专注于业务逻辑的开发。所以我们只会不断完善和优化我们的框架，提供更好的体验。
+We will not compare with other frameworks. We believe that each framework has its own characteristics and is suitable for different scenarios. Our goal is to provide a simple and easy-to-use framework so that developers can get started quickly and focus on the development of business logic. So we will only continue to improve and optimize our framework to provide a better experience.
 
 :::
 
-我们致力于为开发者提供一个高效、现代、易用的前端框架。我们的解决方案基于最新的技术栈，如 Vue3、Vite 和 TypeScript，确保您在构建项目时始终走在技术的前沿。同时，我们注重代码的质量与规范，通过严格的工具链保证代码的一致性和可维护性。无论是初创项目还是企业级应用，我们的框架都能帮助您快速构建、迭代和部署。
+We are committed to providing developers with an efficient, modern, and easy-to-use front-end framework. Our solutions are based on the latest technology stacks such as Vue3, Vite and TypeScript, ensuring you are always on the cutting edge of technology when building your projects. At the same time, we focus on the quality and specification of the code and ensure the consistency and maintainability of the code through a strict tool chain. Whether it's a startup project or an enterprise-level application, our framework helps you build, iterate, and deploy quickly.
 
-## 框架历程
+## Framework process
 
-从 Vue Vben Admin 1.x 版本开始，框架经历了许多迭代和优化。从一开始使用 `Vite 0.x` 版本，没有现成的插件，开发了很多自定义插件来弥合 Webpack 和 Vite 之间的差异。虽然很多现在已经被代替，但是我们的初衷一直没有变，就是提供一个简单、易用的框架。
+Starting with Vue Vben Admin version 1.x, the framework has gone through many iterations and optimizations. Starting with the `Vite 0.x` version, there were no ready-made plugins, and many custom plugins were developed to bridge the differences between Webpack and Vite. Although many of them have now been replaced, our original intention has never changed, which is to provide a simple and easy-to-use framework.
 
-虽然中间有段时间由社区维护，但我们一直密切关注 Vue Vben Admin 的发展。见证了许多开发者使用 Vben Admin，并提供了许多宝贵的建议和反馈。非常感谢大家的支持和贡献，这些都是我们持续改进 Vben Admin 的动力。新版本中，我们持续收集用户反馈，重新开始，不断优化框架，以提供更好的用户体验。我们的目标是让开发者能够快速上手，专注于业务逻辑的开发。
+Although it was maintained by the community for a period of time, we have been paying close attention to the development of Vue Vben Admin. Witnessed many developers using Vben Admin and provided many valuable suggestions and feedback. Thank you very much for your support and contributions, which are the motivation for us to continue to improve Vben Admin. In the new version, we continue to collect user feedback, start over, and continuously optimize the framework to provide a better user experience. Our goal is to enable developers to get started quickly and focus on the development of business logic.
 
-## 单元测试
+## Unit testing
 
-单元测试是确保代码质量的基石。在开发过程中编写和执行单元测试，以捕捉潜在的错误并提升代码的可靠性。框架核心逻辑使用 `vitest` 做了单元测试，并在逐步增加覆盖率。通过单元测试，可以放心地进行代码重构，减少回归问题，从而提高整体开发效率。
+Unit testing is the cornerstone of ensuring code quality. Write and execute unit tests during development to catch potential bugs and improve code reliability. The core logic of the framework is unit tested using `vitest`, and the coverage is gradually increased. Through unit testing, you can refactor code with confidence and reduce regression problems, thereby improving overall development efficiency.
 
-## 质量与规范
+## Quality and specifications
 
-我们始终高度重视代码的质量与规范。通过使用 ESLint、Prettier、Stylelint、Publint、CSpell 等工具来确保代码质量。我们的代码规范基于 Vue3、Vite、TypeScript 等现代前端技术制定，旨在提供一个简洁、易用的框架，使开发者能够快速上手并专注于业务逻辑的开发。
+We always attach great importance to the quality and specification of the code. Ensure code quality by using tools like ESLint, Prettier, Stylelint, Publint, CSpell etc. Our code specifications are based on modern front-end technologies such as Vue3, Vite, TypeScript, etc., aiming to provide a concise and easy-to-use framework so that developers can get started quickly and focus on the development of business logic.

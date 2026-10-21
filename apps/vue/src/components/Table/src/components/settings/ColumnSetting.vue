@@ -23,7 +23,7 @@
           <Checkbox v-model:checked="isIndexColumnShow" @change="onIndexColumnShowChange">
             {{ t('component.table.settingIndexColumnShow') }}
           </Checkbox>
-          <!-- 设置了 rowSelection 才出现 -->
+          <!-- Appears only after rowSelection is set -->
           <Checkbox
             v-model:checked="isRowSelectionShow"
             @change="onRowSelectionShowChange"
@@ -120,7 +120,7 @@
   import Sortablejs from 'sortablejs';
   import { INDEX_COLUMN_FLAG } from '/@/components/Table/src/const';
 
-  // 列表设置缓存
+  // List settings cache
   import { useTableSettingStore } from '/@/store/modules/tableSetting';
   import { useRoute } from 'vue-router';
   import { TableRowSelection } from '/@/components/Table/src/types/table';
@@ -141,7 +141,7 @@
   const props = withDefaults(
     defineProps<{
       /**
-       * 是否缓存列的设置
+       * Whether to cache column settings
        */
       cache?: boolean;
     }>(),
@@ -154,43 +154,43 @@
     return isFunction(attrs.getPopupContainer) ? attrs.getPopupContainer() : getParentContainer();
   };
 
-  // 是否已经从缓存恢复
+  // Whether it has been restored from cache
   let isRestored = false;
   let isInnerChange = false;
 
-  // 列可选项
+  // column options
   const columnOptions = ref<ColumnOptionsType[]>([]);
   const columnOptionsRef = ref(null);
-  // 已选列
+  // selected column
   const columnCheckedOptions = ref<string[]>([]);
-  // 已选变化
+  // selected changes
   watch(columnCheckedOptions, () => {
-    // 恢复缓存后生效
+    // Valid after restoring cache
     if (isRestored) {
-      // 显示
+      // display
       columnOptions.value
         .filter((o) => columnCheckedOptions.value.includes(o.value))
         .forEach((o) => {
           o.column.defaultHidden = false;
         });
-      // 隐藏
+      // hide
       columnOptions.value
         .filter((o) => !columnCheckedOptions.value.includes(o.value))
         .forEach((o) => {
           o.column.defaultHidden = true;
           o.fixed = undefined;
         });
-      // 从 列可选项 更新 全选状态
+      // Update select-all state from column options
       isColumnAllSelectedUpdate();
 
-      // 列表列更新
+      // List column update
       tableColumnsUpdate();
-      // 更新列缓存
+      // Update column cache
       props.cache && columnOptionsSave();
     }
   });
 
-  // 全选
+  // Select all
   const isColumnAllSelected = ref<boolean>(false);
   const onColumnAllSelectChange = () => {
     if (columnCheckedOptions.value.length < columnOptions.value.length) {
@@ -200,7 +200,7 @@
     }
   };
 
-  // 半选状态
+  // Half-selected state
   const indeterminate = computed(() => {
     return (
       columnCheckedOptions.value.length > 0 &&
@@ -208,33 +208,33 @@
     );
   });
 
-  // 是否显示序号列
+  // Whether to display the serial number column
   const isIndexColumnShow = ref<boolean>(false);
-  // 序号列更新
+  // Serial number column update
   const onIndexColumnShowChange = (e: CheckboxChangeEvent) => {
-    // 更新 showIndexColumn
+    // Update showIndexColumn
     showIndexColumnUpdate(e.target.checked);
-    // 更新 showIndexColumn 缓存
+    // Update showIndexColumn cache
     props.cache &&
       typeof route.name === 'string' &&
       tableSettingStore.setShowIndexColumn(route.name, e.target.checked);
   };
 
-  // 是否显示选择列
+  // Whether to display the selection column
   const isRowSelectionShow = ref<boolean>(false);
-  // 选择列更新
+  // Select column to update
   const onRowSelectionShowChange = (e: CheckboxChangeEvent) => {
-    // 更新 showRowSelection
+    // Update showRowSelection
     showRowSelectionUpdate(e.target.checked);
-    // 更新 showRowSelection 缓存
+    // Update showRowSelection cache
     props.cache &&
       typeof route.name === 'string' &&
       tableSettingStore.setShowRowSelection(route.name, e.target.checked);
   };
 
-  // 是否可改变列大小
+  // Whether the column size can be changed
   const isAllowResizeColumn = ref<boolean>(false);
-  // 改变列大小
+  // Change column size
   const onColumnAllowResizeChange = (e: CheckboxChangeEvent) => {
     const columns = getTableColumns();
     columns.forEach((col) => {
@@ -247,35 +247,35 @@
       tableSettingStore.setAllowResizeColumn(route.name, e.target.checked);
   }
 
-  // 更新列缓存
+  // Update column cache
   const columnOptionsSave = () => {
     if (typeof route.name === 'string') {
-      // 按路由 name 作为缓存的key（若一个路由内存在多个表格，需自行调整缓存key来源）
+      // Use the route name as the cache key (if there are multiple tables in a route, you need to adjust the cache key source yourself)
       tableSettingStore.setColumns(route.name, columnOptions.value);
     }
   };
 
-  // 重置
+  // reset
   const onReset = () => {
-    // 重置默认值
+    // Reset default value
     isIndexColumnShow.value = defaultIsIndexColumnShow;
-    // 序号列更新
+    // Serial number column update
     onIndexColumnShowChange({
       target: { checked: defaultIsIndexColumnShow },
     } as CheckboxChangeEvent);
-    // 重置默认值
+    // Reset default value
     isRowSelectionShow.value = defaultIsRowSelectionShow;
-    // 选择列更新
+    // Select column to update
     onRowSelectionShowChange({
       target: { checked: defaultIsRowSelectionShow },
     } as CheckboxChangeEvent);
-    // 重置默认值
+    // Reset default value
     columnOptions.value = cloneDeep(defaultColumnOptions);
-    // 更新表单状态
+    // Update form status
     formUpdate();
   };
 
-  // 设置列的 fixed
+  // Set the column's fixed
   const onColumnFixedChange = (opt: ColumnOptionsType, type: 'left' | 'right') => {
     if (type === 'left') {
       if (!opt.fixed || opt.fixed === 'right') {
@@ -291,16 +291,16 @@
       }
     }
 
-    // 列表列更新
+    // List column update
     tableColumnsUpdate();
-    // 更新列缓存
+    // Update column cache
     props.cache && columnOptionsSave();
   };
 
-  // 沿用逻辑
+  // Inherit logic
   const sortableFix = async () => {
-    // Sortablejs存在bug，不知道在哪个步骤中会向el append了一个childNode，因此这里先清空childNode
-    // 有可能复现上述问题的操作：拖拽一个元素，快速的上下移动，最后放到最后的位置中松手
+    // There is a bug in Sortablejs. I don’t know in which step a childNode will be appended to el, so the childNode is cleared first.
+    // Operations that may reproduce the above problem: drag an element, move it up and down quickly, and finally put it in the last position and let go
     if (columnOptionsRef.value) {
       const el = (columnOptionsRef.value as InstanceType<typeof Checkbox.Group>).$el;
       Array.from(el.children).forEach((item) => el.removeChild(item));
@@ -308,7 +308,7 @@
     await nextTick();
   };
 
-  // 列是否显示逻辑
+  // Whether the column displays logic
   const columnIfShow = (column?: Partial<Omit<BasicColumn, 'children'>>) => {
     if (column) {
       if ('ifShow' in column) {
@@ -323,19 +323,19 @@
     return false;
   };
 
-  // 获取数据列
+  // Get the data column
   const getTableColumns = () => {
     return table
       .getColumns({ ignoreIndex: true, ignoreAction: true })
       .filter((col) => columnIfShow(col));
   };
 
-  // 设置列表列
+  // Set list columns
   const tableColumnsSet = (columns: BasicColumn[]) => {
     isInnerChange = true;
     table?.setColumns(columns);
 
-    // 沿用逻辑
+    // Inherit logic
     const columnChangeParams: ColumnChangeParam[] = columns.map((col) => ({
       dataIndex: col.dataIndex ? col.dataIndex.toString() : '',
       fixed: col.fixed,
@@ -344,22 +344,22 @@
     emit('columns-change', columnChangeParams);
   };
 
-  // 列表列更新
+  // List column update
   const tableColumnsUpdate = () => {
-    // 考虑了所有列
+    // all columns considered
     const columns = cloneDeep(table.getColumns());
 
-    // 从左 fixed 最一列开始排序（除了 序号列）
+    // Sort from the leftmost fixed column (except the serial number column)
     let count = columns.filter(
       (o) => o.flag !== INDEX_COLUMN_FLAG && (o.fixed === 'left' || o.fixed === true),
     ).length;
 
-    // 序号列提前
+    // Serial number column advanced
     if (isIndexColumnShow.value) {
       count++;
     }
 
-    // 按 columnOptions 的排序 调整 table.getColumns() 的顺序和值
+    // Sort by columnOptions and adjust the order and value of table.getColumns()
     for (const opt of columnOptions.value) {
       const colIdx = columns.findIndex((o) => o.dataIndex === opt.value);
       //
@@ -368,27 +368,27 @@
         target.defaultHidden = opt.column?.defaultHidden;
         target.fixed = opt.fixed;
         columns.splice(colIdx, 1);
-        columns.splice(count++, 0, target); // 递增插入
+        columns.splice(count++, 0, target); // Incremental insertion
       }
     }
 
-    // 是否存在 action
+    // Does action exist?
     const actionIndex = columns.findIndex((o) => o.dataIndex === 'action');
     if (actionIndex > -1) {
       const actionCol = columns.splice(actionIndex, 1);
       columns.push(actionCol[0]);
     }
 
-    // 设置列表列
+    // Set list columns
     tableColumnsSet(columns);
   };
 
-  // 打开浮窗
+  // Open floating window
   const onOpenChange = async () => {
     await nextTick();
 
     if (columnOptionsRef.value) {
-      // 注册排序实例
+      // Register sorting instance
       const el = (columnOptionsRef.value as InstanceType<typeof Checkbox.Group>).$el;
       Sortablejs.create(unref(el), {
         animation: 500,
@@ -404,7 +404,7 @@
 
           const options = cloneDeep(columnOptions.value);
 
-          // 排序
+          // sort
           if (oldIndex > newIndex) {
             options.splice(newIndex, 0, options[oldIndex]);
             options.splice(oldIndex + 1, 1);
@@ -413,24 +413,24 @@
             options.splice(oldIndex, 1);
           }
 
-          // 更新 列可选项
+          // Update column options
           columnOptions.value = options;
 
-          // 列表列更新
+          // List column update
           tableColumnsUpdate();
-          // 更新列缓存
+          // Update column cache
           props.cache && columnOptionsSave();
         },
       });
     }
   };
 
-  // remove消失的列、push新出现的列
+  // remove disappearing columns and push newly appearing columns
   const diff = () => {
     if (typeof route.name === 'string') {
       let cache = tableSettingStore.getColumns(route.name);
       if (cache) {
-        // value、label是否一致
+        // Are value and label consistent?
         if (
           JSON.stringify(columnOptions.value.map((o) => ({ value: o.value, label: o.label }))) !==
           JSON.stringify(cache.map((o) => ({ value: o.value, label: o.label })))
@@ -440,16 +440,16 @@
             return map;
           }, {});
           if (Array.isArray(cache)) {
-            // remove消失的列
+            // remove missing columns
             cache = cache.filter((o) => map[o.value]);
-            // 更新label
+            // update label
             cache.forEach((o) => {
               o.label = map[o.value];
             });
             const cacheKeys = cache.map((o) => o.value);
-            // push新出现的列
+            // push the new column
             cache = cache.concat(columnOptions.value.filter((o) => !cacheKeys.includes(o.value)));
-            // 更新缓存
+            // Update cache
             tableSettingStore.setColumns(route.name, cache);
           }
         }
@@ -457,63 +457,63 @@
     }
   };
 
-  // 从缓存恢复
+  // Restore from cache
   const restore = () => {
     if (typeof route.name === 'string') {
       const isIndexColumnShowCache = tableSettingStore.getShowIndexColumn(route.name);
-      // 设置过才恢复
+      // Restore after setting
       if (typeof isIndexColumnShowCache === 'boolean') {
         isIndexColumnShow.value = defaultIsIndexColumnShow && isIndexColumnShowCache;
       }
 
       const isRowSelectionShowCache = tableSettingStore.getShowRowSelection(route.name);
-      // 设置过才恢复
+      // Restore after setting
       if (typeof isRowSelectionShowCache === 'boolean') {
         isRowSelectionShow.value = defaultIsRowSelectionShow && isRowSelectionShowCache;
       }
 
       const allowResizeColumnCache = tableSettingStore.getAllowResizeColumn(route.name);
-      // 设置过才恢复
+      // Restore after setting
       if (typeof allowResizeColumnCache === 'boolean') {
         isAllowResizeColumn.value = defaultIsAllowResizeColumn && allowResizeColumnCache;
       }
     }
-    // 序号列更新
+    // Serial number column update
     onIndexColumnShowChange({
       target: { checked: isIndexColumnShow.value },
     } as CheckboxChangeEvent);
-    // 选择列更新
+    // Select column to update
     onRowSelectionShowChange({
       target: { checked: isRowSelectionShow.value },
     } as CheckboxChangeEvent);
 
     if (typeof route.name === 'string') {
       const cache = tableSettingStore.getColumns(route.name);
-      // 设置过才恢复
+      // Restore after setting
       if (Array.isArray(cache)) {
         columnOptions.value = cache;
       }
     }
   };
 
-  // 从 列可选项 更新 已选列
+  // Update selected columns from column options
   const columnCheckedOptionsUpdate = () => {
     columnCheckedOptions.value = columnOptions.value
       .filter((o) => !o.column?.defaultHidden)
       .map((o) => o.value);
   };
-  // 从 列可选项 更新 全选状态
+  // Update select-all state from column options
   const isColumnAllSelectedUpdate = () => {
     isColumnAllSelected.value = columnOptions.value.length === columnCheckedOptions.value.length;
   };
-  // 更新 showIndexColumn
+  // Update showIndexColumn
   const showIndexColumnUpdate = (showIndexColumn) => {
     isInnerChange = true;
     table.setProps({
       showIndexColumn,
     });
   };
-  // 更新 rowSelection
+  // update rowSelection
   const showRowSelectionUpdate = (showRowSelection) => {
     isInnerChange = true;
     table.setProps({
@@ -526,25 +526,25 @@
     });
   };
 
-  // 更新表单状态
+  // Update form status
   const formUpdate = () => {
-    // 从 列可选项 更新 已选列
+    // Update selected columns from column options
     columnCheckedOptionsUpdate();
 
-    // 从 列可选项 更新 全选状态
+    // Update select-all state from column options
     isColumnAllSelectedUpdate();
 
-    // 更新 showIndexColumn
+    // Update showIndexColumn
     showIndexColumnUpdate(isIndexColumnShow.value);
 
-    // 更新 showRowSelection
+    // Update showRowSelection
     showRowSelectionUpdate(isRowSelectionShow.value);
 
-    // 列表列更新
+    // List column update
     tableColumnsUpdate();
   };
 
-  // 默认值
+  // Default value
   let defaultIsIndexColumnShow: boolean = false;
   let defaultIsRowSelectionShow: boolean = false;
   let defaultIsAllowResizeColumn: boolean = false;
@@ -553,16 +553,16 @@
 
   const init = async () => {
     if (!isRestored) {
-      // 获取数据列
+      // Get the data column
       const columns = getTableColumns();
 
-      // 沿用逻辑
+      // Inherit logic
       table.setCacheColumns?.(columns);
 
-      // 生成 默认值
+      // Generate default value
       const options: ColumnOptionsType[] = [];
       for (const col of columns) {
-        // 只缓存 string 类型的列
+        // Only cache columns of type string
         options.push({
           label:
             typeof col.title === 'string'
@@ -583,39 +583,39 @@
         });
       }
 
-      // 默认值 缓存
+      // Default value cache
       defaultIsIndexColumnShow = table.getBindValues.value.showIndexColumn || false;
       defaultRowSelection = table.getRowSelection();
-      defaultIsRowSelectionShow = !!defaultRowSelection; // 设置了 rowSelection 才出现
+      defaultIsRowSelectionShow = !!defaultRowSelection; // Appears only after rowSelection is set
       defaultColumnOptions = options;
 
-      // 默认值 赋值
+      // Default value assignment
       isIndexColumnShow.value = defaultIsIndexColumnShow;
       isRowSelectionShow.value = defaultIsRowSelectionShow;
       columnOptions.value = cloneDeep(options);
 
-      // remove消失的列、push新出现的列
+      // remove disappearing columns and push newly appearing columns
       props.cache && diff();
 
-      // 从缓存恢复
+      // Restore from cache
       props.cache && restore();
 
-      // 更新表单状态
+      // Update form status
       formUpdate();
 
       isRestored = true;
     }
   };
 
-  // 初始化
+  // initialization
   const once = async () => {
-    // 仅执行一次
+    // Execute only once
     await sortableFix();
     init();
   };
   once();
 
-  // 外部列改变
+  // External column changes
   const getColumns = computed(() => {
     return table?.getColumns();
   });

@@ -6,22 +6,22 @@
     <members>
         <member name="T:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector">
             <summary>
-            消费者查找器
+            Consumer Finder
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.CapOptions">
             <summary>
-            CAP配置
+            CAP configuration
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.AbpDistributedEventBusOptions">
             <summary>
-            Abp分布式事件配置
+            Abp distributed event configuration
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.ServiceProvider">
             <summary>
-            服务提供者
+            service provider
             </summary>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DotNetCore.CAP.CapOptions},Microsoft.Extensions.Options.IOptions{Volo.Abp.EventBus.Distributed.AbpDistributedEventBusOptions})">
@@ -31,14 +31,14 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.FindConsumersFromInterfaceTypes(System.IServiceProvider)">
             <summary>
-            查找消费者集合
+            Find consumer collection
             </summary>
             <param name="provider"></param>
             <returns></returns>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPConsumerServiceSelector.GetHandlerDescription(System.Type,System.Type)">
             <summary>
-            获取事件处理器集合
+            Get event handler collection
             </summary>
             <param name="eventType"></param>
             <param name="typeInfo"></param>
@@ -57,12 +57,12 @@
         </member>
         <member name="T:LINGYUN.Abp.EventBus.CAP.AbpCAPEventBusOptions">
             <summary>
-            过期消息清理配置项
+            Expired message cleaning configuration items
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.AbpCAPEventBusOptions.NotifyFailedCallback">
             <summary>
-            发布消息处理失败通知
+            Publish message processing failure notification
             default: false
             </summary>
         </member>
@@ -107,12 +107,12 @@
         </member>
         <member name="T:LINGYUN.Abp.EventBus.CAP.AbpCAPMessageExtensions">
             <summary>
-            CAP消息扩展
+            CAP message extension
             </summary>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPMessageExtensions.TryGetTenantId(DotNetCore.CAP.Messages.Message,System.Nullable{System.Guid}@)">
             <summary>
-            尝试获取消息标头中的租户标识
+            Try to get the tenant id in the message header
             </summary>
             <param name="message"></param>
             <param name="tenantId"></param>
@@ -120,14 +120,14 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPMessageExtensions.GetTenantIdOrNull(DotNetCore.CAP.Messages.Message)">
             <summary>
-            获取消息标头中的租户标识
+            Get the tenant ID in the message header
             </summary>
             <param name="message"></param>
             <returns></returns>
         </member>
         <member name="T:LINGYUN.Abp.EventBus.CAP.AbpCAPSubscribeInvoker">
             <summary>
-            重写 ISubscribeInvoker 实现 Abp 租户集成
+            Rewrite ISubscribeInvoker to implement Abp tenant integration
             </summary>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPSubscribeInvoker.#ctor(Microsoft.Extensions.Logging.ILoggerFactory,System.IServiceProvider,DotNetCore.CAP.Serialization.ISerializer,Volo.Abp.MultiTenancy.ICurrentTenant)">
@@ -141,7 +141,7 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPSubscribeInvoker.InvokeAsync(DotNetCore.CAP.Internal.ConsumerContext,System.Threading.CancellationToken)">
             <summary>
-            调用订阅者方法
+            Call subscriber method
             </summary>
             <param name="context"></param>
             <param name="cancellationToken"></param>
@@ -159,7 +159,7 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPSubscribeInvoker.GetInstance(System.IServiceProvider,DotNetCore.CAP.Internal.ConsumerContext)">
             <summary>
-            获取事件处理类实例
+            Get event handling class instance
             </summary>
             <param name="provider"></param>
             <param name="context"></param>
@@ -167,7 +167,7 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.AbpCAPSubscribeInvoker.ExecuteWithParameterAsync(LINGYUN.Abp.EventBus.CAP.Internal.ObjectMethodExecutor,System.Object,System.Object[])">
             <summary>
-            通过给定的类型实例与参数调用订阅者方法
+            Call the subscriber method with the given type instance and parameters
             </summary>
             <param name="executor"></param>
             <param name="class"></param>
@@ -176,37 +176,37 @@
         </member>
         <member name="T:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus">
             <summary>
-            CAP分布式事件总线
+            CAP distributed event bus
             </summary>
         </member>
         <member name="F:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.CapPublisher">
             <summary>
-            CAP消息发布接口
+            CAP message publishing interface
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.CustomDistributedEventSubscriber">
             <summary>
-            自定义事件注册接口
+            Custom event registration interface
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.HandlerFactories">
             <summary>
-            本地事件处理器工厂对象集合
+            Collection of local event handler factory objects
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.EventTypes">
             <summary>
-            本地事件集合
+            Local event collection
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.CurrentUser">
             <summary>
-            当前用户
+            current user
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.CurrentClient">
             <summary>
-            当前客户端
+            current client
             </summary>
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.JsonSerializer">
@@ -216,7 +216,7 @@
         </member>
         <member name="P:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.CancellationTokenProvider">
             <summary>
-            取消令牌
+            cancel token
             </summary>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.#ctor(Microsoft.Extensions.DependencyInjection.IServiceScopeFactory,Microsoft.Extensions.Options.IOptions{Volo.Abp.EventBus.Distributed.AbpDistributedEventBusOptions},DotNetCore.CAP.ICapPublisher,Volo.Abp.Users.ICurrentUser,Volo.Abp.Clients.ICurrentClient,Volo.Abp.MultiTenancy.ICurrentTenant,Volo.Abp.Json.IJsonSerializer,Volo.Abp.Uow.IUnitOfWorkManager,Volo.Abp.Guids.IGuidGenerator,Volo.Abp.Timing.IClock,Volo.Abp.Threading.ICancellationTokenProvider,LINGYUN.Abp.EventBus.CAP.ICustomDistributedEventSubscriber,Volo.Abp.EventBus.IEventHandlerInvoker,Volo.Abp.EventBus.Local.ILocalEventBus)">
@@ -240,7 +240,7 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.Subscribe(System.Type,Volo.Abp.EventBus.IEventHandlerFactory)">
             <summary>
-            订阅事件
+            Subscribe to events
             </summary>
             <param name="eventType"></param>
             <param name="factory"></param>
@@ -248,61 +248,61 @@
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.Unsubscribe``1(System.Func{``0,System.Threading.Tasks.Task})">
             <summary>
-            退订事件
+            Unsubscribe event
             </summary>
-            <typeparam name="TEvent">事件类型</typeparam>
+            <typeparam name="TEvent">Event type</typeparam>
             <param name="action"></param>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.Unsubscribe(System.Type,Volo.Abp.EventBus.IEventHandler)">
             <summary>
-            退订事件
+            Unsubscribe event
             </summary>
-            <param name="eventType">事件类型</param>
-            <param name="handler">事件处理器</param>
+            <param name="eventType">Event type</param>
+            <param name="handler">Event handler</param>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.Unsubscribe(System.Type,Volo.Abp.EventBus.IEventHandlerFactory)">
             <summary>
-            退订事件
+            Unsubscribe event
             </summary>
-            <param name="eventType">事件类型</param>
-            <param name="factory">事件处理器工厂</param>
+            <param name="eventType">Event type</param>
+            <param name="factory">Event handler factory</param>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.UnsubscribeAll(System.Type)">
             <summary>
-            退订所有事件
+            Unsubscribe from all events
             </summary>
-            <param name="eventType">事件类型</param>
+            <param name="eventType">Event type</param>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.PublishToEventBusAsync(System.Type,System.Object)">
             <summary>
-            发布事件
+            publish event
             </summary>
-            <param name="eventType">事件类型</param>
-            <param name="eventData">事件数据对象</param>
+            <param name="eventType">Event type</param>
+            <param name="eventData">Event data object</param>
             <returns></returns>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.CAPDistributedEventBus.GetHandlerFactories(System.Type)">
             <summary>
-            获取事件处理器工厂列表
+            Get a list of event handler factories
             </summary>
             <param name="eventType"></param>
             <returns></returns>
         </member>
         <member name="T:LINGYUN.Abp.EventBus.CAP.ICustomDistributedEventSubscriber">
             <summary>
-            自定义事件订阅者
+            Custom event subscriber
             </summary>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.ICustomDistributedEventSubscriber.Subscribe(System.Type,Volo.Abp.EventBus.IEventHandlerFactory)">
             <summary>
-            订阅事件
+            Subscribe to events
             </summary>
             <param name="eventType"></param>
             <param name="factory"></param>
         </member>
         <member name="M:LINGYUN.Abp.EventBus.CAP.ICustomDistributedEventSubscriber.UnSubscribe(System.Type,Volo.Abp.EventBus.IEventHandlerFactory)">
             <summary>
-            取消订阅
+            Unsubscribe
             </summary>
             <param name="eventType"></param>
             <param name="factory"></param>

@@ -5,18 +5,18 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 消息工厂
+/// Enterprise WeChat Webhook Message Factory
 /// </summary>
 public static class WeChatWorkWebhookMessageFactory
 {
     /// <summary>
-    /// 注册内置消息工厂
+    /// Register the built-in message factory
     /// </summary>
     /// <remarks>
-    /// 每种载荷对应一种 <c>msgtype</c>, 一一映射, 不做隐式降级:
-    /// 生产者选择了模板卡片, 就一定发模板卡片, 而不是静默发成文本。
-    /// 唯一的例外是 markdown 与 markdown_v2 的取舍, 由渠道选项
-    /// <see cref="AbpNotificationsWebhookWeChatWorkOptions.UseMarkdownV2"/> 决定。
+    /// Each payload corresponds to a <c>msgtype</c>, one-to-one mapping, without implicit degradation:
+    /// If the producer selects a template card, the template card must be sent instead of silently sending it as text.
+    /// The only exception is the choice between markdown and markdown_v2, which is determined by the channel option
+    /// <see cref="AbpNotificationsWebhookWeChatWorkOptions.UseMarkdownV2"/> Decision.
     /// </remarks>
     public static AbpNotificationsWebhookWeChatWorkMessageOptions MapDefaultMessageFactories(
         this AbpNotificationsWebhookWeChatWorkMessageOptions options)

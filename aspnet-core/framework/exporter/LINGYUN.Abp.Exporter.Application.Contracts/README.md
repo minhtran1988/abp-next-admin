@@ -1,11 +1,11 @@
 # LINGYUN.Abp.Exporter.Application.Contracts
 
-数据导出/导入接口契约层,定义通用的数据导入/导入服务接口
+Data export/import interface contract layer defines a common data import/import service interface
 
-## 配置使用
+## Configuration usage
 
 
-> 配置模块依赖
+> Configure module dependencies
 ```csharp
 
 [DependsOn(
@@ -17,7 +17,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-> 定义导出类型
+> Define export type
 ```csharp
 public class DemoClassDto
 {
@@ -30,7 +30,7 @@ public class DemoClassDto
 }
 ```
 
-> 定义导入类型
+> Define import type
 ```csharp
 public class DemoClassImportInput
 {
@@ -43,7 +43,7 @@ public class DemoClassImportInput
 }
 ```
 
-> 定义数据过滤类型
+> Define data filtering type
 ```csharp
 public class DemoClassExportListInput
 {
@@ -58,7 +58,7 @@ public class DemoClassExportListInput
 }
 ```
 
-> 导出数据
+> Export data
 ```csharp
     public class ExportDemoClassExportAppService : IExporterAppService<DemoClassDto, DemoClassExportListInput>
     {
@@ -71,7 +71,7 @@ public class DemoClassExportListInput
 
         public async virtual Task<IRemoteStreamContent> ExportAsync(DemoClassExportListInput input)
         {
-            var dtos = 通过仓储接口查询数据列表;
+            var dtos = Query the data list through the warehousing interface;
 
             var stream = await _exporterProvider.ExportAsync(dtos);
 
@@ -80,7 +80,7 @@ public class DemoClassExportListInput
     }
 ```
 
-> 导入数据
+> Import data
 ```csharp
     public class ExportDemoClassImportAppService : IImporterAppService<DemoClassImportInput>
     {
@@ -97,7 +97,7 @@ public class DemoClassExportListInput
 
             var demos = await _importerProvider.ImportAsync<DemoClass>(stream);
 
-            // 其他操作
+            //Other operations
         }
     }
 ```

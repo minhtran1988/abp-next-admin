@@ -215,7 +215,7 @@ public class PermissionDefinitionAppService : PermissionManagementAppServiceBase
         {
             if (!string.Equals(record.StateCheckers, input.StateCheckers, StringComparison.InvariantCultureIgnoreCase))
             {
-                // 校验格式
+                // Verification format
                 var permissionDefinition = await _staticPermissionDefinitionStore.GetOrNullAsync(PermissionManagementPermissionNames.Definition.Default);
                 if (permissionDefinition != null && !input.StateCheckers.IsNullOrWhiteSpace())
                 {

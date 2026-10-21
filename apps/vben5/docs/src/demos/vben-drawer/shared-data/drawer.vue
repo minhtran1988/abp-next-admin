@@ -20,7 +20,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
 });
 </script>
 <template>
-  <Drawer title="数据共享示例">
-    <div class="flex-col-center">外部传递数据： {{ data }}</div>
+  <Drawer title="Data Sharing Example">
+    <div class="flex-col-center">Externally pass data: {{ data }}</div>
   </Drawer>
 </template>

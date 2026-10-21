@@ -1,23 +1,23 @@
 # LINGYUN.Abp.WeChat.Official.Handlers
 
-微信公众号消息处理模块，提供微信公众号消息和事件处理的基础实现。
+The WeChat public account message processing module provides the basic implementation of WeChat public account message and event processing.
 
-## 功能特性
+## Features
 
-* 文本消息处理
-* 图片消息处理
-* 语音消息处理
-* 视频消息处理
-* 小视频消息处理
-* 地理位置消息处理
-* 链接消息处理
-* 关注/取消关注事件处理
-* 扫描带参数二维码事件处理
-* 上报地理位置事件处理
-* 自定义菜单事件处理
-* 模板消息事件处理
+* Text message processing
+* Picture message processing
+* Voice message processing
+* Video message processing
+* Small video message processing
+* Geolocation message processing
+* Link message processing
+* Follow/unfollow event processing
+* Scan QR code event processing with parameters
+* Report geographical location event processing
+* Custom menu event handling
+* Template message event processing
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatOfficialHandlersModule))]
@@ -27,32 +27,32 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Official": {
       "Handlers": {
-        "DefaultResponseType": "text",  // 默认响应类型：text/image/voice/video/music/news
-        "DefaultResponse": "",          // 默认响应内容
-        "EnableDefaultResponse": true   // 是否启用默认响应
+        "DefaultResponseType": "text", //Default response type: text/image/voice/video/music/news
+        "DefaultResponse": "", //Default response content
+        "EnableDefaultResponse": true // Whether to enable the default response
       }
     }
   }
 }
 ```
 
-## 自定义处理器
+## Custom processor
 
-要实现自定义消息处理器，需要继承相应的基类：
+To implement a custom message processor, you need to inherit the corresponding base class:
 
-* 文本消息：`WeChatOfficialTextMessageHandlerBase`
-* 图片消息：`WeChatOfficialImageMessageHandlerBase`
-* 语音消息：`WeChatOfficialVoiceMessageHandlerBase`
-* 视频消息：`WeChatOfficialVideoMessageHandlerBase`
-* 事件消息：`WeChatOfficialEventMessageHandlerBase`
+* Text message: `WeChatOfficialTextMessageHandlerBase`
+* Image message: `WeChatOfficialImageMessageHandlerBase`
+* Voice message: `WeChatOfficialVoiceMessageHandlerBase`
+* Video message: `WeChatOfficialVideoMessageHandlerBase`
+* Event message: `WeChatOfficialEventMessageHandlerBase`
 
-## 更多文档
+## More documentation
 
-* [微信公众号消息处理模块文档](README.EN.md)
+* [WeChat public account message processing module document](README.EN.md)

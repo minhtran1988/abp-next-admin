@@ -2,11 +2,11 @@
 public enum PushPlusTopicQrCodeType
 {
     /// <summary>
-    /// 临时
+    /// Temporary
     /// </summary>
     Temporary = 0,
     /// <summary>
-    /// 永久
+    /// permanent
     /// </summary>
     Permanent = 1,
 }

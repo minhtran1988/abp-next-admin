@@ -17,41 +17,41 @@ namespace LY.MicroService.ApiGateway
     public class Aggregator
     {
         /// <summary>
-        /// 设置聚合路由
+        /// Set aggregate routing
         /// </summary>
         /// <remarks>
-        /// 聚合路由:
+        /// Aggregation routing:
         /// /api/setting-management/settings
         /// </remarks>
         /// <example>
-        /// 宿主端路由: 
+        /// Host-side routing:
         /// Get: /api/setting-management/settings/by-global
         /// Set: /api/setting-management/settings/change-global
         /// </example>
         /// <example>
-        /// 租户端路由: 
+        /// Tenant-side routing:
         /// Get: /api/setting-management/settings/by-current-tenant
         /// Set: /api/setting-management/settings/change-current-tenant
         /// </example>
         /// <example>
-        /// 用户端路由: 
+        /// Client routing:
         /// Get: /api/setting-management/settings/by-current-user
         /// Set: /api/setting-management/settings/change-current-user
         /// </example>
         public AggregatorUrl SettingUrl { get; set; }
         /// <summary>
-        /// 应用配置聚合路由
+        /// Apply configuration aggregate routing
         /// </summary>
         /// <remarks>
-        /// 聚合路由:
+        /// Aggregation routing:
         /// /api/abp/application-configuration
         /// </remarks>
         public AggregatorUrl ConfigurationUrl { get; set; }
         /// <summary>
-        /// Api接口定义配置聚合路由
+        /// Api interface definition configures aggregate routing
         /// </summary>
         /// <remarks>
-        /// 聚合路由:
+        /// Aggregation routing:
         /// /api/abp/api-definition
         /// </remarks>
         public AggregatorUrl ApiDefinitionUrl { get; set; }
@@ -69,15 +69,15 @@ namespace LY.MicroService.ApiGateway
 
         public HttpHandlerOptions HttpHandler { get; set; }
         /// <summary>
-        /// 查询聚合路由列表
+        /// Query the aggregate route list
         /// </summary>
         public List<RequestUrl> GetUrls { get; set; }
         /// <summary>
-        /// 变更路由
+        /// Change route
         /// </summary>
         public RequestUrl SetUrl { get; set; }
         /// <summary>
-        /// 默认超时时间
+        /// Default timeout
         /// </summary>
         /// <remarks>
         /// default: 30s

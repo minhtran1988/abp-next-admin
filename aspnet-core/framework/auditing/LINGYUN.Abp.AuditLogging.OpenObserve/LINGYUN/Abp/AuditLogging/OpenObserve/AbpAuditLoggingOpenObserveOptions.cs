@@ -1,80 +1,80 @@
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 审计日志 OpenObserve 选项
+/// Audit log OpenObserve options
 /// </summary>
 /// <remarks>
-/// 配置节: <c>AuditLogging:OpenObserve</c>
+/// Configuration section: <c>AuditLogging:OpenObserve</c>
 /// </remarks>
 public class AbpAuditLoggingOpenObserveOptions
 {
     /// <summary>
-    /// 默认审计日志数据流
+    /// Default audit log data stream
     /// </summary>
     public const string DefaultAuditLogStream = "audit_log";
     /// <summary>
-    /// 默认安全日志数据流
+    /// Default security log data stream
     /// </summary>
     public const string DefaultSecurityLogStream = "security_log";
     /// <summary>
-    /// 实体变更数据流后缀
+    /// Entity change data stream suffix
     /// </summary>
     public const string EntityChangeStreamSuffix = "_entity_changes";
     /// <summary>
-    /// 操作数据流后缀
+    /// Operation data stream suffix
     /// </summary>
     public const string ActionStreamSuffix = "_actions";
 
     /// <summary>
-    /// 组织名称
+    /// Organization name
     /// </summary>
     /// <remarks>
-    /// 未指定时使用 <c>AbpOpenObserveOptions.Organization</c>
+    /// Use <c>AbpOpenObserveOptions.Organization</c> when not specified
     /// </remarks>
     public string? Organization { get; set; }
     /// <summary>
-    /// 审计日志数据流名称
+    /// Audit log data stream name
     /// </summary>
     public string AuditLogStream { get; set; }
     /// <summary>
-    /// 安全日志数据流名称
+    /// Security log data stream name
     /// </summary>
     public string SecurityLogStream { get; set; }
     /// <summary>
-    /// 是否展平写入实体变更
+    /// Whether to flatten written entity changes
     /// </summary>
     /// <remarks>
-    /// 默认 true; 关闭后 <c>IEntityChangeStore</c> 将无法查询到数据
+    /// Default is true; <c>IEntityChangeStore</c> will not be able to query data after closing
     /// </remarks>
     public bool WriteEntityChanges { get; set; }
     /// <summary>
-    /// 是否展平写入操作
+    /// Whether to flatten write operations
     /// </summary>
     /// <remarks>
-    /// 默认 true; 关闭后按 <c>Actions.*</c> 条件的查询将无法匹配
+    /// Default is true; after closing, queries based on <c>Actions.*</c> conditions will not be matched.
     /// </remarks>
     public bool WriteActions { get; set; }
     /// <summary>
-    /// 未指定时间范围时的默认查询跨度(天)
+    /// Default query span (days) when no time range is specified
     /// </summary>
     /// <remarks>
-    /// OpenObserve 查询必须指定时间范围, 默认 365 天
+    /// OpenObserve query must specify a time range, the default is 365 days
     /// </remarks>
     public int DefaultQueryDays { get; set; }
     /// <summary>
-    /// 是否用日志自身的业务时间覆盖 OpenObserve 的 <c>_timestamp</c>
+    /// Whether to overwrite OpenObserve's <c>_timestamp</c> with the log's own business time
     /// </summary>
     /// <remarks>
-    /// 默认 true: 审计日志使用 <c>AuditLog.ExecutionTime</c>, 安全日志使用 <c>SecurityLog.CreationTime</c>,
-    /// 实体变更使用 <c>EntityChange.ChangeTime</c>, 操作使用 <c>AuditLogAction.ExecutionTime</c>
+    /// Default true: Audit log uses <c>AuditLog.ExecutionTime</c>, security log uses <c>SecurityLog.CreationTime</c>,
+    /// Entity changes use <c>EntityChange.ChangeTime</c>, operations use <c>AuditLogAction.ExecutionTime</c>
     /// </remarks>
     public bool UseLogTimeAsTimestamp { get; set; }
     /// <summary>
-    /// 允许覆盖 <c>_timestamp</c> 的最大回溯小时数
+    /// Maximum number of lookback hours allowed to override <c>_timestamp</c>
     /// </summary>
     /// <remarks>
-    /// OpenObserve 默认只接受 <c>ZO_INGEST_ALLOWED_UPTO</c>(默认 5)小时内的数据, 超出窗口会被服务端丢弃,
-    /// 因此超出该窗口的日志不再覆盖 <c>_timestamp</c>(改用服务端写入时间); 需与服务端环境变量保持一致
+    /// By default, OpenObserve only accepts data within <c>ZO_INGEST_ALLOWED_UPTO</c> (default 5) hours. If the window is exceeded, it will be discarded by the server.
+    /// Therefore, logs beyond this window will no longer cover <c>_timestamp</c> (server writing time is used instead); it must be consistent with the server environment variables
     /// </remarks>
     public int TimestampAllowedUptoHours { get; set; }
 
@@ -91,10 +91,10 @@ public class AbpAuditLoggingOpenObserveOptions
     }
 
     /// <summary>
-    /// 获取实体变更数据流名称
+    /// Get the entity change data stream name
     /// </summary>
     /// <remarks>
-    /// 由 <see cref="AuditLogStream"/> 计算得出: <c>{AuditLogStream}_entity_changes</c>, 无需单独配置
+    /// Calculated by <see cref="AuditLogStream"/>: <c>{AuditLogStream}_entity_changes</c>, no separate configuration required
     /// </remarks>
     public virtual string GetEntityChangeStream()
     {
@@ -102,11 +102,11 @@ public class AbpAuditLoggingOpenObserveOptions
     }
 
     /// <summary>
-    /// 获取操作数据流名称
+    /// Get the operation data stream name
     /// </summary>
     /// <remarks>
-    /// 由 <see cref="AuditLogStream"/> 计算得出: <c>{AuditLogStream}_actions</c>, 无需单独配置;
-    /// 大数据量操作(parameters 可能很大)写入独立数据流, 查询时先在该数据流匹配再回主数据流按 id 过滤
+    /// Calculated by <see cref="AuditLogStream"/>: <c>{AuditLogStream}_actions</c>, no separate configuration is required;
+    /// Large data volume operations (parameters may be very large) are written to an independent data stream. When querying, first match the data stream and then return to the main data stream to filter by id.
     /// </remarks>
     public virtual string GetActionStream()
     {

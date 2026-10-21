@@ -3,44 +3,44 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据契约
+/// Notification channel data contract
 /// </summary>
 /// <remarks>
 /// <para>
-/// 渠道数据(载荷)是发布渠道与生产者之间约定的数据结构。
-/// 生产者通过 <see cref="INotificationChannelDataSerializer"/> 写入载荷,
-/// 渠道通过 <see cref="INotificationChannelDataResolver"/> 解析载荷。
+/// Channel data (load) is the data structure agreed between the publishing channel and the producer.
+/// The producer writes the payload through <see cref="INotificationChannelDataSerializer"/>,
+/// The channel resolves the payload via <see cref="INotificationChannelDataResolver"/>.
 /// </para>
 /// <para>
-/// 载荷的存在性由 <see cref="Presence"/> 声明式表达, 结合
-/// <see cref="NotificationChannelPropertyAttribute"/> 的键定义自动推导,
-/// 无需在载荷类型中实现判定方法。
+/// The presence of the payload is expressed declaratively by <see cref="Presence"/>, combined with
+/// The key definition of <see cref="NotificationChannelPropertyAttribute"/> is automatically deduced,
+/// There is no need to implement the determination method in the payload type.
 /// </para>
 /// <para>
-/// 若既未声明 <see cref="Presence"/>、又没有可参与匹配的属性,
-/// 注册时会抛出 <see cref="AbpNotificationChannelDataConfigurationException"/>:
-/// 让"忘了定义存在性"在启动阶段暴露, 而不是在生产环境静默丢弃通知。
+/// If <see cref="Presence"/> is not declared and there are no attributes that can participate in matching,
+/// <see cref="AbpNotificationChannelDataConfigurationException"/> will be thrown when registering:
+/// Make "forgot to define existence" exposed during startup, rather than silently discarding notifications in production.
 /// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public sealed class NotificationChannelDataAttribute : Attribute
 {
     /// <summary>
-    /// 渠道名称, 对应 <see cref="INotificationPublishProvider.Name"/>
+    /// Channel name, corresponding to <see cref="INotificationPublishProvider.Name"/>
     /// </summary>
     public string ProviderName { get; }
 
     /// <summary>
-    /// 载荷在同一个渠道内的匹配顺序, 数值越小越先匹配
+    /// The matching order of payloads in the same channel. The smaller the value, the first to match.
     /// </summary>
     /// <remarks>
-    /// 用于表达渠道内的显式规则, 匹配顺序必须声明,
-    /// 不允许依赖注册顺序或字段探测顺序。
+    /// Used to express explicit rules within the channel, the matching order must be declared,
+    /// Dependence on registration order or field probing order is not allowed.
     /// </remarks>
     public int Priority { get; set; }
 
     /// <summary>
-    /// 存在性判定模式, 默认按"参与匹配的属性全部存在"判定
+    /// Existence judgment mode, the default judgment is "all attributes participating in the matching exist"
     /// </summary>
     public NotificationChannelDataPresenceMode Presence { get; set; } = NotificationChannelDataPresenceMode.DeclaredProperties;
 

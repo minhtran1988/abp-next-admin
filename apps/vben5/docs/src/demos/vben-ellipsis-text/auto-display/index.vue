@@ -2,7 +2,7 @@
 import { EllipsisText } from '@vben/common-ui';
 
 const text = `
-Vben Admin 是一个基于 Vue3.0、Vite、 TypeScript 的后台解决方案，目标是为开发中大型项目提供开箱即用的解决方案。
+Vben Admin is a backend solution based on Vue3.0, Vite, and TypeScript. It aims to provide out-of-the-box solutions for the development of medium and large projects.
 `;
 </script>
 <template>

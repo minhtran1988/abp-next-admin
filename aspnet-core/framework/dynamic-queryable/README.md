@@ -1,20 +1,20 @@
 # Dynamic.Queryable
 
-动态查询支持库, 为以后台服务提供动态查询支持  
+Dynamic query support library provides dynamic query support for background services
 
-* 应用程序接口定义层引用**LINGYUN.Abp.Dynamic.Queryable.Application.Contracts**模块, 实现**IDynamicQueryableAppService**接口可对外提供动态查询支持  
+* The application interface definition layer refers to the **LINGYUN.Abp.Dynamic.Queryable.Application.Contracts** module and implements the **IDynamicQueryableAppService** interface to provide external dynamic query support
 
-* 应用程序接口实现层引用**LINGYUN.Abp.Dynamic.Queryable.Application**模块，继承自**DynamicQueryableAppService**接口，实现**GetCountAsync**与**GetListAsync**方法即可(为仓储层接口提供传递的**Expression<Func<TEntity, bool>>**结构)  
+* The application interface implementation layer refers to the **LINGYUN.Abp.Dynamic.Queryable.Application** module, which inherits from the **DynamicQueryableAppService** interface and implements the **GetCountAsync** and **GetListAsync** methods (provides the passed **Expression<Func<TEntity, bool>>** structure for the warehouse layer interface)
 
-* 控制器层引用**LINGYUN.Abp.Dynamic.Queryable.HttpApi**模块，继承**DynamicQueryableControllerBase**接口，自动公开动态查询接口。
+* The controller layer references the **LINGYUN.Abp.Dynamic.Queryable.HttpApi** module, inherits the **DynamicQueryableControllerBase** interface, and automatically exposes the dynamic query interface.
 
-## 接口说明
+## Interface description
 
-* **GetAvailableFieldsAsync**(<font color="green">[GET]</font> <font color="blue">/{controller}/available-fields</font>): 对外提供可选的属性明细, 默认返回所有字段(不包含已定义的排除字段).
+* **GetAvailableFieldsAsync**(<font color="green">[GET]</font> <font color="blue">/{controller}/available-fields</font>): Provides optional attribute details to the outside world, and returns all fields by default (excluding defined excluded fields).
 
-* **GetListAsync**(<font color="orange">[POST]</font> <font color="blue">/{controller}/search</font>):    根据用户传递的动态条件返回查询结果列表.
+* **GetListAsync**(<font color="orange">[POST]</font> <font color="blue">/{controller}/search</font>): Returns a list of query results based on the dynamic conditions passed by the user.
 
-## 配置使用
+## Configuration usage
 
-* AbpDynamicQueryableOptions.IgnoreFields:	定义不对用户公开的字段列表,默认排除租户标识、软删除过滤器接口字段.
+* AbpDynamicQueryableOptions.IgnoreFields: Defines a list of fields that are not open to users. Tenant identification and soft delete filter interface fields are excluded by default.
 

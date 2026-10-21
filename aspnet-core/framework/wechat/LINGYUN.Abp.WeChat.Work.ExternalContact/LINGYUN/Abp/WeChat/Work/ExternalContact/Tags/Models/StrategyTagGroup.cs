@@ -6,14 +6,14 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Models;
 public class StrategyTagGroup : TagGroup
 {
     /// <summary>
-    /// 标签组所属的规则组id
+    /// The rule group id to which the label group belongs
     /// </summary>
     [NotNull]
     [JsonProperty("strategy_id")]
     [JsonPropertyName("strategy_id")]
     public int StrategyId { get; set; }
     /// <summary>
-    /// 标签列表
+    /// Tag list
     /// </summary>
     [NotNull]
     [JsonProperty("tag")]

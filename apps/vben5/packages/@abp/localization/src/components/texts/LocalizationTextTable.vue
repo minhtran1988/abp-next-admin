@@ -53,11 +53,11 @@ const { getPagedListApi: getResourcesApi } = useResourcesApi();
 const { getLocalizationApi } = useLocalizationsApi();
 
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   collapsedRows: 2,
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
@@ -98,9 +98,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpUi.Search'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
 };
 
@@ -265,7 +265,7 @@ function onDelete(row: TextDifferenceDto) {
 async function onChange(data: TextDto) {
   const input = await gridApi.formApi.getValues();
   onGet(input);
-  // 资源变化刷新本地多语言缓存
+  // Resource changes refresh the local multi-language cache
   const cultureName =
     abpStore.application!.localization.currentCulture.cultureName;
   if (data.cultureName === cultureName) {

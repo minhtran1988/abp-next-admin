@@ -11,16 +11,16 @@ using Xunit;
 namespace LINGYUN.Abp.Notifications.ChannelData.Tests;
 
 /// <summary>
-/// 渠道数据(载荷)框架契约测试
+/// Channel data (load) framework contract test
 /// </summary>
 /// <remarks>
 /// <para>
-/// 本文件只测试**框架契约**本身: 弱类型转换、存在性判定、注册期校验、
-/// 优先级排序、JSON 往返。测试用载荷是本文件内定义的 stub 类型。
+/// This document only tests the **framework contract** itself: weak type conversion, existence determination, registration period verification,
+/// Prioritization, JSON round trip. The test load is the stub type defined in this file.
 /// </para>
 /// <para>
-/// **具体渠道**的数据测试在各自的测试项目中(先 new 消息对象 →
-/// <c>IJsonSerializer</c> 序列化 → 渠道侧验证):
+/// **Specific channel** data testing is in the respective test projects (first new message object →
+/// <c>IJsonSerializer</c> serialization → channel side verification):
 /// <list type="bullet">
 /// <item><c>LINGYUN.Abp.Notifications.WeChat.Work.Tests</c></item>
 /// <item><c>LINGYUN.Abp.Notifications.Webhook.WeChat.Work.Tests</c></item>
@@ -32,7 +32,7 @@ namespace LINGYUN.Abp.Notifications.ChannelData.Tests;
 /// </remarks>
 public class NotificationChannelData_Tests
 {
-    // ---------- 1. 弱类型转换 ----------
+    // ---------- 1. Weak type conversion ----------
 
     [Theory]
     [InlineData((byte)1)]
@@ -64,7 +64,7 @@ public class NotificationChannelData_Tests
     [Fact]
     public void Should_Read_Values_After_Json_RoundTrip()
     {
-        // 通知数据在持久化/失败重试/跨进程投递后必然经历 JSON 往返
+        // Notification data must undergo JSON round-trip after persistence/failure retry/cross-process delivery
         var data = new NotificationData();
         data.TrySetData("key", (byte)1);
 
@@ -82,14 +82,14 @@ public class NotificationChannelData_Tests
 
         var resolver = CreateResolver();
 
-        // 精确命中
+        // accurate hit
         resolver.GetOrNull(data, "my-stub:key").ShouldBe("value-1");
-        // 任意大小写都应命中
+        // Any case should hit
         resolver.GetOrNull(data, "MY-STUB:KEY").ShouldBe("value-1");
         resolver.GetOrNull(data, "My-Stub:Key").ShouldBe("value-1");
     }
 
-    // ---------- 2. 存在性判定(声明式) ----------
+    // ---------- 2. Existence determination (declarative) ----------
 
     [Fact]
     public void Should_Detect_Explicit_Payload()
@@ -105,7 +105,7 @@ public class NotificationChannelData_Tests
     public void Should_Not_Treat_Ignored_Properties_As_Payload()
     {
         var data = new NotificationData();
-        // 只写被标记为"仅读取"的属性: 不得视为声明了载荷
+        // Write-only properties marked "read-only": shall not be considered to declare a payload
         data.TrySetData("stubB:optional", "value");
 
         CreateResolver().IsDeclared(data, typeof(PriorityStubB)).ShouldBeFalse();
@@ -124,7 +124,7 @@ public class NotificationChannelData_Tests
         second.TrySetData("stub-many:second", "v");
         resolver.IsDeclared(second, typeof(AnyDeclaredPropertyStub)).ShouldBeTrue();
 
-        // 声明了按键判定, 但一个键都没写 -> 不存在
+        // The key determination is declared, but not a single key is written -> does not exist
         resolver.IsDeclared(new NotificationData(), typeof(AnyDeclaredPropertyStub)).ShouldBeFalse();
     }
 
@@ -132,11 +132,11 @@ public class NotificationChannelData_Tests
     public void Should_Ignore_Matching_For_Optional_Properties()
     {
         var data = new NotificationData();
-        // 只写"仅读取"的属性 -> 不算载荷
+        // Only write "read-only" properties -> not counted as payload
         data.TrySetData("stubB:optional", "value");
         CreateResolver().IsDeclared(data, typeof(PriorityStubB)).ShouldBeFalse();
 
-        // 写标识键 -> 算载荷
+        // Write identification key -> Calculate load
         var withIdentity = new NotificationData();
         withIdentity.TrySetData("stub:b", "value");
         CreateResolver().IsDeclared(withIdentity, typeof(PriorityStubB)).ShouldBeTrue();
@@ -147,14 +147,14 @@ public class NotificationChannelData_Tests
     {
         var resolver = CreateResolver();
 
-        // Presence = None: 无条件存在
+        // Presence = None: unconditionally exists
         resolver.IsDeclared(new NotificationData(), typeof(AlwaysPresentStub)).ShouldBeTrue();
 
         var payload = resolver.Resolve<AlwaysPresentStub>(new NotificationData());
         payload.ShouldNotBeNull();
     }
 
-    // ---------- 3. 注册期校验 ----------
+    // ---------- 3. Registration period verification ----------
 
     [Fact]
     public void Should_Throw_When_Presence_Declared_Without_Matchable_Property()
@@ -186,7 +186,7 @@ public class NotificationChannelData_Tests
         exception.Message.ShouldContain("same priority");
     }
 
-    // ---------- 4. 解析与排序 ----------
+    // ---------- 4. Parsing and sorting ----------
 
     [Fact]
     public void Should_Resolve_Payloads_In_Declared_Priority_Order()
@@ -197,10 +197,10 @@ public class NotificationChannelData_Tests
 
         var resolved = CreateResolver().Resolve(TestProvider, data);
 
-        // 只声明了 A 与 B; AnyDeclaredPropertyStub 未写入, AlwaysPresentStub(Presence=None)
-        // 无条件存在, 因此共 3 个
+        // Only A and B are declared; AnyDeclaredPropertyStub is not written, AlwaysPresentStub(Presence=None)
+        // Exists unconditionally, so there are 3 in total
         resolved.Count.ShouldBe(3);
-        // Priority: AlwaysPresentStub=400, A=100, B=200 -> 排序后 A, B, Always
+        // Priority: AlwaysPresentStub=400, A=100, B=200 -> After sorting A, B, Always
         resolved[0].ShouldBeOfType<PriorityStubA>();
         resolved[1].ShouldBeOfType<PriorityStubB>();
         resolved[2].ShouldBeOfType<AlwaysPresentStub>();
@@ -210,30 +210,30 @@ public class NotificationChannelData_Tests
     public void Should_Resolve_Payload_After_Json_RoundTrip()
     {
         var data = new NotificationData();
-        ChannelData().Write(data, new PriorityStubA { A = "卡片标题" });
+        ChannelData().Write(data, new PriorityStubA { A = "Card Title" });
 
-        // 复杂载荷以 JSON 字符串形式存储, 往返后仍必须能还原为强类型
+        // Complex payloads are stored in the form of JSON strings and must still be able to be restored to strong types after round-trips
         data.ExtraProperties["stub:a"].ShouldBeOfType<string>();
 
         var payload = CreateResolver().Resolve<PriorityStubA>(RoundTrip(data));
 
         payload.ShouldNotBeNull();
-        payload!.A.ShouldBe("卡片标题");
+        payload!.A.ShouldBe("Card Title");
     }
 
     [Fact]
     public void Should_Not_Throw_For_Invalid_Payload_But_Report_Declared()
     {
         var data = new NotificationData();
-        // 复杂载荷以 JSON 字符串存储; 这里写入非法 JSON
+        // Complex payloads are stored as JSON strings; illegal JSON is written here
         data.TrySetData("stub:json", "{ this is not json }");
 
         var resolver = CreateResolver();
 
-        // IsDeclared 仍为 true(生产者确实写了), Resolve 返回 null(解析失败, 仅记日志)
+        // IsDeclared is still true (the producer did write), Resolve returns null (resolution failed, only logged)
         resolver.IsDeclared(data, typeof(JsonPayloadStub)).ShouldBeTrue();
         resolver.Resolve<JsonPayloadStub>(data).ShouldBeNull();
-        // 诊断信息给出实际命中的键名
+        // Diagnostic information gives the actual key name hit
         resolver.GetKey(data, typeof(JsonPayloadStub)).ShouldBe("stub:json");
     }
 
@@ -243,25 +243,25 @@ public class NotificationChannelData_Tests
         var data = new NotificationData();
         ChannelData().Write(data, new JsonPayloadStub
         {
-            Payload = new StubPayload { Name = "标题", Count = 3 }
+            Payload = new StubPayload { Name = "Title", Count = 3 }
         });
 
-        // 复杂类型以 JSON 字符串形式存储
+        // Complex types are stored as JSON strings
         data.ExtraProperties["stub:json"].ShouldBeOfType<string>();
 
         var payload = CreateResolver().Resolve<JsonPayloadStub>(RoundTrip(data));
 
         payload.ShouldNotBeNull();
         payload!.Payload.ShouldNotBeNull();
-        payload.Payload!.Name.ShouldBe("标题");
+        payload.Payload!.Name.ShouldBe("Title");
         payload.Payload.Count.ShouldBe(3);
     }
 
-    // ---------- 5. 属性元数据缓存的并发行为 ----------
+    // ---------- 5. Concurrent behavior of attribute metadata cache ----------
 
     /// <remarks>
-    /// 投递路径上每个载荷都会读取属性元数据缓存, 而缓存首次构建要做反射与
-    /// 表达式编译, 因此"高并发下只构建一次且读路径无锁"是必须保证的属性。
+    /// Each payload on the delivery path will read the attribute metadata cache, and the first build of the cache requires reflection and
+    /// Expression compilation, so "it is only built once under high concurrency and the read path is lock-free" is a property that must be guaranteed.
     /// </remarks>
     [Fact]
     public void Should_Build_Property_Metadata_Once_Under_Concurrency()
@@ -275,7 +275,7 @@ public class NotificationChannelData_Tests
             typeof(AlwaysPresentStub)
         };
 
-        // 每个类型并发取多次, 覆盖"多线程同时首次构建同一类型"的竞争
+        // Each type is fetched multiple times concurrently, covering the competition of "multiple threads constructing the same type for the first time at the same time"
         var results = new NotificationChannelDataProperty[payloadTypes.Length * 64][];
 
         Parallel.For(0, results.Length, index =>
@@ -293,7 +293,7 @@ public class NotificationChannelData_Tests
                 .Where(x => x.Select(p => p.Key).SequenceEqual(expected.Select(p => p.Key)))
                 .ToArray();
 
-            // 所有并发调用必须看到同一份元数据(同一实例), 证明只构建了一次
+            // All concurrent calls must see the same metadata (same instance), proving that it was only built once
             observed.ShouldNotBeEmpty();
             observed.ShouldAllBe(x => ReferenceEquals(x, expected));
         }
@@ -308,7 +308,7 @@ public class NotificationChannelData_Tests
         ReferenceEquals(first, second).ShouldBeTrue();
     }
 
-    // ---------- 6. 测试用载荷 ----------
+    // ---------- 6. Test load ----------
 
     private const string TestProvider = "stub";
 
@@ -359,12 +359,12 @@ public class NotificationChannelData_Tests
         Presence = NotificationChannelDataPresenceMode.DeclaredProperties)]
     private class MissingMatchablePropertyStub : NotificationChannelData
     {
-        // 没有任何带 [NotificationChannelProperty] 的属性
+        // There is no property with [NotificationChannelProperty]
         public string? Value { get; set; }
     }
 
     /// <summary>
-    /// 复杂载荷(以 JSON 字符串存储)
+    /// Complex payload (stored as JSON string)
     /// </summary>
     [NotificationChannelData(TestProvider, Priority = 600)]
     private class JsonPayloadStub : NotificationChannelData
@@ -385,11 +385,11 @@ public class NotificationChannelData_Tests
         public string? Value { get; set; }
     }
 
-    // ---------- 辅助 ----------
+    // ---------- Auxiliary ----------
 
     private static AbpNotificationChannelDataOptions CreateOptions()
     {
-        // 选项是纯数据: 存在性判定为纯静态, 注册时无需解析任何服务
+        // The option is pure data: the existence determination is purely static, and there is no need to parse any services during registration.
         return new AbpNotificationChannelDataOptions();
     }
 

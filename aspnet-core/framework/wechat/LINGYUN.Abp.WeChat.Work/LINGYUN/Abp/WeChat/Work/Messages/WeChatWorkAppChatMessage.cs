@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages;
 /// <summary>
-/// 企业微信群聊消息
+/// Enterprise WeChat group chat message
 /// </summary>
 public abstract class WeChatWorkAppChatMessage : WeChatWorkRequest
 {
@@ -19,24 +19,24 @@ public abstract class WeChatWorkAppChatMessage : WeChatWorkRequest
     }
 
     /// <summary>
-    /// 群聊id
+    /// Group chat id
     /// </summary>
     [NotNull]
     [JsonProperty("chatid")]
     [JsonPropertyName("chatid")]
     public virtual string ChatId { get; protected set; }
     /// <summary>
-    /// 消息类型
+    /// Message type
     /// </summary>
     [NotNull]
     [JsonProperty("msgtype")]
     [JsonPropertyName("msgtype")]
     public virtual string MsgType { get; protected set; }
     /// <summary>
-    /// 企业应用的id
+    /// The id of the enterprise application
     /// </summary>
     /// <remarks>
-    /// 由于需要换取token, 因此需要传递应用标识
+    /// Since token needs to be exchanged, the application ID needs to be passed
     /// </remarks>
     [NotNull]
     [Newtonsoft.Json.JsonIgnore]

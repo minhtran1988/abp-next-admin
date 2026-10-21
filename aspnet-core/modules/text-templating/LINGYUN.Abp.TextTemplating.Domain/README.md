@@ -1,50 +1,50 @@
 # LINGYUN.Abp.TextTemplating.Domain
 
-## 模块说明
+## Module description
 
-文本模板领域模块，提供文本模板定义和内容管理的核心功能。
+The text template domain module provides core functions of text template definition and content management.
 
-### 基础模块
+### Basic module
 
 * Volo.Abp.TextTemplating
 * Volo.Abp.Ddd.Domain
 
-### 功能定义
+### Function definition
 
-* 提供文本模板定义的领域实体
-  * TextTemplateDefinition - 文本模板定义实体
-  * TextTemplateContent - 文本模板内容实体
-* 提供文本模板定义的仓储接口
-  * ITextTemplateDefinitionRepository - 文本模板定义仓储接口
-  * ITextTemplateContentRepository - 文本模板内容仓储接口
-* 提供文本模板管理的领域服务
-  * TextTemplateManager - 文本模板管理器
-  * IStaticTemplateDefinitionStore - 静态模板定义存储
-  * IDynamicTemplateDefinitionStore - 动态模板定义存储
+* Provide domain entities defined by text templates
+  * TextTemplateDefinition - text template definition entity
+  * TextTemplateContent - text template content entity
+* Provides a warehousing interface defined by text templates
+  * ITextTemplateDefinitionRepository - text template definition repository interface
+  * ITextTemplateContentRepository - text template content storage interface
+* Provide domain services for text template management
+  * TextTemplateManager - text template manager
+  * IStaticTemplateDefinitionStore - Static template definition storage
+  * IDynamicTemplateDefinitionStore - dynamic template definition storage
 
-### 领域服务
+### Domain Services
 
 * TextTemplateManager
-  * 管理文本模板的创建、更新、删除
-  * 处理模板定义与内容的关联
-  * 支持静态和动态模板定义的管理
+  * Manage the creation, update and deletion of text templates
+  * Process the association between template definition and content
+  * Supports management of static and dynamic template definitions
 
-### 实体属性
+### Entity attributes
 
 * TextTemplateDefinition
-  * Name - 模板名称
-  * DisplayName - 显示名称
-  * IsLayout - 是否为布局模板
-  * Layout - 布局名称
-  * IsInlineLocalized - 是否内联本地化
-  * DefaultCultureName - 默认文化名称
-  * LocalizationResourceName - 本地化资源名称
-  * RenderEngine - 渲染引擎
-  * IsStatic - 是否为静态模板
+  * Name - Template name
+  * DisplayName - display name
+  * IsLayout - whether it is a layout template
+  * Layout - layout name
+  * IsInlineLocalized - whether to inline localize
+  * DefaultCultureName - the default culture name
+  * LocalizationResourceName - localization resource name
+  * RenderEngine - rendering engine
+  * IsStatic - whether it is a static template
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingDomainModule` 依赖
+1. Add `AbpTextTemplatingDomainModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingDomainModule))]
@@ -53,7 +53,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用文本模板管理器
+2. Use the Text Template Manager
 
 ```csharp
 public class YourService
@@ -67,7 +67,7 @@ public class YourService
 
     public async Task ManageTemplateAsync()
     {
-        // 创建模板定义
+        //Create template definition
         var template = new TextTemplateDefinition(
             Guid.NewGuid(),
             "TemplateName",
@@ -79,4 +79,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

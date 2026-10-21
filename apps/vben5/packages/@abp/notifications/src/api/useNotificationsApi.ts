@@ -15,8 +15,8 @@ import { useRequest } from '@abp/request';
 export function useNotificationsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取可用通知提供者列表
-   * @returns {Promise<ListResultDto<NotificationProviderDto>>} 可用通知提供者列表
+   * Get the list of available notification providers
+   * @returns {Promise<ListResultDto<NotificationProviderDto>>} List of available notification providers
    */
   function getAssignableProvidersApi(): Promise<
     ListResultDto<NotificationProviderDto>
@@ -29,8 +29,8 @@ export function useNotificationsApi() {
     );
   }
   /**
-   * 获取可用通知列表
-   * @returns {Promise<ListResultDto<NotificationGroupDto>>} 可用通知列表
+   * Get the list of available notifications
+   * @returns {Promise<ListResultDto<NotificationGroupDto>>} available notification list
    */
   function getAssignableNotifiersApi(): Promise<
     ListResultDto<NotificationGroupDto>
@@ -43,8 +43,8 @@ export function useNotificationsApi() {
     );
   }
   /**
-   * 获取可用通知模板列表
-   * @returns {Promise<ListResultDto<NotificationTemplateDto>>} 可用通知模板列表
+   * Get the list of available notification templates
+   * @returns {Promise<ListResultDto<NotificationTemplateDto>>} list of available notification templates
    */
   function getAssignableTemplatesApi(): Promise<
     ListResultDto<NotificationTemplateDto>
@@ -57,8 +57,8 @@ export function useNotificationsApi() {
     );
   }
   /**
-   * 发送通知
-   * @param input 参数
+   * Send notification
+   * @param input parameter
    * @returns {Promise<void>}
    */
   function sendNotiferApi(input: NotificationSendInput): Promise<void> {
@@ -68,8 +68,8 @@ export function useNotificationsApi() {
     });
   }
   /**
-   * 发送模板通知
-   * @param input 参数
+   * Send template notification
+   * @param input parameter
    * @returns {Promise<void>}
    */
   function sendTemplateNotiferApi(

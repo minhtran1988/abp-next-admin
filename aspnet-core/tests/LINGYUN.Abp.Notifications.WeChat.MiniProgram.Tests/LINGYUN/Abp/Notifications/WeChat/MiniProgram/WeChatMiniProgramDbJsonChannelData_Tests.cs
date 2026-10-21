@@ -9,17 +9,17 @@ using Xunit;
 namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram;
 
 /// <summary>
-/// 从数据库 JSON 字符串解析渠道数据测试
+/// Parse channel data test from database JSON string
 /// </summary>
 /// <remarks>
 /// <para>
-/// 前面的测试是"内存中写入 → 读取"的同进程路径, 验证不到持久化往返。
-/// 本组测试补上**真实链路**: 直接给出数据库里存的 JSON 字符串,
-/// 还原为 <see cref="NotificationData"/> 后, 再走渠道侧解析与真实发布,
-/// 回答"从数据库取到数据后能否正常解析为渠道消息格式"。
+/// The previous test is the same process path of "write in memory → read", and the persistence round trip cannot be verified.
+/// This group of tests adds **real link**: directly gives the JSON string stored in the database,
+/// After restoring to <see cref="NotificationData"/>, proceed to channel side analysis and actual release.
+/// Answer "Can the data be parsed into the channel message format normally after being retrieved from the database?"
 /// </para>
 /// <para>
-/// 小程序渠道数据都是标量, 因此库中值为原始类型(而非 JSON 字符串)。
+/// Mini program channel data are all scalars, so the values in the library are primitive types (not JSON strings).
 /// </para>
 /// </remarks>
 public class WeChatMiniProgramDbJsonChannelData_Tests
@@ -30,13 +30,13 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
     private FakeSubscribeMessager Messager
         => (FakeSubscribeMessager)GetRequiredService<ISubscribeMessager>();
 
-    // ---------- 1. 带前缀键 ----------
+    // ---------- 1. Key with prefix ----------
 
     [Fact]
     public void Should_Restore_Channel_Data_From_Db_Json()
     {
         var data = RestoreFromDbJson(
-            "{\"title\":\"订单状态\",\"message\":\"您的订单已发货\"," +
+            "{\"title\":\"Order status\",\"message\":\"Your order has been shipped\"," +
             "\"wx-mp:template_id\":\"TPL_DB\"," +
             "\"wx-mp:redirect_page\":\"pages/order/detail\"," +
             "\"wx-mp:weapp_state\":\"developer\"," +
@@ -51,7 +51,7 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
         payload.WeAppLanguage.ShouldBe("en_US");
     }
 
-    // ---------- 2. 从数据库 JSON 一路发到渠道(端到端) ----------
+    // ---------- 2. Send JSON from the database all the way to the channel (end-to-end) ----------
 
     [Fact]
     public async Task Should_Send_With_Data_Restored_From_Db_Json()
@@ -65,7 +65,7 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
 
         await PublishAsync(data, NewUser());
 
-        // 从库中还原的数据必须能真正发出去
+        // The data restored from the library must be actually sent out
         Messager.SentTemplates.Count.ShouldBe(1);
 
         var sent = Messager.SentTemplates[0];
@@ -74,17 +74,17 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
         sent.State.ShouldBe("formal");
     }
 
-    // ---------- 3. 历史遗留无前缀键 ----------
+    // ---------- 3. No prefix key left over from history ----------
 
     /// <remarks>
     /// <para>
-    /// 历史键不在渠道数据解析器的匹配范围内, 而是由渠道 Provider 在解析时回退读取,
-    /// 因此这里必须走真实发布路径验证。
+    /// The historical key is not within the matching range of the channel data parser, but is read back by the channel Provider during parsing.
+    /// Therefore, the real release path must be verified here.
     /// </para>
     /// <para>
-    /// 键名以 <b>JSON 字面量</b>书写(而非引用已弃用的
+    /// The key name is written in <b>JSON literal</b> (rather than referencing the deprecated
     /// <c>WeChatMiniProgramNotificationDataKeys.Legacy</c>):
-    /// 既避免引用弃用成员, 也更贴近"数据库里存的就是这些字符串"的事实。
+    /// It not only avoids referencing deprecated members, but also is closer to the fact that "these strings are stored in the database".
     /// </para>
     /// </remarks>
     [Fact]
@@ -92,7 +92,7 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
     {
         Messager.Clear();
 
-        // 早期版本写入的无前缀键, 已安装的生产者可能仍在写
+        // Unprefixed keys written by earlier versions, installed producers may still be writing
         var data = RestoreFromDbJson(
             "{\"TemplateId\":\"TPL_LEGACY\",\"RedirectPage\":\"pages/legacy\"}");
 
@@ -111,34 +111,34 @@ public class WeChatMiniProgramDbJsonChannelData_Tests
         var data = RestoreFromDbJson(
             "{\"TemplateId\":\"TPL_LEGACY\",\"wx-mp:template_id\":\"TPL_NEW\"}");
 
-        // 渠道数据解析器只认带前缀的键
+        // The channel data parser only recognizes keys with prefixes
         ChannelDataResolver.Resolve<WeChatMiniProgramSubscribeChannelData>(data)!
             .TemplateId.ShouldBe("TPL_NEW");
 
-        // 真实发布时带前缀的键必须优先
+        // Keys with prefixes must take precedence when publishing.
         await PublishAsync(data, NewUser());
 
         Messager.SentTemplates[0].TemplateId.ShouldBe("TPL_NEW");
     }
 
-    // ---------- 4. 无渠道数据时不误解析 ----------
+    // ---------- 4. No misparsing when there is no channel data ----------
 
     [Fact]
     public void Should_Resolve_Nothing_When_Db_Json_Has_No_Channel_Data()
     {
         var data = RestoreFromDbJson(
-            "{\"title\":\"订单状态\",\"message\":\"您的订单已发货\"}");
+            "{\"title\":\"Order status\",\"message\":\"Your order has been shipped\"}");
 
         ChannelDataResolver.Resolve(Provider, data).ShouldBeEmpty();
     }
 
-    // ---------- 辅助 ----------
+    // ---------- Auxiliary ----------
 
     /// <summary>
-    /// 模拟"从数据库取出 JSON 字符串"后还原通知数据
+    /// Restore notification data after simulating "retrieving JSON string from database"
     /// </summary>
     /// <remarks>
-    /// 与 EF 的属性包值转换器一致: 属性包整体是一个扁平 JSON 对象。
+    /// Consistent with EF's property bag value converter: the property bag as a whole is a flat JSON object.
     /// </remarks>
     private NotificationData RestoreFromDbJson(string dbJson)
     {

@@ -1,10 +1,10 @@
 export const Events = {
-	/** 收到服务器消息 */
+	/** Receive server message */
 	GetNotification: "get-notifications",
-	/** 新通知消息 */
+	/** New notification message */
 	NotificationRecevied: "sys_notifications_recevied",
-	/** 用户登录事件 */
+	/** User login event */
 	UserLogin: "sys_user_login",
-	/** 用户登出事件 */
+	/** User logout event */
 	UserLogout: "sys_user_logout",
 };

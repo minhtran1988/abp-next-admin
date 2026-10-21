@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 附件控件值
+/// Attachment control value
 /// </summary>
 public class FileControlValue : ControlValue
 {
     /// <summary>
-    /// 附件列表
+    /// Attachment list
     /// </summary>
     [NotNull]
     [JsonProperty("files")]
@@ -30,35 +30,35 @@ public class FileControlValue : ControlValue
 public class FileValue
 {
     /// <summary>
-    /// 文件id，该id为临时素材上传接口返回的的media_id，注：提单后将作为单据内容转换为长期文件存储；目前一个审批申请单，全局仅支持上传6个附件，否则将失败。
+    /// File id, this id is the media_id returned by the temporary material upload interface. Note: After the bill of lading, it will be converted into a document content for long-term file storage; currently, an approval application form only supports the upload of 6 attachments globally, otherwise it will fail.
     /// </summary>
     [NotNull]
     [JsonProperty("file_id")]
     [JsonPropertyName("file_id")]
     public string FileId { get; set; } = default!;
     /// <summary>
-    /// 文件名称，类型为string，如果没有可以填空字符串。
+    /// File name, type is string. If there is no string, you can fill in the blank string.
     /// </summary>
     [CanBeNull]
     [JsonProperty("file_name")]
     [JsonPropertyName("file_name")]
     public string? FileName { get; set; }
     /// <summary>
-    /// 文件大小，类型为number，如果没有可以填空字符串。
+    /// File size, type is number, if not, you can fill in the blank string.
     /// </summary>
     [CanBeNull]
     [JsonProperty("file_size")]
     [JsonPropertyName("file_size")]
     public long? FileSize { get; set; }
     /// <summary>
-    /// 文件类型，类型为string，如果没有可以填空字符串。
+    /// File type, the type is string. If there is no string, you can fill in the blank string.
     /// </summary>
     [CanBeNull]
     [JsonProperty("file_type")]
     [JsonPropertyName("file_type")]
     public string? FileType { get; set; }
     /// <summary>
-    /// 文件地址，类型为string，如果没有可以填空字符串。
+    /// File address, type is string. If there is no string, you can fill in the blank string.
     /// </summary>
     [CanBeNull]
     [JsonProperty("file_url")]

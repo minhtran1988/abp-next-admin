@@ -6,21 +6,21 @@ describe('stateHandler', () => {
   it('should resolve when condition is set to true', async () => {
     const handler = new StateHandler();
 
-    // 模拟异步设置 condition 为 true
+    // Simulate asynchronous setting of condition to true
     setTimeout(() => {
-      handler.setConditionTrue(); // 明确触发 condition 为 true
+      handler.setConditionTrue(); // Explicitly trigger condition to be true
     }, 10);
 
-    // 等待条件被设置为 true
+    // Wait for the condition to be set to true
     await handler.waitForCondition();
     expect(handler.isConditionTrue()).toBe(true);
   });
 
   it('should resolve immediately if condition is already true', async () => {
     const handler = new StateHandler();
-    handler.setConditionTrue(); // 提前设置为 true
+    handler.setConditionTrue(); // Set to true in advance
 
-    // 立即 resolve，因为 condition 已经是 true
+    // resolve immediately because condition is already true
     await handler.waitForCondition();
     expect(handler.isConditionTrue()).toBe(true);
   });
@@ -28,30 +28,30 @@ describe('stateHandler', () => {
   it('should reject when condition is set to false after waiting', async () => {
     const handler = new StateHandler();
 
-    // 模拟异步设置 condition 为 false
+    // Simulate asynchronous setting condition to false
     setTimeout(() => {
-      handler.setConditionFalse(); // 明确触发 condition 为 false
+      handler.setConditionFalse(); // Explicitly trigger condition to be false
     }, 10);
 
-    // 等待过程中，期望 Promise 被 reject
+    // During the waiting process, the Promise is expected to be rejected.
     await expect(handler.waitForCondition()).rejects.toThrow();
     expect(handler.isConditionTrue()).toBe(false);
   });
 
   it('should reset condition to false', () => {
     const handler = new StateHandler();
-    handler.setConditionTrue(); // 设置为 true
-    handler.reset(); // 重置为 false
+    handler.setConditionTrue(); // Set to true
+    handler.reset(); // reset to false
 
     expect(handler.isConditionTrue()).toBe(false);
   });
 
   it('should resolve when condition is set to true after reset', async () => {
     const handler = new StateHandler();
-    handler.reset(); // 确保初始为 false
+    handler.reset(); // Make sure it is initially false
 
     setTimeout(() => {
-      handler.setConditionTrue(); // 重置后设置为 true
+      handler.setConditionTrue(); // Set to true after reset
     }, 10);
 
     await handler.waitForCondition();

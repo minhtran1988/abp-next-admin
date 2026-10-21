@@ -1,19 +1,19 @@
 # LINGYUN.Abp.Aliyun
 
-阿里云 SDK 集成模块。
+Alibaba Cloud SDK integration module.
 
-参照：[阿里云 API 文档](https://help.aliyun.com/document_detail/28763.html)
+Reference: [Alibaba Cloud API Document](https://help.aliyun.com/document_detail/28763.html)
 
-## 功能特性
+## Features
 
-- 提供阿里云服务的基础 SDK 集成
-- 支持阿里云 RAM（访问控制）认证
-- 支持 STS Token 访问
-- 支持阿里云短信服务（SMS）
-- 支持阿里云对象存储（OSS）
-- 提供分布式缓存支持，优化高并发场景
+- Provide basic SDK integration of Alibaba Cloud services
+- Support Alibaba Cloud RAM (Access Control) authentication
+-Support STS Token access
+-Support Alibaba Cloud SMS (SMS)
+- Support Alibaba Cloud Object Storage (OSS)
+- Provide distributed cache support and optimize high-concurrency scenarios
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAliyunModule))]
@@ -23,122 +23,122 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-### 认证配置
+### Authentication configuration
 
 - **AliyunSettingNames.Authorization.RegionId**
 
-  - 说明：阿里云服务区域
-  - 类型：可选
-  - 默认值：default
-  - 示例：oss-cn-hangzhou
+  - Description: Alibaba Cloud service area
+  - Type: optional
+  -Default value: default
+  - Example: oss-cn-hangzhou
 
 - **AliyunSettingNames.Authorization.AccessKeyId**
 
-  - 说明：阿里云 RAM 账号的 AccessKey ID
-  - 类型：必须
-  - 获取方式：访问阿里云控制台-访问控制
+  - Description: AccessKey ID of Alibaba Cloud RAM account
+  - Type: required
+  - How to obtain: Visit Alibaba Cloud Console-Access Control
 
 - **AliyunSettingNames.Authorization.AccessKeySecret**
-  - 说明：RAM 账号的 AccessKey Secret
-  - 类型：必须
-  - 获取方式：访问阿里云控制台-访问控制
+  - Description: AccessKey Secret of RAM account
+  - Type: required
+  - How to obtain: Visit Alibaba Cloud Console-Access Control
 
-### STS Token 配置
+### STS Token configuration
 
 - **AliyunSettingNames.Authorization.UseSecurityTokenService**
 
-  - 说明：是否使用 STS Token 访问
-  - 类型：可选
-  - 默认值：false
-  - 建议：建议开启，提高安全性
+  - Description: Whether to use STS Token for access
+  - Type: optional
+  -Default value: false
+  - Recommendation: It is recommended to turn it on to improve security.
 
 - **AliyunSettingNames.Authorization.RamRoleArn**
 
-  - 说明：阿里云 RAM 角色 ARN
-  - 类型：启用 STS Token 时必须
-  - 格式：acs:ram::$accountID:role/$roleName
+  - Description: Alibaba Cloud RAM role ARN
+  - Type: required when enabling STS Token
+  - Format: acs:ram::$accountID:role/$roleName
 
 - **AliyunSettingNames.Authorization.RoleSessionName**
 
-  - 说明：用户自定义令牌名称
-  - 类型：可选
-  - 用途：用于访问审计
+  - Description: User-defined token name
+  - Type: optional
+  - Purpose: for access auditing
 
 - **AliyunSettingNames.Authorization.DurationSeconds**
 
-  - 说明：用户令牌的过期时间
-  - 类型：可选
-  - 默认值：3000
-  - 单位：秒
+  - Description: Expiration time of user token
+  - Type: optional
+  -Default: 3000
+  - Unit: seconds
 
 - **AliyunSettingNames.Authorization.Policy**
-  - 说明：权限策略
-  - 类型：可选
-  - 格式：JSON 字符串
+  - Description: Permission policy
+  - Type: optional
+  - Format: JSON string
 
-### 短信服务配置
+### SMS service configuration
 
 ```json
 {
   "Settings": {
     "Abp.Aliyun.Sms": {
-      "Domain": "dysmsapi.aliyuncs.com", // API域名，默认为 dysmsapi.aliyuncs.com
-      "Version": "2017-05-25", // API版本，默认为 2017-05-25
-      "ActionName": "SendSms", // API方法名，默认为 SendSms
-      "DefaultSignName": "", // 默认短信签名
-      "DefaultTemplateCode": "", // 默认短信模板代码
-      "DefaultPhoneNumber": "", // 默认接收短信的手机号码
-      "VisableErrorToClient": "false" // 是否向客户端显示错误信息
+      "Domain": "dysmsapi.aliyuncs.com", // API domain name, default is dysmsapi.aliyuncs.com
+      "Version": "2017-05-25", // API version, default is 2017-05-25
+      "ActionName": "SendSms", // API method name, default is SendSms
+      "DefaultSignName": "", //Default SMS signature
+      "DefaultTemplateCode": "", //Default SMS template code
+      "DefaultPhoneNumber": "", // The default mobile phone number for receiving text messages
+      "VisableErrorToClient": "false" // Whether to display error information to the client
     }
   }
 }
 ```
 
-## 可用区域
+## Available areas
 
-本模块支持以下阿里云区域：
+This module supports the following Alibaba Cloud regions:
 
-- 中国区域
+- China region
 
-  - 华北 1（青岛）- cn-qingdao
-  - 华北 2（北京）- cn-beijing
-  - 华北 3（张家口）- cn-zhangjiakou
-  - 华北 5（呼和浩特）- cn-huhehaote
-  - 华东 1（杭州）- cn-hangzhou
-  - 华东 2（上海）- cn-shanghai
-  - 华南 1（深圳）- cn-shenzhen
-  - 华南 2（河源）- cn-heyuan
-  - 华南 3（广州）- cn-guangzhou
-  - 西南 1（成都）- cn-chengdu
+  - North China 1 (Qingdao) - cn-qingdao
+  - North China 2 (Beijing) - cn-beijing
+  - North China 3 (Zhangjiakou) - cn-zhangjiakou
+  - North China 5 (Hohhot) - cn-huhehaote
+  - East China 1 (Hangzhou) - cn-hangzhou
+  - East China 2 (Shanghai) - cn-shanghai
+  - South China 1 (Shenzhen) - cn-shenzhen
+  - South China 2 (Heyuan) - cn-heyuan
+  - South China 3 (Guangzhou) - cn-guangzhou
+  - Southwest 1 (Chengdu) - cn-chengdu
 
-- 香港及海外区域
-  - 香港 - cn-hongkong
-  - 美国（硅谷）- us-west-1
-  - 美国（弗吉尼亚）- us-east-1
-  - 日本（东京）- ap-northeast-1
-  - 韩国（首尔）- ap-northeast-2
-  - 新加坡 - ap-southeast-1
-  - 澳大利亚（悉尼）- ap-southeast-2
-  - 马来西亚（吉隆坡）- ap-southeast-3
-  - 印度尼西亚（雅加达）- ap-southeast-5
-  - 菲律宾（马尼拉）- ap-southeast-6
-  - 泰国（曼谷）- ap-southeast-7
-  - 印度（孟买）- ap-south-1
-  - 德国（法兰克福）- eu-central-1
-  - 英国（伦敦）- eu-west-1
-  - 阿联酋（迪拜）- me-east-1
+- Hong Kong and overseas regions
+  - Hong Kong - cn-hongkong
+  - United States (Silicon Valley) - us-west-1
+  - United States (Virginia) - us-east-1
+  - Japan (Tokyo) - ap-northeast-1
+  - South Korea (Seoul) - ap-northeast-2
+  - Singapore - ap-southeast-1
+  - Australia (Sydney) - ap-southeast-2
+  - Malaysia (Kuala Lumpur) - ap-southeast-3
+  - Indonesia (Jakarta) - ap-southeast-5
+  - Philippines (Manila) - ap-southeast-6
+  - Thailand (Bangkok) - ap-southeast-7
+  - India (Mumbai) - ap-south-1
+  - Germany (Frankfurt) - eu-central-1
+  - United Kingdom (London) - eu-west-1
+  - United Arab Emirates (Dubai) - me-east-1
 
-## 性能优化
+## Performance optimization
 
-- 在高并发场景下，建议开启分布式缓存以提高性能
-- 使用 STS Token 时，Token 会自动缓存到过期前
-- 建议合理设置 DurationSeconds，避免过于频繁的 Token 刷新
+- In high concurrency scenarios, it is recommended to enable distributed cache to improve performance
+- When using STS Token, the Token will be automatically cached until it expires
+- It is recommended to set DurationSeconds appropriately to avoid too frequent Token refreshes
 
-## 相关模块
+## Related modules
 
-- [LINGYUN.Abp.Aliyun.SettingManagement](../LINGYUN.Abp.Aliyun.SettingManagement/README.md) - 提供配置管理功能
-- [LINGYUN.Abp.Aliyun.Features](../LINGYUN.Abp.Aliyun.Features/README.md) - 提供功能管理功能
+- [LINGYUN.Abp.Aliyun.SettingManagement](../LINGYUN.Abp.Aliyun.SettingManagement/README.md) - Provides configuration management functions
+- [LINGYUN.Abp.Aliyun.Features](../LINGYUN.Abp.Aliyun.Features/README.md) - Provides feature management functions
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

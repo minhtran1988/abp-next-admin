@@ -5,12 +5,12 @@ namespace LINGYUN.Abp.WeChat.Official.Messages;
 public abstract class WeChatOfficialGeneralMessage : WeChatGeneralMessage
 {
     /// <summary>
-    /// 消息的数据ID（消息如果来自文章时才有）
+    /// The data ID of the message (only available if the message comes from an article)
     /// </summary>
     [XmlElement("MsgDataId")]
     public string? MsgDataId { get; set; }
     /// <summary>
-    /// 多图文时第几篇文章，从1开始（消息如果来自文章时才有）
+    /// When there are multiple pictures and texts, the article number starts from 1 (the message is only available if it comes from an article)
     /// </summary>
     [XmlElement("Idx")]
     public string? Idx { get; set; }

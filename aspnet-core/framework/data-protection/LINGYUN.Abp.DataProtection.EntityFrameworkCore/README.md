@@ -1,17 +1,17 @@
 # LINGYUN.Abp.DataProtection.EntityFrameworkCore
 
-数据权限EF实现模块
+Data permission EF implementation module
 
-## 接口描述  
+## Interface description
 
-* DisableDataProtectedAttribute: 通过拦截器自动实现DataFilter.Disable<IDataProtected>(),数据过滤器在当前范围将被禁用  
+* DisableDataProtectedAttribute: Automatically implement DataFilter.Disable<IDataProtected>() through the interceptor, the data filter will be disabled in the current scope
 
-## 注意事项
+## Notes
 
-* 使用仓储接口尽量避免直接使用 *await GetDbSetAsync()*, 而是使用 *await GetQueryableAsync()*, 因为 **DbSet** 设计模式原因,暂无法对其进行处理  
-* 您的仓库接口应继承自 **EfCoreDataProtectionRepository**, 您的 *DbContext* 应继承自 **AbpDataProtectionDbContext**  
+* When using the warehousing interface, try to avoid using *await GetDbSetAsync()* directly. Instead, use *await GetQueryableAsync()*. Due to the **DbSet** design mode, it cannot be processed at the moment.
+* Your warehouse interface should inherit from **EfCoreDataProtectionRepository**, and your *DbContext* should inherit from **AbpDataProtectionDbContext**
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 
@@ -24,13 +24,13 @@ public class YouProjectModule : AbpModule
     {
         Configure<DataProtectionManagementOptions>(options =>
         {
-            // 受保护的实体列表持久化
+            // Persistence of protected entity list
             options.AddEntities(typeof(YouResource), new Type[]
             {
                 typeof(YouProtectionObject),
             });
 
-            // 如下格式
+            //The following format
             // options.AddEntities(typeof(IdentityResource), new Type[]
             // {
             //     typeof(IdentityUser),
@@ -75,14 +75,14 @@ public class EfCoreYouProtectionObjectRepository :
         DataFilter = dataFilter;
     }
 
-    // 获取受保护的数据列表
+    // Get the protected data list
     public async virtual Task<List<YouProtectionObject>> GetProtectedListAsync()
     {
         return await (await GetQueryableAsync())
             .ToListAsync();
     }
 
-    // 标注 DisableDataProtected 获取全部数据列表, 通过拦截器自动处理 DataFilter.Disable<IDataProtected>()
+    // Mark DisableDataProtected to get the entire data list and automatically process it through the interceptor DataFilter.Disable<IDataProtected>()
     [DisableDataProtected]
     public async virtual Task<List<YouProtectionObject>> GetUnProtectedListAsync()
     {
@@ -90,7 +90,7 @@ public class EfCoreYouProtectionObjectRepository :
             .ToListAsync();
     }
 
-    // 禁用 IDataProtected 过滤器获取全部数据列表(可在任意地方使用)
+    // Disable IDataProtected filter to get all data list (can be used anywhere)
     public async virtual Task<List<YouProtectionObject>> GetUnProtectedByFilterListAsync()
     {
         using (DataFilter.Disable<IDataProtected>())

@@ -46,7 +46,7 @@ type AIToolDefinitionVto = Omit<AIToolDefinitionRecordDto, 'creationTime'> & {
   apiKey?: string;
 };
 
-// 默认表单数据
+// Default form data
 const defaultModel: AIToolDefinitionVto = {
   id: '',
   name: '',
@@ -62,11 +62,11 @@ const message = useMessage();
 const { isGranted } = useAuthorization();
 const { createApi, updateApi, getApi, getAvailableProviderListApi } =
   useAIToolsApi();
-// 表单
+// form
 const form = useTemplateRef<FormInstance>('formEl');
-// 表单数据
+// form data
 const formModel = ref<AIToolDefinitionVto>({ ...defaultModel });
-// 工具提供者选项
+// Tool provider options
 const aiToolProviders = ref<AIToolProviderDto[]>([]);
 const currentAIToolProvider = ref<AIToolProviderDto>();
 const getAIToolOptions = computed<NonNullable<SelectProps['options']>>(() => {
@@ -78,7 +78,7 @@ const getAIToolOptions = computed<NonNullable<SelectProps['options']>>(() => {
     };
   });
 });
-// 表单允许编辑
+// Form allows editing
 const getIsAllowUpdate = computed<boolean>(() => {
   if (formModel.value.id) {
     if (formModel.value.isSystem || formModel.value.isStatic) {
@@ -123,7 +123,7 @@ watch(
   },
 );
 
-// 工作区编辑模态框
+// Workspace edit modal box
 const [Modal, modalApi] = useVbenModal({
   title: $t('AIManagement.Tools:New'),
   class: 'w-1/2',
@@ -135,7 +135,7 @@ const [Modal, modalApi] = useVbenModal({
     isOpen && (await onInit());
   },
 });
-/** 初始化工作区数据 */
+/** Initialize workspace data */
 async function onInit() {
   try {
     modalApi.setState({
@@ -165,7 +165,7 @@ async function onInit() {
     });
   }
 }
-/** 初始化模型选项 */
+/** Initialize model options */
 async function onInitProviderOptions() {
   const { items } = await getAvailableProviderListApi();
   aiToolProviders.value = items;
@@ -199,7 +199,7 @@ function onProviderChange(_: SelectValue, option: DefaultOptionType) {
   }
 }
 
-/** 提交表单 */
+/** Submit form */
 async function onSubmit() {
   await form.value?.validate();
   try {

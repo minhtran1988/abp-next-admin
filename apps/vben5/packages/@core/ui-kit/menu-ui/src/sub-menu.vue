@@ -9,7 +9,7 @@ import SubMenu from './sub-menu.vue';
 
 interface Props {
   /**
-   * 菜单项
+   * Menu items
    */
   menu: MenuRecordRaw;
 }
@@ -21,7 +21,7 @@ defineOptions({
 const props = withDefaults(defineProps<Props>(), {});
 
 /**
- * 判断是否有子节点，动态渲染 menu-item/sub-menu-item
+ * Determine whether there are child nodes and dynamically render menu-item/sub-menu-item
  */
 const hasChildren = computed(() => {
   const { menu } = props;

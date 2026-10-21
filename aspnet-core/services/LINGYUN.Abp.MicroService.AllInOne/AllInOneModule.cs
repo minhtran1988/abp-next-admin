@@ -1,388 +1,388 @@
 namespace LINGYUN.Abp.MicroService.AllInOne;
 
 [DependsOn(
-    // CAP事件总线模块
+    // CAP event bus module
     typeof(AbpCAPEventBusModule),
-    // Serilog扩展模块 应用程序信息
+    // Serilog extension module application information
     typeof(AbpSerilogEnrichersApplicationModule),
-    // Serilog扩展模块 全局唯一Id
+    // Serilog extension module global unique ID
     typeof(AbpSerilogEnrichersUniqueIdModule),
-    // Serilog模块
+    // Serilog module
     typeof(AbpAspNetCoreSerilogModule),
-    // 身份认证模块 扩展UserToken验证
+    // Identity authentication module extends UserToken verification
     typeof(AbpIdentityAspNetCoreModule),
-    // 身份认证模块 通知集成
+    // Identity authentication module notification integration
     typeof(AbpIdentityNotificationsModule),
-    // 身份认证模块 组织机构集成
+    // Identity authentication module organization integration
     typeof(AbpIdentityOrganizaztionUnitsModule),
-    // 身份认证模块 微信身份标识
+    // Identity authentication module WeChat identity
     typeof(AbpIdentityWeChatModule),
-    // 身份认证模块 企业微信身份标识
+    // Identity authentication module Enterprise WeChat identity
     typeof(AbpIdentityWeChatWorkModule),
-    // 身份认证模块 领域服务
+    // Identity authentication module domain service
     typeof(AbpIdentityDomainModule),
-    // 身份认证模块 应用服务
+    // Identity authentication module application service
     typeof(AbpIdentityApplicationModule),
-    // 身份认证模块 控制器
+    // Identity authentication module controller
     typeof(AbpIdentityHttpApiModule),
-    // 身份认证模块 实体框架
+    // Identity authentication module Entity Framework
     typeof(AbpIdentityEntityFrameworkCoreModule),
-    // 身份认证模块 Mvc视图
+    // Identity authentication module Mvc view
     typeof(AbpIdentityWebModule),
 
-    // 账户模块 应用服务
+    // Account module application service
     typeof(AbpAccountApplicationModule),
-    // 账户模块 控制器
+    // Account module controller
     typeof(AbpAccountHttpApiModule),
-    // 账户模块 OpenIddict集成
+    // Account module OpenIddict integration
     typeof(AbpAccountWebOpenIddictModule),
-    // 账户模块 OAuth集成
+    // Account module OAuth integration
     typeof(AbpAccountWebOAuthModule),
-    // 使用 LazyCaptcha 验证码组件
+    // Use LazyCaptcha verification code component
     typeof(AbpAccountWebLazyCaptchaModule),
-    // 使用 腾讯云验证码组件, 需配置好腾讯云相关参数
+    // To use the Tencent Cloud verification code component, Tencent Cloud related parameters need to be configured.
     typeof(AbpAccountWebTencentCaptchaModule),
-    // 使用 阿里云验证码组件, 需配置好阿里云相关参数
+    // To use the Alibaba Cloud verification code component, you need to configure Alibaba Cloud related parameters
     typeof(AbpAccountWebAliyunCaptchaModule),
 
-    // Gdpr 身份认证提供者模块
+    // Gdpr identity authentication provider module
     typeof(AbpGdprDomainIdentityModule),
-    // Gdpr 应用服务模块
+    // Gdpr application service module
     typeof(AbpGdprApplicationModule),
-    // Gdpr 控制器模块
+    // Gdpr controller module
     typeof(AbpGdprHttpApiModule),
-    // Gdpr 实体框架模块
+    // Gdpr Entity Framework module
     typeof(AbpGdprEntityFrameworkCoreModule),
-    // Gdpr Mvc页面
+    // Gdpr Mvc page
     typeof(AbpGdprWebModule),
 
     // MVC Theme
     typeof(AbpAspNetCoreMvcUiLeptonXLiteThemeModule),
 
-    // 缓存模块 Redis集成
+    // Cache module Redis integration
     typeof(AbpCachingStackExchangeRedisModule),
-    // 缓存管理模块 Redis集成
+    // Cache management module Redis integration
     typeof(AbpCachingManagementStackExchangeRedisModule),
-    // 缓存管理模块 应用服务
+    // Cache management module application service
     typeof(AbpCachingManagementApplicationModule),
-    // 缓存管理模块 控制器
+    // Cache management module controller
     typeof(AbpCachingManagementHttpApiModule),
 
-    // 多语言管理模块 领域服务
+    // Multi-language management module domain service
     typeof(AbpLocalizationManagementDomainModule),
-    // 多语言管理模块 应用服务
+    // Multi-language management module application service
     typeof(AbpLocalizationManagementApplicationModule),
-    // 多语言管理模块 控制器
+    // Multi-language management module controller
     typeof(AbpLocalizationManagementHttpApiModule),
-    // 多语言管理模块 实体框架
+    // Multi-language management module Entity Framework
     typeof(AbpLocalizationManagementEntityFrameworkCoreModule),
 
 
-    // 消息模块 领域服务
+    // Message module domain service
     typeof(AbpMessageServiceDomainModule),
-    // 消息模块 应用服务
+    // Message module application service
     typeof(AbpMessageServiceApplicationModule),
-    // 消息模块 控制器
+    // Message module controller
     typeof(AbpMessageServiceHttpApiModule),
-    // 消息模块 实体框架
+    // Message module Entity Framework
     typeof(AbpMessageServiceEntityFrameworkCoreModule),
-    // 通知模块 领域服务
+    // Notification module domain service
     typeof(AbpNotificationsDomainModule),
-    // 通知模块 应用服务
+    // Notification module application service
     typeof(AbpNotificationsApplicationModule),
-    // 通知模块 控制器
+    // Notification module controller
     typeof(AbpNotificationsHttpApiModule),
-    // 通知模块 实体框架
+    // Notification module Entity Framework
     typeof(AbpNotificationsEntityFrameworkCoreModule),
 
-    // OpenIddict扩展模块 应用服务
+    // OpenIddict extension module application service
     typeof(AbpOpenIddictApplicationModule),
-    // OpenIddict扩展模块 控制器
+    // OpenIddict extension module controller
     typeof(AbpOpenIddictHttpApiModule),
-    // OpenIddict扩展模块 实体框架
+    // OpenIddict extension module Entity Framework
     typeof(AbpOpenIddictEntityFrameworkCoreModule),
-    // OpenIddict扩展模块 短信认证
+    // OpenIddict extension module SMS authentication
     typeof(AbpOpenIddictSmsModule),
-    // OpenIddict扩展模块 平台认证
+    // OpenIddict extension module platform certification
     typeof(AbpOpenIddictPortalModule),
-    // OpenIddict扩展模块 微信认证
+    // OpenIddict extension module WeChat authentication
     typeof(AbpOpenIddictWeChatModule),
-    // OpenIddict扩展模块 企业微信认证
+    // OpenIddict extension module Enterprise WeChat authentication
     typeof(AbpOpenIddictWeChatWorkModule),
-    // OpenIddict扩展模块 关联账户
+    // OpenIddict extension module associated account
     typeof(AbpOpenIddictLinkUserModule),
-    // OpenIddict扩展模块 扫码登录
+    // OpenIddict extension module scan QR code to log in
     typeof(AbpOpenIddictQrCodeModule),
 
-    // 对象存储模块 阿里云
+    // Object storage module Alibaba Cloud
     typeof(AbpBlobManagementAliyunModule),
-    // 对象存储模块 文件系统
+    // Object storage module file system
     typeof(AbpBlobManagementFileSystemModule),
-    // 对象存储模块 Minio
+    // Object storage module Minio
     typeof(AbpBlobManagementMinioModule),
-    // 对象存储模块 腾讯云
+    // Object storage module Tencent Cloud
     typeof(AbpBlobManagementTencentModule),
-    // 对象存储模块 MimeCheck扩展
+    // Object storage module MimeCheck extension
     typeof(AbpBlobManagementMimeCheckModule),
-    // 对象存储模块 应用服务
+    // Object storage module application service
     typeof(AbpBlobManagementDomainModule),
-    // 对象存储模块 控制器
+    // Object storage module controller
     typeof(AbpBlobManagementApplicationModule),
-    // 对象存储模块 控制器
+    // Object storage module controller
     typeof(AbpBlobManagementHttpApiModule),
-    // 对象存储模块 设置管理
+    // Object storage module settings management
     typeof(AbpBlobManagementSettingManagementModule),
-    // 对象存储模块 通用存储代理
+    // Object storage module universal storage agent
     typeof(AbpBlobStoringBlobManagementModule),
-    // 图形处理模块
+    // Graphics processing module
     typeof(AbpImagingImageSharpModule),
 
-    // 平台模块 领域服务
+    // Platform module domain service
     typeof(PlatformDomainModule),
-    // 平台模块 应用服务
+    // Platform module application service
     typeof(PlatformApplicationModule),
-    // 平台模块 控制器
+    // Platform module controller
     typeof(PlatformHttpApiModule),
-    // 平台模块 实体框架
+    // Platform module Entity Framework
     typeof(PlatformEntityFrameworkCoreModule),
-    // 平台模块 VueVbenAdmin设置
+    // Platform module VueVbenAdmin settings
     // typeof(PlatformSettingsVueVbenAdminModule),
-    // 平台模块 VueVbenAdmin主题
+    // Platform module VueVbenAdmin theme
     // typeof(PlatformThemeVueVbenAdminModule),
-    // 平台模块 Vben2路由
+    // Platform module Vben2 routing
     // typeof(AbpUINavigationVueVbenAdminModule),
-    // 平台模块 Vben5路由
+    // Platform module Vben5 routing
     typeof(AbpUINavigationVueVbenAdmin5Module),
 
-    // Saas模块 领域服务
+    // Saas module domain service
     typeof(AbpSaasDomainModule),
-    // Saas模块 应用服务
+    // Saas module application service
     typeof(AbpSaasApplicationModule),
-    // Saas模块 控制器
+    // Saas module controller
     typeof(AbpSaasHttpApiModule),
-    // Saas模块 实体框架
+    // Saas module Entity Framework
     typeof(AbpSaasEntityFrameworkCoreModule),
-    // Saas模块 数据库连接检查
+    // Saas module database connection check
     typeof(AbpSaasDbCheckerModule),
 
-    // 任务管理模块 领域服务
+    // Task management module domain service
     typeof(TaskManagementDomainModule),
-    // 任务管理模块 应用服务
+    // Task management module application service
     typeof(TaskManagementApplicationModule),
-    // 任务管理模块 控制器
+    // Task management module controller
     typeof(TaskManagementHttpApiModule),
-    // 任务管理模块 实体框架
+    // Task management module Entity Framework
     typeof(TaskManagementEntityFrameworkCoreModule),
 
-    // 文本模板模块 领域服务
+    // Text template module domain service
     typeof(AbpTextTemplatingDomainModule),
-    // 文本模板模块 应用服务
+    // Text template module application service
     typeof(AbpTextTemplatingApplicationModule),
-    // 文本模板模块 控制器
+    // Text template module controller
     typeof(AbpTextTemplatingHttpApiModule),
-    // 文本模板模块 实体框架
+    // Text template module Entity Framework
     typeof(AbpTextTemplatingEntityFrameworkCoreModule),
 
-    // Webhooks模块 领域服务
+    // Webhooks module domain service
     typeof(AbpWebhooksModule),
-    // Webhooks模块 事件总线
+    // Webhooks module event bus
     typeof(AbpWebhooksEventBusModule),
-    // Webhooks模块 身份认证事件
+    // Webhooks module identity authentication event
     typeof(AbpWebhooksIdentityModule),
-    // Webhooks模块 Saas事件
+    // Webhooks module Saas event
     typeof(AbpWebhooksSaasModule),
-    // Webhooks模块 应用服务
+    // Webhooks module application service
     typeof(WebhooksManagementDomainModule),
-    // Webhooks模块 控制器
+    // Webhooks module controller
     typeof(WebhooksManagementApplicationModule),
-    // Webhooks模块 控制器
+    // Webhooks module controller
     typeof(WebhooksManagementHttpApiModule),
-    // Webhooks模块 实体框架
+    // Webhooks module Entity Framework
     typeof(WebhooksManagementEntityFrameworkCoreModule),
 
-    // 功能管理模块 应用服务
+    // Function management module application service
     typeof(LINGYUN.Abp.FeatureManagement.AbpFeatureManagementApplicationModule),
-    // 功能管理模块 控制器
+    // Function management module controller
     typeof(LINGYUN.Abp.FeatureManagement.HttpApi.AbpFeatureManagementHttpApiModule),
-    // 功能管理模块 实体框架
+    // Function management module Entity Framework
     typeof(AbpFeatureManagementEntityFrameworkCoreModule),
 
-    // 设置管理模块 领域服务
+    // Set management module domain service
     typeof(AbpSettingManagementDomainModule),
-    // 设置管理模块 应用服务
+    // Set management module application service
     typeof(AbpSettingManagementApplicationModule),
-    // 设置管理模块 控制器
+    // Set management module controller
     typeof(AbpSettingManagementHttpApiModule),
-    // 设置管理模块 实体框架
+    // Set up the management module Entity Framework
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
-    // 设置管理模块 Mvc视图
+    // Set the management module Mvc view
     typeof(AbpSettingManagementWebModule),
 
-    // 权限管理模块 应用服务
+    // Permission management module application service
     typeof(LINGYUN.Abp.PermissionManagement.AbpPermissionManagementApplicationModule),
-    // 权限管理模块 控制器
+    // Permission management module controller
     typeof(AbpPermissionManagementHttpApiModule),
-    // 权限管理模块 身份认证集成
+    // Permission management module identity authentication integration
     typeof(AbpPermissionManagementDomainIdentityModule),
-    // 权限管理模块 OpenIddict集成
+    // Permission management module OpenIddict integration
     typeof(AbpPermissionManagementDomainOpenIddictModule),
     // typeof(AbpPermissionManagementDomainIdentityServerModule),
-    // 权限管理模块 实体框架
+    // Permission management module Entity Framework
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-    // 权限管理模块 组织机构集成
-    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // 组织机构权限管理
-    // 权限管理模块 Mvc视图
+    // Permission management module organization integration
+    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // Organization permission management
+    // Permission management module Mvc view
     typeof(AbpPermissionManagementWebModule),
 
-    // 短信模块 阿里云集成
+    // SMS module Alibaba Cloud integration
     typeof(AbpAliyunSmsModule),
-    // 阿里云模块 设置管理
+    // Alibaba Cloud module settings management
     typeof(AbpAliyunSettingManagementModule),
 
-    // 认证模块 JWT认证
+    // Authentication module JWT authentication
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
-    // 授权模块 组织机构集成
+    // Authorization module organization integration
     typeof(AbpAuthorizationOrganizationUnitsModule),
 
-    // 后台任务模块
+    // Background task module
     typeof(AbpBackgroundTasksModule),
-    // 后台任务模块 行为处理
+    // Background task module behavior processing
     typeof(AbpBackgroundTasksActivitiesModule),
-    // 后台任务模块 分布式锁
+    // Background task module distributed lock
     typeof(AbpBackgroundTasksDistributedLockingModule),
-    // 后台任务模块 事件总线
+    // Background task module event bus
     typeof(AbpBackgroundTasksEventBusModule),
-    // 后台任务模块 默认作业
+    // Background task module default job
     typeof(AbpBackgroundTasksJobsModule),
-    // 后台任务模块 通知
+    // Background task module notification
     typeof(AbpBackgroundTasksNotificationsModule),
-    // 后台任务模块 Quartz集成
+    // Background task module Quartz integration
     typeof(AbpBackgroundTasksQuartzModule),
-    // 后台任务模块 身份认证模块作业
+    // Background task module identity authentication module job
     typeof(AbpIdentityJobsModule),
-    // 后台任务模块 平台管理模块作业
+    // Background task module platform management module job
     typeof(PlatformJobsModule),
 
-    // 数据审计模块 应用服务
+    // Data audit module application service
     typeof(AbpDataProtectionManagementApplicationModule),
-    // 数据审计模块 控制器
+    // Data audit module controller
     typeof(AbpDataProtectionManagementHttpApiModule),
-    // 数据审计模块 实体框架
+    // Data audit module Entity Framework
     typeof(AbpDataProtectionManagementEntityFrameworkCoreModule),
 
-    // Demo模块 应用服务
+    // Demo module application service
     typeof(AbpDemoApplicationModule),
-    // Demo模块 控制器
+    // Demo module controller
     typeof(AbpDemoHttpApiModule),
-    // Demo模块 实体框架
+    // Demo module Entity Framework
     typeof(AbpDemoEntityFrameworkCoreModule),
 
-    // Dapr模块 客户端
+    // Dapr module client
     typeof(AbpDaprClientModule),
-    // 异常处理模块
+    // Exception handling module
     typeof(AbpExceptionHandlingModule),
-    // 异常处理模块 邮件通知
+    // Exception handling module email notification
     typeof(AbpEmailingExceptionHandlingModule),
 
-    // 功能限制模块
+    // Function restriction module
     typeof(AbpFeaturesLimitValidationModule),
-    // 客户端功能限制模块 Redis集成
+    // Client function restriction module Redis integration
     typeof(AbpFeaturesValidationRedisClientModule),
-    // 功能管理模块 Mvc视图
+    // Function management module Mvc view
     typeof(AbpFeatureManagementWebModule),
-    // 多语言模块 语言映射
+    // Multi-language module language mapping
     typeof(AbpLocalizationCultureMapModule),
 
-    // OpenApi模块 授权
+    // OpenApi module authorization
     typeof(AbpOpenApiAuthorizationModule),
 
-    // 消息模块 实时框架
+    // Message module real-time framework
     typeof(AbpIMSignalRModule),
 
-    // 通知模块
+    // notification module
     typeof(AbpNotificationsModule),
-    // 通知模块 默认通知
+    // Notification module default notification
     typeof(AbpNotificationsCommonModule),
-    // 通知模块 实时框架
+    // Notification module real-time framework
     typeof(AbpNotificationsSignalRModule),
-    // 通知模块 邮件通知
+    // Notification module email notification
     typeof(AbpNotificationsEmailingModule),
-    // 通知模块 模板解析
+    // Notification module template parsing
     typeof(AbpNotificationsTemplatingModule),
-    // 通知模块 微信小程序
+    // Notification module WeChat applet
     typeof(AbpNotificationsWeChatMiniProgramModule),
-    // 通知模块 企业微信
+    // Notification module Enterprise WeChat
     typeof(AbpNotificationsWeChatWorkModule),
-    // 通知模块 工作日检查拦截器
+    // Notification module working day check interceptor
     typeof(AbpNotificationsCalendarModule),
-    // 多租户模块 版本
+    // Multi-tenant module version
     typeof(AbpMultiTenancyEditionsModule),
 
-    // 腾讯QQ模块
+    // Tencent QQ module
     typeof(AbpTencentQQModule),
-    // 腾讯云模块 设置管理
+    // Tencent Cloud module settings management
     typeof(AbpTencentCloudSettingManagementModule),
 
-    // 微信模块 微信小程序
+    // WeChat module WeChat applet
     typeof(AbpWeChatMiniProgramModule),
-    // 微信模块 微信公众号
+    // WeChat module WeChat public account
     typeof(AbpWeChatOfficialModule),
-    // 微信模块 微信公众号 应用服务
+    // WeChat module WeChat public account application service
     typeof(AbpWeChatOfficialApplicationModule),
-    // 微信模块 微信公众号 控制器
+    // WeChat module WeChat public account controller
     typeof(AbpWeChatOfficialHttpApiModule),
-    // 微信模块 企业微信
+    // WeChat module Enterprise WeChat
     typeof(AbpWeChatWorkModule),
-    // 微信模块 企业微信通讯录
+    // WeChat module Enterprise WeChat address book
     typeof(AbpWeChatWorkContactModule),
-    // 微信模块 企业微信客户联系
+    // WeChat module Enterprise WeChat customer contact
     typeof(AbpWeChatWorkExternalContactModule),
-    // 微信模块 企业微信办公
+    // WeChat module Enterprise WeChat office
     typeof(AbpWeChatWorkOAModule),
-    // 微信模块 企业微信 应用服务
+    // WeChat module Enterprise WeChat application service
     typeof(AbpWeChatWorkApplicationModule),
-    // 微信模块 企业微信 控制器
+    // WeChat module Enterprise WeChat controller
     typeof(AbpWeChatWorkHttpApiModule),
-    // 微信模块 微信公众号 事件处理
+    // WeChat module WeChat public account event processing
     typeof(AbpWeChatOfficialHandlersModule),
-    // 微信模块 企业微信 事件处理
+    // WeChat module Enterprise WeChat event processing
     typeof(AbpWeChatWorkHandlersModule),
-    // 微信模块 设置管理
+    // WeChat module settings management
     typeof(AbpWeChatSettingManagementModule),
 
-    // AI管理模块 Http工具
+    // AI management module Http tool
     typeof(AbpAIToolsHttpModule),
-    // AI管理模块 Mcp工具
+    // AI management module Mcp tool
     typeof(AbpAIToolsMcpModule),
-    // AI管理模块 应用服务
+    // AI management module application service
     typeof(AbpAIManagementApplicationModule),
-    // AI管理模块 控制器
+    // AI management module controller
     typeof(AbpAIManagementHttpApiModule),
 
-    // 数据迁移模块
+    // Data migration module
     typeof(AbpDataDbMigratorModule),
-    // IP解析模块 IP2Region集成
+    // IP analysis module IP2Region integration
     typeof(AbpIP2RegionModule),
-    // 分布式Id生成器模块
+    // Distributed Id generator module
     typeof(AbpIdGeneratorModule),
-    // 自定义导航模块
+    // Custom navigation module
     typeof(AbpUINavigationModule),
 
-    // Elsa工作流模块
+    // Elsa workflow module
     typeof(AbpElsaModule),
-    // Elsa工作流模块 工作流服务器
+    // Elsa workflow module workflow server
     typeof(AbpElsaServerModule),
-    // Elsa工作流模块 活动
+    // Elsa workflow module activity
     typeof(AbpElsaActivitiesModule),
-    // Elsa工作流模块 实体框架
+    // Elsa workflow module Entity Framework
     typeof(AbpElsaEntityFrameworkCoreModule),
-    // Elsa工作流设计器模块
+    // Elsa workflow designer module
     typeof(AbpElsaDesignerModule),
 
-    // 数据导出模块 MiniSoftware集成
+    // Data export module MiniSoftware integration
     typeof(AbpExporterMiniSoftwareModule),
 
-    // 虚拟文件浏览器 Mvc视图
+    // Virtual file browser Mvc view
     typeof(AbpVirtualFileExplorerWebModule),
     typeof(AbpLoggingSerilogElasticsearchModule),
     typeof(AbpHttpClientWrapperModule),
@@ -400,7 +400,7 @@ namespace LINGYUN.Abp.MicroService.AllInOne;
     typeof(AbpMailKitModule),
     typeof(AbpAutofacModule),
 
-    // 单体应用系统状态接口
+    // Single application system status interface
     typeof(AbpSystemInfoHttpApiModule),
 
     // MySql
@@ -410,21 +410,21 @@ namespace LINGYUN.Abp.MicroService.AllInOne;
     // PostgreSql
     typeof(SingleMigrationsEntityFrameworkCorePostgreSqlModule),
 
-    // 审计日志模块 应用服务
+    // Audit log module application service
     typeof(AbpAuditingApplicationModule),
-    // 审计日志模块 控制器
+    // Audit log module controller
     typeof(AbpAuditingHttpApiModule),
-    // 审计日志模块 IP地址定位
+    // Audit log module IP address location
     typeof(AbpAuditLoggingIPLocationModule),
-    // 审计日志模块 实体框架实现
+    // Audit log module Entity Framework implementation
     typeof(AbpAuditLoggingEntityFrameworkCoreModule),
-    // 审计日志模块 Elasticsearch实现
+    // Audit log module Elasticsearch implementation
     // typeof(AbpAuditLoggingElasticsearchModule),
-    // 审计日志模块 OpenObserve实现
+    // Audit log module OpenObserve implementation
     // typeof(AbpAuditLoggingOpenObserveModule),
-    // 系统日志模块 Elasticsearch
+    // System log module Elasticsearch
     typeof(AbpLoggingSerilogElasticsearchModule),
-    // 系统日志模块 OpenObserve
+    // System log module OpenObserve
     typeof(AbpLoggingSerilogOpenObserveModule)
     )]
 public partial class AllInOneModule : AbpModule

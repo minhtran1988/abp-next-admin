@@ -196,7 +196,7 @@ public class LoginModel : AccountPageModel
             return await HandleUserNameOrPasswordInvalid();
         }
 
-        //TODO: Find a way of getting user's id from the logged in user and do not query it again like that!
+        // TODO: Find a way of getting user's id from the logged in user and do not query it again like that!
         var user = await GetIdentityUserAsync(Input.UserNameOrEmailAddress);
 
         Debug.Assert(user != null, nameof(user) + " != null");
@@ -223,7 +223,7 @@ public class LoginModel : AccountPageModel
 
     public virtual async Task<IActionResult> OnGetExternalLoginCallbackAsync(string returnUrl = "", string returnUrlHash = "", string? remoteError = null)
     {
-        //TODO: Did not implemented Identity Server 4 sample for this method (see ExternalLoginCallback in Quickstart of IDS4 sample)
+        // TODO: Did not implemented Identity Server 4 sample for this method (see ExternalLoginCallback in Quickstart of IDS4 sample)
         /* Also did not implement these:
          * - Logout(string logoutId)
          */
@@ -286,7 +286,7 @@ public class LoginModel : AccountPageModel
             return await RedirectSafelyAsync(returnUrl, returnUrlHash);
         }
 
-        //TODO: Handle other cases for result!
+        // TODO: Handle other cases for result!
 
         var email = loginInfo.Principal.FindFirstValue(AbpClaimTypes.Email) ?? loginInfo.Principal.FindFirstValue(ClaimTypes.Email);
         if (email.IsNullOrWhiteSpace())
@@ -338,7 +338,7 @@ public class LoginModel : AccountPageModel
 
     protected virtual Task<IActionResult> TwoFactorLoginResultAsync()
     {
-        // 重定向双因素认证页面
+        // Redirect the two-factor authentication page
         return Task.FromResult<IActionResult>(RedirectToPage("SendCode", new
         {
             returnUrl = ReturnUrl,
@@ -447,7 +447,7 @@ public class LoginModel : AccountPageModel
         var notAllowedUser = await GetIdentityUserAsync(Input.UserNameOrEmailAddress);
         if (notAllowedUser != null && await UserManager.CheckPasswordAsync(notAllowedUser, Input.Password))
         {
-            // 用户必须修改密码
+            // User must change password
             if (notAllowedUser.ShouldChangePasswordOnNextLogin || await UserManager.ShouldPeriodicallyChangePasswordAsync(notAllowedUser))
             {
                 await StoreChangePasswordUserAsync(notAllowedUser);
@@ -557,7 +557,7 @@ public class LoginModel : AccountPageModel
     {
         var redirectUrl = await base.GetRedirectUrlAsync(returnUrl!, returnUrlHash);
 
-        // 使用正则表达式移除 LinkUser 参数
+        // Use regular expressions to remove the LinkUser parameter
         redirectUrl = Regex.Replace(redirectUrl, @"[&?]LinkToken=[^&]*", "");
         redirectUrl = Regex.Replace(redirectUrl, @"[&?]LinkUserId=[^&]*", "");
         redirectUrl = Regex.Replace(redirectUrl, @"[&?]LinkTenantId=[^&]*", "");
@@ -594,7 +594,7 @@ public class LoginModel : AccountPageModel
                 return false;
             }
         }
-        // TODO: 替换框架对于空格符号的编码错误
+        // TODO: The replacement framework encodes the space symbol incorrectly
         LinkToken = LinkToken.Replace(" ", "+");
         return await IdentityLinkUserAppService.VerifyLinkTokenAsync(new VerifyLinkTokenInput()
         {

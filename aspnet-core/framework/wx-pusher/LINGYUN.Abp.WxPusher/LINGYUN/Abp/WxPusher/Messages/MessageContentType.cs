@@ -2,11 +2,11 @@
 public enum MessageContentType
 {
     /// <summary>
-    /// 文字
+    /// text
     /// </summary>
     Text = 1,
     /// <summary>
-    /// html(只发送body标签内部的数据即可，不包括body标签
+    /// html (only send the data inside the body tag, excluding the body tag)
     /// </summary>
     Html = 2,
     /// <summary>

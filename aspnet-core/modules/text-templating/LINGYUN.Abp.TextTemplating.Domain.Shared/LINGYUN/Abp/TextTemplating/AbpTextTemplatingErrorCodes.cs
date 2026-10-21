@@ -9,11 +9,11 @@ public static class AbpTextTemplatingErrorCodes
 
         public const string StaticTemplateNotAllowedChanged = Prefix + "010";
         /// <summary>
-        /// 模板 {Name} 已经存在
+        /// Template {Name} already exists
         /// </summary>
         public const string NameAlreadyExists = Prefix + "100";
         /// <summary>
-        /// 模板 {Name} 不存在!
+        /// Template {Name} does not exist!
         /// </summary>
         public const string TemplateNotFound = Prefix + "404";
     }

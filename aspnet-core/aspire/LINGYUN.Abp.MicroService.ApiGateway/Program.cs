@@ -62,11 +62,11 @@ try
     app.UseCorrelationId();
     app.UseCors();
 
-    // 认证
+    // Authentication
     app.UseAuthentication();
     // jwt
     app.UseDynamicClaims();
-    // 授权
+    // Authorize
     app.UseAuthorization();
 
     app.UseSwagger();

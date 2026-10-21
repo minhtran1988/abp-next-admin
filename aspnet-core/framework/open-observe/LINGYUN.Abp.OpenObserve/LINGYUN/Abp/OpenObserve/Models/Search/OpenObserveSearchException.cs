@@ -1,7 +1,7 @@
 namespace LINGYUN.Abp.OpenObserve.Models.Search;
 
 /// <summary>
-/// OpenObserve 搜索异常
+/// OpenObserve search exception
 /// </summary>
 public class OpenObserveSearchException : OpenObserveException
 {

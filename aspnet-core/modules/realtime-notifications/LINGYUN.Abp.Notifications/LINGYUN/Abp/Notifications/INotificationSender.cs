@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 发送通知接口
+/// Send notification interface
 /// </summary>
 public interface INotificationSender
 {
     /// <summary>
-    /// 发送通知
+    /// Send notification
     /// </summary>
-    /// <param name="name">名称</param>
-    /// <param name="data">数据</param>
-    /// <param name="users">用户列表,为空标识发给所有订阅用户</param>
-    /// <param name="tenantId">租户</param>
-    /// <param name="severity">严重级别</param>
-    /// <param name="useProviders">使用通知提供程序</param>
-    /// <returns>通知标识</returns>
+    /// <param name="name">Name</param>
+    /// <param name="data">data</param>
+    /// <param name="users">User list, empty ID is sent to all subscribed users</param>
+    /// <param name="tenantId">Tenant</param>
+    /// <param name="severity">Severity level</param>
+    /// <param name="useProviders">Use notification providers</param>
+    /// <returns>Notification ID</returns>
     Task<string> SendNofiterAsync(
         string name,
         NotificationData data,
@@ -27,14 +27,14 @@ public interface INotificationSender
         NotificationSeverity severity = NotificationSeverity.Info,
         IEnumerable<string>? useProviders = null);
     /// <summary>
-    /// 发送模板通知
+    /// Send template notification
     /// </summary>
-    /// <param name="name">名称</param>
-    /// <param name="template">模板对象</param>
-    /// <param name="users">用户列表,为空标识发给所有订阅用户</param>
-    /// <param name="tenantId">租户</param>
-    /// <param name="severity">严重级别</param>
-    /// <param name="useProviders">使用通知提供程序</param>
+    /// <param name="name">Name</param>
+    /// <param name="template">Template object</param>
+    /// <param name="users">User list, empty ID is sent to all subscribed users</param>
+    /// <param name="tenantId">Tenant</param>
+    /// <param name="severity">Severity level</param>
+    /// <param name="useProviders">Use notification providers</param>
     /// <returns></returns>
     Task<string> SendNofiterAsync(
         string name,

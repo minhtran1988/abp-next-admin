@@ -16,7 +16,7 @@ namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram
         {
             PreConfigure<AbpNotificationsWeChatMiniProgramOptions>(options =>
             {
-                // 默认值, 便于断言"未写入渠道数据时的兜底"
+                // Default value, convenient for asserting "the bottom line when channel data is not written"
                 options.DefaultTemplateId = "DEFAULT_TEMPLATE_ID";
                 options.DefaultState = "formal";
                 options.DefaultLanguage = "zh_CN";
@@ -25,7 +25,7 @@ namespace LINGYUN.Abp.Notifications.WeChat.MiniProgram
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // 用捕获式假实现替换真实发送, 避免真正调用微信接口
+            // Replace the real sending with a capturing fake implementation to avoid actually calling the WeChat interface
             context.Services.Replace(
                 ServiceDescriptor.Singleton<ISubscribeMessager, FakeSubscribeMessager>());
         }

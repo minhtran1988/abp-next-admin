@@ -10,25 +10,25 @@ namespace LINGYUN.Abp.AuditLogging.Elasticsearch;
 public class IndexNameNormalizer : IIndexNameNormalizer, ISingletonDependency
 {
     /// <summary>
-    /// ES 索引名不允许的字符集合
-    /// 参考: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
+    /// Character set not allowed in ES index name
+    /// Reference: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
     /// </summary>
     private readonly static char[] InvalidChars =
     [
         '\\', '/', '*', '?', '"', '<', '>', '|', ' ', ',', '#'
     ];
     /// <summary>
-    /// 索引名不允许作为开头的字符集合
-    /// 参考: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
+    /// The index name is not allowed to be a set of characters at the beginning
+    /// Reference: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
     /// </summary>
     private readonly static char[] InvalidLeadingChars = ['-', '_', '+'];
     /// <summary>
-    /// ES 索引名最大字节数
-    /// 参考: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
+    /// Maximum number of bytes in ES index name
+    /// Reference: https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
     /// </summary>
     public const int MaxByteLength = 255;
     /// <summary>
-    /// 通配符占用的字节数（用于 pattern 预留）。
+    /// The number of bytes occupied by wildcards (reserved for pattern).
     /// </summary>
     private const int WildcardByteLength = 1;
 

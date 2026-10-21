@@ -4,25 +4,25 @@ using System.Threading.Tasks;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知发布提供者接口
+/// Notification publishing provider interface
 /// </summary>
 public interface INotificationPublishProvider
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     string Name { get; }
     /// <summary>
-    /// 是否可发布通知
+    /// Whether notifications can be issued
     /// </summary>
     /// <param name="notification"></param>
     /// <returns></returns>
     Task<bool> CanPublishAsync(
         NotificationInfo notification);
     /// <summary>
-    /// 发布通知
+    /// Publish notification
     /// </summary>
-    /// <param name="context">通知发送上下文信息</param>
+    /// <param name="context">Notification sends context information</param>
     /// <returns></returns>
     Task PublishAsync(NotificationPublishContext context);
 }

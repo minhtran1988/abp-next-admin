@@ -25,7 +25,7 @@ using IdentityOptions = Microsoft.AspNetCore.Identity.IdentityOptions;
 namespace LINGYUN.Abp.Account.Web.IdentityServer.Pages.Account
 {
     /// <summary>
-    /// 重写登录模型,实现双因素登录
+    /// Rewrite the login model to implement two-factor login
     /// </summary>
     [Dependency(ReplaceServices = true)]
     [ExposeServices(
@@ -59,7 +59,7 @@ namespace LINGYUN.Abp.Account.Web.IdentityServer.Pages.Account
 
                 Input.UserNameOrEmailAddress = context.LoginHint;
 
-                //TODO: Reference AspNetCore MultiTenancy module and use options to get the tenant key!
+                // TODO: Reference AspNetCore MultiTenancy module and use options to get the tenant key!
                 var tenant = context.Parameters[TenantResolverConsts.DefaultTenantKey];
                 if (!string.IsNullOrEmpty(tenant))
                 {
@@ -173,7 +173,7 @@ namespace LINGYUN.Abp.Account.Web.IdentityServer.Pages.Account
                 return await HandleUserNameOrPasswordInvalid();
             }
 
-            //TODO: Find a way of getting user's id from the logged in user and do not query it again like that!
+            // TODO: Find a way of getting user's id from the logged in user and do not query it again like that!
             var user = await GetIdentityUserAsync(Input.UserNameOrEmailAddress);
 
             Debug.Assert(user != null, nameof(user) + " != null");

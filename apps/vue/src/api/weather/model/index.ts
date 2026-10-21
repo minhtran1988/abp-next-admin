@@ -1,31 +1,31 @@
 /*
-  天气数据模型
-  数据来源: http://www.nmc.cn (中央气象台)
+  weather data model
+  Data source: http://www.nmc.cn (Central Meteorological Observatory)
 */
 
 /**
- * 定位
+ * Positioning
  */
 export interface Position {
-  /** 城市 */
+  /** city */
   city: string;
-  /** 代码 */
+  /** code */
   code: string;
-  /** 省份 */
+  /** Province */
   province: string;
-  /** 专用页面 */
+  /** Dedicated page */
   url: string;
 }
 
 /**
- * 省份
+ *Province
  */
 export interface Province {
-  /** 代码 */
+  /** code */
   code: string;
-  /** 名称 */
+  /** name */
   name: string;
-  /** 专用页面 */
+  /** Dedicated page */
   url: string;
 }
 

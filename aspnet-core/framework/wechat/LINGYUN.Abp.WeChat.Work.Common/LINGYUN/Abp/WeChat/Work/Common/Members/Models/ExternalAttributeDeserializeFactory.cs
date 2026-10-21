@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.WeChat.Work.Common.Members.Models;
 internal static class ExternalAttributeDeserializeFactory
 {
     /// <summary>
-    /// 根据属性类型创建属性（System.Text.Json）
+    /// Create properties based on property types (System.Text.Json)
     /// </summary>
     public static ExternalAttribute CreateExternalAttribute(ExternalAttributeType type, JsonElement configElement)
     {
@@ -20,7 +20,7 @@ internal static class ExternalAttributeDeserializeFactory
     }
 
     /// <summary>
-    /// 根据属性类型创建属性（Newtonsoft.Json）
+    /// Create properties based on property types (Newtonsoft.Json)
     /// </summary>
     public static ExternalAttribute CreateExternalAttribute(ExternalAttributeType type, JToken configToken)
     {

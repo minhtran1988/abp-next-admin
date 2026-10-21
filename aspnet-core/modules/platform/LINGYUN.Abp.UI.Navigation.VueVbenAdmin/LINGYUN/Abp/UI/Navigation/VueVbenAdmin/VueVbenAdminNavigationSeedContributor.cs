@@ -217,7 +217,7 @@ public class VueVbenAdminNavigationSeedContributor : NavigationSeedContributor
             GuidGenerator.Create(),
             "UI Framework",
             CodeNumberGenerator.CreateCode(10),
-            "UI框架",
+            "UI framework",
             "UI Framework",
             null,
             tenantId)
@@ -243,7 +243,7 @@ public class VueVbenAdminNavigationSeedContributor : NavigationSeedContributor
     {
         var layout = await RouteDataSeeder.SeedLayoutAsync(
            Options.LayoutName,
-           Options.LayoutPath, // 路由层面已经处理好了,只需要传递LAYOUT可自动引用布局
+           Options.LayoutPath, // The routing level has been processed. You only need to pass LAYOUT to automatically reference the layout.
            Options.LayoutName,
            data.Id,
            uiDataItem.Name,
@@ -261,7 +261,7 @@ public class VueVbenAdminNavigationSeedContributor : NavigationSeedContributor
             GuidGenerator.Create(),
             Options.LayoutName,
             CodeNumberGenerator.CreateCode(10),
-            "Vben Admin 布局约束",
+            "Vben Admin Layout Constraints",
             "Vben Admin Layout Meta Dictionary",
             null,
             tenantId)
@@ -272,163 +272,163 @@ public class VueVbenAdminNavigationSeedContributor : NavigationSeedContributor
         data.AddItem(
             GuidGenerator,
             "hideMenu",
-            "不在菜单显示",
+            "Do not show in menu",
             "false",
             ValueType.Boolean,
-            "当前路由不在菜单显示",
+            "The current route is not displayed in the menu",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "icon",
-            "图标",
+            "icon",
             "",
             ValueType.String,
-            "图标，也是菜单图标",
+            "Icon is also a menu icon",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "currentActiveMenu",
-            "当前激活的菜单",
+            "Currently active menu",
             "",
             ValueType.String,
-            "用于配置详情页时左侧激活的菜单路径",
+            "The menu path activated on the left when configuring the details page",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "ignoreKeepAlive",
-            "KeepAlive缓存",
+            "KeepAlive cache",
             "false",
             ValueType.Boolean,
-            "是否忽略KeepAlive缓存",
+            "Whether to ignore KeepAlive cache",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "frameSrc",
-            "IFrame地址",
+            "IFrame address",
             "",
             ValueType.String,
-            "内嵌iframe的地址",
+            "Address of embedded iframe",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "transitionName",
-            "路由切换动画",
+            "Route switching animation",
             "",
             ValueType.String,
-            "指定该路由切换的动画名",
+            "Specify the animation name of the route switching",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "roles",
-            "可以访问的角色",
+            "Accessible roles",
             "",
             ValueType.Array,
-            "可以访问的角色，只在权限模式为Role的时候有效",
+            "Accessible roles are only valid when the permission mode is Role",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "title",
-            "路由标题",
+            "routing title",
             "",
             ValueType.String,
-            "路由title 一般必填",
+            "Routing title is generally required",
             false,
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "carryParam",
-            "在tab页显示",
+            "Show on tab page",
             "false",
             ValueType.Boolean,
-            "如果该路由会携带参数，且需要在tab页上面显示。则需要设置为true",
+            "If the route will carry parameters and need to be displayed on the tab page, it needs to be set to true",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideBreadcrumb",
-            "隐藏面包屑",
+            "hide breadcrumbs",
             "false",
             ValueType.Boolean,
-            "隐藏该路由在面包屑上面的显示",
+            "Hide the display of this route in breadcrumbs",
             isStatic: true);
         data.AddItem(
            GuidGenerator,
            "ignoreAuth",
-           "忽略权限",
+           "Ignore permissions",
            "false",
            ValueType.Boolean,
-           "是否忽略权限，只在权限模式为Role的时候有效",
+           "Whether to ignore permissions, it is only effective when the permission mode is Role",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideChildrenInMenu",
-            "隐藏所有子菜单",
+            "Hide all submenus",
             "false",
             ValueType.Boolean,
-            "隐藏所有子菜单",
+            "Hide all submenus",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideTab",
-            "不在标签页显示",
+            "Don't show in tabs",
             "false",
             ValueType.Boolean,
-            "当前路由不在标签页显示",
+            "The current route is not displayed on the tab page",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "affix",
-            "固定标签页",
+            "Fixed tabs",
             "false",
             ValueType.Boolean,
-            "是否固定标签页",
+            "Whether the tab is pinned",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "requiredFeatures",
-            "必要的功能",
+            "necessary functionality",
             "",
             ValueType.String,
-            "多个功能间用英文 , 分隔",
+            "Use English , to separate multiple functions",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "dynamicLevel",
-            "可打开Tab页数",
+            "Number of tab pages that can be opened",
             "",
             ValueType.Numeic,
-            "动态路由可打开Tab页数",
+            "Number of tab pages that can be opened by dynamic routing",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hidePathForChildren",
-            "忽略本级path",
+            "Ignore this level path",
             "",
             ValueType.Boolean,
-            "是否在子级菜单的完整path中忽略本级path。2.5.3以上版本有效",
+            "Whether to ignore this level path in the complete path of the sub-level menu. Valid in version 2.5.3 or above",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "orderNo",
-            "菜单排序",
+            "Menu sort",
             "",
             ValueType.Numeic,
-            "菜单排序，只对第一级有效",
+            "Menu sorting, only valid for the first level",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "realPath",
-            "实际Path",
+            "ActualPath",
             "",
             ValueType.String,
-            "动态路由的实际Path, 即去除路由的动态部分;",
+            "The actual Path of dynamic routing, that is, removing the dynamic part of routing;",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "frameFormat",
-            "格式化IFrame",
+            "Format IFrame",
             "false",
             ValueType.Boolean,
-            "扩展的格式化frame，{token}: 在打开的iframe页面传递token请求头");
+            "Extended formatted frame, {token}: pass the token request header in the opened iframe page");
 
         await DataDictionaryDataSeeder.SeedAsync(data);
 

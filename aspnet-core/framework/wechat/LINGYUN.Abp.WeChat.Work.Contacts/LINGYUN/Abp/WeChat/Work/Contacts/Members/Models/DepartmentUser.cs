@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 用户-部门关系
+/// User-department relationship
 /// </summary>
 public class DepartmentUser
 {
     /// <summary>
-    /// 用户userid，当用户在多个部门下时会有多条记录
+    /// User userid, when the user is under multiple departments, there will be multiple records
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 用户所属部门
+    /// The department to which the user belongs
     /// </summary>
     [NotNull]
     [JsonProperty("department")]

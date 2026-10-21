@@ -49,4 +49,4 @@ All application services follow the permission requirements defined by the modul
 
 ## More Information
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

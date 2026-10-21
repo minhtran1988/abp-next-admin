@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 文本卡片消息
+/// Text card message
 /// </summary>
 public class TextCardMessage
 {
@@ -23,28 +23,28 @@ public class TextCardMessage
     }
 
     /// <summary>
-    /// 标题，不超过128个字节，超过会自动截断（支持id转译）
+    /// Title, no more than 128 bytes, will be automatically truncated if exceeded (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; }
     /// <summary>
-    /// 描述，不超过512个字节，超过会自动截断（支持id转译）
+    /// Description, no more than 512 bytes, will be automatically truncated if exceeded (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string Description { get; set; }
     /// <summary>
-    /// 点击后跳转的链接。最长2048字节，请确保包含了协议头(http/https)
+    /// The link that jumps after clicking. The maximum length is 2048 bytes, please make sure to include the protocol header (http/https)
     /// </summary>
     [NotNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string Url { get; set; }
     /// <summary>
-    /// 按钮文字。 默认为“详情”， 不超过4个文字，超过自动截断。
+    /// Button text. The default is "Details", no more than 4 characters, and it will be automatically truncated if it exceeds 4 characters.
     /// </summary>
     [CanBeNull]
     [JsonProperty("btntxt")]

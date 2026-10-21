@@ -83,7 +83,7 @@ public class EfCoreDataRepository : EfCoreRepository<IPlatformDbContext, Data, G
         return (await GetQueryableAsync()).IncludeDetails();
     }
 
-    [System.Obsolete("将在abp框架移除之后删除")]
+    [System.Obsolete("Will be deleted after abp framework is removed")]
     public override IQueryable<Data> WithDetails()
     {
         return GetQueryable().IncludeDetails();

@@ -6,62 +6,62 @@ namespace LINGYUN.Abp.Authentication.WeChat;
 public static class AbpAuthenticationWeChatConsts
 {
     /// <summary>
-    /// 微信个人信息标识
+    /// WeChat personal information identification
     /// </summary>
     public static string ProfileKey => AbpWeChatGlobalConsts.ProfileKey;
     /// <summary>
-    /// 微信提供者标识
+    /// WeChat provider identification
     /// </summary>
     public static string ProviderKey => AbpWeChatOfficialConsts.ProviderName;
     /// <summary>
-    /// 微信提供者显示名称
+    /// WeChat provider display name
     /// </summary>
     public static string DisplayName => AbpWeChatGlobalConsts.DisplayName;
     /// <summary>
-    /// 回调地址
+    /// Callback address
     /// </summary>
     public static string CallbackPath { get; set; } = "/signin-wechat";
 
     /// <summary>
-    /// 微信客户端外的网页登录
+    /// Web page login outside WeChat client
     /// </summary>
     public const string QrConnectEndpoint = "https://open.weixin.qq.com/connect/qrconnect";
 
     /// <summary>
-    /// 微信客户端内的网页登录
+    /// Web page login in WeChat client
     /// </summary>
     public const string AuthorizationEndpoint = "https://open.weixin.qq.com/connect/oauth2/authorize";
 
     /// <summary>
-    /// 用户允许授权后通过返回的code换取access_token地址
+    /// After the user allows authorization, the returned code is exchanged for the access_token address.
     /// </summary>
     public const string TokenEndpoint = "https://api.weixin.qq.com/sns/oauth2/access_token";
 
     /// <summary>
-    /// 使用access_token获取用户个人信息地址
+    /// Use access_token to obtain the user's personal information address
     /// </summary>
     public const string UserInformationEndpoint = "https://api.weixin.qq.com/sns/userinfo";
     /// <summary>
-    /// 弹出授权页面，可通过openid拿到昵称、性别、所在地。
-    /// 并且， 即使在未关注的情况下，只要用户授权，也能获取其信息
+    /// The authorization page pops up, and you can get the nickname, gender, and location through openid.
+    /// Moreover, even if the user is not paying attention, the information can be obtained as long as the user authorizes it.
     /// <br />
     /// <br />
-    /// 详询: <see cref="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html"/>
+    /// For detailed inquiries: <see cref="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html"/>
     /// </summary>
     /// <remarks>
-    /// 以snsapi_userinfo为scope发起的网页授权，是用来获取用户的基本信息的。
-    /// 但这种授权需要用户手动同意，并且由于用户同意过，所以无须关注，就可在授权后获取该用户的基本信息
+    /// Web page authorization initiated with snsapi_userinfo as the scope is used to obtain the user's basic information.
+    /// But this kind of authorization requires the user to manually agree, and since the user has agreed, there is no need to pay attention, and the basic information of the user can be obtained after authorization.
     /// </remarks>
     public const string UserInfoScope = "snsapi_userinfo";
     /// <summary>
-    /// 不弹出授权页面，直接跳转，只能获取用户openid
+    /// Does not pop up the authorization page, jumps directly, and can only obtain the user's openid
     /// <br />
     /// <br />
-    /// 详询: <see cref="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html"/>
+    /// For detailed inquiries: <see cref="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html"/>
     /// </summary>
     /// <remarks>
-    /// 以snsapi_base为scope发起的网页授权，是用来获取进入页面的用户的openid的，并且是静默授权并自动跳转到回调页的。
-    /// 用户感知的就是直接进入了回调页（往往是业务页面）
+    /// The web page authorization initiated with snsapi_base as the scope is used to obtain the openid of the user entering the page, and is authorized silently and automatically jumps to the callback page.
+    /// What the user perceives is that he directly enters the callback page (often a business page)
     /// </remarks>
     public const string LoginScope = "snsapi_login";
 }

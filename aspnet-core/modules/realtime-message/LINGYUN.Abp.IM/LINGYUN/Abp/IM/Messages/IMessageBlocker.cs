@@ -3,7 +3,7 @@
 namespace LINGYUN.Abp.IM.Messages;
 
 /// <summary>
-/// 消息拦截器
+/// Message interceptor
 /// </summary>
 public interface IMessageBlocker
 {

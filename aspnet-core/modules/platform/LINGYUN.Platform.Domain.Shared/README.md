@@ -1,15 +1,15 @@
 # LINGYUN.Platform.Domain.Shared
 
-平台管理模块的共享领域层，定义了平台管理所需的基本类型、枚举和常量。
+The shared domain layer of the platform management module defines the basic types, enumerations and constants required for platform management.
 
-## 功能特性
+## Features
 
-* 定义平台管理基础枚举
-* 定义平台管理常量
-* 定义平台管理本地化资源
-* 定义平台管理领域共享接口
+* Define platform management basic enumeration
+* Define platform management constants
+* Define platform to manage localized resources
+* Define platform management domain shared interface
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(PlatformDomainSharedModule))]
@@ -19,12 +19,12 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 引用模块
-2. 使用定义的枚举和常量
-3. 使用本地化资源
+1. Reference module
+2. Use defined enumerations and constants
+3. Use localized resources
 
-## 更多
+## More
 
-更多信息请参考 [Platform](../README.md)
+For more information please refer to [Platform](../README.md)

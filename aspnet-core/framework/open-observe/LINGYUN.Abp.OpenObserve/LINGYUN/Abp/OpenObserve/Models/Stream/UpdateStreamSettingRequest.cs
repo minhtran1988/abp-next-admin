@@ -5,11 +5,11 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 更新数据流设置请求
+/// Update data stream setting request
 /// </summary>
 /// <remarks>
 /// PUT /api/{org_id}/streams/{stream_name}/settings
-/// 支持 add/set/remove 的字段使用包装语法
+/// Fields that support add/set/remove use packaging syntax
 /// </remarks>
 public class UpdateStreamSettingRequest
 {

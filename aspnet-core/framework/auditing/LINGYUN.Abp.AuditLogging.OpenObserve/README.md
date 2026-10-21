@@ -1,16 +1,16 @@
 # LINGYUN.Abp.AuditLogging.OpenObserve
 
-[English](./README.EN.md) | 简体中文
+[English](./README.EN.md) | Simplified Chinese
 
-## 简介
+## Introduction
 
-将审计日志、安全日志写入 [OpenObserve](https://openobserve.ai/) 并通过 OpenObserve SQL 查询，
-可作为 `LINGYUN.Abp.AuditLogging.Elasticsearch` 的替代实现（`IAuditLogWriter` / `ISecurityLogWriter` /
-`IAuditLogManager` / `ISecurityLogManager` / `IEntityChangeStore` 全部被替换）。
+Write audit logs and security logs to [OpenObserve](https://openobserve.ai/) and query them through OpenObserve SQL,
+Available as an alternative implementation of `LINGYUN.Abp.AuditLogging.Elasticsearch` (`IAuditLogWriter` / `ISecurityLogWriter` /
+`IAuditLogManager` / `ISecurityLogManager` / `IEntityChangeStore` are all replaced).
 
-## 配置
+## Configuration
 
-`OpenObserve` 为连接配置（由 `LINGYUN.Abp.OpenObserve` 提供），审计相关配置节为 `AuditLogging:OpenObserve`：
+`OpenObserve` is the connection configuration (provided by `LINGYUN.Abp.OpenObserve`), and the audit-related configuration section is `AuditLogging:OpenObserve`:
 
 ```json
 {
@@ -34,22 +34,22 @@
 }
 ```
 
-| 配置项 | 默认值 | 说明 |
+| Configuration items | Default value | Description |
 | --- | --- | --- |
-| `Organization` | 空 | 数据流所属组织, 为空时使用 `OpenObserve:Organization` |
-| `AuditLogStream` | `audit_log` | 审计日志主数据流（根），子数据流由它计算 |
-| `SecurityLogStream` | `security_log` | 安全日志数据流 |
-| `WriteEntityChanges` | `true` | 是否展平写入实体变更（关闭后 `IEntityChangeStore` 查不到数据） |
-| `WriteActions` | `true` | 是否展平写入操作（关闭后 `Actions.*` 条件无法匹配） |
-| `DefaultQueryDays` | `365` | 未指定时间范围时的默认查询跨度(天) |
-| `UseLogTimeAsTimestamp` | `true` | 是否用日志业务时间覆盖 `_timestamp`（见注意事项 2） |
-| `TimestampAllowedUptoHours` | `5` | 允许覆盖 `_timestamp` 的最大回溯小时数，需与服务端 `ZO_INGEST_ALLOWED_UPTO` 一致 |
+| `Organization` | NULL | The organization to which the data flow belongs. If it is NULL, use `OpenObserve:Organization` |
+| `AuditLogStream` | `audit_log` | Audit log main data stream (root), sub-data streams are calculated from it |
+| `SecurityLogStream` | `security_log` | Security log data stream |
+| `WriteEntityChanges` | `true` | Whether to flatten written entity changes (`IEntityChangeStore` cannot find data after closing) |
+| `WriteActions` | `true` | Whether to flatten write operations (the `Actions.*` condition cannot be matched after closing) |
+| `DefaultQueryDays` | `365` | Default query span (days) when no time range is specified |
+| `UseLogTimeAsTimestamp` | `true` | Whether to overwrite `_timestamp` with log business time (see Note 2) |
+| `TimestampAllowedUptoHours` | `5` | The maximum number of lookback hours allowed to override `_timestamp`, which must be consistent with the server's `ZO_INGEST_ALLOWED_UPTO` |
 
-> 子数据流名称**由 `AuditLogStream` 计算**（`AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream()` /
-> `GetActionStream()`），不单独配置：实体变更 = `{AuditLogStream}_entity_changes`、操作 = `{AuditLogStream}_actions`
-> （默认即 `audit_log_entity_changes`、`audit_log_actions`）。
+> Substream name **computed** by `AuditLogStream` (`AbpAuditLoggingOpenObserveOptions.GetEntityChangeStream()` /
+> `GetActionStream()`), not configured separately: entity changes = `{AuditLogStream}_entity_changes`, operations = `{AuditLogStream}_actions`
+> (Default is `audit_log_entity_changes`, `audit_log_actions`).
 
-## 使用方式
+## Usage
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingOpenObserveModule))]
@@ -58,101 +58,101 @@ public class MyModule : AbpModule
 }
 ```
 
-模块**不对数据流做任何处理**（不探测、不创建、不修改设置）：OpenObserve 会在首次写入时自动创建数据流，
-保留策略等数据流设置请在 OpenObserve 侧配置（或自行调用 `UpdateStreamSettingsAsync`）。
+The module does not do any processing on the data stream (no detection, no creation, no modification of settings): OpenObserve will automatically create the data stream when writing for the first time.
+Please configure data stream settings such as retention policy on the OpenObserve side (or call `UpdateStreamSettingsAsync` yourself).
 
-## 多租户
+## Multi-tenant
 
-数据流按租户隔离（与 Elasticsearch 实现一致，参考其 `IIndexNameNormalizer`）：租户数据流形如
-`audit_log_{tenantId:N}`（实体变更 / 操作分别为 `audit_log_entity_changes_{tenantId:N}`、`audit_log_actions_{tenantId:N}`），
-宿主（未指定租户）使用基础名称。
+The data flow is isolated by tenant (consistent with Elasticsearch implementation, refer to its `IIndexNameNormalizer`): the tenant data flow is as follows
+`audit_log_{tenantId:N}` (entity changes/operations are `audit_log_entity_changes_{tenantId:N}`, `audit_log_actions_{tenantId:N}` respectively),
+The host (no tenant specified) uses the base name.
 
-* **写入**：按**日志自身的 `TenantId`** 选择数据流（审计日志写入发生在后台队列，当前租户可能已不是产生日志的租户），
-  批量写入按租户分组；
-* **查询**：按**当前租户**（`ICurrentTenant`）选择数据流，因此租户之间天然隔离；
-* 命名规则可通过 `IStreamNameNormalizer`（默认 `StreamNameNormalizer`）覆写；
-  实测 OpenObserve 会把流名中的 `-` 规范化为 `_`，因此默认分隔符使用 `_`；
-* 模块不对数据流做任何处理：数据流在首次写入时由 OpenObserve 自动创建，
-  保留策略等设置请在 OpenObserve 侧配置。
+* **Write**: Select the data stream according to the `TenantId`** of the **log itself (audit log writing occurs in the background queue, and the current tenant may no longer be the tenant that generates the log),
+  Batch writes are grouped by tenant;
+* **Query**: Select data flow by **current tenant** (`ICurrentTenant`), so tenants are naturally isolated;
+* Naming rules can be overridden through `IStreamNameNormalizer` (default `StreamNameNormalizer`);
+  According to the actual test, OpenObserve will normalize the `-` in the stream name to `_`, so the default delimiter is `_`;
+* The module does not do any processing of the data stream: the data stream is automatically created by OpenObserve when it is first written,
+  Retention policy and other settings should be configured on the OpenObserve side.
 
-## 数据流结构
+## Data flow structure
 
-审计日志侧共三个数据流（后两个名称由 `AuditLogStream` 计算）：
+There are three data streams on the audit log side (the last two names are calculated by `AuditLogStream`):
 
-| 数据流 | 内容 |
+| Data flow | Content |
 | --- | --- |
-| `audit_log` | 审计日志头部 |
-| `audit_log_entity_changes` | 展平的实体变更 |
-| `audit_log_actions` | 展平的操作（`parameters` 可能很大，因此独立存放） |
+| `audit_log` | Audit log header |
+| `audit_log_entity_changes` | Flattened entity changes |
+| `audit_log_actions` | Flattened operations (`parameters` may be large, so stored separately) |
 
 ```sql
 select * from audit_log where httpmethod = 'POST' and url like '%/api/identity%' order by executiontime desc
 ```
 
-实体变更数据流字段：
+Entity change data flow fields:
 
-| 列 | 说明 |
+| Column | Description |
 | --- | --- |
-| `id` / `auditlogid` | 实体变更 Id / 所属审计日志 Id |
-| `tenantid` / `entitytenantid` | 租户 |
-| `changetime` / `changetype` | 变更时间 / `Created`、`Updated`、`Deleted` |
-| `entityid` / `entitytypefullname` | 实体标识 |
-| `userid` / `username` | 操作人（冗余自审计日志，免关联） |
-| `propertychanges` | 属性变更明细（JSON 字符串） |
-| `_timestamp` | 文档时间（默认由 `changetime` 覆盖） |
+| `id` / `auditlogid` | Entity change Id / Owning audit log Id |
+| `tenantid` / `entitytenantid` | Tenant |
+| `changetime` / `changetype` | Change time / `Created`, `Updated`, `Deleted` |
+| `entityid` / `entitytypefullname` | Entity ID |
+| `userid` / `username` | Operator (redundant self-audit log, association-free) |
+| `propertychanges` | Property change details (JSON string) |
+| `_timestamp` | Document time (default overridden by `changetime`) |
 
-操作数据流字段：
+Operation data flow fields:
 
-| 列 | 说明 |
+| Column | Description |
 | --- | --- |
-| `id` / `auditlogid` | 操作 Id / 所属审计日志 Id |
-| `servicename` / `methodname` | 服务与方法 |
-| `parameters` | 操作参数（可能很大，用 `like` 或 `str_match` 检索） |
-| `executiontime` / `executionduration` | 执行时间 / 耗时 |
-| `userid` / `username` | 操作人（冗余自审计日志） |
-| `_timestamp` | 文档时间（默认由 `executiontime` 覆盖） |
+| `id` / `auditlogid` | Operation Id / Owned audit log Id |
+| `servicename` / `methodname` | Services and methods |
+| `parameters` | Operation parameters (may be large, retrieved with `like` or `str_match`) |
+| `executiontime` / `executionduration` | Execution time / time consumption |
+| `userid` / `username` | Operator (redundant self-audit log) |
+| `_timestamp` | Document time (default overridden by `executiontime`) |
 
-`Actions.*` 条件采用**两段式查询**：
+`Actions.*` condition uses **two-stage query**:
 
 ```sql
--- 1) 先在操作数据流匹配
-select distinct auditlogid from audit_log_actions where parameters like '%关键字%'
--- 2) 再回主数据流按 id 过滤
+-- 1) Operate data flow matching first
+select distinct auditlogid from audit_log_actions where parameters like '%keyword%'
+-- 2) Return to the main data stream and filter by id
 select * from audit_log where id in (...)
 ```
 
-## 注意事项
+## Notes
 
-1. **数据流列名一律小写**：OpenObserve 会把字段名小写化（`httpMethod` → `httpmethod`），
-   因此 SQL 条件使用小写列名，参见各管理器中的 `MapedFields`；
-2. **`_timestamp` 按业务时间覆盖**：写入时用 `AuditLog.ExecutionTime` / `SecurityLog.CreationTime`
-   （实体变更用 `ChangeTime`、操作用 `ExecutionTime`）覆盖 `_timestamp`（`UseLogTimeAsTimestamp`，默认开启），
-   这样查询的 `start_time` / `end_time` 才对应业务时间。但 OpenObserve 默认只接受
-   `ZO_INGEST_ALLOWED_UPTO`（默认 5）小时内的数据，**超出窗口的记录会被服务端直接丢弃**
-   （`Too old data … Data discarded`），因此超出 `TimestampAllowedUptoHours` 的日志不再覆盖
-   `_timestamp`（改用服务端写入时间）；如需写入更早的日志，请调大服务端环境变量并同步该配置；
-3. **时间过滤**：查询默认使用宽窗口（`DefaultQueryDays`），业务时间过滤通过 `executiontime` /
-   `creationtime` / `changetime` 列的 ISO 8601 字符串比较完成（覆盖受 5 小时窗口限制时的兜底）；
-4. **不支持删除记录**：OpenObserve 是 append-only，既不支持 SQL `DELETE`（`DELETE not supported for Base table`）
-   也不支持原地 `UPDATE`，因此 `IAuditLogManager.DeleteAsync` / `DeleteManyAsync`（安全日志同理）会直接抛出业务异常
-   `AuditLoggingOpenObserveErrorCodes.DeleteNotSupported`（错误码 `AuditLoggingOpenObserve:010001`，
-   本地化文案：**当前日志设施不支持删除记录!**）。数据清理请在 OpenObserve 侧配置保留策略，或使用其按时间范围删除接口；
-5. **操作与实体变更写入独立数据流**：主文档不再保存 `actions` / `entitychanges` 嵌套数组（OpenObserve 只能把它们
-   存成 JSON 字符串列，无法结构化检索）。`x => x.Actions.Any(a => a.Parameters.Contains("..."))` 走两段式查询；
-   `includeDetails` 时按 `auditlogid in (…)` 从两个子数据流装配详情。`parameters` 很大时建议改用
-   `str_match(parameters, '值')` 并给子数据流配置 `full_text_search_keys`，避免 `like` 全列扫描。
-   实体变更明细（`propertychanges`）同样以 JSON 字符串存储：转换逻辑集中在 `OpenObserveEntityChangeConverter`，
-   序列化通过 `IAuditLoggingOpenObserveSerializer` 完成（默认实现委托 ABP 的 `IJsonSerializer`，
-   实体本身不直接使用 `JsonSerializer`）；需要为特定类型定制 JSON 行为时，使用
-   `AbpSystemTextJsonSerializerModifiersOptions` 注册修饰器；
-   数据流尚未创建（还没写入过数据）时查询按空结果处理，不会报错；
-6. **字符串查询为模糊匹配**：`url` / `userName` / `applicationName` 等参数使用 `like '%值%'`，
-   `correlationId` / `clientId` / `clientIpAddress` / `httpMethod` / `action` 为精确匹配；
-7. **字段映射**：表达式成员名（PascalCase）映射为小写数据流列名；
-   `LINGYUN.Abp.OpenObserve` 包提供 `ExpressionParser`（支持 `Any(集合成员)` 表达式）与
-   `OpenObserveSqlBuilder` 供 SQL 条件构建复用。
+1. **Data stream column names must be lowercase**: OpenObserve will lowercase field names (`httpMethod` → `httpmethod`),
+   Therefore, SQL conditions use lowercase column names, see `MapedFields` in each manager;
+2. **`_timestamp` is overwritten by business time**: use `AuditLog.ExecutionTime` / `SecurityLog.CreationTime` when writing
+   (Use `ChangeTime` for entity changes, `ExecutionTime` for operations) overrides `_timestamp` (`UseLogTimeAsTimestamp`, enabled by default),
+   The `start_time` / `end_time` queried in this way correspond to the business time. But OpenObserve only accepts by default
+   Data within `ZO_INGEST_ALLOWED_UPTO` (default 5) hours, **records beyond the window will be directly discarded by the server**
+   (`Too old data … Data discarded`), so logs beyond `TimestampAllowedUptoHours` are no longer overwritten
+   `_timestamp` (use server writing time instead); if you need to write earlier logs, please increase the server environment variable and synchronize the configuration;
+3. **Time filter**: The query uses a wide window (`DefaultQueryDays`) by default, and the business time is filtered through `executiontime` /
+   ISO 8601 string comparison of `creationtime` / `changetime` columns completed (covering fallback when limited by 5 hour window);
+4. **Deleting records is not supported**: OpenObserve is append-only and neither supports SQL `DELETE` (`DELETE not supported for Base table`)
+   In-place `UPDATE` is also not supported, so `IAuditLogManager.DeleteAsync` / `DeleteManyAsync` (the same is true for security logs) will directly throw a business exception
+   `AuditLoggingOpenObserveErrorCodes.DeleteNotSupported` (error code `AuditLoggingOpenObserve:010001`,
+   Localization copy: **The current logging facility does not support deleting records!**). For data cleaning, please configure the retention policy on the OpenObserve side, or use its deletion interface by time range;
+5. **Operations and entity changes are written to independent data streams**: The main document no longer saves the `actions` / `entitychanges` nested arrays (OpenObserve can only write them
+   Saved as a JSON string column, structured retrieval is not possible). `x => x.Actions.Any(a => a.Parameters.Contains("..."))` uses a two-stage query;
+   `auditlogid in (…)` when `includeDetails` is used to assemble details from both subdataflows. When `parameters` is very large, it is recommended to use
+   `str_match(parameters, 'value')` and configure `full_text_search_keys` for the sub-data stream to avoid `like` full column scan.
+   Entity change details (`propertychanges`) are also stored as JSON strings: the conversion logic is concentrated in `OpenObserveEntityChangeConverter`,
+   Serialization is done through `IAuditLoggingOpenObserveSerializer` (the default implementation delegates ABP's `IJsonSerializer`,
+   The entity itself does not use `JsonSerializer` directly); when you need to customize JSON behavior for a specific type, use
+   `AbpSystemTextJsonSerializerModifiersOptions` register modifiers;
+   When the data stream has not been created (no data has been written yet), the query will be processed as an empty result and no error will be reported;
+6. **String query is fuzzy matching**: `url` / `userName` / `applicationName` and other parameters use `like '%value%'`,
+   `correlationId` / `clientId` / `clientIpAddress` / `httpMethod` / `action` is an exact match;
+7. **Field mapping**: Expression member names (PascalCase) are mapped to lowercase data flow column names;
+   `LINGYUN.Abp.OpenObserve` package provides `ExpressionParser` (supports `Any(set member)` expression) and
+   `OpenObserveSqlBuilder` is used for SQL conditional building reuse.
 
-## 相关项目
+## Related projects
 
 * [LINGYUN.Abp.AuditLogging](../LINGYUN.Abp.AuditLogging/README.md)
 * [LINGYUN.Abp.OpenObserve](../../open-observe/LINGYUN.Abp.OpenObserve/README.md)

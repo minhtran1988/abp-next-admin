@@ -8,7 +8,7 @@ namespace LINGYUN.Abp.IM.Messages;
 public interface IMessageStore
 {
     /// <summary>
-    /// 存储聊天记录
+    /// Store chat history
     /// </summary>
     /// <param name="chatMessage"></param>
     /// <param name="formUserId"></param>
@@ -18,7 +18,7 @@ public interface IMessageStore
         ChatMessage chatMessage,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组聊天记录总数
+    /// Get the total number of group chat records
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="groupId"></param>
@@ -32,7 +32,7 @@ public interface IMessageStore
         string? filter = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组聊天记录
+    /// Get group chat history
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="groupId"></param>
@@ -52,7 +52,7 @@ public interface IMessageStore
         int maxResultCount = 10,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取上一次通讯消息记录
+    /// Get the last communication message record
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -69,7 +69,7 @@ public interface IMessageStore
         CancellationToken cancellationToken = default
         );
     /// <summary>
-    /// 获取与某个用户的聊天记录总数
+    /// Get the total number of chat records with a user
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="sendUserId"></param>
@@ -85,7 +85,7 @@ public interface IMessageStore
         string? filter = "",
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取用户聊天记录
+    /// Get user chat history
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="sendUserId"></param>

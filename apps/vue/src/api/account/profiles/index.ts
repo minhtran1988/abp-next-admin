@@ -96,8 +96,8 @@ export const resetAuthenticator = () => {
   });
 }
 /**
- * 查询当前用户会话列表
- * @param { GetUserSessionsInput } input 查询参数
+ * Query the current user session list
+ * @param { GetUserSessionsInput } input query parameter
  * @returns { Promise<PagedResultDto<IdentitySessionDto>> }
  */
 export const getSessions = (input?: GetUserSessionsInput): Promise<PagedResultDto<IdentitySessionDto>> => {
@@ -107,8 +107,8 @@ export const getSessions = (input?: GetUserSessionsInput): Promise<PagedResultDt
   });
 };
 /**
- * 撤销会话
- * @param { string } sessionId 会话id
+ * Cancel session
+ * @param { string } sessionId session id
  * @returns { Promise<void> }
  */
 export const revokeSession = (sessionId: string): Promise<void> => {

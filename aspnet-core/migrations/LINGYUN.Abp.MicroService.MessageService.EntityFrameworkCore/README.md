@@ -1,21 +1,21 @@
 # LINGYUN.Abp.MicroService.MessageService.EntityFrameworkCore
 
-实时消息数据迁移模块，提供实时消息和通知系统相关的数据库迁移功能。
+The real-time message data migration module provides database migration functions related to real-time messages and notification systems.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 集成SaaS多租户数据迁移
-* 集成通知系统数据迁移
-* 集成消息服务数据迁移
-* 集成文本模板数据迁移
-* 集成设置管理数据迁移
-* 集成权限管理数据迁移
-* 集成特性管理数据迁移
-* 支持MySQL数据库
+* Integrated SaaS multi-tenant data migration
+* Integrated notification system data migration
+* Integrated messaging service data migration
+* Integrated text template data migration
+* Integrated settings to manage data migration
+* Integrated rights management data migration
+* Integrated features to manage data migration
+* Support MySQL database
 
-## 模块依赖
+## Module dependencies
 
 ```csharp
 [DependsOn(
@@ -30,22 +30,22 @@
 )]
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "ConnectionStrings": {
-    "RealtimeMessageDbMigrator": "你的数据库连接字符串"
+    "RealtimeMessageDbMigrator": "Your database connection string"
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置数据库连接字符串
-   * 在appsettings.json中配置RealtimeMessageDbMigrator连接字符串
+1. Configure database connection string
+   * Configure the RealtimeMessageDbMigrator connection string in appsettings.json
 
-2. 添加模块依赖
+2. Add module dependencies
    ```csharp
    [DependsOn(typeof(RealtimeMessageMigrationsEntityFrameworkCoreModule))]
    public class YourModule : AbpModule
@@ -54,18 +54,18 @@
    }
    ```
 
-## 数据库表说明
+## Database table description
 
-* AbpNotifications - 通知系统数据表
-* AbpNotificationsDefinition - 通知定义数据表
-* AbpMessageService - 消息服务数据表
-* Saas相关表 - 租户、版本等多租户相关数据
-* AbpSettings - 系统设置数据
-* AbpPermissionGrants - 权限授权数据
-* AbpFeatures - 功能特性数据
-* AbpTextTemplates - 文本模板数据
+* AbpNotifications - notification system data table
+* AbpNotificationsDefinition - notification definition data table
+* AbpMessageService - message service data table
+* Saas related tables - multi-tenant related data such as tenants and versions
+* AbpSettings - system setting data
+* AbpPermissionGrants - permission authorization data
+* AbpFeatures - Functional feature data
+* AbpTextTemplates - text template data
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
-* [ABP通知系统文档](https://docs.abp.io/zh-Hans/abp/latest/Notification-System)
+* [ABP Documentation](https://docs.abp.io)
+* [ABP Notification System Documentation](https://docs.abp.io/zh-Hans/abp/latest/Notification-System)

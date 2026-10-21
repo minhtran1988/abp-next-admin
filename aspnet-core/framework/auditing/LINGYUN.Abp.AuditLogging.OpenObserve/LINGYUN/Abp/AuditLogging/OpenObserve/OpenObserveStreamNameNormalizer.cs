@@ -5,21 +5,21 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// OpenObserve 数据流名称规范器
+/// OpenObserve data stream name normalizer
 /// </summary>
 /// <remarks>
-/// 租户数据流形如 <c>audit_log_{tenantId:N}</c>, 宿主(未指定租户)使用基础名称 <c>audit_log</c>。
-/// 写入时显式传入日志自身的租户(审计日志写入发生在后台队列, 当前租户可能已不是产生日志的租户),
-/// 查询时使用当前租户
+/// The tenant data manifold is like <c>audit_log_{tenantId:N}</c>, and the host (no tenant specified) uses the base name <c>audit_log</c>.
+/// Explicitly pass in the tenant of the log itself when writing (audit log writing occurs in the background queue, the current tenant may not be the tenant that generates the log),
+/// Use the current tenant when querying
 /// </remarks>
 public class OpenObserveStreamNameNormalizer : IOpenObserveStreamNameNormalizer, ISingletonDependency
 {
     /// <summary>
-    /// 租户分隔符
+    /// Tenant separator
     /// </summary>
     /// <remarks>
-    /// OpenObserve 会把数据流名称中的 <c>-</c> 规范化为 <c>_</c>(实测),
-    /// 因此这里直接使用 <c>_</c>, 避免写入与查询的名称不一致
+    /// OpenObserve will normalize <c>-</c> in the data stream name to <c>_</c> (actual measurement),
+    /// Therefore, <c>_</c> is used directly here to avoid writing inconsistent names with queries.
     /// </remarks>
     public const char TenantSeparator = '_';
 

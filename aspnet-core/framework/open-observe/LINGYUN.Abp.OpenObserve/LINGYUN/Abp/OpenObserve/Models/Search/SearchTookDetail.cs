@@ -5,42 +5,42 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Search;
 
 /// <summary>
-/// 搜索耗时明细
+/// Search time-consuming details
 /// </summary>
 public class SearchTookDetail
 {
     /// <summary>
-    /// 总耗时(毫秒)
+    /// Total time spent (milliseconds)
     /// </summary>
     [JsonPropertyName("total")]
     public long Total { get; set; }
 
     /// <summary>
-    /// 缓存耗时(毫秒)
+    /// Cache time (milliseconds)
     /// </summary>
     [JsonPropertyName("cache_took")]
     public long CacheTook { get; set; }
 
     /// <summary>
-    /// 文件列表耗时(毫秒)
+    /// File list takes time (milliseconds)
     /// </summary>
     [JsonPropertyName("file_list_took")]
     public long FileListTook { get; set; }
 
     /// <summary>
-    /// 排队等待时间(毫秒)
+    /// Queuing waiting time (milliseconds)
     /// </summary>
     [JsonPropertyName("wait_in_queue")]
     public long WaitInQueue { get; set; }
 
     /// <summary>
-    /// 索引耗时(毫秒)
+    /// Indexing time (milliseconds)
     /// </summary>
     [JsonPropertyName("idx_took")]
     public long IdxTook { get; set; }
 
     /// <summary>
-    /// 查询耗时(毫秒)
+    /// Query time taken (milliseconds)
     /// </summary>
     [JsonPropertyName("search_took")]
     public long SearchTook { get; set; }

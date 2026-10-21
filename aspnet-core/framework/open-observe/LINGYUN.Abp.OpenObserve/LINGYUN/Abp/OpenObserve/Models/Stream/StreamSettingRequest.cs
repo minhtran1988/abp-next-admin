@@ -5,102 +5,102 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 创建数据流设置请求
+/// Create data flow setting request
 /// </summary>
 /// <remarks>
-/// POST /api/{org_id}/streams/{stream_name}/settings, 所有字段可选
+/// POST /api/{org_id}/streams/{stream_name}/settings, all fields optional
 /// </remarks>
 public class StreamSettingRequest
 {
     /// <summary>
-    /// 分区字段
+    /// Partition field
     /// </summary>
     [JsonPropertyName("partition_keys")]
     public string[]? PartitionKeys { get; set; }
 
     /// <summary>
-    /// 二级索引字段
+    /// Secondary index field
     /// </summary>
     [JsonPropertyName("index_fields")]
     public string[]? IndexFields { get; set; }
 
     /// <summary>
-    /// 全文检索字段
+    /// Full text search field
     /// </summary>
     [JsonPropertyName("full_text_search_keys")]
     public string[]? FullTextSearchKeys { get; set; }
 
     /// <summary>
-    /// 布隆过滤器字段
+    /// Bloom filter field
     /// </summary>
     [JsonPropertyName("bloom_filter_fields")]
     public string[]? BloomFilterFields { get; set; }
 
     /// <summary>
-    /// 数据保留天数
+    /// Number of days to retain data
     /// </summary>
     /// <remarks>
-    /// 最小 3 天, compliance 流最小 30 天
+    /// Minimum 3 days, compliance flow minimum 30 days
     /// </remarks>
     [JsonPropertyName("data_retention")]
     public int? DataRetention { get; set; }
 
     /// <summary>
-    /// 扁平化层级
+    /// Flatten the hierarchy
     /// </summary>
     [JsonPropertyName("flatten_level")]
     public int? FlattenLevel { get; set; }
 
     /// <summary>
-    /// 保留的自定义 schema 字段
+    /// Reserved custom schema fields
     /// </summary>
     [JsonPropertyName("defined_schema_fields")]
     public string[]? DefinedSchemaFields { get; set; }
 
     /// <summary>
-    /// 单次查询最大时间范围(小时)
+    /// Maximum time range for a single query (hours)
     /// </summary>
     [JsonPropertyName("max_query_range")]
     public int? MaxQueryRange { get; set; }
 
     /// <summary>
-    /// 是否存储原始数据
+    /// Whether to store original data
     /// </summary>
     [JsonPropertyName("store_original_data")]
     public bool? StoreOriginalData { get; set; }
 
     /// <summary>
-    /// 是否使用均分时间范围分区
+    /// Whether to use equal time range partitioning
     /// </summary>
     [JsonPropertyName("approx_partition")]
     public bool? ApproxPartition { get; set; }
 
     /// <summary>
-    /// 延长保留期的时间范围
+    /// Extend the time range of the retention period
     /// </summary>
     /// <remarks>
-    /// 文档未说明元素的具体结构
+    /// The document does not describe the specific structure of the element
     /// </remarks>
     [JsonPropertyName("extended_retention_days")]
     public object[]? ExtendedRetentionDays { get; set; }
 
     /// <summary>
-    /// 是否对原始日志体建立全文索引
+    /// Whether to establish a full-text index for the original log body
     /// </summary>
     [JsonPropertyName("index_original_data")]
     public bool? IndexOriginalData { get; set; }
 
     /// <summary>
-    /// 是否为所有字段建立精确匹配索引
+    /// Whether to create exact matching indexes for all fields
     /// </summary>
     [JsonPropertyName("index_all_values")]
     public bool? IndexAllValues { get; set; }
 
     /// <summary>
-    /// 存储类型
+    /// Storage type
     /// </summary>
     /// <remarks>
-    /// normal(默认) / compliance
+    /// normal (default) / compliance
     /// </remarks>
     [JsonPropertyName("storage_type")]
     public string? StorageType { get; set; }

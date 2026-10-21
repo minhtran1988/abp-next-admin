@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Authentication.WeChat
 
-微信公众号认证模块，集成微信公众号登录功能到ABP应用程序。
+The WeChat public account authentication module integrates the WeChat public account login function into the ABP application.
 
-## 功能特性
+## Features
 
-* 微信公众号OAuth2.0认证
-* 支持获取微信用户基本信息（昵称、性别、地区、头像等）
-* 支持UnionId机制，打通公众号与小程序账号体系
-* 支持微信服务器消息验证
-* 支持与ABP身份系统集成
+* WeChat public account OAuth2.0 authentication
+* Supports obtaining basic information of WeChat users (nickname, gender, region, avatar, etc.)
+* Support UnionId mechanism to connect public account and mini program account system
+* Support WeChat server message verification
+* Support integration with ABP identity system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuthenticationWeChatModule))]
@@ -20,62 +20,62 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "Authentication": {
     "WeChat": {
-      "AppId": "你的微信公众号AppId",
-      "AppSecret": "你的微信公众号AppSecret",
-      "ClaimsIssuer": "WeChat", // 可选，默认为 WeChat
-      "CallbackPath": "/signin-wechat", // 可选，默认为 /signin-wechat
-      "Scope": ["snsapi_login", "snsapi_userinfo"], // 可选，默认包含 snsapi_login 和 snsapi_userinfo
+      "AppId": "Your WeChat official account AppId",
+      "AppSecret": "Your WeChat official account AppSecret",
+      "ClaimsIssuer": "WeChat", // Optional, default is WeChat
+      "CallbackPath": "/signin-wechat", // Optional, default is /signin-wechat
+      "Scope": ["snsapi_login", "snsapi_userinfo"], // Optional, default includes snsapi_login and snsapi_userinfo
       "QrConnect": {
-        "Enabled": false, // 是否启用PC端扫码登录
-        "Endpoint": "https://open.weixin.qq.com/connect/qrconnect" // PC端扫码登录地址
+        "Enabled": false, // Whether to enable PC scanning QR code login
+        "Endpoint": "https://open.weixin.qq.com/connect/qrconnect" // Scan the QR code login address on the PC side
       }
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置微信公众号参数
-   * 在微信公众平台申请公众号，获取AppId和AppSecret
-   * 在appsettings.json中配置AppId和AppSecret
+1. Configure WeChat public account parameters
+   * Apply for a public account on the WeChat public platform and obtain AppId and AppSecret
+   * Configure AppId and AppSecret in appsettings.json
 
-2. 添加微信登录
+2. Add WeChat login
    ```csharp
    public override void ConfigureServices(ServiceConfigurationContext context)
    {
        context.Services.AddAuthentication()
-           .AddWeChat(); // 添加微信登录支持
+           .AddWeChat(); // Add WeChat login support
    }
    ```
 
-3. 启用微信服务器消息验证（可选）
+3. Enable WeChat server message verification (optional)
    ```csharp
    public void Configure(IApplicationBuilder app)
    {
-       app.UseWeChatSignature(); // 启用微信服务器消息验证中间件
+       app.UseWeChatSignature(); // Enable WeChat server message verification middleware
    }
    ```
 
-## 获取的用户信息
+## Obtained user information
 
-* OpenId - 微信用户唯一标识
-* UnionId - 微信开放平台唯一标识（需要绑定开放平台）
-* NickName - 用户昵称
-* Sex - 用户性别
-* Country - 国家
-* Province - 省份
-* City - 城市
-* AvatarUrl - 用户头像URL
-* Privilege - 用户特权信息
+* OpenId - WeChat user’s unique identifier
+* UnionId - the unique identifier of the WeChat open platform (needs to be bound to the open platform)
+* NickName - user nickname
+* Sex - user gender
+* Country - country
+*Province - Province
+* City - city
+* AvatarUrl - User avatar URL
+* Privilege - User privilege information
 
-## 更多信息
+## More information
 
-* [微信公众平台开发文档](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)
-* [ABP认证文档](https://docs.abp.io/en/abp/latest/Authentication)
+* [WeChat Public Platform Development Document](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)
+* [ABP Authentication Document](https://docs.abp.io/en/abp/latest/Authentication)

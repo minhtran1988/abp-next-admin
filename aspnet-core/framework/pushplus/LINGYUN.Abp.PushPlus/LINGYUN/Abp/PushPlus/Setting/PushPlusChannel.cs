@@ -2,32 +2,32 @@
 
 namespace LINGYUN.Abp.PushPlus.Setting;
 /// <summary>
-/// 发送渠道
+/// Sending channel
 /// </summary>
 public class PushPlusChannel
 {
     /// <summary>
-    /// 默认渠道编码
+    /// Default channel encoding
     /// </summary>
     [JsonProperty("defaultChannel")]
     public string? DefaultChannel { get; set; }
     /// <summary>
-    /// 默认渠道名称
+    /// Default channel name
     /// </summary>
     [JsonProperty("defaultChannelTxt")]
     public string? DefaultChannelName { get; set; }
     /// <summary>
-    /// 渠道参数
+    /// Channel parameters
     /// </summary>
     [JsonProperty("defaultWebhook")]
     public string? DefaultWebhook { get; set; }
     /// <summary>
-    /// 发送限制；0-无限制，1-禁止所有渠道发送，2-限制微信渠道，3-限制邮件渠道
+    /// Sending restrictions; 0-no restrictions, 1-forbid sending through all channels, 2-limit WeChat channels, 3-limit email channels
     /// </summary>
     [JsonProperty("sendLimit")]
     public PushPlusChannelRecevieLimit SendLimit { get; set; }
     /// <summary>
-    /// 接收限制；0-接收全部，1-不接收消息
+    /// Reception limit; 0-receive all, 1-do not receive messages
     /// </summary>
     [JsonProperty("recevieLimit")]
     public PushPlusChannelRecevieLimit RecevieLimit { get; set; }

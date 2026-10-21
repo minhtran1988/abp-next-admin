@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Features.LimitValidation.Redis
 
-基于Redis的功能限制验证组件
+Function restriction verification component based on Redis
 
-## 功能特性
+## Features
 
-* 使用Redis存储和验证功能调用次数限制
-* 支持Lua脚本进行原子性操作
-* 支持多种限制策略（分钟、小时、天、周、月、年）
-* 支持自定义Redis配置选项
+* Limit the number of calls using Redis storage and verification functions
+* Support Lua script for atomic operations
+* Supports multiple restriction strategies (minutes, hours, days, weeks, months, years)
+* Support custom Redis configuration options
 
-## 配置使用
+## Configuration usage
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpFeaturesValidationRedisModule))]
@@ -21,7 +21,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置Redis选项
+2. Configure Redis options
 
 ```json
 {
@@ -36,21 +36,21 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-* Configuration：Redis连接字符串
-* InstanceName：Redis实例名称（可选）
-* ConfigurationOptions：Redis配置选项（可选，用于更详细的Redis配置）
+* Configuration: Redis connection string
+*InstanceName: Redis instance name (optional)
+* ConfigurationOptions: Redis configuration options (optional, for more detailed Redis configuration)
 
-## 使用示例
+## Usage example
 
 ```csharp
-// 限制某个方法每分钟最多调用100次
+//Limit a method to be called up to 100 times per minute
 [RequiresLimitFeature("YourFeature.MethodLimit", "YourFeature.Interval", LimitPolicy.Minute)]
 public async Task YourMethod()
 {
-    // 业务逻辑
+    // business logic
 }
 ```
 
-[简体中文](./README.md) | [English](./README.EN.md)
+[Simplified Chinese](./README.md) | [English](./README.EN.md)

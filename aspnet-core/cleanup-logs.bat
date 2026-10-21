@@ -2,7 +2,7 @@
 cls
 chcp 65001
 
-echo. 清理所有服务日志
+echo. Clear all service logs
 
 del .\aspire\LINGYUN.Abp.MicroService.AdminService\Logs /Q
 del .\aspire\LINGYUN.Abp.MicroService.AIService\Logs /Q

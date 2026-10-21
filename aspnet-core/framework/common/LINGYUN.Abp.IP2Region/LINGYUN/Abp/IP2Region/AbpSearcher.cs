@@ -19,16 +19,16 @@ using System.Text;
 namespace LINGYUN.Abp.IP2Region;
 
 /// <summary>
-/// ip2region 离线查询器
+/// ip2region offline queryer
 /// </summary>
 /// <remarks>
-/// 支持 IPv4 与 IPv6 两个离线数据文件:
-/// * <see cref="AbpSearcher(CachePolicy, Stream)"/>: 只加载一个数据文件, 查询时按地址的字节长度选择比较方式
-///   (IPv4 为 4 字节、IPv6 为 16 字节), 即由调用方保证数据文件与查询地址的版本一致;
-/// * <see cref="AbpSearcher(CachePolicy, Stream, Stream?)"/>: 同时加载 IPv4 与 IPv6 数据文件, 按地址族自动路由,
-///   未提供对应地址族的数据文件时返回 <c>null</c>(避免使用错误的数据文件解析出错误的地理位置)。
+/// Supports two offline data files, IPv4 and IPv6:
+/// * <see cref="AbpSearcher(CachePolicy, Stream)"/>: Only load one data file, and select the comparison method according to the byte length of the address when querying
+/// (IPv4 is 4 bytes, IPv6 is 16 bytes), that is, the caller ensures that the version of the data file is consistent with the query address;
+/// * <see cref="AbpSearcher(CachePolicy, Stream, Stream?)"/>: Load IPv4 and IPv6 data files at the same time, automatically route according to address family,
+/// Return <c>null</c> when the data file corresponding to the address family is not provided (to avoid using the wrong data file to parse the wrong geographical location).
 /// 
-/// IPv4 映射的 IPv6 地址(如 <c>::ffff:1.2.3.4</c>)会归一到 IPv4 查询。
+/// IPv4-mapped IPv6 addresses (such as <c>::ffff:1.2.3.4</c>) will be normalized to IPv4 queries.
 /// </remarks>
 public class AbpSearcher : ISearcher
 {
@@ -37,21 +37,21 @@ public class AbpSearcher : ISearcher
     private readonly bool _isDualDatabase;
 
     /// <summary>
-    /// 只加载一个数据文件(IPv4 或 IPv6)
+    /// Only load one data file (IPv4 or IPv6)
     /// </summary>
-    /// <param name="cachePolicy">缓存策略</param>
-    /// <param name="xdbStream">数据文件流</param>
+    /// <param name="cachePolicy">Cache Policy</param>
+    /// <param name="xdbStream">Data file stream</param>
     public AbpSearcher(CachePolicy cachePolicy, Stream xdbStream)
         : this(cachePolicy, xdbStream, null, false)
     {
     }
 
     /// <summary>
-    /// 同时加载 IPv4 与 IPv6 数据文件, 按地址族自动路由
+    /// Load IPv4 and IPv6 data files at the same time, automatically route according to address family
     /// </summary>
-    /// <param name="cachePolicy">缓存策略</param>
-    /// <param name="xdbStream">IPv4 数据文件流</param>
-    /// <param name="ipv6XdbStream">IPv6 数据文件流, 未提供时 IPv6 查询返回 <c>null</c></param>
+    /// <param name="cachePolicy">Cache Policy</param>
+    /// <param name="xdbStream">IPv4 data file stream</param>
+    /// <param name="ipv6XdbStream">IPv6 data file stream, if not provided, IPv6 query returns <c>null</c></param>
     public AbpSearcher(CachePolicy cachePolicy, Stream xdbStream, Stream? ipv6XdbStream)
         : this(cachePolicy, xdbStream, ipv6XdbStream, true)
     {
@@ -83,7 +83,7 @@ public class AbpSearcher : ISearcher
     /// </summary>
     public string? Search(IPAddress ipAddress)
     {
-        // IPv4 映射的 IPv6 地址归一到 IPv4 查询
+        // IPv4 mapped IPv6 address is normalized to IPv4 query
         if (ipAddress.IsIPv4MappedToIPv6)
         {
             ipAddress = ipAddress.MapToIPv4();
@@ -101,7 +101,7 @@ public class AbpSearcher : ISearcher
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    [Obsolete("已弃用，请改用其他方法；Deprecated; please use Search(string) or Search(IPAddress) method.")]
+    [Obsolete("Deprecated; please use Search(string) or Search(IPAddress) method.")]
     [ExcludeFromCodeCoverage]
     public string? Search(uint ipAddress)
     {
@@ -112,10 +112,10 @@ public class AbpSearcher : ISearcher
     }
 
     /// <summary>
-    /// 按地址族选择数据文件
+    /// Select data files by address family
     /// </summary>
     /// <remarks>
-    /// 单文件模式(只加载一个数据文件)下不做路由, 沿用按字节长度比较的行为
+    /// No routing is done in single file mode (only one data file is loaded), and the behavior of comparing by byte length is used.
     /// </remarks>
     private ICacheStrategy? ResolveCacheStrategy(IPAddress ipAddress)
     {
@@ -126,7 +126,7 @@ public class AbpSearcher : ISearcher
                 return _ipv6CacheStrategy;
             }
 
-            // 双文件模式下缺少 IPv6 数据文件, 不使用 IPv4 数据文件解析
+            // IPv6 data files are missing in dual-file mode, and IPv4 data file parsing is not used.
             return _isDualDatabase ? null : _cacheStrategy;
         }
 
@@ -135,18 +135,18 @@ public class AbpSearcher : ISearcher
 
     private string? SearchCore(ICacheStrategy cacheStrategy, byte[] ipBytes)
     {
-        // 重置 IO 计数器
+        // Reset IO counter
         cacheStrategy.ResetIoCount();
         _cacheStrategy.ResetIoCount();
         _ipv6CacheStrategy?.ResetIoCount();
 
-        // 每个 vector 索引项的字节数
+        // Number of bytes for each vector index item
         var vectorIndexSize = 8;
 
-        // vector 索引的列数
+        // Number of columns indexed by vector
         var vectorIndexCols = 256;
 
-        // 计算得到 vector 索引项的开始地址。
+        // Calculate the starting address of the vector index item.
         var il0 = ipBytes[0];
         var il1 = ipBytes[1];
         var idx = il0 * vectorIndexCols * vectorIndexSize + il1 * vectorIndexSize;

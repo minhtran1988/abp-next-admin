@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 整体卡片的点击跳转事件
+/// Click jump event of the overall card
 /// </summary>
 public class TemplateCardCardAction
 {
@@ -23,28 +23,28 @@ public class TemplateCardCardAction
         PagePath = pagePath;
     }
     /// <summary>
-    /// 跳转链接类型，0或不填代表不是链接，1 代表跳转url，2 代表跳转小程序
+    /// Jump link type, 0 or not filled in means it is not a link, 1 means jump url, 2 means jump applet
     /// </summary>
     [CanBeNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 跳转链接的url，card_action.type是1时必填
+    /// The url of the jump link, required when card_action.type is 1
     /// </summary>
     [CanBeNull]
     [JsonProperty("url")]
     [JsonPropertyName("url")]
     public string? Url { get; set; }
     /// <summary>
-    /// 跳转链接的小程序的appid，必须是与当前应用关联的小程序，card_action.type是2时必填
+    /// The appid of the mini program for the jump link must be the mini program associated with the current application. Required when card_action.type is 2
     /// </summary>
     [CanBeNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string? AppId { get; set; }
     /// <summary>
-    /// 跳转链接的小程序的pagepath，card_action.type是2时选填
+    /// The pagepath of the mini program that jumps to the link. Optional when card_action.type is 2.
     /// </summary>
     [CanBeNull]
     [JsonProperty("pagepath")]

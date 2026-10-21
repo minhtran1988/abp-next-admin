@@ -34,11 +34,11 @@ export default {
               renderOpts,
               params,
               (value: any) => {
-                // 处理 model 值双向绑定
+                // Handle model value two-way binding
                 option.data = value;
               },
               () => {
-                // 处理 change 事件相关逻辑
+                // Handle change event related logic
                 const { $panel } = params;
                 $panel.changeOption(null, XEUtils.isBoolean(option.data), option);
               },

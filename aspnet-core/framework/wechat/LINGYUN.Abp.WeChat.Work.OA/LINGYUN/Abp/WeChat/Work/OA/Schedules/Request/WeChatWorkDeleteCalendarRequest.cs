@@ -5,15 +5,15 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Request;
 /// <summary>
-/// 删除日历请求参数
+/// Delete calendar request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97718"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97718"/>
 /// </remarks>
 public class WeChatWorkDeleteCalendarRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 日历ID
+    /// Calendar ID
     /// </summary>
     [NotNull]
     [JsonProperty("cal_id")]

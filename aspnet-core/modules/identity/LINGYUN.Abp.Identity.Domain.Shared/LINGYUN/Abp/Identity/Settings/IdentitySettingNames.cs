@@ -7,27 +7,27 @@ public static class IdentitySettingNames
     {
         private const string UserPrefix = Prefix + ".User";
         /// <summary>
-        /// 用户手机验证短信模板
+        /// User mobile phone verification SMS template
         /// </summary>
         public const string SmsPhoneNumberConfirmed = UserPrefix + ".SmsPhoneNumberConfirmed";
         /// <summary>
-        /// 用户注册短信验证码模板号
+        /// User registration SMS verification code template number
         /// </summary>
         public const string SmsNewUserRegister = UserPrefix + ".SmsNewUserRegister";
         /// <summary>
-        /// 用户登录短信验证码模板号
+        /// User login SMS verification code template number
         /// </summary>
         public const string SmsUserSignin = UserPrefix + ".SmsUserSignin";
         /// <summary>
-        /// 用户重置密码短信验证码模板号
+        /// User reset password SMS verification code template number
         /// </summary>
         public const string SmsResetPassword = UserPrefix + ".SmsResetPassword";
         /// <summary>
-        /// 短信验证码重复间隔时间
+        /// SMS verification code repetition interval
         /// </summary>
         public const string SmsRepetInterval = UserPrefix + ".SmsRepetInterval";
         /// <summary>
-        /// 邮件注册验证码重复间隔时间
+        /// Email registration verification code repetition interval
         /// </summary>
         public const string EmailRegisterRepetInterval = UserPrefix + ".EmailRegisterRepetInterval";
     }
@@ -36,12 +36,12 @@ public static class IdentitySettingNames
     {
         private const string SessionPrefix = Prefix + ".Session";
         /// <summary>
-        /// 并发登录策略
+        /// Concurrent login strategy
         /// see: https://github.com/abpio/abp-commercial-docs/blob/dev/en/modules/identity/session-management.md#prevent-concurrent-login
         /// </summary>
         public const string ConcurrentLoginStrategy = SessionPrefix + ".ConcurrentLoginStrategy";
         /// <summary>
-        /// 限制相同设备登录数量
+        /// Limit the number of logins from the same device
         /// </summary>
         public const string LogoutFromSameTypeDevicesLimit = SessionPrefix + ".LogoutFromSameTypeDevicesLimit";
     }
@@ -74,7 +74,7 @@ public static class IdentitySettingNames
     {
         private const string LinkPrefix = Prefix + ".Link";
         /// <summary>
-        /// 用户登录页(包含协议的登录地址串,用于发送用户登录邮件中的链接)
+        /// User login page (contains the login address string of the protocol, used to send the link in the user login email)
         /// </summary>
         public const string UserLoginUri = LinkPrefix + ".UserLoginUri";
     }

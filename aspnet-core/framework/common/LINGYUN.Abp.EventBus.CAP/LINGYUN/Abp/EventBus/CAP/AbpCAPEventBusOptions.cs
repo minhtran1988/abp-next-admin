@@ -1,12 +1,12 @@
 ﻿namespace LINGYUN.Abp.EventBus.CAP;
 
 /// <summary>
-/// 过期消息清理配置项
+/// Expired message cleaning configuration items
 /// </summary>
 public class AbpCAPEventBusOptions
 {
     /// <summary>
-    /// 发布消息处理失败通知
+    /// Publish message processing failure notification
     /// default: false
     /// </summary>
     public bool NotifyFailedCallback { get; set; } = false;

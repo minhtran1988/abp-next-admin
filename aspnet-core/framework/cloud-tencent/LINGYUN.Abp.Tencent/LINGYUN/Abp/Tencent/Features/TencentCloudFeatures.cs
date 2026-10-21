@@ -8,7 +8,7 @@ public static class TencentCloudFeatures
     {
         public const string GroupName = TencentCloudFeatures.GroupName + ".Sms";
         /// <summary>
-        /// 启用短信
+        /// Enable SMS
         /// </summary>
         public const string Enable = GroupName + ".Enable";
     }
@@ -17,12 +17,12 @@ public static class TencentCloudFeatures
     {
         public const string GroupName = TencentCloudFeatures.GroupName + ".BlobStoring";
         /// <summary>
-        /// 启用对象存储
+        /// Enable object storage
         /// </summary>
         public const string Enable = GroupName + ".Enable";
         /// <summary>
-        /// 最大流大小限制, 小于等于0无效, 单位(MB)
-        /// 默认： 0
+        /// Maximum stream size limit, invalid if less than or equal to 0, unit (MB)
+        /// Default: 0
         /// </summary>
         public const string MaximumStreamSize = GroupName + ".MaximumStreamSize";
     }

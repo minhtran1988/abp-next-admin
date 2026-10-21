@@ -7,12 +7,12 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook文本消息体
+/// Webhook text message body
 /// </summary>
 public class WebhookTextMessage
 {
     /// <summary>
-    /// 消文本内容，最长不超过2048个字节，必须是utf8编码
+    /// Erase text content, up to 2048 bytes, must be UTF8 encoding
     /// </summary>
     [NotNull]
     [StringLength(2048)]
@@ -20,14 +20,14 @@ public class WebhookTextMessage
     [JsonPropertyName("content")]
     public string Content { get; set; }
     /// <summary>
-    /// userid的列表，提醒群中的指定成员(@某个成员)，@all表示提醒所有人，如果开发者获取不到userid，可以使用mentioned_mobile_list
+    /// A list of userids to remind designated members in the group (@a certain member). @all means to remind everyone. If the developer cannot obtain the userid, mentioned_mobile_list can be used
     /// </summary>
     [NotNull]
     [JsonProperty("mentioned_list")]
     [JsonPropertyName("mentioned_list")]
     public List<string> MentionedList { get; set; }
     /// <summary>
-    /// 手机号列表，提醒手机号对应的群成员(@某个成员)，@all表示提醒所有人
+    /// List of mobile phone numbers to remind the group members corresponding to the mobile phone number (@a certain member), @all means to remind everyone
     /// </summary>
     [NotNull]
     [StringLength(2048)]
@@ -35,9 +35,9 @@ public class WebhookTextMessage
     [JsonPropertyName("mentioned_mobile_list")]
     public List<string> MentionedMobileList { get; set; }
     /// <summary>
-    /// 创建一个Webhook文本消息体
+    /// Create a Webhook text message body
     /// </summary>
-    /// <param name="content">消息内容</param>
+    /// <param name="content">Message content</param>
     public WebhookTextMessage(string content)
     {
         Content = Check.NotNullOrWhiteSpace(content, nameof(content), 2048);

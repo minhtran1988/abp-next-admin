@@ -6,11 +6,11 @@ namespace LINGYUN.Abp.Exporter.MagicodesIE.Excel;
 public class AbpExporterMagicodesIEExcelOptions
 {
     /// <summary>
-    /// 数据导出设置
+    /// Data export settings
     /// </summary>
     public IDictionary<Type, Action<ExcelExporterAttribute>> ExportSettingMapping { get; }
     /// <summary>
-    /// 数据导入设置
+    /// Data import settings
     /// </summary>
     public IDictionary<Type, Action<ExcelImporterAttribute>> ImportSettingMapping { get; }
     public AbpExporterMagicodesIEExcelOptions()

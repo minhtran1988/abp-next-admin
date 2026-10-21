@@ -35,7 +35,7 @@ public class TencentCloudClientFactory<TClient> : AbstractTencentCloudClientFact
             {
                 ReqMethod = cloudCache.HttpMethod ?? "POST",
                 Timeout = cloudCache.Timeout,
-                // 不同的api需要的区域不同, 有的
+                // Different APIs require different areas, some
                 Endpoint = cloudCache.ApiEndPoint,
                 WebProxy = cloudCache.WebProxy,
             };
@@ -44,8 +44,8 @@ public class TencentCloudClientFactory<TClient> : AbstractTencentCloudClientFact
                 HttpProfile = httpProfile,
             };
 
-            // 通过反射创建客户端实例
-            // TODO: 如果影响到性能需要调整到通过Options手动创建实例
+            // Create client instance through reflection
+            // TODO: If performance is affected, you need to adjust to manually create instances through Options.
             return (TClient)clientCtr.Invoke(new object?[] { cred, cloudCache.EndPoint, clientProfile });
         }
 

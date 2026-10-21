@@ -30,7 +30,7 @@ public class LinkUserTokenExtensionGrant : ITokenExtensionGrant
     public async virtual Task<IActionResult> HandleAsync(ExtensionGrantContext context)
     {
         var localizer = GetRequiredService<IStringLocalizer<AbpOpenIddictResource>>(context);
-        // 用户需要传递身份令牌
+        // The user needs to pass the identity token
         var accessTokenParam = context.Request.GetParameter("access_token");
         var accessToken = accessTokenParam.ToString();
         if (accessToken.IsNullOrWhiteSpace())
@@ -44,7 +44,7 @@ public class LinkUserTokenExtensionGrant : ITokenExtensionGrant
             return Forbid(properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
 
-        // 通过身份令牌得到用户信息
+        // Get user information through identity token
         var transaction = await GetRequiredService<IOpenIddictServerFactory>(context).CreateTransactionAsync();
         transaction.EndpointType = OpenIddictServerEndpointType.UserInfo;
         transaction.Request = new OpenIddictRequest
@@ -87,7 +87,7 @@ public class LinkUserTokenExtensionGrant : ITokenExtensionGrant
         
         var currentTenant = GetRequiredService<ICurrentTenant>(context);
         var currentPrincipalAccessor = GetRequiredService<ICurrentPrincipalAccessor>(context);
-        // 交换令牌
+        // Exchange tokens
         using (currentPrincipalAccessor.Change(principal))
         {
             var linkUserIdParam = context.Request.GetParameter("LinkUserId");

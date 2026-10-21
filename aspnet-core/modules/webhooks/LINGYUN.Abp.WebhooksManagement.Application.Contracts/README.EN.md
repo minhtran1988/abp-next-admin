@@ -2,7 +2,7 @@
 
 Webhook management application service contracts module that defines application service interfaces and DTOs for webhook management.
 
-[简体中文](README.md)
+[Simplified Chinese](README.md)
 
 ## Features
 

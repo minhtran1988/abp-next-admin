@@ -7,7 +7,7 @@ import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
 import { useIsMobile, useSortable } from '@vben-core/composables';
 
-// 可能会找到拖拽的子元素，这里需要确保拖拽的dom时tab元素
+// The dragged child element may be found. Here you need to ensure that the dragged dom is a tab element.
 function findParentElement(element: HTMLElement) {
   const parentCls = 'group';
   return element.classList.contains(parentCls)
@@ -81,7 +81,7 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
         if (parent?.classList.contains('draggable') && props.draggable) {
           const isCurrentAffix = evt.dragged.classList.contains('affix-tab');
           const isRelatedAffix = evt.related.classList.contains('affix-tab');
-          // 不允许在固定的tab和非固定的tab之间互相拖拽
+          // Do not allow dragging between fixed tabs and non-fixed tabs.
           return isCurrentAffix === isRelatedAffix;
         } else {
           return false;
@@ -100,7 +100,7 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
   async function init() {
     const { isMobile } = useIsMobile();
 
-    // 移动端下tab不需要拖拽
+    // No need to drag and drop tabs on the mobile terminal
     if (isMobile.value) {
       return;
     }

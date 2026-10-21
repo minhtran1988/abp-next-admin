@@ -2,7 +2,7 @@ import type { OAuthUserInfo, UserInfo } from "#/account";
 import requestClient from "../request";
 
 /**
- * 获取用户信息
+ * Get user information
  */
 export async function getUserInfoApi(): Promise<UserInfo> {
 	const result = await requestClient.get<OAuthUserInfo>("/connect/userinfo");

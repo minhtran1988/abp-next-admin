@@ -19,7 +19,7 @@ export const useAbpStore = defineStore(
     const xsrfToken = ref<string>();
     const application = ref<ApplicationConfigurationDto>();
     const localization = ref<ApplicationLocalizationDto>();
-    /** 获取 i18n 格式本地化文本 */
+    /** Get i18n format localized text */
     function getI18nLocales() {
       const abpLocales: Record<string, any> = {};
       if (!localization.value) {
@@ -88,7 +88,7 @@ export const useAbpStore = defineStore(
   },
 );
 
-// 解决热更新问题
+// Solve the hot update problem
 const hot = import.meta.hot;
 if (hot) {
   hot.accept(acceptHMRUpdate(useAbpStore, hot));

@@ -8,8 +8,8 @@ export function useMySubscribesApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取我的所有订阅通知
-   * @returns 订阅通知列表
+   * Get all my subscription notifications
+   * @returns Subscription notification list
    */
   function getMySubscribesApi(): Promise<
     ListResultDto<UserSubscreNotification>
@@ -23,8 +23,8 @@ export function useMySubscribesApi() {
   }
 
   /**
-   * 订阅通知
-   * @param name 通知名称
+   * Subscribe to notifications
+   * @param name notification name
    */
   function subscribeApi(name: string): Promise<void> {
     return request('/api/notifications/my-subscribes', {
@@ -36,8 +36,8 @@ export function useMySubscribesApi() {
   }
 
   /**
-   * 取消订阅通知
-   * @param name 通知名称
+   * Unsubscribe notifications
+   * @param name notification name
    */
   function unSubscribeApi(name: string): Promise<void> {
     return request(`/api/notifications/my-subscribes?name=${name}`, {

@@ -102,4 +102,4 @@ public class CustomExceptionHandler : IExceptionWrapHandler
 
 ## Links
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

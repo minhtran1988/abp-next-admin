@@ -69,8 +69,8 @@ public class StackExchangeRedisCacheManager : ICacheManager, ISingletonDependenc
     {
         var cache = await ConnectAsync(cancellationToken);
 
-        // 缓存键名规则: InstanceName + (t + TenantId)(CurrentTenant.IsAvailable) + CacheItemName + KeyPrefix + Key
-        // 缓存键名规则: InstanceName + (c:)(!CurrentTenant.IsAvailable) + CacheItemName + KeyPrefix + Key
+        // Cache key name rules: InstanceName + (t + TenantId)(CurrentTenant.IsAvailable) + CacheItemName + KeyPrefix + Key
+        // Cache key name rules: InstanceName + (c:)(!CurrentTenant.IsAvailable) + CacheItemName + KeyPrefix + Key
 
         var match = "*";
         // abp*
@@ -106,14 +106,14 @@ public class StackExchangeRedisCacheManager : ICacheManager, ISingletonDependenc
             match += request.Filter.EnsureStartsWith('*').EnsureEndsWith('*');
         }
         // scan 0 match * count 50000
-        // redis有自定义的key排序,由传递的marker来确定下一次检索起始位
+        // redis has custom key sorting, and the passed marker determines the starting position of the next retrieval
 
         var nextCursor = request.Marker.IsNullOrWhiteSpace() ? "0" : request.Marker;
         var scanKeys = new List<string>();
 
         if (!request.Prefix.IsNullOrWhiteSpace() || !request.Filter.IsNullOrWhiteSpace())
         {
-            // 用户传递过滤条件时, 需要进行多次检索, 设定最大次数限制
+            // When the user passes filtering conditions, multiple searches are required and the maximum number of times is set.
             var dept = 1;
             do
             {
@@ -138,8 +138,8 @@ public class StackExchangeRedisCacheManager : ICacheManager, ISingletonDependenc
             var scanResult = await cache.ExecuteAsync("SCAN", scanArgs);
             var results = (RedisResult[])scanResult!;
 
-            // 第一个返回结果 下一次检索起始位 0复位
-            // 第二个返回结果为key列表
+            // The first returned result is the starting bit of the next search, reset to 0
+            // The second return result is the key list
             // https://redis.io/commands/scan/
             nextCursor = (string?)results[0];
             scanKeys.AddRange((string[])results[1]!);
@@ -307,7 +307,7 @@ public class StackExchangeRedisCacheManager : ICacheManager, ISingletonDependenc
         }
 
         // Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache
-        // L580-L583: 键过期时间取自滑动过期时间与绝对过期时间的最小值, 这里为了防止前端显示问题, 强制滑动过期时间不小于绝对过期时间...
+        // L580-L583: The key expiration time is taken from the minimum value of the sliding expiration time and the absolute expiration time. In order to prevent front-end display problems, the sliding expiration time is forced to be no less than the absolute expiration time...
         // (long)Math.Min((absoluteExpiration.Value - creationTime).TotalSeconds, options.SlidingExpiration.Value.TotalSeconds);
 
         if (sldexp < absexp)

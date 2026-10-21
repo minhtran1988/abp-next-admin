@@ -12,7 +12,7 @@ export class StateHandler {
     this.clearPromises();
   }
 
-  // 触发状态为 false 时，reject
+  // When the trigger state is false, reject
   setConditionFalse() {
     this.condition = false;
     if (this.rejectCondition) {
@@ -21,7 +21,7 @@ export class StateHandler {
     }
   }
 
-  // 触发状态为 true 时，resolve
+  // When the trigger status is true, resolve
   setConditionTrue() {
     this.condition = true;
     if (this.resolveCondition) {
@@ -30,11 +30,11 @@ export class StateHandler {
     }
   }
 
-  // 返回一个 Promise，等待 condition 变为 true
+  // Return a Promise and wait for condition to become true
   waitForCondition(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.condition) {
-        resolve(); // 如果 condition 已经为 true，立即 resolve
+        resolve(); // If condition is already true, resolve immediately
       } else {
         this.resolveCondition = resolve;
         this.rejectCondition = reject;
@@ -42,7 +42,7 @@ export class StateHandler {
     });
   }
 
-  // 清理 resolve/reject 函数
+  // Clean up resolve/reject functions
   private clearPromises() {
     this.resolveCondition = null;
     this.rejectCondition = null;

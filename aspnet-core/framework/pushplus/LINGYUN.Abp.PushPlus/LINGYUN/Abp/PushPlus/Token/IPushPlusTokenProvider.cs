@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.PushPlus.Token;
 /// <summary>
-/// 获取AccessKey
+/// Get AccessKey
 /// </summary>
 public interface IPushPlusTokenProvider
 {
     /// <summary>
-    ///  获取全局可用Token
+    /// Get the globally available Token
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>

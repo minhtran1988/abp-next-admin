@@ -1,4 +1,4 @@
 /**
- * @description: 传给vxe-table 时需要忽略的prop
+ * @description: props that need to be ignored when passing to vxe-table
  */
 export const ignorePropKeys = ['tableClass', 'tableStyle'];

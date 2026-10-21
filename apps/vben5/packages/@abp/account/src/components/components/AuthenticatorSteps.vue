@@ -79,9 +79,9 @@ async function onValidCode() {
 
 <template>
   <Card :bordered="false">
-    <!-- 步骤表单 -->
+    <!-- Step form -->
     <Steps :current="currentStep" :items="authenSteps" />
-    <!-- 步骤一: 扫描二维码 -->
+    <!-- Step 1: Scan the QR code -->
     <Card v-if="currentStep === 0" class="mt-4">
       <template #title>
         <div class="flex h-16 flex-col justify-center">
@@ -127,7 +127,7 @@ async function onValidCode() {
         </div>
       </div>
     </Card>
-    <!-- 步骤二: 验证代码 -->
+    <!-- Step 2: Verify code -->
     <Card v-if="currentStep === 1" class="mt-4">
       <template #title>
         <div class="flex h-16 flex-col justify-center">
@@ -158,7 +158,7 @@ async function onValidCode() {
         </div>
       </div>
     </Card>
-    <!-- 步骤三: 恢复代码 -->
+    <!-- Step 3: Recovery code -->
     <Card v-if="currentStep === 2" class="mt-4">
       <template #title>
         <div class="flex h-16 flex-col justify-center">
@@ -186,7 +186,7 @@ async function onValidCode() {
         </div>
       </div>
     </Card>
-    <!-- 底部控制按钮 -->
+    <!-- Bottom control button -->
     <template #actions>
       <div class="flex flex-row justify-end gap-2 pr-2">
         <Button v-if="currentStep > 0 && !codeValidated" @click="onPreStep">

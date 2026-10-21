@@ -3,11 +3,11 @@
 public enum DynamicLogic
 {
     /// <summary>
-    /// 且
+    /// and
     /// </summary>
     And = 0,
     /// <summary>
-    /// 或
+    /// or
     /// </summary>
     Or = 1
 }

@@ -1,26 +1,26 @@
 # LINGYUN.Abp.DataProtectionManagement.Domain.Shared
 
-数据权限管理领域共享模块，提供数据权限管理的常量、枚举和其他共享类型。
+The data rights management field sharing module provides constants, enumerations and other sharing types for data rights management.
 
-## 功能
+## Function
 
-* 本地化资源
-* 权限定义
-* 设置定义
+* Localized resources
+* Permission definition
+* Set definition
 
-## 权限定义
+## Permission definition
 
-* DataProtectionManagement.DataProtection - 数据权限管理
-  * DataProtectionManagement.DataProtection.Create - 创建数据权限
-  * DataProtectionManagement.DataProtection.Update - 更新数据权限
-  * DataProtectionManagement.DataProtection.Delete - 删除数据权限
+* DataProtectionManagement.DataProtection - Data permission management
+  * DataProtectionManagement.DataProtection.Create - Create data permissions
+  * DataProtectionManagement.DataProtection.Update - update data permissions
+  * DataProtectionManagement.DataProtection.Delete - delete data permission
 
-## 设置定义
+## Setting definition
 
-* DataProtectionManagement.EnabledDataProtection - 是否启用数据权限管理
-  * 默认值: true
-  * 可以通过配置文件或管理界面修改
+* DataProtectionManagement.EnabledDataProtection - whether to enable data rights management
+  *Default value: true
+  * Can be modified through configuration files or management interface
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

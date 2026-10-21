@@ -14,11 +14,11 @@ export function useChatsApi() {
   const { requestSSE } = useSseRequest();
 
   /**
-   * 发送消息
-   * @param input 消息体
-   * @param options 选项
-   * @param options.onMessage 接收SSE消息回调
-   * @param options.onEnd SSE消息完成回调
+   * Send message
+   * @param input message body
+   * @param options options
+   * @param options.onMessage Receive SSE message callback
+   * @param options.onEnd SSE message completion callback
    */
   function sendMessageApi(
     input: SendTextChatMessageDto,
@@ -53,9 +53,9 @@ export function useChatsApi() {
   }
 
   /**
-   * 获取会话内容分页列表
-   * @param input 查询过滤参数
-   * @returns 会话内容分页列表
+   * Get the session content paginated list
+   * @param input query filter parameters
+   * @returns session content paginated list
    */
   function getPagedListApi(
     input: TextChatMessageGetListInput,

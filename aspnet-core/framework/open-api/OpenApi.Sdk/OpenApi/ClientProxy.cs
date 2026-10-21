@@ -47,7 +47,7 @@ namespace OpenApi
 
         public async virtual Task<ApiResponse<TResult>> RequestAsync<TRequest, TResult>(string url, string appKey, string appSecret, TRequest request, HttpMethod httpMethod)
         {
-            // 构建请求客户端
+            // Build request client
             var client = _httpClientFactory.CreateClient("opensdk");
 
             return await RequestAsync<TRequest, TResult>(client, url, appKey, appSecret, request, httpMethod);
@@ -55,13 +55,13 @@ namespace OpenApi
 
         public async virtual Task<ApiResponse<TResult>> RequestAsync<TRequest, TResult>(HttpClient client, string url, string appKey, string appSecret, TRequest request, HttpMethod httpMethod)
         {
-            // UTC时间戳
+            // UTC timestamp
             var timeStamp = GetUtcTimeStampString();
-            // 随机数
+            // random number
             var nonce = Guid.NewGuid().ToString();
-            // 取出api地址
+            // Get the api address
             var baseUrl = url.Split('?')[0];
-            // 组装请求参数
+            // Assemble request parameters
             var requestUrl = string.Concat(
                 url,
                 url.Contains('?') ? "&" : "?",
@@ -74,10 +74,10 @@ namespace OpenApi
                 "&t=",
                 timeStamp);
             var queryString = ReverseQueryString(requestUrl);
-            // 对请求参数签名
+            // Sign the request parameters
             var sign = CalculationSignature(baseUrl, queryString);
 
-            // 构建请求体
+            // Build request body
             var requestMessage = new HttpRequestMessage(httpMethod, url);
 
             if (request != null)
@@ -85,19 +85,19 @@ namespace OpenApi
                 // Request Payload
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(request));
             }
-            // appKey添加到headers
+            // appKey added to headers
             requestMessage.Headers.TryAddWithoutValidation("X-API-APPKEY", appKey);
-            // 随机数添加到headers
+            // Add random numbers to headers
             requestMessage.Headers.TryAddWithoutValidation("X-API-NONCE", nonce);
-            // 时间戳添加到headers
+            // Add timestamp to headers
             requestMessage.Headers.TryAddWithoutValidation("X-API-TIMESTAMP", timeStamp);
-            // 签名添加到headers
+            // Add signature to headers
             requestMessage.Headers.TryAddWithoutValidation("X-API-SIGN", sign);
-            // 返回本地化错误提示
+            // Return localized error prompt
             requestMessage.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(CultureInfo.CurrentUICulture.Name));
-            // 返回错误消息可序列化
+            // Return error message can be serialized
             requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // 序列化响应
+            // Serialize response
             var response = await client.SendAsync(requestMessage);
 
             var stringContent = await response.Content.ReadAsStringAsync();
@@ -114,11 +114,11 @@ namespace OpenApi
         {
             if (!requestUri.Contains("?"))
             {
-                throw new Exception("查询路径格式不合法");
+                throw new Exception("The query path format is illegal");
             }
 
             var queryString = requestUri.Split('?')[1];
-            // 按照首字母排序
+            // Sort by first letter
             var paramters = queryString.Split('&').OrderBy(p => p);
 
             var queryDic = new Dictionary<string, string>();
@@ -132,7 +132,7 @@ namespace OpenApi
                 queryDic.Add(thisParams[0], thisParams.Length > 0 ? thisParams[1] : "");
             }
 
-            // 返回参数列表
+            // Return parameter list
             return queryDic;
         }
 

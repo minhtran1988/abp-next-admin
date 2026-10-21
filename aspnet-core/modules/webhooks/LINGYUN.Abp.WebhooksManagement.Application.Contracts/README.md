@@ -1,19 +1,19 @@
 # LINGYUN.Abp.WebhooksManagement.Application.Contracts
 
-Webhook管理应用服务契约模块，定义Webhook管理的应用服务接口和DTO。
+Webhook management application service contract module defines the application service interface and DTO of Webhook management.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* Webhook订阅服务接口
-* Webhook组服务接口
-* Webhook定义服务接口
-* Webhook日志服务接口
-* Webhook权限定义
-* Webhook DTO定义
+* Webhook subscription service interface
+* Webhook group service interface
+* Webhook defines service interface
+* Webhook log service interface
+* Webhook permission definition
+* Webhook DTO definition
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementApplicationContractsModule))]
@@ -23,16 +23,16 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 服务接口
+## Service interface
 
-* IWebhookSubscriptionAppService - Webhook订阅管理服务
-* IWebhookGroupAppService - Webhook组管理服务
-* IWebhookDefinitionAppService - Webhook定义管理服务
-* IWebhookSendAttemptAppService - Webhook发送日志服务
+* IWebhookSubscriptionAppService - Webhook subscription management service
+* IWebhookGroupAppService - Webhook group management service
+* IWebhookDefinitionAppService - Webhook definition management service
+* IWebhookSendAttemptAppService - Webhook send log service
 
-## 基本用法
+## Basic usage
 
-1. 实现Webhook订阅服务
+1. Implement Webhook subscription service
 ```csharp
 public class WebhookSubscriptionAppService : 
     ApplicationService,
@@ -41,18 +41,18 @@ public class WebhookSubscriptionAppService :
     public async Task<WebhookSubscriptionDto> CreateAsync(
         WebhookSubscriptionCreateDto input)
     {
-        // 实现创建订阅逻辑
+        // Implement creation subscription logic
     }
 
     public async Task<PagedResultDto<WebhookSubscriptionDto>> GetListAsync(
         WebhookSubscriptionGetListInput input)
     {
-        // 实现查询订阅逻辑
+        // Implement query subscription logic
     }
 }
 ```
 
-2. 使用Webhook DTO
+2. Use Webhook DTO
 ```csharp
 public class YourDto
 {

@@ -3,7 +3,7 @@
 public class AbpNotificationsSignalROptions
 {
     /// <summary>
-    /// 自定义的客户端订阅通知方法名称
+    /// Customized client subscription notification method name
     /// </summary>
     public string MethodName { get; set; }
 

@@ -22,7 +22,7 @@ const OrganizationUnitUserTable: React.FC<Props> = ({ selectedKey }) => {
 	const [modal, contextHolder] = Modal.useModal();
 	const [memberModalVisible, setMemberModalVisible] = useState(false);
 
-	// 获取用户列表
+	// Get user list
 	const { data, isLoading, refetch } = useQuery({
 		queryKey: ["organizationUnitUsers", selectedKey],
 		queryFn: () => {
@@ -34,7 +34,7 @@ const OrganizationUnitUserTable: React.FC<Props> = ({ selectedKey }) => {
 		enabled: !!selectedKey,
 	});
 
-	// 添加成员
+	// Add members
 	const { mutateAsync: addUsers } = useMutation({
 		mutationFn: (users: IdentityUserDto[]) => {
 			if (!selectedKey) {
@@ -50,7 +50,7 @@ const OrganizationUnitUserTable: React.FC<Props> = ({ selectedKey }) => {
 		},
 	});
 
-	// 移除成员
+	// remove members
 	const { mutateAsync: removeUser } = useMutation({
 		mutationFn: (userId: string) => {
 			if (!selectedKey) {

@@ -18,8 +18,8 @@ import DocButton from '../doc-button.vue';
 
 const keyword = ref('');
 const fetching = ref(false);
-// 模拟远程获取数据
-function fetchRemoteOptions({ keyword = '选项' }: Record<string, any>) {
+// Simulate remote data acquisition
+function fetchRemoteOptions({ keyword = 'options' }: Record<string, any>) {
   fetching.value = true;
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -34,92 +34,92 @@ function fetchRemoteOptions({ keyword = '选项' }: Record<string, any>) {
 }
 
 const [BaseForm, baseFormApi] = useVbenForm({
-  // 所有表单项共用，可单独在表单内覆盖
+  // Common to all form items, they can be overridden individually within the form.
   commonConfig: {
-    // 在label后显示一个冒号
+    // Display a colon after the label
     colon: true,
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
   fieldMappingTime: [['rangePicker', ['startTime', 'endTime'], 'YYYY-MM-DD']],
-  // 提交函数
+  // Submit function
   handleSubmit: onSubmit,
   handleValuesChange(_values, fieldsChanged) {
-    message.info(`表单以下字段发生变化：${fieldsChanged.join('，')}`);
+    message.info(`The following fields of the form have changed: ${fieldsChanged.join(', ')}`);
   },
 
-  // 垂直布局，label和input在不同行，值为vertical
-  // 水平布局，label和input在同一行
+  // Vertical layout, label and input are on different lines, the value is vertical
+  // Horizontal layout, label and input are on the same line
   layout: 'horizontal',
   schema: [
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'Input',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        placeholder: '请输入用户名',
+        placeholder: 'Please enter username',
       },
-      // 字段名
+      // Field name
       fieldName: 'username',
-      // 界面显示的label
-      label: '字符串',
+      // Label displayed on the interface
+      label: 'string',
       rules: 'required',
     },
     {
       component: 'Input',
       fieldName: 'desc',
-      // 界面显示的description
-      description: '这是表单描述',
-      label: '字符串(带描述)',
+      // Description displayed on the interface
+      description: 'This is the form description',
+      label: 'String (with description)',
     },
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'ApiSelect',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        // 菜单接口转options格式
+        // Convert menu interface to options format
         afterFetch: (data: { name: string; path: string }[]) => {
           return data.map((item: any) => ({
             label: item.name,
             value: item.path,
           }));
         },
-        // 菜单接口
+        // Menu interface
         api: getAllMenusApi,
         autoSelect: 'first',
       },
-      // 字段名
+      // Field name
       fieldName: 'api',
-      // 界面显示的label
+      // Label displayed on the interface
       label: 'ApiSelect',
     },
     {
       component: 'ApiSelect',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: () => {
         return {
           api: fetchRemoteOptions,
-          // 禁止本地过滤
+          // Disable local filtering
           filterOption: false,
-          // 如果正在获取数据，使用插槽显示一个loading
+          // If data is being obtained, use the slot to display a loading
           notFoundContent: fetching.value ? undefined : null,
-          // 搜索词变化时记录下来， 使用useDebounceFn防抖。
+          // Record when the search term changes, use useDebounceFn to stabilize it.
           onSearch: useDebounceFn((value: string) => {
             keyword.value = value;
           }, 300),
-          // 远程搜索参数。当搜索词变化时，params也会更新
+          // Remote search parameters. When the search term changes, params will also be updated.
           params: {
             keyword: keyword.value || undefined,
           },
           showSearch: true,
         };
       },
-      // 字段名
+      // Field name
       fieldName: 'remoteSearch',
-      // 界面显示的label
-      label: '远程搜索',
+      // Label displayed on the interface
+      label: 'remote search',
       renderComponentContent: () => {
         return {
           notFoundContent: fetching.value ? h(Spin) : undefined,
@@ -129,41 +129,41 @@ const [BaseForm, baseFormApi] = useVbenForm({
     },
     {
       component: 'ApiTreeSelect',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        // 菜单接口
+        // Menu interface
         api: getAllMenusApi,
-        // 菜单接口转options格式
+        // Convert menu interface to options format
         labelField: 'name',
         valueField: 'path',
         childrenField: 'children',
       },
-      // 字段名
+      // Field name
       fieldName: 'apiTree',
-      // 界面显示的label
+      // Label displayed on the interface
       label: 'ApiTreeSelect',
     },
     {
       component: 'InputPassword',
       componentProps: {
-        placeholder: '请输入密码',
+        placeholder: 'Please enter password',
       },
       fieldName: 'password',
-      label: '密码',
+      label: 'password',
     },
     {
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'number',
-      label: '数字(带后缀)',
+      label: 'Number (with suffix)',
       suffix: () => '¥',
     },
     {
       component: 'IconPicker',
       fieldName: 'icon',
-      label: '图标',
+      label: 'icon',
     },
     {
       colon: false,
@@ -173,36 +173,36 @@ const [BaseForm, baseFormApi] = useVbenForm({
         filterOption: true,
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       fieldName: 'options',
-      label: () => h(Tag, { color: 'warning' }, () => '😎自定义：'),
+      label: () => h(Tag, { color: 'warning' }, () => '😎Customized: '),
     },
     {
       component: 'RadioGroup',
       componentProps: {
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'radioGroup',
-      label: '单选组',
+      label: 'radio group',
     },
     {
       component: 'Radio',
@@ -220,17 +220,17 @@ const [BaseForm, baseFormApi] = useVbenForm({
         name: 'cname',
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'checkboxGroup',
-      label: '多选组',
+      label: 'Multiple selection group',
     },
     {
       component: 'Checkbox',
@@ -238,12 +238,12 @@ const [BaseForm, baseFormApi] = useVbenForm({
       label: '',
       renderComponentContent: () => {
         return {
-          default: () => ['我已阅读并同意'],
+          default: () => ['I have read and agree'],
         };
       },
       rules: z
         .boolean()
-        .refine((v) => v, { message: '为什么不同意？勾上它！' }),
+        .refine((v) => v, { message: 'Why do you not agree? Check it!' }),
     },
     {
       component: 'Mentions',
@@ -258,15 +258,15 @@ const [BaseForm, baseFormApi] = useVbenForm({
             value: 'zombieJ',
           },
         ],
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'mentions',
-      label: '提及',
+      label: 'mentions',
     },
     {
       component: 'Rate',
       fieldName: 'rate',
-      label: '评分',
+      label: 'rating',
     },
     {
       component: 'Switch',
@@ -275,29 +275,29 @@ const [BaseForm, baseFormApi] = useVbenForm({
       },
       fieldName: 'switch',
       help: () =>
-        ['这是一个多行帮助信息', '第二行', '第三行'].map((v) => h('p', v)),
-      label: '开关',
+        ['This is a multi-line help message', 'Second line', 'Third line'].map((v) => h('p', v)),
+      label: 'switch',
     },
     {
       component: 'DatePicker',
       fieldName: 'datePicker',
-      label: '日期选择框',
+      label: 'Date selection box',
     },
     {
       component: 'RangePicker',
       fieldName: 'rangePicker',
-      label: '范围选择器',
+      label: 'range selector',
     },
     {
       component: 'TimePicker',
       fieldName: 'timePicker',
-      label: '时间选择框',
+      label: 'Time selection box',
     },
     {
       component: 'TreeSelect',
       componentProps: {
         allowClear: true,
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
         treeData: [
           {
@@ -338,24 +338,24 @@ const [BaseForm, baseFormApi] = useVbenForm({
         treeNodeFilterProp: 'label',
       },
       fieldName: 'treeSelect',
-      label: '树选择',
+      label: 'tree selection',
     },
     {
       component: 'Upload',
       componentProps: {
-        // 更多属性见：https://ant.design/components/upload-cn
+        // For more attributes, see: https://ant.design/components/upload-cn
         accept: '.png,.jpg,.jpeg',
-        // 自动携带认证信息
+        // Automatically carry authentication information
         customRequest: upload_file,
         disabled: false,
         maxCount: 1,
-        // 单位：MB
+        // Unit: MB
         maxSize: 2,
         multiple: false,
         showUploadList: true,
-        // 上传列表的内建样式，支持四种基本样式 text, picture, picture-card 和 picture-circle
+        // Built-in style for upload list, supports four basic styles text, picture, picture-card and picture-circle
         listType: 'picture-card',
-        // onChange事件已被重写，如需自定义请在此基础上扩展
+        // The onChange event has been rewritten. If you need to customize it, please extend it on this basis.
         handleChange: ({ file }: { file: UploadFile }) => {
           const { name, status } = file;
           if (status === 'done') {
@@ -382,9 +382,9 @@ const [BaseForm, baseFormApi] = useVbenForm({
         maxCount: 1,
         maxSize: 2,
         listType: 'picture-card',
-        // 是否启用图片裁剪(多选或者非图片不唤起裁剪框)
+        // Whether to enable image cropping (multi-select or non-pictures do not raise the cropping box)
         crop: true,
-        // 裁剪比例
+        // Crop ratio
         aspectRatio: '1:1',
       },
       fieldName: 'cropImage',
@@ -397,7 +397,7 @@ const [BaseForm, baseFormApi] = useVbenForm({
       rules: 'selectRequired',
     },
   ],
-  // 大屏一行显示3个，中屏一行显示2个，小屏一行显示1个
+  // The large screen displays 3 items in one line, the medium screen displays 2 items in one line, and the small screen displays 1 item in one line.
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
 
@@ -438,7 +438,7 @@ function onSubmit(values: Record<string, any>) {
     });
     return;
   }
-  // 如果需要可提交前替换为需要的urls
+  // If necessary, replace it with the required urls before submitting
   values.files = doneFiles.map((file) => file.response?.url || file.url);
   values.cropImage = doneCrop.map((file) => file.response?.url || file.url);
   message.success({
@@ -448,7 +448,7 @@ function onSubmit(values: Record<string, any>) {
 
 function handleSetFormValue() {
   /**
-   * 设置表单值(多个)
+   * Set form values (multiple)
    */
   baseFormApi.setValues({
     checkboxGroup: ['1'],
@@ -474,7 +474,7 @@ function handleSetFormValue() {
     username: '1',
   });
 
-  // 设置单个表单值
+  // Set a single form value
   baseFormApi.setFieldValue('checkbox', true);
 }
 </script>
@@ -482,22 +482,22 @@ function handleSetFormValue() {
 <template>
   <Page
     content-class="flex flex-col gap-4"
-    description="表单组件基础示例，请注意，该页面用到的参数代码会添加一些简单注释，方便理解，请仔细查看。"
-    title="表单组件"
+    description="Basic example of form component, please note that some simple comments will be added to the parameter code used on this page for easy understanding, please review it carefully."
+    title="Form component"
   >
     <template #description>
       <div class="text-muted-foreground">
         <p>
-          表单组件基础示例，请注意，该页面用到的参数代码会添加一些简单注释，方便理解，请仔细查看。
+          Basic example of form component. Please note that some simple comments will be added to the parameter code used on this page for easy understanding. Please review it carefully.
         </p>
       </div>
     </template>
     <template #extra>
       <DocButton class="mb-2" path="/components/common-ui/vben-form" />
     </template>
-    <Card title="基础示例">
+    <Card title="Basic Example">
       <template #extra>
-        <Button type="primary" @click="handleSetFormValue">设置表单值</Button>
+        <Button type="primary" @click="handleSetFormValue">Set form value</Button>
       </template>
       <BaseForm />
     </Card>

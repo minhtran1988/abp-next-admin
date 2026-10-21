@@ -83,7 +83,7 @@ public class JobActionEvent : JobEventBase<JobActionEvent>, ITransientDependency
                         var exceptionType = actionDefinition.GetExceptioinType();
                         if (exceptionType != null)
                         {
-                            // 应该由用户决定哪些异常才需要发送通知
+                            // It should be up to the user to decide which exceptions require notifications
                             var exceptionTypeFinder = context.ServiceProvider.GetRequiredService<IJobExceptionTypeFinder>();
                             var findExceptionType = exceptionTypeFinder.GetExceptionType(context, context.EventData.Exception);
                             if (!exceptionType.Value.HasFlag(findExceptionType))

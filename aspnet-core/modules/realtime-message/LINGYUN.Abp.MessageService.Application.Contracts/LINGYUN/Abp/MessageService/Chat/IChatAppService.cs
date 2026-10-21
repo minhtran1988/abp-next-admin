@@ -8,28 +8,28 @@ namespace LINGYUN.Abp.MessageService.Chat;
 public interface IChatAppService : IApplicationService
 {
     /// <summary>
-    /// 发送消息
+    /// Send message
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<ChatMessageSendResultDto> SendMessageAsync(ChatMessage input);
     /// <summary>
-    /// 获取群组消息
+    /// Get group messages
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<PagedResultDto<ChatMessage>> GetMyGroupMessageAsync(GroupMessageGetByPagedDto input);
     /// <summary>
-    /// 获取我的消息
+    /// Get my message
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<PagedResultDto<ChatMessage>> GetMyChatMessageAsync(UserMessageGetByPagedDto input);
     /// <summary>
-    /// 获取我最近的消息
+    /// Get my latest messages
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<ListResultDto<LastChatMessage>> GetMyLastChatMessageAsync(GetUserLastMessageDto input);
-    //TOTO: 还应该有获取我的未读消息 获取我的未读群组消息
+    // TOTO: You should also get my unread messages and get my unread group messages.
 }

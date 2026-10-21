@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Identity.WeChat
 
-微信用户身份集成模块，提供微信用户与ABP Identity系统的集成功能。
+The WeChat user identity integration module provides integration functions between WeChat users and the ABP Identity system.
 
-## 功能特性
+## Features
 
-* 微信用户身份集成
-* 支持微信用户信息同步到Identity系统
-* 支持微信UnionId机制
-* 支持自动创建用户
+* WeChat user identity integration
+* Support WeChat user information synchronization to Identity system
+* Support WeChat UnionId mechanism
+*Support automatic creation of users
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpIdentityWeChatModule))]
@@ -19,19 +19,19 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "Identity": {
     "WeChat": {
-      "CreateUserIfNotExist": true,  // 用户不存在时是否自动创建
-      "UpdateUserIfExist": true      // 用户存在时是否更新信息
+      "CreateUserIfNotExist": true, // Whether to automatically create the user when it does not exist
+      "UpdateUserIfExist": true // Whether to update information when the user exists
     }
   }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [微信用户身份集成文档](README.EN.md)
+* [WeChat User Identity Integration Document](README.EN.md)

@@ -19,9 +19,9 @@ interface PermissionGroupDto {
 }
 
 interface PermissionUpdateDto {
-	/** 是否授权 */
+	/** Authorization or not */
 	isGranted: boolean;
-	/** 权限名称 */
+	/** Permission name */
 	name: string;
 }
 
@@ -35,18 +35,18 @@ interface PermissionResultDto {
 }
 
 interface PermissionTree {
-	/** 子节点 */
+	/** Child node */
 	children: PermissionTree[];
-	/** 是否禁用 */
+	/** Whether to disable */
 	disabled: boolean;
-	/** 显示名称 */
+	/** display name */
 	displayName: string;
-	/** 是否授权 */
+	/** Authorization or not */
 	isGranted?: boolean;
 	isRoot: boolean;
-	/** 权限标识 */
+	/** Permission identification */
 	name: string;
-	/** 父节点 */
+	/** Parent node */
 	parentName?: string;
 }
 

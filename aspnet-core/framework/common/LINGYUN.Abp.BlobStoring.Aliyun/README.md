@@ -1,25 +1,25 @@
 # LINGYUN.Abp.BlobStoring.Aliyun
 
-ABP框架对象存储提供者**IBlobProvider**的阿里云OSS实现。
+Alibaba Cloud OSS implementation of the ABP framework object storage provider **IBlobProvider**.
 
-## 功能特性
+## Features
 
-* 实现ABP的IBlobProvider接口，使用阿里云OSS服务
-* 支持多租户Blob存储
-* 自动创建Bucket
-* 可配置的Bucket访问控制
-* 支持STS Token访问
-* 可自定义的Blob命名策略
+* Implement the IBlobProvider interface of ABP and use Alibaba Cloud OSS service
+* Support multi-tenant Blob storage
+* Automatically create Bucket
+* Configurable Bucket access control
+*Support STS Token access
+* Customizable Blob naming strategy
 
-## 模块引用
+## Module reference
 
-首先定义**appsettings.json**文件：
+First define the **appsettings.json** file:
 
 ```json
 {
   "Aliyun": {
     "OSS": {
-      "BucketName": "你定义的BucketName",
+      "BucketName": "BucketName you defined",
       "Endpoint": "http://oss-cn-shanghai.aliyuncs.com",
       "CreateBucketIfNotExists": true
     }
@@ -27,7 +27,7 @@ ABP框架对象存储提供者**IBlobProvider**的阿里云OSS实现。
 }
 ```
 
-然后在项目中引用模块：
+Then reference the module in the project:
 
 ```csharp
 [DependsOn(typeof(AbpBlobStoringAliyunModule))]
@@ -37,49 +37,49 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置说明
+## Configuration instructions
 
-### OSS配置
+### OSS configuration
 
 * **BucketName**
-  * 说明：OSS存储空间名称
-  * 类型：可选
-  * 默认值：容器名称
+  * Description: OSS storage space name
+  *Type: optional
+  *Default value: container name
 
 * **Endpoint**
-  * 说明：OSS服务的接入点
-  * 类型：必须
-  * 示例：http://oss-cn-shanghai.aliyuncs.com
+  * Description: Access point of OSS service
+  * Type: required
+  * Example: http://oss-cn-shanghai.aliyuncs.com
 
 * **CreateBucketIfNotExists**
-  * 说明：如果Bucket不存在是否自动创建
-  * 类型：可选
-  * 默认值：false
+  * Description: Whether to automatically create the Bucket if it does not exist
+  *Type: optional
+  *Default value: false
 
 * **CreateBucketReferer**
-  * 说明：Bucket访问白名单
-  * 类型：可选
+  * Description: Bucket access whitelist
+  *Type: optional
 
-### Blob命名规则
+### Blob naming rules
 
-* 容器（Bucket）名称规则：
-  * 长度必须在3-63字符之间
-  * 只能包含小写字母、数字和短横线
-  * 必须以字母或数字开头
-  * 不能以短横线开头或结尾
+* Container (Bucket) name rules:
+  * The length must be between 3-63 characters
+  * Can only contain lowercase letters, numbers and dashes
+  * Must start with a letter or number
+  * Cannot start or end with a dash
 
-* Blob名称规则：
-  * 租户：`tenants/{tenantId}/{blobName}`
-  * 宿主：`host/{blobName}`
+* Blob name rules:
+  * Tenants: `tenants/{tenantId}/{blobName}`
+  * Host: `host/{blobName}`
 
-## 性能优化
+## Performance optimization
 
-* 使用分布式缓存存储STS Token
-* 支持数据冗余配置
-* 可配置的Bucket访问控制以提高安全性
+* Use distributed cache to store STS Token
+* Support data redundancy configuration
+* Configurable Bucket access control to improve security
 
-## 相关模块
+## Related modules
 
-* [LINGYUN.Abp.Aliyun](../../cloud-aliyun/LINGYUN.Abp.Aliyun/README.md) - 提供阿里云基础集成
+* [LINGYUN.Abp.Aliyun](../../cloud-aliyun/LINGYUN.Abp.Aliyun/README.md) - Provides basic integration with Alibaba Cloud
 
 [Click to view English documentation](README.EN.md)

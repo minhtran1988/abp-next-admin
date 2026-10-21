@@ -1,32 +1,32 @@
 # LINGYUN.Abp.Account.Application
 
-ABP账户模块的应用服务实现，提供完整的账户管理功能实现。
+The application service implementation of the ABP account module provides complete account management function implementation.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 账户管理服务实现
-  * 手机号注册
-  * 微信小程序注册
-  * 密码重置
-  * 验证码发送（短信、邮件）
-* 个人资料管理
-  * 基本信息维护
-  * 密码修改
-  * 手机号变更
-  * 头像更新
-  * 双因素认证
-* 用户声明管理
-* 邮件服务
-  * 邮件确认
-  * 邮件验证
-* 短信服务
-  * 验证码发送
-* 微信小程序集成
-* 虚拟文件系统支持
+*Account management service implementation
+  * Mobile phone number registration
+  * WeChat mini program registration
+  * Password reset
+  *Send verification code (SMS, email)
+* Personal information management
+  *Basic information maintenance
+  * Password change
+  *Mobile phone number change
+  * Avatar update
+  * Two-factor authentication
+* User statement management
+* Email service
+  * Email confirmation
+  * Email verification
+* SMS service
+  * Verification code sent
+* WeChat mini program integration
+* Virtual file system support
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -41,43 +41,43 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 应用服务
+## Application Services
 
 ### AccountAppService
 
-实现`IAccountAppService`接口，提供：
-* 用户注册（手机号、微信小程序）
-* 密码重置
-* 验证码发送
+Implement the `IAccountAppService` interface and provide:
+* User registration (mobile phone number, WeChat applet)
+* Password reset
+* Verification code sent
 
 ### MyProfileAppService
 
-实现`IMyProfileAppService`接口，提供：
-* 个人资料管理
-* 密码修改
-* 手机号变更
-* 头像更新
-* 双因素认证管理
+Implements the `IMyProfileAppService` interface and provides:
+* Personal information management
+* Password change
+*Mobile phone number change
+* Avatar update
+* Two-factor authentication management
 
 ### MyClaimAppService
 
-实现`IMyClaimAppService`接口，提供：
-* 用户声明管理
+Implements the `IMyClaimAppService` interface and provides:
+* User statement management
 
-## 邮件服务
+## Mail service
 
-提供以下邮件服务：
-* `IAccountEmailConfirmSender` - 邮件确认服务
-* `IAccountEmailVerifySender` - 邮件验证服务
-* `AccountEmailSender` - 邮件发送实现
+The following email services are provided:
+* `IAccountEmailConfirmSender` - Email confirmation service
+* `IAccountEmailVerifySender` - Email verification service
+* `AccountEmailSender` - Email sending implementation
 
-## 短信服务
+## SMS service
 
-提供以下短信服务：
-* `IAccountSmsSecurityCodeSender` - 短信验证码发送服务
-* `AccountSmsSecurityCodeSender` - 短信验证码发送实现
+The following SMS services are provided:
+* `IAccountSmsSecurityCodeSender` - SMS verification code sending service
+* `AccountSmsSecurityCodeSender` - SMS verification code sending implementation
 
-## URL配置
+## URL configuration
 
-模块预配置了以下URL：
-* EmailConfirm - 邮件确认URL，默认为"Account/EmailConfirm"
+The module is preconfigured with the following URL:
+* EmailConfirm - Email confirmation URL, default is "Account/EmailConfirm"

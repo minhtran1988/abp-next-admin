@@ -5,15 +5,15 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Request;
 /// <summary>
-/// openid转userid请求参数
+/// openid to userid request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90202" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90202" />
 /// </remarks>
 public class WeChatWorkConvertToUserIdRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 在使用企业支付之后，返回结果的openid
+    /// After using enterprise payment, return the openid of the result
     /// </summary>
     [NotNull]
     [JsonProperty("openid")]

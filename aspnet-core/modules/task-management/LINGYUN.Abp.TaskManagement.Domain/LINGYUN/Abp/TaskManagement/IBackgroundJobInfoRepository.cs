@@ -15,7 +15,7 @@ public interface IBackgroundJobInfoRepository : IRepository<BackgroundJobInfo, s
         string name,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取作业
+    /// Get the job
     /// </summary>
     /// <param name="id"></param>
     /// <param name="includeDetails"></param>
@@ -26,7 +26,7 @@ public interface IBackgroundJobInfoRepository : IRepository<BackgroundJobInfo, s
         bool includeDetails = true,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取过期任务列表
+    /// Get the list of expired tasks
     /// </summary>
     /// <param name="maxResultCount"></param>
     /// <param name="jobExpiratime"></param>
@@ -39,14 +39,14 @@ public interface IBackgroundJobInfoRepository : IRepository<BackgroundJobInfo, s
         string? nodeName = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取所有周期性任务
-    /// 指定了Cron表达式的任务需要作为持续性任务交给任务引擎
+    /// Get all periodic tasks
+    /// Tasks with Cron expressions specified need to be handed over to the task engine as persistent tasks.
     /// </summary>
     /// <returns></returns>
     Task<List<BackgroundJobInfo>> GetAllPeriodTasksAsync(
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取等待入队的任务列表
+    /// Get the list of tasks waiting to be queued
     /// </summary>
     /// <param name="maxResultCount"></param>
     /// <param name="cancellationToken"></param>
@@ -55,18 +55,18 @@ public interface IBackgroundJobInfoRepository : IRepository<BackgroundJobInfo, s
         int maxResultCount,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取过滤后的任务数量
+    /// Get the number of filtered tasks
     /// </summary>
-    /// <param name="specification">查询规约</param>
+    /// <param name="specification">Query specification</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<int> GetCountAsync(
         ISpecification<BackgroundJobInfo> specification,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取过滤后的任务列表
+    /// Get the filtered task list
     /// </summary>
-    /// <param name="specification">查询规约</param>
+    /// <param name="specification">Query specification</param>
     /// <param name="sorting"></param>
     /// <param name="maxResultCount"></param>
     /// <param name="skipCount"></param>

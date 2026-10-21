@@ -6,19 +6,19 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Tags.Request;
 /// <summary>
-/// 更新标签请求参数
+/// Update tag request parameters
 /// </summary>
 public class WeChatWorkTagUpdateRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 标签id，非负整型，指定此参数时新增的标签会生成对应的标签id，不指定时则以目前最大的id自增。
+    /// Tag id, non-negative integer type. When this parameter is specified, the new tag will generate a corresponding tag id. If not specified, the current largest id will be incremented.
     /// </summary>
     [NotNull]
     [JsonProperty("tagid")]
     [JsonPropertyName("tagid")]
     public int TagId { get; set; }
     /// <summary>
-    /// 标签名称，长度限制为32个字以内（汉字或英文字母），标签名不可与其他标签重名。
+    /// Tag name, the length is limited to 32 characters (Chinese characters or English letters), the tag name cannot have the same name as other tags.
     /// </summary>
     [NotNull]
     [StringLength(32)]

@@ -1,9 +1,9 @@
 namespace LINGYUN.Abp.OpenObserve.Utils;
 
 /// <summary>
-/// 查询条件
+/// Query conditions
 /// </summary>
-/// <param name="Field">字段名(表达式成员名)</param>
-/// <param name="Op">比较操作符</param>
-/// <param name="Value">条件值</param>
+/// <param name="Field">Field name (expression member name)</param>
+/// <param name="Op">Comparison operator</param>
+/// <param name="Value">Conditional value</param>
 public record Condition(string Field, ComparisonOp Op, object? Value);

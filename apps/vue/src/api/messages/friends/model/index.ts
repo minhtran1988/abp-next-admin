@@ -6,7 +6,7 @@ export interface UserFriend extends UserCard {
   specialFocus: boolean;
   dontDisturb: boolean;
   remarkName: string;
-  /** 是否在线,仅ui项目使用 */
+  /** Whether online, only used by ui projects */
   onLined: boolean;
 }
 

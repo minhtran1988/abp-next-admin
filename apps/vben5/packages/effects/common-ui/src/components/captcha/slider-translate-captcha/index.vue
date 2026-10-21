@@ -152,7 +152,7 @@ function initCanvas() {
   });
   if (!puzzleCanvasCtx || !pieceCanvasCtx) return;
   const img = new Image();
-  // 解决跨域
+  // Resolve cross-domain
   img.crossOrigin = 'Anonymous';
   img.src = src;
   img.addEventListener('load', () => {
@@ -178,7 +178,7 @@ function getRandomNumberByRange(start: number, end: number) {
   return Math.round(Math.random() * (end - start) + start);
 }
 
-// 绘制拼图
+// Draw the puzzle
 function draw(ctx1: CanvasRenderingContext2D, ctx2: CanvasRenderingContext2D) {
   const { canvasWidth, canvasHeight, squareLength, circleRadius } = props;
   state.pieceX = getRandomNumberByRange(
@@ -193,7 +193,7 @@ function draw(ctx1: CanvasRenderingContext2D, ctx2: CanvasRenderingContext2D) {
   drawPiece(ctx2, state.pieceX, state.pieceY, CanvasOpr.Clip);
 }
 
-// 绘制拼图切块
+// Draw puzzle pieces
 function drawPiece(
   ctx: CanvasRenderingContext2D,
   x: number,

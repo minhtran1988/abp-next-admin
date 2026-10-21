@@ -6,30 +6,30 @@ namespace LINGYUN.Abp.SystemInfo.Utils;
 public class MemoryMetrics
 {
     /// <summary>
-    /// 总物理内存
+    /// Total physical memory
     /// </summary>
     public long TotalMemory { get; set; }
     /// <summary>
-    /// 工作集内存
+    /// Working set memory
     /// </summary>
     public long WorkingSet { get; set; }
     /// <summary>
-    /// 私有内存
+    /// Private memory
     /// </summary>
     public long PrivateMemory { get; set; }
     /// <summary>
-    /// 虚拟内存
+    /// virtual memory
     /// </summary>
     public long VirtualMemory { get; set; }
     /// <summary>
-    /// GC堆大小
+    /// GC heap size
     /// </summary>
     public long GCHeapSize { get; set; }
 }
 
 public class MemoryMonitor
 {
-    // 转换为MB
+    // Convert to MB
     const long MB = 1024 * 1024;
 
     public MemoryMetrics GetMemoryMetrics()

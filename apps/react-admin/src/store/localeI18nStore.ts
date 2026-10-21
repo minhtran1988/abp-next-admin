@@ -46,7 +46,7 @@ type LocaleStore = {
 const useLocaleStore = create<LocaleStore>()(
 	persist(
 		(set) => ({
-			locale: LocalEnum.en_US, // 默认语言
+			locale: LocalEnum.en_US, //Default language
 			language: LANGUAGE_MAP[LocalEnum.en_US],
 			localizations: {},
 			actions: {
@@ -58,21 +58,21 @@ const useLocaleStore = create<LocaleStore>()(
 					const lang = mapLocaleToAbpLanguageFormat(locale);
 					if (lang !== localization?.currentCulture.cultureName) {
 						localization = await getLocalizationApi({
-							cultureName: lang, //api的语言转换
+							cultureName: lang, //api language conversion
 							onlyDynamics: false,
 						});
 					}
 
 					if (localization) {
-						setLocalization(localization); //存进去
+						setLocalization(localization); //Save in
 					}
-					const locales = getI18nLocales(); //刚刚存进去的，清理下
+					const locales = getI18nLocales(); //Just saved it, clean it up
 					i18n.changeLanguage(locale);
 					Object.keys(locales).forEach((resource) => {
-						const translations = { [resource]: locales[resource] }; // 保留嵌套结构
-						i18n.addResourceBundle(locale, "translation", translations, true, true); // 添加资源到 i18n
+						const translations = { [resource]: locales[resource] }; // Preserve nested structure
+						i18n.addResourceBundle(locale, "translation", translations, true, true); // Add resources to i18n
 					});
-					// 更新 Zustand 状态
+					// Update Zustand status
 					set({
 						locale,
 						language: LANGUAGE_MAP[locale],
@@ -84,7 +84,7 @@ const useLocaleStore = create<LocaleStore>()(
 		{
 			name: "localeI18nStore",
 			storage: createJSONStorage(() => localStorage),
-			// 保持风格，但暂时不持久化数据
+			// Keep the style, but do not persist the data temporarily
 			partialize: () => ({}),
 		},
 	),

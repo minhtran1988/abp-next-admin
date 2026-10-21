@@ -6,7 +6,7 @@ const props = defineProps<{
   class?: string;
 }>();
 
-// 控制箭头展开/收起状态
+// Control arrow expand/collapse state
 const collapsed = defineModel({ default: false });
 </script>
 
@@ -17,7 +17,7 @@ const collapsed = defineModel({ default: false });
   >
     <slot :is-expanded="collapsed">
       {{ collapsed }}
-      <!-- <span>{{ isExpanded ? '收起' : '展开' }}</span> -->
+      <!-- <span>{{ isExpanded ? 'Collapse' : 'Expand' }}</span> -->
     </slot>
     <div
       :class="{ 'rotate-180': !collapsed }"

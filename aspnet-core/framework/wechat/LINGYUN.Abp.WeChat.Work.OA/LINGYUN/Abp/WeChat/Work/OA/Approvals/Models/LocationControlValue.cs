@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 位置控件值
+/// Position control value
 /// </summary>
 public class LocationControlValue : ControlValue
 {
     /// <summary>
-    /// 位置
+    /// position
     /// </summary>
     [NotNull]
     [JsonProperty("location")]
@@ -29,35 +29,35 @@ public class LocationControlValue : ControlValue
 public class LocationValue
 {
     /// <summary>
-    /// 纬度，精确到6位小数
+    /// Latitude, accurate to 6 decimal places
     /// </summary>
     [NotNull]
     [JsonProperty("latitude")]
     [JsonPropertyName("latitude")]
     public decimal Latitude { get; set; }
     /// <summary>
-    /// 经度，精确到6位小数
+    /// Longitude, accurate to 6 decimal places
     /// </summary>
     [NotNull]
     [JsonProperty("longitude")]
     [JsonPropertyName("longitude")]
     public decimal Longitude { get; set; }
     /// <summary>
-    /// 地点标题
+    /// Location title
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 地点详情地址
+    /// Location details address
     /// </summary>
     [NotNull]
     [JsonProperty("address")]
     [JsonPropertyName("address")]
     public string Address { get; set; } = default!;
     /// <summary>
-    /// 选择地点的时间
+    /// Select the time of location
     /// </summary>
     [NotNull]
     [JsonProperty("time")]

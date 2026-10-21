@@ -1,6 +1,6 @@
 # LINGYUN.Abp.Notifications
 
-[简体中文](./README.md) | English
+[Simplified Chinese](./README.md) | English
 
 Real-time notification base module.
 

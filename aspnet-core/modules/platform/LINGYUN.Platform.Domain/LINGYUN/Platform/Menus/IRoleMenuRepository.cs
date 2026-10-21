@@ -9,7 +9,7 @@ namespace LINGYUN.Platform.Menus;
 public interface IRoleMenuRepository : IBasicRepository<RoleMenu, Guid>
 {
     /// <summary>
-    /// 角色是否拥有菜单
+    /// Whether the character has a menu
     /// </summary>
     /// <param name="roleName"></param>
     /// <param name="menuName"></param>

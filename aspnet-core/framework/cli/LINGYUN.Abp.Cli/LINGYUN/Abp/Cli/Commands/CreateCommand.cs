@@ -193,7 +193,7 @@ namespace LINGYUN.Abp.Cli.Commands
             sb.AppendLine("-d|--database-provider <database-provider>  (if supported by the template)");
             sb.AppendLine("-o|--output-folder <output-folder>          (default: current folder)");
             sb.AppendLine("-v|--version <version>                      (default: latest version)");
-            //sb.AppendLine("-ts|--template-source <template-source>     (your local or network abp template source)");
+            // sb.AppendLine("-ts|--template-source <template-source>     (your local or network abp template source)");
             sb.AppendLine("-csf|--create-solution-folder               (default: true)");
             sb.AppendLine("-cs|--connection-string <connection-string> (your database connection string)");
             sb.AppendLine("--dbms <database-management-system>         (your database management system)");
@@ -211,7 +211,7 @@ namespace LINGYUN.Abp.Cli.Commands
             sb.AppendLine("  labp create Acme.BookStore --dbms mysql");
             sb.AppendLine("  labp create Acme.BookStore --connection-string \"Server=myServerName\\myInstanceName;Database=myDatabase;User Id=myUsername;Password=myPassword\"");
             sb.AppendLine("");
-            // TODO: 文档
+            // TODO: Documentation
             // sb.AppendLine("See the documentation for more info: https://docs.abp.io/en/abp/latest/CLI");
 
             return sb.ToString();

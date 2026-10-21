@@ -10,7 +10,7 @@ namespace LINGYUN.Abp.IP2Region;
 public class PhysicalFileSearcherTest : AbpIP2RegionPhysicalFileTestBase
 {
     /// <summary>
-    /// 离线库配置为物理文件(优先于内置资源)
+    /// The offline library is configured as a physical file (taking precedence over built-in resources)
     /// </summary>
     [Fact]
     public void TestOptionsUsePhysicalFiles()
@@ -24,13 +24,13 @@ public class PhysicalFileSearcherTest : AbpIP2RegionPhysicalFileTestBase
     }
 
     /// <summary>
-    /// 从物理文件加载的 IPv4 / IPv6 离线库均可正常查询
+    /// IPv4/IPv6 offline libraries loaded from physical files can be queried normally.
     /// </summary>
     [Theory]
-    [InlineData("114.114.114.114", "中国|江苏省|南京市|0|CN")]
+    [InlineData("114.114.114.114", "\u4e2d\u56fd|\u6c5f\u82cf\u7701|\u5357\u4eac\u5e02|0|CN")]
     [InlineData("8.8.8.8", "United States|California|0|Google LLC|US")]
     [InlineData("2001:4860:4860::8888", "United States|Florida|Miami|Google LLC|US")]
-    [InlineData("2400:3200::1", "中国|浙江省|杭州市|阿里|CN")]
+    [InlineData("2400:3200::1", "\u4e2d\u56fd|\u6d59\u6c5f\u7701|\u676d\u5dde\u5e02|\u963f\u91cc|CN")]
     public void TestSearchFromPhysicalFile(string ip, string shouldBeRegion)
     {
         var searcher = GetRequiredService<ISearcher>();
@@ -39,7 +39,7 @@ public class PhysicalFileSearcherTest : AbpIP2RegionPhysicalFileTestBase
     }
 
     /// <summary>
-    /// 位置解析使用默认备注规则(未配置移除列表时仅显示国家名称)
+    /// Location parsing uses the default remark rules (only the country name is displayed when the removal list is not configured)
     /// </summary>
     [Fact]
     public async Task TestResolveLocationFromPhysicalFile()
@@ -49,9 +49,9 @@ public class PhysicalFileSearcherTest : AbpIP2RegionPhysicalFileTestBase
         var result = await resolver.ResolveAsync("223.5.5.5");
 
         result.Location.ShouldNotBeNull();
-        result.Location.Country.ShouldBe("中国");
-        result.Location.Province.ShouldBe("浙江省");
-        result.Location.City.ShouldBe("杭州市");
-        result.Location.Remarks.ShouldBe("中国");
+        result.Location.Country.ShouldBe("\u4e2d\u56fd");
+        result.Location.Province.ShouldBe("\u6d59\u6c5f\u7701");
+        result.Location.City.ShouldBe("\u676d\u5dde\u5e02");
+        result.Location.Remarks.ShouldBe("\u4e2d\u56fd");
     }
 }

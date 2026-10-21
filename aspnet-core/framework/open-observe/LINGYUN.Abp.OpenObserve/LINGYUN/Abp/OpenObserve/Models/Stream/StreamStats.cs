@@ -5,57 +5,57 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 数据流统计信息
+/// Data flow statistics
 /// </summary>
 public class StreamStats
 {
     /// <summary>
-    /// 数据流创建时间(微秒)
+    /// Data stream creation time (microseconds)
     /// </summary>
     [JsonPropertyName("created_at")]
     public long CreatedAt { get; set; }
 
     /// <summary>
-    /// 记录的最小时间戳(微秒)
+    /// Minimum timestamp recorded (microseconds)
     /// </summary>
     [JsonPropertyName("doc_time_min")]
     public long DocTimeMin { get; set; }
 
     /// <summary>
-    /// 记录的最大时间戳(微秒)
+    /// Maximum timestamp recorded (microseconds)
     /// </summary>
     [JsonPropertyName("doc_time_max")]
     public long DocTimeMax { get; set; }
 
     /// <summary>
-    /// 记录数
+    /// Number of records
     /// </summary>
     [JsonPropertyName("doc_num")]
     public long DocNum { get; set; }
 
     /// <summary>
-    /// 存储文件数
+    /// Number of stored files
     /// </summary>
     [JsonPropertyName("file_num")]
     public long FileNum { get; set; }
 
     /// <summary>
-    /// 原始数据大小
+    /// Original data size
     /// </summary>
     /// <remarks>
-    /// 文档字段表标注为 int64, 但响应示例为小数(3323.5), 因此使用 double
+    /// The document field table is marked as int64, but the response example is decimal (3323.5), so double is used
     /// </remarks>
     [JsonPropertyName("storage_size")]
     public double StorageSize { get; set; }
 
     /// <summary>
-    /// 压缩后大小
+    /// Size after compression
     /// </summary>
     [JsonPropertyName("compressed_size")]
     public double CompressedSize { get; set; }
 
     /// <summary>
-    /// 索引大小
+    /// Index size
     /// </summary>
     [JsonPropertyName("index_size")]
     public double IndexSize { get; set; }

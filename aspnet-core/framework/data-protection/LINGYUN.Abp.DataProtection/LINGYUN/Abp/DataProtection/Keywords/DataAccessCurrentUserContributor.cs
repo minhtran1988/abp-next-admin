@@ -7,7 +7,7 @@ using Volo.Abp.Users;
 
 namespace LINGYUN.Abp.DataProtection.Keywords;
 /// <summary>
-/// 适用于过滤当前用户数据
+/// Suitable for filtering current user data
 /// </summary>
 public class DataAccessCurrentUserContributor : IDataAccessKeywordContributor
 {

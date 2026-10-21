@@ -18,7 +18,7 @@ export const menuFilter = (items: AppRouteObject[]) => {
 };
 
 /**
- * 基于 src/router/routes/modules 文件结构动态生成路由
+ * Dynamically generate routes based on the src/router/routes/modules file structure
  */
 export function getRoutesFromModules() {
 	const menuModules: AppRouteObject[] = [];

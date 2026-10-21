@@ -8,7 +8,7 @@ namespace LINGYUN.Abp.IM.Contract;
 public interface IFriendStore
 {
     /// <summary>
-    /// 是否是好友关系
+    /// Whether it is a friend relationship
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -21,7 +21,7 @@ public interface IFriendStore
         CancellationToken cancellationToken = default
         );
     /// <summary>
-    /// 查询好友列表
+    /// Query the friend list
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -34,7 +34,7 @@ public interface IFriendStore
         CancellationToken cancellationToken = default
         );
     /// <summary>
-    /// 获取好友数量
+    /// Get the number of friends
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -46,7 +46,7 @@ public interface IFriendStore
         string? filter = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取好友列表
+    /// Get the friend list
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -64,7 +64,7 @@ public interface IFriendStore
         int maxResultCount = 10,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取最近联系好友列表
+    /// Get the list of recently contacted friends
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -78,7 +78,7 @@ public interface IFriendStore
         int maxResultCount = 10,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取好友信息
+    /// Get friend information
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -90,7 +90,7 @@ public interface IFriendStore
         Guid friendId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 添加好友
+    /// Add friends
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -104,7 +104,7 @@ public interface IFriendStore
         bool isStatic = false,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 添加好友请求
+    /// Add friend request
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -119,7 +119,7 @@ public interface IFriendStore
         string? description = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 移除好友
+    /// Remove friends
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -131,7 +131,7 @@ public interface IFriendStore
         Guid friendId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 添加黑名单
+    /// Add blacklist
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>
@@ -143,7 +143,7 @@ public interface IFriendStore
         Guid friendId,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 移除黑名单
+    /// Remove blacklist
     /// </summary>
     /// <param name="tenantId"></param>
     /// <param name="userId"></param>

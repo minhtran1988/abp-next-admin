@@ -104,7 +104,7 @@
     striped: false,
     useSearchForm: false,
     showTableSetting: true,
-    // 启用批量删除功能, 防止误选
+    // Enable batch deletion function to prevent accidental selection
     clickToRowSelect: false,
     clearSelectOnPageChange: true,
     bordered: true,
@@ -161,7 +161,7 @@
 
   function handleUpload() {
     let path = props.path;
-    // 去掉头部的./标记
+    // Remove the ./ tag from the header
     if (path.startsWith('./')) {
       path = path.substring(2);
     }

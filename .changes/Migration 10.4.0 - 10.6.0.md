@@ -1,35 +1,35 @@
 # 10.4.0 - 10.6.0
 
-## 模块变更
+## Module changes
 
-1. [功能管理模块]   功能分组/定义列表从仓储接口直接查询,避免受缓存影响.[PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)   
-2. [功能管理模块]   重构FeatureDefinitionManager,实现合并内置功能与动态功能定义.[PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)  
-3. [权限管理模块]   权限分组/定义列表从仓储接口直接查询,避免受缓存影响.[PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)  
-4. [权限管理模块]   重构PermissionDefinitionManager,实现合并内置权限与动态权限定义.[PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)  
-5. [权限管理模块]   修复MySql资源权限唯一索引重复.[PR #1526](https://github.com/colinin/abp-next-admin/pull/1526)  
-6. [通知管理模块]   通知分组/定义列表从仓储接口直接查询,避免受缓存影响.[PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)  
-7. [通知管理模块]   重构NotificationDefinitionManager,增加合并、忽略、覆盖三种策略.[PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)    
-8. [通知管理模块]   修复微信小程序通知内容序列化无效.[PR #1530](https://github.com/colinin/abp-next-admin/pull/1530)    
-9. [设置管理模块]   设置定义列表从仓储接口直接查询,避免受缓存影响.[PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)  
-10. [设置管理模块]   重构SettingDefinitionManager,实现合并内置设置与动态设置定义.[PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)  
-11. [Webhook管理模块]   Webhook分组/定义列表从仓储接口直接查询,避免受缓存影响.[PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)  
-12. [Webhook管理模块]   重构WebhookDefinitionManager,增加合并、忽略、覆盖三种策略.[PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)    
-13. [AI管理模块]   重构WorkspaceDefinitionManager,增加合并、忽略、覆盖三种策略.[PR #1516](https://github.com/colinin/abp-next-admin/pull/1516)   
-14. [AI管理模块]   重构AIToolDefinitionManager,增加合并、忽略、覆盖三种策略.[PR #1516](https://github.com/colinin/abp-next-admin/pull/1516)   
-15. [OpenIddict模块]   重写MySql仓储Token批量清理删除接口,修复运行时错误.[PR #1512](https://github.com/colinin/abp-next-admin/pull/1512)  
-16. [本地化管理模块]   资源/语言/本地化文本列表从仓储接口直接查询,避免受缓存影响.[PR #1517](https://github.com/colinin/abp-next-admin/pull/1517)  
-17. [OpenIddict模块]   增加模拟用户登录实现.[PR #1525](https://github.com/colinin/abp-next-admin/pull/1525)    
-18. [OpenIddict模块]   增加模拟租户用户登录实现.[PR #1525](https://github.com/colinin/abp-next-admin/pull/1525)    
-19. [反向代理模块]   用户配置文件重写反向代理服务器/地址白名单配置.[PR #1532](https://github.com/colinin/abp-next-admin/pull/1532)    
-20. [身份认证模块]   用户密码变更后使用户会话失效(自行修改密码时当前会话不受影响).[PR #1543](https://github.com/colinin/abp-next-admin/pull/1543)    
-21. [多租户UI模块]   优化租户选择弹窗组件,已定义平台租户关系时获取平台企业列表作为选择租户.[PR #1538](https://github.com/colinin/abp-next-admin/pull/1538)    
-22. [Elasticsearch模块]   增加表达式树翻译ES查询功能.[PR #1552](https://github.com/colinin/abp-next-admin/pull/1552)    
-23. [系统日志模块]   重构系统日志列表查询为通过ES表达式树查询.[PR #1558](https://github.com/colinin/abp-next-admin/pull/1558)    
-24. [审计日志模块]   重构审计日志列表查询为通过ES表达式树查询.[PR #1558](https://github.com/colinin/abp-next-admin/pull/1558)    
+1. [Function Management Module] Function grouping/definition list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)
+2. [Function Management Module] Reconstruct FeatureDefinitionManager to merge built-in functions and dynamic function definitions. [PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)
+3. [Permission Management Module] Permission grouping/definition list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)
+4. [Permission Management Module] Reconstruct PermissionDefinitionManager to merge built-in permissions and dynamic permission definitions. [PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)
+5. [Permission Management Module] Fix the duplicate unique index of MySql resource permissions. [PR #1526](https://github.com/colinin/abp-next-admin/pull/1526)
+6. [Notification Management Module] The notification group/definition list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)
+7. [Notification Management Module] Reconstruct NotificationDefinitionManager and add three strategies: merge, ignore, and overwrite. [PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)
+8. [Notification Management Module] Fix the invalid serialization of WeChat applet notification content. [PR #1530](https://github.com/colinin/abp-next-admin/pull/1530)
+9. [Setting Management Module] The setting definition list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)
+10. [Setting Management Module] Reconstruct SettingDefinitionManager to merge built-in settings and dynamic setting definitions. [PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)
+11. [Webhook Management Module] Webhook grouping/definition list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1511](https://github.com/colinin/abp-next-admin/pull/1511)
+12. [Webhook Management Module] Reconstruct WebhookDefinitionManager and add three strategies: merge, ignore, and overwrite. [PR #1559](https://github.com/colinin/abp-next-admin/pull/1559)
+13. [AI Management Module] Reconstruct WorkspaceDefinitionManager and add three strategies: merge, ignore, and overwrite. [PR #1516](https://github.com/colinin/abp-next-admin/pull/1516)
+14. [AI Management Module] Reconstruct AIToolDefinitionManager and add three strategies: merge, ignore, and overwrite. [PR #1516](https://github.com/colinin/abp-next-admin/pull/1516)
+15. [OpenIddict module] Rewrite the MySql warehousing Token batch cleaning and deletion interface and fix runtime errors. [PR #1512](https://github.com/colinin/abp-next-admin/pull/1512)
+16. [Localization Management Module] The resource/language/localized text list is queried directly from the warehousing interface to avoid being affected by cache. [PR #1517](https://github.com/colinin/abp-next-admin/pull/1517)
+17. [OpenIddict module] Add simulated user login implementation. [PR #1525](https://github.com/colinin/abp-next-admin/pull/1525)
+18. [OpenIddict module] Add simulated tenant user login implementation. [PR #1525](https://github.com/colinin/abp-next-admin/pull/1525)
+19. [Reverse proxy module] User configuration file rewrites reverse proxy server/address whitelist configuration.[PR #1532](https://github.com/colinin/abp-next-admin/pull/1532)
+20. [Identity Authentication Module] After the user password is changed, the user session will become invalid (the current session will not be affected when changing the password yourself). [PR #1543](https://github.com/colinin/abp-next-admin/pull/1543)
+21. [Multi-tenant UI module] Optimize the tenant selection pop-up component, and obtain the platform enterprise list as the selected tenant when the platform tenant relationship has been defined. [PR #1538](https://github.com/colinin/abp-next-admin/pull/1538)
+22. [Elasticsearch module] Add expression tree translation ES query function. [PR #1552](https://github.com/colinin/abp-next-admin/pull/1552)
+23. [System log module] Reconstruct system log list query to query through ES expression tree. [PR #1558](https://github.com/colinin/abp-next-admin/pull/1558)
+24. [Audit log module] Reconstruct the audit log list query to query through ES expression tree. [PR #1558](https://github.com/colinin/abp-next-admin/pull/1558)
 
-## 依赖项变更  
+## Dependency changes
 
-| 库名称                                       | 原版本    | 现版本 |
+| Library name | Original version | Current version |
 | -------------------------------------------- | --------- | ------ |
 | AlibabaCloud.SDK.Dingtalk					   |    	   | 2.2.50 |
 | BouncyCastle.Cryptography					   | 2.6.2     | 2.7.0  |
@@ -72,7 +72,7 @@
 
 
 
-## 数据库迁移
+## Database migration
 
 | Project Name             | Database Provider | Scripts                                        | EF Core Version |
 | ------------------------ | ----------------- | ---------------------------------------------- | --------------- |
@@ -80,7 +80,7 @@
 | services/BackendAdmin      | MySQL             | 20260626032421_Fix-MySql-Index-Key-Too-Lang-For-Resource-Permission-Grant		| 10.0.7          |
 
 
-## 数据库连接字符串
+## Database connection string
 
 | Module Name                   | ConnectionString Name        | Example(MySQL)                                               |
 | ----------------------------- | ---------------------------- | ------------------------------------------------------------ |

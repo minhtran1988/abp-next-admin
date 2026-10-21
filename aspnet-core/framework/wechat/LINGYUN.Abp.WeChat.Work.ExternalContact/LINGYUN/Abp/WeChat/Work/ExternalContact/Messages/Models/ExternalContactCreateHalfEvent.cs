@@ -5,18 +5,18 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 外部联系人免验证添加成员事件
+/// External contact adds member event without verification
 /// </summary>
 [EventName("external_contact_create_half")]
 public class ExternalContactCreateHalfEvent : ExternalContactChangeEvent
 {
     /// <summary>
-    /// 添加此用户的「联系我」方式配置的state参数，或在获客链接中指定的customer_channel参数，可用于识别添加此用户的渠道
+    /// Add the state parameter configured in this user's "Contact Me" method, or the customer_channel parameter specified in the customer acquisition link, which can be used to identify the channel for adding this user.
     /// </summary>
     [XmlElement("State")]
     public string State { get; set; } = default!;
     /// <summary>
-    /// 欢迎语code，可用于发送欢迎语
+    /// Welcome code, which can be used to send welcome messages
     /// </summary>
     [XmlElement("WelcomeCode")]
     public string WelcomeCode { get; set; } = default!;

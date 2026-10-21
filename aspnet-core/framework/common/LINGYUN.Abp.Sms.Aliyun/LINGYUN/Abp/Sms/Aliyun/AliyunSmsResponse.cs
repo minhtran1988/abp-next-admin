@@ -18,7 +18,7 @@ public class AliyunSmsResponse
 
     public static ILocalizableString GetErrorMessage(string code, string message)
     {
-        // TODO: 把前缀写入本地化文档里面?
+        // TODO: Write the prefix into the localized document?
         Check.NotNullOrWhiteSpace(code, nameof(code));
         switch (code)
         {

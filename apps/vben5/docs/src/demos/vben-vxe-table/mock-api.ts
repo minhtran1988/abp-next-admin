@@ -17,7 +17,7 @@ export function sleep(time = 1000) {
 }
 
 /**
- * 获取示例表格数据
+ * Get sample table data
  */
 async function getExampleTableApi(params: DemoTableApi.PageFetchParams) {
   return new Promise<{ items: any; total: number }>((resolve) => {

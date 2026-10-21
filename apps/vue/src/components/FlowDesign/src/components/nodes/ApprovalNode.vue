@@ -7,7 +7,7 @@
     @selected="$emit('selected')"
     @delNode="$emit('delNode')"
     @insertNode="(type) => $emit('insertNode', type)"
-    placeholder="请设置审批人"
+    placeholder="Please set the approver"
     header-bgc="#ff943e"
   >
     <template #headerIcon>
@@ -41,21 +41,21 @@
           config.assignedUser.forEach((org) => texts.push(org.name));
           return String(texts).replaceAll(',', '、');
         } else {
-          return '请指定审批人';
+          return 'Please specify the approver';
         }
       case 'SELF':
-        return '发起人自己';
+        return 'initiator himself';
       case 'SELF_SELECT':
-        return config.selfSelect.multiple ? '发起人自选多人' : '发起人自选一人';
+        return config.selfSelect.multiple ? 'The initiator selects multiple people' : 'The initiator selects one person';
       case 'FORM_USER':
         if (!config.formUser || config.formUser === '') {
-          return '表单内联系人（未选择）';
+          return 'Contact in the form (not selected)';
         } else {
           let text = getFormItemById(config.formUser);
           if (text && text.title) {
-            return `表单（${text.title}）内的人员`;
+            return `People in the form (${text.title})`;
           } else {
-            return '该表单已被移除😥';
+            return 'The form has been removed😥';
           }
         }
       case 'ROLE':
@@ -64,10 +64,10 @@
           config.role.forEach((org) => texts.push(org.name));
           return String(texts).replaceAll(',', '、');
         } else {
-          return '指定角色（未设置）';
+          return 'Specified role (not set)';
         }
       default:
-        return '未知设置项😥';
+        return 'Unknown setting item😥';
     }
   });
   const state = reactive({
@@ -94,8 +94,8 @@
     if (props.config.props.assignedUser.length > 0) {
       return true;
     } else {
-      state.errorInfo = '请指定审批人员';
-      err.push(`${props.config.name} 未指定审批人员`);
+      state.errorInfo = 'Please specify the approver';
+      err.push(`${props.config.name} No approver specified`);
       return false;
     }
   }
@@ -117,8 +117,8 @@
 
   function validate_ROLE(err: string[]) {
     if (props.config.props.role.length <= 0) {
-      state.errorInfo = '请指定负责审批的系统角色';
-      err.push(`${props.config.name} 未指定审批角色`);
+      state.errorInfo = 'Please specify the system role responsible for approval';
+      err.push(`${props.config.name} does not specify an approval role`);
       return false;
     }
     return true;
@@ -131,8 +131,8 @@
 
   function validate_FORM_USER(err: string[]) {
     if (props.config.props.formUser === '') {
-      state.errorInfo = '请指定表单中的人员组件';
-      err.push(`${props.config.name} 审批人为表单中人员，但未指定`);
+      state.errorInfo = 'Please specify the personnel component in the form';
+      err.push(`${props.config.name} The approver is the person in the form, but it is not specified`);
       return false;
     }
     return true;

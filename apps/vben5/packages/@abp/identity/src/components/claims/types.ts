@@ -8,22 +8,22 @@ import type {
 } from '../../types/claims';
 
 interface ClaimEditModalProps {
-  /** 新增声明api */
+  /** Add new declaration api */
   createApi: (input: IdentityClaimCreateDto) => Promise<void>;
-  /** 新增声明权限代码 */
+  /** Add new declaration permission code */
   createPolicy: string;
-  /** 删除声明api */
+  /** Delete declaration api */
   deleteApi: (input: IdentityClaimDeleteDto) => Promise<void>;
-  /** 删除声明权限代码 */
+  /** Delete declaration permission code */
   deletePolicy: string;
-  /** 更新声明api */
+  /** Update statement api */
   updateApi: (input: IdentityClaimUpdateDto) => Promise<void>;
-  /** 更新声明权限代码 */
+  /** Update statement permission code */
   updatePolicy: string;
 }
 
 interface ClaimModalProps extends ClaimEditModalProps {
-  /** 加载声明列表api */
+  /** Load declaration list api */
   getApi: () => Promise<ListResultDto<IdentityClaimDto>>;
 }
 

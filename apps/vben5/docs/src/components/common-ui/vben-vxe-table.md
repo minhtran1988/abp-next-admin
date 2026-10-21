@@ -2,29 +2,29 @@
 outline: deep
 ---
 
-# Vben Vxe Table 表格
+# Vben Vxe Table table
 
-框架提供的Table 列表组件基于 [vxe-table](https://vxetable.cn/v4/#/grid/api?apiKey=grid)，结合`Vben Form 表单`进行了二次封装。
+The Table list component provided by the framework is based on [vxe-table](https://vxetable.cn/v4/#/grid/api?apiKey=grid) and combined with `Vben Form` for secondary encapsulation.
 
-其中，表头的 **表单搜索** 部分采用了`Vben Form表单`，表格主体部分使用了`vxe-grid`组件，支持表格的分页、排序、筛选等功能。
+Among them, the **Form Search** part of the header uses `Vben Form`, and the main part of the form uses the `vxe-grid` component to support paging, sorting, filtering and other functions of the table.
 
-> 如果文档内没有参数说明，可以尝试在在线示例或者在 [vxe-grid 官方API 文档](https://vxetable.cn/v4/#/grid/api?apiKey=grid) 内寻找
+> If there is no parameter description in the document, you can try to find it in the online examples or [vxe-grid official API document](https://vxetable.cn/v4/#/grid/api?apiKey=grid)
 
-::: info 写在前面
+::: info is written in front
 
-如果你觉得现有组件的封装不够理想，或者不完全符合你的需求，大可以直接使用原生组件，亦或亲手封装一个适合的组件。框架提供的组件并非束缚，使用与否，完全取决于你的需求与自由。
+If you feel that the encapsulation of existing components is not ideal enough, or does not fully meet your needs, you can use native components directly, or encapsulate a suitable component yourself. The components provided by the framework are not binding. Whether to use them or not depends entirely on your needs and freedom.
 
 :::
 
-## 适配器
+## Adapter
 
-表格底层使用 [vxe-table](https://vxetable.cn/#/start/install) 进行实现，所以你可以使用 `vxe-table` 的所有功能。对于不同的 UI 框架，我们提供了适配器，以便更好的适配不同的 UI 框架。
+The bottom layer of the table is implemented using [vxe-table](https://vxetable.cn/#/start/install), so you can use all the functions of `vxe-table`. For different UI frameworks, we provide adapters to better adapt to different UI frameworks.
 
-### 适配器说明
+### Adapter Description
 
-每个应用都可以自己配置`vxe-table`的适配器，你可以根据自己的需求。下面是一个简单的配置示例：
+Each application can configure its own `vxe-table` adapter according to your own needs. Here is a simple configuration example:
 
-::: details vxe-table 表格适配器
+::: details vxe-table table adapter
 
 ```ts
 import { h } from 'vue';
@@ -46,7 +46,7 @@ setupVbenVxeTable({
         },
         minHeight: 180,
         formConfig: {
-          // 全局禁用vxe-table的表单配置，使用formOptions
+          // Globally disable vxe-table form configuration, use formOptions
           enabled: false,
         },
         proxyConfig: {
@@ -65,7 +65,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 表格配置项可以用 cellRender: { name: 'CellImage' },
+    // Table configuration items can be used cellRender: { name: 'CellImage' },
     vxeUI.renderer.add('CellImage', {
       renderTableDefault(_renderOpts, params) {
         const { column, row } = params;
@@ -73,7 +73,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 表格配置项可以用 cellRender: { name: 'CellLink' },
+    // Table configuration items can be used cellRender: { name: 'CellLink' },
     vxeUI.renderer.add('CellLink', {
       renderTableDefault(renderOpts) {
         const { props } = renderOpts;
@@ -85,7 +85,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 这里可以自行扩展 vxe-table 的全局配置，比如自定义格式化
+    // Here you can extend the global configuration of vxe-table by yourself, such as custom formatting
     // vxeUI.formats.add
   },
   useVbenForm,
@@ -98,55 +98,55 @@ export type * from '@vben/plugins/vxe-table';
 
 :::
 
-## 基础表格
+## Basic table
 
-使用 `useVbenVxeGrid` 创建最基础的表格。
+Use `useVbenVxeGrid` to create the most basic grid.
 
 <DemoPreview dir="demos/vben-vxe-table/basic" />
 
-## 远程加载
+## Remote loading
 
-通过指定 `proxyConfig.ajax` 的 `query` 方法，可以实现远程加载数据。
+Remote loading of data can be achieved by specifying the `query` method of `proxyConfig.ajax`.
 
 <DemoPreview dir="demos/vben-vxe-table/remote" />
 
-## 树形表格
+## Tree table
 
-树形表格的数据源为扁平结构，可以指定`treeConfig`配置项，实现树形表格。
+The data source of the tree table is a flat structure, and you can specify the `treeConfig` configuration item to implement the tree table.
 
 ```typescript
 treeConfig: {
-  transform: true, // 指定表格为树形表格
-  parentField: 'parentId', // 父节点字段名
-  rowField: 'id', // 行数据字段名
+  transform: true, // Specify the table as a tree table
+  parentField: 'parentId', // Parent node field name
+  rowField: 'id', // row data field name
 },
 ```
 
 <DemoPreview dir="demos/vben-vxe-table/tree" />
 
-## 固定表头/列
+## Fixed header/column
 
-列固定可选参数： `'left' | 'right' | '' | null`
+Column fixed optional parameters: `'left' | 'right' | '' | null`
 
 <DemoPreview dir="demos/vben-vxe-table/fixed" />
 
-## 自定义单元格
+## Custom cells
 
-自定义单元格有两种实现方式
+There are two ways to implement custom cells
 
-- 通过 `slots` 插槽
-- 通过 `customCell` 自定义单元格，但是要先添加渲染器
+- via `slots` slots
+- Customize cells through `customCell`, but add a renderer first
 
 ```typescript
-// 表格配置项可以用 cellRender: { name: 'CellImage' },
+// Table configuration items can be used cellRender: { name: 'CellImage' },
 vxeUI.renderer.add('CellImage', {
   renderDefault(_renderOpts, params) {
     const { column, row } = params;
-    return h(Image, { src: row[column.field] } as any); // 注意此处的Image 组件，来源于Antd，需要自行引入,否则会使用js的Image类
+    return h(Image, { src: row[column.field] } as any); // Note that the Image component here comes from Antd and needs to be introduced by yourself, otherwise the js Image class will be used
   },
 });
 
-// 表格配置项可以用 cellRender: { name: 'CellLink' },
+// Table configuration items can be used cellRender: { name: 'CellLink' },
 vxeUI.renderer.add('CellLink', {
   renderDefault(renderOpts) {
     const { props } = renderOpts;
@@ -161,67 +161,67 @@ vxeUI.renderer.add('CellLink', {
 
 <DemoPreview dir="demos/vben-vxe-table/custom-cell" />
 
-## 搜索表单
+## Search form
 
-**表单搜索** 部分采用了`Vben Form 表单`，参考 [Vben Form 表单文档](/components/common-ui/vben-form)。
+**Form search** part uses `Vben Form form`, refer to [Vben Form form document](/components/common-ui/vben-form).
 
-当启用了表单搜索时，可以在toolbarConfig中配置`search`为`true`来让表格在工具栏区域显示一个搜索表单控制按钮。表格的所有以`form-`开头的命名插槽都会被传递给搜索表单。
+When form search is enabled, you can configure `search` to `true` in toolbarConfig to have the form display a search form control button in the toolbar area. All named slots of the table starting with `form-` will be passed to the search form.
 
-### 定制分隔条
+### Customized dividers
 
-当你启用表单搜索时，在表单和表格之间会显示一个分隔条。这个分隔条使用了默认的组件背景色，并且横向贯穿整个Vben Vxe Table在视觉上融入了页面的默认背景中。如果你在Vben Vxe Table的外层包裹了一个不同背景色的容器（如将其放在一个Card内），默认的表单和表格之间的分隔条可能就显得格格不入了，下面的代码演示了如何定制这个分隔条。
+When you enable form search, a separator bar appears between the form and table. This divider uses the default component background color, and runs horizontally across the entire Vben Vxe Table to visually integrate into the default background of the page. If you wrap a container with a different background color outside the Vben Vxe Table (such as placing it in a Card), the default separator bar between the form and the table may appear out of place. The following code demonstrates how to customize this separator bar.
 
 ```ts
 const [Grid] = useVbenVxeGrid({
   formOptions: {},
   gridOptions: {},
-  // 完全移除分隔条
+  // Remove the separator bar completely
   separator: false,
-  // 你也可以使用下面的代码来移除分隔条
+  // You can also use the following code to remove the separator bar
   // separator: { show: false },
-  // 或者使用下面的代码来改变分隔条的颜色
+  // Or use the following code to change the color of the separator bar
   // separator: { backgroundColor: 'rgba(100,100,0,0.5)' },
 });
 ```
 
 <DemoPreview dir="demos/vben-vxe-table/form" />
 
-## 单元格编辑
+## Cell editing
 
-通过指定`editConfig.mode`为`cell`，可以实现单元格编辑。
+Cell editing can be achieved by specifying `editConfig.mode` as `cell`.
 
 <DemoPreview dir="demos/vben-vxe-table/edit-cell" />
 
-## 行编辑
+## Line editing
 
-通过指定`editConfig.mode`为`row`，可以实现行编辑。
+Row editing can be achieved by specifying `editConfig.mode` as `row`.
 
 <DemoPreview dir="demos/vben-vxe-table/edit-row" />
 
-## 虚拟滚动
+## Virtual scrolling
 
-通过 scroll-y.enabled 与 scroll-y.gt 组合开启，其中 enabled 为总开关，gt 是指当总行数大于指定行数时自动开启。
+It is enabled through the combination of scroll-y.enabled and scroll-y.gt, where enabled is the total switch, and gt means that it is automatically enabled when the total number of rows is greater than the specified number of rows.
 
-> 参考 [vxe-table 官方文档 - 虚拟滚动](https://vxetable.cn/v4/#/component/grid/scroll/vertical)。
+> Refer to [vxe-table official documentation - virtual scrolling](https://vxetable.cn/v4/#/component/grid/scroll/vertical).
 
 <DemoPreview dir="demos/vben-vxe-table/virtual" />
 
 ## API
 
-`useVbenVxeGrid` 返回一个数组，第一个元素是表格组件，第二个元素是表格的方法。
+`useVbenVxeGrid` returns an array, the first element is the table component and the second element is the table method.
 
 ```vue
 <script setup lang="ts">
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 
-// Grid 为表格组件
-// gridApi 为表格的方法
+// Grid is a table component
+// gridApi is the method of table
 const [Grid, gridApi] = useVbenVxeGrid({
   gridOptions: {},
   formOptions: {},
   gridEvents: {},
-  // 属性
-  // 事件
+  //properties
+  // event
 });
 </script>
 
@@ -232,45 +232,45 @@ const [Grid, gridApi] = useVbenVxeGrid({
 
 ### GridApi
 
-useVbenVxeGrid 返回的第二个参数，是一个对象，包含了一些表单的方法。
+The second parameter returned by useVbenVxeGrid is an object that contains some form methods.
 
-| 方法名 | 描述 | 类型 | 说明 |
+| Method name | Description | Type | Description |
 | --- | --- | --- | --- |
-| setLoading | 设置loading状态 | `(loading)=>void` | - |
-| setGridOptions | 设置vxe-table grid组件参数 | `(options: Partial<VxeGridProps['gridOptions'])=>void` | - |
-| reload | 重载表格，会进行初始化 | `(params:any)=>void` | - |
-| query | 重载表格，会保留当前分页 | `(params:any)=>void` | - |
-| grid | vxe-table grid实例 | `VxeGridInstance` | - |
-| formApi | vbenForm api实例 | `FormApi` | - |
-| toggleSearchForm | 设置搜索表单显示状态 | `(show?: boolean)=>boolean` | 当省略参数时，则将表单在显示和隐藏两种状态之间切换 |
+| setLoading | Set loading status | `(loading)=>void` | - |
+| setGridOptions | Set vxe-table grid component parameters | `(options: Partial<VxeGridProps['gridOptions'])=>void` | - |
+| reload | Reload the table and initialize it | `(params:any)=>void` | - |
+| query | Overloading the table will retain the current paging | `(params:any)=>void` | - |
+| grid | vxe-table grid instance | `VxeGridInstance` | - |
+| formApi | vbenForm api instance | `FormApi` | - |
+| toggleSearchForm | Set the search form display state | `(show?: boolean)=>boolean` | When the parameter is omitted, the form will be switched between showing and hiding states |
 
 ## Props
 
-所有属性都可以传入 `useVbenVxeGrid` 的第一个参数中。
+All properties can be passed into the first parameter of `useVbenVxeGrid`.
 
-| 属性名 | 描述 | 类型 | 版本要求 |
+| Attribute name | Description | Type | Version requirements |
 | --- | --- | --- | --- |
-| tableTitle | 表格标题 | `string` | - |
-| tableTitleHelp | 表格标题帮助信息 | `string` | - |
-| gridClass | grid组件的class | `string` | - |
-| gridOptions | grid组件的参数 | `VxeTableGridProps` | - |
-| gridEvents | grid组件的触发的事件 | `VxeGridListeners` | - |
-| formOptions | 表单参数 | `VbenFormProps` | - |
-| showSearchForm | 是否显示搜索表单 | `boolean` | - |
-| separator | 搜索表单与表格主体之间的分隔条 | `boolean\|SeparatorOptions` | >5.5.4 |
+| tableTitle | table title | `string` | - |
+| tableTitleHelp | Table title help information | `string` | - |
+| gridClass | The class of the grid component | `string` | - |
+| gridOptions | Parameters of grid component | `VxeTableGridProps` | - |
+| gridEvents | Events triggered by the grid component | `VxeGridListeners` | - |
+| formOptions | Form parameters | `VbenFormProps` | - |
+| showSearchForm | Whether to display the search form | `boolean` | - |
+| separator | The separator bar between the search form and the table body | `boolean\|SeparatorOptions` | >5.5.4 |
 
 ## Slots
 
-大部分插槽的说明请参考 [vxe-table 官方文档](https://vxetable.cn/v4/#/grid/api)，但工具栏部分由于做了一些定制封装，需使用以下插槽定制表格的工具栏：
+For descriptions of most slots, please refer to [vxe-table official documentation](https://vxetable.cn/v4/#/grid/api). However, due to some custom packaging of the toolbar part, the following slots need to be used to customize the toolbar of the table:
 
-| 插槽名          | 描述                                         |
+| slot name | description |
 | --------------- | -------------------------------------------- |
-| toolbar-actions | 工具栏左侧部分（表格标题附近）               |
-| toolbar-tools   | 工具栏右侧部分（vxeTable原生工具按钮的左侧） |
-| table-title     | 表格标题插槽                                 |
+| toolbar-actions | The left part of the toolbar (near the table title) |
+| toolbar-tools | The right part of the toolbar (the left side of the vxeTable native tool button) |
+| table-title | Table title slot |
 
-::: info 搜索表单的插槽
+:::info Slot for search form
 
-对于使用了搜索表单的表格来说，所有以`form-`开头的命名插槽都会传递给表单。
+For forms using search forms, all named slots starting with `form-` will be passed to the form.
 
 :::

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Identity.Jobs;
 /// <summary>
-/// 用户会话清理作业
+/// User session cleanup job
 /// </summary>
 /// <remarks>
-/// 此作业启用时,建议禁用 <see cref="IdentitySessionCleanupOptions.IsCleanupEnabled"/>
+/// When this job is enabled, it is recommended to disable <see cref="IdentitySessionCleanupOptions.IsCleanupEnabled"/>
 /// </remarks>
 public class InactiveIdentitySessionCleanupJob : IJobRunnable
 {
@@ -29,7 +29,7 @@ public class InactiveIdentitySessionCleanupJob : IJobRunnable
 
     #endregion
     /// <summary>
-    /// 不活跃会话保持时长, 单位天
+    /// How long to keep inactive sessions, in days
     /// </summary>
     public const string PropertySessionInactiveDays = "SessionInactiveDays";
 

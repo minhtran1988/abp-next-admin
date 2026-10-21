@@ -1,7 +1,7 @@
 <template>
   <div>
     <Form layout="vertical">
-      <FormItem label="⚙ 选择审批对象" name="text" class="user-type">
+      <FormItem label="⚙ Select approval objects" name="text" class="user-type">
         <RadioGroup v-model:value="nodeProps.assignedType">
           <Radio v-for="t in state.approvalTypes" :value="t.type" :key="t.type">{{ t.name }}</Radio>
         </RadioGroup>
@@ -10,14 +10,14 @@
             <template #icon>
               <PlusOutlined />
             </template>
-            选择人员
+            Select people
           </Button>
           <OrgItems v-model:value="nodeProps.assignedUser" />
         </div>
         <div v-else-if="nodeProps.assignedType === 'SELF_SELECT'">
           <RadioGroup size="small" v-model:value="nodeProps.selfSelect.multiple">
-            <RadioButton :value="false">自选一个人</RadioButton>
-            <RadioButton :value="true">自选多个人</RadioButton>
+            <RadioButton :value="false">Choose a person</RadioButton>
+            <RadioButton :value="true">Select multiple people</RadioButton>
           </RadioGroup>
         </div>
         <div v-else-if="nodeProps.assignedType === 'ROLE'">
@@ -25,34 +25,34 @@
             <template #icon>
               <PlusOutlined />
             </template>
-            选择系统角色
+            Select system role
           </Button>
           <OrgItems v-model:value="nodeProps.role" />
         </div>
         <div v-else-if="nodeProps.assignedType === 'FORM_USER'">
-          <FormItem label="选择表单联系人项" name="text" class="approve-end">
+          <FormItem label="Select form contact item" name="text" class="approve-end">
             <Select
               style="width: 80%"
               size="small"
               v-model:value="nodeProps.formUser"
-              placeholder="请选择包含联系人的表单项"
+              placeholder="Please select the form item containing the contact"
             >
               <SelectOption v-for="op in forms" :value="op.id">{{ op.title }}</SelectOption>
             </Select>
           </FormItem>
         </div>
         <div v-else>
-          <span class="item-desc">发起人自己作为审批人进行审批</span>
+          <span class="item-desc">The initiator acts as the approver himself</span>
         </div>
       </FormItem>
 
       <Divider></Divider>
-      <FormItem label="👤 审批人为空时" name="text" class="line-mode">
+      <FormItem label="👤 When the approver is empty" name="text" class="line-mode">
         <RadioGroup v-model:value="nodeProps.nobody.handler">
-          <Radio value="TO_PASS">自动通过</Radio>
-          <Radio value="TO_REFUSE">自动驳回</Radio>
-          <Radio value="TO_ADMIN">转交审批管理员</Radio>
-          <Radio value="TO_USER">转交到指定人员</Radio>
+          <Radio value="TO_PASS">Auto pass</Radio>
+          <Radio value="TO_REFUSE">Automatically reject</Radio>
+          <Radio value="TO_ADMIN">Transfer to approval administrator</Radio>
+          <Radio value="TO_USER">Forward to designated person</Radio>
         </RadioGroup>
 
         <div style="margin-top: 10px" v-if="nodeProps.nobody.handler === 'TO_USER'">
@@ -60,7 +60,7 @@
             <template #icon>
               <PlusOutlined />
             </template>
-            选择人员</Button
+            Select people</Button
           >
           <OrgItems v-model:value="nodeProps.assignedUser" />
         </div>
@@ -68,36 +68,36 @@
 
       <div v-if="showMode">
         <Divider />
-        <FormItem label="👩‍👦‍👦 多人审批时审批方式" name="text" class="approve-mode">
+        <FormItem label="👩‍👦‍👦 Approval mode when multiple people approve" name="text" class="approve-mode">
           <RadioGroup v-model:value="nodeProps.mode">
-            <Radio value="NEXT">会签 （按选择顺序审批，每个人必须同意）</Radio>
-            <Radio value="AND">会签（可同时审批，每个人必须同意）</Radio>
-            <Radio value="OR">或签（有一人同意即可）</Radio>
+            <Radio value="NEXT">Countersign (approval in order of selection, everyone must agree)</Radio>
+            <Radio value="AND">Countersign (can be approved at the same time, everyone must agree)</Radio>
+            <Radio value="OR">Or sign (only one person agrees)</Radio>
           </RadioGroup>
         </FormItem>
       </div>
 
-      <Divider>高级设置</Divider>
-      <FormItem label="✍ 审批同意时是否需要签字" name="text">
+      <Divider>Advanced Settings</Divider>
+      <FormItem label="✍ Whether a signature is required for approval" name="text">
         <Switch
-          checked-children="需要"
-          un-checked-children="不用"
+          checked-children="required"
+          un-checked-children="No"
           v-model:checked="nodeProps.sign"
         ></Switch>
         <Tooltip
           class="item"
           effect="dark"
-          content="如果全局设置了需要签字，则此处不生效"
+          content="If signature is required globally, it will not take effect here"
           placement="top"
         >
           <QuestionOutlined style="margin-left: 10px; font-size: medium; color: #b0b0b1" />
         </Tooltip>
       </FormItem>
-      <FormItem label="⏱ 审批期限（为 0 则不生效）" name="timeLimit">
+      <FormItem label="⏱ Approval period (if it is 0, it will not take effect)" name="timeLimit">
         <InputGroup style="width: 180px" compact>
           <Input
             style="width: 100px"
-            placeholder="时长"
+            placeholder="duration"
             size="small"
             type="number"
             v-model:value="nodeProps.timeLimit.timeout.value"
@@ -106,33 +106,33 @@
             style="width: 75px"
             v-model:value="nodeProps.timeLimit.timeout.unit"
             size="small"
-            placeholder="请选择"
+            placeholder="Please select"
           >
-            <SelectOption value="D">天</SelectOption>
-            <SelectOption value="H">小时</SelectOption>
-            <SelectOption value="M">分钟</SelectOption>
+            <SelectOption value="D">Days</SelectOption>
+            <SelectOption value="H">Hour</SelectOption>
+            <SelectOption value="M">Minutes</SelectOption>
           </Select>
         </InputGroup>
       </FormItem>
       <FormItem
-        label="审批期限超时后执行"
+        label="Executed after the approval period expires"
         name="level"
         v-if="nodeProps.timeLimit.timeout.value > 0"
       >
         <RadioGroup v-model:value="nodeProps.timeLimit.handler.type">
-          <Radio value="PASS">自动通过</Radio>
-          <Radio value="REFUSE">自动驳回</Radio>
-          <Radio value="NOTIFY">发送提醒</Radio>
+          <Radio value="PASS">Auto pass</Radio>
+          <Radio value="REFUSE">Automatically reject</Radio>
+          <Radio value="NOTIFY">Send reminder</Radio>
         </RadioGroup>
         <div v-if="nodeProps.timeLimit.handler.type === 'NOTIFY'">
-          <div style="color: #409eef; font-size: small">默认提醒当前审批人</div>
+          <div style="color: #409eef; font-size: small">Remind the current approver by default</div>
           <Switch
-            checked-children="一次"
-            un-checked-children="循环"
+            checked-children="once"
+            un-checked-children="loop"
             v-model:checked="nodeProps.timeLimit.handler.notify.once"
           ></Switch>
           <span style="margin-left: 20px" v-if="!nodeProps.timeLimit.handler.notify.once">
-            每隔
+            every
             <InputNumber
               :min="0"
               :max="10000"
@@ -140,21 +140,21 @@
               size="small"
               v-model:value="nodeProps.timeLimit.handler.notify.hour"
             />
-            小时提醒一次
+            Reminder once every hour
           </span>
         </div>
       </FormItem>
-      <FormItem label="🙅‍ 如果审批被驳回 👇">
+      <FormItem label="🙅‍ If approval is rejected 👇">
         <RadioGroup v-model:value="nodeProps.refuse.type">
-          <Radio value="TO_END">直接结束流程</Radio>
-          <Radio value="TO_BEFORE">驳回到上级审批节点</Radio>
-          <Radio value="TO_NODE">驳回到指定节点</Radio>
+          <Radio value="TO_END">End the process directly</Radio>
+          <Radio value="TO_BEFORE">Reject to superior approval node</Radio>
+          <Radio value="TO_NODE">Reject to specified node</Radio>
         </RadioGroup>
         <div v-if="nodeProps.refuse.type === 'TO_NODE'">
-          <span>指定节点:</span>
+          <span>Specify node:</span>
           <Select
             style="margin-left: 10px; width: 150px"
-            placeholder="选择跳转步骤"
+            placeholder="Select jump step"
             size="small"
             v-model:value="nodeProps.refuse.target"
           >
@@ -232,9 +232,9 @@
   const pickerTitle = computed(() => {
     switch (state.orgPickerType) {
       case 'user':
-        return '请选择人员';
+        return 'Please select a person';
       case 'role':
-        return '请选择系统角色';
+        return 'Please select a system role';
       default:
         return undefined;
     }
@@ -272,11 +272,11 @@
     orgPickerSelected: [] as any[],
     orgPickerType: 'user',
     approvalTypes: [
-      { name: '指定人员', type: 'ASSIGN_USER' },
-      { name: '发起人自选', type: 'SELF_SELECT' },
-      { name: '角色', type: 'ROLE' },
-      { name: '发起人自己', type: 'SELF' },
-      { name: '表单内联系人', type: 'FORM_USER' },
+      { name: 'Specified Person', type: 'ASSIGN_USER' },
+      { name: 'Initiator choice', type: 'SELF_SELECT' },
+      { name: 'role', type: 'ROLE' },
+      { name: 'initiator himself', type: 'SELF' },
+      { name: 'Contact in the form', type: 'FORM_USER' },
     ],
   });
 

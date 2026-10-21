@@ -3,24 +3,24 @@ using Volo.Abp.Modularity;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 通知渠道名
+/// Enterprise WeChat Webhook notification channel name
 /// </summary>
 /// <remarks>
 /// <para>
-/// Webhook 的**发布**仍走 <c>WebhookNotificationPublishProvider</c>(渠道名 <c>Webhook</c>),
-/// 本常量只作为**载荷注册表的键**使用:
-/// 企业微信应用消息(渠道名 <c>WeChat.Work</c>)与 Webhook 是两种传输方式、
-/// 两套载体模型, 因此必须使用不同的注册表键, 避免载荷被对方误解析。
+/// The **publish** of Webhook still goes through <c>WebhookNotificationPublishProvider</c> (channel name <c>Webhook</c>),
+/// This constant is only used as a **payload registry key**:
+/// Enterprise WeChat application messages (channel name <c>WeChat.Work</c>) and Webhook are two transmission methods.
+/// There are two sets of carrier models, so different registry keys must be used to avoid misparsing the payload by the other party.
 /// </para>
 /// <para>
-/// 生产者侧: 通知定义中仍声明 <c>ProviderName</c> 为 <c>"Webhook"</c> 才会被发布,
-/// 载荷用本渠道的数据键(前缀 <c>wx-work-hook:</c>)写入。
+/// Producer side: The notification definition will only be published if <c>ProviderName</c> is still declared as <c>"Webhook"</c>.
+/// The payload is written using the data key of this channel (prefix <c>wx-work-hook:</c>).
 /// </para>
 /// </remarks>
 public static class WeChatWorkWebhookNotificationProvider
 {
     /// <summary>
-    /// 本渠道的载荷注册表键
+    /// Payload registry key for this channel
     /// </summary>
     public const string ProviderName = "WeChat.Work.Webhook";
 }

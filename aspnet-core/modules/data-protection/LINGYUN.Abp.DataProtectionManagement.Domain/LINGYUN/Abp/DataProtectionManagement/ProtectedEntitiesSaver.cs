@@ -84,7 +84,7 @@ public class ProtectedEntitiesSaver : IProtectedEntitiesSaver, ITransientDepende
                     var typeDisplayName = entityType.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
                     if (typeDisplayName.IsNullOrWhiteSpace())
                     {
-                        // 类型多语言表现形式为：LocalizationResource.TypeName
+                        // The multi-language expression of type is: LocalizationResource.TypeName
                         var typeDisplayNameString = LocalizableString.Create(entityType.Name, resourceName);
                         typeDisplayName = LocalizableStringSerializer.Serialize(typeDisplayNameString);
                     }
@@ -105,7 +105,7 @@ public class ProtectedEntitiesSaver : IProtectedEntitiesSaver, ITransientDepende
                         var propDisplayName = typeProperty.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
                         if (propDisplayName.IsNullOrWhiteSpace())
                         {
-                            // 属性多语言表现形式为：LocalizationResource.DisplayName:PropertyName
+                            // The multilingual expression form of the property is: LocalizationResource.DisplayName:PropertyName
                             var propDisplayNameString = LocalizableString.Create($"DisplayName:{typeProperty.Name}", resourceName);
                             propDisplayName = LocalizableStringSerializer.Serialize(propDisplayNameString);
                         }
@@ -132,7 +132,7 @@ public class ProtectedEntitiesSaver : IProtectedEntitiesSaver, ITransientDepende
                                 var enumValue = enumValues[index];
                                 var localizerEnumKey = $"{propertyInfo.Name}:{enumName}";
 
-                                // 枚举多语言表现形式为：LocalizationResource.EnumName:EnumValue
+                                // The multi-language expression of the enumeration is: LocalizationResource.EnumName:EnumValue
                                 var enumDisplayNameString = LocalizableString.Create($"{enumType.Name}:{enumName}", resourceName);
                                 var enumDisplayName = LocalizableStringSerializer.Serialize(enumDisplayNameString);
 
@@ -164,7 +164,7 @@ public class ProtectedEntitiesSaver : IProtectedEntitiesSaver, ITransientDepende
                             var propDisplayName = typeProperty.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
                             if (propDisplayName.IsNullOrWhiteSpace())
                             {
-                                // 属性多语言表现形式为：LocalizationResource.DisplayName:PropertyName
+                                // The multilingual expression form of the property is: LocalizationResource.DisplayName:PropertyName
                                 var propDisplayNameString = LocalizableString.Create($"DisplayName:{typeProperty.Name}", resourceName);
                                 propDisplayName = LocalizableStringSerializer.Serialize(propDisplayNameString);
                             }
@@ -189,7 +189,7 @@ public class ProtectedEntitiesSaver : IProtectedEntitiesSaver, ITransientDepende
                                     var enumValue = enumValues[index];
                                     var localizerEnumKey = $"{propertyInfo.Name}:{enumName}";
 
-                                    // 枚举多语言表现形式为：LocalizationResource.EnumName:EnumValue
+                                    // The multi-language expression of the enumeration is: LocalizationResource.EnumName:EnumValue
                                     var enumDisplayNameString = LocalizableString.Create($"{enumType.Name}:{enumName}", resourceName);
                                     var enumDisplayName = LocalizableStringSerializer.Serialize(enumDisplayNameString);
 

@@ -4,145 +4,145 @@ using System.Xml.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 成员变更事件
+/// Member change event
 /// </summary>
 public abstract class UserChangeEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 改变类型
+    /// Change type
     /// </summary>
     [XmlElement("ChangeType")]
     public string ChangeType { get; set; } = default!;
     /// <summary>
-    /// 成员UserID
+    /// Member UserID
     /// </summary>
     [XmlElement("UserID")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 成员名称;代开发自建应用需要管理员授权才返回
+    /// Member name; Self-built applications developed on behalf of others require administrator authorization before returning.
     /// </summary>
     [XmlElement("Name")]
     public string? Name { get; set; }
     /// <summary>
-    /// 成员部门列表，仅返回该应用有查看权限的部门id
+    /// Member department list, only returns the department IDs that the application has viewing permissions for
     /// </summary>
     [XmlElement("Department")]
     public string? Department { get; set; }
     /// <summary>
-    /// 主部门
+    /// Main department
     /// </summary>
     [XmlElement("MainDepartment")]
     public string MainDepartment { get; set; } = default!;
     /// <summary>
-    /// 表示所在部门是否为部门负责人，
-    /// 0-否，
-    /// 1-是，
-    /// 顺序与Department字段的部门逐一对应。
-    /// 第三方通讯录应用或者授权了“组织架构信息-应用可获取企业的部门组织架构信息-部门负责人”权限的第三方应用和代开发应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Indicates whether the department is the head of the department,
+    /// 0-no,
+    /// 1-Yes,
+    /// The order corresponds to the departments in the Department field one by one.
+    /// Third-party address book applications or third-party applications and agent-developed applications authorized with the "Organizational Structure Information-Application can obtain the enterprise's departmental organizational structure information-Department Head" permission;
+    /// For members not created by third parties, third-party address book applications cannot obtain them;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("IsLeaderInDept")]
     public string IsLeaderInDept { get; set; } = default!;
     /// <summary>
-    /// 直属上级UserID，最多1个。
-    /// 第三方通讯录应用或者授权了“组织架构信息-应用可获取可见范围内成员组织架构信息-直属上级”权限的第三方应用和代开发应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Directly subordinate UserID, up to 1.
+    /// It can be obtained by third-party address book applications or third-party applications and agent-developed applications authorized with the "Organizational Structure Information - Applications can obtain member organizational structure information within the visible range - Direct superiors" permission;
+    /// For members not created by third parties, third-party address book applications cannot obtain them;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("DirectLeader")]
     public string DirectLeader { get; set; } = default!;
     /// <summary>
-    /// 职位信息。
-    /// 长度为0~64个字节;代开发自建应用需要管理员授权才返回。
-    /// 上游共享的应用不返回该字段
+    /// Position information.
+    /// The length is 0~64 bytes; self-developed applications require administrator authorization before returning.
+    /// Upstream shared applications do not return this field
     /// </summary>
     [XmlElement("Position")]
     public string? Position { get; set; }
     /// <summary>
-    /// 手机号码，代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Mobile phone number. To develop a self-built application requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("Mobile")]
     public string? Mobile { get; set; }
     /// <summary>
-    /// 性别。
-    /// 0表示未定义，
-    /// 1表示男性，
-    /// 2表示女性。
-    /// 代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段。
-    /// 注：不可获取指返回值0
+    /// Gender.
+    /// 0 means undefined,
+    /// 1 means male,
+    /// 2 means female.
+    /// Developing self-built applications requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
+    /// Note: Unavailable means return value 0
     /// </summary>
     [XmlElement("Gender")]
     public byte Gender { get; set; }
     /// <summary>
-    /// 邮箱，
-    /// 代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Email,
+    /// Developing self-built applications requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("Email")]
     public string? Email { get; set; }
     /// <summary>
-    /// 企业邮箱，
-    /// 代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Corporate email,
+    /// Developing self-built applications requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("BizMail")]
     public string? BizMail { get; set; }
     /// <summary>
-    /// 激活状态：
-    /// 1=已激活 
-    /// 2=已禁用 
-    /// 4=未激活  已激活代表已激活企业微信或已关注微信插件（原企业号）
-    /// 5=成员退出
+    /// Activation status:
+    /// 1=Activated
+    /// 2=Disabled
+    /// 4=Inactive. Activated means that the enterprise WeChat has been activated or the WeChat plug-in has been followed (original enterprise account)
+    /// 5=Member exits
     /// </summary>
     [XmlElement("Status")]
     public byte Status { get; set; }
     /// <summary>
-    /// 头像url。 
-    /// 注：如果要获取小图将url最后的”/0”改成”/100”即可。
-    /// 代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// Avatar url.
+    /// Note: If you want to get the thumbnail, just change the "/0" at the end of the URL to "/100".
+    /// Developing self-built applications requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("Avatar")]
     public string? Avatar { get; set; }
     /// <summary>
-    /// 成员别名。
-    /// 上游共享的应用不返回该字段
+    /// Member alias.
+    /// Upstream shared applications do not return this field
     /// </summary>
     [XmlElement("Alias")]
     public string? Alias { get; set; }
     /// <summary>
-    /// 座机;
-    /// 代开发自建应用需要管理员授权才返回。
-    /// 上游共享的应用不返回该字段
+    /// Landline;
+    /// Self-developed applications require administrator authorization before returning.
+    /// Upstream shared applications do not return this field
     /// </summary>
     [XmlElement("Telephone")]
     public string? Telephone { get; set; }
     /// <summary>
-    /// 地址。
-    /// 代开发自建应用需要管理员授权且成员oauth2授权获取；
-    /// 第三方仅通讯录应用可获取；
-    /// 对于非第三方创建的成员，第三方通讯录应用也不可获取；
-    /// 上游企业不可获取下游企业成员该字段
+    /// address.
+    /// Developing self-built applications requires administrator authorization and member oauth2 authorization;
+    /// Third-party only address book applications can obtain it;
+    /// For members not created by third parties, third-party address book applications are not available;
+    /// Upstream companies cannot obtain this field of downstream company members.
     /// </summary>
     [XmlElement("Address")]
     public string? Address { get; set; }
     /// <summary>
-    /// 扩展属性;
-    /// 代开发自建应用需要管理员授权才返回。
-    /// 上游共享的应用不返回该字段
+    /// Extended attributes;
+    /// Self-developed applications require administrator authorization before returning.
+    /// Upstream shared applications do not return this field
     /// </summary>
     [XmlArray("ExtAttr")]
     public MemberExtendAttribute? ExtendAttribute { get; set; }

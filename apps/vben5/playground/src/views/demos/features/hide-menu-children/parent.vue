@@ -4,13 +4,13 @@ import { Fallback } from '@vben/common-ui';
 
 <template>
   <Fallback
-    :description="`当前路由：${String($route.name)}，子菜单不可见`"
+    :description="`Current route: ${String($route.name)}, submenu is not visible`"
     status="coming-soon"
-    title="隐藏子菜单"
+    title="Hide submenu"
   >
     <template #action>
       <RouterLink to="/demos/features/hide-menu-children/children">
-        打开子路由
+        Open subroute
       </RouterLink>
     </template>
   </Fallback>

@@ -5,89 +5,89 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Tags;
 /// <summary>
-/// 标签管理接口
+/// Tag management interface
 /// </summary>
 public interface IWeChatWorkTagProvider
 {
     /// <summary>
-    /// 创建标签
+    /// Create tag
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90210"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90210"/>
     /// </remarks>
-    /// <param name="request">创建标签请求参数</param>
+    /// <param name="request">Create tag request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>创建标签响应参数</returns>
+    /// <returns>Create tag response parameters</returns>
     Task<WeChatWorkTagCreateResponse> CreateAsync(
         WeChatWorkTagCreateRequest request, 
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 更新标签名字
+    /// Update tag name
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90211"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90211"/>
     /// </remarks>
-    /// <param name="request">更新标签名字请求参数</param>
+    /// <param name="request">Update tag name request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>更新标签名字响应参数</returns>
+    /// <returns>Update tag name response parameters</returns>
     Task<WeChatWorkResponse> UpdateAsync(
         WeChatWorkTagUpdateRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 删除标签
+    /// Delete tag
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90212"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90212"/>
     /// </remarks>
-    /// <param name="request">删除标签请求参数</param>
+    /// <param name="request">Delete tag request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>删除标签响应参数</returns>
+    /// <returns>Delete tag response parameters</returns>
     Task<WeChatWorkResponse> DeleteAsync(
         WeChatWorkGetTagRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取标签成员
+    /// Get tag members
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90213"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90213"/>
     /// </remarks>
-    /// <param name="request">获取标签成员请求参数</param>
+    /// <param name="request">Get tag member request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>获取标签成员响应参数</returns>
+    /// <returns>Get tag member response parameters</returns>
     Task<WeChatWorkTagMemberInfoResponse> GetMemberAsync(
         WeChatWorkGetTagRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 增加标签成员
+    /// Add tag members
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90214"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90214"/>
     /// </remarks>
-    /// <param name="request">增加标签成员请求参数</param>
+    /// <param name="request">Add tag member request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>增加标签成员响应参数</returns>
+    /// <returns>Add tag member response parameters</returns>
     Task<WeChatWorkTagChangeMemberResponse> AddMemberAsync(
         WeChatWorkTagChangeMemberRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 删除标签成员
+    /// Delete tag members
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90215"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90215"/>
     /// </remarks>
-    /// <param name="request">增加标签成员请求参数</param>
+    /// <param name="request">Add tag member request parameters</param>
     /// <param name="cancellationToken"></param>
-    /// <returns>增加标签成员响应参数</returns>
+    /// <returns>Add tag member response parameters</returns>
     Task<WeChatWorkTagChangeMemberResponse> DeleteMemberAsync(
         WeChatWorkTagChangeMemberRequest request,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取标签列表
+    /// Get the tag list
     /// </summary>
     /// <remarks>
-    /// 详情见：<see href="https://developer.work.weixin.qq.com/document/path/90216"/>
+    /// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90216"/>
     /// </remarks>
     /// <param name="cancellationToken"></param>
-    /// <returns>获取标签列表响应参数</returns>
+    /// <returns>Get tag list response parameters</returns>
     Task<WeChatWorkTagListResponse> GetListAsync(CancellationToken cancellationToken = default);
 }

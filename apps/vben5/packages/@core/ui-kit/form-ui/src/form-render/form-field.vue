@@ -68,7 +68,7 @@ const FieldComponent = computed(() => {
     ? componentMap.value[component]
     : component;
   if (!finalComponent) {
-    // 组件未注册
+    // The component is not registered
     console.warn(`Component ${component} is not registered`);
   }
   return finalComponent;
@@ -118,7 +118,7 @@ const shouldRequired = computed(() => {
 
   let isOptional = currentRules?.value?.isOptional?.();
 
-  // 如果有设置默认值，则不是必填，需要特殊处理
+  // If there is a default value set, it is not required and requires special processing.
   const typeName = currentRules?.value?._def?.typeName;
   if (typeName === 'ZodDefault') {
     const innerType = currentRules?.value?._def.innerType;
@@ -212,7 +212,7 @@ function fieldBindEvent(slotProps: Record<string, any>) {
     (isString(component) ? componentBindEventMap.value?.[component] : null);
 
   let value = modelValue;
-  // antd design 的一些组件会传递一个 event 对象
+  // Some components of antd design will pass an event object
   if (modelValue && isObject(modelValue) && bindEventField) {
     value = isEventObjectLike(modelValue)
       ? modelValue?.target?.[bindEventField]
@@ -265,7 +265,7 @@ function autofocus() {
   if (
     fieldComponentRef.value &&
     isFunction(fieldComponentRef.value.focus) &&
-    // 检查当前是否有元素被聚焦
+    // Check if an element is currently focused
     document.activeElement !== fieldComponentRef.value
   ) {
     fieldComponentRef.value?.focus?.();
@@ -377,7 +377,7 @@ onUnmounted(() => {
               </VbenTooltip>
             </slot>
           </FormControl>
-          <!-- 自定义后缀 -->
+          <!-- Custom suffix -->
           <div v-if="suffix" class="ml-1">
             <VbenRenderContent :content="suffix" />
           </div>

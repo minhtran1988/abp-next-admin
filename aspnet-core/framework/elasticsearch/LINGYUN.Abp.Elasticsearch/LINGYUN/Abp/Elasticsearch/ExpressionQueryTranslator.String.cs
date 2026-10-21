@@ -7,13 +7,13 @@ namespace LINGYUN.Abp.Elasticsearch;
 public partial class ExpressionQueryTranslator
 {
     /// <summary>
-    /// 翻译字符串方法
+    /// Translate string method
     /// </summary>
     private Query TranslateStringMethod(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
         return node.Method.Name switch
         {
-            // 实例方法
+            // Instance method
             nameof(string.Contains) => TranslateStringContains(node, prefix, mappingInfo),
             nameof(string.StartsWith) => TranslateStringStartsWith(node, prefix, mappingInfo),
             nameof(string.EndsWith) => TranslateStringEndsWith(node, prefix, mappingInfo),
@@ -21,17 +21,17 @@ public partial class ExpressionQueryTranslator
             nameof(string.CompareTo) => TranslateStringCompareTo(node, prefix, mappingInfo),
             nameof(string.IndexOf) => TranslateStringIndexOf(node, prefix, mappingInfo),
 
-            // 静态方法
+            // static method
             nameof(string.IsNullOrEmpty) => TranslateStringIsNullOrEmpty(node, prefix, mappingInfo),
             nameof(string.IsNullOrWhiteSpace) => TranslateStringIsNullOrWhiteSpace(node, prefix, mappingInfo),
 
-            // 其他方法不支持
+            // Other methods are not supported
             _ => throw new NotSupportedException($"Unsupported string method {node.Method.Name}"),
         };
     }
 
     /// <summary>
-    /// 翻译 Contains
+    /// Translate Contains
     /// </summary>
     private Query TranslateStringContains(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -41,7 +41,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 StartsWith
+    /// Translation StartsWith
     /// </summary>
     private Query TranslateStringStartsWith(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -51,7 +51,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 EndsWith
+    /// Translation EndsWith
     /// </summary>
     private Query TranslateStringEndsWith(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -61,19 +61,19 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 StartsWith
+    /// Translation StartsWith
     /// </summary>
     private Query TranslateStartsWith(FieldInfo field, FieldMappingInfo? fieldMapping, string value)
     {
         var pattern = EscapeWildcard(value) + "*";
 
-        // Wildcard 类型
+        // Wildcard type
         if (field.IsWildcard || fieldMapping?.IsWildcard == true)
         {
             return new WildcardQuery { Field = field.Path, Value = pattern };
         }
 
-        // Keyword 类型或 Text 有 keyword 子字段
+        // Keyword type or Text has keyword subfield
         if (field.IsKeyword || fieldMapping?.IsKeyword == true ||
             (fieldMapping?.IsText == true && fieldMapping?.Properties?.ContainsKey("keyword") == true))
         {
@@ -83,7 +83,7 @@ public partial class ExpressionQueryTranslator
             return new WildcardQuery { Field = fieldPath, Value = pattern };
         }
 
-        // Text 类型无 keyword 子字段
+        // Text type has no keyword subfield
         if (field.IsText || fieldMapping?.IsText == true)
         {
             return new MatchPhrasePrefixQuery
@@ -97,19 +97,19 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 EndsWith
+    /// Translation EndsWith
     /// </summary>
     private Query TranslateEndsWith(FieldInfo field, FieldMappingInfo? fieldMapping, string value)
     {
         var pattern = "*" + EscapeWildcard(value);
 
-        // Wildcard 类型
+        // Wildcard type
         if (field.IsWildcard || fieldMapping?.IsWildcard == true)
         {
             return new WildcardQuery { Field = field.Path, Value = pattern };
         }
 
-        // Keyword 类型或 Text 有 keyword 子字段
+        // Keyword type or Text has keyword subfield
         if (field.IsKeyword || fieldMapping?.IsKeyword == true ||
             (fieldMapping?.IsText == true && fieldMapping?.Properties?.ContainsKey("keyword") == true))
         {
@@ -119,7 +119,7 @@ public partial class ExpressionQueryTranslator
             return new WildcardQuery { Field = fieldPath, Value = pattern };
         }
 
-        // Text 类型无 keyword 子字段
+        // Text type has no keyword subfield
         if (field.IsText || fieldMapping?.IsText == true)
         {
             return new MatchPhraseQuery
@@ -133,7 +133,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.Equals
+    /// Translate string.Equals
     /// </summary>
     private Query TranslateStringEquals(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -148,35 +148,35 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.CompareTo
+    /// Translate string.CompareTo
     /// </summary>
     private Query TranslateStringCompareTo(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
         var (field, value) = GetStringMethodOperands(node, prefix, mappingInfo);
 
-        // CompareTo 通常用于比较，这里简化为相等比较
-        // 如果需要更复杂的比较逻辑，可以在这里扩展
+        // CompareTo is usually used for comparison, here it is simplified to equality comparison
+        // If you need more complex comparison logic, you can extend it here
         return BuildEquality(field, value);
     }
 
     /// <summary>
-    /// 翻译 string.IndexOf
+    /// Translate string.IndexOf
     /// </summary>
     private Query TranslateStringIndexOf(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
         var (field, value) = GetStringMethodOperands(node, prefix, mappingInfo);
         var fieldMapping = mappingInfo?.GetField(field.Path);
 
-        // IndexOf >= 0 等价于 Contains
+        // IndexOf >= 0 is equivalent to Contains
         return TranslateStringContains(field, fieldMapping, value);
     }
 
     /// <summary>
-    /// 翻译 Contains
+    /// Translate Contains
     /// </summary>
     private Query TranslateStringContains(FieldInfo field, FieldMappingInfo? fieldMapping, string value)
     {
-        // 1. Wildcard 类型 - 直接使用通配符查询（最优）
+        // 1. Wildcard type - use wildcard query directly (optimal)
         if (field.IsWildcard || fieldMapping?.IsWildcard == true)
         {
             return new WildcardQuery
@@ -186,7 +186,7 @@ public partial class ExpressionQueryTranslator
             };
         }
 
-        // 2. Keyword 类型 - 使用通配符查询
+        // 2. Keyword type - use wildcard query
         if (field.IsKeyword || fieldMapping?.IsKeyword == true)
         {
             return new WildcardQuery
@@ -196,10 +196,10 @@ public partial class ExpressionQueryTranslator
             };
         }
 
-        // 3. Text 类型
+        // 3. Text type
         if (field.IsText || fieldMapping?.IsText == true)
         {
-            // 3.1 如果有 keyword 子字段，使用 .keyword 进行通配符查询
+            // 3.1 If there is a keyword subfield, use .keyword for wildcard query
             if (fieldMapping?.Properties?.ContainsKey("keyword") == true)
             {
                 return new WildcardQuery
@@ -209,8 +209,8 @@ public partial class ExpressionQueryTranslator
                 };
             }
 
-            // 3.2 没有 keyword 子字段，使用 MatchPhrase 进行全文搜索
-            // 注意：这不是精确的 Contains，而是分词后的短语匹配
+            // 3.2 There is no keyword subfield, use MatchPhrase for full-text search
+            // Note: This is not exact Contains, but a phrase match after word segmentation
             return new MatchPhraseQuery
             {
                 Field = field.Path,
@@ -218,7 +218,7 @@ public partial class ExpressionQueryTranslator
             };
         }
 
-        // 4. 默认 - 尝试使用通配符
+        // 4. Default - try to use wildcards
         return new WildcardQuery
         {
             Field = field.Path,
@@ -227,7 +227,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.IsNullOrEmpty
+    /// Translation string.IsNullOrEmpty
     /// </summary>
     private Query TranslateStringIsNullOrEmpty(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -238,12 +238,12 @@ public partial class ExpressionQueryTranslator
         {
             Should = new Query[]
             {
-                // null 或不存在
+                // null or does not exist
                 new BoolQuery
                 {
                     MustNot = new Query[] { new ExistsQuery { Field = field.Path } }
                 },
-                // 空字符串
+                // empty string
                 new TermQuery
                 {
                     Field = field.Path,
@@ -255,7 +255,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.IsNullOrWhiteSpace
+    /// Translation string.IsNullOrWhiteSpace
     /// </summary>
     private Query TranslateStringIsNullOrWhiteSpace(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -266,18 +266,18 @@ public partial class ExpressionQueryTranslator
         {
             Should = new Query[]
             {
-                // null 或不存在
+                // null or does not exist
                 new BoolQuery
                 {
                     MustNot = new Query[] { new ExistsQuery { Field = field.Path } }
                 },
-                // 空字符串
+                // empty string
                 new TermQuery
                 {
                     Field = field.Path,
                     Value = string.Empty
                 },
-                // 使用正则表达式匹配只有空白字符的字符串
+                // Use regular expressions to match strings with only whitespace characters
                 new RegexpQuery
                 {
                     Field = field.Path,
@@ -289,7 +289,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.CompareTo 比较
+    /// Translation string.CompareTo comparison
     /// </summary>
     private Query? TranslateStringCompareToComparison(
         MethodCallExpression methodCall,
@@ -304,27 +304,27 @@ public partial class ExpressionQueryTranslator
         switch (comparisonType)
         {
             case ExpressionType.Equal when compareResult == 0:
-                // CompareTo == 0 表示相等
+                // CompareTo == 0 means equal
                 return BuildEquality(field, compareValue);
 
             case ExpressionType.NotEqual when compareResult == 0:
-                // CompareTo != 0 表示不相等
+                // CompareTo != 0 means not equal
                 return BuildNotEqualQuery(field, compareValue);
 
             case ExpressionType.GreaterThan when compareResult == 0:
-                // CompareTo > 0 表示当前字段值大于比较值
+                // CompareTo > 0 means the current field value is greater than the comparison value
                 return BuildRange(field, greaterThan: compareValue);
 
             case ExpressionType.GreaterThanOrEqual when compareResult == 0:
-                // CompareTo >= 0 表示当前字段值大于或等于比较值
+                // CompareTo >= 0 means the current field value is greater than or equal to the comparison value
                 return BuildRange(field, greaterThanOrEqualTo: compareValue);
 
             case ExpressionType.LessThan when compareResult == 0:
-                // CompareTo < 0 表示当前字段值小于比较值
+                // CompareTo < 0 means the current field value is less than the comparison value
                 return BuildRange(field, lessThan: compareValue);
 
             case ExpressionType.LessThanOrEqual when compareResult == 0:
-                // CompareTo <= 0 表示当前字段值小于或等于比较值
+                // CompareTo <= 0 means the current field value is less than or equal to the comparison value
                 return BuildRange(field, lessThanOrEqualTo: compareValue);
 
             default:
@@ -333,7 +333,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译 string.IndexOf 比较
+    /// Translation string.IndexOf comparison
     /// </summary>
     private Query? TranslateStringIndexOfComparison(
         MethodCallExpression methodCall,
@@ -342,7 +342,7 @@ public partial class ExpressionQueryTranslator
         string? prefix,
         IndexMappingInfo? mappingInfo)
     {
-        // 获取字段和搜索值
+        // Get field and search values
         var (field, searchValue) = GetStringMethodOperands(methodCall, prefix, mappingInfo);
         var indexResult = Convert.ToInt32(Evaluate(constantExpression));
         var fieldMapping = mappingInfo?.GetField(field.Path);
@@ -352,12 +352,12 @@ public partial class ExpressionQueryTranslator
             case ExpressionType.GreaterThanOrEqual when indexResult >= 0:
             case ExpressionType.GreaterThan when indexResult > -1:
             case ExpressionType.NotEqual when indexResult == -1:
-                // IndexOf >= 0, IndexOf > -1, IndexOf != -1 表示包含
+                // IndexOf >= 0, IndexOf > -1, IndexOf != -1 means inclusion
                 return TranslateStringContains(field, fieldMapping, searchValue);
 
             case ExpressionType.LessThan when indexResult <= 0:
             case ExpressionType.Equal when indexResult == -1:
-                // IndexOf == -1, IndexOf < 0 表示不包含
+                // IndexOf == -1, IndexOf < 0 means not included
                 var containsQuery = TranslateStringContains(field, fieldMapping, searchValue);
                 return new BoolQuery
                 {
@@ -370,7 +370,7 @@ public partial class ExpressionQueryTranslator
     }
 
     /// <summary>
-    /// 翻译字符串实例方法（获取字段和值）
+    /// Translate string instance method (get fields and values)
     /// </summary>
     private (FieldInfo Field, string Value) GetStringMethodOperands(MethodCallExpression node, string? prefix, IndexMappingInfo? mappingInfo)
     {
@@ -379,13 +379,13 @@ public partial class ExpressionQueryTranslator
 
         if (node.Object != null)
         {
-            // 实例方法：obj.Method(value)
+            // Instance method: obj.Method(value)
             fieldExpression = node.Object;
             valueExpression = node.Arguments[0];
         }
         else
         {
-            // 静态方法：string.Method(field, value)
+            // Static method: string.Method(field, value)
             fieldExpression = node.Arguments[0];
             valueExpression = node.Arguments.Count > 1 ? node.Arguments[1] : node.Arguments[0];
         }

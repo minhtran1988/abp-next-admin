@@ -1,28 +1,28 @@
-/** 分组权限 */
+/** Group permissions */
 export const GroupDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'Notifications.GroupDefinitions.Create',
   Default: 'Notifications.GroupDefinitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'Notifications.GroupDefinitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'Notifications.GroupDefinitions.Update',
 };
-/** 通知定义权限 */
+/** Notification definition permissions */
 export const NotificationDefinitionsPermissions = {
-  /** 新增 */
+  /** Add new */
   Create: 'Notifications.Definitions.Create',
   Default: 'Notifications.Definitions',
-  /** 删除 */
+  /** Delete */
   Delete: 'Notifications.Definitions.Delete',
-  /** 更新 */
+  /** Update */
   Update: 'Notifications.Definitions.Update',
 };
-/** 通知权限 */
+/** Notification permissions */
 export const NotificationPermissions = {
-  /** 发送通知 */
+  /** Send notification */
   Create: 'Notifications.Notification.Send',
   Default: 'Notifications.Notification',
-  /** 删除 */
+  /** Delete */
   Delete: 'Notifications.Notification.Delete',
 };

@@ -1,26 +1,26 @@
 # LINGYUN.Abp.IP2Region
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.IP2Region` 是一个基于IP2Region的ABP框架模块，提供IP地址查询功能。本模块集成了IP2Region.Net库，提供了便捷的IP地址查询服务。
+`LINGYUN.Abp.IP2Region` is an ABP framework module based on IP2Region, providing IP address query function. This module integrates the IP2Region.Net library and provides convenient IP address query services.
 
-## 功能
+## Function
 
-* 提供IP地址查询服务
-* 同时支持 IPv4 与 IPv6 离线库，按地址族自动选择数据文件
-* 支持多种缓存策略
-* 内置 IPv4 与 IPv6 数据库文件
-* 支持ABP虚拟文件系统
+* Provide IP address query service
+* Supports both IPv4 and IPv6 offline libraries, automatically selects data files according to address family
+* Supports multiple caching strategies
+* Built-in IPv4 and IPv6 database files
+* Support ABP virtual file system
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.IP2Region
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpIP2RegionModule))]` 到你的模块类上。
+1. Add `[DependsOn(typeof(AbpIP2RegionModule))]` to your module class.
 
 ```csharp
 [DependsOn(typeof(AbpIP2RegionModule))]
@@ -30,7 +30,7 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 注入并使用IP查询服务：
+2. Inject and use the IP query service:
 
 ```csharp
 public class YourService
@@ -44,50 +44,50 @@ public class YourService
 
     public string? SearchIpInfo(string ip)
     {
-        // 自动按地址族选择 IPv4 / IPv6 离线库
+        // Automatically select IPv4 / IPv6 offline library by address family
         return _searcher.Search(ip);
     }
 }
 ```
 
-## IPv4 / IPv6 支持
+## IPv4 / IPv6 support
 
-模块内置两个离线库文件(通过 ABP 虚拟文件系统加载)：
+The module has two built-in offline library files (loaded through the ABP virtual file system):
 
-| 离线库 | 路径 |
+| Offline library | Path |
 |---|---|
 | IPv4 | `/LINGYUN/Abp/IP2Region/Resources/ip2region_v4.xdb` |
 | IPv6 | `/LINGYUN/Abp/IP2Region/Resources/ip2region_v6.xdb` |
 
-`ISearcher` 注册的是 `AbpSearcher`，同时加载两个离线库并**按地址族自动路由**：
+`ISearcher` registers `AbpSearcher`, loads two offline libraries at the same time and **automatically routes by address family**:
 
-* IPv4 地址查询 IPv4 离线库，IPv6 地址查询 IPv6 离线库；
-* IPv4 映射的 IPv6 地址(如 `::ffff:1.2.3.4`)会归一到 IPv4 查询；
-* IPv6 离线库资源不存在时(例如打包时排除)，IPv6 查询返回 `null`，不会使用 IPv4 离线库解析出错误结果。
+* IPv4 address query IPv4 offline library, IPv6 address query IPv6 offline library;
+* IPv4-mapped IPv6 addresses (such as `::ffff:1.2.3.4`) will be normalized to IPv4 queries;
+* When the IPv6 offline library resource does not exist (for example, excluded during packaging), the IPv6 query returns `null`, and the IPv4 offline library will not be used to parse out error results.
 
-也可以直接使用 `AbpSearcher`：
+You can also use `AbpSearcher` directly:
 
 ```csharp
-// 单文件模式：只加载一个离线库，由调用方保证查询地址与离线库版本一致
+//Single file mode: only load one offline library, and the caller ensures that the query address is consistent with the offline library version
 using var v6Searcher = new AbpSearcher(CachePolicy.File, ipv6XdbStream);
 
-// 双文件模式：同时加载 IPv4 与 IPv6 离线库，按地址族自动路由
+//Dual file mode: load IPv4 and IPv6 offline libraries at the same time, automatically route according to address family
 using var searcher = new AbpSearcher(CachePolicy.File, ipv4XdbStream, ipv6XdbStream);
 
-var region = searcher.Search("2400:3200::1"); // 中国|浙江省|杭州市|阿里|CN
+var region = searcher.Search("2400:3200::1"); // China|Zhejiang Province|Hangzhou City|Alibaba|CN
 ```
 
-> IPv6 离线库(约 35MB)随包提供，可通过 `-p:IncludeIPv6Database=false` 在打包时排除以减小体积。
+> The IPv6 offline library (about 35MB) is provided with the package and can be excluded during packaging through `-p:IncludeIPv6Database=false` to reduce the size.
 
-## 选项
+## Options
 
 ```csharp
 Configure<AbpIP2RegionOptions>(options =>
 {
-    // 离线库文件：物理文件优先，其次为虚拟文件系统路径(内置资源)
+    // Offline library files: physical files first, followed by virtual file system paths (built-in resources)
     options.IPv4DatabaseFile = "/data/ip2region_v4.xdb";
     options.IPv6DatabaseFile = "/data/ip2region_v6.xdb";
-    // 默认值：CachePolicy.Content(并发安全)
+    //Default value: CachePolicy.Content (concurrency safety)
     options.CachePolicy = CachePolicy.Content;
 });
 ```
@@ -102,72 +102,72 @@ Configure<AbpIP2RegionOptions>(options =>
 }
 ```
 
-> IPv4 / IPv6 离线库默认使用内置资源；配置为物理文件路径时**优先加载物理文件**，便于替换/更新离线库
-> (离线库可从 [ip2region](https://github.com/lionsoul2014/ip2region) 下载或使用 maker 生成)；
-> IPv6 离线库可选，文件不存在时 IPv6 查询返回 `null`。
+> The IPv4/IPv6 offline library uses built-in resources by default; when configured as a physical file path, ** physical files are loaded first **, making it easy to replace/update the offline library
+> (The offline library can be downloaded from [ip2region](https://github.com/lionsoul2014/ip2region) or generated using maker);
+> IPv6 offline library is optional. When the file does not exist, IPv6 query returns `null`.
 
-### 缓存策略
+### Caching strategy
 
-| 缓存策略 | 说明 | 并发安全 |
+| Cache Strategy | Description | Concurrency Safety |
 |---|---|---|
-| `Content`(默认) | 离线库全部加载到内存，单例查询器可并发使用 | 是 |
-| `VectorIndex` | 只缓存向量索引(512KB)，其余读取数据流 | 否 |
-| `File` | 完全基于文件流查询，内存占用最小 | 否 |
+| `Content` (default) | All offline libraries are loaded into memory, and singleton queryers can be used concurrently | Yes |
+| `VectorIndex` | Only cache the vector index (512KB), the rest reads the data stream | No |
+| `File` | Completely based on file stream query, minimal memory usage | No |
 
-> `ISearcher` 注册为单例，而 `VectorIndex`/`File` 是"共享数据流 + Seek"的实现，多线程并发查询会互相打断数据流定位，
-> 仅在能够保证串行查询时使用；内存占用参考：IPv4 库约 10MB、IPv6 库约 35MB。
+> `ISearcher` is registered as a singleton, and `VectorIndex`/`File` is the implementation of "shared data flow + Seek". Multi-threaded concurrent queries will interrupt each other's data flow positioning.
+> Only used when serial query can be guaranteed; memory usage reference: IPv4 library is about 10MB, IPv6 library is about 35MB.
 
-## 备注(Remarks)规则
+## Remarks rules
 
-备注(Remarks)规则由 `LINGYUN.Abp.IP.Location` 统一处理(其它位置解析模块，例如 MaxMind，共用同一份配置)：
+Remarks rules are processed uniformly by `LINGYUN.Abp.IP.Location` (other location resolution modules, such as MaxMind, share the same configuration):
 
 ```csharp
 Configure<AbpIPLocationResolveOptions>(options =>
 {
-    // 匹配到的国家名称从备注中移除(仅中国IP不显示国家)
-    options.RemoveCountry = new[] { "中国" };
-    // 匹配到的省份名称从备注中移除
-    // options.RemoveProvince = new[] { "香港特别行政区" };
+    //The matched country name is removed from the remarks (only Chinese IP does not display the country)
+    options.RemoveCountry = new[] { "China" };
+    //The matched province name is removed from the remarks
+    // options.RemoveProvince = new[] { "Hong Kong Special Administrative Region" };
 });
 ```
 
-也可以直接使用配置节(`LINGYUN.Abp.IP.Location` 模块绑定 `IPLocation` 节)：
+You can also use the configuration section directly (the `LINGYUN.Abp.IP.Location` module binds the `IPLocation` section):
 
 ```json
 {
   "IPLocation": {
-    "RemoveCountry": [ "中国" ]
+    "RemoveCountry": [ "China" ]
   }
 }
 ```
 
 ```yaml
 # docker-compose environment
-- IPLocation__RemoveCountry__0=中国
+- IPLocation__RemoveCountry__0=China
 ```
 
-* 国家名称匹配到 `RemoveCountry` 时，备注使用省份与城市(如 `浙江省杭州市`；省市同名时仅显示市，如 `重庆市`；仅有省份时为 `香港特别行政区`)；
-* 省份名称匹配到 `RemoveProvince` 时，备注仅使用城市(如 `杭州市`)；
-* 都未匹配时，备注仅显示国家名称(如 `中国`、`Japan`)；匹配到的名称被移除后没有可显示的层级时备注为空；
-* 名称匹配忽略大小写与首尾空白，适用于所有国家的 IP 地址解析。
+* When the country name matches `RemoveCountry`, use the province and city in the remarks (such as `Hangzhou City, Zhejiang Province`; when the province and city have the same name, only the city is displayed, such as `Chongqing City`; when there are only provinces, it is `Hong Kong Special Administrative Region`);
+* When the province name matches `RemoveProvince`, only use the city (such as `Hangzhou City`) for remarks;
+* When there is no match, the remark only displays the country name (such as `China`, `Japan`); when the matched name is removed and there is no level to display, the remark is empty;
+* Name matching ignores case and leading and trailing whitespace, and is applicable to IP address resolution in all countries.
 
-## 特殊地址处理
+## Special address processing
 
-* **非法地址、本地回环与未指定地址**(如 `not-an-ip`、`127.0.0.1`、`::1`、`0.0.0.0`、`::`)由 `IIPLocationResolver`
-  统一处理，直接返回空的解析结果(`Location` 为 `null`)，不会进入位置解析模块；
-* **内网、链路本地、组播、保留地址等**在 ip2region 离线库中返回的是英文 `Reserved`，
-  模块返回一个 `Country`/`Province`/`City`/`Remarks` **均为空**的 `IPLocation`：
+* **Illegal addresses, local loopbacks and unspecified addresses** (such as `not-an-ip`, `127.0.0.1`, `::1`, `0.0.0.0`, `::`) are handled by `IIPLocationResolver`
+  Unified processing, empty parsing results are returned directly (`Location` is `null`), and the location parsing module will not be entered;
+* **Intranet, link local, multicast, reserved address, etc.** are returned in English `Reserved` in the ip2region offline library.
+  The module returns an `IPLocation` of `Country`/`Province`/`City`/`Remarks` **all empty**:
 
-| 地址分类 | 示例 |
+| Address Classification | Example |
 |---|---|
-| 内网 | `10.0.0.1`、`172.16.0.1`、`192.168.1.1`、`fd00::1` |
-| 链路本地 | `169.254.1.1`、`fe80::1` |
-| 运营商级 NAT | `100.64.0.1` |
-| 文档示例 / 基准测试 | `192.0.2.1`、`2001:db8::1`、`198.18.0.1` |
-| 组播 / 广播 | `224.0.0.1`、`ff02::1`、`255.255.255.255` |
-| 保留(离线库标记 `Reserved` 的其它地址段) | `64:ff9b::1` |
+| Intranet | `10.0.0.1`, `172.16.0.1`, `192.168.1.1`, `fd00::1` |
+| link local | `169.254.1.1`, `fe80::1` |
+| Carrier Grade NAT | `100.64.0.1` |
+| Documentation examples/Benchmarks | `192.0.2.1`, `2001:db8::1`, `198.18.0.1` |
+| Multicast/Broadcast | `224.0.0.1`, `ff02::1`, `255.255.255.255` |
+| Reserved (Other address segments of the offline library mark `Reserved`) | `64:ff9b::1` |
 
-## IP2Region.Net 库说明
+## IP2Region.Net library description
 
 ### Installation
 
@@ -227,6 +227,6 @@ Please make sure to update tests as appropriate.
 ## License
 [Apache License 2.0](https://github.com/lionsoul2014/ip2region/blob/master/LICENSE.md)
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)

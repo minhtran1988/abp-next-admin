@@ -55,15 +55,15 @@ const defaultModel: IdentityUserVto = {
 
 const activedTab = ref('info');
 const form = ref<FormInstance>();
-/** 可分配的角色列表 */
+/** List of assignable roles */
 const assignedRoles = ref<TransferItem[]>([]);
-/** 组织机构 */
+/** Organization */
 const organizationUnits = ref<DataNode[]>([]);
-/** 已加载的组织机构Keys */
+/** Loaded organization keys */
 const loadedOuKeys = ref<string[]>([]);
-/** 用户拥有的组织机构节点keys */
+/** Organization node keys owned by the user */
 const checkedOuKeys = ref<string[]>([]);
-/** 表单数据 */
+/** Form data */
 const formModel = ref<IdentityUserVto>({ ...defaultModel });
 
 const { isTrue } = useSettings();
@@ -139,19 +139,19 @@ const [Modal, modalApi] = useVbenModal({
   title: $t('AbpIdentity.Users'),
 });
 
-/** 检查管理角色权限 */
+/** Check management role permissions */
 function checkManageRolePolicy() {
   return hasAccessByCodes(['AbpIdentity.Users.Update.ManageRoles']);
 }
 
-/** 检查管理组织机构权限 */
+/** Check management organization authority */
 function checkManageOuPolicy() {
   return hasAccessByCodes(['AbpIdentity.Users.ManageOrganizationUnits']);
 }
 
 /**
- * 初始化用户信息
- * @param userId 用户id
+ * Initialize user information
+ * @param userId user id
  */
 async function initUserInfo(userId: string) {
   const [userInfo, userRoleResult] = await Promise.all([
@@ -167,7 +167,7 @@ async function initUserInfo(userId: string) {
   });
 }
 
-/** 初始化可用角色列表 */
+/** Initialize the list of available roles */
 async function initAssignableRoles() {
   const { items } = await getAssignableRolesApi();
   assignedRoles.value = items.map((item) => {
@@ -180,8 +180,8 @@ async function initAssignableRoles() {
 }
 
 /**
- * 初始化组织机构树
- * @param userId 用户id
+ * Initialize the organization tree
+ * @param userId user id
  */
 async function initOrganizationUnitTree(userId: string) {
   const [ouResult, userOuResult] = await Promise.all([
@@ -199,7 +199,7 @@ async function initOrganizationUnitTree(userId: string) {
   checkedOuKeys.value = userOuResult.items.map((item) => item.id);
 }
 
-/** 加载组织机构树节点 */
+/** Load organizational tree nodes */
 async function onLoadOuChildren(node: EventDataNode) {
   const nodeKey = String(node.key);
   const { items } = await getChildrenApi({ id: nodeKey });
@@ -226,7 +226,7 @@ async function onLoadOuChildren(node: EventDataNode) {
       :wrapper-col="{ span: 18 }"
     >
       <Tabs v-model:active-key="activedTab">
-        <!-- 基本信息 -->
+        <!-- Basic information -->
         <TabPane key="info" :tab="$t('AbpIdentity.UserInformations')">
           <FormItem :label="$t('AbpIdentity.DisplayName:IsActive')">
             <Checkbox v-model:checked="formModel.isActive">
@@ -285,7 +285,7 @@ async function onLoadOuChildren(node: EventDataNode) {
             </Checkbox>
           </FormItem>
         </TabPane>
-        <!-- 角色 -->
+        <!-- Role -->
         <TabPane
           v-if="checkManageRolePolicy()"
           key="role"
@@ -306,7 +306,7 @@ async function onLoadOuChildren(node: EventDataNode) {
             class="tree-transfer"
           />
         </TabPane>
-        <!-- 组织机构 -->
+        <!-- Organization -->
         <TabPane
           v-if="formModel.id && checkManageOuPolicy()"
           key="ou"
@@ -325,7 +325,7 @@ async function onLoadOuChildren(node: EventDataNode) {
           />
           <Empty v-else />
         </TabPane>
-        <!-- 详细信息 -->
+        <!-- Details -->
         <TabPane
           v-if="formModel.id"
           key="details"

@@ -10,26 +10,26 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 删除通知定义
- * @param name 通知名称
+ * Delete notification definition
+ * @param name notification name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/notifications/definitions/notifications/${name}`);
 }
 
 /**
- * 查询通知定义
- * @param name 通知名称
- * @returns 通知定义数据传输对象
+ * Query notification definition
+ * @param name notification name
+ * @returns notification definition data transfer object
  */
 export function getApi(name: string): Promise<NotificationDefinitionDto> {
 	return requestClient.get<NotificationDefinitionDto>(`/api/notifications/definitions/notifications/${name}`);
 }
 
 /**
- * 查询通知定义列表
- * @param input 通知过滤条件
- * @returns 通知定义数据传输对象列表
+ * Query notification definition list
+ * @param input notification filter conditions
+ * @returns Notification definition data transfer object list
  */
 export function getListApi(
 	input?: NotificationDefinitionGetListInput,
@@ -40,19 +40,19 @@ export function getListApi(
 }
 
 /**
- * 创建通知定义
- * @param input 通知定义参数
- * @returns 通知定义数据传输对象
+ * Create notification definition
+ * @param input notification definition parameters
+ * @returns notification definition data transfer object
  */
 export function createApi(input: NotificationDefinitionCreateDto): Promise<NotificationDefinitionDto> {
 	return requestClient.post<NotificationDefinitionDto>("/api/notifications/definitions/notifications", input);
 }
 
 /**
- * 更新通知定义
- * @param name 通知名称
- * @param input 通知定义参数
- * @returns 通知定义数据传输对象
+ * Update notification definition
+ * @param name notification name
+ * @param input notification definition parameters
+ * @returns notification definition data transfer object
  */
 export function updateApi(name: string, input: NotificationDefinitionUpdateDto): Promise<NotificationDefinitionDto> {
 	return requestClient.put<NotificationDefinitionDto>(`/api/notifications/definitions/notifications/${name}`, input);

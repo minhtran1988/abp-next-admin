@@ -106,7 +106,7 @@ public class FileSystemBlobProvider : IBlobProvider
         bool isAttachmentContent = true,
         CancellationToken cancellationToken = default)
     {
-        // 本地文件系统无需生成下载链接
+        // Local file system does not need to generate download links
         return Task.FromResult<string?>(null);
     }
 
@@ -157,11 +157,11 @@ public class FileSystemBlobProvider : IBlobProvider
     }
 
     /// <summary>
-    /// 路径比较方式
+    /// Path comparison method
     /// </summary>
     /// <remarks>
-    /// Windows 与 macOS(APFS/HFS+ 默认)大小写不敏感, Linux 等类 Unix 文件系统大小写敏感:
-    /// 在大小写敏感的文件系统上使用忽略大小写比较, 会放过大小写变体的兄弟目录
+    /// Windows and macOS (APFS/HFS+ default) are case-insensitive, while Linux and other Unix-like file systems are case-sensitive:
+    /// When using case-ignoring comparison on a case-sensitive file system, sibling directories with case variations will be ignored.
     /// </remarks>
     protected static StringComparison PathComparison =>
         OperatingSystem.IsWindows() || OperatingSystem.IsMacOS()
@@ -169,12 +169,12 @@ public class FileSystemBlobProvider : IBlobProvider
             : StringComparison.Ordinal;
 
     /// <summary>
-    /// 名称中不允许出现的字符
+    /// Characters not allowed in names
     /// </summary>
     /// <remarks>
-    /// 显式使用各平台非法字符的并集(而非 <see cref="Path.GetInvalidFileNameChars"/>):
-    /// 类 Unix 文件名允许 ':' 等字符, 但同一份数据可能被 Windows 宿主、SMB 共享、
-    /// 或其它 blob provider 复用, 因此统一按可移植规则拒绝
+    /// Explicitly use the union of illegal characters on each platform (instead of <see cref="Path.GetInvalidFileNameChars"/>):
+    /// Unix-like file names allow characters such as ':', but the same data may be used by Windows hosts, SMB shares,
+    /// Or other blob providers for reuse, so they are rejected according to portability rules.
     /// </remarks>
     protected static readonly char[] InvalidNameCharacters =
     [
@@ -186,7 +186,7 @@ public class FileSystemBlobProvider : IBlobProvider
         var blobConfiguration = GetBlobConfiguration();
         var basePath = Path.GetFullPath(blobConfiguration.BasePath);
 
-        // 当前租户的存储根目录: 主机为 host, 租户为 tenants/{tenantId}
+        // The storage root directory of the current tenant: host is host, tenant is tenants/{tenantId}
         string tenantPath;
         if (CurrentTenant.Id == null)
         {
@@ -209,15 +209,15 @@ public class FileSystemBlobProvider : IBlobProvider
         }
         if (!blobName.IsNullOrWhiteSpace())
         {
-            // 模块存储的全名可能以 / 开头(如 /abp-container/folder/file.txt)
+            // The full name of the module storage may start with / (such as /abp-container/folder/file.txt)
             var name = blobName.RemovePreFix("/");
             CheckBlobName(name);
 
             blobPath = Path.Combine(blobPath, name);
         }
 
-        // 关键: 解析 .. / 绝对路径 / 分隔符变体之后, 结果必须仍在当前租户目录之内
-        // (Path.GetFullPath 会消除 .., 因此绝对路径注入同样会被拦截)
+        // Key: After parsing the .. / absolute path / delimiter variant, the result must still be within the current tenant directory
+        // (Path.GetFullPath will eliminate .., so absolute path injection will also be intercepted)
         var fullPath = Path.GetFullPath(blobPath);
         var tenantRoot = tenantPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
             + Path.DirectorySeparatorChar;
@@ -233,11 +233,11 @@ public class FileSystemBlobProvider : IBlobProvider
     }
 
     /// <summary>
-    /// 校验容器名称
+    /// Verify container name
     /// </summary>
     /// <remarks>
-    /// 容器名必须是单一目录名: 含分隔符的名称不会逃出租户目录(containment 拦截不到),
-    /// 但会解析成同一租户内的其它容器目录(容器别名), 从而绕过容器隔离。
+    /// The container name must be a single directory name: names containing delimiters will not escape the tenant directory (containment cannot intercept it),
+    /// But it will be resolved to other container directories (container aliases) in the same tenant, thus bypassing container isolation.
     /// </remarks>
     protected virtual void CheckContainerName(string containerName)
     {
@@ -250,11 +250,11 @@ public class FileSystemBlobProvider : IBlobProvider
     }
 
     /// <summary>
-    /// 校验文件/目录名称(路径)
+    /// Verify file/directory name (path)
     /// </summary>
     /// <remarks>
-    /// 规则与实体一致; 这只是纵深防御, 真正的安全边界是 <see cref="CalculateBlobName"/> 的 containment 校验
-    /// (名称校验覆盖不到符号链接/联接点)。
+    /// The rules are consistent with the entity; this is just defense in depth, the real security boundary is the containment check of <see cref="CalculateBlobName"/>
+    /// (Name validation does not cover symbolic links/join points).
     /// </remarks>
     protected virtual void CheckBlobName(string blobName)
     {

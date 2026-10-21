@@ -23,10 +23,10 @@ public class FeedbackAttachmentManager : DomainService
     }
 
     /// <summary>
-    /// 将文件流写入临时存储
+    /// Write the file stream to temporary storage
     /// </summary>
-    /// <param name="stream">文件流</param>
-    /// <returns>返回临时存储的文件标识</returns>
+    /// <param name="stream">File stream</param>
+    /// <returns>Returns the temporarily stored file ID</returns>
     public async Task<FeedbackAttachmentTempFile> SaveToTempAsync(Stream stream)
     {
         var blobSize = stream.Length;
@@ -55,11 +55,11 @@ public class FeedbackAttachmentManager : DomainService
         };
     }
     /// <summary>
-    /// 从临时存储附件拷贝到blob存储
+    /// Copy attachments from temporary storage to blob storage
     /// </summary>
-    /// <param name="feedback">用户反馈实体</param>
-    /// <param name="file">附件临时存储文件</param>
-    /// <returns>已保存的附件</returns>
+    /// <param name="feedback">User feedback entity</param>
+    /// <param name="file">Attachment temporary storage file</param>
+    /// <returns>Saved attachment</returns>
     public async Task<FeedbackAttachmentFile> CopyFromTempAsync(Feedback feedback, string filePtah, string fileId)
     {
         var fileName = $"{filePtah}/{fileId}.png";
@@ -90,10 +90,10 @@ public class FeedbackAttachmentManager : DomainService
         return attachmentFile;
     }
     /// <summary>
-    /// 下载附件
+    /// Download attachments
     /// </summary>
-    /// <param name="attachment">附件实体</param>
-    /// <returns>附件文件流</returns>
+    /// <param name="attachment">Attachment entity</param>
+    /// <returns>Attachment file stream</returns>
     public async Task<Stream> DownloadAsync(FeedbackAttachment attachment)
     {
         var blobFile = $"{attachment.FeedbackId}/{attachment.Name}";
@@ -101,10 +101,10 @@ public class FeedbackAttachmentManager : DomainService
         return await _blobContainer.GetAsync(blobFile);
     }
     /// <summary>
-    /// 删除附件
+    /// Delete attachment
     /// </summary>
-    /// <param name="attachment">附件实体</param>
-    /// <returns>附件文件流</returns>
+    /// <param name="attachment">Attachment entity</param>
+    /// <returns>Attachment file stream</returns>
     public async Task DeleteAsync(FeedbackAttachment attachment)
     {
         var blobFile = $"{attachment.FeedbackId}/{attachment.Name}";

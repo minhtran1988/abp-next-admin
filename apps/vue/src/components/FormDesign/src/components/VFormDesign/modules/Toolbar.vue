@@ -1,10 +1,10 @@
 <!--
- * @Description: 工具栏
+ * @Description: toolbar
 -->
 <template>
   <div class="operating-area">
-    <!-- 头部操作按钮区域 start -->
-    <!-- 操作左侧区域 start -->
+    <!-- Head operation button area start -->
+    <!-- Operate the left area start -->
     <div class="left-btn-box">
       <Tooltip v-for="item in toolbarsConfigs" :title="item.title" :key="item.icon">
         <a @click="$emit(item.event)" class="toolbar-text">
@@ -12,19 +12,19 @@
         </a>
       </Tooltip>
       <Divider type="vertical" />
-      <Tooltip title="撤销">
+      <Tooltip title="Cancel">
         <a :class="{ disabled: !canUndo }" :disabled="!canUndo" @click="undo">
           <Icon icon="ant-design:undo-outlined" />
         </a>
       </Tooltip>
-      <Tooltip title="重做">
+      <Tooltip title="Rework">
         <a :class="{ disabled: !canRedo }" :disabled="!canRedo" @click="redo">
           <Icon icon="ant-design:redo-outlined" />
         </a>
       </Tooltip>
     </div>
   </div>
-  <!-- 操作区域 start -->
+  <!-- Operation area start -->
 </template>
 <script lang="ts">
   import { defineComponent, inject, reactive, toRefs } from 'vue';
@@ -51,37 +51,37 @@
       }>({
         toolbarsConfigs: [
           {
-            title: '预览-支持布局',
+            title: 'Preview-Support Layout',
             type: 'preview',
             event: 'handlePreview',
             icon: 'ant-design:chrome-filled',
           },
           {
-            title: '预览-不支持布局',
+            title: 'Preview-Layout not supported',
             type: 'preview',
             event: 'handlePreview2',
             icon: 'ant-design:chrome-filled',
           },
           {
-            title: '导入JSON',
+            title: 'Import JSON',
             type: 'importJson',
             event: 'handleOpenImportJsonModal',
             icon: 'ant-design:import-outlined',
           },
           {
-            title: '生成JSON',
+            title: 'Generate JSON',
             type: 'exportJson',
             event: 'handleOpenJsonModal',
             icon: 'ant-design:export-outlined',
           },
           {
-            title: '生成代码',
+            title: 'Generate code',
             type: 'exportCode',
             event: 'handleOpenCodeModal',
             icon: 'ant-design:code-filled',
           },
           {
-            title: '清空',
+            title: 'Clear',
             type: 'reset',
             event: 'handleClearFormItems',
             icon: 'ant-design:clear-outlined',
@@ -96,7 +96,7 @@
 </script>
 
 <style lang="less" scoped>
-  //noinspection CssUnknownTarget
+  // noinspection CssUnknownTarget
   @import url('../styles/variable.less');
 
   .operating-area {

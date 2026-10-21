@@ -5,10 +5,10 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class IdentitySessionServiceCollectionExtensions
 {
     /// <summary>
-    /// 允许任意会话
+    /// Allow any session
     /// </summary>
     /// <remarks>
-    /// 某些场景下可能缓存配置不同,可不检查会话缓存
+    /// In some scenarios, the cache configuration may be different, so you do not need to check the session cache.
     /// </remarks>
     /// <param name="services"></param>
     /// <returns></returns>

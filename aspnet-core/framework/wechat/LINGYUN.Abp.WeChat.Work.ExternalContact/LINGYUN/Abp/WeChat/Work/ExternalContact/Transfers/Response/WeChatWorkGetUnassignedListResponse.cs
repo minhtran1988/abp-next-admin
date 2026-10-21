@@ -5,29 +5,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Response;
 /// <summary>
-/// 获取待分配的离职成员列表响应结果
+/// Get the response result of the list of resigned members to be assigned
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92124" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92124" />
 /// </remarks>
 public class WeChatWorkGetUnassignedListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 待分配离职成员的客户
+    /// Customers to whom resigned members are to be assigned
     /// </summary>
     [NotNull]
     [JsonProperty("info")]
     [JsonPropertyName("info")]
     public UnassignedCustomerInfo[] Info { get; set; } = default!;
     /// <summary>
-    /// 是否是最后一条记录
+    /// Is it the last record?
     /// </summary>
     [NotNull]
     [JsonProperty("is_last")]
     [JsonPropertyName("is_last")]
     public bool IsLast { get; set; }
     /// <summary>
-    /// 分页查询游标,已经查完则返回空("")，使用page_id作为查询参数时不返回
+    /// Paging query cursor will return empty ("") if the query has been completed. It will not return when page_id is used as the query parameter.
     /// </summary>
     [CanBeNull]
     [JsonProperty("next_cursor")]

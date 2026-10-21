@@ -215,7 +215,7 @@ public class VueVbenAdmin5NavigationSeedContributor : NavigationSeedContributor
             GuidGenerator.Create(),
             "UI Framework",
             CodeNumberGenerator.CreateCode(30),
-            "UI框架",
+            "UI framework",
             "UI Framework",
             null,
             tenantId)
@@ -241,7 +241,7 @@ public class VueVbenAdmin5NavigationSeedContributor : NavigationSeedContributor
     {
         var layout = await RouteDataSeeder.SeedLayoutAsync(
            Options.LayoutName,
-           Options.LayoutPath, // 路由层面已经处理好了,只需要传递LAYOUT可自动引用布局
+           Options.LayoutPath, // The routing level has been processed. You only need to pass LAYOUT to automatically reference the layout.
            Options.LayoutName,
            data.Id,
            uiDataItem.Name,
@@ -259,8 +259,8 @@ public class VueVbenAdmin5NavigationSeedContributor : NavigationSeedContributor
             GuidGenerator.Create(),
             Options.LayoutName,
             CodeNumberGenerator.CreateCode(40),
-            "Vben5 Admin 布局约束",
-            "Vben5 Admin模板布局约束",
+            "Vben5 Admin Layout Constraints",
+            "Vben5 Admin template layout constraints",
             null,
             tenantId)
         {
@@ -269,183 +269,183 @@ public class VueVbenAdmin5NavigationSeedContributor : NavigationSeedContributor
         data.AddItem(
             GuidGenerator,
             "title",
-            "标题",
+            "Title",
             "",
             ValueType.String,
-            "用于配置页面的标题，会在菜单和标签页中显示。一般会配合国际化使用。",
+            "The title used to configure the page will be displayed in menus and tabs. It is generally used in conjunction with internationalization.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "icon",
-            "图标",
+            "icon",
             "",
             ValueType.String,
-            "用于配置页面的图标，会在菜单和标签页中显示。一般会配合图标库使用，如果是http链接，会自动加载图片。",
+            "The icons used to configure the page will be displayed in menus and tabs. They are generally used in conjunction with the icon library. If it is an http link, the image will be automatically loaded.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "activeIcon",
-            "激活图标",
+            "activation icon",
             "",
             ValueType.String,
-            "用于配置页面的激活图标，会在菜单中显示。一般会配合图标库使用，如果是http链接，会自动加载图片。",
+            "The activation icon used to configure the page will be displayed in the menu. It is generally used in conjunction with the icon library. If it is an http link, the image will be automatically loaded.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "keepAlive",
-            "是否开启缓存",
+            "Whether to enable caching",
             "true",
             ValueType.Boolean,
-            "用于配置页面是否开启缓存，开启后页面会缓存，不会重新加载，仅在标签页启用时有效。",
+            "Used to configure whether to enable caching on the page. When enabled, the page will be cached and will not be reloaded. It is only valid when the tab is enabled.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideInMenu",
-            "是否在菜单中隐藏",
+            "Whether to hide in the menu",
             "false",
             ValueType.Boolean,
-            "用于配置页面是否在菜单中隐藏，隐藏后页面不会在菜单中显示。",
+            "Used to configure whether the page is hidden in the menu. After hiding, the page will not be displayed in the menu.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideInTab",
-            "是否在标签页中隐藏",
+            "Whether to hide in tabs",
             "false",
             ValueType.Boolean,
-            "用于配置页面是否在标签页中隐藏，隐藏后页面不会在标签页中显示。",
+            "Used to configure whether the page is hidden in the tab page. After hiding, the page will not be displayed in the tab page.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideInBreadcrumb",
-            "是否在面包屑中隐藏",
+            "Whether to hide in breadcrumbs",
             "false",
             ValueType.Boolean,
-            "用于配置页面是否在面包屑中隐藏，隐藏后页面不会在面包屑中显示。",
+            "Used to configure whether the page is hidden in breadcrumbs. After hiding, the page will not be displayed in breadcrumbs.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "hideChildrenInMenu",
-            "是否隐藏子菜单",
+            "Whether to hide the submenu",
             "false",
             ValueType.Boolean,
-            "用于配置页面的子页面是否在菜单中隐藏，隐藏后子页面不会在菜单中显示。",
+            "Used to configure whether the subpage of the page is hidden in the menu. After hiding, the subpage will not be displayed in the menu.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "authority",
-            "页面权限",
+            "Page Permissions",
             "",
             ValueType.Array,
-            "用于配置页面的权限，只有拥有对应权限的用户才能访问页面，不配置则不需要权限。",
+            "Used to configure the permissions of the page. Only users with corresponding permissions can access the page. If not configured, no permissions are required.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "badge",
-            "页面徽标",
+            "Page Logo",
             "",
             ValueType.String,
-            "用于配置页面的徽标，会在菜单显示。",
+            "The logo used to configure the page will be displayed in the menu.",
             isStatic: true);
         data.AddItem(
            GuidGenerator,
            "badgeType",
-           "徽标类型",
+           "logo type",
            "normal",
            ValueType.String,
-           "用于配置页面的徽标类型，dot 为小红点，normal 为文本。",
+           "Used to configure the logo type of the page, dot is the small red dot, and normal is the text.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "badgeVariants",
-            "徽标颜色",
+            "logo color",
             "success",
             ValueType.String,
-            "用于配置页面的徽标颜色,'default' | 'destructive' | 'primary' | 'success' | 'warning' | string",
+            "Used to configure the logo color of the page,'default' | 'destructive' | 'primary' | 'success' | 'warning' | string",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "activePath",
-            "当前激活的菜单",
+            "Currently active menu",
             "",
             ValueType.String,
-            "用于配置当前激活的菜单，有时候页面没有显示在菜单内，需要激活父级菜单时使用。",
+            "Used to configure the currently activated menu. Sometimes the page is not displayed in the menu and is used when the parent menu needs to be activated.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "affixTab",
-            "是否固定标签页",
+            "Whether the tab is pinned",
             "false",
             ValueType.Boolean,
-            "用于配置页面是否固定标签页，固定后页面不可关闭。",
+            "Used to configure whether the page should pin the tab page. The page cannot be closed after it is pinned.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "affixTabOrder",
-            "固定标签页排序,",
+            "Fixed tab sorting,",
             "0",
             ValueType.Numeic,
-            "用于配置页面固定标签页的排序, 采用升序排序。",
+            "Used to configure the sorting of fixed tabs on the page, using ascending order.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "iframeSrc",
-            "内嵌页面地址",
+            "embedded page address",
             "",
             ValueType.String,
-            "用于配置内嵌页面的 iframe 地址，设置后会在当前页面内嵌对应的页面。",
+            "Used to configure the iframe address of the embedded page. After setting, the corresponding page will be embedded in the current page.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "ignoreAccess",
-            "是否忽略权限",
+            "Whether to ignore permissions",
             "false",
             ValueType.Boolean,
-            "用于配置页面是否忽略权限，直接可以访问。",
+            "Used to configure whether the page ignores permissions and can be accessed directly.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "link",
-            "外链跳转路径",
+            "External link jump path",
             "",
             ValueType.String,
-            "用于配置外链跳转路径，会在新窗口打开。",
+            "Used to configure the external link jump path, it will open in a new window.",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "maxNumOfOpenTab",
-            "标签页最大打开数量",
+            "Maximum number of open tabs",
             "-1",
             ValueType.Numeic,
-            "用于配置标签页最大打开数量，设置后会在打开新标签页时自动关闭最早打开的标签页(仅在打开同名标签页时生效)。",
+            "Used to configure the maximum number of open tabs. After setting, the earliest opened tab will be automatically closed when a new tab is opened (only effective when a tab with the same name is opened).",
             isStatic: true);
         data.AddItem(
             GuidGenerator,
             "menuVisibleWithForbidden",
-            "是否可见菜单无权限",
+            "Whether the menu is visible without permission",
             "false",
             ValueType.Boolean,
-            "用于配置页面在菜单可以看到，但是访问会被重定向到403。");
+            "The configuration page can be seen in the menu, but access will be redirected to 403.");
         data.AddItem(
             GuidGenerator,
             "openInNewWindow",
-            "是否在新页面打开",
+            "Whether to open in a new page",
             "false",
             ValueType.Boolean,
-            "设置为 true 时，会在新窗口打开页面。");
+            "When set to true, the page will be opened in a new window.");
         data.AddItem(
             GuidGenerator,
             "order",
-            "页面排序",
+            "Page Sort",
             "0",
             ValueType.Numeic,
-            "用于配置页面的排序，用于路由到菜单排序。注意: 排序仅针对一级菜单有效，二级菜单的排序需要在对应的一级菜单中按代码顺序设置。");
+            "Used to configure the sorting of pages and used to route to menu sorting. Note: Sorting is only valid for first-level menus. The sorting of second-level menus needs to be set in code order in the corresponding first-level menus.");
         data.AddItem(
             GuidGenerator,
             "noBasicLayout",
-            "是否不使用基础布局",
+            "Whether not to use basic layout",
             "false",
             ValueType.Boolean,
-            "用于配置当前路由不使用基础布局，仅在顶级时生效。默认情况下，所有的路由都会被包裹在基础布局中（包含顶部以及侧边等导航部件），如果你的页面不需要这些部件，可以设置 noBasicLayout 为 true。");
+            "Used to configure the current route not to use the basic layout, it only takes effect at the top level. By default, all routes will be wrapped in the basic layout (including navigation components such as top and side). If your page does not need these components, you can set noBasicLayout to true.");
 
         await DataDictionaryDataSeeder.SeedAsync(data);
 

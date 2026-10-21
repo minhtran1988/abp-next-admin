@@ -10,7 +10,7 @@ namespace LINGYUN.Abp.Hangfire.Dashboard.Authorization;
 
 public class DashboardPermissionChecker : IDashboardPermissionChecker, ITransientDependency
 {
-    // 仪表板属于高频访问, 设定有效期的二级权限缓存
+    // The dashboard is a high-frequency access, and the second-level permission cache sets the validity period.
     private readonly IMemoryCache _memoryCache;
     private readonly IPermissionChecker _permissionChecker;
 
@@ -38,7 +38,7 @@ public class DashboardPermissionChecker : IDashboardPermissionChecker, ITransien
             cacheItem,
             new MemoryCacheEntryOptions
             {
-                // 5分钟过期
+                // Expires in 5 minutes
                 AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(5d),
             });
 

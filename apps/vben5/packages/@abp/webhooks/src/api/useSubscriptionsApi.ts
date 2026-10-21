@@ -15,9 +15,9 @@ export function useSubscriptionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 创建订阅
-   * @param input 参数
-   * @returns 订阅Dto
+   * Create subscription
+   * @param input parameter
+   * @returns Subscribe to Dto
    */
   function createApi(
     input: WebhookSubscriptionCreateDto,
@@ -28,8 +28,8 @@ export function useSubscriptionsApi() {
     });
   }
   /**
-   * 删除订阅
-   * @param id 订阅Id
+   * Delete subscription
+   * @param id subscription ID
    */
   function deleteApi(id: string): Promise<void> {
     return request(`/api/webhooks/subscriptions/${id}`, {
@@ -37,8 +37,8 @@ export function useSubscriptionsApi() {
     });
   }
   /**
-   * 批量删除订阅
-   * @param input 参数
+   * Delete subscriptions in batches
+   * @param input parameter
    */
   function bulkDeleteApi(
     input: WebhookSubscriptionDeleteManyInput,
@@ -49,8 +49,8 @@ export function useSubscriptionsApi() {
     });
   }
   /**
-   * 查询所有可用的Webhook分组列表
-   * @returns Webhook分组列表
+   * Query the list of all available Webhook groups
+   * @returns Webhook grouping list
    */
   function getAllAvailableWebhooksApi(): Promise<
     ListResultDto<WebhookAvailableGroupDto>
@@ -63,9 +63,9 @@ export function useSubscriptionsApi() {
     );
   }
   /**
-   * 查询订阅
-   * @param id 订阅Id
-   * @returns 订阅Dto
+   * Query subscription
+   * @param id subscription ID
+   * @returns Subscribe to Dto
    */
   function getApi(id: string): Promise<WebhookSubscriptionDto> {
     return request<WebhookSubscriptionDto>(
@@ -76,9 +76,9 @@ export function useSubscriptionsApi() {
     );
   }
   /**
-   * 查询订阅分页列表
-   * @param input 过滤参数
-   * @returns 订阅Dto列表
+   * Query subscription paging list
+   * @param input filter parameter
+   * @returns Subscribe to Dto list
    */
   function getPagedListApi(
     input: WebhookSubscriptionGetListInput,
@@ -92,10 +92,10 @@ export function useSubscriptionsApi() {
     );
   }
   /**
-   * 更新订阅
-   * @param id 订阅Id
-   * @param input 更新参数
-   * @returns 订阅Dto
+   * Update subscription
+   * @param id subscription ID
+   * @param input update parameters
+   * @returns Subscribe to Dto
    */
   function updateApi(
     id: string,

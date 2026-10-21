@@ -7,23 +7,23 @@ namespace LINGYUN.Abp.DataProtectionManagement;
 public class EntityEnumInfo : Entity<Guid>
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public virtual string DisplayName { get; protected set; } = default!;
     /// <summary>
-    /// 枚举值
+    /// enumeration value
     /// </summary>
     public virtual string Value { get; protected set; } = default!;
     /// <summary>
-    /// 所属属性
+    /// Attributes
     /// </summary>
     public virtual EntityPropertyInfo PropertyInfo { get; protected set; } = default!;
     /// <summary>
-    /// 所属属性标识
+    /// Attribute identification
     /// </summary>
     public virtual Guid PropertyInfoId { get; protected set; }
     protected EntityEnumInfo()

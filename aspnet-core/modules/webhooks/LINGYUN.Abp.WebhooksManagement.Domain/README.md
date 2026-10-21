@@ -1,17 +1,17 @@
 # LINGYUN.Abp.WebhooksManagement.Domain
 
-Webhook管理领域模块，提供Webhook的存储和管理功能。
+The Webhook management domain module provides Webhook storage and management functions.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 支持静态Webhook存储到数据库
-* 支持动态Webhook存储
-* Webhook缓存管理
-* 时间戳过期机制
+* Support static Webhook storage to database
+* Support dynamic Webhook storage
+* Webhook cache management
+* Timestamp expiration mechanism
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementDomainModule))]
@@ -21,23 +21,23 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WebhooksManagement": {
-    "SaveStaticWebhooksToDatabase": true,  // 是否保存静态Webhook到数据库，默认true
-    "IsDynamicWebhookStoreEnabled": false,  // 是否启用动态Webhook存储，默认false
-    "WebhooksCacheRefreshInterval": "00:00:30",  // 缓存刷新时间，默认30秒
-    "WebhooksCacheStampTimeOut": "00:02:00",  // 申请时间戳超时时间，默认2分钟
-    "WebhooksCacheStampExpiration": "00:30:00"  // 时间戳过期时间，默认30分钟
+    "SaveStaticWebhooksToDatabase": true, // Whether to save static Webhooks to the database, default true
+    "IsDynamicWebhookStoreEnabled": false, // Whether to enable dynamic Webhook storage, default false
+    "WebhooksCacheRefreshInterval": "00:00:30", // Cache refresh time, default 30 seconds
+    "WebhooksCacheStampTimeOut": "00:02:00", // Application timestamp timeout, default is 2 minutes
+    "WebhooksCacheStampExpiration": "00:30:00" // timestamp expiration time, default 30 minutes
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置Webhook管理选项
+1. Configure Webhook management options
 ```csharp
 Configure<WebhooksManagementOptions>(options =>
 {
@@ -47,7 +47,7 @@ Configure<WebhooksManagementOptions>(options =>
 });
 ```
 
-2. 使用Webhook存储
+2. Use Webhook storage
 ```csharp
 public class YourService
 {
@@ -61,7 +61,7 @@ public class YourService
     public async Task DoSomething()
     {
         var webhooks = await _webhookDefinitionManager.GetAllAsync();
-        // 处理webhook
+        // handle webhook
     }
 }
 ```

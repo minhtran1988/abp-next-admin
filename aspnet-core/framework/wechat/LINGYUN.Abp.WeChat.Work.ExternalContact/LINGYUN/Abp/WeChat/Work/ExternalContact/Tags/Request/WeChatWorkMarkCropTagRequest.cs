@@ -7,36 +7,36 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Tags.Request;
 /// <summary>
-/// 编辑客户企业标签请求参数
+/// Edit customer enterprise label request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/92118" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/92118" />
 /// </remarks>
 public class WeChatWorkMarkCropTagRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 添加外部联系人的userid
+    /// Add the userid of the external contact
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; }
     /// <summary>
-    /// 外部联系人userid
+    /// External contact userid
     /// </summary>
     [NotNull]
     [JsonProperty("external_userid")]
     [JsonPropertyName("external_userid")]
     public string ExternalUserId { get; }
     /// <summary>
-    /// 要标记的标签列表
+    /// List of tags to mark
     /// </summary>
     [NotNull]
     [JsonProperty("add_tag")]
     [JsonPropertyName("add_tag")]
     public List<string> CreateTag { get; }
     /// <summary>
-    /// 要移除的标签列表
+    /// List of tags to remove
     /// </summary>
     [NotNull]
     [JsonProperty("remove_tag")]

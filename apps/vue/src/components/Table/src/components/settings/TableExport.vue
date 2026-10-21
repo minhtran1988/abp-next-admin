@@ -54,19 +54,19 @@
 
   function exportDataToExcel(options) {
     const dataSource = table.getDataSource();
-    // 列排序过滤
+    // Column sorting and filtering
     const columns = table.getColumns()
       .filter((col) => !col.flag || col.flag === 'DEFAULT')
       .filter((col) => isString(col.title) && isString(col.dataIndex));
-    // 标题列
+    // title bar
     const header: {[key:string]: string} = {};
     columns.forEach((col) => {
       header[String(col.dataIndex)] = String(col.title);
     });
-    // 数据列
+    // data column
     const rows: {[key:string]: string}[] = [];
     dataSource.forEach((data) => fillDataRows(columns, data, rows));
-    // 输出到excel
+    // Output to excel
     jsonToSheetXlsx({
       data: rows,
       header: header,

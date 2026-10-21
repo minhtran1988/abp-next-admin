@@ -1,32 +1,32 @@
 # LINGYUN.Abp.MessageService.Domain
 
-消息服务领域层模块。
+Message service domain layer module.
 
-## 功能特性
+## Features
 
-* 实现消息服务的领域逻辑
-* 集成对象扩展功能
-* 集成缓存功能
-* 集成通知功能
-* 支持自动映射
-* 支持多语言
+* Implement domain logic of message service
+* Integrated object extension function
+* Integrated caching function
+* Integrated notification function
+* Support automatic mapping
+* Support multiple languages
 
-## 依赖模块
+## Dependent modules
 
 * `AbpAutoMapperModule`
 * `AbpCachingModule`
 * `AbpNotificationsModule`
 * [LINGYUN.Abp.MessageService.Domain.Shared](../LINGYUN.Abp.MessageService.Domain.Shared/README.md)
 
-## 配置使用
+## Configuration usage
 
-1. 首先，需要安装 LINGYUN.Abp.MessageService.Domain 到你的项目中：
+1. First, you need to install LINGYUN.Abp.MessageService.Domain into your project:
 
 ```bash
 dotnet add package LINGYUN.Abp.MessageService.Domain
 ```
 
-2. 添加 `AbpMessageServiceDomainModule` 到你的模块的依赖列表：
+2. Add `AbpMessageServiceDomainModule` to your module’s dependency list:
 
 ```csharp
 [DependsOn(typeof(AbpMessageServiceDomainModule))]
@@ -35,6 +35,6 @@ public class YourModule : AbpModule
 }
 ```
 
-## 更多
+## More
 
 [English document](README.EN.md)

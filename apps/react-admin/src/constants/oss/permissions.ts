@@ -1,18 +1,18 @@
-/** 容器权限 */
+/** Container permissions */
 export const ContainerPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOssManagement.Container.Create",
 	Default: "AbpOssManagement.Container",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOssManagement.Container.Delete",
 };
-/** 容器权限 */
+/** Container permissions */
 export const OssObjectPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpOssManagement.OssObject.Create",
 	Default: "AbpOssManagement.OssObject",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpOssManagement.OssObject.Delete",
-	/** 下载 */
+	/** Download */
 	Download: "AbpOssManagement.OssObject.Download",
 };

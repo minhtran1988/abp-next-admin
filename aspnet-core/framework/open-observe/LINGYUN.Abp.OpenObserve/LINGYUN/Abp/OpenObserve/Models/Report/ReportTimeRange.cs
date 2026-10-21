@@ -6,24 +6,24 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Report;
 
 /// <summary>
-/// 报表时间范围
+/// Report time range
 /// </summary>
 public class ReportTimeRange
 {
     /// <summary>
-    /// 类型
+    /// Type
     /// </summary>
     /// <remarks>
-    /// 如 relative
+    /// as relative
     /// </remarks>
     [JsonPropertyName("type")]
     public string? Type { get; set; }
 
     /// <summary>
-    /// 周期
+    /// Period
     /// </summary>
     /// <remarks>
-    /// 如 1w
+    /// Such as 1w
     /// </remarks>
     [JsonPropertyName("period")]
     public string? Period { get; set; }

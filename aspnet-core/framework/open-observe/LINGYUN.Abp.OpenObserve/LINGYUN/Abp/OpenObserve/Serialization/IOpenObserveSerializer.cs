@@ -1,34 +1,34 @@
 namespace LINGYUN.Abp.OpenObserve.Serialization;
 
 /// <summary>
-/// OpenObserve 序列化器
+/// OpenObserve serializer
 /// </summary>
 /// <remarks>
-/// 统一负责请求体序列化与响应反序列化, 客户端不直接依赖具体的序列化实现。
-/// 默认实现见 <see cref="DefaultOpenObserveSerializer"/>,
-/// 需要自定义(如替换为 Newtonsoft 或其它策略)时实现该接口, 并参考 <see cref="DefaultOpenObserveSerializer"/> 的注册方式覆盖默认实现。
+/// Responsible for request body serialization and response deserialization, the client does not directly rely on specific serialization implementation.
+/// For the default implementation, see <see cref="DefaultOpenObserveSerializer"/>,
+/// Implement this interface when you need to customize it (such as replacing it with Newtonsoft or other strategies), and refer to the registration method of <see cref="DefaultOpenObserveSerializer"/> to override the default implementation.
 /// </remarks>
 public interface IOpenObserveSerializer
 {
     /// <summary>
-    /// 序列化请求体
+    /// Serialize request body
     /// </summary>
     string Serialize<T>(T value);
 
     /// <summary>
-    /// 反序列化响应
+    /// Deserialize response
     /// </summary>
-    /// <param name="jsonString">响应内容</param>
+    /// <param name="jsonString">Response content</param>
     T? Deserialize<T>(string jsonString);
 
     /// <summary>
-    /// 尝试反序列化响应
+    /// Attempt to deserialize the response
     /// </summary>
     /// <remarks>
-    /// 用于错误响应等允许解析失败的场景, 解析失败时返回 false 而不抛出异常
+    /// Used for error responses and other scenarios where parsing failure is allowed. When parsing fails, false is returned without throwing an exception.
     /// </remarks>
-    /// <param name="jsonString">响应内容</param>
-    /// <param name="value">反序列化结果</param>
-    /// <returns>解析成功返回 true</returns>
+    /// <param name="jsonString">Response content</param>
+    /// <param name="value">Deserialization result</param>
+    /// <returns>Returns true if parsed successfully</returns>
     bool TryDeserialize<T>(string jsonString, out T? value);
 }

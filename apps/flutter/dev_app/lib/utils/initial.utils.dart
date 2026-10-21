@@ -7,17 +7,17 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 class InitialUtils {
   static Future<void> initialState(Injector injector) async {
-    /// 初始化应用程序
+    /// Initialize the application
     var applicationInitialService = injector.get<ApplicationInitialService>();
     var application = await applicationInitialService.initialApp();
     injector.inject(application, tag: AbpTokens.application);
-    /// 初始化环境配置
+    /// Initialize environment configuration
     var environmentService = injector.get<EnvironmentService>();
     environmentService.setState(application.environment);
 
     await EnvironmentUtils.mergeRemoteEnvironment(injector, application.environment);
 
-    /// 放在初始化环境之后
+    /// Place it after initializing the environment
     await injector.injectAsync<NotificationSendService>((injector) async {
       var service = FlutterLocalNotificationsSendService(injector);
       await service.initAsync();

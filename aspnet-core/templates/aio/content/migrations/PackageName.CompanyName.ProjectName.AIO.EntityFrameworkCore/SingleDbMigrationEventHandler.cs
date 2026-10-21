@@ -59,7 +59,7 @@ public class SingleDbMigrationEventHandler :
     }
     public async virtual Task HandleEventAsync(EntityDeletedEto<TenantEto> eventData)
     {
-        // 租户删除时移除轮询作业
+        // Remove polling job when tenant is deleted
         var pollingJob = BuildPollingJobInfo(eventData.Entity.Id, eventData.Entity.Name);
         await JobScheduler.RemoveAsync(pollingJob);
         await JobStore.RemoveAsync(pollingJob.Id);
@@ -171,7 +171,7 @@ public class SingleDbMigrationEventHandler :
 
     protected async virtual Task SeedTenantDefaultRoleAsync(TenantCreatedEto eventData)
     {
-        // 默认用户
+        // Default user
         var roleId = GuidGenerator.Create();
         var defaultRole = new IdentityRole(roleId, "Users", eventData.Id)
         {
@@ -181,7 +181,7 @@ public class SingleDbMigrationEventHandler :
         };
         (await IdentityRoleManager.CreateAsync(defaultRole)).CheckErrors();
 
-        // 所有用户都应该具有查询用户权限, 用于IM场景
+        // All users should have query user permissions, used in IM scenarios
         await PermissionDataSeeder.SeedAsync(
             RolePermissionValueProvider.ProviderName,
             defaultRole.Name,
@@ -234,7 +234,7 @@ public class SingleDbMigrationEventHandler :
 
             tenantAdminUser.AddRole(tenantAdminRoleId);
 
-            // 创建租户管理用户
+            // Create tenant management user
             (await IdentityUserManager.CreateAsync(tenantAdminUser)).CheckErrors();
             (await IdentityUserManager.AddPasswordAsync(tenantAdminUser, adminPassword)).CheckErrors();
         }

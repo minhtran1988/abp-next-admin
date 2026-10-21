@@ -1,11 +1,11 @@
 import type { ComputedRef, MaybeRef } from 'vue';
 
 /**
- * 类型级递归中增加深度计数
+ * Increase depth count in type-level recursion
  */
 type Increment<A extends unknown[]> = [...A, unknown];
 /**
- * 深层递归所有属性为可选
+ * All properties of deep recursion are optional
  */
 type DeepPartial<
   T,
@@ -20,7 +20,7 @@ type DeepPartial<
     : T;
 
 /**
- * 深层递归所有属性为只读
+ * All properties of deep recursion are read-only
  */
 type DeepReadonly<
   T,
@@ -35,7 +35,7 @@ type DeepReadonly<
     : T;
 
 /**
- * 任意类型的异步函数
+ * Any type of asynchronous function
  */
 
 type AnyPromiseFunction<T extends any[] = any[], R = void> = (
@@ -43,57 +43,57 @@ type AnyPromiseFunction<T extends any[] = any[], R = void> = (
 ) => PromiseLike<R>;
 
 /**
- * 任意类型的普通函数
+ * Ordinary functions of any type
  */
 type AnyNormalFunction<T extends any[] = any[], R = void> = (...arg: T) => R;
 
 /**
- * 任意类型的函数
+ * Any type of function
  */
 type AnyFunction<T extends any[] = any[], R = void> =
   | AnyNormalFunction<T, R>
   | AnyPromiseFunction<T, R>;
 
 /**
- *  T | null 包装
+ * T | null packaging
  */
 type Nullable<T> = null | T;
 
 /**
- * T | Not null 包装
+ * T | Not null packaging
  */
 type NonNullable<T> = T extends null | undefined ? never : T;
 
 /**
- * 字符串类型对象
+ * String type object
  */
 type Recordable<T> = Record<string, T>;
 
 /**
- * 字符串类型对象（只读）
+ * String type object (read-only)
  */
 interface ReadonlyRecordable<T = any> {
   readonly [key: string]: T;
 }
 
 /**
- * setTimeout 返回值类型
+ * setTimeout return value type
  */
 type TimeoutHandle = ReturnType<typeof setTimeout>;
 
 /**
- * setInterval 返回值类型
+ * setInterval return value type
  */
 type IntervalHandle = ReturnType<typeof setInterval>;
 
 /**
- * 也许它是一个计算的 ref，或者一个 getter 函数
+ * Maybe it's a computed ref, or a getter function
  *
  */
 type MaybeReadonlyRef<T> = (() => T) | ComputedRef<T>;
 
 /**
- * 也许它是一个 ref，或者一个普通值，或者一个 getter 函数
+ * Maybe it's a ref, or a normal value, or a getter function
  *
  */
 type MaybeComputedRef<T> = MaybeReadonlyRef<T> | MaybeRef<T>;

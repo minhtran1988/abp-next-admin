@@ -1,18 +1,18 @@
 # LINGYUN.Abp.WeChat.Work.Common
 
-企业微信通用模块，提供企业微信应用开发的基础功能实现。
+The enterprise WeChat general module provides basic function implementation for enterprise WeChat application development.
 
-## 功能特性
+## Features
 
-* 统一的消息处理框架
-* 统一的消息加解密机制
-* 统一的事件处理机制
-* 统一的API调用接口
-* 统一的错误处理机制
-* AccessToken管理
-* JsApi Ticket管理
+* Unified message processing framework
+* Unified message encryption and decryption mechanism
+* Unified event handling mechanism
+* Unified API calling interface
+* Unified error handling mechanism
+* AccessToken management
+* JsApi Ticket management
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkCommonModule))]
@@ -22,7 +22,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
@@ -30,16 +30,16 @@ public class YouProjectModule : AbpModule
     "Work": {
       "Common": {
         "MessageHandlerFactory": {
-          "MessageResolvers": [],           // 消息解析器列表
-          "MessageHandlers": []             // 消息处理器列表
+          "MessageResolvers": [], // Message resolver list
+          "MessageHandlers": [] // Message handler list
         },
         "AccessToken": {
-          "CacheExpiration": 7200,         // AccessToken缓存时间（秒）
-          "CacheKey": "WeChat:Work:AccessToken:{0}" // AccessToken缓存键模板
+          "CacheExpiration": 7200, // AccessToken cache time (seconds)
+          "CacheKey": "WeChat:Work:AccessToken:{0}" // AccessToken cache key template
         },
         "JsApiTicket": {
-          "CacheExpiration": 7200,         // JsApi Ticket缓存时间（秒）
-          "CacheKey": "WeChat:Work:JsApiTicket:{0}" // JsApi Ticket缓存键模板
+          "CacheExpiration": 7200, // JsApi Ticket cache time (seconds)
+          "CacheKey": "WeChat:Work:JsApiTicket:{0}" // JsApi Ticket cache key template
         }
       }
     }
@@ -47,25 +47,25 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 消息处理
+## Message processing
 
-* 支持文本消息处理
-* 支持图片消息处理
-* 支持语音消息处理
-* 支持视频消息处理
-* 支持位置消息处理
-* 支持链接消息处理
-* 支持事件消息处理
+* Support text message processing
+* Support picture message processing
+* Support voice message processing
+* Support video message processing
+* Support location message processing
+* Support link message processing
+* Support event message processing
 
-## 事件处理
+## Event handling
 
-* 支持应用菜单事件
-* 支持进入应用事件
-* 支持上报地理位置事件
-* 支持异步任务完成事件
-* 支持外部联系人事件
-* 支持通讯录变更事件
+* Support application menu events
+* Support entering application events
+*Support reporting of geographical location events
+* Support asynchronous task completion events
+* Support external contact events
+* Support address book change event
 
-## 更多文档
+## More documentation
 
-* [企业微信通用模块文档](README.EN.md)
+* [Enterprise WeChat General Module Document](README.EN.md)

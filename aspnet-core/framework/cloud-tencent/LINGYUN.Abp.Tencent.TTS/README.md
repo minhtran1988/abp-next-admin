@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Tencent.TTS
 
-腾讯云语音合成服务模块，集成腾讯云语音合成服务到ABP应用程序。
+Tencent Cloud speech synthesis service module integrates Tencent Cloud speech synthesis service into ABP applications.
 
-## 功能特性
+## Features
 
-* 支持腾讯云语音合成服务（TTS）
-* 支持多租户配置
-* 基于腾讯云TTS SDK V20190823
-* 提供TTS客户端工厂，支持动态创建TTS客户端
+*Support Tencent Cloud Speech Synthesis Service (TTS)
+* Support multi-tenant configuration
+*Based on Tencent Cloud TTS SDK V20190823
+* Provide TTS client factory to support dynamic creation of TTS clients
 
-## 基本用法
+## Basic usage
 
-1. 添加模块依赖
+1. Add module dependencies
 ```csharp
 [DependsOn(typeof(AbpTencentTTSModule))]
 public class YourModule : AbpModule
@@ -20,19 +20,19 @@ public class YourModule : AbpModule
 }
 ```
 
-2. 配置腾讯云服务
+2. Configure Tencent Cloud services
 ```json
 {
   "Settings": {
     "LINGYUN.Abp.Tencent": {
-      "SecretId": "您的腾讯云SecretId",
-      "SecretKey": "您的腾讯云SecretKey"
+      "SecretId": "Your Tencent Cloud SecretId",
+      "SecretKey": "Your Tencent Cloud SecretKey"
     }
   }
 }
 ```
 
-3. 使用TTS服务示例
+3. Example of using TTS service
 ```csharp
 public class YourService
 {
@@ -46,48 +46,48 @@ public class YourService
     public async Task TextToSpeechAsync(string text)
     {
         var ttsClient = await _ttsClientFactory.CreateAsync();
-        // 使用ttsClient调用腾讯云TTS服务API
-        // 详细API使用方法请参考腾讯云TTS SDK文档
+        // Use ttsClient to call Tencent Cloud TTS service API
+        // For detailed API usage, please refer to Tencent Cloud TTS SDK documentation
     }
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-### 基础配置
+### Basic configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud": {
-      "SecretId": "您的腾讯云SecretId", // 从腾讯云控制台获取
-      "SecretKey": "您的腾讯云SecretKey", // 从腾讯云控制台获取
-      "DurationSecond": "600" // 会话持续时间（秒）
+      "SecretId": "Your Tencent Cloud SecretId", // Get it from the Tencent Cloud console
+      "SecretKey": "Your Tencent Cloud SecretKey", // Get it from the Tencent Cloud console
+      "DurationSecond": "600" // Session duration (seconds)
     }
   }
 }
 ```
 
-### TTS服务配置
+### TTS service configuration
 
 ```json
 {
   "Settings": {
     "Abp.TencentCloud.TTS": {
-      "AppId": "", // TTS应用ID
-      "VoiceType": "", // 音色，默认为"0"
-      "Language": "1", // 语言，1-中文，2-英文
-      "Speed": "0", // 语速，范围：-2~2
-      "Volume": "0", // 音量，范围：0~10
-      "ProjectId": "0" // 项目ID
+      "AppId": "", // TTS application ID
+      "VoiceType": "", // Voice, default is "0"
+      "Language": "1", // Language, 1-Chinese, 2-English
+      "Speed": "0", // Speech speed, range: -2~2
+      "Volume": "0", // Volume, range: 0~10
+      "ProjectId": "0" // Project ID
     }
   }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [腾讯云语音合成服务](https://cloud.tencent.com/document/product/1073)
-* [腾讯云TTS SDK文档](https://cloud.tencent.com/document/product/1073/37927)
+* [Tencent Cloud Speech Synthesis Service](https://cloud.tencent.com/document/product/1073)
+* [Tencent Cloud TTS SDK Document](https://cloud.tencent.com/document/product/1073/37927)
 
 [English](./README.EN.md)

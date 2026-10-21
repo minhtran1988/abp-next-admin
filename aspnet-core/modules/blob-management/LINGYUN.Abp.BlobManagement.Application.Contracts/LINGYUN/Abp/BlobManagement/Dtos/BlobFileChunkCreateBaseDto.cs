@@ -5,22 +5,22 @@ namespace LINGYUN.Abp.BlobManagement.Dtos;
 public abstract class BlobFileChunkCreateBaseDto : BlobFileCreateBaseDto
 {
     /// <summary>
-    /// 常规块大小
+    /// Regular block size
     /// </summary>
     [Required]
     public long ChunkSize { get; set; }
     /// <summary>
-    /// 当前块大小
+    /// Current block size
     /// </summary>
     [Required]
     public long CurrentChunkSize { get; set; }
     /// <summary>
-    /// 当前上传中块的索引
+    /// Index of the chunk in the current upload
     /// </summary>
     [Required]
     public int ChunkNumber { get; set; }
     /// <summary>
-    /// 块总数
+    /// Total number of blocks
     /// </summary>
     [Required]
     public int TotalChunks { get; set; }

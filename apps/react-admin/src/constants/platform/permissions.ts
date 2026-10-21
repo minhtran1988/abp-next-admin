@@ -1,59 +1,59 @@
-/** 邮件消息权限 */
+/** Email message permissions */
 export const EmailMessagesPermissions = {
 	Default: "Platform.EmailMessage",
-	/** 删除 */
+	/** Delete */
 	Delete: "Platform.EmailMessage.Delete",
-	/** 发送消息 */
+	/** Send message */
 	SendMessage: "Platform.EmailMessage.SendMessage",
 };
-/** 短信消息权限 */
+/** SMS message permissions */
 export const SmsMessagesPermissions = {
 	Default: "Platform.SmsMessage",
-	/** 删除 */
+	/** Delete */
 	Delete: "Platform.SmsMessage.Delete",
-	/** 发送消息 */
+	/** Send message */
 	SendMessage: "Platform.SmsMessage.SendMessage",
 };
-/** 数据字典权限 */
+/** Data dictionary permissions */
 export const DataDictionaryPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "Platform.DataDictionary.Create",
-	/** 默认 */
+	/** default */
 	Default: "Platform.DataDictionary",
-	/** 删除 */
+	/** Delete */
 	Delete: "Platform.DataDictionary.Delete",
-	/** 管理项目 */
+	/** Manage projects */
 	ManageItems: "Platform.DataDictionary.ManageItems",
-	/** 移动 */
+	/** Move */
 	Move: "Platform.DataDictionary.Move",
-	/** 更新 */
+	/** Update */
 	Update: "Platform.DataDictionary.Update",
 };
-/** 布局权限 */
+/** Layout permissions */
 export const LayoutPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "Platform.Layout.Create",
-	/** 默认 */
+	/** default */
 	Default: "Platform.Layout",
-	/** 删除 */
+	/** Delete */
 	Delete: "Platform.Layout.Delete",
-	/** 更新 */
+	/** Update */
 	Update: "Platform.Layout.Update",
 };
-/** 菜单权限 */
+/** Menu permissions */
 export const MenuPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "Platform.Menu.Create",
-	/** 默认 */
+	/** default */
 	Default: "Platform.Menu",
-	/** 删除 */
+	/** Delete */
 	Delete: "Platform.Menu.Delete",
-	/** 管理角色菜单 */
+	/** Manage role menu */
 	ManageRoles: "Platform.Menu.ManageRoles",
-	/** 管理用户收藏菜单 */
+	/** Manage user favorites menu */
 	ManageUserFavorites: "Platform.Menu.ManageUserFavorites",
-	/** 管理用户菜单 */
+	/** Manage user menu */
 	ManageUsers: "Platform.Menu.ManageUsers",
-	/** 更新 */
+	/** Update */
 	Update: "Platform.Menu.Update",
 };

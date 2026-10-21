@@ -35,8 +35,8 @@ try
         ProjectNameHttpApiHostModule.ApplicationName = Environment.GetEnvironmentVariable("APPLICATION_NAME")
             ?? ProjectNameHttpApiHostModule.ApplicationName;
         options.ApplicationName = ProjectNameHttpApiHostModule.ApplicationName;
-        // 搜索 Modules 目录下所有文件作为插件
-        // 取消显示引用所有其他项目的模块，改为通过插件的形式引用
+        // Search all files in the Modules directory as plug-ins
+        // Cancel the display of modules that reference all other projects and instead reference them through plug-ins.
         var pluginFolder = Path.Combine(Directory.GetCurrentDirectory(), "Modules");
 
         DirectoryHelper.CreateIfNotExists(pluginFolder);

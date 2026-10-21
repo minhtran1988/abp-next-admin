@@ -172,7 +172,7 @@ function onPropDelete(prop: PropertyInfo) {
       :wrapper-col="{ span: 18 }"
     >
       <Tabs v-model:active-key="activeTab">
-        <!-- 基本信息 -->
+        <!-- Basic information -->
         <TabPane key="basic" :tab="$t('Notifications.BasicInfo')">
           <FormItem
             name="groupName"
@@ -294,7 +294,7 @@ function onPropDelete(prop: PropertyInfo) {
             />
           </FormItem>
         </TabPane>
-        <!-- 属性 -->
+        <!-- Properties -->
         <TabPane key="props" :tab="$t('Notifications.Properties')">
           <PropertyTable
             :data="formModel.extraProperties"

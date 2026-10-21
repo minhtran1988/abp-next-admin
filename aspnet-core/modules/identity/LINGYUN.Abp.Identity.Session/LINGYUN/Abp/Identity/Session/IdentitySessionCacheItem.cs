@@ -7,43 +7,43 @@ public class IdentitySessionCacheItem
 {
     private const string CacheKeyFormat = "s:{0}";
     /// <summary>
-    /// 登录设备
+    /// Log in to the device
     /// </summary>
     public string Device { get; set; } = default!;
     /// <summary>
-    /// 设备描述
+    /// Device description
     /// </summary>
     public string? DeviceInfo { get; set; }
     /// <summary>
-    /// 用户Id
+    /// UserId
     /// </summary>
     public Guid UserId { get; set; }
     /// <summary>
-    /// 会话Id
+    /// SessionId
     /// </summary>
     public string SessionId { get; set; } = default!;
     /// <summary>
-    /// 客户端Id
+    /// ClientId
     /// </summary>
     public string? ClientId { get; set; }
     /// <summary>
-    /// IP地址
+    /// IP address
     /// </summary>
     public string? IpAddresses { get; set; }
     /// <summary>
-    /// IP属地
+    /// IP territory
     /// </summary>
     public string? IpRegion { get; set; }
     /// <summary>
-    /// 登录时间
+    /// Login time
     /// </summary>
     public DateTime SignedIn { get; set; }
     /// <summary>
-    /// 上次访问时间
+    /// Last access time
     /// </summary>
     public DateTime? LastAccessed { get; set; }
     /// <summary>
-    /// 过期时间(ms)
+    /// Expiration time (ms)
     /// </summary>
     public double? ExpiraIn { get; set; }
 

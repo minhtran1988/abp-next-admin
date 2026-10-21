@@ -7,32 +7,32 @@ namespace PackageName.CompanyName.ProjectName.Users.Dtos
     public class UserDto : FullAuditedEntityDto<Guid>
     {
         /// <summary>
-        /// 用户名称
+        /// Username
         /// </summary>
         public string NickName { get; set; }
 
         /// <summary>
-        /// Identity用户Id
+        /// IdentityUserId
         /// </summary>
         public Guid IdentityUserId { get; set; }
 
         /// <summary>
-        /// 用户状态
+        /// User status
         /// </summary>
         public bool IsActive { get; set; }
         
         /// <summary>
-        /// 联系方式
+        /// Contact information
         /// </summary>
         public string ContactInfo { get; set; }
         
         /// <summary>
-        /// 职位
+        /// Position
         /// </summary>
         public string Position { get; set; }   
         
         /// <summary>
-        /// 角色名称
+        /// role name
         /// </summary>
         public string RoleNames { get; set; }
     }

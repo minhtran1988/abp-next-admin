@@ -1,28 +1,28 @@
 # LINGYUN.Abp.BackgroundTasks
 
-后台任务（队列）模块，Abp提供的后台作业与后台工作者不支持Cron表达式, 提供可管理的后台任务（队列）功能. 
+Background task (queue) module, the background jobs and background workers provided by Abp do not support Cron expressions, and provide manageable background task (queue) function.
 
-实现了**Volo.Abp.BackgroundJobs.IBackgroundJobManager**, 意味着您也能通过框架后台作业接口添加新作业.  
-实现了**Volo.Abp.BackgroundWorkers.IBackgroundWorkerManager**, 意味着您也能通过框架后台工作者接口添加新作业.  
+Implemented **Volo.Abp.BackgroundJobs.IBackgroundJobManager**, which means you can also add new jobs through the framework background job interface.
+Implemented **Volo.Abp.BackgroundWorkers.IBackgroundWorkerManager**, which means you can also add new jobs through the framework background worker interface.
 
-## 任务类别  
+## Task category
 
-* JobType.Once:         一次性任务, 此类型只会被执行一次, 适用于邮件通知等场景  
-* JobType.Period:       周期性任务, 此类型任务会根据Cron表达式来决定运行方式, 适用于报表分析等场景  
-* JobType.Persistent:   持续性任务, 此类型任务按照给定重复次数、重复间隔运行, 适用于接口压测等场景  
+* JobType.Once: One-time task, this type will only be executed once, suitable for scenarios such as email notifications
+* JobType.Period: Periodic tasks. This type of tasks will determine the running method based on Cron expressions. It is suitable for scenarios such as report analysis.
+* JobType.Persistent: Persistent tasks. This type of tasks runs according to a given number of repetitions and repetition intervals. It is suitable for scenarios such as interface stress testing.
 
-## 接口说明
+## Interface description
 
-* [IJobPublisher](/LINGYUN/Abp/BackgroundTasks/IJobPublisher.cs): 作业发布接口, 将指定作业发布到当前节点  
-* [IJobDispatcher](/LINGYUN/Abp/BackgroundTasks/IJobDispatcher.cs): 作业调度接口, 将指定作业调度到指定节点  
-* [IJobScheduler](/LINGYUN/Abp/BackgroundTasks/IJobScheduler.cs): 调度器接口, 管理当前运行节点作业调度器  
-* [IJobLockProvider](/LINGYUN/Abp/BackgroundTasks/IJobLockProvider.cs): 作业锁定接口, 指定作业加锁, 防止重复运行, 锁定时长参见作业 **LockTimeOut**  
-* [IJobEventTrigger](/LINGYUN/Abp/BackgroundTasks/IJobEventTrigger.cs): 作业事件触发器接口, 作业运行前与运行后监听接口  
-* [IJobStore](/LINGYUN/Abp/BackgroundTasks/IJobStore.cs): 作业持久化接口  
+* [IJobPublisher](/LINGYUN/Abp/BackgroundTasks/IJobPublisher.cs): Job publishing interface, publishes the specified job to the current node
+* [IJobDispatcher](/LINGYUN/Abp/BackgroundTasks/IJobDispatcher.cs): Job scheduling interface, schedules the specified job to the specified node
+* [IJobScheduler](/LINGYUN/Abp/BackgroundTasks/IJobScheduler.cs): Scheduler interface, manages the current running node job scheduler
+* [IJobLockProvider](/LINGYUN/Abp/BackgroundTasks/IJobLockProvider.cs): Job lock interface, specify job lock to prevent repeated running, for the lock duration, see job **LockTimeOut**
+* [IJobEventTrigger](/LINGYUN/Abp/BackgroundTasks/IJobEventTrigger.cs): Job event trigger interface, job listening interface before and after running
+* [IJobStore](/LINGYUN/Abp/BackgroundTasks/IJobStore.cs): Job persistence interface
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksModule))]
@@ -46,7 +46,7 @@ public class DemoClass
     {
         var scheduler = ServiceProvider.GetRequiredService<IJobScheduler>();
 
-        // 将周期性（5秒一次）任务添加到队列
+        //Add periodic (every 5 seconds) tasks to the queue
         await scheduler.QueueAsync(new JobInfo
         {
             Type = typeof(ConsoleJob).AssemblyQualifiedName,
@@ -60,11 +60,11 @@ public class DemoClass
             Cron = "0/5 * * * * ? ",
             TryCount = 10,
             Status = JobStatus.Running,
-            // 定义此字段处理并发
+            //Define this field to handle concurrency
             LockTimeOut = 120,
         });
 
-        // 将一次性任务添加到队列, 将在10（Interval）秒后被执行
+        // Add a one-time task to the queue, which will be executed after 10 (Interval) seconds
         await scheduler.QueueAsync(new JobInfo
         {
             Type = typeof(ConsoleJob).AssemblyQualifiedName,
@@ -80,7 +80,7 @@ public class DemoClass
             Status = JobStatus.Running,
         });
 
-        // 将持续性任务添加到队列, 将在10（Interval）秒后被执行, 最大执行5（MaxCount）次
+        //Add the persistent task to the queue, which will be executed after 10 (Interval) seconds, with a maximum execution of 5 (MaxCount) times
         await scheduler.QueueAsync(new JobInfo
         {
             Type = typeof(ConsoleJob).AssemblyQualifiedName,
@@ -97,20 +97,20 @@ public class DemoClass
             Status = JobStatus.Running,
         });
 
-        // 同样可以把框架后台作业添加到作业调度器中, 不需要更改使用习惯
+        // You can also add framework background jobs to the job scheduler without changing your usage habits.
         var backgroundJobManager = ServiceProvider.GetRequiredService<IBackgroundJobManager>();
         await jobManager.EnqueueAsync(
             new SmsJobArgs
             {
                 PhoneNumber = "13800138000",
-                Message = "来自框架的后台工作者"
+                Message = "Background worker from framework"
             },
             BackgroundJobPriority.High,
             TimeSpan.FromSeconds(10));
 
-        // 同样可以把框架后台工作者添加到作业调度器中, 不需要更改使用习惯
+        // You can also add the framework background worker to the job scheduler without changing your usage habits.
         var backgroundWorkManager = ServiceProvider.GetRequiredService<IBackgroundWorkerManager>();
-        // 每20秒控制台输出
+        //Console output every 20 seconds
         await backgroundWorkManager.AddAsync(ServiceProvider.GetRequiredService<ConsoleWorker>());
     }
 }

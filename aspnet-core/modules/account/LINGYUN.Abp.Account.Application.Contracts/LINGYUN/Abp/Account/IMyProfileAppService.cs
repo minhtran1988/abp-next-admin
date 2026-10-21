@@ -9,78 +9,78 @@ namespace LINGYUN.Abp.Account;
 public interface IMyProfileAppService : IApplicationService
 {
     /// <summary>
-    /// 获取验证器信息
+    /// Get validator information
     /// </summary>
     /// <returns></returns>
     Task<AuthenticatorDto> GetAuthenticatorAsync();
     /// <summary>
-    /// 验证验证器代码
+    /// Verify validator code
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<AuthenticatorRecoveryCodeDto> VerifyAuthenticatorCodeAsync(VerifyAuthenticatorCodeInput input);
     /// <summary>
-    /// 获取会话列表
+    /// Get the session list
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<PagedResultDto<IdentitySessionDto>> GetSessionsAsync(GetMySessionsInput input);
     /// <summary>
-    /// 撤销会话
+    /// Cancel session
     /// </summary>
-    /// <param name="sessionId">会话id</param>
+    /// <param name="sessionId">session id</param>
     /// <returns></returns>
     Task RevokeSessionAsync(string sessionId);
     /// <summary>
-    /// 重置验证器
+    /// Reset validator
     /// </summary>
     /// <returns></returns>
     Task ResetAuthenticatorAsync();
     /// <summary>
-    /// 获取二次认证状态
+    /// Get the secondary authentication status
     /// </summary>
     /// <returns></returns>
     Task<TwoFactorEnabledDto> GetTwoFactorEnabledAsync();
     /// <summary>
-    /// 改变二次认证
+    /// Change secondary authentication
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task ChangeTwoFactorEnabledAsync(TwoFactorEnabledDto input);
     /// <summary>
-    /// 发送改变手机号验证码
+    /// Send verification code to change mobile phone number
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendChangePhoneNumberCodeAsync(SendChangePhoneNumberCodeInput input);
     /// <summary>
-    /// 改变手机绑定
+    /// Change mobile phone binding
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     /// <remarks>
-    /// 需二次认证,主要是为了无法用到重定向页面修改相关信息的地方（点名微信小程序）
+    /// Secondary authentication is required, mainly because the redirect page cannot be used to modify relevant information (named WeChat applet)
     /// </remarks>
     Task ChangePhoneNumberAsync(ChangePhoneNumberInput input);
     /// <summary>
-    /// 发送确认邮件链接
+    /// Send confirmation email link
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task SendEmailConfirmLinkAsync(SendEmailConfirmCodeDto input);
     /// <summary>
-    /// 确认邮件地址
+    /// Confirm email address
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     Task ConfirmEmailAsync(ConfirmEmailInput input);
     /// <summary>
-    /// 变更用户头像
+    /// Change user avatar
     /// </summary>
     /// <returns></returns>
     Task ChangePictureAsync(ChangePictureInput input);
     /// <summary>
-    /// 获取用户头像
+    /// Get user avatar
     /// </summary>
     /// <returns></returns>
     Task<IRemoteStreamContent> GetPictureAsync();

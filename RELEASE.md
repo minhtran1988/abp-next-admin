@@ -1,56 +1,56 @@
-## 总览
+## Overview
 
 # [2021-12-11]
 
-* 升级 abp framework 5.0.0 RC-2
+* Upgrade abp framework 5.0.0 RC-2
 
-1、修改SettingManagement模块, 只返回指定提供者所有的配置;
+1. Modify the SettingManagement module to only return all configurations of the specified provider;
 
-2、工作流增加 Elasticsearch 持久层扩展;
+2. Add Elasticsearch persistence layer extension to the workflow;
   
-3、修复SignalR序列化协议不一致引起的IM错误;
+3. Fix the IM error caused by the inconsistency of SignalR serialization protocol;
 
-4、修复构建模块依赖路径引用错误;
+4. Fix the building module dependency path reference error;
 
-5、可以在文件url中添加token解决身份认证问题;
+5. You can add token to the file URL to solve the identity authentication problem;
 
-6、因聚合网关导致的租户IsAvailable可能为空;
+6. The tenant IsAvailable may be empty due to the aggregation gateway;
 
-7、聚合网关使用本地配置文件。
+7. The aggregation gateway uses local configuration files.
 
 # [2021-12-07]
 
-* 升级 abp framework 5.0.0 RC-1
+* Upgrade abp framework 5.0.0 RC-1
 
-1、移除 **vueJs** 模块, 将 **vue-vben-admin** 导入 [vue-vben-admin](./apps/vue);
+1. Remove the **vueJs** module and import **vue-vben-admin** into [vue-vben-admin](./apps/vue);
 
-2、移除Identity模块api：ChangePassword;
+2. Remove the Identity module api: ChangePassword;
   
-3、移除分布式锁模块, 如有项目引用此模块, 请使用 **Volo.Abp.DistributedLocking**;
+3. Remove the distributed lock module. If any project references this module, please use **Volo.Abp.DistributedLocking**;
 
-4、移除网关管理模块, 使用本地文件作为路由配置;
+4. Remove the gateway management module and use local files as routing configuration;
 
-5、移除动态网关数据库脚本文件;
+5. Remove the dynamic gateway database script file;
 
-6、将 Profile 相关api从Identity模块移动到Account模块;
+6. Move the Profile related API from the Identity module to the Account module;
 
-7、加入Fody统一配置ConfigureAwait;
+7. Add Fody to unified configuration ConfigureAwait;
 
-8、使用Directory.Build.props统一管理导入版本;
+8. Use Directory.Build.props to uniformly manage imported versions;
 
 # [2021-03-29]
-1、增加动态本地化组件支持,用于在运行时替换本地化文本,需要实现 ILocalizationStore;
+1. Add support for dynamic localization components, which are used to replace localized text at runtime. ILocalizationStore needs to be implemented;
   
-2、增加本地化文档管理项目,实现了 ILocalizationStore持久化本地资源到数据库;
-  使用须知: 需要先定位到 [LocalizationManagement](./aspnet-core/services/localization/LINGYUN.Abp.LocalizationManagement.HttpApi.Host) 目录下  
-  执行Ef迁移命令: **dotnet ef database update**
+2. Add a localized document management project and implement ILocalizationStore to persist local resources to the database;
+  Notes for use: You need to first navigate to the [LocalizationManagement](./aspnet-core/services/localization/LINGYUN.Abp.LocalizationManagement.HttpApi.Host) directory
+  Execute Ef migration command: **dotnet ef database update**
 
-3、增加一个dotnet-compose配置文件[docker-compose.configuration.yml](./docker-compose.configuration.yml);
+3. Add a dotnet-compose configuration file [docker-compose.configuration.yml](./docker-compose.configuration.yml);
 
-4、vueJs 增加本地化管理组件视图: views/localization-management;
+4. vueJs adds localization management component view: views/localization-management;
 
-5、vueJs 用户登录后的异步等待调用修改为通过store来调用abp模块初始化事件;
+5. The asynchronous waiting call after the vueJs user logs in is modified to call the abp module initialization event through the store;
 
-6、vueJs 修复了HttpProxy模块传递的params与data使用情况混淆的问题;
+6. vueJs fixes the problem of confusion between params and data usage passed by the HttpProxy module;
 
-7、同步本地化管理组件的网关路由初始化配置。
+7. Synchronize the gateway routing initialization configuration of the localized management component.

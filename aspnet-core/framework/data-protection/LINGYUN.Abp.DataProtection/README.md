@@ -1,42 +1,42 @@
 # LINGYUN.Abp.DataProtection
 
-数据权限实现模块，提供数据权限的核心实现。
+The data permission implementation module provides the core implementation of data permissions.
 
-## 功能
+## Function
 
-* 数据权限拦截器 - 自动拦截标记了数据权限特性的方法
-* 数据权限验证服务 - 提供数据权限验证功能
-* 数据权限资源存储 - 提供数据权限资源的内存存储实现
+* Data permission interceptor - automatically intercept methods marked with data permission attributes
+* Data permission verification service - Provides data permission verification function
+* Data permission resource storage - Provides memory storage implementation of data permission resources
 
-## 配置项
+## Configuration items
 
 ```csharp
 public class AbpDataProtectionOptions
 {
     /// <summary>
-    /// 是否启用数据权限
-    /// 默认: true
+    /// Whether to enable data permissions
+    ///Default: true
     /// </summary>
     public bool IsEnabled { get; set; }
 
     /// <summary>
-    /// 数据权限主体提供者列表
+    /// Data permission subject provider list
     /// </summary>
     public IList<IDataAccessSubjectContributor> SubjectContributors { get; }
 
     /// <summary>
-    /// 数据权限关键字提供者字典
+    /// Data permission keyword provider dictionary
     /// </summary>
     public IDictionary<string, IDataAccessKeywordContributor> KeywordContributors { get; }
 
     /// <summary>
-    /// 数据权限操作提供者字典
+    /// Data permission operation provider dictionary
     /// </summary>
     public IDictionary<DataAccessFilterOperate, IDataAccessOperateContributor> OperateContributors { get; }
 
     /// <summary>
-    /// 忽略审计属性列表
-    /// 默认包含：Id, LastModifierId, LastModificationTime, CreatorId, CreationTime, 
+    /// Ignore the audit attribute list
+    /// Default includes: Id, LastModifierId, LastModificationTime, CreatorId, CreationTime,
     /// IsDeleted, DeleterId, DeletionTime, TenantId, EntityVersion, 
     /// ConcurrencyStamp, ExtraProperties
     /// </summary>
@@ -44,9 +44,9 @@ public class AbpDataProtectionOptions
 }
 ```
 
-## 使用方式
+## Usage
 
-1. 配置模块
+1. Configuration module
 
 ```csharp
 [DependsOn(typeof(AbpDataProtectionModule))]
@@ -56,40 +56,40 @@ public class YourModule : AbpModule
     {
         Configure<AbpDataProtectionOptions>(options =>
         {
-            // 配置数据权限选项
+            //Configure data permission options
             options.IsEnabled = true;
             
-            // 添加自定义主体提供者
+            //Add custom principal provider
             options.SubjectContributors.Add(new YourSubjectContributor());
             
-            // 添加自定义关键字提供者
+            //Add custom keyword provider
             options.KeywordContributors.Add("your-keyword", new YourKeywordContributor());
             
-            // 添加自定义操作提供者
+            //Add custom action provider
             options.OperateContributors.Add(DataAccessFilterOperate.Equal, new YourOperateContributor());
             
-            // 添加忽略的审计属性
+            //Add ignored audit properties
             options.IgnoreAuditedProperties.Add("YourProperty");
         });
     }
 }
 ```
 
-2. 使用数据权限特性
+2. Use the data permissions feature
 
 ```csharp
-// 类级别的数据权限控制
+// Class-level data permission control
 [DataProtected]
 public class YourService
 {
-    // 方法级别的数据权限控制
+    //Method level data permission control
     [DataProtected]
     public virtual Task<YourEntity> GetAsync(Guid id)
     {
         // ...
     }
 
-    // 禁用数据权限控制
+    // Disable data permission control
     [DisableDataProtected]
     public virtual Task<YourEntity> GetWithoutProtectionAsync(Guid id)
     {
@@ -98,6 +98,6 @@ public class YourService
 }
 ```
 
-## 相关链接
+## Related links
 
 * [English document](./README.EN.md)

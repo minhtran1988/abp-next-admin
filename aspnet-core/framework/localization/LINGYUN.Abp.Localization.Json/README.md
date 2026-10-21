@@ -1,22 +1,22 @@
 # LINGYUN.Abp.Localization.Json
 
-## 模块说明
+## Module description
 
-本地化组件的Json本地文件系统集成  
+Json local file system integration for localized components
 
-此组件基于PhysicalFileProvider  
+This component is based on PhysicalFileProvider
 
-### 基础模块  
+### Basic module
 
-### 高阶模块  
+### High-level modules
 
-### 权限定义  
+### Permission definition
 
-### 功能定义  
+### Function definition
 
-### 配置定义  
+### Configuration definition
 
-### 如何使用
+### How to use
 
 
 ```csharp
@@ -31,16 +31,16 @@
             {
                 options.Resources
                     .Add<YouResource>("en")
-                    // 一般配置在宿主项目中, 写入宿主项目中存储json文件的绝对路径(受PhysicalFileProvider的限制)
-                    // json文件格式与Abp默认json格式保持一致
-                    // 详情见: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-5.0
+                    // Generally configured in the host project, write the absolute path to the json file stored in the host project (limited by PhysicalFileProvider)
+                    // The json file format is consistent with Abp's default json format.
+                    // For details, see: https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-5.0
                     .AddPhysicalJson(Path.Combine(Directory.GetCurrentDirectory(), "Resources"));
             });
 
-            // 等同于如下方法
+            // Equivalent to the following method
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                // 将本地文件系统映射为虚拟文件系统
+                // Map the local file system to a virtual file system
                 options.FileSets.AddPhysical(Path.Combine(Directory.GetCurrentDirectory(), "Resources"));
             });
 
@@ -48,7 +48,7 @@
             {
                 options.Resources
                     .Add<YouResource>("en")
-                    .AddVirtualJson("/Resources"); // json本地化虚拟文件路径
+                    .AddVirtualJson("/Resources"); // json localized virtual file path
             });
         }
     }
@@ -66,4 +66,4 @@
 
 ```
 
-### 更新日志 
+### Update log

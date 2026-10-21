@@ -103,7 +103,7 @@ public class ChatMessageStore : IChatMessageStore, ITransientDependency
                 textMessage.CreatedAt,
                 _currentTenant.Id);
 
-            // 用于本地化场景
+            // Used for localization scenarios
             textMessageRecord.SetProperty(nameof(CultureInfo.CurrentCulture), CultureInfo.CurrentCulture.Name);
 
             UpdateUserMessageRecord(textMessageRecord, textMessage);

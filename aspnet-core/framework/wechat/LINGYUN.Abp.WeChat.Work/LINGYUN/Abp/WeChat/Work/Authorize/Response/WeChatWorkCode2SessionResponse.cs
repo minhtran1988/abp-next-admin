@@ -5,27 +5,27 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Authorize.Response;
 /// <summary>
-/// 企业微信临时登录凭证校验响应
+/// Enterprise WeChat temporary login credentials verification response
 /// </summary>
 [Serializable]
 public class WeChatWorkCode2SessionResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 用户所属企业的corpid
+    /// The corpid of the company to which the user belongs
     /// </summary>
     [NotNull]
     [JsonProperty("corpid")]
     [JsonPropertyName("corpid")]
     public string CorpId { get; set; } = default!;
     /// <summary>
-    /// 用户在企业内的UserID，对应管理端的账号，企业内唯一。注意：第三方小程序此处返回加密的userid
+    /// The UserID of the user in the enterprise corresponds to the account on the management side and is unique within the enterprise. Note: The third-party applet returns the encrypted userid here
     /// </summary>
     [NotNull]
     [JsonProperty("userid")]
     [JsonPropertyName("userid")]
     public string UserId { get; set; } = default!;
     /// <summary>
-    /// 会话密钥
+    /// Session key
     /// </summary>
     [NotNull]
     [JsonProperty("session_key")]

@@ -1,20 +1,20 @@
 # LINGYUN.Abp.PermissionManagement.Domain.OrganizationUnits
 
-组织单元权限管理领域模块，提供基于组织单元的权限管理功能。
+The organizational unit permission management domain module provides permission management functions based on organizational units.
 
-## 功能特性
+## Features
 
-* 组织单元权限管理
-  * 支持为组织单元分配权限
-  * 支持组织单元权限的继承
-* 权限提供者
-  * 实现OrganizationUnit权限提供者
-  * 支持角色组织单元权限检查
-  * 支持用户组织单元权限检查
-* 自动权限清理
-  * 组织单元删除时自动清理相关权限
+* Organization unit permission management
+  * Support assigning permissions to organizational units
+  * Support inheritance of organizational unit permissions
+* Permission provider
+  * Implement OrganizationUnit permission provider
+  * Support role organizational unit permission check
+  * Support user organizational unit permission check
+* Automatic permission cleaning
+  * Automatically clear related permissions when the organizational unit is deleted
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -25,9 +25,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 组织单元权限管理
+1. Organization unit permission management
 ```csharp
 public class YourService
 {
@@ -40,13 +40,13 @@ public class YourService
 
     public async Task ManageOrganizationUnitPermissionAsync(string organizationUnitCode)
     {
-        // 设置组织单元权限
+        //Set organizational unit permissions
         await _permissionManager.SetAsync(
             "MyPermission",
             OrganizationUnitPermissionValueProvider.ProviderName,
             organizationUnitCode);
 
-        // 检查组织单元权限
+        // Check organizational unit permissions
         var result = await _permissionManager.GetAsync(
             "MyPermission",
             OrganizationUnitPermissionValueProvider.ProviderName,
@@ -55,7 +55,7 @@ public class YourService
 }
 ```
 
-## 另请参阅
+## See also
 
 * [LINGYUN.Abp.PermissionManagement.Application](../LINGYUN.Abp.PermissionManagement.Application/README.md)
 * [LINGYUN.Abp.PermissionManagement.Application.Contracts](../LINGYUN.Abp.PermissionManagement.Application.Contracts/README.md)

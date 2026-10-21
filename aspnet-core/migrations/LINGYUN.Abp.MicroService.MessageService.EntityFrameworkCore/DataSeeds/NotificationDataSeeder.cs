@@ -43,7 +43,7 @@ public class NotificationDataSeeder : ITransientDependency
         var adminUserName = context.Properties.GetOrDefault(MessageServiceDataSeedConsts.AdminUserNamePropertyName)?.ToString()
             ?? MessageServiceDataSeedConsts.AdminUserNameDefaultValue;
         var userIdentifer = new UserIdentifier(adminUserId, adminUserName);
-        // 订阅内置通知
+        // Subscribe to built-in notifications
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
@@ -60,13 +60,13 @@ public class NotificationDataSeeder : ITransientDependency
                 userIdentifer,
                 DefaultNotifications.ActivityNotice);
 
-        // 新用户订阅会话过期通知
+        // New user subscription session expiration notification
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
                 userIdentifer,
                 "AbpIdentity.Session.Expiration");
-        // 新用户订阅不活跃用户相关通知
+        // New users subscribe to notifications related to inactive users
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
@@ -78,7 +78,7 @@ public class NotificationDataSeeder : ITransientDependency
                 userIdentifer,
                 "AbpIdentity.IdentityUser.InactiveUserDeactivationNotifier");
 
-        // 订阅用户欢迎消息
+        // Subscribe to user welcome message
         await NotificationSubscriptionManager
             .SubscribeAsync(
                 context.TenantId,
@@ -106,7 +106,7 @@ public class NotificationDataSeeder : ITransientDependency
 
             var tenantAdminUserIdentifier = new UserIdentifier(adminUserId, adminEmailAddress);
 
-            // 租户管理员订阅事件
+            // Tenant administrator subscribes to events
             await NotificationSubscriptionManager
                 .SubscribeAsync(
                     context.TenantId,

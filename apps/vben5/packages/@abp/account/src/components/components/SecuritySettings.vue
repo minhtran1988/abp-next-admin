@@ -77,7 +77,7 @@ onMounted(onGet);
 <template>
   <Card :title="$t('abp.account.settings.security.title')">
     <List item-layout="horizontal">
-      <!-- 密码 -->
+      <!-- Password -->
       <ListItem>
         <template #extra>
           <Button type="link" @click="emits('changePassword')">
@@ -89,7 +89,7 @@ onMounted(onGet);
           :title="$t('abp.account.settings.security.password')"
         />
       </ListItem>
-      <!-- 手机号码 -->
+      <!-- Mobile phone number -->
       <ListItem>
         <template #extra>
           <Button type="link" @click="emits('changePhoneNumber')">
@@ -118,7 +118,7 @@ onMounted(onGet);
           </template>
         </ListItemMeta>
       </ListItem>
-      <!-- 邮件 -->
+      <!-- Email -->
       <ListItem>
         <template #extra>
           <Button
@@ -145,7 +145,7 @@ onMounted(onGet);
           </template>
         </ListItemMeta>
       </ListItem>
-      <!-- 二次认证 -->
+      <!-- Secondary authentication -->
       <ListItem v-if="twoFactor">
         <template #extra>
           <Switch

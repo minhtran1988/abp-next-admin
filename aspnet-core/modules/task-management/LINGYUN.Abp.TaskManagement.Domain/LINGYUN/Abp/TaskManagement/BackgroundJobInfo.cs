@@ -12,103 +12,103 @@ public class BackgroundJobInfo : AuditedAggregateRoot<string>, IMultiTenant
 {
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 任务名称
+    /// Task name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 任务分组
+    /// Task grouping
     /// </summary>
     public virtual string Group { get; protected set; } = default!;
     /// <summary>
-    /// 任务类型
+    /// Task type
     /// </summary>
     public virtual string Type { get; protected set; } = default!;
     /// <summary>
-    /// 上一次执行结果
+    /// Last execution result
     /// </summary>
     public virtual string? Result { get; protected set; }
     /// <summary>
-    /// 任务参数
+    /// Task parameters
     /// </summary>
     public virtual ExtraPropertyDictionary Args { get; set; } = default!;
     /// <summary>
-    /// 任务状态
+    /// Task status
     /// </summary>
     public virtual JobStatus Status { get; protected set; }
     /// <summary>
-    /// 是否启用
+    /// Whether to enable
     /// </summary>
     public virtual bool IsEnabled { get; set; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     public virtual string? Description { get; set; }
     /// <summary>
-    /// 任务独占超时时长（秒）
-    /// 0或更小不生效
+    /// Task exclusive timeout (seconds)
+    /// 0 or less does not take effect
     /// </summary>
     public virtual int LockTimeOut { get; set; }
     /// <summary>
-    /// 开始时间
+    /// Start time
     /// </summary>
     public virtual DateTime BeginTime { get; protected set; }
     /// <summary>
-    /// 结束时间
+    /// End time
     /// </summary>
     public virtual DateTime? EndTime { get; protected set; }
     /// <summary>
-    /// 上次执行时间
+    /// Last execution time
     /// </summary>
     public virtual DateTime? LastRunTime { get; protected set; }
     /// <summary>
-    /// 下次执行时间
+    /// Next execution time
     /// </summary>
     public virtual DateTime? NextRunTime { get; protected set; }
     /// <summary>
-    /// 任务类别
+    /// Task category
     /// </summary>
     public virtual JobType JobType { get; protected set; }
     /// <summary>
-    /// Cron表达式，如果是持续任务需要指定
+    /// Cron expression, if it is a continuous task, it needs to be specified
     /// </summary>
     public virtual string? Cron { get; protected set; }
     /// <summary>
-    /// 作业来源
+    /// Job source
     /// </summary>
     public virtual JobSource Source { get; protected set; }
     /// <summary>
-    /// 任务优先级
+    /// Task priority
     /// </summary>
     public virtual JobPriority Priority { get; protected set; }
     /// <summary>
-    /// 触发次数
+    /// Number of triggers
     /// </summary>
     public virtual int TriggerCount { get; set; }
     /// <summary>
-    /// 失败重试次数
+    /// Number of failed retries
     /// </summary>
     public virtual int TryCount { get; set; }
     /// <summary>
-    /// 失败重试上限
-    /// 默认：50
+    /// Failed retry upper limit
+    /// Default: 50
     /// </summary>
     public virtual int MaxTryCount { get; set; }
     /// <summary>
-    /// 最大执行次数
-    /// 默认：0, 无限制
+    /// Maximum number of executions
+    /// Default: 0, no limit
     /// </summary>
     public virtual int MaxCount { get; set; }
     /// <summary>
-    /// 间隔时间，单位秒，与Cron表达式冲突
-    /// 默认: 300
+    /// Interval time, unit seconds, conflicts with Cron expression
+    /// Default: 300
     /// </summary>
     public virtual int Interval { get; protected set; }
     /// <summary>
-    /// 连续失败且不会再次执行
+    /// Continuous failure and will not be executed again
     /// </summary>
     public virtual bool IsAbandoned { get; set; }
     /// <summary>
-    /// 指定作业运行节点
+    /// Specify the job running node
     /// </summary>
     public virtual string? NodeName { get; protected set; }
     protected BackgroundJobInfo() { }
@@ -143,8 +143,8 @@ public class BackgroundJobInfo : AuditedAggregateRoot<string>, IMultiTenant
 
         Status = JobStatus.Queuing;
 
-        // TODO: 是否需要将参数挪到另一个实体? 
-        // 任务参数的建议是尽量最小化, 仅存储关键信息
+        // TODO: Do I need to move the parameters to another entity?
+        // It is recommended to minimize the task parameters as much as possible and only store key information.
         Args = new ExtraPropertyDictionary();
         if (args != null)
         {

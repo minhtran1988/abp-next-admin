@@ -1,34 +1,34 @@
 # LINGYUN.Abp.CachingManagement.Application
 
-缓存管理应用服务模块的实现。
+Implementation of cache management application service module.
 
-## 功能
+## Function
 
-* 实现了 `ICacheAppService` 接口，提供缓存管理的基本功能：
-  * 获取缓存键列表
-  * 获取缓存值
-  * 设置缓存值
-  * 刷新缓存
-  * 删除缓存
+* Implemented the `ICacheAppService` interface to provide basic functions of cache management:
+  * Get cache key list
+  * Get cached value
+  * Set cache value
+  * Refresh cache
+  * Delete cache
 
-## 权限
+## Permissions
 
-* AbpCachingManagement.Cache：缓存管理
-  * AbpCachingManagement.Cache.Refresh：刷新缓存
-  * AbpCachingManagement.Cache.Delete：删除缓存
-  * AbpCachingManagement.Cache.ManageValue：管理缓存值
+* AbpCachingManagement.Cache: cache management
+  *AbpCachingManagement.Cache.Refresh: Refresh the cache
+  * AbpCachingManagement.Cache.Delete: Delete cache
+  * AbpCachingManagement.Cache.ManageValue: Manage cache value
 
-## 安装
+## Installation
 
 ```bash
 abp add-module LINGYUN.Abp.CachingManagement
 ```
 
-## 配置使用
+## Configuration usage
 
-1. 首先需要安装相应的缓存实现模块，例如：[LINGYUN.Abp.CachingManagement.StackExchangeRedis](../LINGYUN.Abp.CachingManagement.StackExchangeRedis/README.md)
+1. First, you need to install the corresponding cache implementation module, for example: [LINGYUN.Abp.CachingManagement.StackExchangeRedis](../LINGYUN.Abp.CachingManagement.StackExchangeRedis/README.md)
 
-2. 在模块的 `ConfigureServices` 方法中添加以下代码：
+2. Add the following code in the `ConfigureServices` method of the module:
 
 ```csharp
 Configure<AbpAutoMapperOptions>(options =>
@@ -37,10 +37,10 @@ Configure<AbpAutoMapperOptions>(options =>
 });
 ```
 
-## 更多
+## More
 
-有关更多信息，请参阅以下资源：
+For more information, see the following resources:
 
-* [应用服务契约](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
+* [Application Service Contract](../LINGYUN.Abp.CachingManagement.Application.Contracts/README.md)
 * [HTTP API](../LINGYUN.Abp.CachingManagement.HttpApi/README.md)
-* [领域层](../LINGYUN.Abp.CachingManagement.Domain/README.md)
+* [Domain layer](../LINGYUN.Abp.CachingManagement.Domain/README.md)

@@ -47,8 +47,8 @@ class LanguageCard extends StatelessWidget {
           ),
         ),
         // _actionButton(
-        //       title: '系统语言',
-        //       suffix: Text('请选择'),
+        // title: 'System Language',
+        // suffix: Text('Please select'),
         //       onTap: () {
 
         //       },

@@ -11,20 +11,20 @@ namespace LINGYUN.Abp.OpenObserve;
 public partial class OpenObserveClient
 {
     /// <summary>
-    /// 搜索
+    /// Search
     /// </summary>
     /// <remarks>
     /// POST /api/{organization}/_search
-    /// 参考: https://openobserve.ai/docs/reference/api/search/
+    /// Reference: https://openobserve.ai/docs/reference/api/search/
     /// </remarks>
-    /// <typeparam name="THint">命中数据结构</typeparam>
-    /// <param name="organization">未指定时使用 AbpOpenObserveOptions.Organization</param>
-    /// <param name="query">查询条件, 时间范围为微秒, 必填</param>
-    /// <param name="searchType">搜索来源(ui/dashboards/reports/alerts 等)</param>
-    /// <param name="timeout">超时时间(秒), 默认 30</param>
-    /// <param name="agentOptions">agent/MCP 客户端选项</param>
-    /// <param name="useCache">是否使用结果缓存, 省略时由服务端决定(默认 true)</param>
-    /// <param name="clearCache">是否清理结果缓存, 为 true 时强制不使用缓存</param>
+    /// <typeparam name="THint">Hit data structure</typeparam>
+    /// <param name="organization">Used when not specified AbpOpenObserveOptions.Organization</param>
+    /// <param name="query">Query conditions, time range is microseconds, required</param>
+    /// <param name="searchType">Search source (ui/dashboards/reports/alerts, etc.)</param>
+    /// <param name="timeout">Timeout (seconds), default 30</param>
+    /// <param name="agentOptions">agent/MCP client options</param>
+    /// <param name="useCache">Whether to use result caching, it is decided by the server when omitted (default true)</param>
+    /// <param name="clearCache">Whether to clear the result cache, when true, force the cache not to be used</param>
     public async virtual Task<SearchResponse<THint>> SearchAsync<THint>(
         string? organization,
         SearchQuery query,
@@ -51,10 +51,10 @@ public partial class OpenObserveClient
     }
 
     /// <summary>
-    /// 搜索
+    /// Search
     /// </summary>
     /// <remarks>
-    /// POST /api/{organization}/_search, 使用 AbpOpenObserveOptions.Organization
+    /// POST /api/{organization}/_search, using AbpOpenObserveOptions.Organization
     /// </remarks>
     public async virtual Task<SearchResponse<THint>> SearchAsync<THint>(
         SearchQuery query,

@@ -3,31 +3,31 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.Account.Security;
 /// <summary>
-/// 邮件安全码发送接口
+/// Email security code sending interface
 /// </summary>
 public interface IAccountEmailSecurityCodeSender
 {
     /// <summary>
-    /// 发送邮件登录验证码
+    /// Send email login verification code
     /// </summary>
-    /// <param name="code">验证码</param>
-    /// <param name="userName">用户名</param>
-    /// <param name="emailAddress">邮件地址</param>
+    /// <param name="code">Verification code</param>
+    /// <param name="userName">Username</param>
+    /// <param name="emailAddress">Email address</param>
     /// <returns></returns>
     Task SendLoginCodeAsync(
         string code,
         string userName,
         string emailAddress);
     /// <summary>
-    /// 发送邮件确认链接
+    /// Send email confirmation link
     /// </summary>
-    /// <param name="userId">用户Id</param>
-    /// <param name="userEmail">用户邮件</param>
-    /// <param name="confirmToken">确认Token</param>
-    /// <param name="appName">应用名称</param>
-    /// <param name="returnUrl">回调路径</param>
-    /// <param name="returnUrlHash">回调路径Hash</param>
-    /// <param name="userTenantId">用户租户Id</param>
+    /// <param name="userId">UserId</param>
+    /// <param name="userEmail">User Email</param>
+    /// <param name="confirmToken">Confirm Token</param>
+    /// <param name="appName">Application name</param>
+    /// <param name="returnUrl">Callback path</param>
+    /// <param name="returnUrlHash">Callback path Hash</param>
+    /// <param name="userTenantId">User tenant Id</param>
     /// <returns></returns>
     Task SendConfirmLinkAsync(
         Guid userId,

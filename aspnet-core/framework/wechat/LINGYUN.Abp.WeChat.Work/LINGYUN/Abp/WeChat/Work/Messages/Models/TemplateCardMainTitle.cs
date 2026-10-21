@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 卡票标题
+/// Card ticket title
 /// </summary>
 public class TemplateCardMainTitle
 {
@@ -19,14 +19,14 @@ public class TemplateCardMainTitle
     }
 
     /// <summary>
-    /// 一级标题，建议不超过36个字，文本通知型卡片本字段非必填，但不可本字段和sub_title_text都不填，（支持id转译）
+    /// First-level title, it is recommended not to exceed 36 words. This field of text notification card is not required, but it is not possible to fill both this field and sub_title_text (support id translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string? Title { get; set; }
     /// <summary>
-    /// 标题辅助信息，建议不超过44个字，（支持id转译）
+    /// Title auxiliary information, it is recommended not to exceed 44 words (supports id translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]

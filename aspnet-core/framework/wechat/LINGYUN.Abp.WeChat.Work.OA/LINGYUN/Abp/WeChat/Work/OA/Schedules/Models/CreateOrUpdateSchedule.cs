@@ -9,88 +9,88 @@ namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 public abstract class CreateOrUpdateSchedule
 {
     /// <summary>
-    /// 日程的管理员userid列表，管理员必须在共享成员的列表中
+    /// Schedule administrator userid list, the administrator must be in the list of shared members
     /// </summary>
     /// <remarks>
-    /// 最多指定3人
+    /// Specify up to 3 people
     /// </remarks>
     [CanBeNull]
     [JsonProperty("admins")]
     [JsonPropertyName("admins")]
     public string[]? Admins { get; set; }
     /// <summary>
-    /// 日程参与者列表
+    /// Schedule participant list
     /// </summary>
     /// <remarks>
-    /// 最多支持1000人
+    /// Supports up to 1,000 people
     /// </remarks>
     [CanBeNull]
     [JsonProperty("attendees")]
     [JsonPropertyName("attendees")]
     public ScheduleAttendee[]? Attendees { get; set; }
     /// <summary>
-    /// 日程标题
+    /// Schedule title
     /// </summary>
     /// <remarks>
-    /// 0 ~ 128 字符。不填会默认显示为“新建事件”
+    /// 0 ~ 128 characters. If left blank, "New Event" will be displayed by default.
     /// </remarks>
     [CanBeNull]
     [JsonProperty("summary")]
     [JsonPropertyName("summary")]
     public string? Summary { get; set; }
     /// <summary>
-    /// 日程描述
+    /// Schedule description
     /// </summary>
     /// <remarks>
-    /// 不多于1000个字符
+    /// No more than 1000 characters
     /// </remarks>
     [CanBeNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 提醒相关信息
+    /// Reminder related information
     /// </summary>
     [CanBeNull]
     [JsonProperty("reminders")]
     [JsonPropertyName("reminders")]
     public ScheduleReminder? Reminders { get; set; }
     /// <summary>
-    /// 日程地址
+    /// Schedule address
     /// </summary>
     /// <remarks>
-    /// 不多于128个字符
+    /// No more than 128 characters
     /// </remarks>
     [CanBeNull]
     [JsonProperty("location")]
     [JsonPropertyName("location")]
     public string? Location { get; set; }
     /// <summary>
-    /// 日程开始时间，Unix时间戳
+    /// Schedule start time, Unix timestamp
     /// </summary>
     [NotNull]
     [JsonProperty("start_time")]
     [JsonPropertyName("start_time")]
     public long StartTime { get; }
     /// <summary>
-    /// 日程结束时间，Unix时间戳
+    /// Schedule end time, Unix timestamp
     /// </summary>
     [NotNull]
     [JsonProperty("end_time")]
     [JsonPropertyName("end_time")]
     public long EndTime { get; }
     /// <summary>
-    /// 日程所属日历ID
+    /// Calendar ID to which the schedule belongs
     /// </summary>
     /// <remarks>
-    /// 不多于64字节
+    /// No more than 64 bytes
     /// </remarks>
     [CanBeNull]
     [JsonProperty("cal_id")]
     [JsonPropertyName("cal_id")]
     public string? CalId { get; set; }
     /// <summary>
-    /// 是否全天日程
+    /// Whether the whole day schedule
     /// </summary>
     [NotNull]
     [JsonProperty("is_whole_day")]
@@ -105,7 +105,7 @@ public abstract class CreateOrUpdateSchedule
     }
 
     /// <summary>
-    /// 验证输入
+    /// Validate input
     /// </summary>
     /// <exception cref="ArgumentException"></exception>
     public void Validate()

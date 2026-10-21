@@ -75,12 +75,12 @@ public class UserChatFriendEventHandler :
 
     protected async virtual Task SendFriendAddedMessageAsync(Guid userId, Guid friendId, Guid? tenantId = null)
     {
-        // 发送添加好友的第一条消息
+        // Send the first message to add a friend
 
         var addNewFirendMessage = new ChatMessage
         {
             TenantId = tenantId,
-            FormUserId = _currentUser.GetId(), // 本地事件中可以获取到当前用户信息
+            FormUserId = _currentUser.GetId(), // The current user information can be obtained in local events
             FormUserName = _currentUser.UserName!,
             SendTime = DateTime.Now,
             MessageType = MessageType.Text,
@@ -93,7 +93,7 @@ public class UserChatFriendEventHandler :
 
     protected async virtual Task SendFriendValidationNotifierAsync(UserChatFriend userChatFriend)
     {
-        // 发送好友验证通知
+        // Send friend verification notification
         var userIdentifer = new UserIdentifier(userChatFriend.FrientId, userChatFriend.RemarkName);
 
         var friendValidationNotifictionData = new NotificationData();
@@ -125,7 +125,7 @@ public class UserChatFriendEventHandler :
 
     protected async virtual Task RemoveUserFriendCacheItemAsync(Guid userId)
     {
-        // 移除好友缓存
+        // Remove friend cache
         await _cache.RemoveAsync(UserFriendCacheItem.CalculateCacheKey(userId.ToString()));
     }
 }

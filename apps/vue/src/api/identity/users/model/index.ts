@@ -1,20 +1,20 @@
 import { IdentityClaim } from "../../claims/model";
 
-/** 用户对象接口 */
+/** User Object Interface */
 export interface IUser {
-  /** 用户名 */
+  /** Username */
   name: string;
-  /** 用户账户 */
+  /** User account */
   userName: string;
-  /** 用户简称 */
+  /** User abbreviation */
   surname?: string;
-  /** 邮件地址 */
+  /** Email address */
   email: string;
-  /** 联系方式 */
+  /** Contact information */
   phoneNumber?: string;
-  /** 双因素验证 */
+  /** Two-factor authentication */
   twoFactorEnabled: boolean;
-  /** 登录锁定 */
+  /** Login lock */
   lockoutEnabled: boolean;
 }
 
@@ -31,42 +31,42 @@ export interface IdentityUserOrganizationUnitUpdateDto {
   organizationUnitIds: string[]
 }
 
-/** 用户对象 */
+/** User object */
 export interface User extends FullAuditedEntityDto<string>, IUser, IHasConcurrencyStamp {
-  /** 租户标识 */
+  /** Tenant ID */
   tenentId?: string;
-  /** 邮箱已验证 */
+  /** Email has been verified */
   emailConfirmed: boolean;
-  /** 联系方式已验证 */
+  /** Contact information verified */
   phoneNumberConfirmed: boolean;
-  /** 锁定截止时间 */
+  /** Lock expiration time */
   lockoutEnd?: Date;
-  /** 已激活的用户 */
+  /** Activated user */
   isActive: boolean;
-  /** 角色列表 */
+  /** Role list */
   roleNames: string[];
 }
 
 export interface CreateOrUpdateUser extends ExtensibleObject {
-   /** 用户名 */
+   /** Username */
    name: string;
-   /** 用户账户 */
+   /** User account */
    userName: string;
-   /** 用户简称 */
+   /** User abbreviation */
    surname?: string;
-   /** 邮件地址 */
+   /** Email address */
    email: string;
-   /** 联系方式 */
+   /** Contact information */
    phoneNumber?: string;
-   /** 登录锁定 */
+   /** Login lock */
    lockoutEnabled: boolean;
-  /** 角色列表 */
+  /** Role list */
   roleNames?: string[];
-  /** 密码 */
+  /** Password */
   password?: string;
 }
 
-/** 变更用户对象 */
+/** Change user object */
 export interface UpdateUser extends CreateOrUpdateUser {}
 
 export interface CreateUser extends CreateOrUpdateUser {}

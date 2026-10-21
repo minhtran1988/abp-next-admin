@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Tags.Response;
 /// <summary>
-/// 创建标签响应参数
+/// Create tag response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: https://developer.work.weixin.qq.com/document/path/90210
+/// For details, see: https://developer.work.weixin.qq.com/document/path/90210
 /// </remarks>
 public class WeChatWorkTagCreateResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 标签id
+    /// tag id
     /// </summary>
     [NotNull]
     [JsonProperty("tagid")]

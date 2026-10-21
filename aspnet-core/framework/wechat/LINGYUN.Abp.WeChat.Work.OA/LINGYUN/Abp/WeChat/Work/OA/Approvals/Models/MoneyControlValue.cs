@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 金额控件值
+/// Amount control value
 /// </summary>
 public class MoneyControlValue : ControlValue
 {
     /// <summary>
-    /// 金额内容，在此填写金额控件的输入值
+    /// Amount content, fill in the input value of the amount control here
     /// </summary>
     [NotNull]
     [JsonProperty("new_money")]

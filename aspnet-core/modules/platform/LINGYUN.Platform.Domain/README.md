@@ -1,36 +1,36 @@
 # LINGYUN.Platform.Domain
 
-平台管理模块的领域层，实现了平台管理所需的核心业务逻辑和领域模型。
+The domain layer of the platform management module implements the core business logic and domain model required for platform management.
 
-## 功能特性
+## Features
 
-* 菜单管理
-  * 支持多级菜单结构
-  * 用户菜单定制
-  * 角色菜单权限
-  * 菜单标准化转换
+* Menu management
+  * Support multi-level menu structure
+  * User menu customization
+  * Role menu permissions
+  * Menu standardization conversion
 
-* 布局管理
-  * 布局视图实体
-  * 布局数据关联
-  * 多框架支持
+* Layout management
+  * Layout view entity
+  * Layout data association
+  *Multiple framework support
 
-* 数据字典
-  * 数据字典管理
-  * 数据字典项管理
-  * 数据字典种子数据
+* Data dictionary
+  * Data dictionary management
+  * Data dictionary item management
+  * Data dictionary seed data
 
-* 包管理
-  * 包版本控制
-  * 包文件管理
-  * Blob存储集成
-  * 包过滤规范
+* Package management
+  * Package version control
+  * Package file management
+  * Blob storage integration
+  *Packet filtering specifications
 
-* 企业门户
-  * 企业信息管理
-  * 企业数据存储
+* Enterprise portal
+  * Enterprise information management
+  * Enterprise data storage
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(PlatformDomainModule))]
@@ -40,30 +40,30 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 领域服务
+## Domain Services
 
-* `DataDictionaryDataSeeder`: 数据字典种子数据服务
-* `PackageBlobManager`: 包文件管理服务
-* `DefaultStandardMenuConverter`: 标准菜单转换服务
+* `DataDictionaryDataSeeder`: Data dictionary seed data service
+* `PackageBlobManager`: package file management service
+* `DefaultStandardMenuConverter`: Standard menu conversion service
 
-## 仓储接口
+## Warehousing interface
 
-* `IMenuRepository`: 菜单仓储接口
-* `IUserMenuRepository`: 用户菜单仓储接口
-* `IRoleMenuRepository`: 角色菜单仓储接口
-* `ILayoutRepository`: 布局仓储接口
-* `IEnterpriseRepository`: 企业仓储接口
+* `IMenuRepository`: menu storage interface
+* `IUserMenuRepository`: user menu storage interface
+* `IRoleMenuRepository`: role menu storage interface
+* `ILayoutRepository`: layout storage interface
+* `IEnterpriseRepository`: Enterprise warehousing interface
 
-## 实体
+## Entity
 
-* `Menu`: 菜单实体
-* `UserMenu`: 用户菜单实体
-* `RoleMenu`: 角色菜单实体
-* `Layout`: 布局实体
-* `Package`: 包实体
-* `Data`: 数据字典实体
-* `DataItem`: 数据字典项实体
+* `Menu`: menu entity
+* `UserMenu`: User menu entity
+* `RoleMenu`: role menu entity
+* `Layout`: layout entity
+* `Package`: package entity
+* `Data`: data dictionary entity
+* `DataItem`: data dictionary item entity
 
-## 更多
+## More
 
-更多信息请参考 [Platform](../README.md)
+For more information please refer to [Platform](../README.md)

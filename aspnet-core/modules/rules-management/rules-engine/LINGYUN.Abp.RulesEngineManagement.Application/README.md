@@ -1,46 +1,46 @@
 # LINGYUN.Abp.RulesEngineManagement.Application
 
-## 1. 介绍
+## 1. Introduction
 
-规则引擎管理模块的应用服务实现层，实现了规则引擎管理的业务逻辑。
+The application service implementation layer of the rule engine management module implements the business logic of rule engine management.
 
-## 2. 功能
+## 2. Function
 
-* 实现了规则记录的应用服务
-* 实现了工作流记录的应用服务
-* 提供了规则引擎管理的自动映射配置
+* Implemented application services for rule recording
+* Implemented application services for workflow recording
+* Provides automatic mapping configuration managed by rule engine
 
-## 3. 应用服务实现
+## 3. Application service implementation
 
-### 3.1 规则记录应用服务
+### 3.1 Rule Record Application Service
 
 * RuleRecordAppService
-  * 实现了IRuleRecordAppService接口
-  * 提供规则记录的CRUD操作
-  * 实现了规则记录的查询功能
-  * 支持分页查询
-  * 实现了权限验证
+  * Implemented the IRuleRecordAppService interface
+  * Provide CRUD operations for rule records
+  * Implemented the query function of rule records
+  * Support paging query
+  * Implemented permission verification
 
-### 3.2 工作流记录应用服务
+### 3.2 Workflow recording application service
 
 * WorkflowRecordAppService
-  * 实现了IWorkflowRecordAppService接口
-  * 提供工作流记录的CRUD操作
-  * 实现了工作流记录的查询功能
-  * 支持分页查询
-  * 实现了权限验证
+  * Implemented the IWorkflowRecordAppService interface
+  * Provide CRUD operations for workflow records
+  * Implemented the query function of workflow records
+  * Support paging query
+  * Implemented permission verification
 
-## 4. 对象映射
+## 4. Object mapping
 
 * RulesEngineManagementApplicationAutoMapperProfile
-  * 配置了DTO与实体间的自动映射
-  * 包含了所有规则引擎管理相关的映射配置
+  * Configured automatic mapping between DTO and entities
+  * Contains all mapping configurations related to rule engine management
 
-## 5. 依赖
+## 5. Dependencies
 
 * Volo.Abp.AutoMapper
 * Volo.Abp.Ddd.Application
 * LINGYUN.Abp.RulesEngineManagement.Application.Contracts
 * LINGYUN.Abp.RulesEngineManagement.Domain
 
-[点击查看英文文档](README.EN.md)
+[Click to view English document](README.EN.md)

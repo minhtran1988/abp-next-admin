@@ -1,5 +1,5 @@
 <!--
- * @Description: 表单渲染器，根据json生成表单
+ * @Description: Form renderer, generates forms based on json
 -->
 <template>
   <div class="v-form-container">
@@ -95,7 +95,7 @@
         });
       };
       /**
-       * 获取表单属性
+       * Get form attributes
        */
       const formModelProps = computed(
         () => omit(props.formConfig, ['disabled', 'labelWidth', 'schemas']) as Recordable,
@@ -108,7 +108,7 @@
         formModelNew.value[key] = value;
       };
       provide<(key: String, value: any) => void>('setFormModelMethod', setFormModel);
-      // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
+      // Inject the method items of the ancestor component into the subcomponent. The subcomponent can be obtained through inject.
       return {
         eFormModel,
         submit,

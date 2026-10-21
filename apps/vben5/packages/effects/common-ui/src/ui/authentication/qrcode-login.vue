@@ -12,31 +12,31 @@ import Title from './auth-title.vue';
 
 interface Props {
   /**
-   * @zh_CN 是否处于加载处理状态
+   * @zh_CN Whether it is in loading processing state
    */
   loading?: boolean;
   /**
-   * @zh_CN 登录路径
+   * @zh_CN login path
    */
   loginPath?: string;
   /**
-   * @zh_CN 标题
+   * @zh_CN title
    */
   title?: string;
   /**
-   * @zh_CN 描述
+   * @zh_CN Description
    */
   subTitle?: string;
   /**
-   * @zh_CN 按钮文本
+   * @zh_CN button text
    */
   submitButtonText?: string;
   /**
-   * @zh_CN 描述
+   * @zh_CN Description
    */
   description?: string;
   /**
-   * @zh_CN 是否显示返回按钮
+   * @zh_CN Whether to display the return button
    */
   showBack?: boolean;
 }

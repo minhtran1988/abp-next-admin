@@ -2,32 +2,32 @@
 
 namespace LINGYUN.Abp.PushPlus.Topic;
 /// <summary>
-/// 群组详情
+/// Group details
 /// </summary>
 public class PushPlusTopicProfile : PushPlusTopic
 {
     /// <summary>
-    /// 永久二维码图片地址
+    /// Permanent QR code image address
     /// </summary>
     [JsonProperty("qrCodeImgUrl")]
     public string? QrCodeImgUrl { get; set; }
     /// <summary>
-    /// 联系方式
+    /// Contact information
     /// </summary>
     [JsonProperty("contact")]
     public string? Contact { get; set; }
     /// <summary>
-    /// 群组简介
+    /// Group introduction
     /// </summary>
     [JsonProperty("introduction")]
     public string? Introduction { get; set; }
     /// <summary>
-    /// 加入后回复内容
+    /// Reply content after joining
     /// </summary>
     [JsonProperty("receiptMessage")]
     public string? ReceiptMessage { get; set; }
     /// <summary>
-    /// 群组订阅人总数
+    /// Total number of group subscribers
     /// </summary>
     [JsonProperty("topicUserCount")]
     public string? TopicUserCount { get; set; }

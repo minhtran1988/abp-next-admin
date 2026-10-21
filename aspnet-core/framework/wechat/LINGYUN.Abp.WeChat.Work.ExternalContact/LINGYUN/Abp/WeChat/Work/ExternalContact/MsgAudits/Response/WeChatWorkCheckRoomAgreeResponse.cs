@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.MsgAudits.Response;
 /// <summary>
-/// 获取群聊会话同意情况响应参数
+/// Get the group chat session consent response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91782" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91782" />
 /// </remarks>
 public class WeChatWorkCheckRoomAgreeResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 同意情况
+    /// Consent
     /// </summary>
     [NotNull]
     [JsonProperty("agreeinfo")]

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace PackageName.CompanyName.ProjectName.Users
 {
     /// <summary>
-    /// 用户管理控制器
+    /// User management controller
     /// </summary>
     [RemoteService]
     [Route("api/app/user")]
@@ -22,7 +22,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 创建用户
+        /// Create user
         /// </summary>
         [HttpPost]
         public async Task<UserDto> CreateAsync(CreateUpdateUserDto input)
@@ -31,7 +31,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 更新用户
+        /// Update user
         /// </summary>
         [HttpPut("{id}")]
         public async Task<UserDto> UpdateAsync(Guid id, CreateUpdateUserDto input)
@@ -40,7 +40,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 删除用户
+        /// Delete user
         /// </summary>
         [HttpDelete("{id}")]
         public async Task DeleteAsync(Guid id)
@@ -49,7 +49,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 获取用户
+        /// Get user
         /// </summary>
         [HttpGet("{id}")]
         public async Task<UserDto> GetAsync(Guid id)
@@ -58,7 +58,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 获取用户列表
+        /// Get user list
         /// </summary>
         [HttpGet]
         public async Task<PagedResultDto<UserItemDto>> GetListAsync(UserPagedAndSortedResultRequestDto input)
@@ -67,7 +67,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 修改用户密码
+        /// Modify user password
         /// </summary>
         [HttpPost("{id}/change-password")]
         public async Task ChangePasswordAsync(Guid id, [FromBody] ChangePasswordRequest request)
@@ -76,7 +76,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 重置用户密码（管理员操作）
+        /// Reset user password (administrator operation)
         /// </summary>
         [HttpPost("{id}/reset-password")]
         public async Task ResetPasswordAsync(Guid id, [FromBody] ResetPasswordRequest request)
@@ -85,7 +85,7 @@ namespace PackageName.CompanyName.ProjectName.Users
         }
 
         /// <summary>
-        /// 启用或禁用用户
+        /// Enable or disable user
         /// </summary>
         [HttpPost("{id}/set-active")]
         public async Task SetUserActiveStatusAsync(Guid id, [FromBody] SetUserActiveRequest request)
@@ -95,39 +95,39 @@ namespace PackageName.CompanyName.ProjectName.Users
     }
 
     /// <summary>
-    /// 修改密码请求
+    /// Password change request
     /// </summary>
     public class ChangePasswordRequest
     {
         /// <summary>
-        /// 当前密码
+        /// Current password
         /// </summary>
         public string CurrentPassword { get; set; }
 
         /// <summary>
-        /// 新密码
+        /// New password
         /// </summary>
         public string NewPassword { get; set; }
     }
 
     /// <summary>
-    /// 重置密码请求
+    /// Reset password request
     /// </summary>
     public class ResetPasswordRequest
     {
         /// <summary>
-        /// 新密码
+        /// New password
         /// </summary>
         public string NewPassword { get; set; }
     }
 
     /// <summary>
-    /// 设置用户状态请求
+    /// Set user status request
     /// </summary>
     public class SetUserActiveRequest
     {
         /// <summary>
-        /// 是否启用
+        /// Whether to enable
         /// </summary>
         public bool IsActive { get; set; }
     }

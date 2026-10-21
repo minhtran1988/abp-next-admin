@@ -1,18 +1,18 @@
 # LINGYUN.Abp.WeChat.Work.Application
 
-企业微信应用服务模块，提供企业微信应用开发的应用层服务实现。
+The enterprise WeChat application service module provides application layer service implementation for enterprise WeChat application development.
 
-## 功能特性
+## Features
 
-* 通讯录管理服务
-* 应用管理服务
-* 消息推送服务
-* 客户联系服务
-* 身份验证服务
-* 企业支付服务
-* 电子发票服务
+* Address book management service
+* Application management services
+* Message push service
+*Customer contact service
+* Identity verification service
+* Corporate payment services
+* Electronic invoice service
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWeChatWorkApplicationModule))]
@@ -22,36 +22,36 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 应用服务
+## Application Services
 
-### 通讯录管理
+### Address book management
 
-* `IWeChatWorkContactService`: 通讯录管理服务
-  * 部门管理
-  * 成员管理
-  * 标签管理
-  * 互联企业管理
+* `IWeChatWorkContactService`: Address book management service
+  * Department management
+  * Member management
+  * Tag management
+  *Internet enterprise management
 
-### 应用管理
+### Application Management
 
-* `IWeChatWorkAgentService`: 应用管理服务
-  * 应用创建
-  * 应用配置
-  * 应用可见范围设置
-  * 应用主页设置
+* `IWeChatWorkAgentService`: application management service
+  * Application creation
+  * Application configuration
+  * Apply visibility settings
+  * Apply home page settings
 
-### 消息推送
+### Message push
 
-* `IWeChatWorkMessageService`: 消息推送服务
-  * 文本消息
-  * 图片消息
-  * 语音消息
-  * 视频消息
-  * 文件消息
-  * 文本卡片消息
-  * 图文消息
-  * 模板卡片消息
+* `IWeChatWorkMessageService`: message push service
+  * Text message
+  * Picture message
+  * Voice message
+  * Video message
+  * File message
+  * Text card messages
+  * Graphic messages
+  * Template card message
 
-## 更多文档
+## More documentation
 
-* [企业微信应用服务模块文档](README.EN.md)
+* [Enterprise WeChat Application Service Module Document](README.EN.md)

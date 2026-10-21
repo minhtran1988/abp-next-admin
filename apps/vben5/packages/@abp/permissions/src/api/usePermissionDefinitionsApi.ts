@@ -13,8 +13,8 @@ export function usePermissionDefinitionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除权限定义
-   * @param name 权限名称
+   * Delete permission definition
+   * @param name permission name
    */
   function deleteApi(name: string): Promise<void> {
     return request(`/api/permission-management/definitions/${name}`, {
@@ -23,9 +23,9 @@ export function usePermissionDefinitionsApi() {
   }
 
   /**
-   * 查询权限定义
-   * @param name 权限名称
-   * @returns 权限定义数据传输对象
+   * Query permission definition
+   * @param name permission name
+   * @returns permission definition data transfer object
    */
   function getApi(name: string): Promise<PermissionDefinitionDto> {
     return request<PermissionDefinitionDto>(
@@ -37,9 +37,9 @@ export function usePermissionDefinitionsApi() {
   }
 
   /**
-   * 查询权限定义列表
-   * @param input 权限过滤条件
-   * @returns 权限定义数据传输对象列表
+   * Query permission definition list
+   * @param input permission filter conditions
+   * @returns Permission definition data transfer object list
    */
   function getListApi(
     input?: PermissionDefinitionGetListInput,
@@ -54,9 +54,9 @@ export function usePermissionDefinitionsApi() {
   }
 
   /**
-   * 创建权限定义
-   * @param input 权限定义参数
-   * @returns 权限定义数据传输对象
+   * Create permission definition
+   * @param input permission definition parameters
+   * @returns permission definition data transfer object
    */
   function createApi(
     input: PermissionDefinitionCreateDto,
@@ -71,10 +71,10 @@ export function usePermissionDefinitionsApi() {
   }
 
   /**
-   * 更新权限定义
-   * @param name 权限名称
-   * @param input 权限定义参数
-   * @returns 权限定义数据传输对象
+   * Update permission definitions
+   * @param name permission name
+   * @param input permission definition parameters
+   * @returns permission definition data transfer object
    */
   function updateApi(
     name: string,
@@ -90,8 +90,8 @@ export function usePermissionDefinitionsApi() {
   }
 
   /**
-   * 获取可用权限提供者列表
-   * @returns {Promise<ListResultDto<NameValue<string>>>} 权限提供者列表
+   * Get the list of available permission providers
+   * @returns {Promise<ListResultDto<NameValue<string>>>} Permission provider list
    */
   function getAssignableProvidersApi(): Promise<
     ListResultDto<NameValue<string>>

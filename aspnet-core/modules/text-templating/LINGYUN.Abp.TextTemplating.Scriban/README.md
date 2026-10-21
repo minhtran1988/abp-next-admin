@@ -1,30 +1,30 @@
 # LINGYUN.Abp.TextTemplating.Scriban
 
-## 模块说明
+## Module description
 
-文本模板 Scriban 引擎模块，提供基于 Scriban 语法的模板渲染实现。
+Text template Scriban engine module provides template rendering implementation based on Scriban syntax.
 
-### 基础模块
+### Basic module
 
 * Volo.Abp.TextTemplating.Scriban
 * LINGYUN.Abp.TextTemplating.Domain
 
-### 功能定义
+### Function definition
 
-* 提供 Scriban 模板渲染引擎
-  * ScribanTemplateRenderingEngine - Scriban 模板渲染引擎实现
-* 支持以下功能
-  * 使用 Scriban 语法编写模板
-  * 支持模型绑定
-  * 支持布局模板
-  * 支持条件语句和循环
-  * 支持自定义函数和过滤器
-  * 支持字符串操作和格式化
-  * 支持数组和对象操作
+* Provide Scriban template rendering engine
+  * ScribanTemplateRenderingEngine - Scriban template rendering engine implementation
+* Support the following functions
+  * Use Scriban syntax to write templates
+  * Support model binding
+  * Support layout templates
+  * Support conditional statements and loops
+  * Support custom functions and filters
+  * Support string manipulation and formatting
+  * Support array and object operations
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingScribanModule` 依赖
+1. Add `AbpTextTemplatingScribanModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingScribanModule))]
@@ -33,17 +33,17 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 创建和使用 Scriban 模板
+2. Create and use Scriban templates
 
 ```csharp
-// 创建模板定义
+//Create template definition
 var template = new TextTemplateDefinition(
     Guid.NewGuid(),
     "Welcome",
     "Welcome Email Template",
     renderEngine: "Scriban");
 
-// 模板内容示例
+// Template content example
 <!DOCTYPE html>
 <html>
 <body>
@@ -60,7 +60,7 @@ var template = new TextTemplateDefinition(
 </body>
 </html>
 
-// 使用模板
+// use template
 public class YourService
 {
     private readonly ITemplateRenderer _templateRenderer;
@@ -90,4 +90,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

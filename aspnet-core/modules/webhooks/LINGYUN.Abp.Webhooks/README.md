@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Webhooks
 
-Webhook基础模块，提供Webhook的基本定义和功能。
+Webhook basic module provides the basic definition and functions of Webhook.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 基本Webhook定义
-* Webhook发布和订阅
-* Webhook事件数据处理
-* Webhook配置管理
+* Basic Webhook definition
+* Webhook publish and subscribe
+* Webhook event data processing
+* Webhook configuration management
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksModule))]
@@ -21,9 +21,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 定义Webhook
+1. Define Webhook
 ```csharp
 public class YourWebhookDefinitionProvider : WebhookDefinitionProvider
 {
@@ -40,7 +40,7 @@ public class YourWebhookDefinitionProvider : WebhookDefinitionProvider
 }
 ```
 
-2. 发布Webhook
+2. Publish Webhook
 ```csharp
 public class YourService
 {
@@ -61,13 +61,13 @@ public class YourService
 }
 ```
 
-3. 处理Webhook事件
+3. Handle Webhook events
 ```csharp
 public class YourWebhookHandler : IWebhookHandler, ITransientDependency
 {
     public async Task HandleWebhookAsync(WebhookPayload webhook)
     {
-        // 处理webhook事件
+        // Handle webhook events
     }
 }
 ```

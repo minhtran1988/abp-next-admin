@@ -1,16 +1,16 @@
 # LINGYUN.Abp.WebhooksManagement.Dapr.Client
 
-Webhook管理Dapr客户端集成模块，提供与Dapr服务调用构建块的集成支持。
+Webhook manages the Dapr client integration module and provides integration support with the Dapr service call building block.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 支持通过Dapr服务调用访问Webhook管理服务
-* 与Dapr服务调用构建块无缝集成
-* 支持分布式服务调用
+* Support access to Webhook management services through Dapr service calls
+* Seamless integration with Dapr service call building blocks
+* Support distributed service calls
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementDaprClientModule))]
@@ -20,22 +20,22 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WebhooksManagement": {
     "Dapr": {
-      "AppId": "webhooks-management",  // Webhook管理服务的Dapr应用ID
-      "HttpEndpoint": "http://localhost:3500"  // Dapr sidecar HTTP端点
+      "AppId": "webhooks-management", // Dapr application ID of Webhook management service
+      "HttpEndpoint": "http://localhost:3500" // Dapr sidecar HTTP endpoint
     }
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置Dapr客户端
+1. Configure Dapr client
 ```csharp
 Configure<AbpWebhooksManagementDaprClientOptions>(options =>
 {
@@ -44,7 +44,7 @@ Configure<AbpWebhooksManagementDaprClientOptions>(options =>
 });
 ```
 
-2. 使用Webhook管理客户端
+2. Use Webhook to manage clients
 ```csharp
 public class YourService
 {

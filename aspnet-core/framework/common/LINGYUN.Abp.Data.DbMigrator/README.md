@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Data.DbMigrator
 
-数据迁移模块,用于配合需要提供数据初始化的场景（例如新租户创建时）  
+Data migration module, used to cooperate with scenarios that require data initialization (such as when a new tenant is created)
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp
@@ -38,17 +38,17 @@ public class FakeMigretor
 
 	public async Task MigrateAsync()
 	{
-		// 将执行 EF 迁移脚本, 需要提供用作数据迁移的 DbContext
+		// The EF migration script will be executed, and the DbContext used for data migration needs to be provided
 		await _migrator.MigrateAsync<FakeDbContext>(
-			// connectionString:	当前租户连接字符串,用于构建连接
-			// builder:				用于初始化上下文的构造器
+			// connectionString: current tenant connection string, used to build connections
+			// builder: Constructor used to initialize the context
 			(connectionString, builder) =>
 			{
 
-				// 在委托中由用户决定数据库参数
+				// The user determines the database parameters in the delegate
 				builder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-				// 返回实例化的DbContext
+				// Return the instantiated DbContext
 				return new FakeDbContext(builder.Options);
             });
 	}

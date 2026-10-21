@@ -16,7 +16,7 @@ const { packages } = getPackagesSync(process.cwd());
 const tailwindPackages: string[] = [];
 
 packages.forEach((pkg) => {
-  // apps目录下和 @vben-core/tailwind-ui 包需要使用到 tailwindcss ui
+  // The apps directory and the @vben-core/tailwind-ui package need to use tailwindcss ui
   // if (fs.existsSync(path.join(pkg.dir, 'tailwind.config.mjs'))) {
   tailwindPackages.push(pkg.dir);
   // }
@@ -205,29 +205,29 @@ export default {
 } as Config;
 
 function createColorsPalette(name: string) {
-  // backgroundLightest: '#EFF6FF', // Tailwind CSS 默认的 `blue-50`
-  //         backgroundLighter: '#DBEAFE',  // Tailwind CSS 默认的 `blue-100`
-  //         backgroundLight: '#BFDBFE',    // Tailwind CSS 默认的 `blue-200`
-  //         borderLight: '#93C5FD',        // Tailwind CSS 默认的 `blue-300`
-  //         border: '#60A5FA',             // Tailwind CSS 默认的 `blue-400`
-  //         main: '#3B82F6',               // Tailwind CSS 默认的 `blue-500`
-  //         hover: '#2563EB',              // Tailwind CSS 默认的 `blue-600`
-  //         active: '#1D4ED8',             // Tailwind CSS 默认的 `blue-700`
-  //         backgroundDark: '#1E40AF',     // Tailwind CSS 默认的 `blue-800`
-  //         backgroundDarker: '#1E3A8A',   // Tailwind CSS 默认的 `blue-900`
-  //         backgroundDarkest: '#172554',  // Tailwind CSS 默认的 `blue-950`
+  // backgroundLightest: '#EFF6FF', // Tailwind CSS default `blue-50`
+  // backgroundLighter: '#DBEAFE', // Tailwind CSS default `blue-100`
+  // backgroundLight: '#BFDBFE', // Tailwind CSS default `blue-200`
+  // borderLight: '#93C5FD', // Tailwind CSS default `blue-300`
+  // border: '#60A5FA', // Tailwind CSS default `blue-400`
+  // main: '#3B82F6', // Tailwind CSS default `blue-500`
+  // hover: '#2563EB', // Tailwind CSS default `blue-600`
+  // active: '#1D4ED8', // Tailwind CSS default `blue-700`
+  // backgroundDark: '#1E40AF', // Tailwind CSS default `blue-800`
+  // backgroundDarker: '#1E3A8A', // Tailwind CSS default `blue-900`
+  // backgroundDarkest: '#172554', // Tailwind CSS default `blue-950`
 
-  // •	backgroundLightest (#EFF6FF): 适用于最浅的背景色，可能用于非常轻微的阴影或卡片的背景。
-  // •	backgroundLighter (#DBEAFE): 适用于略浅的背景色，通常用于次要背景或略浅的区域。
-  // •	backgroundLight (#BFDBFE): 适用于浅色背景，可能用于输入框或表单区域的背景。
-  // •	borderLight (#93C5FD): 适用于浅色边框，可能用于输入框或卡片的边框。
-  // •	border (#60A5FA): 适用于普通边框，可能用于按钮或卡片的边框。
-  // •	main (#3B82F6): 适用于主要的主题色，通常用于按钮、链接或主要的强调色。
-  // •	hover (#2563EB): 适用于鼠标悬停状态下的颜色，例如按钮悬停时的背景色或边框色。
-  // •	active (#1D4ED8): 适用于激活状态下的颜色，例如按钮按下时的背景色或边框色。
-  // •	backgroundDark (#1E40AF): 适用于深色背景，可能用于主要按钮或深色卡片背景。
-  // •	backgroundDarker (#1E3A8A): 适用于更深的背景，通常用于头部导航栏或页脚。
-  // •	backgroundDarkest (#172554): 适用于最深的背景，可能用于非常深色的区域或极端对比色。
+  // • backgroundLightest (#EFF6FF): Suitable for the lightest background color, possibly for very slight shadows or the background of a card.
+  // • backgroundLighter (#DBEAFE): Suitable for a slightly lighter background color, usually used for secondary backgrounds or slightly lighter areas.
+  // • backgroundLight (#BFDBFE): Suitable for a light background, which may be used as the background of an input box or form area.
+  // • borderLight (#93C5FD): Suitable for light borders, possibly for input boxes or card borders.
+  // • border (#60A5FA): Suitable for a normal border, possibly for buttons or cards.
+  // • main (#3B82F6): Suitable for the main theme color, usually used for buttons, links or the main accent color.
+  // • hover (#2563EB): Applicable to the color when the mouse is hovering, such as the background color or border color when the button is hovered.
+  // • active (#1D4ED8): Applicable to the color in the active state, such as the background color or border color when the button is pressed.
+  // • backgroundDark (#1E40AF): Suitable for dark backgrounds, possibly for primary buttons or dark card backgrounds.
+  // • backgroundDarker (#1E3A8A): Suitable for darker backgrounds, typically used in header navigation bars or footers.
+  // • backgroundDarkest (#172554): Suitable for the darkest background, possibly for very dark areas or extreme contrasting colors.
 
   return {
     50: `hsl(var(--${name}-50))`,
@@ -241,26 +241,26 @@ function createColorsPalette(name: string) {
     // 800: `hsl(var(--${name}-800))`,
     // 900: `hsl(var(--${name}-900))`,
     // 950: `hsl(var(--${name}-950))`,
-    // 激活状态下的颜色，适用于按钮按下时的背景色或边框色。
+    // The color in the activated state, suitable for the background color or border color when the button is pressed.
     active: `hsl(var(--${name}-700))`,
-    // 浅色背景，适用于输入框或表单区域的背景。
+    // Light background, suitable for the background of input boxes or form areas.
     'background-light': `hsl(var(--${name}-200))`,
-    // 适用于略浅的背景色，通常用于次要背景或略浅的区域。
+    // Suitable for a slightly lighter background color, usually used for secondary backgrounds or slightly lighter areas.
     'background-lighter': `hsl(var(--${name}-100))`,
-    // 最浅的背景色，适用于非常轻微的阴影或卡片的背景。
+    // The lightest background color, suitable for very slight shadows or backgrounds of cards.
     'background-lightest': `hsl(var(--${name}-50))`,
-    // 适用于普通边框，可能用于按钮或卡片的边框。
+    // Suitable for normal borders, possibly for buttons or cards.
     border: `hsl(var(--${name}-400))`,
-    // 浅色边框，适用于输入框或卡片的边框。
+    // Light border, suitable for the border of input box or card.
     'border-light': `hsl(var(--${name}-300))`,
     foreground: `hsl(var(--${name}-foreground))`,
-    // 鼠标悬停状态下的颜色，适用于按钮悬停时的背景色或边框色。
+    // The color when the mouse is hovering, suitable for the background color or border color when the button is hovering.
     hover: `hsl(var(--${name}-600))`,
-    // 主色文本
+    // Main color text
     text: `hsl(var(--${name}-500))`,
-    // 主色文本激活态
+    // Main color text active state
     'text-active': `hsl(var(--${name}-700))`,
-    // 主色文本悬浮态
+    // Main color text floating state
     'text-hover': `hsl(var(--${name}-600))`,
   };
 }

@@ -26,7 +26,7 @@ const gridOptions: VxeGridProps<RowType> = {
     labelField: 'name',
   },
   columns: [
-    { title: '序号', type: 'seq', width: 50 },
+    { title: 'serial number', type: 'seq', width: 50 },
     { field: 'category', title: 'Category', width: 100 },
     {
       field: 'imageUrl',
@@ -62,10 +62,10 @@ const gridOptions: VxeGridProps<RowType> = {
       width: 200,
     },
     {
-      cellRender: { name: 'CellLink', props: { text: '编辑' } },
+      cellRender: { name: 'CellLink', props: { text: 'Edit' } },
       field: 'action',
       fixed: 'right',
-      title: '操作',
+      title: 'Operation',
       width: 120,
     },
   ],
@@ -101,7 +101,7 @@ const [Grid] = useVbenVxeGrid({ gridOptions });
         <Tag :color="row.color">{{ row.status }}</Tag>
       </template>
       <template #action>
-        <Button type="link">编辑</Button>
+        <Button type="link">Edit</Button>
       </template>
     </Grid>
   </Page>

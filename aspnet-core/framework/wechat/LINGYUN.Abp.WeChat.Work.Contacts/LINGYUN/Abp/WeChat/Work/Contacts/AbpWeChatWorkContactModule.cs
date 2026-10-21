@@ -9,7 +9,7 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts;
 /// <summary>
-/// 企业微信通讯录模块
+/// Enterprise WeChat address book module
 /// </summary>
 [DependsOn(typeof(AbpWeChatWorkModule))]
 public class AbpWeChatWorkContactModule : AbpModule

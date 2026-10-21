@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 模版名称定义
+/// Template name definition
 /// </summary>
 public class TemplateName
 {
     /// <summary>
-    /// 模板名称
+    /// Template name
     /// </summary>
     [NotNull]
     [JsonProperty("text")]
     [JsonPropertyName("text")]
     public string Text {  get; set; } = default!;
     /// <summary>
-    /// 多语言名称
+    /// Multi-language name
     /// </summary>
     [NotNull]
     [JsonProperty("lang")]

@@ -61,15 +61,15 @@ public class TuiJuheNotificationPublishProvider : NotificationPublishProvider
         NotificationPublishContext context,
         CancellationToken cancellationToken = default)
     {
-        // 契约已迁移为 NotificationPublishContext(与其他渠道保持一致)
+        // The contract has been migrated to NotificationPublishContext (consistent with other channels)
         await SendAsync(context.Notification, context.Users, cancellationToken);
     }
 
     /// <summary>
-    /// 发送推送聚合消息
+    /// Send push aggregation message
     /// </summary>
-    /// <param name="notification">通知信息</param>
-    /// <param name="identifiers">订阅用户列表</param>
+    /// <param name="notification">Notification information</param>
+    /// <param name="identifiers">Subscribe user list</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     protected async virtual Task SendAsync(

@@ -1,88 +1,88 @@
-# 通知渠道数据结构解析
+# Notification channel data structure analysis
 
-面向 **发布渠道** 的强类型载荷(渠道数据)框架。
+Strongly typed payload (channel data) framework for **release channels**.
 
-解决的核心问题: 生产者用弱类型属性包表达渠道专属语义时,
-"写了键但渠道永远读不到"、"经持久化后配置静默失效"、"载荷类型靠字段探测顺序猜测"。
+Core problem solved: When producers use weakly typed attribute packages to express channel-specific semantics,
+"The key is written but the channel can never read it", "The configuration fails silently after being persisted", "The payload type is guessed based on the field detection sequence".
 
 ---
 
-## 1. 问题背景
+## 1. Problem background
 
-通知数据 `NotificationData` 底层是 `ExtraPropertyDictionary`(弱类型属性包),
-在以下链路中必然经历 JSON 往返:
+The bottom layer of notification data `NotificationData` is `ExtraPropertyDictionary` (weak type property bag),
+A JSON round trip must be experienced in the following links:
 
-| 链路 | 位置 |
+| link | location |
 |---|---|
-| 持久化后回读 | `NotificationStore.InsertNotificationAsync` → `Notification.SetData` |
-| 失败重试 | `NotificationPublishJob` 从存储读取后重新发布 |
-| 跨进程投递 | `NotificationEto` 经 EventBus |
+| Read back after persistence | `NotificationStore.InsertNotificationAsync` → `Notification.SetData` |
+| Retry on failure | `NotificationPublishJob` reads from storage and republishes |
+| Cross-process delivery | `NotificationEto` via EventBus |
 
-JSON 往返后值的运行时类型会改变:
+The runtime type of the value changes after the JSON round trip:
 
 ```
 byte 1  ->  long 1 / JsonElement(Number)
 int 1   ->  long 1 / JsonElement(Number)
 ```
 
-因此旧实现中的裸转换会**永远失败且没有任何日志**:
+So a naked conversion in the old implementation would fail forever without any logs:
 
 ```csharp
-// 写入 int, 读取 byte? —— as 操作符对 boxed int 恒返回 null
+// Write int, read byte? —— as operator always returns null for boxed int
 notificationData.TrySetData(Safe, safe ? 1 : 0);
-var safe = notificationData.TryGetData(Safe) as byte?;   // 永远是 null
+var safe = notificationData.TryGetData(Safe) as byte?; // always null
 ```
 
-受影响的选项: 企业微信 `safe`、`enable_id_trans`、`enable_duplicate_check`。
+Affected options: Enterprise WeChat `safe`, `enable_id_trans`, `enable_duplicate_check`.
 
 ---
 
-## 2. 设计原则
+## 2. Design principles
 
-1. **全部通过依赖注入获取, 不提供静态 API**
-   —— 转换依赖 JSON 配置与日志, 静态入口会迫使框架维护一套"静态可用的降级实现",
-   增加状态与初始化顺序的隐性耦合。
-2. **JSON 通过专用接口抽象**, 默认复用 ABP 全局配置。
-3. **存在性声明式表达 + 注册期强制校验**, 让配置错误在启动阶段暴露。
-4. **转换逻辑在读写两侧共用同一份实现**(`INotificationChannelDataAccessor`),
-   避免"写入方与读取方规则不一致"。
+1. **All obtained through dependency injection, no static API provided**
+   ——Conversion relies on JSON configuration and logs. Static entry will force the framework to maintain a set of "statically available downgrade implementations".
+   Increase the implicit coupling of state and initialization order.
+2. **JSON is abstracted through a dedicated interface**, and the ABP global configuration is reused by default.
+3. **Existence declarative expression + mandatory verification during registration**, allowing configuration errors to be exposed during the startup phase.
+4. **The conversion logic shares the same implementation on both reading and writing sides** (`INotificationChannelDataAccessor`),
+   Avoid "the rules of the writer and the reader are inconsistent".
 
 ---
 
-## 3. 框架组成
+## 3. Framework composition
 
-### 3.1 契约 (`LINGYUN.Abp.Notifications.Core`, `ChannelData/` 子目录)
+### 3.1 Contract (`LINGYUN.Abp.Notifications.Core`, `ChannelData/` subdirectory)
 
-| 文件 | 类型 | 作用 |
+| File | Type | Function |
 |---|---|---|
-| `NotificationChannelData.cs` | `NotificationChannelData` | 载荷基类(空标记, 见 §4) |
-| `NotificationChannelDataAttribute.cs` | `NotificationChannelDataAttribute` | 声明渠道、匹配顺序 `Priority`、存在性模式 `Presence` |
-| `NotificationChannelDataPresenceMode.cs` | `NotificationChannelDataPresenceMode` | 存在性判定模式 (None / DeclaredProperties / AnyDeclaredProperty) |
-| `NotificationChannelPropertyAttribute.cs` | `NotificationChannelPropertyAttribute` | 声明参与读写的属性; `Name` 兼容历史键; `IgnoreWhenMatching` 排除可选读取项 |
-| `NotificationChannelDataFormat.cs` | `NotificationChannelDataFormat` | 属性存储格式 (Auto / Json) |
-| `NotificationChannelDataDescriptor.cs` | `NotificationChannelDataDescriptor` | 载荷描述符 (只读元数据) |
+| `NotificationChannelData.cs` | `NotificationChannelData` | Payload base class (empty tag, see §4) |
+| `NotificationChannelDataAttribute.cs` | `NotificationChannelDataAttribute` | Declaration channel, matching order `Priority`, presence mode `Presence` |
+| `NotificationChannelDataPresenceMode.cs` | `NotificationChannelDataPresenceMode` | Presence determination mode (None / DeclaredProperties / AnyDeclaredProperty) |
+| `NotificationChannelPropertyAttribute.cs` | `NotificationChannelPropertyAttribute` | Declare the attributes that participate in reading and writing; `Name` is compatible with history keys; `IgnoreWhenMatching` excludes optional reading items |
+| `NotificationChannelDataFormat.cs` | `NotificationChannelDataFormat` | Property storage format (Auto / Json) |
+| `NotificationChannelDataDescriptor.cs` | `NotificationChannelDataDescriptor` | Payload descriptor (read-only metadata) |
 
-### 3.2 实现 (`LINGYUN.Abp.Notifications`, `ChannelData/` 子目录)
+### 3.2 Implementation (`LINGYUN.Abp.Notifications`, `ChannelData/` subdirectory)
 
-每个类型单独一个文件(接口与实现分文件)。
+Each type has a separate file (interface and implementation files).
 
-| 接口 | 默认实现 | 作用 |
+| Interface | Default implementation | Function |
 |---|---|---|
-| `INotificationChannelDataJsonSerializer` | `AbpNotificationChannelDataJsonSerializer` | JSON 抽象, 默认委托 ABP `IJsonSerializer` |
-| `INotificationChannelDataAccessor` | `NotificationChannelDataAccessor` | **弱类型转换 + JSON 的唯一实现**, 读写共用 |
-| `INotificationChannelDataPresenceProvider` | `NotificationChannelDataPresenceProvider` | 存在性判定委托的创建与缓存(含注册期校验) |
-| `INotificationChannelDataSerializer` | `NotificationChannelDataSerializer` | 生产者侧写入入口 |
-| `INotificationChannelDataResolver` | `NotificationChannelDataResolver` | 渠道侧解析入口 |
+| `INotificationChannelDataJsonSerializer` | `AbpNotificationChannelDataJsonSerializer` | JSON abstraction, default delegate ABP `IJsonSerializer` |
+| `INotificationChannelDataAccessor` | `NotificationChannelDataAccessor` | **Weak type conversion + the only implementation of JSON**, read and write shared |
+| `INotificationChannelDataPresenceProvider` | `NotificationChannelDataPresenceProvider` | Creation and caching of existence determination delegate (including registration period verification) |
+| `INotificationChannelDataSerializer` | `NotificationChannelDataSerializer` | Producer side writing entry |
+| `INotificationChannelDataResolver` | `NotificationChannelDataResolver` | Channel side parsing entrance |
 
-辅助类型: `AbpNotificationChannelDataOptions`(载荷注册)、
+Auxiliary type: `AbpNotificationChannelDataOptions` (payload registration),
 `NotificationChannelDataDescriptorList`、`AbpNotificationChannelDataConfigurationException`、
-`NotificationChannelDataPresence`(存在性判定, 纯静态)、
-`NotificationChannelDataProperty` / `NotificationChannelDataPropertyCache`(属性元数据)、
-`NotificationChannelDataValueTypes`(值类型判定)。
+`NotificationChannelDataPresence` (existence determination, purely static),
+`NotificationChannelDataProperty` / `NotificationChannelDataPropertyCache` (property metadata),
+`NotificationChannelDataValueTypes` (value type determination).
 
-### 3.3 注册方式: 模块 `PostConfigure<>`
+### 3.3 Registration method: module `PostConfigure<>`
 
-渠道模块在自己的 `AbpModule.ConfigureServices` 中声明载荷:
+The channel module declares the payload in its own `AbpModule.ConfigureServices`:
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsModule))]
@@ -95,7 +95,7 @@ public class AbpNotificationsMyChannelModule : AbpModule
             options.PublishProviders.Add<MyNotificationPublishProvider>();
         });
 
-        // 声明本渠道支持的载荷形态(注册期即校验存在性契约)
+        // Declare the payload formats supported by this platform (the registration period is to verify the existence contract)
         Configure<AbpNotificationChannelDataOptions>(options =>
         {
             options.Add<MyChannelData>();
@@ -104,40 +104,40 @@ public class AbpNotificationsMyChannelModule : AbpModule
 }
 ```
 
-**为什么不需要额外的配置器类、也不存在顺序问题**:
-`AbpNotificationChannelDataOptions` 是**纯数据**对象 —— 注册期的存在性校验只依赖
-载荷类型上的声明元数据(`[NotificationChannelData]` / `[NotificationChannelProperty]`),
-不依赖任何服务。判定逻辑位于静态的 `NotificationChannelDataPresence`,
-因此 `options.Add(...)` 在容器构建之前、以任意模块顺序调用都能正常工作。
+**Why no additional configurator classes are needed and there are no ordering issues**:
+`AbpNotificationChannelDataOptions` is a **pure data** object - the existence check during the registration period only relies on
+Declaration metadata on payload type (`[NotificationChannelData]` / `[NotificationChannelProperty]`),
+Not dependent on any service. The decision logic is located in the static `NotificationChannelDataPresence`,
+Therefore `options.Add(...)` will work properly if called before the container is built, in any module order.
 
-对应地, 之前为"解析存在性提供者"而引入的
-`NotificationChannelDataPresenceConfigurer` 已删除, 选项对象上的
-`PresenceProvider` 属性也已移除。`INotificationChannelDataPresenceProvider`
-保留为依赖注入形态的薄封装(委托给静态实现), 供解析器与序列化器使用。
+Correspondingly, the previously introduced "resolving existence provider"
+`NotificationChannelDataPresenceConfigurer` has been removed, on the options object
+The `PresenceProvider` attribute has also been removed. `INotificationChannelDataPresenceProvider`
+Reserved as a thin wrapper in dependency injection form (delegated to static implementation) for use by parsers and serializers.
 
 ---
 
-## 4. 数据键命名约定
+## 4. Data key naming convention
 
-### 4.1 必须带本渠道前缀
+### 4.1 This channel prefix must be included
 
-所有渠道自有键统一使用 `<渠道前缀><键名>` 形式, 避免不同渠道的键在同一个
-通知数据属性包中相互冲突:
+All channel-owned keys use the form `<channel prefix><key name>` to avoid keys from different channels in the same
+Conflicting notification data property packs:
 
-| 渠道 | 前缀 | 键 |
+| channel | prefix | key |
 |---|---|---|
-| 企业微信 | `wx-work:` | `wx-work:text_card_message`、`wx-work:template_card_message`、`wx-work:safe` … |
-| 企业微信 Webhook | `wx-work-hook:` | `wx-work-hook:text`、`wx-work-hook:markdown_v2`、`wx-work-hook:template_card` … |
-| 微信小程序 | `wx-mp:` | `wx-mp:template_id`、`wx-mp:redirect_page`、`wx-mp:weapp_state`、`wx-mp:weapp_language` |
+| Enterprise WeChat | `wx-work:` | `wx-work:text_card_message`, `wx-work:template_card_message`, `wx-work:safe` … |
+| Enterprise WeChat Webhook | `wx-work-hook:` | `wx-work-hook:text`, `wx-work-hook:markdown_v2`, `wx-work-hook:template_card` … |
+| WeChat applet | `wx-mp:` | `wx-mp:template_id`, `wx-mp:redirect_page`, `wx-mp:weapp_state`, `wx-mp:weapp_language` |
 | WxPusher | `wx-pusher:` | `wx-pusher:url` |
 | PushPlus | `push-plus:` | `push-plus:webhook`、`push-plus:callback` |
 
-> **渠道注册表键与键前缀都是独立命名空间**。企业微信应用消息与 Webhook 是两种传输方式、
-> 两套载体模型, 因此注册表键(`WeChat.Work` / `WeChat.Work.Webhook`)与键前缀
-> (`wx-work:` / `wx-work-hook:`)都必须分开 ——
-> 否则同一个通知被两个渠道同时订阅时, 载荷会被两边都解析并各发一条。
+> **Channel registry keys and key prefixes are independent namespaces**. Enterprise WeChat application messages and Webhook are two transmission methods.
+> Two sets of carrier models, so registry keys (`WeChat.Work` / `WeChat.Work.Webhook`) and key prefixes
+> (`wx-work:` / `wx-work-hook:`) must be separated ——
+> Otherwise, when the same notification is subscribed by two channels at the same time, the payload will be parsed by both parties and one message will be sent each.
 
-每个渠道都以 `XxxNotificationDataKeys` 暴露常量, 并给出 `Prefix`:
+Each channel exposes constants as `XxxNotificationDataKeys`, and gives a `Prefix`:
 
 ```csharp
 public static class MyChannelNotificationDataKeys
@@ -149,69 +149,69 @@ public static class MyChannelNotificationDataKeys
 }
 ```
 
-> 唯一例外是**通知标准数据**的键(`title` / `message` / `description` /
-> `formUser` / `createTime`), 它们由 `NotificationData.WriteStandardData` 定义,
-> 属于所有渠道共用的通用约定, 不加前缀。
+> The only exception is the keys for **notification standard data** (`title` / `message` / `description` /
+> `formUser` / `createTime`), which are defined by `NotificationData.WriteStandardData`,
+> It is a common convention shared by all channels, without prefix.
 
-### 4.2 读取大小写不敏感
+### 4.2 Reading is not case sensitive
 
-键匹配规则是**精确匹配优先, 未命中再忽略大小写**,
-因此生产者使用 `wx-work:text_card_message`、`WX-WORK:TEXT_CARD_MESSAGE`
-或 `Wx-Work:Text_Card_Message` 都能命中。
+The key matching rules are **Exact matching takes precedence, and case is ignored if there is no hit**,
+Therefore producers use `wx-work:text_card_message`, `WX-WORK:TEXT_CARD_MESSAGE`
+Or `Wx-Work:Text_Card_Message` can all hit.
 
-该规则在 `INotificationChannelDataAccessor.TryGetRawValue` 中统一实现,
-`NotificationChannelDataPresence.ContainsKey` 使用同一规则,
-保证"存在性判定"与"实际读取"不会出现规则不一致。
+This rule is implemented uniformly in `INotificationChannelDataAccessor.TryGetRawValue`,
+`NotificationChannelDataPresence.ContainsKey` uses the same rule,
+It is guaranteed that there will be no rule inconsistency between "existence determination" and "actual reading".
 
-### 4.3 历史遗留的无前缀键
+### 4.3 Historical unprefixed keys
 
-微信小程序渠道在早期版本使用了无前缀键(`TemplateId` 等)。
-为让已安装的生产者平滑升级, 这些键保留在
-`WeChatMiniProgramNotificationDataKeys.Legacy` 中, 由渠道在解析时**只读回退**
-(带前缀的键优先), 并在命中遗留键时记录警告以推动迁移。
+The WeChat mini program channel used unprefixed keys (`TemplateId`, etc.) in early versions.
+To allow for a smooth upgrade of installed producers, these keys remain in
+`WeChatMiniProgramNotificationDataKeys.Legacy`, **read-only fallback** when parsed by the channel
+(prefixed keys take precedence), and log warnings when legacy keys are hit to drive migrations.
 
-新代码请一律使用带前缀的常量。
+Please always use prefixed constants in new code.
 
-### 4.4 一个数据对象中可共存多个渠道的键
+### 4.4 Keys of multiple channels can coexist in one data object
 
-不同前缀互不冲突, 因此同一个通知可以同时驱动多个渠道:
+Different prefixes do not conflict with each other, so the same notification can drive multiple channels at the same time:
 
 ```csharp
-data.TrySetData(WeChatWorkNotificationDataKeys.ToParty, "1|2");          // 应用消息
-data.TrySetData(WeChatWorkWebhookNotificationDataKeys.Markdown, "# 告警"); // Webhook
+data.TrySetData(WeChatWorkNotificationDataKeys.ToParty, "1|2"); // Application message
+data.TrySetData(WeChatWorkWebhookNotificationDataKeys.Markdown, "# alert"); // Webhook
 ```
 
-各渠道只解析自己前缀的载荷, 不会互相干扰(见 §9)。
+Each channel only parses the payload of its own prefix and will not interfere with each other (see §9).
 
 ---
 
-## 5. 存在性判定
+## 5. Existence determination
 
-**声明式存在性 + 注册期强制校验**:
+**Declarative existence + mandatory verification during registration**:
 
 ```csharp
 public enum NotificationChannelDataPresenceMode
 {
-    None = 0,                  // 始终存在(不依赖通知数据)
-    DeclaredProperties = 1,    // 参与匹配的属性全部存在(默认)
-    AnyDeclaredProperty = 2    // 参与匹配的属性存在任意一个
+    None = 0, // always exists (does not rely on notification data)
+    DeclaredProperties = 1, // All properties involved in matching exist (default)
+    AnyDeclaredProperty = 2 // Any one of the properties participating in the matching exists
 }
 ```
 
-校验规则(注册时执行, 即启动阶段):
+Verification rules (executed during registration, i.e. startup phase):
 
-| 情况 | 结果 |
+| Situation | Result |
 |---|---|
-| 声明了按键判定, 却没有任何可匹配属性 | 抛 `AbpNotificationChannelDataConfigurationException` |
-| 显式声明 `Presence = None` | 合法, 载荷始终存在 |
-| 缺少 `[NotificationChannelData]` | 抛 `AbpNotificationChannelDataConfigurationException` |
-| 同渠道 `Priority` 重复 | 抛 `AbpNotificationChannelDataConfigurationException` |
+| Key press determination is declared, but there is no matching attribute | Throwing `AbpNotificationChannelDataConfigurationException` |
+| Explicitly declare `Presence = None` | Legal, payload is always present |
+| Missing `[NotificationChannelData]` | Throws `AbpNotificationChannelDataConfigurationException` |
+| Duplicate same channel `Priority` | Throw `AbpNotificationChannelDataConfigurationException` |
 
-这样"忘了定义存在性"从**静默丢消息**变成**启动即失败**。
+In this way, "forgetting to define existence" changes from **losing messages silently** to **failure at startup**.
 
 ---
 
-## 6. JSON 序列化抽象
+## 6. JSON serialization abstraction
 
 ```csharp
 public interface INotificationChannelDataJsonSerializer
@@ -233,34 +233,34 @@ public class AbpNotificationChannelDataJsonSerializer
 }
 ```
 
-复用到的全局能力: 驼峰策略、时间格式、枚举转换、
-`AbpSystemTextJsonSerializerModifiersOptions` 修饰器、自定义 Converter。
+Reused global capabilities: camel case strategy, time format, enumeration conversion,
+`AbpSystemTextJsonSerializerModifiersOptions` modifier, custom Converter.
 
-需要加密/压缩/私有格式时替换该接口实现即可。
+When encryption/compression/private format is required, just replace the interface implementation.
 
-> **注意**: 项目使用的 JSON 集成是 `Volo.Abp.Json.SystemTextJson`,
-> 因此复杂载荷的 `JsonConverter` 必须实现 System.Text.Json 版本
-> (参见 `TemplateCardSystemTextJsonConverter`)。
+> **Note**: The JSON integration used by the project is `Volo.Abp.Json.SystemTextJson`,
+> Therefore the `JsonConverter` for complex payloads must implement the System.Text.Json version
+> (see `TemplateCardSystemTextJsonConverter`).
 
 ---
 
-## 7. 与 JSON 实现解耦
+## 7. Decoupling from JSON implementation
 
-`NotificationChannelDataAccessor` 在转换前会**还原 JSON 中间表示**:
+`NotificationChannelDataAccessor` will **restore the JSON intermediate representation** before conversion:
 
-| JSON 实现 | 属性包中的值 |
+| JSON implementation | Values in property bags |
 |---|---|
 | System.Text.Json | `JsonElement` |
-| Newtonsoft.Json | `JValue` / 原始 CLR 值 |
+| Newtonsoft.Json | `JValue` / raw CLR value |
 
-两者都会先还原为 CLR 原始值(数字还原为最小可用数值类型), 再做弱类型转换。
-因此同一份逻辑在两种 JSON 实现下行为一致。
+Both will first be restored to the CLR original value (the number is restored to the smallest available numeric type), and then weak type conversion will be performed.
+Therefore, the same logic behaves consistently under both JSON implementations.
 
 ---
 
-## 8. 生产者用法
+## 8. Producer usage
 
-### 8.1 声明载荷
+### 8.1 Declaring payload
 
 ```csharp
 [NotificationChannelData(MyProvider.ProviderName, Priority = 100)]
@@ -269,13 +269,13 @@ public class MyChannelData : NotificationChannelData
     [NotificationChannelProperty("my:template_id")]
     public string? TemplateId { get; set; }
 
-    // 可选读取项: 不参与存在性判定
+    // Optional reading item: does not participate in existence determination
     [NotificationChannelProperty("my:page", IgnoreWhenMatching = true)]
     public string? Page { get; set; }
 }
 ```
 
-### 8.2 在模块中注册
+### 8.2 Register in the module
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsModule))]
@@ -296,7 +296,7 @@ public class AbpNotificationsMyChannelModule : AbpModule
 }
 ```
 
-### 8.3 写入通知数据
+### 8.3 Write notification data
 
 ```csharp
 public class MyProducer
@@ -317,7 +317,7 @@ public class MyProducer
 
 ---
 
-## 9. 渠道用法
+## 9. Channel usage
 
 ```csharp
 public class MyProvider : NotificationPublishProvider
@@ -329,17 +329,17 @@ public class MyProvider : NotificationPublishProvider
     {
         var data = context.Notification.Data;
 
-        // 按类型解析
+        // parse by type
         var payload = ChannelDataResolver.Resolve<MyChannelData>(data);
 
-        // 区分"未写入"与"写入了但数据非法"
+        // Distinguish between "not written" and "written but illegal data"
         if (ChannelDataResolver.IsDeclared(data, typeof(MyChannelData)) && payload == null)
         {
             context.Cancel("The payload can not be parsed.");
             return Task.CompletedTask;
         }
 
-        // 标量选项
+        // scalar options
         var safe = ChannelDataResolver.GetValue(data, "my:safe", false);
 
         return Task.CompletedTask;
@@ -349,27 +349,27 @@ public class MyProvider : NotificationPublishProvider
 
 ---
 
-## 10. 行为保证
+## 10. Behavior Guarantee
 
-| 场景 | 行为 |
+| Scene | Behavior |
 |---|---|
-| 未设置的值 | 返回 `null`(而不是被默认值吞掉), 可区分"未设置"与"显式 false/0" |
-| JSON 往返后 | `byte`/`int`/`long`/`string`/`bool`/`JsonElement` 均可正确转换 |
-| 键大小写不一致 | 大小写不敏感匹配, 兼容历史遗留键(如 `TemplateId`) |
-| 数据非法 | 不抛异常; `Resolve` 返回 `null` 并记录警告日志, `IsDeclared` 仍为 `true` |
-| 未声明存在性规则 | 注册期抛 `AbpNotificationChannelDataConfigurationException` |
-| 缺少渠道特性 | 注册期抛 `AbpNotificationChannelDataConfigurationException` |
-| 同渠道优先级冲突 | 注册期抛 `AbpNotificationChannelDataConfigurationException` |
-| 载荷类型未映射消息载体 | 构造时抛 `AbpNotificationChannelDataConfigurationException`(快速失败) |
+| Unset values | Return `null` (rather than being swallowed by the default value), distinguishing "unset" from "explicit false/0" |
+| After JSON round trip | `byte`/`int`/`long`/`string`/`bool`/`JsonElement` can be converted correctly |
+| Key case inconsistency | Case-insensitive matching, compatible with historical legacy keys (such as `TemplateId`) |
+| Illegal data | No exception is thrown; `Resolve` returns `null` and records a warning log, `IsDeclared` is still `true` |
+| Existence rule not declared | `AbpNotificationChannelDataConfigurationException` thrown during registration |
+| Missing channel features | `AbpNotificationChannelDataConfigurationException` thrown during registration |
+| Priority conflict with the same channel | `AbpNotificationChannelDataConfigurationException` thrown during registration |
+| The payload type is not mapped to the message carrier | `AbpNotificationChannelDataConfigurationException` is thrown during construction (fast failure) |
 
 ---
 
-## 11. 扩展新渠道的检查清单
+## 11. Checklist for scaling into new channels
 
-1. 定义载荷类型并标注 `[NotificationChannelData]`;
-2. 至少给一个"标识属性"标注 `[NotificationChannelProperty]`(可选读取项加 `IgnoreWhenMatching = true`);
-3. 需要"任意一个键即可"时把 `Presence` 设为 `AnyDeclaredProperty`; 需要"始终存在"时设为 `None`;
-4. 在本模块的 `Configure<AbpNotificationChannelDataOptions>` 中注册载荷;
-5. 渠道实现中**不要**出现 `as byte?` / `as int?` 这类裸转换, 改用 `INotificationChannelDataResolver`;
-6. 需要区分"未声明"与"数据非法"时, 组合使用 `IsDeclared` 与 `Resolve`;
-7. 抽象类型载荷需要注册 JSON 类型转换器(注意 JSON 实现: STJ 或 Newtonsoft)。
+1. Define the payload type and mark it as `[NotificationChannelData]`;
+2. Mark at least one "identification property" with `[NotificationChannelProperty]` (optional read item plus `IgnoreWhenMatching = true`);
+3. When you need "any key", set `Presence` to `AnyDeclaredProperty`; when you need "always present", set it to `None`;
+4. Register the payload in `Configure<AbpNotificationChannelDataOptions>` of this module;
+5. Don’t use naked conversions like `as byte?` / `as int?` in channel implementation. Use `INotificationChannelDataResolver` instead;
+6. When you need to distinguish between "undeclared" and "illegal data", use `IsDeclared` and `Resolve` in combination;
+7. Abstract type payload needs to register a JSON type converter (note JSON implementation: STJ or Newtonsoft).

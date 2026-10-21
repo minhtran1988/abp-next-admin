@@ -31,7 +31,7 @@ setupVbenVxeTable({
         },
 
         formConfig: {
-          // 全局禁用vxe-table的表单配置，使用formOptions
+          // Globally disable vxe-table form configuration, use formOptions
           enabled: false,
         },
         minHeight: 180,
@@ -52,7 +52,7 @@ setupVbenVxeTable({
     });
 
     /**
-     * 解决vxeTable在热更新时可能会出错的问题
+     * Solve the problem that vxeTable may error during hot update
      */
     vxeUI.renderer.forEach((_item, key) => {
       if (key.startsWith('Cell')) {
@@ -60,7 +60,7 @@ setupVbenVxeTable({
       }
     });
 
-    // 表格配置项可以用 cellRender: { name: 'CellImage' },
+    // Table configuration items can be used cellRender: { name: 'CellImage' },
     vxeUI.renderer.add('CellImage', {
       renderTableDefault(renderOpts, params) {
         const { props } = renderOpts;
@@ -69,7 +69,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 表格配置项可以用 cellRender: { name: 'CellLink' },
+    // Table configuration items can be used cellRender: { name: 'CellLink' },
     vxeUI.renderer.add('CellLink', {
       renderTableDefault(renderOpts) {
         const { props } = renderOpts;
@@ -81,7 +81,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 单元格渲染： Tag
+    // Cell rendering: Tag
     vxeUI.renderer.add('CellTag', {
       renderTableDefault({ options, props }, { column, row }) {
         const value = get(row, column.field);
@@ -130,7 +130,7 @@ setupVbenVxeTable({
     });
 
     /**
-     * 注册表格的操作按钮渲染器
+     * Action button renderer for registration form
      */
     vxeUI.renderer.add('CellOperation', {
       renderTableDefault({ attrs, options, props }, { column, row }) {
@@ -220,11 +220,11 @@ setupVbenVxeTable({
             Popconfirm,
             {
               /**
-               * 当popconfirm用在固定列中时，将固定列作为弹窗的容器时可能会因为固定列较窄而无法容纳弹窗
-               * 将表格主体区域作为弹窗容器时又会因为固定列的层级较高而遮挡弹窗
-               * 将body或者表格视口区域作为弹窗容器时又会导致弹窗无法跟随表格滚动。
-               * 鉴于以上各种情况，一种折中的解决方案是弹出层展示时，禁止操作表格的滚动条。
-               * 这样既解决了弹窗的遮挡问题，又不至于让弹窗随着表格的滚动而跑出视口区域。
+               * When popconfirm is used in a fixed column, when the fixed column is used as a container for pop-up windows, the fixed column may not be able to accommodate the pop-up window because the fixed column is narrow.
+               * When the main area of the table is used as a pop-up window container, the pop-up window will be blocked due to the higher level of the fixed column.
+               * When using the body or table viewport area as a pop-up window container, the pop-up window will not be able to scroll with the table.
+               * In view of the above situations, a compromise solution is to disable the operation of the scroll bar of the table when the pop-up layer is displayed.
+               * This not only solves the problem of pop-up window occlusion, but also prevents the pop-up window from running out of the viewport area as the table scrolls.
                */
               getPopupContainer(el) {
                 viewportWrapper = el.closest('.vxe-table--viewport-wrapper');
@@ -236,7 +236,7 @@ setupVbenVxeTable({
               ...opt,
               icon: undefined,
               onOpenChange: (open: boolean) => {
-                // 当弹窗打开时，禁止表格的滚动
+                // When the pop-up window is opened, disable the scrolling of the table
                 if (open) {
                   viewportWrapper?.style.setProperty('pointer-events', 'none');
                 } else {
@@ -278,7 +278,7 @@ setupVbenVxeTable({
       },
     });
 
-    // 这里可以自行扩展 vxe-table 的全局配置，比如自定义格式化
+    // Here you can extend the global configuration of vxe-table by yourself, such as custom formatting
     // vxeUI.formats.add
   },
   useVbenForm,

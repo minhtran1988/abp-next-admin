@@ -14,8 +14,8 @@ public class AbpBlobStoringAliyunModule : AbpModule
     {
         context.Services.AddAliyunHttpClient();
     }
-    // 需要时引用配置
-    //public override void ConfigureServices(ServiceConfigurationContext context)
+    // Reference configuration when needed
+    // public override void ConfigureServices(ServiceConfigurationContext context)
     //{
     //    var configuration = context.Services.GetConfiguration();
 

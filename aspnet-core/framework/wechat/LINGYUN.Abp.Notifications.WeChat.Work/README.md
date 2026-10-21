@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Notifications.WeChat.Work
 
-企业微信应用消息通知模块，提供通过企业微信应用向用户发送消息的功能。
+The enterprise WeChat application message notification module provides the function of sending messages to users through the enterprise WeChat application.
 
-## 功能特性
+## Features
 
-* 支持企业微信应用消息发送
-* 支持文本消息
-* 支持图片消息
-* 支持语音消息
-* 支持视频消息
-* 支持文件消息
-* 支持图文消息
-* 支持模板卡片消息
-* 集成ABP通知系统
+* Support enterprise WeChat application messaging
+* Support text messages
+* Support picture messages
+* Support voice messages
+* Support video messages
+* Support file messages
+* Support graphic messages
+* Support template card messages
+* Integrated ABP notification system
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsWeChatWorkModule))]
@@ -24,26 +24,26 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "WeChat": {
     "Work": {
       "Notifications": {
-        "DefaultAgentId": 0,            // 默认应用ID
-        "DefaultToParty": "",           // 默认接收消息的部门ID列表
-        "DefaultToTag": "",             // 默认接收消息的标签ID列表
-        "DefaultSafe": 0,               // 默认表示是否是保密消息，0表示可对外分享，1表示不能分享且内容显示水印
-        "DefaultEnableIdTrans": 0,      // 默认表示是否开启id转译，0表示否，1表示是
-        "DefaultEnableDuplicateCheck": 0, // 默认表示是否开启重复消息检查，0表示否，1表示是
-        "DefaultDuplicateCheckInterval": 1800 // 默认表示重复消息检查的时间间隔，默认1800秒
+        "DefaultAgentId": 0, //Default application ID
+        "DefaultToParty": "", // List of department IDs that receive messages by default
+        "DefaultToTag": "", // Default tag ID list for receiving messages
+        "DefaultSafe": 0, //The default indicates whether the message is confidential, 0 indicates that it can be shared externally, 1 indicates that it cannot be shared and the content displays a watermark
+        "DefaultEnableIdTrans": 0, //The default indicates whether to enable id translation, 0 indicates no, 1 indicates yes
+        "DefaultEnableDuplicateCheck": 0, //The default indicates whether to enable duplicate message checking, 0 indicates no, 1 indicates yes
+        "DefaultDuplicateCheckInterval": 1800 //The default indicates the time interval for checking duplicate messages. The default is 1800 seconds.
       }
     }
   }
 }
 ```
 
-## 更多文档
+## More documentation
 
-* [企业微信应用消息通知文档](README.EN.md)
+* [Enterprise WeChat Application Message Notification Document](README.EN.md)

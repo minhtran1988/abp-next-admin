@@ -4,23 +4,23 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages.Models;
 /// <summary>
-/// 链接消息
+/// Link message
 /// </summary>
 [EventName("link")]
 public class LinkMessage : WeChatOfficialGeneralMessage
 {
     /// <summary>
-    /// 消息标题
+    /// Message title
     /// </summary>
     [XmlElement("Title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 消息描述
+    /// Message description
     /// </summary>
     [XmlElement("Description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 消息链接
+    /// Message link
     /// </summary>
     [XmlElement("Url")]
     public string Url { get; set; } = default!;

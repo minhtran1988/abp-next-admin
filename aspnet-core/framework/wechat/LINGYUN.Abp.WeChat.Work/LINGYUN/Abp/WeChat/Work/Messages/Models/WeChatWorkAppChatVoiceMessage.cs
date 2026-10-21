@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信群聊语言消息
+/// Enterprise WeChat group chat language message
 /// </summary>
 public class WeChatWorkAppChatVoiceMessage : WeChatWorkAppChatMessage
 {
@@ -16,7 +16,7 @@ public class WeChatWorkAppChatVoiceMessage : WeChatWorkAppChatMessage
         Voice = voice;
     }
     /// <summary>
-    /// 语音媒体文件
+    /// Voice media file
     /// </summary>
     [NotNull]
     [JsonProperty("voice")]

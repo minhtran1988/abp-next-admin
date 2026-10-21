@@ -2,29 +2,29 @@
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 激活状态
+/// Activation status
 /// </summary>
-[Description("激活状态")]
+[Description("activation status")]
 public enum MemberStatus
 {
     /// <summary>
-    /// 已激活
+    /// Activated
     /// </summary>
-    [Description("已激活")]
+    [Description("Activated")]
     Activated = 1,
     /// <summary>
-    /// 已禁用
+    /// Disabled
     /// </summary>
-    [Description("已禁用")]
+    [Description("Disabled")]
     Disabled = 2,
     /// <summary>
-    /// 未激活
+    /// Not activated
     /// </summary>
-    [Description("未激活")]
+    [Description("not activated")]
     NotActivated = 4,
     /// <summary>
-    /// 退出企业
+    /// Exit the enterprise
     /// </summary>
-    [Description("退出企业")]
+    [Description("Exit the enterprise")]
     Exited = 5,
 }

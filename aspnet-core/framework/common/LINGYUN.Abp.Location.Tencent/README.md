@@ -1,27 +1,27 @@
 # LINGYUN.Abp.Location.Tencent
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.Location.Tencent` 是基于腾讯地图API的位置服务实现模块，提供了地理编码、反向地理编码、IP定位等功能。
+`LINGYUN.Abp.Location.Tencent` is a location service implementation module based on Tencent Map API, which provides geocoding, reverse geocoding, IP positioning and other functions.
 
-## 功能特性
+## Features
 
-* 地理编码：将详细的结构化地址转换为对应的经纬度坐标
-* 反向地理编码：将经纬度坐标转换为对应的结构化地址
-* IP定位：根据IP地址获取位置信息
-* POI（兴趣点）信息：获取周边的商铺、餐厅等兴趣点信息
-* 行政区划信息：获取详细的行政区划层级信息
-* 地址解析：智能解析地址信息，支持多种格式
+* Geocoding: Convert detailed structured addresses into corresponding latitude and longitude coordinates
+* Reverse geocoding: convert latitude and longitude coordinates into corresponding structured addresses
+* IP positioning: Obtain location information based on IP address
+* POI (point of interest) information: Get information on surrounding shops, restaurants and other points of interest
+* Administrative division information: obtain detailed administrative division level information
+* Address resolution: Intelligent resolution of address information, supporting multiple formats
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Location.Tencent
 ```
 
-## 配置
+## Configuration
 
-1. 添加模块依赖：
+1. Add module dependencies:
 
 ```csharp
 [DependsOn(typeof(AbpTencentLocationModule))]
@@ -31,18 +31,18 @@ public class YourModule : AbpModule
     {
         Configure<TencentLocationOptions>(options =>
         {
-            // 设置腾讯地图API密钥
+            //Set Tencent Map API key
             options.Key = "your-tencent-map-key";
-            // 可选：设置安全密钥（SK校验）
+            // Optional: Set security key (SK verification)
             options.SecretKey = "your-tencent-map-sk";
         });
     }
 }
 ```
 
-## 使用方法
+## How to use
 
-1. 注入并使用位置解析服务：
+1. Inject and use the location resolution service:
 
 ```csharp
 public class YourLocationService
@@ -54,21 +54,21 @@ public class YourLocationService
         _locationProvider = locationProvider;
     }
 
-    // 地理编码：地址转坐标
+    //Geocoding: address to coordinates
     public async Task<GecodeLocation> GeocodeAsync(string address)
     {
-        // city参数可选，用于指定地址所在城市
-        return await _locationProvider.GeocodeAsync(address, "北京市");
+        // The city parameter is optional and is used to specify the city where the address is located.
+        return await _locationProvider.GeocodeAsync(address, "Beijing");
     }
 
-    // 反向地理编码：坐标转地址
+    // Reverse geocoding: coordinates to address
     public async Task<ReGeocodeLocation> ReGeocodeAsync(double lat, double lng)
     {
-        // radius参数可选，指定搜索半径（米）
+        //The radius parameter is optional and specifies the search radius (meters)
         return await _locationProvider.ReGeocodeAsync(lat, lng, 1000);
     }
 
-    // IP地理位置解析
+    //IP geographical location analysis
     public async Task<IPGecodeLocation> IPGeocodeAsync(string ipAddress)
     {
         return await _locationProvider.IPGeocodeAsync(ipAddress);
@@ -76,59 +76,59 @@ public class YourLocationService
 }
 ```
 
-## 返回数据说明
+## Return data description
 
-### 地理编码返回数据
+### Geocoding return data
 
 ```json
 {
     "location": {
-        "lat": 39.915119,    // 纬度值
-        "lng": 116.403963    // 经度值
+        "lat": 39.915119, // latitude value
+        "lng": 116.403963 // longitude value
     },
-    "title": "天安门",       // 地点名称
-    "address": "北京市东城区东长安街",  // 地址
-    "category": "旅游景点",   // 类别
-    "adcode": "110101",      // 行政区划代码
-    "similarity": 0.8,       // 相似度（0-1）
-    "reliability": 7,        // 可信度（1-10）
-    "level": 11             // 地址类型
+    "title": "Tiananmen", // place name
+    "address": "East Chang'an Street, Dongcheng District, Beijing", // address
+    "category": "tourist attractions", // category
+    "adcode": "110101", // Administrative division code
+    "similarity": 0.8, // Similarity (0-1)
+    "reliability": 7, // Reliability (1-10)
+    "level": 11 //Address type
 }
 ```
 
-### 反向地理编码返回数据
+### Reverse geocoding return data
 
 ```json
 {
     "location": {
-        "lat": 39.915119,    // 纬度值
-        "lng": 116.403963    // 经度值
+        "lat": 39.915119, // latitude value
+        "lng": 116.403963 // longitude value
     },
-    "address": "北京市东城区东长安街",  // 完整地址
+    "address": "East Chang'an Street, Dongcheng District, Beijing", // full address
     "formatted_addresses": {
-        "recommend": "东城区天安门",    // 推荐地址
-        "rough": "北京市东城区"         // 粗略地址
+        "recommend": "Dongcheng District Tiananmen", // Recommended address
+        "rough": "Dongcheng District, Beijing" // Rough address
     },
     "address_component": {
-        "nation": "中国",              // 国家
-        "province": "北京市",          // 省份
-        "city": "北京市",              // 城市
-        "district": "东城区",          // 区县
-        "street": "东长安街",          // 街道
-        "street_number": "1号"         // 门牌号
+        "nation": "China", // country
+        "province": "Beijing City", // province
+        "city": "Beijing", // city
+        "district": "Dongcheng District", // district and county
+        "street": "East Chang'an Street", // street
+        "street_number": "No. 1" // House number
     },
-    "pois": [                         // 周边POI信息
+    "pois": [ // Surrounding POI information
         {
-            "title": "天安门",         // POI名称
-            "address": "北京市东城区东长安街", // POI地址
-            "category": "旅游景点",     // POI类型
-            "distance": 100,          // 距离（米）
-            "_distance": 100.0,       // 距离（米，浮点数）
-            "tel": "",               // 电话
-            "ad_info": {             // 行政区划信息
-                "adcode": "110101",  // 行政区划代码
-                "name": "东城区",     // 行政区划名称
-                "location": {        // 行政区划中心点
+            "title": "Tiananmen", // POI name
+            "address": "East Chang'an Street, Dongcheng District, Beijing", // POI address
+            "category": "Tourist Attractions", // POI type
+            "distance": 100, // distance (meters)
+            "_distance": 100.0, // distance (meters, floating point number)
+            "tel": "", // Telephone
+            "ad_info": { // Administrative division information
+                "adcode": "110101", // Administrative division code
+                "name": "Dongcheng District", // Administrative division name
+                "location": { // Administrative division center point
                     "lat": 39.915119,
                     "lng": 116.403963
                 }
@@ -138,7 +138,7 @@ public class YourLocationService
 }
 ```
 
-## 更多信息
+## More information
 
 * [English Documentation](./README.EN.md)
-* [腾讯位置服务](https://lbs.qq.com/)
+* [Tencent Location Service](https://lbs.qq.com/)

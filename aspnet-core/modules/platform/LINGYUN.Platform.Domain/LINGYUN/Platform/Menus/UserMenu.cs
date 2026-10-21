@@ -5,7 +5,7 @@ using Volo.Abp.MultiTenancy;
 namespace LINGYUN.Platform.Menus;
 
 /// <summary>
-/// 用户菜单
+/// User menu
 /// </summary>
 public class UserMenu : AuditedEntity<Guid>, IMultiTenant
 {

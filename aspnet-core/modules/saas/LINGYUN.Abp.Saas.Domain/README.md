@@ -1,27 +1,27 @@
 # LINGYUN.Abp.Saas.Domain
 
-SaaS领域层模块，定义了租户和版本的核心领域模型、仓储接口和领域服务。
+The SaaS domain layer module defines the core domain model, warehousing interface and domain services of tenants and versions.
 
-## 核心功能
+## Core functions
 
-* 租户实体(Tenant)：包含租户基本信息、状态、过期时间等
-* 版本实体(Edition)：包含版本基本信息
-* 租户连接字符串(TenantConnectionString)：管理租户数据库连接
-* 租户管理器(TenantManager)：处理租户相关的业务逻辑
-* 版本管理器(EditionManager)：处理版本相关的业务逻辑
-* 数据种子(EditionDataSeeder)：提供默认版本数据初始化
+* Tenant: Contains tenant basic information, status, expiration time, etc.
+* Edition entity (Edition): contains basic version information
+* Tenant connection string (TenantConnectionString): manages tenant database connection
+* Tenant Manager (TenantManager): handles tenant-related business logic
+* Edition Manager (EditionManager): handles version-related business logic
+* Data seed (EditionDataSeeder): Provides default version data initialization
 
-## 领域事件
+## Domain events
 
-* 租户创建、更新、删除事件
-* 版本创建、更新、删除事件
-* 租户连接字符串变更事件
+* Tenant creation, update, and deletion events
+* Version creation, update, and deletion events
+* Tenant connection string change event
 
-## 缓存管理
+## Cache management
 
-* 租户缓存：缓存租户信息，提高查询性能
-* 版本缓存：缓存版本信息，提高查询性能
+* Tenant cache: cache tenant information to improve query performance
+* Version cache: cache version information to improve query performance
 
-## 更多
+## More
 
 [English](README.EN.md)

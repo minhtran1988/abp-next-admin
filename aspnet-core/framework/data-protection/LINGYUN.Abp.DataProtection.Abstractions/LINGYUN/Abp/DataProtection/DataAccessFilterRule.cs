@@ -6,27 +6,27 @@ namespace LINGYUN.Abp.DataProtection;
 public class DataAccessFilterRule
 {
     /// <summary>
-    /// 字段名称
+    /// Field name
     /// </summary>
     public string Field { get; set; } = default!;
     /// <summary>
-    /// 字段值
+    /// Field value
     /// </summary>
     public object? Value { get; set; }
     /// <summary>
-    /// 类型全名
+    /// Type full name
     /// </summary>
     public string TypeFullName { get; set; } = default!;
     /// <summary>
-    /// Js类型
+    /// Js type
     /// </summary>
     public string JavaScriptType { get; set; } = default!;
     /// <summary>
-    /// 操作类型
+    /// Operation type
     /// </summary>
     public DataAccessFilterOperate Operate { get; set; }
     /// <summary>
-    /// 左侧条件
+    /// Left condition
     /// </summary>
     public bool IsLeft { get; set; }
 

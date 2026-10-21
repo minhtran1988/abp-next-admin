@@ -1,32 +1,32 @@
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 渠道数据(载荷)存在性判定模式
+/// Channel data (load) existence determination mode
 /// </summary>
 public enum NotificationChannelDataPresenceMode
 {
     /// <summary>
-    /// 载荷始终被视为存在
+    /// Payload is always considered present
     /// </summary>
     /// <remarks>
-    /// 适用于不依赖通知数据的载荷(由渠道在运行时构造)。
+    /// Suitable for payloads that do not rely on notification data (constructed by the channel at runtime).
     /// </remarks>
     None = 0,
 
     /// <summary>
-    /// 参与匹配的属性全部存在时, 载荷被视为存在(默认)
+    /// When all attributes participating in the match exist, the payload is considered to exist (default)
     /// </summary>
     /// <remarks>
-    /// 适用于"某个键就是载荷标识"的场景, 例如企业微信的各消息类型。
+    /// Suitable for scenarios where "a certain key is the payload identifier", such as various message types of Enterprise WeChat.
     /// </remarks>
     DeclaredProperties = 1,
 
     /// <summary>
-    /// 参与匹配的属性存在任意一个时, 载荷被视为存在
+    /// When any of the attributes participating in the match exists, the payload is considered to exist.
     /// </summary>
     /// <remarks>
-    /// 适用于"多个可选键中任意一个即可"的场景,
-    /// 例如 PushPlus 的 webhook 与 callback 二者其一。
+    /// Suitable for scenarios where "any one of multiple optional keys is enough",
+    /// For example, PushPlus's webhook or callback.
     /// </remarks>
     AnyDeclaredProperty = 2
 }

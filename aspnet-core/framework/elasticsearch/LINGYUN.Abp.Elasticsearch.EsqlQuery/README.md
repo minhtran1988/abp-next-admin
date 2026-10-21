@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Elasticsearch.EsqlQuery
 
-[IExpressionQueryService](../LINGYUN.Abp.Elasticsearch/LINGYUN/Abp/Elasticsearch/IExpressionQueryService.cs) 的ES|QL查询集成.  
+ES|QL query integration for [IExpressionQueryService](../LINGYUN.Abp.Elasticsearch/LINGYUN/Abp/Elasticsearch/IExpressionQueryService.cs).
 
-**注意**: 
-* 使用 ES|QL 查询方案不能进行深度分页,数据条目超出10000时依旧存在ES分页限制.  
-如需支持深度分页,请使用默认  [ExpressionQueryService](../LINGYUN.Abp.Elasticsearch/LINGYUN/Abp/Elasticsearch/ExpressionQueryService.cs) `search_after` 方案
+**Note**:
+* Deep paging cannot be performed using the ES|QL query plan. When the data entries exceed 10,000, there are still ES paging restrictions.
+If you need to support deep paging, please use the default [ExpressionQueryService](../LINGYUN.Abp.Elasticsearch/LINGYUN/Abp/Elasticsearch/ExpressionQueryService.cs) `search_after` scheme
 
-* 不支持使用 由于ES|QL不支持 `Skip`, 暂不支持分页查询  
+* Not supported. Since ES|QL does not support `Skip`, paging query is not supported yet.
 
-* 对于嵌套类型的集合方法测试未通过,请勿使用集合的过滤条件  
+* For collection methods of nested types that fail to pass the test, please do not use the filter conditions of the collection.
 
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpElasticsearchEsqlQueryModule))]

@@ -6,11 +6,11 @@ using System.Text;
 namespace LINGYUN.Abp.OpenObserve.Utils;
 
 /// <summary>
-/// OpenObserve SQL 条件构建器
+/// OpenObserve SQL condition builder
 /// </summary>
 /// <remarks>
-/// 将 <see cref="Condition"/> 列表转换为 SQL WHERE 条件, 字段名可通过
-/// <see cref="MapField"/> 映射(表达式成员名 -> 数据流列名)
+/// Convert the <see cref="Condition"/> list into SQL WHERE conditions, and the field names can pass
+/// <see cref="MapField"/> Mapping (expression member name -> data flow column name)
 /// </remarks>
 public class OpenObserveSqlBuilder
 {
@@ -22,7 +22,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 添加字段映射
+    /// Add field mapping
     /// </summary>
     public virtual OpenObserveSqlBuilder MapField(string field, string column)
     {
@@ -32,7 +32,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 获取映射后的列名
+    /// Get the mapped column name
     /// </summary>
     public virtual string GetMappedField(string field)
     {
@@ -40,10 +40,10 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 构建 SQL WHERE 条件
+    /// Construct SQL WHERE condition
     /// </summary>
-    /// <param name="conditions">查询条件</param>
-    /// <param name="skipFields">需要忽略的字段(通常由查询的时间范围处理)</param>
+    /// <param name="conditions">Query conditions</param>
+    /// <param name="skipFields">Fields that need to be ignored (usually handled by the time range of the query)</param>
     public virtual string Build(IEnumerable<Condition> conditions, params string[] skipFields)
     {
         var parts = new List<string>();
@@ -62,7 +62,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 构建单个条件
+    /// Build a single condition
     /// </summary>
     protected virtual string BuildCondition(Condition condition)
     {
@@ -87,7 +87,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 格式化条件值
+    /// Format condition value
     /// </summary>
     protected virtual string FormatValue(string field, object? value)
     {
@@ -105,10 +105,10 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 格式化时间值
+    /// Format time value
     /// </summary>
     /// <remarks>
-    /// OpenObserve 将时间序列化为 ISO 8601(带时区偏移), 按相同格式比较才能命中
+    /// OpenObserve serializes time into ISO 8601 (with time zone offset), and compares in the same format to hit
     /// </remarks>
     public virtual string FormatDateTime(DateTime value)
     {
@@ -116,7 +116,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 转义字符串值
+    /// Escape string value
     /// </summary>
     public virtual string Escape(string input)
     {
@@ -137,7 +137,7 @@ public class OpenObserveSqlBuilder
     }
 
     /// <summary>
-    /// 追加条件到 SQL
+    /// Append conditions to SQL
     /// </summary>
     public virtual void AppendCondition(StringBuilder sqlBuilder, string column, string sqlValue, bool isLike = false)
     {

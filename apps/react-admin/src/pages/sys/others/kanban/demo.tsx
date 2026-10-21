@@ -19,7 +19,7 @@ const getItems = (count: number, offset = 0): Task[] =>
 	}));
 
 /**
- * re order 重新排序
+ * re order reorder
  *
  * @param list
  * @param startIndex

@@ -1,43 +1,43 @@
 # LINGYUN.Abp.TextTemplating.Domain.Shared
 
-## 模块说明
+## Module description
 
-文本模板领域共享模块，提供文本模板相关的常量、枚举、异常等共享定义。
+The text template domain sharing module provides shared definitions of constants, enumerations, exceptions, etc. related to text templates.
 
-### 基础模块
+### Basic module
 
 * Volo.Abp.TextTemplating
 * Volo.Abp.Validation
 
-### 功能定义
+### Function definition
 
-* 提供文本模板相关的常量定义
-  * TextTemplateDefinitionConsts - 模板定义相关常量
-  * TextTemplateContentConsts - 模板内容相关常量
-* 提供文本模板相关的错误代码定义
-  * AbpTextTemplatingErrorCodes - 错误代码常量
-* 提供本地化资源定义
-  * AbpTextTemplatingResource - 本地化资源
+* Provide constant definitions related to text templates
+  * TextTemplateDefinitionConsts - Template definition related constants
+  * TextTemplateContentConsts - constants related to template content
+* Provide error code definitions related to text templates
+  * AbpTextTemplatingErrorCodes - error code constants
+* Provide localized resource definitions
+  * AbpTextTemplatingResource - localization resource
 
-### 常量定义
+### Constant definition
 
 * TextTemplateDefinitionConsts
-  * MaxNameLength - 模板名称最大长度 (64)
-  * MaxDisplayNameLength - 显示名称最大长度 (128)
-  * MaxLayoutLength - 布局名称最大长度 (256)
-  * MaxDefaultCultureNameLength - 默认文化名称最大长度 (10)
-  * MaxLocalizationResourceNameLength - 本地化资源名称最大长度 (128)
-  * MaxRenderEngineLength - 渲染引擎名称最大长度 (64)
+  * MaxNameLength - Maximum length of template name (64)
+  * MaxDisplayNameLength - Maximum length of display name (128)
+  * MaxLayoutLength - Maximum length of layout name (256)
+  * MaxDefaultCultureNameLength - Maximum length of default culture name (10)
+  * MaxLocalizationResourceNameLength - Maximum length of localization resource name (128)
+  * MaxRenderEngineLength - Maximum length of rendering engine name (64)
 
-### 错误代码
+### Error code
 
 * AbpTextTemplatingErrorCodes
-  * TextTemplateDefinition:NameAlreadyExists - 模板名称已存在
-  * TextTemplateDefinition:NotFound - 模板定义不存在
+  * TextTemplateDefinition:NameAlreadyExists - template name already exists
+  * TextTemplateDefinition:NotFound - The template definition does not exist
 
-### 如何使用
+### How to use
 
-1. 添加 `AbpTextTemplatingDomainSharedModule` 依赖
+1. Add `AbpTextTemplatingDomainSharedModule` dependency
 
 ```csharp
 [DependsOn(typeof(AbpTextTemplatingDomainSharedModule))]
@@ -46,7 +46,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用常量和错误代码
+2. Use constants and error codes
 
 ```csharp
 public class YourService
@@ -61,4 +61,4 @@ public class YourService
 }
 ```
 
-[查看英文](README.EN.md)
+[View in English](README.EN.md)

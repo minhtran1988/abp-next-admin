@@ -5,39 +5,39 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Messages.Models;
 /// <summary>
-/// 模板卡片事件推送
+/// Template card event push
 /// </summary>
 [EventName("template_card_event")]
 public class TemplateCardPushEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 与发送模板卡片消息时指定的task_id相同
+    /// The same as the task_id specified when sending the template card message
     /// </summary>
     [XmlElement("TaskId")]
     public string TaskId { get; set; } = default!;
     /// <summary>
-    /// 通用模板卡片的类型，类型有
+    /// The type of universal template card, the types are
     /// "text_notice", 
     /// "news_notice",
     /// "button_interaction",
     /// "vote_interaction", 
     /// "multiple_interaction"
-    /// 五种
+    /// Five kinds
     /// </summary>
     [XmlElement("CardType")]
     public string CardType { get; set; } = default!;
     /// <summary>
-    /// 用于调用更新卡片接口的ResponseCode，72小时内有效，且只能使用一次
+    /// ResponseCode used to call the update card interface, valid within 72 hours, and can only be used once
     /// </summary>
     [XmlElement("ResponseCode")]
     public string ResponseCode { get; set; } = default!;
     /// <summary>
-    /// 与发送模板卡片消息时指定的按钮btn:key值相同
+    /// The same as the button btn:key value specified when sending the template card message
     /// </summary>
     [XmlElement("EventKey")]
     public string EventKey { get; set; } = default!;
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("SelectedItems")]
     public TemplateCardQuestionInfo QuestionInfo { get; set; } = default!;
@@ -50,7 +50,7 @@ public class TemplateCardPushEvent : WeChatWorkEventMessage
 public class TemplateCardQuestionInfo
 {
     /// <summary>
-    /// 事件KEY值
+    /// Event KEY value
     /// </summary>
     [XmlElement("SelectedItem")]
     public List<TemplateCardQuestion>? Items { get; set; }
@@ -59,12 +59,12 @@ public class TemplateCardQuestionInfo
 public class TemplateCardQuestion
 {
     /// <summary>
-    /// 问题的key值
+    /// The key value of the question
     /// </summary>
     [XmlElement("QuestionKey")]
     public string QuestionKey { get; set; } = default!;
     /// <summary>
-    /// 问题的key值
+    /// The key value of the question
     /// </summary>
     [XmlArray("OptionIds")]
     public List<TemplateCardQuestionOption>? OptionIds { get; set; }
@@ -73,7 +73,7 @@ public class TemplateCardQuestion
 public class TemplateCardQuestionOption
 {
     /// <summary>
-    /// 问题的key值
+    /// The key value of the question
     /// </summary>
     [XmlElement("OpitonId")]
     public List<string>? Items { get; set; }

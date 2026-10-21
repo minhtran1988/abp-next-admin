@@ -43,7 +43,7 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
     }
 
     [Authorize(DemoPermissions.Books.Create)]
-    [DisableDataProtected]// 任何人都可创建
+    [DisableDataProtected]// Anyone can create
     public async virtual Task<BookDto> CreateAsync(CreateBookDto input)
     {
         var author = await _authorRepository.GetAsync(input.AuthorId);
@@ -64,7 +64,7 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
     }
 
     [Authorize(DemoPermissions.Books.Edit)]
-    [DataProtected(DataAccessOperation.Write)]// 仅启用数据更新过滤器
+    [DataProtected(DataAccessOperation.Write)]//Only enable data update filter
     public async virtual Task<BookDto> UpdateAsync(Guid id, UpdateBookDto input)
     {
         var book = await _bookRepository.GetAsync(id);
@@ -103,16 +103,16 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
 
     public async virtual Task<BookDto> GetAsync(Guid id)
     {
-        //Get the IQueryable<Book> from the repository
+        // Get the IQueryable<Book> from the repository
         var queryable = await _bookRepository.GetQueryableAsync();
 
-        //Prepare a query to join books and authors
+        // Prepare a query to join books and authors
         var query = from book in queryable
                     join author in await _authorRepository.GetQueryableAsync() on book.AuthorId equals author.Id
                     where book.Id == id
                     select new { book, author };
 
-        //Execute the query and get the book with author
+        // Execute the query and get the book with author
         var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query);
         if (queryResult == null)
         {
@@ -127,22 +127,22 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
     public async virtual Task<PagedResultDto<BookDto>> GetListAsync(BookGetListInput input)
     {
         var queryable = await _bookRepository.GetQueryableAsync();
-        //Prepare a query to join books and authors
+        // Prepare a query to join books and authors
         var query = from book in queryable
                     join author in await _authorRepository.GetQueryableAsync() on book.AuthorId equals author.Id
                     select new { book, author };
 
-        //Paging
+        // Paging
         query = query
             .WhereIf(!input.Filter.IsNullOrWhiteSpace(), x => x.book.Name.Contains(input.Filter!))
             .OrderBy(NormalizeSorting(input.Sorting))
             .Skip(input.SkipCount)
             .Take(input.MaxResultCount);
 
-        //Execute the query and get a list
+        // Execute the query and get a list
         var queryResult = await AsyncExecuter.ToListAsync(query);
 
-        //Convert the query result to a list of BookDto objects
+        // Convert the query result to a list of BookDto objects
         var bookDtos = queryResult.Select(x =>
         {
             var bookDto = ObjectMapper.Map<Book, BookDto>(x.book);
@@ -150,7 +150,7 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
             return bookDto;
         }).ToList();
 
-        //Get the total count with another query
+        // Get the total count with another query
         var totalCount = await AsyncExecuter.CountAsync(query);
 
         return new PagedResultDto<BookDto>(
@@ -161,7 +161,7 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
 
 
     [Authorize(DemoPermissions.Books.Delete)]
-    [DataProtected(DataAccessOperation.Delete)]// 仅启用数据删除过滤器
+    [DataProtected(DataAccessOperation.Delete)]//Only enable data deletion filter
     public async virtual Task DeleteAsync(Guid id)
     {
         var book = await _bookRepository.GetAsync(id);
@@ -170,7 +170,7 @@ public class BookAppService : DemoApplicationServiceBase, IBookAppService //impl
     }
 
     [Authorize(DemoPermissions.Books.Import)]
-    [DisableDataProtected]// 任何人都可创建
+    [DisableDataProtected]// Anyone can create
     public async virtual Task ImportAsync(BookImportInput input)
     {
         var stream = input.Content.GetStream();

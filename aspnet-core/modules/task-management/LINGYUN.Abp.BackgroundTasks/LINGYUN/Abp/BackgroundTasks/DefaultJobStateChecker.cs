@@ -49,7 +49,7 @@ public class DefaultJobStateChecker : IJobStateChecker, ITransientDependency
 
                 foreach (var runingJob in runingJobs)
                 {
-                    // 当标记为运行中的作业不在调度器中时，改变为已停止作业
+                    // When a job marked as running is not in the scheduler, change it to a stopped job
                     if (!await _jobScheduler.ExistsAsync(runingJob, cancellationToken))
                     {
                         runingJob.Status = JobStatus.Stopped;
@@ -79,7 +79,7 @@ public class DefaultJobStateChecker : IJobStateChecker, ITransientDependency
 
                 foreach (var expiredJob in expiredJobs)
                 {
-                    // 从队列强制移除作业
+                    // Forcefully remove the job from the queue
                     await _jobScheduler.RemoveAsync(expiredJob, cancellationToken);
                 }
             }

@@ -5,12 +5,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 审批申请数据
+/// Approval application data
 /// </summary>
 public class ApprovalApplyData
 {
     /// <summary>
-    /// 审批申请详情，由多个表单控件及其内容组成，其中包含需要对控件赋值的信息
+    /// Approval application details, consisting of multiple form controls and their contents, including information that needs to be assigned to the controls
     /// </summary>
     [NotNull]
     [JsonProperty("contents")]

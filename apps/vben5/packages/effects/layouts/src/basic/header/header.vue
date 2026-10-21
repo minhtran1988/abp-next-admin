@@ -18,7 +18,7 @@ import {
 
 interface Props {
   /**
-   * Logo 主题
+   * Logo theme
    */
   theme?: string;
 }

@@ -1,30 +1,30 @@
-# LINGYUN.Abp 审计模块
+# LINGYUN.Abp audit module
 
-## 模块概述
+## Module overview
 
-审计模块提供了全面的日志记录和审计功能，支持多种存储方式和高度可配置的审计选项。
+The audit module provides comprehensive logging and auditing capabilities, supports multiple storage methods and highly configurable auditing options.
 
-## 功能特性
+## Features
 
-### 核心功能
+### Core functions
 
-- 审计日志基础设施
-- 审计日志仓储接口定义
-- 审计日志管理器接口定义
-- 支持忽略特定类型的审计日志记录
+- Audit logging infrastructure
+- Audit log warehousing interface definition
+- Audit log manager interface definition
+- Support ignoring specific types of audit logging
 
-### 存储支持
+### Storage support
 
-- EntityFrameworkCore 实现  
-- Elasticsearch 实现  
-- OpenObserve 实现
+- EntityFrameworkCore implementation
+- Elasticsearch implementation
+- OpenObserve implementation
 
-> 注意: Elastic库限制, 兼容8.x; 9.x版本, 如需使用10.x版本, 请切换 **Elastic.Clients.Elasticsearch** 为9.x版本 
-> 参考: https://www.nuget.org/packages/Elastic.Clients.Elasticsearch#readme-body-tab  
+> Note: Elastic library limitation, compatible with 8.x; 9.x version, if you need to use 10.x version, please switch **Elastic.Clients.Elasticsearch** to 9.x version
+> Reference: https://www.nuget.org/packages/Elastic.Clients.Elasticsearch#readme-body-tab
 
-## 模块引用
+## Module reference
 
-### 核心模块
+### Core module
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingModule))]
@@ -34,7 +34,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### EntityFrameworkCore 模块
+### EntityFrameworkCore module
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingEntityFrameworkCoreModule))]
@@ -44,7 +44,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### Elasticsearch 模块
+### Elasticsearch module
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingElasticsearchModule))]
@@ -54,7 +54,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-### OpenObserve 模块
+### OpenObserve module
 
 ```csharp
 [DependsOn(typeof(AbpAuditLoggingOpenObserveModule))]
@@ -64,73 +64,73 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置选项
+## Configuration options
 
-### 审计日志配置
+### Audit log configuration
 
 ```json
 {
   "Auditing": {
-    "IsEnabled": true, // 是否启用审计日志
-    "HideErrors": true, // 是否隐藏错误信息
-    "IsEnabledForAnonymousUsers": true, // 是否为匿名用户启用审计日志
-    "IsEnabledForGetRequests": false, // 是否为GET请求启用审计日志
-    "ApplicationName": null // 应用程序名称
+    "IsEnabled": true, // Whether to enable audit logs
+    "HideErrors": true, // Whether to hide error information
+    "IsEnabledForAnonymousUsers": true, // Whether to enable audit logs for anonymous users
+    "IsEnabledForGetRequests": false, // Whether to enable audit logs for GET requests
+    "ApplicationName": null //Application name
   },
-  // 审计日志增强配置
+  // Audit log enhancement configuration
   "AuditLogging": {
-    "IsAuditLogEnabled": true, // 是否启用审计日志记录
-    "UseAuditLogQueue": true, // 使用审计日志队列, 不启用队列则直接写入到持久化设施
-    "MaxAuditLogQueueSize": 10000, // 审计日志最大队列大小, 默认10000
-    "BatchAuditLogSize": 100, // 一次处理审计日志队列大小, 队列中同时写入100条记录后立即写入到持久化设施中
-    "IsSecurityLogEnabled": true, // 是否启用安全日志记录
-    "UseSecurityLogQueue": true, // 使用安全日志队列, 不启用队列则直接写入到持久化设施
-    "MaxSecurityLogQueueSize": 10000, // 安全日志最大队列大小, 默认10000
-    "BatchSecurityLogSize": 100 // 一次处理安全日志队列大小, 队列中同时写入100条记录后立即写入到持久化设施中
+    "IsAuditLogEnabled": true, // Whether to enable audit logging
+    "UseAuditLogQueue": true, // Use the audit log queue. If the queue is not enabled, it will be written directly to the persistence facility.
+    "MaxAuditLogQueueSize": 10000, // Maximum audit log queue size, default 10000
+    "BatchAuditLogSize": 100, //The size of the audit log queue for processing at one time. After 100 records are written to the queue at the same time, they are immediately written to the persistence facility.
+    "IsSecurityLogEnabled": true, // Whether to enable security logging
+    "UseSecurityLogQueue": true, // Use the security log queue. If the queue is not enabled, it will be written directly to the persistence facility.
+    "MaxSecurityLogQueueSize": 10000, // Maximum security log queue size, default 10000
+    "BatchSecurityLogSize": 100 // The size of the security log queue for one processing, and 100 records are written to the queue at the same time and immediately written to the persistence facility.
   }
 }
 ```
 
-### Elasticsearch 配置
+### Elasticsearch configuration
 
 ```json
 {
   "AuditLogging": {
     "Elasticsearch": {
-      "IndexPrefix": "auditlogging", // 索引前缀
-      "ThrowIfIndexInitFailed": true // 索引初始化失败抛出异常, 默认为: true, 索引初始化失败后应用程序停止运行
+      "IndexPrefix": "auditlogging", // Index prefix
+      "ThrowIfIndexInitFailed": true // If the index initialization fails, an exception is thrown. The default is: true. The application stops running after the index initialization fails.
     }
   }
 }
 ```
 
-### OpenObserve 配置
+### OpenObserve configuration
 
 ```json
 {
   "OpenObserve": {
-    "Endpoint": "http://localhost:5080", // OpenObserve 服务地址
-    "Organization": "default", // 组织名称
-    "AccessToken": "Basic XXXXXXXXXXX" // 授权头, 或使用 UserName/Password
+    "Endpoint": "http://localhost:5080", // OpenObserve service address
+    "Organization": "default", // organization name
+    "AccessToken": "Basic XXXXXXXXXXX" // Authorization header, or use UserName/Password
   },
   "AuditLogging": {
     "OpenObserve": {
-      "Organization": null, // 数据流所属组织, 为空时使用 OpenObserve:Organization
-      "AuditLogStream": "audit_log", // 审计日志主数据流(根)
-      "SecurityLogStream": "security_log", // 安全日志数据流
-      "WriteEntityChanges": true, // 是否把实体变更展平写入 {AuditLogStream}_entity_changes
-      "WriteActions": true, // 是否把操作展平写入 {AuditLogStream}_actions
-      "DefaultQueryDays": 365, // 未指定时间范围时的默认查询跨度(天)
-      "UseLogTimeAsTimestamp": true, // 是否用日志业务时间覆盖 _timestamp
-      "TimestampAllowedUptoHours": 5 // 覆盖 _timestamp 的最大回溯小时数, 需与服务端 ZO_INGEST_ALLOWED_UPTO 一致
+      "Organization": null, // The organization to which the data flow belongs, use OpenObserve:Organization when it is empty
+      "AuditLogStream": "audit_log", // Audit log main data stream (root)
+      "SecurityLogStream": "security_log", // Security log data stream
+      "WriteEntityChanges": true, // Whether to flatten entity changes and write them into {AuditLogStream}_entity_changes
+      "WriteActions": true, // Whether to flatten operations and write them into {AuditLogStream}_actions
+      "DefaultQueryDays": 365, //Default query span (days) when no time range is specified
+      "UseLogTimeAsTimestamp": true, // Whether to overwrite _timestamp with log business time
+      "TimestampAllowedUptoHours": 5 // The maximum number of backtracking hours to override _timestamp must be consistent with the server ZO_INGEST_ALLOWED_UPTO
     }
   }
 }
 ```
 
-> 子数据流名称由 `AuditLogStream` 计算(实体变更 = `{AuditLogStream}_entity_changes`, 操作 = `{AuditLogStream}_actions`), 无需单独配置。
+> The substream name is calculated by `AuditLogStream` (entity changes = `{AuditLogStream}_entity_changes`, action = `{AuditLogStream}_actions`), no separate configuration is required.
 
-## 数据库连接配置
+## Database connection configuration
 
 ```json
 {
@@ -141,16 +141,16 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 高级功能
+## Advanced features
 
-### 忽略特定类型
+### Ignore specific types
 
-默认情况下，模块会忽略以下类型的审计日志：
+By default, the module ignores the following types of audit logs:
 
 - CancellationToken
 - CancellationTokenSource
 
-你可以通过配置添加更多需要忽略的类型：
+You can add more types to ignore via configuration:
 
 ```csharp
 Configure<AbpAuditingOptions>(options =>
@@ -159,11 +159,11 @@ Configure<AbpAuditingOptions>(options =>
 });
 ```
 
-## 特殊说明
+## Special instructions
 
-- Elasticsearch 实现支持跨租户，将根据租户自动切换索引
-- EntityFrameworkCore 实现主要作为桥梁，具体实现交由 Abp 官方模块管理
-- OpenObserve 实现同样按租户隔离数据流，租户数据流形如 `audit_log_{tenantId:N}`：写入按日志自身的租户，查询按当前租户，命名规则可通过 `IOpenObserveStreamNameNormalizer` 覆写
-- OpenObserve 为 append-only 存储且不支持 SQL `DELETE`/`UPDATE`，因此 `IAuditLogManager.DeleteAsync`/`DeleteManyAsync` 会抛出业务异常 `AuditLoggingOpenObserve:010001`（"当前日志设施不支持删除记录!"），数据清理请在 OpenObserve 侧配置保留策略或使用其按时间范围删除接口
-- OpenObserve 会把嵌套数组保存为 JSON 字符串列（列名即字段名），因此实体变更与操作分别展平写入独立数据流；操作的 `Actions.*` 条件采用两段式查询（先在操作数据流匹配 `auditlogid`，再回主数据流按 `id in (...)` 过滤）
-- 数据流由 OpenObserve 在首次写入时自动创建，模块不探测、不创建、不修改数据流设置；查询尚未创建的数据流时返回空结果并记录警告日志
+- Elasticsearch implementation supports cross-tenants and will automatically switch indexes according to tenants
+- EntityFrameworkCore implementation is mainly used as a bridge, and the specific implementation is managed by the Abp official module
+- OpenObserve implements the same isolation of data streams by tenant. The tenant data stream is in the shape of `audit_log_{tenantId:N}`: writing is based on the tenant of the log itself, querying is based on the current tenant, and the naming rules can be overridden through `IOpenObserveStreamNameNormalizer`
+- OpenObserve is append-only storage and does not support SQL `DELETE`/`UPDATE`, so `IAuditLogManager.DeleteAsync`/`DeleteManyAsync` will throw a business exception `AuditLoggingOpenObserve:010001` ("The current logging facility does not support deleting records!"). For data cleaning, please configure the retention policy on the OpenObserve side or use its delete interface by time range
+- OpenObserve will save nested arrays as JSON string columns (column names are field names), so entity changes and operations are flattened and written into independent data streams; the `Actions.*` condition of the operation uses a two-stage query (first match `auditlogid` in the operation data stream, and then return to the main data stream to filter by `id in (...)`)
+- The data stream is automatically created by OpenObserve when it is first written. The module does not detect, create, or modify the data stream settings; when querying the data stream that has not yet been created, it returns an empty result and records a warning log.

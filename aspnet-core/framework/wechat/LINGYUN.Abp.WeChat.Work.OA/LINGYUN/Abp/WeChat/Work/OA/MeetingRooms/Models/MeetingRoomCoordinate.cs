@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.MeetingRooms.Models;
 /// <summary>
-/// 会议室坐标
+/// Conference room coordinates
 /// </summary>
 public class MeetingRoomCoordinate
 {
     /// <summary>
-    /// 会议室所在楼宇的纬度
+    /// The latitude of the building where the conference room is located
     /// </summary>
     [NotNull]
     [JsonProperty("latitude")]
     [JsonPropertyName("latitude")]
     public string Latitude { get; }
     /// <summary>
-    /// 会议室所在楼宇的经度
+    /// The longitude of the building where the conference room is located
     /// </summary>
     [NotNull]
     [JsonProperty("longitude")]

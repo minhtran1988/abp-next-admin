@@ -1,28 +1,28 @@
-/** 版本权限 */
+/** Version permissions */
 export const EditionsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpSaas.Editions.Create",
-	/** 默认 */
+	/** default */
 	Default: "AbpSaas.Editions",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpSaas.Editions.Delete",
-	/** 管理功能 */
+	/** Management functions */
 	ManageFeatures: "AbpSaas.Editions.ManageFeatures",
-	/** 更新 */
+	/** Update */
 	Update: "AbpSaas.Editions.Update",
 };
-/** 租户权限 */
+/** Tenant permissions */
 export const TenantsPermissions = {
-	/** 新增 */
+	/** Add new */
 	Create: "AbpSaas.Tenants.Create",
-	/** 默认 */
+	/** default */
 	Default: "AbpSaas.Tenants",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpSaas.Tenants.Delete",
-	/** 管理连接字符串 */
+	/** Manage connection string */
 	ManageConnectionStrings: "AbpSaas.Tenants.ManageConnectionStrings",
-	/** 管理功能 */
+	/** Management functions */
 	ManageFeatures: "AbpSaas.Tenants.ManageFeatures",
-	/** 更新 */
+	/** Update */
 	Update: "AbpSaas.Tenants.Update",
 };

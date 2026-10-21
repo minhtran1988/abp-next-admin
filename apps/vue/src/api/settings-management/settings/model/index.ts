@@ -1,16 +1,16 @@
 export class SettingBase {
-  /** 名称 */
+  /** name */
   name!: string;
-  /** 当前设置值 */
+  /** Current setting value */
   value!: any;
 }
 
-/** 配置变更对象 */
+/** Configuration change object */
 export class SettingUpdate extends SettingBase {}
 
-/** 配置变更集合对象 */
+/** Configuration change collection object */
 export class SettingsUpdate {
-  /** 配置集合 */
+  /** Configuration collection */
   settings: SettingUpdate[];
 
   constructor() {

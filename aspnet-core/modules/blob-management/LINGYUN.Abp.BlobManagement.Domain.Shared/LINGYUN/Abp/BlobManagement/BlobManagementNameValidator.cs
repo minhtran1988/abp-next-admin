@@ -5,12 +5,12 @@ using Volo.Abp;
 namespace LINGYUN.Abp.BlobManagement;
 
 /// <summary>
-/// BlobManagement 名称校验
+/// BlobManagement name verification
 /// </summary>
 public static class BlobManagementNameValidator
 {
     /// <summary>
-    /// 不允许出现的字符(各平台非法字符的并集, 含路径分隔符)
+    /// Characters that are not allowed (the union of illegal characters on each platform, including path separators)
     /// </summary>
     public static readonly char[] InvalidNameCharacters =
     [
@@ -18,11 +18,11 @@ public static class BlobManagementNameValidator
     ];
 
     /// <summary>
-    /// 校验单一名称(容器名、文件/目录名), 不合法时抛出异常
+    /// Verify a single name (container name, file/directory name), and throw an exception if it is illegal
     /// </summary>
     /// <remarks>
-    /// 不允许路径分隔符, 否则会产生容器别名或把层级写进名字;
-    /// 依次检查: 空值 → 穿越段(./..) → 非法字符 → 结尾点/空格 → 保留设备名。
+    /// Path separators are not allowed, otherwise container aliases will be generated or levels will be written into the name;
+    /// Check in sequence: null value → traversal segment (./..) → illegal characters → trailing dot/space → retain device name.
     /// </remarks>
     public static void CheckName(string? name, string errorCode)
     {
@@ -33,11 +33,11 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 校验名称路径(如 <see cref="Blob.FullName"/>), 不合法时抛出异常
+    /// Verify the name path (such as <see cref="Blob.FullName"/>), and throw an exception if it is illegal
     /// </summary>
     /// <remarks>
-    /// 允许 '/' 与 '\' 作为分隔符, 但逐段按单一名称规则校验;
-    /// 先去掉前导 '/' (模块约定全名以 '/' 开头), 再拒绝绝对路径与 UNC。
+    /// Allow '/' and '\' as delimiters, but verify each section according to the single name rule;
+    /// First remove the leading '/' (the full name of the module is agreed to start with '/'), and then reject absolute paths and UNC.
     /// </remarks>
     public static void CheckPath(string? path, string errorCode)
     {
@@ -48,7 +48,7 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 是否为合法路径(逐段校验, 允许分隔符)
+    /// Whether it is a legal path (check segment by segment, delimiters allowed)
     /// </summary>
     public static bool IsValidPath(string? path)
     {
@@ -83,7 +83,7 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 是否为合法单一名称(不含分隔符)
+    /// Is it a legal single name (without separator)
     /// </summary>
     public static bool IsValidName(string? name)
     {
@@ -91,7 +91,7 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 是否为合法路径段
+    /// Is it a legal path segment?
     /// </summary>
     public static bool IsValidSegment(string? segment)
     {
@@ -116,7 +116,7 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 是否为 Windows 保留设备名(CON/PRN/AUX/NUL/COM1-9/LPT1-9)
+    /// Whether to reserve device names for Windows (CON/PRN/AUX/NUL/COM1-9/LPT1-9)
     /// </summary>
     public static bool IsReservedDeviceName(string name)
     {
@@ -153,7 +153,7 @@ public static class BlobManagementNameValidator
     }
 
     /// <summary>
-    /// 创建名称非法异常
+    /// Create an illegal name exception
     /// </summary>
     public static BusinessException CreateInvalidNameException(string? name, string errorCode)
     {

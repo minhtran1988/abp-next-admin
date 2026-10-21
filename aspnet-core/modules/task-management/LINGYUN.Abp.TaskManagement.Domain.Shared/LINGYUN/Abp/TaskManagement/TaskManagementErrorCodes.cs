@@ -4,19 +4,19 @@
     {
         public const string Namespace = "TaskManagement";
         /// <summary>
-        /// 分组 {Group} 中已经存在一个名称为 {Name} 的作业!
+        /// There is already a job named {Name} in group {Group}!
         /// </summary>
         public const string JobNameAlreadyExists = Namespace + ":01000";
         /// <summary>
-        /// 队列没有找到分组 {Group} 中名称为 {Name} 的作业, 请先将作业入队!
+        /// The queue did not find the job named {Name} in group {Group}, please add the job to the queue first!
         /// </summary>
         public const string JobNotFoundInQueue = Namespace + ":01001";
         /// <summary>
-        /// 仅允许删除已停止作业
+        /// Only allowed to delete stopped jobs
         /// </summary>
         public const string OnlyDeletionOfStopJobsIsAllowed = Namespace + ":01002";
         /// <summary>
-        /// 无效的CRON表达式: {Cron}!
+        /// Invalid CRON expression: {Cron}!
         /// </summary>
         public const string InvalidCronExpression = Namespace + ":01003";
     }

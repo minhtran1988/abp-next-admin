@@ -12,24 +12,24 @@ using Volo.Abp;
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 通知贡献者
+/// Enterprise WeChat Webhook notifies contributors
 /// </summary>
 /// <remarks>
 /// <para>
-/// 优先解析生产者写入的**渠道数据(载荷)**, 载荷缺失时才回退到按
-/// <see cref="NotificationInfo.ContentType"/> 推导,
-/// 因此历史用法(只写标准数据)行为不变。
+/// Prioritize parsing the **channel data (load)** written by the producer, and only fall back to the button if the load is missing.
+/// <see cref="NotificationInfo.ContentType"/> derivation,
+/// So historical usage (only writing standard data) behaves unchanged.
 /// </para>
 /// <para>
-/// 一个 Webhook 只能承载一条消息, 因此声明多个载荷时取
-/// <see cref="NotificationChannelDataAttribute.Priority"/> 最小的那个,
-/// 并按 1:1 映射构造载体 —— 不再像旧实现那样把未知内容类型静默丢弃。
+/// A Webhook can only carry one message, so when declaring multiple payloads
+/// <see cref="NotificationChannelDataAttribute.Priority"/> The smallest one,
+/// And construct the vector with a 1:1 mapping - no longer silently discarding unknown content types like the old implementation.
 /// </para>
 /// </remarks>
 public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationContributor
 {
     /// <summary>
-    /// 贡献者名称(仅用于日志)
+    /// Contributor name (for logging only)
     /// </summary>
     public string Name => WeChatWorkWebhookNotificationProvider.ProviderName;
 
@@ -56,7 +56,7 @@ public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationCont
 
             if (payloads.Count == 0)
             {
-                // 回退: 生产者未写入载荷, 按内容类型推导(保持历史行为)
+                // Fallback: The producer did not write the payload, deduced by content type (maintain historical behavior)
                 payloads = ResolveContentTypePayloads(
                     context.Notification.ContentType,
                     standardData.Message,
@@ -72,7 +72,7 @@ public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationCont
                 return;
             }
 
-            // 一个 Webhook 只能承载一条消息: 按 Priority 取第一个(解析结果已排序)
+            // A Webhook can only carry one message: take the first one according to Priority (the parsing results have been sorted)
             var channelData = (WeChatWorkWebhookChannelData)payloads[0];
 
             ApplyStandardDataFallback(channelData, standardData);
@@ -98,7 +98,7 @@ public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationCont
     }
 
     /// <summary>
-    /// 按通知内容类型推导载荷(兼容未写入渠道数据的历史生产者)
+    /// Deduced payload according to notification content type (compatible with historical producers that have not written channel data)
     /// </summary>
     protected virtual IReadOnlyList<NotificationChannelData> ResolveContentTypePayloads(
         NotificationContentType contentType,
@@ -127,7 +127,7 @@ public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationCont
                     };
 
             case NotificationContentType.Html:
-                // HTML 先转为 markdown 再投递
+                // Convert HTML to markdown first and then deliver it
                 var markdown = CommonMark.CommonMarkConverter.Convert(content);
 
                 return options.UseMarkdownV2
@@ -146,11 +146,11 @@ public class WeChatWorkWebhookNotificationContributor : IWebhookNotificationCont
     }
 
     /// <summary>
-    /// 用标准数据补全载荷中未指定的内容
+    /// Use standard data to complete unspecified content in the payload
     /// </summary>
     /// <remarks>
-    /// 生产者只声明"用哪种载体"而不写内容时(例如只写 <c>wx-work-hook:markdown</c>),
-    /// 使用已本地化/渲染完成的通知正文, 避免发出空内容。
+    /// When the producer only declares "which carrier to use" without writing the content (for example, just <c>wx-work-hook:markdown</c>),
+    /// Use localized/rendered notification body to avoid emitting empty content.
     /// </remarks>
     protected virtual void ApplyStandardDataFallback(
         WeChatWorkWebhookChannelData channelData,

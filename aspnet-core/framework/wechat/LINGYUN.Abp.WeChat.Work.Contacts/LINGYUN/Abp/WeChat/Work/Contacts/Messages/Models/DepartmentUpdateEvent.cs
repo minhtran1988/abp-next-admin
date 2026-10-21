@@ -3,22 +3,22 @@ using System.Xml.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Messages.Models;
 /// <summary>
-/// 部门变更事件
+/// Department change event
 /// </summary>
 public abstract class DepartmentUpdateEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 部门Id
+    /// DepartmentId
     /// </summary>
     [XmlElement("Id")]
     public int Id { get; set; }
     /// <summary>
-    /// 部门名称
+    /// Department name
     /// </summary>
     [XmlElement("Name")]
     public string Name { get; set; } = default!;
     /// <summary>
-    /// 父部门id
+    /// Parent department id
     /// </summary>
     [XmlElement("ParentId", IsNullable = true)]
     public int? ParentId { get; set; }

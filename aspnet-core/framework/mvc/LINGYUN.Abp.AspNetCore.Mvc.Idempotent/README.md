@@ -1,8 +1,8 @@
 # LINGYUN.Abp.AspNetCore.Mvc.Idempotent
 
-MVC 接口幂等性检查模块
+MVC interface idempotence checking module
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpAspNetCoreMvcIdempotentModule))]
@@ -12,13 +12,13 @@ public class YouProjectModule : AbpModule
 	{
 		Configure<AbpMvcIdempotentOptions>(options =>
 		{
-			// 例如: 对 DELETE 请求方法进行幂等校验
+			// For example: perform idempotent verification on DELETE request method
 			options.SupportedMethods.Add("DELETE");
         });
 	}
 }
 ```
-## 配置项说明
+## Configuration item description
 
-## 其他
+## Others
 

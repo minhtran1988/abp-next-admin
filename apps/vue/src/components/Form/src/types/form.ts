@@ -185,9 +185,9 @@ export interface FormSchema {
   // col configuration outside formModelItem
   colProps?: Partial<ColEx>;
 
-  // 默认值
+  // Default value
   defaultValue?: any;
-  // 是否自动处理与时间相关组件的默认值
+  // Whether to automatically handle the default values of time-related components
   isHandleDateDefaultValue?: boolean;
   
   isAdvanced?: boolean;

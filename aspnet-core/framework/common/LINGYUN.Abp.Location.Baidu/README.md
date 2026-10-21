@@ -1,27 +1,27 @@
 # LINGYUN.Abp.Location.Baidu
 
-## 介绍
+## Introduction
 
-`LINGYUN.Abp.Location.Baidu` 是基于百度地图API的位置服务实现模块，提供了地理编码、反向地理编码、IP定位等功能。
+`LINGYUN.Abp.Location.Baidu` is a location service implementation module based on Baidu Map API, which provides geocoding, reverse geocoding, IP positioning and other functions.
 
-## 功能特性
+## Features
 
-* 地理编码：将详细的结构化地址转换为对应的经纬度坐标
-* 反向地理编码：将经纬度坐标转换为对应的结构化地址
-* IP定位：根据IP地址获取位置信息
-* POI（兴趣点）信息：获取周边的商铺、餐厅等兴趣点信息
-* 道路信息：获取附近的道路信息
-* 行政区划信息：获取详细的行政区划层级信息
+* Geocoding: Convert detailed structured addresses into corresponding latitude and longitude coordinates
+* Reverse geocoding: convert latitude and longitude coordinates into corresponding structured addresses
+* IP positioning: Obtain location information based on IP address
+* POI (point of interest) information: Get information on surrounding shops, restaurants and other points of interest
+* Road information: Get nearby road information
+* Administrative division information: obtain detailed administrative division level information
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Location.Baidu
 ```
 
-## 配置
+## Configuration
 
-1. 添加模块依赖：
+1. Add module dependencies:
 
 ```csharp
 [DependsOn(typeof(AbpBaiduLocationModule))]
@@ -31,22 +31,22 @@ public class YourModule : AbpModule
     {
         Configure<BaiduLocationOptions>(options =>
         {
-            // 设置百度地图API密钥
+            //Set Baidu Map API key
             options.AccessKey = "your-baidu-map-ak";
-            // 可选：设置安全密钥（sn校验）
+            // Optional: Set security key (sn verification)
             options.SecurityKey = "your-baidu-map-sk";
-            // 可选：设置坐标系类型（默认为bd09ll）
+            // Optional: Set the coordinate system type (default is bd09ll)
             options.CoordType = "bd09ll";
-            // 可选：设置输出格式（默认为json）
+            // Optional: set the output format (default is json)
             options.Output = "json";
         });
     }
 }
 ```
 
-## 使用方法
+## How to use
 
-1. 注入并使用位置解析服务：
+1. Inject and use the location resolution service:
 
 ```csharp
 public class YourLocationService
@@ -58,21 +58,21 @@ public class YourLocationService
         _locationProvider = locationProvider;
     }
 
-    // 地理编码：地址转坐标
+    //Geocoding: address to coordinates
     public async Task<GecodeLocation> GeocodeAsync(string address)
     {
-        // city参数可选，用于指定地址所在城市
-        return await _locationProvider.GeocodeAsync(address, "北京市");
+        // The city parameter is optional and is used to specify the city where the address is located.
+        return await _locationProvider.GeocodeAsync(address, "Beijing");
     }
 
-    // 反向地理编码：坐标转地址
+    // Reverse geocoding: coordinates to address
     public async Task<ReGeocodeLocation> ReGeocodeAsync(double lat, double lng)
     {
-        // radius参数可选，指定搜索半径（米）
+        //The radius parameter is optional and specifies the search radius (meters)
         return await _locationProvider.ReGeocodeAsync(lat, lng, 1000);
     }
 
-    // IP地理位置解析
+    //IP geographical location analysis
     public async Task<IPGecodeLocation> IPGeocodeAsync(string ipAddress)
     {
         return await _locationProvider.IPGeocodeAsync(ipAddress);
@@ -80,58 +80,58 @@ public class YourLocationService
 }
 ```
 
-## 返回数据说明
+## Return data description
 
-### 地理编码返回数据
+### Geocoding return data
 
 ```json
 {
     "location": {
-        "lat": 39.915119,    // 纬度值
-        "lng": 116.403963    // 经度值
+        "lat": 39.915119, // latitude value
+        "lng": 116.403963 // longitude value
     },
-    "precise": 1,            // 位置的附加信息，是否精确查找（1为精确，0为不精确）
-    "confidence": 80,        // 可信度
-    "comprehension": 100,    // 地址理解程度
-    "level": "门址"          // 地址类型
+    "precise": 1, //Additional information about the location, whether to search accurately (1 is precise, 0 is imprecise)
+    "confidence": 80, // Confidence
+    "comprehension": 100, // Address understanding level
+    "level": "door address" // address type
 }
 ```
 
-### 反向地理编码返回数据
+### Reverse geocoding return data
 
 ```json
 {
     "location": {
-        "lat": 39.915119,    // 纬度值
-        "lng": 116.403963    // 经度值
+        "lat": 39.915119, // latitude value
+        "lng": 116.403963 // longitude value
     },
-    "formatted_address": "北京市东城区东长安街",  // 结构化地址信息
-    "business": "天安门",                      // 商圈信息
+    "formatted_address": "East Chang'an Street, Dongcheng District, Beijing", // structured address information
+    "business": "Tiananmen", // business district information
     "addressComponent": {
-        "country": "中国",                     // 国家
-        "province": "北京市",                  // 省份
-        "city": "北京市",                      // 城市
-        "district": "东城区",                  // 区县
-        "street": "东长安街",                  // 街道
-        "street_number": "1号"                // 门牌号
+        "country": "China", // country
+        "province": "Beijing City", // province
+        "city": "Beijing", // city
+        "district": "Dongcheng District", // district or county
+        "street": "East Chang'an Street", // street
+        "street_number": "No. 1" // House number
     },
-    "pois": [                                // 周边POI信息
+    "pois": [ // Surrounding POI information
         {
-            "name": "天安门",                  // POI名称
-            "type": "旅游景点",                // POI类型
-            "distance": "100"                 // 距离（米）
+            "name": "Tiananmen", // POI name
+            "type": "tourist attractions", // POI type
+            "distance": "100" // Distance (meters)
         }
     ],
-    "roads": [                               // 周边道路信息
+    "roads": [ // Surrounding road information
         {
-            "name": "东长安街",                // 道路名称
-            "distance": "50"                  // 距离（米）
+            "name": "East Chang'an Street", // road name
+            "distance": "50" // Distance (meters)
         }
     ]
 }
 ```
 
-## 更多信息
+## More information
 
 * [English Documentation](./README.EN.md)
-* [百度地图开放平台](https://lbsyun.baidu.com/)
+* [Baidu Map Open Platform](https://lbsyun.baidu.com/)

@@ -8,16 +8,16 @@ namespace LINGYUN.Abp.WxPusher.User;
 public interface IWxPusherUserStore
 {
     /// <summary>
-    /// 获取用户订阅的topic列表
+    /// Get the list of topics subscribed by the user
     /// </summary>
-    /// <param name="userIds">用户标识列表</param>
+    /// <param name="userIds">User ID list</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<List<int>> GetSubscribeTopicsAsync(
         IEnumerable<Guid> userIds,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取绑定用户uid列表
+    /// Get the bound user uid list
     /// </summary>
     /// <param name="userIds"></param>
     /// <param name="cancellationToken"></param>

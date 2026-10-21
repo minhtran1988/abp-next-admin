@@ -3,16 +3,16 @@
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 用户信息
+/// User information
 /// </summary>
 public class UserIdentifier
 {
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     public Guid UserId { get; set; }
     /// <summary>
-    /// 用户名
+    /// Username
     /// </summary>
     public string? UserName { get; set; }
 

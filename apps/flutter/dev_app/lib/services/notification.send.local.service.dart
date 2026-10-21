@@ -23,7 +23,7 @@ class FlutterLocalNotificationsSendService extends NotificationSendService {
     _notificationStateService
       .getNotifications$()
       .listen((payload) async {
-        // 发布本地通知
+        // Publish local notification
         await send(
           payload.title,
           payload.body,

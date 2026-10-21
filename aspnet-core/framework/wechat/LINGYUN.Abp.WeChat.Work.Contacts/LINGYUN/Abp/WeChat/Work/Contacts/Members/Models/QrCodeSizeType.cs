@@ -2,9 +2,9 @@
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 二维码尺寸类型
+/// QR code size type
 /// </summary>
-[Description("二维码尺寸类型")]
+[Description("QR code size type")]
 public enum QrCodeSizeType
 {
     /// <summary>

@@ -1,16 +1,16 @@
 # LINGYUN.Abp.BackgroundTasks.Abstractions
 
-后台任务（队列）模块抽象层，定义一些基本构造与接口  
+Background task (queue) module abstraction layer, defining some basic structures and interfaces
 
-## 特性参数  
+## Feature parameters
 
-* DisableJobActionAttribute		标记此特性不处理作业触发后行为  
-* DisableJobStatusAttribute		标记此特性不处理作业状态  
-* DisableAuditingAttribute		标记此特性不记录作业日志  
+* DisableJobActionAttribute marks this attribute as not handling post-job triggering behavior
+* DisableJobStatusAttribute marks that this attribute does not handle job status
+* DisableAuditingAttribute marks this attribute as not recording job logs
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksAbstractionsModule))]

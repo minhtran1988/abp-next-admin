@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 假勤组件-出差/外出/加班组件配置
+/// Leave component - business trip/outing/overtime component configuration
 /// </summary>
 public class AttendanceControlConfig : ControlConfig
 {
     /// <summary>
-    /// 假勤组件-出差/外出/加班组件
+    /// Leave component - business trip/outing/overtime component
     /// </summary>
     [NotNull]
     [JsonProperty("attendance")]
@@ -29,14 +29,14 @@ public class AttendanceControlConfig : ControlConfig
 public class AttendanceConfig
 {
     /// <summary>
-    /// 假勤组件类型：3-出差；4-外出；5-加班
+    /// Leave component type: 3-business trip; 4-outing; 5-overtime
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public byte Type { get; set; }
     /// <summary>
-    /// 假勤组件时间选择范围
+    /// Time selection range of holiday component
     /// </summary>
     [NotNull]
     [JsonProperty("date_range")]

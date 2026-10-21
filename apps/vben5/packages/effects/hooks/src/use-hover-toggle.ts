@@ -9,26 +9,26 @@ import { isFunction } from '@vben/utils';
 import { useElementHover } from '@vueuse/core';
 
 interface HoverDelayOptions {
-  /** 鼠标进入延迟时间 */
+  /** Mouse entry delay time */
   enterDelay?: (() => number) | number;
-  /** 鼠标离开延迟时间 */
+  /** Mouse leave delay time */
   leaveDelay?: (() => number) | number;
 }
 
-const DEFAULT_LEAVE_DELAY = 500; // 鼠标离开延迟时间，默认为 500ms
-const DEFAULT_ENTER_DELAY = 0; // 鼠标进入延迟时间，默认为 0（立即响应）
+const DEFAULT_LEAVE_DELAY = 500; //Mouse leave delay time, default is 500ms
+const DEFAULT_ENTER_DELAY = 0; // Mouse entry delay time, default is 0 (immediate response)
 
 /**
- * 监测鼠标是否在元素内部，如果在元素内部则返回 true，否则返回 false
- * @param refElement 所有需要检测的元素。支持单个元素、元素数组或响应式引用的元素数组。如果鼠标在任何一个元素内部都会返回 true
- * @param delay 延迟更新状态的时间，可以是数字或包含进入/离开延迟的配置对象
- * @returns 返回一个数组，第一个元素是一个 ref，表示鼠标是否在元素内部，第二个元素是一个控制器，可以通过 enable 和 disable 方法来控制监听器的启用和禁用
+ * Monitors whether the mouse is inside the element. If it is inside the element, it returns true, otherwise it returns false.
+ * @param refElement All elements that need to be detected. Supports a single element, an array of elements, or an array of elements with reactive references. Returns true if the mouse is inside any element
+ * @param delay The time to delay updating the status, which can be a number or a configuration object containing the entry/exit delay
+ * @returns returns an array. The first element is a ref, indicating whether the mouse is inside the element. The second element is a controller, which can control the enabling and disabling of the listener through the enable and disable methods.
  */
 export function useHoverToggle(
   refElement: Arrayable<MaybeElementRef> | Ref<HTMLElement[] | null>,
   delay: (() => number) | HoverDelayOptions | number = DEFAULT_LEAVE_DELAY,
 ) {
-  // 兼容旧版本API
+  // Compatible with old version API
   const normalizedOptions: HoverDelayOptions =
     typeof delay === 'number' || isFunction(delay)
       ? { enterDelay: DEFAULT_ENTER_DELAY, leaveDelay: delay }
@@ -43,18 +43,18 @@ export function useHoverToggle(
   const leaveTimer = ref<ReturnType<typeof setTimeout> | undefined>();
   const hoverScopes = ref<ReturnType<typeof effectScope>[]>([]);
 
-  // 使用计算属性包装 refElement，使其响应式变化
+  // Use computed properties to wrap refElement to make it responsive
   const refs = computed(() => {
     const raw = unref(refElement);
     if (raw === null) return [];
     return Array.isArray(raw) ? raw : [raw];
   });
-  // 存储所有 hover 状态
+  // Store all hover states
   const isHovers = ref<Array<Ref<boolean>>>([]);
 
-  // 更新 hover 监听的函数
+  // Update the hover listening function
   function updateHovers() {
-    // 停止并清理之前的作用域
+    // Stop and clean up previous scope
     hoverScopes.value.forEach((scope) => scope.stop());
     hoverScopes.value = [];
 
@@ -67,7 +67,7 @@ export function useHoverToggle(
         return ele instanceof Element ? ele : (ele?.$el as Element);
       });
 
-      // 为每个元素创建独立的作用域
+      // Create a separate scope for each element
       const scope = effectScope();
       const hoverRef = scope.run(() => useElementHover(eleRef)) || ref(false);
       hoverScopes.value.push(scope);
@@ -76,17 +76,17 @@ export function useHoverToggle(
     });
   }
 
-  // 监听元素数量变化，避免过度执行
+  // Monitor changes in the number of elements to avoid excessive execution
   const elementsCount = computed(() => {
     const raw = unref(refElement);
     if (raw === null) return 0;
     return Array.isArray(raw) ? raw.length : 1;
   });
 
-  // 初始设置
+  // Initial settings
   updateHovers();
 
-  // 只在元素数量变化时重新设置监听器
+  // Only reset the listener when the number of elements changes
   const stopWatcher = watch(elementsCount, updateHovers, { deep: false });
 
   const isOutsideAll = computed(() => isHovers.value.every((v) => !v.value));
@@ -106,7 +106,7 @@ export function useHoverToggle(
     clearTimers();
 
     if (val) {
-      // 鼠标进入
+      // Mouse enter
       const enterDelay = normalizedOptions.enterDelay ?? DEFAULT_ENTER_DELAY;
       const delayTime = isFunction(enterDelay) ? enterDelay() : enterDelay;
 
@@ -119,7 +119,7 @@ export function useHoverToggle(
         }, delayTime);
       }
     } else {
-      // 鼠标离开
+      // mouse leaves
       const leaveDelay = normalizedOptions.leaveDelay ?? DEFAULT_LEAVE_DELAY;
       const delayTime = isFunction(leaveDelay) ? leaveDelay() : leaveDelay;
 
@@ -153,9 +153,9 @@ export function useHoverToggle(
 
   onUnmounted(() => {
     clearTimers();
-    // 停止监听器
+    // Stop the listener
     stopWatcher();
-    // 停止所有剩余的作用域
+    // Stop all remaining scopes
     hoverScopes.value.forEach((scope) => scope.stop());
   });
 

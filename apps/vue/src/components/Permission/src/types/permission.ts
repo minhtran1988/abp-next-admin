@@ -7,16 +7,16 @@ export interface PermissionProps {
 
 export interface PermissionTree {
   isRoot: boolean;
-  /** 权限标识 */
+  /** Permission identification */
   name: string;
-  /** 显示名称 */
+  /** display name */
   displayName: string;
-  /** 是否授权 */
+  /** Authorization or not */
   isGranted?: boolean;
-  /** 是否禁用 */
+  /** Whether to disable */
   disabled: boolean;
-  /** 子节点 */
+  /** Child node */
   children: PermissionTree[];
-  /** 父节点 */
+  /** Parent node */
   parentName?: string;
 }

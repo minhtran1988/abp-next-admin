@@ -1,5 +1,5 @@
 <!--
- * @Description: 节点操作复制删除控件
+ * @Description: Node operation copy delete control
 -->
 <template>
   <div class="copy-delete-box">
@@ -39,13 +39,13 @@
         return props.schema.key === props.currentItem.key ? 'active' : 'unactivated';
       });
       /**
-       * 删除当前项
+       * Delete the current item
        */
       const handleDelete = () => {
         const traverse = (schemas: IVFormComponent[]) => {
           schemas.some((formItem, index) => {
             const { component, key } = formItem;
-            // 处理栅格和标签页布局
+            // Handle grid and tab layout
             ['Grid', 'Tabs'].includes(component) &&
               formItem.columns?.forEach((item) => traverse(item.children));
             if (key === props.currentItem.key) {

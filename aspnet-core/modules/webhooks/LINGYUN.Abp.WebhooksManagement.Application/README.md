@@ -1,18 +1,18 @@
 # LINGYUN.Abp.WebhooksManagement.Application
 
-Webhook管理应用服务模块，提供Webhook管理的应用层实现。
+The Webhook management application service module provides application layer implementation of Webhook management.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* Webhook订阅管理
-* Webhook组管理
-* Webhook定义管理
-* Webhook日志查询
-* Webhook权限管理
+* Webhook subscription management
+* Webhook group management
+* Webhook definition management
+* Webhook log query
+* Webhook permission management
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksManagementApplicationModule))]
@@ -22,7 +22,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 权限定义
+## Permission definition
 
 * WebhooksManagement.Webhooks
   * WebhooksManagement.Webhooks.Create
@@ -40,9 +40,9 @@ public class YouProjectModule : AbpModule
 * WebhooksManagement.Logs
   * WebhooksManagement.Logs.Default
 
-## 基本用法
+## Basic usage
 
-1. 管理Webhook订阅
+1. Manage Webhook subscriptions
 ```csharp
 public class YourService
 {
@@ -55,21 +55,21 @@ public class YourService
 
     public async Task ManageSubscription()
     {
-        // 创建订阅
+        //Create subscription
         await _webhookSubscriptionAppService.CreateAsync(new WebhookSubscriptionCreateDto
         {
             WebhookUri = "https://your-webhook-endpoint",
             Webhooks = new[] { "YourWebhook" }
         });
 
-        // 查询订阅
+        // Query subscription
         var subscriptions = await _webhookSubscriptionAppService.GetListAsync(
             new WebhookSubscriptionGetListInput());
     }
 }
 ```
 
-2. 查询Webhook日志
+2. Query Webhook logs
 ```csharp
 public class YourService
 {

@@ -3,32 +3,32 @@ using System;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)描述符
+/// Notification channel data (load) descriptor
 /// </summary>
 public sealed class NotificationChannelDataDescriptor
 {
     /// <summary>
-    /// 渠道名称
+    /// Channel name
     /// </summary>
     public string ProviderName { get; }
 
     /// <summary>
-    /// 载荷类型
+    /// Payload type
     /// </summary>
     public Type PayloadType { get; }
 
     /// <summary>
-    /// 匹配顺序, 数值越小越先匹配
+    /// Matching order, the smaller the value, the first to match
     /// </summary>
     public int Priority { get; }
 
     /// <summary>
-    /// 存在性判定模式
+    /// Existence judgment mode
     /// </summary>
     public NotificationChannelDataPresenceMode Presence { get; }
 
     /// <summary>
-    /// 判断通知数据中是否存在本载荷
+    /// Determine whether this payload exists in the notification data
     /// </summary>
     public Func<NotificationData, bool> IsPresent { get; }
 

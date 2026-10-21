@@ -130,7 +130,7 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useSettings } from '/@/hooks/abp/useSettings';
 
-  //import { onKeyStroke } from '@vueuse/core';
+  // import { onKeyStroke } from '@vueuse/core';
 
   const ACol = Col;
   const ARow = Row;
@@ -157,7 +157,7 @@
 
   const { validForm } = useFormValid(formRef);
 
-  //onKeyStroke('Enter', handleLogin);
+  // onKeyStroke('Enter', handleLogin);
 
   const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
@@ -169,7 +169,7 @@
       .login({
         password: data.password,
         username: data.userName,
-        mode: 'none', //不要默认的错误提示
+        mode: 'none', //Do not use the default error message
       })
       .then((userInfo) => {
         notification.success({

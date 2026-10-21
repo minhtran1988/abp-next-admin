@@ -9,7 +9,7 @@ namespace LINGYUN.Abp.MessageService.Groups;
 public interface IGroupRepository : IBasicRepository<ChatGroup, long>
 {
     /// <summary>
-    /// 用户是否已被拉黑
+    /// Whether the user has been blacklisted
     /// </summary>
     /// <param name="id"></param>
     /// <param name="formUserId"></param>
@@ -28,7 +28,7 @@ public interface IGroupRepository : IBasicRepository<ChatGroup, long>
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 获取群组数
+    /// Get the number of groups
     /// </summary>
     /// <param name="filter"></param>
     /// <param name="cancellationToken"></param>
@@ -37,7 +37,7 @@ public interface IGroupRepository : IBasicRepository<ChatGroup, long>
         string? filter = null,
         CancellationToken cancellationToken = default);
     /// <summary>
-    /// 获取群组列表
+    /// Get the group list
     /// </summary>
     /// <param name="filter"></param>
     /// <param name="sorting"></param>

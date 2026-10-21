@@ -6,21 +6,21 @@ namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Transfers.Models;
 public class UnassignedCustomerInfo
 {
     /// <summary>
-    /// 离职成员的userid
+    /// The userid of the resigned member
     /// </summary>
     [NotNull]
     [JsonProperty("handover_userid")]
     [JsonPropertyName("handover_userid")]
     public string HandoverUserid { get; set; } = default!;
     /// <summary>
-    /// 外部联系人userid
+    /// External contact userid
     /// </summary>
     [NotNull]
     [JsonProperty("external_userid")]
     [JsonPropertyName("external_userid")]
     public string ExternalUserid { get; set; } = default!;
     /// <summary>
-    /// 成员离职时间
+    /// Member resignation time
     /// </summary>
     [NotNull]
     [JsonProperty("dimission_time")]

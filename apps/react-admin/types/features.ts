@@ -3,19 +3,19 @@ import type { NameValue } from "./abp-core";
 type FeatureValue = NameValue<string>;
 
 /**
- * 特性检查接口
+ * Feature checking interface
  */
 interface IFeatureChecker {
 	/**
-	 * 获取特性值
-	 * @param name 特性名称
-	 * @returns 返回设定的特性值,不存在则为空字符串
+	 * Get the characteristic value
+	 * @param name attribute name
+	 * @returns Returns the set characteristic value, or an empty string if it does not exist
 	 */
 	getOrEmpty(name: string): string;
 	/**
-	 * 是否启用特性
-	 * @param featureNames 特性名称
-	 * @param requiresAll 是否全部符合
+	 * Whether to enable the feature
+	 * @param featureNames feature names
+	 * @param requiresAll whether all are consistent
 	 */
 	isEnabled(featureNames: string | string[], requiresAll?: boolean): boolean;
 }

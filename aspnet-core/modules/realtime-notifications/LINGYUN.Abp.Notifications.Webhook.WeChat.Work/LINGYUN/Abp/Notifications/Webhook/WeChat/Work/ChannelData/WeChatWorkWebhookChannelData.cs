@@ -1,16 +1,16 @@
 namespace LINGYUN.Abp.Notifications.Webhook.WeChat.Work;
 
 /// <summary>
-/// 企业微信 Webhook 渠道数据(载荷)基类
+/// Enterprise WeChat Webhook channel data (load) base class
 /// </summary>
 /// <remarks>
-/// 每个载荷对应一种 Webhook 消息载体, 通过 <see cref="Kind"/> 显式声明形态,
-/// 渠道侧使用工厂字典做 O(1) 分派。
+/// Each payload corresponds to a Webhook message carrier, and the form is explicitly declared through <see cref="Kind"/>.
+/// The channel side uses the factory dictionary to do O(1) dispatch.
 /// </remarks>
 public abstract class WeChatWorkWebhookChannelData : NotificationChannelData
 {
     /// <summary>
-    /// 消息载体类型
+    /// Message carrier type
     /// </summary>
     public abstract WeChatWorkWebhookMessageKind Kind { get; }
 }

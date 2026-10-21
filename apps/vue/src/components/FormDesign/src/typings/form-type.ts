@@ -11,39 +11,39 @@ export interface IPropsPanel {
   changeTab: (key: ChangeTabKey) => void;
 }
 export interface IState {
-  // 语言
+  // language
   locale: any;
-  // 公用组件
+  // Public components
   baseComponents: IVFormComponent[];
-  // 自定义组件
+  // Custom component
   customComponents: IVFormComponent[];
-  // 布局组件
+  // layout component
   layoutComponents: IVFormComponent[];
-  // 属性面板实例
+  // Property panel instance
   propsPanel: Ref<null | IPropsPanel>;
-  // json模态框实例
+  // json modal box instance
   jsonModal: Ref<null | IToolbarMethods>;
-  // 导入json数据模态框
+  // Import json data modal box
   importJsonModal: Ref<null | IToolbarMethods>;
-  // 代码预览模态框
+  // Code preview modal box
   codeModal: Ref<null | IToolbarMethods>;
-  // 预览模态框
+  // Preview modal box
   eFormPreview: Ref<null | IToolbarMethods>;
 
   eFormPreview2: Ref<null | IToolbarMethods>;
 }
 
 export interface IFormDesignMethods {
-  // 设置当前选中的控件
+  // Set the currently selected control
   handleSetSelectItem(item: IVFormComponent): void;
-  // 添加控件到formConfig.formItems中
+  // Add controls to formConfig.formItems
   handleListPush(item: IVFormComponent): void;
-  // 复制控件
+  // Copy control
   handleCopy(item?: IVFormComponent, isCopy?: boolean): void;
-  // 添加控件属性
+  // Add control properties
   handleAddAttrs(schemas: IVFormComponent[], index: number): void;
   setFormConfig(config: IFormConfig): void;
-  // 添加到表单中之前触发
+  // Triggered before adding to form
   handleBeforeColAdd(
     event: { newIndex: string },
     schemas: IVFormComponent[],

@@ -45,10 +45,10 @@ public class MultiplePermissionManager : PermissionManager, IMultiplePermissionM
 
     public async virtual Task SetManyAsync(string providerName, string providerKey, IEnumerable<PermissionChangeState> permissions)
     {
-        // 所有权限定义
+        // All permission definitions
         var permissionDefinitions = await PermissionDefinitionManager.GetPermissionsAsync();
 
-        // 存在的权限集合
+        // Existing permission collection
         var existsPermissions = permissions
             .Join(
                 permissionDefinitions,
@@ -63,7 +63,7 @@ public class MultiplePermissionManager : PermissionManager, IMultiplePermissionM
                     };
                 });
 
-        // 检查权限状态
+        // Check permission status
         var existsPermissionDefinitions = existsPermissions.Select(p => p.Definition).ToArray();
         var stateCheckResult = await SimpleStateCheckerManager.IsEnabledAsync(existsPermissionDefinitions);
         var invalidCheckPermissions = stateCheckResult.Where(x => !x.Value).Select(x => x.Key.Name);
@@ -72,13 +72,13 @@ public class MultiplePermissionManager : PermissionManager, IMultiplePermissionM
             throw new ApplicationException($"The permission named '{invalidCheckPermissions.JoinAsString(";")}' is disabled!");
         }
 
-        // 检查权限提供者范围
+        // Check permission provider scope
         var invalidProviderPermissions = existsPermissions.Where(x => x.Definition.Providers.Any() && !x.Definition.Providers.Contains(providerName)).Select(x => x.Definition.Name);
         if (invalidProviderPermissions.Any())
         {
             throw new ApplicationException($"The permission named '{invalidProviderPermissions.JoinAsString(";")}' has not compatible with the provider named '{providerName}'");
         }
-        // 检查权限多租户范围
+        // Check permissions multi-tenant scope
         var multiTenancySide = CurrentTenant.GetMultiTenancySide();
         var invalidMultiTenancySidePermissions = existsPermissions.Where(x => !x.Definition.MultiTenancySide.HasFlag(multiTenancySide)).Select(x => x.Definition.Name);
         if (invalidMultiTenancySidePermissions.Any())
@@ -86,20 +86,20 @@ public class MultiplePermissionManager : PermissionManager, IMultiplePermissionM
             throw new ApplicationException($"The permission named '{invalidMultiTenancySidePermissions.JoinAsString(";")}' has multitenancy side which is not compatible with the current multitenancy side '{multiTenancySide}'");
         }
 
-        // 获取权限提供者
+        // Get permission provider
         var provider = ManagementProviders.FirstOrDefault(m => m.Name == providerName) ?? 
             throw new AbpException("Unknown permission management provider: " + providerName);
 
-        // 获取现有全部授权
+        // Get all existing authorizations
         var permissionGrants = await PermissionGrantRepository.GetListAsync(providerName, providerKey);
         var permissionGrantNames = permissionGrants.Select(x => x.Name);
 
-        // 删除取消授权
+        // Delete and cancel authorization
         var delPermissionGrantNames = existsPermissions.Where(x => !x.State.IsGranted).Select(x => x.State.Name);
         var delPermissionGrants = permissionGrants.Where(x => delPermissionGrantNames.Contains(x.Name));
         await PermissionGrantRepository.DeleteManyAsync(delPermissionGrants);
 
-        // 新增授权
+        // Add authorization
         var newPermissionGrants = existsPermissions
             .Where(x => x.State.IsGranted && !permissionGrantNames.Contains(x.State.Name))
             .Select(p => new PermissionGrant(

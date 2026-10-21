@@ -5,19 +5,19 @@ namespace LINGYUN.Abp.WeChat.Official.Account.Models;
 public class TicketModel
 {
     /// <summary>
-    /// 获取的二维码ticket，凭借此ticket可以在有效时间内换取二维码
+    /// The obtained QR code ticket can be used to exchange for the QR code within the valid time.
     /// </summary>
     [JsonProperty("ticket")]
     [JsonPropertyName("ticket")]
     public string Ticket { get; set; } = default!;
     /// <summary>
-    /// 该二维码有效时间，以秒为单位。 最大不超过2592000（即30天）。
+    /// The validity time of this QR code is in seconds. The maximum value does not exceed 2,592,000 (i.e. 30 days).
     /// </summary>
     [JsonProperty("expire_seconds")]
     [JsonPropertyName("expire_seconds")]
     public int ExpireSeconds { get; set; }
     /// <summary>
-    /// 二维码图片解析后的地址，开发者可根据该地址自行生成需要的二维码图片
+    /// The address after parsing the QR code image. Developers can generate the required QR code image based on this address.
     /// </summary>
     [JsonProperty("url")]
     [JsonPropertyName("url")]

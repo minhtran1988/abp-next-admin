@@ -4,8 +4,8 @@ import { Fallback } from '@vben/common-ui';
 
 <template>
   <Fallback
-    description="面包屑导航-层级模式-详情页"
+    description="Breadcrumb navigation-hierarchical mode-details page"
     status="coming-soon"
-    title="注意观察面包屑导航变化"
+    title="Pay attention to changes in breadcrumb navigation"
   />
 </template>

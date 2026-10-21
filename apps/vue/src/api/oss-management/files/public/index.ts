@@ -2,7 +2,7 @@ import { OssObject } from '../../objects/model';
 import { defHttp } from '/@/utils/http/axios';
 
 export const formatUrl = (url: string) => {
-  // 格式化路径为公共目录
+  // Format the path to a public directory
   return `/api/files/static/public/p/${url}`;
 };
 

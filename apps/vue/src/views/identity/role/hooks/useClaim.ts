@@ -12,7 +12,7 @@ import { computed, unref, watch } from 'vue';
 interface UseClaim {
   roleIdRef: Ref<string>;
 }
-// TODO: 与UserClaim重复 需要分离组件
+// TODO: Duplicate with UserClaim, components need to be separated
 export function useClaim({ roleIdRef }: UseClaim) {
   const { L } = useLocalization('AbpIdentity');
   const { createMessage, createConfirm } = useMessage();

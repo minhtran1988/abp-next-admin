@@ -74,7 +74,7 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpIP2RegionModule),
     typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
-    // 设置管理
+    // Setting management
     typeof(AbpAliyunSettingManagementModule),
     typeof(AbpTencentCloudSettingManagementModule),
     // typeof(AbpWeChatSettingManagementModule),
@@ -100,9 +100,9 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpCachingManagementApplicationModule),
     typeof(AbpCachingManagementHttpApiModule),
     typeof(AbpCachingManagementStackExchangeRedisModule),
-    typeof(AbpIdentityEntityFrameworkCoreModule),// 用户角色权限需要引用包
-    typeof(AbpOpenIddictEntityFrameworkCoreModule), // 客户端权限需要引用包
-    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // 组织机构权限管理
+    typeof(AbpIdentityEntityFrameworkCoreModule),//User role permissions need to reference the package
+    typeof(AbpOpenIddictEntityFrameworkCoreModule), // Client permissions need to reference the package
+    typeof(AbpPermissionManagementDomainOrganizationUnitsModule), // Organization permission management
     typeof(AbpSaasEntityFrameworkCoreModule),
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
     typeof(AbpPermissionManagementDomainIdentityModule),
@@ -111,7 +111,7 @@ namespace LINGYUN.Abp.MicroService.AdminService;
     typeof(AbpFeatureManagementEntityFrameworkCoreModule),
     typeof(AbpLocalizationManagementEntityFrameworkCoreModule),
     typeof(AbpTextTemplatingEntityFrameworkCoreModule),
-    // 重写模板引擎支持外部本地化
+    // Rewrite the template engine to support external localization
     typeof(AbpTextTemplatingScribanModule),
     typeof(AdminServiceMigrationsEntityFrameworkCoreModule),
     typeof(AbpDataDbMigratorModule),
@@ -180,30 +180,30 @@ public partial class AdminServiceModule : AbpModule
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
         app.UseForwardedHeaders();
-        // 本地化
+        // localization
         app.UseMapRequestLocalization();
-        // http调用链
+        // http call chain
         app.UseCorrelationId();
-        // 文件系统
+        // file system
         app.MapAbpStaticAssets();
-        // 路由
+        // routing
         app.UseRouting();
-        // 跨域
+        // cross domain
         app.UseCors();
-        // 认证
+        // Authentication
         app.UseAuthentication();
         app.UseJwtTokenMiddleware();
-        // 多租户
+        // Multi-tenant
         app.UseMultiTenancy();
         // jwt
         app.UseDynamicClaims();
-        // 授权
+        // Authorize
         app.UseAuthorization();
         if (env.IsDevelopment())
         {
             // Swagger
             app.UseSwagger();
-            // Swagger可视化界面
+            // Swagger visual interface
             app.UseAbpSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support Admin Service API");
@@ -213,10 +213,10 @@ public partial class AdminServiceModule : AbpModule
                 options.OAuthScopes(configuration["AuthServer:Audience"]);
             });
         }
-        // 审计日志
+        // Audit log
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
-        // 路由
+        // routing
         app.UseConfiguredEndpoints();
     }
 }

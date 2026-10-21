@@ -31,25 +31,25 @@ export interface VbenButtonGroupProps extends Pick<
   VbenButtonProps,
   'disabled'
 > {
-  /** 单选模式下允许清除选中 */
+  /** Allow clear selection in radio selection mode */
   allowClear?: boolean;
-  /** 值改变前的回调 */
+  /** Callback before value changes */
   beforeChange?: (
     value: ValueType,
     isChecked: boolean,
   ) => boolean | PromiseLike<boolean | undefined> | undefined;
-  /** 按钮样式 */
+  /** Button style */
   btnClass?: any;
-  /** 按钮间隔距离 */
+  /** Button spacing distance */
   gap?: number;
-  /** 多选模式下限制最多选择的数量。0表示不限制 */
+  /** Limit the maximum number of selections in multi-selection mode. 0 means no limit */
   maxCount?: number;
-  /** 是否允许多选 */
+  /** Whether to allow multiple selections */
   multiple?: boolean;
-  /** 选项 */
+  /** Options */
   options?: { [key: string]: any; label: CustomRenderType; value: ValueType }[];
-  /** 显示图标 */
+  /** Display icon */
   showIcon?: boolean;
-  /** 尺寸 */
+  /** size */
   size?: 'large' | 'middle' | 'small';
 }

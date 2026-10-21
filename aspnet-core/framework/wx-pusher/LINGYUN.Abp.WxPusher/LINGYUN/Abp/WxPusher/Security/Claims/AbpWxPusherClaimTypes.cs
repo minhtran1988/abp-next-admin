@@ -3,11 +3,11 @@
 public static class AbpWxPusherClaimTypes
 {
     /// <summary>
-    /// 用户的唯一标识
+    /// The user's unique identifier
     /// </summary>
     public static string Uid { get; set; } = "wxp-uid";
     /// <summary>
-    /// 用户订阅topic
+    /// User subscribes to topic
     /// </summary>
     public static string Topic { get; set; } = "wxp-topic";
 }

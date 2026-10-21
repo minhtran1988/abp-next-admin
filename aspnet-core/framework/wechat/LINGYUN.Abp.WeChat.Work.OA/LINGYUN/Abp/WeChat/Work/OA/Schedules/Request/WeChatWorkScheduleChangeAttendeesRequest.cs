@@ -11,20 +11,20 @@ public abstract class WeChatWorkScheduleChangeAttendeesRequest : WeChatWorkReque
 {
     private List<ScheduleAttendee> _attendees = new List<ScheduleAttendee>();
     /// <summary>
-    /// 日程ID。
+    /// Schedule ID.
     /// </summary>
     /// <remarks>
-    /// 创建日程时返回的ID
+    /// ID returned when creating schedule
     /// </remarks>
     [NotNull]
     [JsonProperty("schedule_id")]
     [JsonPropertyName("schedule_id")]
     public string ScheduleId { get; }
     /// <summary>
-    /// 日程参与者列表
+    /// Schedule participant list
     /// </summary>
     /// <remarks>
-    /// 累计最多支持1000人
+    /// Supports up to 1,000 people in total
     /// </remarks>
     [CanBeNull]
     [JsonProperty("attendees")]
@@ -44,7 +44,7 @@ public abstract class WeChatWorkScheduleChangeAttendeesRequest : WeChatWorkReque
     }
 
     /// <summary>
-    /// 添加一个日程参与者
+    /// Add a schedule participant
     /// </summary>
     /// <param name="userId"></param>
     public void AddAttendee(string userId)
@@ -52,7 +52,7 @@ public abstract class WeChatWorkScheduleChangeAttendeesRequest : WeChatWorkReque
         _attendees.Add(new ScheduleAttendee(userId));
     }
     /// <summary>
-    /// 移除一个日程参与者
+    /// Remove a schedule participant
     /// </summary>
     /// <param name="userId"></param>
     public void RemoveAttendee(string userId)
@@ -60,7 +60,7 @@ public abstract class WeChatWorkScheduleChangeAttendeesRequest : WeChatWorkReque
         _attendees.RemoveAll(x => x.UserId == userId);
     }
     /// <summary>
-    /// 清空日程参与者
+    /// Clear schedule participants
     /// </summary>
     public void ClearAttendee()
     {

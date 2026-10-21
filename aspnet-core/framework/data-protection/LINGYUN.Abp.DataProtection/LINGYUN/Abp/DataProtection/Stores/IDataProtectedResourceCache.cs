@@ -4,41 +4,41 @@ namespace LINGYUN.Abp.DataProtection.Stores;
 public interface IDataProtectedResourceCache
 {
     /// <summary>
-    /// 设置指定数据权限的缓存
+    /// Set the cache for the specified data permissions
     /// </summary>
-    /// <param name="item">要更新的数据权限缓存项</param>
+    /// <param name="item">Data permission cache item to be updated</param>
     void SetCache(DataAccessResource resource);
     /// <summary>
-    /// 设置指定数据权限的缓存
+    /// Set the cache for the specified data permissions
     /// </summary>
-    /// <param name="item">要更新的数据权限缓存项</param>
+    /// <param name="item">Data permission cache item to be updated</param>
     Task SetCacheAsync(DataAccessResource resource);
     /// <summary>
-    /// 移除指定主体与实体类型的缓存项
+    /// Remove cache items of the specified body and entity type
     /// </summary>
-    /// <param name="item">要移除的数据权限缓存项信息</param>
+    /// <param name="item">Data permission cache item information to be removed</param>
     void RemoveCache(DataAccessResource resource);
     /// <summary>
-    /// 移除指定主体与实体类型的缓存项
+    /// Remove cache items of the specified body and entity type
     /// </summary>
-    /// <param name="item">要移除的数据权限缓存项信息</param>
+    /// <param name="item">Data permission cache item information to be removed</param>
     Task RemoveCacheAsync(DataAccessResource resource);
     /// <summary>
-    /// 获取指定主体与实体类型的数据权限过滤规则
+    /// Get the data permission filtering rules of the specified subject and entity type
     /// </summary>
-    /// <param name="subjectName">权限主体</param>
-    /// <param name="subjectId">权限主体标识</param>
-    /// <param name="entityTypeFullName">实体类型名称</param>
-    /// <param name="operation">数据权限操作</param>
-    /// <returns>数据过滤条件组</returns>
+    /// <param name="subjectName">Permission subject</param>
+    /// <param name="subjectId">Permission subject identification</param>
+    /// <param name="entityTypeFullName">Entity type name</param>
+    /// <param name="operation">Data permission operation</param>
+    /// <returns>Data filter condition group</returns>
     DataProtectedResourceCacheItem? GetCache(string subjectName, string subjectId, string entityTypeFullName, DataAccessOperation operation);
     /// <summary>
-    /// 获取指定主体与实体类型的数据权限过滤规则
+    /// Get the data permission filtering rules of the specified subject and entity type
     /// </summary>
-    /// <param name="subjectName">权限主体</param>
-    /// <param name="subjectId">权限主体标识</param>
-    /// <param name="entityTypeFullName">实体类型名称</param>
-    /// <param name="operation">数据权限操作</param>
-    /// <returns>数据过滤条件组</returns>
+    /// <param name="subjectName">Permission subject</param>
+    /// <param name="subjectId">Permission subject identification</param>
+    /// <param name="entityTypeFullName">Entity type name</param>
+    /// <param name="operation">Data permission operation</param>
+    /// <returns>Data filter condition group</returns>
     Task<DataProtectedResourceCacheItem?> GetCacheAsync(string subjectName, string subjectId, string entityTypeFullName, DataAccessOperation operation);
 }

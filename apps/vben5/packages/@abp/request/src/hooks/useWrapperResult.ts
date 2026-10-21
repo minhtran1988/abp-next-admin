@@ -11,13 +11,13 @@ export function useWrapperResult(response: AxiosResponse) {
   const _defaultWrapperHeaderKey: string = '_abpwrapresult';
   const { data, headers } = response;
 
-  /** 是否请求错误 */
+  /** Whether the request is wrong */
   function hasError(): boolean {
     if (hasAbpError()) return true;
     return Reflect.has(data, 'code') && data.code !== '0';
   }
 
-  /** 是否已包装结果 */
+  /** Whether the result has been packaged */
   function hasWrapResult(): boolean {
     if (
       typeof headers.has === 'function' &&
@@ -28,13 +28,13 @@ export function useWrapperResult(response: AxiosResponse) {
     return hasAbpError();
   }
 
-  /** 获取包装结果 */
+  /** Get packaging results */
   function getData(): any {
     throwIfError();
     return data.result;
   }
 
-  /** 如果请求错误,抛出异常 */
+  /** If the request is wrong, throw an exception */
   function throwIfError(): void {
     throwIfAbpError();
     if (hasError()) {
@@ -51,7 +51,7 @@ export function useWrapperResult(response: AxiosResponse) {
     }
   }
 
-  /** 获取错误消息 */
+  /** Get error message */
   function getErrorMessage(): string | undefined {
     if (!hasWrapResult()) return undefined;
     const errorMessage = getAbpErrorMessage();

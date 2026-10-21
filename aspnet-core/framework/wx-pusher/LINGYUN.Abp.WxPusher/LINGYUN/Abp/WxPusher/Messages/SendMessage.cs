@@ -37,7 +37,7 @@ public class SendMessage
         string? url = null)
     {
         AppToken = Check.NotNullOrWhiteSpace(appToken, nameof(appToken));
-        // 单条消息的数据长度(字符数)限制是：content<40000;summary<20(微信的限制，大于20显示不完);url<400
+        // The data length (number of characters) limit for a single message is: content<40000; summary<20 (WeChat limit, more than 20 characters cannot be displayed); url<400
         Content = Check.NotNullOrWhiteSpace(content, nameof(content), 39999);
         Summary = Check.Length(summary, nameof(summary), 19);
         Url = Check.Length(url, nameof(url), 399);

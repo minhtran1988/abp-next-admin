@@ -1,14 +1,14 @@
 # LINGYUN.Abp.EntityChange.HttpApi
 
-实体变更追踪与恢复的HTTP API模块。
+HTTP API module for entity change tracking and recovery.
 
-## 功能
+## Function
 
-* 提供实体变更查询的HTTP API
-* 提供实体恢复的HTTP API
-* 支持多语言本地化
+* Provide HTTP API for entity change query
+* Provide HTTP API for entity recovery
+* Support multi-language localization
 
-## 基本用法
+## Basic usage
 
 ```csharp
 [DependsOn(typeof(AbpEntityChangeHttpApiModule))]
@@ -21,19 +21,19 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## API端点
+## API endpoint
 
-* `EntityChangeController`: 实体变更控制器
-  * GET `/api/entity-changes`: 获取实体变更历史记录列表
+* `EntityChangeController`: Entity change controller
+  * GET `/api/entity-changes`: Get the entity change history list
 
-* `EntityRestoreController`: 实体恢复控制器
-  * PUT `/api/entity-restore`: 恢复单个实体到指定版本
-  * PUT `/api/{EntityId}/entity-restore`: 恢复指定ID的实体
-  * PUT `/api/{EntityId}/v/{EntityChangeId}/entity-restore`: 恢复指定ID的实体到指定版本
-  * PUT `/api/entites-restore`: 批量恢复实体到指定版本
+* `EntityRestoreController`: Entity recovery controller
+  * PUT `/api/entity-restore`: Restore a single entity to the specified version
+  * PUT `/api/{EntityId}/entity-restore`: Restore the entity with the specified ID
+  * PUT `/api/{EntityId}/v/{EntityChangeId}/entity-restore`: Restore the entity with the specified ID to the specified version
+  * PUT `/api/entites-restore`: Restore entities to the specified version in batches
 
-## 本地化
+## Localization
 
-模块使用 `AbpEntityChangeResource` 作为本地化资源，支持多语言显示。
+The module uses `AbpEntityChangeResource` as a localized resource to support multi-language display.
 
 [English](./README.EN.md)

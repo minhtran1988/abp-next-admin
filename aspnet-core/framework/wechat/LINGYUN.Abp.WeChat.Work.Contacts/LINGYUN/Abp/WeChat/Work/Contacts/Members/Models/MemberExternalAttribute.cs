@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Models;
 /// <summary>
-/// 成员扩展属性
+/// Member extended attributes
 /// </summary>
 public class MemberExternalAttribute
 {
     /// <summary>
-    /// 扩展属性列表
+    /// Extended attribute list
     /// </summary>
     [NotNull]
     [JsonProperty("attrs")]

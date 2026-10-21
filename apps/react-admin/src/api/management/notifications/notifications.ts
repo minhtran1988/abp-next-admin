@@ -10,23 +10,23 @@ import type { NotificationSendInput, NotificationTemplateSendInput } from "#/not
 import requestClient from "@/api/request";
 
 /**
- * 获取可用通知提供者列表
- * @returns {Promise<ListResultDto<NotificationProviderDto>>} 可用通知提供者列表
+ * Get the list of available notification providers
+ * @returns {Promise<ListResultDto<NotificationProviderDto>>} List of available notification providers
  */
 export function getAssignableProvidersApi(): Promise<ListResultDto<NotificationProviderDto>> {
 	return requestClient.get<ListResultDto<NotificationProviderDto>>("/api/notifications/assignable-providers");
 }
 
 /**
- * 获取可用通知列表
- * @returns {Promise<ListResultDto<NotificationGroupDto>>} 可用通知列表
+ * Get the list of available notifications
+ * @returns {Promise<ListResultDto<NotificationGroupDto>>} available notification list
  */
 export function getAssignableNotifiersApi(): Promise<ListResultDto<NotificationGroupDto>> {
 	return requestClient.get<ListResultDto<NotificationGroupDto>>("/api/notifications/assignables");
 }
 /**
- * 获取可用通知模板列表
- * @returns {Promise<ListResultDto<NotificationTemplateDto>>} 可用通知模板列表
+ * Get the list of available notification templates
+ * @returns {Promise<ListResultDto<NotificationTemplateDto>>} list of available notification templates
  */
 export function getAssignableTemplatesApi(): Promise<ListResultDto<NotificationTemplateDto>> {
 	return requestClient.get<ListResultDto<NotificationTemplateDto>>("/api/notifications/assignable-templates", {
@@ -34,16 +34,16 @@ export function getAssignableTemplatesApi(): Promise<ListResultDto<NotificationT
 	});
 }
 /**
- * 发送通知
- * @param input 参数
+ * Send notification
+ * @param input parameter
  * @returns {Promise<void>}
  */
 export function sendNotiferApi(input: NotificationSendInput): Promise<void> {
 	return requestClient.post("/api/notifications/send", input);
 }
 /**
- * 发送模板通知
- * @param input 参数
+ * Send template notification
+ * @param input parameter
  * @returns {Promise<void>}
  */
 export function sendTemplateNotiferApi(input: NotificationTemplateSendInput): Promise<void> {

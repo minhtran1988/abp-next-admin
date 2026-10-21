@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace LINGYUN.Abp.WeChat.Official.Messages;
 /// <summary>
-/// 微信公众号事件处理器
+/// WeChat public account event handler
 /// </summary>
 public class WeChatOfficialEventResolveContributor : WeChatOfficialMessageResolveContributorBase
 {

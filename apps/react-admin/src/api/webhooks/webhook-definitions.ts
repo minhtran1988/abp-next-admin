@@ -10,26 +10,26 @@ import type {
 import requestClient from "../request";
 
 /**
- * 删除Webhook定义
- * @param name Webhook名称
+ * Delete Webhook definition
+ * @param name Webhook name
  */
 export function deleteApi(name: string): Promise<void> {
 	return requestClient.delete(`/api/webhooks/definitions/${name}`);
 }
 
 /**
- * 查询Webhook定义
- * @param name Webhook名称
- * @returns Webhook定义数据传输对象
+ * Query Webhook definition
+ * @param name Webhook name
+ * @returns Webhook defines data transfer object
  */
 export function getApi(name: string): Promise<WebhookDefinitionDto> {
 	return requestClient.get<WebhookDefinitionDto>(`/api/webhooks/definitions/${name}`);
 }
 
 /**
- * 查询Webhook定义列表
- * @param input Webhook过滤条件
- * @returns Webhook定义数据传输对象列表
+ * Query Webhook definition list
+ * @param input Webhook filter conditions
+ * @returns Webhook defines a list of data transfer objects
  */
 export function getListApi(input?: WebhookDefinitionGetListInput): Promise<ListResultDto<WebhookDefinitionDto>> {
 	return requestClient.get<ListResultDto<WebhookDefinitionDto>>("/api/webhooks/definitions", {
@@ -38,19 +38,19 @@ export function getListApi(input?: WebhookDefinitionGetListInput): Promise<ListR
 }
 
 /**
- * 创建Webhook定义
- * @param input Webhook定义参数
- * @returns Webhook定义数据传输对象
+ * Create Webhook definition
+ * @param input Webhook definition parameters
+ * @returns Webhook defines data transfer object
  */
 export function createApi(input: WebhookDefinitionCreateDto): Promise<WebhookDefinitionDto> {
 	return requestClient.post<WebhookDefinitionDto>("/api/webhooks/definitions", input);
 }
 
 /**
- * 更新Webhook定义
- * @param name Webhook名称
- * @param input Webhook定义参数
- * @returns Webhook定义数据传输对象
+ * Update Webhook definition
+ * @param name Webhook name
+ * @param input Webhook definition parameters
+ * @returns Webhook defines data transfer object
  */
 export function updateApi(name: string, input: WebhookDefinitionUpdateDto): Promise<WebhookDefinitionDto> {
 	return requestClient.put<WebhookDefinitionDto>(`/api/webhooks/definitions/${name}`, input);

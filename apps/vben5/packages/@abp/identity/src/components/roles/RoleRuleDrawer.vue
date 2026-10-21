@@ -65,93 +65,93 @@ const entityTypes = ref<EntityTypeInfoDto[]>([]);
 const entityTypeProps = ref<EntityPropertyInfoDto[]>([]);
 const strategyOptions = reactive([
   {
-    label: '可以访问所有数据',
+    label: 'Can access all data',
     value: DataAccessStrategy.All,
   },
   {
-    label: '自定义规则',
+    label: 'custom rules',
     value: DataAccessStrategy.Custom,
   },
   {
-    label: '仅当前用户',
+    label: 'Current user only',
     value: DataAccessStrategy.CurrentUser,
   },
   {
-    label: '仅当前用户角色',
+    label: 'Current user role only',
     value: DataAccessStrategy.CurrentRoles,
   },
   {
-    label: '仅当前用户组织机构',
+    label: 'Only the current user organization',
     value: DataAccessStrategy.CurrentOrganizationUnits,
   },
   {
-    label: '仅当前用户组织机构及下级机构',
+    label: 'Only the current user organization and subordinate organizations',
     value: DataAccessStrategy.CurrentAndSubOrganizationUnits,
   },
 ]);
 const operationOptions = reactive([
   {
-    label: '查询',
+    label: 'query',
     value: DataAccessOperation.Read,
   },
   {
-    label: '编辑',
+    label: 'edit',
     value: DataAccessOperation.Write,
   },
   {
-    label: '删除',
+    label: 'delete',
     value: DataAccessOperation.Delete,
   },
 ]);
 const logicOptions = reactive([
   {
-    label: '且',
+    label: 'and',
     value: DataAccessFilterLogic.And,
   },
   {
-    label: '或',
+    label: 'or',
     value: DataAccessFilterLogic.Or,
   },
 ]);
 const dataAccessFilterOptions = reactive([
   {
-    label: '等于',
+    label: 'equal to',
     value: DataAccessFilterOperate.Equal,
   },
   {
-    label: '大于',
+    label: 'greater than',
     value: DataAccessFilterOperate.Greater,
   },
   {
-    label: '大于等于',
+    label: 'greater than or equal to',
     value: DataAccessFilterOperate.GreaterOrEqual,
   },
   {
-    label: '小于',
+    label: 'less than',
     value: DataAccessFilterOperate.Less,
   },
   {
-    label: '小于等于',
+    label: 'less than or equal to',
     value: DataAccessFilterOperate.LessOrEqual,
   },
   {
-    label: '不等于',
+    label: 'not equal to',
     value: DataAccessFilterOperate.NotEqual,
   },
   {
-    label: '左包含',
+    label: 'left contains',
     value: DataAccessFilterOperate.StartsWith,
   },
   {
-    label: '右包含',
+    label: 'right contains',
     value: DataAccessFilterOperate.EndsWith,
   },
   {
-    label: '不包含',
+    label: 'does not contain',
     value: DataAccessFilterOperate.NotContains,
   },
   {
-    label: '不等于',
+    label: 'not equal to',
     value: DataAccessFilterOperate.NotEqual,
   },
 ]);
@@ -331,7 +331,7 @@ async function onEntityTypeChange(entityTypeId: string) {
   await onGetEntityType();
 }
 
-// 属性选择改变触发对比值输入类型变化
+// Attribute selection changes trigger changes in comparison value input type
 function onPropertyTypeChange(
   rule: DataAccessFilterRule,
   option: EntityPropertyInfoDto,
@@ -343,16 +343,16 @@ function onPropertyTypeChange(
 </script>
 
 <template>
-  <Drawer title="数据权限">
+  <Drawer title="Data Permission">
     <Form
       :model="formModel"
       :label-col="{ span: 6 }"
       :wrapper-col="{ span: 24 }"
     >
-      <FormItem name="isEnabled" label="是否启用">
-        <Checkbox v-model:checked="formModel.isEnabled">是否启用</Checkbox>
+      <FormItem name="isEnabled" label="Whether it is enabled">
+        <Checkbox v-model:checked="formModel.isEnabled">Whether to enable</Checkbox>
       </FormItem>
-      <FormItem name="isEnabled" label="数据权限策略">
+      <FormItem name="isEnabled" label="Data permission policy">
         <Select
           class="w-full"
           :options="strategyOptions"
@@ -361,7 +361,7 @@ function onPropertyTypeChange(
         />
       </FormItem>
       <template v-if="formModel.strategy === DataAccessStrategy.Custom">
-        <FormItem required name="entityTypeId" label="实体类型">
+        <FormItem required name="entityTypeId" label="Entity Type">
           <Select
             class="w-full"
             :options="entityTypes"
@@ -370,7 +370,7 @@ function onPropertyTypeChange(
             @change="(value) => onEntityTypeChange(value!.toString())"
           />
         </FormItem>
-        <FormItem required name="operation" label="操作">
+        <FormItem required name="operation" label="operation">
           <Select
             class="w-full"
             :options="operationOptions"
@@ -378,7 +378,7 @@ function onPropertyTypeChange(
             @change="onGetEntityType"
           />
         </FormItem>
-        <FormItem name="accessedProperties" label="可访问字段">
+        <FormItem name="accessedProperties" label="Accessed fields">
           <Select
             class="w-full"
             mode="multiple"
@@ -388,16 +388,16 @@ function onPropertyTypeChange(
           />
         </FormItem>
         <FormItemRest>
-          <!-- 分组 -->
+          <!-- Grouping -->
           <div class="flex w-full flex-col">
             <div class="w-full items-center divide-dashed border-2">
-              <div class="m-2 text-sm">数据访问规则</div>
+              <div class="m-2 text-sm">Data access rules</div>
               <template
                 v-for="(group, gi) in formModel.filterGroup.groups"
                 :key="gi"
               >
                 <div class="flex flex-row items-center justify-items-center">
-                  <!-- 条件 -->
+                  <!-- Conditions -->
                   <div class="m-2 flex w-full flex-row">
                     <div class="w-full border-2 border-dashed">
                       <template v-for="(rule, ri) in group.rules" :key="ri">
@@ -450,8 +450,8 @@ function onPropertyTypeChange(
                           </div>
                           <div class="basis-1/5">
                             <Popconfirm
-                              title="你确定吗?"
-                              description="将删除此过滤条件"
+                              title="Are you sure?"
+                              description="This filter will be deleted"
                               @confirm="onDeleteRule(group, ri)"
                             >
                               <Button
@@ -479,15 +479,15 @@ function onPropertyTypeChange(
                           :icon="h(PlusOutlined)"
                           @click="onNewRule(group)"
                         >
-                          增加条件
+                          Add conditions
                         </Button>
                         <Popconfirm
-                          title="你确定吗?"
-                          description="将删除此条件分组"
+                          title="Are you sure?"
+                          description="This condition group will be deleted"
                           @confirm="onDeleteGroup(gi)"
                         >
                           <Button type="link" :icon="h(DeleteOutlined)" danger>
-                            删除分组
+                            Delete group
                           </Button>
                         </Popconfirm>
                       </div>
@@ -513,7 +513,7 @@ function onPropertyTypeChange(
                     :icon="h(PlusOutlined)"
                     @click="onNewGroup(formModel.filterGroup.logic)"
                   >
-                    增加分组
+                    Add group
                   </Button>
                 </div>
               </div>

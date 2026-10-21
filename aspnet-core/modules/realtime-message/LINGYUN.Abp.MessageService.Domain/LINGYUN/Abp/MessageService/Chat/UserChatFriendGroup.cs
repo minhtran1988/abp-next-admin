@@ -7,19 +7,19 @@ namespace LINGYUN.Abp.MessageService.Chat;
 public class UserChatFriendGroup : CreationAuditedEntity<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     public virtual Guid UserId { get; protected set; }
     /// <summary>
-    /// 分组标识
+    /// Group ID
     /// </summary>
     public virtual long GroupId { get; protected set; }
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public virtual string? DisplayName { get; protected set; }
 }

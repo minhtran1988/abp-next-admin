@@ -5,12 +5,12 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Tags.Request;
 /// <summary>
-/// 获取标签请求参数
+/// Get tag request parameters
 /// </summary>
 public class WeChatWorkGetTagRequest
 {
     /// <summary>
-    /// 标签id
+    /// tag id
     /// </summary>
     [NotNull]
     [JsonProperty("tagid")]

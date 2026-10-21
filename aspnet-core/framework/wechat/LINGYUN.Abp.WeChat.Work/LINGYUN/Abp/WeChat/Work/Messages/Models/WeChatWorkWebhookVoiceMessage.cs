@@ -4,21 +4,21 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 企业微信Webhook语音消息
+/// Enterprise WeChat Webhook Voice Message
 /// </summary>
 public class WeChatWorkWebhookVoiceMessage : WeChatWorkWebhookMessage
 {
     /// <summary>
-    /// 语音消息体
+    /// Voice message body
     /// </summary>
     [NotNull]
     [JsonProperty("voice")]
     [JsonPropertyName("voice")]
     public WebhookVoiceMessage Voice { get; set; }
     /// <summary>
-    /// 创建一个企业微信Webhook语音消息
+    /// Create an enterprise WeChat Webhook voice message
     /// </summary>
-    /// <param name="voice">语音消息体</param>
+    /// <param name="voice">Voice message body</param>
     public WeChatWorkWebhookVoiceMessage(WebhookVoiceMessage voice)
         : base("voice")
     {

@@ -4,82 +4,82 @@ using System.Collections.Generic;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知渠道数据(载荷)解析器
+/// Notification channel data (payload) parser
 /// </summary>
 public interface INotificationChannelDataResolver
 {
     /// <summary>
-    /// 按匹配顺序解析指定渠道的载荷
+    /// Parse the payload of the specified channel in matching order
     /// </summary>
     /// <remarks>
-    /// 仅返回"已写入且可解析"的载荷; 传入非法数据时会被跳过并记录日志,
-    /// 渠道如果需要区分该情况, 应配合 <see cref="IsDeclared"/> 使用。
+    /// Only "written and parsable" payloads are returned; when illegal data is passed in, it will be skipped and logged.
+    /// If the channel needs to distinguish this situation, it should be used with <see cref="IsDeclared"/>.
     /// </remarks>
     IReadOnlyList<NotificationChannelData> Resolve(string providerName, NotificationData notificationData);
 
     /// <summary>
-    /// 解析指定类型的渠道数据
+    /// Parse the specified type of channel data
     /// </summary>
-    /// <returns>载荷实例, 未写入或无法解析时返回 null</returns>
+    /// <returns>Payload instance, returns null if it is not written or cannot be parsed</returns>
     TChannelData? Resolve<TChannelData>(NotificationData notificationData)
         where TChannelData : NotificationChannelData;
 
     /// <summary>
-    /// 解析指定类型的渠道数据
+    /// Parse the specified type of channel data
     /// </summary>
     NotificationChannelData? Resolve(Type payloadType, NotificationData notificationData);
 
     /// <summary>
-    /// 判断生产者是否声明了指定类型的渠道数据
+    /// Determine whether the producer declares the specified type of channel data
     /// </summary>
     /// <remarks>
-    /// 与解析结果配合使用, 可以区分
-    /// "生产者未写入载荷" 与 "载荷已写入但无法解析(数据非法)"。
-    /// 后者属于生产者错误, 渠道应当明确报错而不是静默回退。
+    /// Used in conjunction with parsing results, it can be distinguished
+    /// "The producer did not write the payload" and "The payload was written but could not be parsed (the data is illegal)".
+    /// The latter is a producer error, and the channel should report the error clearly instead of silently retreating.
     /// </remarks>
     bool IsDeclared(NotificationData notificationData, Type payloadType);
 
     /// <summary>
-    /// 获取指定渠道的载荷类型集合
+    /// Get the payload type collection of the specified channel
     /// </summary>
     IReadOnlyList<Type> GetPayloadTypes(string providerName);
 
     /// <summary>
-    /// 获取载荷的标识键
+    /// Get the identification key of the payload
     /// </summary>
     /// <remarks>
-    /// 返回该载荷第一个"参与存在性判定"的属性键(数据中的实际键名),
-    /// 用于诊断信息(例如"哪个键解析失败")。未声明可匹配属性时返回 null。
+    /// Returns the first attribute key "participating in existence determination" of the payload (the actual key name in the data),
+    /// For diagnostic information (e.g. "which key failed to parse"). Returns null if no matchable properties have been declared.
     /// </remarks>
     string? GetKey(NotificationData notificationData, Type payloadType);
 
     /// <summary>
-    /// 弱类型读取, 并转换为目标类型
+    /// Read weakly type and convert to target type
     /// </summary>
     object? Get(NotificationData notificationData, string key, Type targetType);
 
     /// <summary>
-    /// 类型化读取渠道数据键
+    /// Typed reading channel data key
     /// </summary>
     /// <remarks>
-    /// 用于读取"散落的标量选项"(如企业微信的 safe、enable_id_trans),
-    /// 这类值不需要独立载荷类型, 但同样必须经过弱类型转换。
+    /// Used to read "scattered scalar options" (such as enterprise WeChat's safe, enable_id_trans),
+    /// This type of value does not require an independent load type, but must also undergo weak type conversion.
     /// </remarks>
     TValue? GetValue<TValue>(NotificationData notificationData, string key)
         where TValue : struct;
 
     /// <summary>
-    /// 类型化读取渠道数据键, 未设置时返回默认值
+    /// Typed reading channel data key, returns the default value if not set
     /// </summary>
     TValue GetValue<TValue>(NotificationData notificationData, string key, TValue defaultValue)
         where TValue : struct;
 
     /// <summary>
-    /// 大小写不敏感地读取渠道数据键
+    /// Read channel data keys case-insensitively
     /// </summary>
     /// <remarks>
-    /// 用于兼容历史渠道实现中大小写敏感的遗留键(如 <c>TemplateId</c>),
-    /// 避免生产者因为大小写差异而静默失效。
+    /// Used to be compatible with case-sensitive legacy keys in historical channel implementations (such as <c>TemplateId</c>),
+    /// Prevent producers from silently failing due to case differences.
     /// </remarks>
     string? GetOrNull(NotificationData notificationData, params string[] keys);
 }

@@ -10,9 +10,9 @@ const localesMap = loadLocalesMapFromDir(
 );
 
 /**
- * 加载平台服务本地化资源
- * @param lang 当前语言
- * @returns 资源集合
+ * Load platform service localization resources
+ * @param lang current language
+ * @returns resource collection
  */
 export async function loadPaltformMessages(lang: SupportedLanguagesType) {
   const locales = localesMap[lang]?.();

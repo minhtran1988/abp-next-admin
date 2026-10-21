@@ -1,9 +1,9 @@
 <!--
- * @Description: 渲染JSON数据
+ * @Description: Render JSON data
 -->
 <template>
   <Modal
-    title="JSON数据"
+    title="JSON data"
     :footer="null"
     :visible="visible"
     @cancel="handleCancel"
@@ -33,11 +33,11 @@
         visible: boolean;
         jsonData: IFormConfig;
       }>({
-        visible: false, // 控制json数据弹框显示
-        jsonData: {} as IFormConfig, // json数据
+        visible: false, //Control json data pop-up display
+        jsonData: {} as IFormConfig, // json data
       });
       /**
-       * 显示Json数据弹框
+       * Display Json data pop-up box
        * @param jsonData
        */
       const showModal = (jsonData: IFormConfig) => {
@@ -45,11 +45,11 @@
         state.jsonData = jsonData;
         state.visible = true;
       };
-      // 计算json数据
+      // Calculate json data
       const editorJson = computed(() => {
         return JSON.stringify(removeAttrs(state.jsonData), null, '\t');
       });
-      // 关闭弹框
+      // Close the pop-up box
       const handleCancel = () => {
         state.visible = false;
         emit('cancel');

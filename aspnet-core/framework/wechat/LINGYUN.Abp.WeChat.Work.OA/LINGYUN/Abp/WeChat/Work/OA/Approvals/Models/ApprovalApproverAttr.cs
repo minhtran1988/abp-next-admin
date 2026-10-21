@@ -2,18 +2,18 @@
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 节点审批方式
+/// Node approval method
 /// </summary>
 public enum ApprovalApproverAttr : byte
 {
     /// <summary>
-    /// 或签
+    /// Or sign
     /// </summary>
-    [Description("或签")]
+    [Description("or signature")]
     OrSign = 1,
     /// <summary>
-    /// 会签
+    /// Countersign
     /// </summary>
-    [Description("会签")]
+    [Description("Countersign")]
     CoSign = 2,
 }

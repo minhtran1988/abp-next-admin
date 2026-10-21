@@ -15,7 +15,7 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 安全日志 OpenObserve 写入器
+/// Security log OpenObserve writer
 /// </summary>
 [Dependency(ReplaceServices = true)]
 public class OpenObserveSecurityLogWriter : ISecurityLogWriter, ITransientDependency
@@ -68,7 +68,7 @@ public class OpenObserveSecurityLogWriter : ISecurityLogWriter, ITransientDepend
             return;
         }
 
-        // 多租户: 按租户分组写入各自的数据流
+        // Multi-tenant: write respective data streams according to tenant groups
         foreach (var group in securityLogs.GroupBy(securityLog => securityLog.TenantId))
         {
             await Client.JsonBulkAsync(
@@ -80,7 +80,7 @@ public class OpenObserveSecurityLogWriter : ISecurityLogWriter, ITransientDepend
     }
 
     /// <summary>
-    /// 获取安全日志数据流名称(按日志所属租户)
+    /// Get the name of the security log data stream (according to the tenant to which the log belongs)
     /// </summary>
     protected virtual string GetSecurityLogStream(SecurityLog securityLog)
     {
@@ -88,7 +88,7 @@ public class OpenObserveSecurityLogWriter : ISecurityLogWriter, ITransientDepend
     }
 
     /// <summary>
-    /// 获取安全日志数据流名称(按租户)
+    /// Get the security log data stream name (by tenant)
     /// </summary>
     protected virtual string GetSecurityLogStream(Guid? tenantId)
     {
@@ -96,7 +96,7 @@ public class OpenObserveSecurityLogWriter : ISecurityLogWriter, ITransientDepend
     }
 
     /// <summary>
-    /// 创建安全日志文档(按 CreationTime 覆盖 _timestamp)
+    /// Create a security log document (overwrite _timestamp by CreationTime)
     /// </summary>
     protected virtual OpenObserveSecurityLog CreateDocument(SecurityLog securityLog)
     {

@@ -5,8 +5,8 @@ import { cloneDeep, isArray, isFunction, isNumber, uniqueId } from 'lodash-es';
 // import { withInstall } from '/@/utils';
 
 /**
- * 组件install方法
- * @param comp 需要挂载install方法的组件
+ * Component install method
+ * @param comp The component that needs to be mounted with the install method
  */
 // export function withInstall<T extends { name: string }>(comp: T) {
 //   return Object.assign(comp, {
@@ -17,9 +17,9 @@ import { cloneDeep, isArray, isFunction, isNumber, uniqueId } from 'lodash-es';
 // }
 
 /**
- * 生成key
- * @param [formItem] 需要生成 key 的控件，可选，如果不传，默认返回一个唯一 key
- * @returns {string|boolean} 返回一个唯一 id 或者 false
+ * Generate key
+ * @param [formItem] Control that needs to generate key, optional, if not passed, a unique key will be returned by default
+ * @returns {string|boolean} returns a unique id or false
  */
 export function generateKey(formItem?: IVFormComponent): string | boolean {
   if (formItem && formItem.component) {
@@ -33,10 +33,10 @@ export function generateKey(formItem?: IVFormComponent): string | boolean {
 }
 
 /**
- * 移除数组中指定元素，value可以是一个数字下标，也可以是一个函数，删除函数第一个返回true的元素
- * @param array {Array<T>} 需要移除元素的数组
+ * Remove the specified element from the array. Value can be a numeric subscript or a function. Delete the first element whose function returns true.
+ * @param array {Array<T>} Array of elements to be removed
  * @param value {number | ((item: T, index: number, array: Array<T>) => boolean}
- * @returns {T} 返回删除的数组项
+ * @returns {T} Returns the deleted array item
  */
 export function remove<T>(
   array: Array<T>,
@@ -56,7 +56,7 @@ export function remove<T>(
 }
 
 /**
- * 判断数据类型
+ * Determine data type
  * @param value
  */
 export function getType(value: any): string {
@@ -64,8 +64,8 @@ export function getType(value: any): string {
 }
 
 /**
- * 生成唯一guid
- * @returns {String} 唯一id标识符
+ * Generate unique guid
+ * @returns {String} unique id identifier
  */
 export function randomUUID(): string {
   function S4() {
@@ -75,7 +75,7 @@ export function randomUUID(): string {
 }
 
 /**
- * 驼峰转下划线
+ * Convert camel case to underline
  * @param str
  */
 export function toLine(str: string) {
@@ -83,7 +83,7 @@ export function toLine(str: string) {
 }
 
 /**
- * 遍历表单项
+ * Traverse form items
  * @param array
  * @param cb
  */
@@ -92,7 +92,7 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
   const traverse = (schemas: IVFormComponent[]) => {
     schemas.forEach((formItem: IVFormComponent) => {
       if (['Grid'].includes(formItem.component)) {
-        // 栅格布局
+        // Grid layout
         formItem.columns?.forEach((item) => traverse(item.children));
       } else {
         cb(formItem);
@@ -103,7 +103,7 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
 }
 
 /**
- * 查找表单项
+ * Find form items
  */
 export const findFormItem: (
   schemas: IVFormComponent[],
@@ -113,7 +113,7 @@ export const findFormItem: (
   const traverse = (schemas: IVFormComponent[]): boolean => {
     return schemas.some((formItem: IVFormComponent) => {
       const { component: type } = formItem;
-      // 处理栅格
+      // process raster
       if (['Grid'].includes(type)) {
         return formItem.columns?.some((item) => traverse(item.children));
       }
@@ -126,7 +126,7 @@ export const findFormItem: (
 };
 
 /**
- * 打开json模态框时删除当前项属性
+ * Delete the current item attribute when opening the json modal box
  * @param formConfig {IFormConfig}
  * @returns {IFormConfig}
  */
@@ -143,7 +143,7 @@ export const removeAttrs = (formConfig: IFormConfig): IFormConfig => {
 };
 
 /**
- * 处理异步选项属性，如 select treeSelect 等选项属性如果传递为函数并且返回Promise对象，获取异步返回的选项属性
+ * Process asynchronous option attributes, such as select treeSelect and other option attributes. If passed as a function and return a Promise object, obtain the asynchronously returned option attributes.
  * @param {(() => Promise<any[]>) | any[]} options
  * @return {Promise<any[]>}
  */
@@ -159,7 +159,7 @@ export const handleAsyncOptions = async (
 };
 
 /**
- * 格式化表单项校验规则配置
+ * Formatted form item verification rule configuration
  * @param {IVFormComponent[]} schemas
  */
 export const formatRules = (schemas: IVFormComponent[]) => {
@@ -174,7 +174,7 @@ export const formatRules = (schemas: IVFormComponent[]) => {
 };
 
 /**
- * 将校验规则中的正则字符串转换为正则对象
+ * Convert the regular string in the verification rule into a regular object
  * @param {IValidationRule[]} rules
  * @return {IValidationRule[]}
  */
@@ -187,7 +187,7 @@ export const strToReg = (rules: IValidationRule[]) => {
 };
 
 /**
- * 执行一段字符串代码，并返回执行结果，如果执行出错，则返回该参数
+ * Execute a string code and return the execution result. If an execution error occurs, this parameter will be returned.
  * @param code
  * @return {any}
  */

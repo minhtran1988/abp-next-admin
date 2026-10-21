@@ -1,15 +1,15 @@
 # LINGYUN.Abp.ElsaNext
 
-[elsa-core](https://github.com/elsa-workflows/elsa-core) 工作流的abp集成(3.x版本)  
+[elsa-core](https://github.com/elsa-workflows/elsa-core) abp integration of workflow (version 3.x)
 
-## 特性
+## Features
 
-* 定义**AbpTenantResolver**与多租户集成,使elsa支持abp租户解析    
-* 定义**AbpTenantsProvider**与多租户集成,使elsa从abp中取租户信息    
-* 定义**AbpElsaIdGenerator**通过**IGuidGenerator**接口生成工作流标识  
-* 定义**abp**相关JavaScript扩展  
+* Define **AbpTenantResolver** to integrate with multi-tenants so that elsa supports abp tenant resolution
+* Define **AbpTenantsProvider** to integrate with multi-tenants to enable elsa to obtain tenant information from abp
+* Define **AbpElsaIdGenerator** to generate workflow identifiers through the **IGuidGenerator** interface
+* Define **abp** related JavaScript extensions
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 
@@ -22,7 +22,7 @@
         {
             PreConfigure<IModule>(elsa =>
             {
-                // 自定义elsa相关配置
+                // Customize elsa related configuration
             });
         }
     }

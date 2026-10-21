@@ -10,7 +10,7 @@ using Volo.Abp.Timing;
 
 namespace LINGYUN.Platform.Jobs.Messages;
 /// <summary>
-/// 邮件重新发送作业
+/// Email resend job
 /// </summary>
 [DisableAuditing]
 [DisableJobAction]
@@ -39,15 +39,15 @@ public class EmailMessageRetrySendJob : IJobRunnable
 
     #endregion
     /// <summary>
-    /// 最近发送失败时间, 单位: 小时, 默认: 2
+    /// The latest sending failure time, unit: hour, default: 2
     /// </summary>
     public const string PropertyRecentSnedFailedHours = "RecentSnedFailedHours";
     /// <summary>
-    /// 失败次数上限, 默认: 3
+    /// Maximum number of failures, default: 3
     /// </summary>
     public const string PropertyMaxOfFailedAttempts = "MaxOfFailedAttempts";
     /// <summary>
-    /// 轮询批次数量, 默认: 100
+    /// Polling batch quantity, default: 100
     /// </summary>
     public const string PropertyPollingBatchCount = "PollingBatchCount";
 

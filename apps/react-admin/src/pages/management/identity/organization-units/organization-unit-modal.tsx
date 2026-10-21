@@ -25,7 +25,7 @@ const OrganizationUnitModal: React.FC<Props> = ({ visible, onClose, onChange, id
 	const { t: $t } = useTranslation();
 	const [form] = Form.useForm();
 
-	// 查询组织单位详情
+	// Query organizational unit details
 	const { data: unitData, isLoading } = useQuery({
 		queryKey: ["organizationUnit", id],
 		queryFn: () => {
@@ -37,7 +37,7 @@ const OrganizationUnitModal: React.FC<Props> = ({ visible, onClose, onChange, id
 		enabled: visible && !!id,
 	});
 
-	// 创建组织单位
+	// Create organizational unit
 	const { mutateAsync: createUnit, isPending: isCreating } = useMutation({
 		mutationFn: (input: OrganizationUnitCreateDto) => createApi(input),
 		onSuccess: (data) => {
@@ -46,7 +46,7 @@ const OrganizationUnitModal: React.FC<Props> = ({ visible, onClose, onChange, id
 		},
 	});
 
-	// 更新组织单位
+	// Update organizational units
 	const { mutateAsync: updateUnit, isPending: isUpdating } = useMutation({
 		mutationFn: (data: OrganizationUnitUpdateDto) => {
 			if (!id) {

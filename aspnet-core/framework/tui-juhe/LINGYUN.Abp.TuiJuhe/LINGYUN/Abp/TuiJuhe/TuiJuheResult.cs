@@ -7,22 +7,22 @@ namespace LINGYUN.Abp.TuiJuhe;
 public class TuiJuheResult<TParam, TResult>
 {
     /// <summary>
-    /// 状态码
+    /// Status code
     /// </summary>
     [JsonPropertyName("code")]
     public int Code { get; set; }
     /// <summary>
-    /// 错误消息
+    /// Error message
     /// </summary>
     [JsonPropertyName("reason")]
     public string Reason { get; set; }
     /// <summary>
-    /// 响应数据
+    /// Response data
     /// </summary>
     [JsonPropertyName("result")]
     public TResult Result { get; set; }
     /// <summary>
-    /// 响应参数
+    /// Response parameters
     /// </summary>
     [JsonPropertyName("params")]
     public TParam Params { get; set; }

@@ -5,132 +5,132 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Search;
 
 /// <summary>
-/// 搜索响应
+/// Search response
 /// </summary>
 /// <remarks>
-/// 参考: https://openobserve.ai/docs/reference/api/search/
+/// Reference: https://openobserve.ai/docs/reference/api/search/
 /// </remarks>
 public class SearchResponse<THit>
 {
     /// <summary>
-    /// 命中数据
+    /// Hit data
     /// </summary>
     /// <remarks>
-    /// 每条记录为摄取时的原始行, 并附加 _timestamp(微秒) 与 _p
+    /// Each record is the original row when ingested, with _timestamp (microseconds) and _p appended
     /// </remarks>
     [JsonPropertyName("hits")]
     public THit[] Hits { get; set; } = [];
 
     /// <summary>
-    /// 命中总数
+    /// Total number of hits
     /// </summary>
     [JsonPropertyName("total")]
     public long Total { get; set; }
 
     /// <summary>
-    /// 偏移量
+    /// Offset
     /// </summary>
     /// <remarks>
-    /// 取自 query.from
+    /// Taken from query.from
     /// </remarks>
     [JsonPropertyName("from")]
     public long From { get; set; }
 
     /// <summary>
-    /// 数量
+    /// quantity
     /// </summary>
     /// <remarks>
-    /// 取自 query.size
+    /// Taken from query.size
     /// </remarks>
     [JsonPropertyName("size")]
     public long Size { get; set; }
 
     /// <summary>
-    /// 查询耗时
+    /// Query time consumption
     /// </summary>
     /// <remarks>
-    /// 单位: 毫秒
+    /// Unit: milliseconds
     /// </remarks>
     [JsonPropertyName("took")]
     public long Took { get; set; }
 
     /// <summary>
-    /// 耗时明细
+    /// Time-consuming details
     /// </summary>
     [JsonPropertyName("took_detail")]
     public SearchTookDetail? TookDetail { get; set; }
 
     /// <summary>
-    /// 扫描数据量
+    /// Scan data amount
     /// </summary>
     /// <remarks>
-    /// 单位: MB
+    /// Unit: MB
     /// </remarks>
     [JsonPropertyName("scan_size")]
     public long ScanSize { get; set; }
 
     /// <summary>
-    /// 扫描记录数
+    /// Number of scan records
     /// </summary>
     [JsonPropertyName("scan_records")]
     public long ScanRecords { get; set; }
 
     /// <summary>
-    /// 缓存命中比例
+    /// Cache hit ratio
     /// </summary>
     [JsonPropertyName("result_cache_ratio")]
     public int? ResultCacheRatio { get; set; }
 
     /// <summary>
-    /// 返回的列
+    /// Returned columns
     /// </summary>
     [JsonPropertyName("columns")]
     public string[]? Columns { get; set; }
 
     /// <summary>
-    /// 链路标识
+    /// Link ID
     /// </summary>
     [JsonPropertyName("trace_id")]
     public string? TraceId { get; set; }
 
     /// <summary>
-    /// 函数执行错误
+    /// Function execution error
     /// </summary>
     [JsonPropertyName("function_error")]
     public string[]? FunctionError { get; set; }
 
     /// <summary>
-    /// 是否为部分数据
+    /// Is it partial data?
     /// </summary>
     /// <remarks>
-    /// 为 true 时表示响应基于部分数据
+    /// When true, it indicates that the response is based on partial data
     /// </remarks>
     [JsonPropertyName("is_partial")]
     public bool IsPartial { get; set; }
 
     /// <summary>
-    /// 直方图间隔(秒)
+    /// Histogram interval (seconds)
     /// </summary>
     [JsonPropertyName("histogram_interval")]
     public long? HistogramInterval { get; set; }
 
     /// <summary>
-    /// 服务端调整后的开始时间(微秒)
+    /// Server-side adjusted start time (microseconds)
     /// </summary>
     /// <remarks>
-    /// 受数据流的 max_query_range 限制时会调整时间范围
+    /// The time range will be adjusted when limited by the max_query_range of the data stream
     /// </remarks>
     [JsonPropertyName("new_start_time")]
     public long? NewStartTime { get; set; }
 
     /// <summary>
-    /// 服务端调整后的结束时间(微秒)
+    /// Server-side adjusted end time (microseconds)
     /// </summary>
     [JsonPropertyName("new_end_time")]
     public long? NewEndTime { get; set; }
 
     /// <summary>
-    /// 排序方向
+    /// Sorting direction
     /// </summary>
     /// <remarks>
     /// asc / desc
@@ -139,43 +139,43 @@ public class SearchResponse<THit>
     public string? OrderBy { get; set; }
 
     /// <summary>
-    /// 排序元数据
+    /// Sorting metadata
     /// </summary>
     [JsonPropertyName("order_by_metadata")]
     public string[][]? OrderByMetadata { get; set; }
 
     /// <summary>
-    /// 响应类型
+    /// Response type
     /// </summary>
     [JsonPropertyName("response_type")]
     public string? ResponseType { get; set; }
 
     /// <summary>
-    /// 结果格式
+    /// Result format
     /// </summary>
     /// <remarks>
-    /// agent_options.output_format 为 csv/md_table 时返回, 如 csv / md_table / ndjson
+    /// Returned when agent_options.output_format is csv/md_table, such as csv / md_table / ndjson
     /// </remarks>
     [JsonPropertyName("format")]
     public string? Format { get; set; }
 
     /// <summary>
-    /// 格式化后的结果
+    /// Formatted result
     /// </summary>
     /// <remarks>
-    /// agent_options.output_format 为 csv/md_table 时, hits 为空, 数据在此字段
+    /// When agent_options.output_format is csv/md_table, hits is empty and the data is in this field
     /// </remarks>
     [JsonPropertyName("data")]
     public string? Data { get; set; }
 
     /// <summary>
-    /// 提示信息
+    /// Prompt information
     /// </summary>
     [JsonPropertyName("advisory")]
     public string? Advisory { get; set; }
 
     /// <summary>
-    /// 未在模型中声明的字段
+    /// Fields not declared in the model
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? ExtraProperties { get; set; }

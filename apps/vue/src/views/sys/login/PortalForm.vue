@@ -115,7 +115,7 @@
         username: data.userName,
         password: data.password,
         enterpriseId: enterpriseId,
-        mode: 'none', //不要默认的错误提示
+        mode: 'none', //Do not use the default error message
         isPortalLogin: true,
         loginCallback: () => {
           return new Promise((resolve) => {
@@ -155,7 +155,7 @@
       }
       // createConfirm({
       //   iconType: 'info',
-      //   title: '请选择登陆平台',
+      // title: 'Please select the login platform',
       //   content: '',
       //   okCancel: false,
       // });

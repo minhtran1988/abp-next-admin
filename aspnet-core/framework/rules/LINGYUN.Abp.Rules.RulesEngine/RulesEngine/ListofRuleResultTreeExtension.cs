@@ -18,7 +18,7 @@ public static class ListofRuleResultTreeExtension
 
         if (validationResults.Any())
         {
-            throw new AbpValidationException("一个或多个规则未通过", validationResults);
+            throw new AbpValidationException("One or more rules failed", validationResults);
         }
     }
 
@@ -35,7 +35,7 @@ public static class ListofRuleResultTreeExtension
                 errorBuilder.AppendLine(failedResult.ExceptionMessage);
             }
 
-            // TODO: 需要修改源代码, ChildResults的验证错误个人认为有必要展示出来
+            // TODO: The source code needs to be modified. I personally think it is necessary to show the verification errors of ChildResults.
             if (failedResult.ChildResults != null && failedResult.ChildResults.Any())
             {
                 errorBuilder.Append(failedResult.ChildResults.GetErrorMessage(out member));

@@ -4,13 +4,13 @@ import type { TreeNode } from './tree';
 import { $t } from '@vben/locales';
 
 /**
- * 将扁平的特性列表转换为树形结构
+ * Convert flat feature list to tree structure
  */
 export function buildFeatureTree(features: FeatureDto[]): TreeNode[] {
   const nodeMap = new Map<string, TreeNode>();
   const roots: TreeNode[] = [];
 
-  // 创建所有节点
+  // Create all nodes
   features.forEach((feature) => {
     const node: TreeNode = {
       feature,
@@ -21,7 +21,7 @@ export function buildFeatureTree(features: FeatureDto[]): TreeNode[] {
     nodeMap.set(feature.name, node);
   });
 
-  // 建立父子关系
+  // Establish a parent-child relationship
   features.forEach((feature) => {
     const node = nodeMap.get(feature.name);
     if (node && feature.parentName && nodeMap.has(feature.parentName)) {
@@ -35,7 +35,7 @@ export function buildFeatureTree(features: FeatureDto[]): TreeNode[] {
     }
   });
 
-  // 对子节点进行排序
+  // Sort child nodes
   const sortChildren = (nodes: TreeNode[]) => {
     nodes.forEach((node) => {
       if (node.children.length > 0) {
@@ -52,7 +52,7 @@ export function buildFeatureTree(features: FeatureDto[]): TreeNode[] {
 }
 
 /**
- * 更新节点的可见性（基于父级状态）
+ * Update node visibility (based on parent state)
  */
 export function updateVisibility(
   node: TreeNode,
@@ -73,7 +73,7 @@ export function updateVisibility(
 }
 
 /**
- * 检查是否为复选框类型的特性
+ * Check whether it is a checkbox type attribute
  */
 export function isCheckboxFeature(feature: FeatureDto): boolean {
   return (
@@ -83,7 +83,7 @@ export function isCheckboxFeature(feature: FeatureDto): boolean {
 }
 
 /**
- * 当特性值改变时，更新其子节点的可见性
+ * When the attribute value changes, update the visibility of its child nodes
  */
 export function onFeatureValueChange(
   feature: FeatureDto,
@@ -107,7 +107,7 @@ export function onFeatureValueChange(
 }
 
 /**
- * 处理特性值类型转换
+ * Handle attribute value type conversion
  */
 export function processFeatureValue(feature: FeatureDto): void {
   if (feature.valueType?.name === 'SelectionStringValueType') {
@@ -147,7 +147,7 @@ export function processFeatureValue(feature: FeatureDto): void {
 }
 
 /**
- * 递归处理所有特性值
+ * Process all characteristic values recursively
  */
 export function processAllFeatures(treeNodes: TreeNode[]): void {
   const traverse = (nodes: TreeNode[]) => {
@@ -160,7 +160,7 @@ export function processAllFeatures(treeNodes: TreeNode[]): void {
 }
 
 /**
- * 获取缩进样式
+ * Get the indent style
  */
 export function getIndentStyle(level: number, indentSize: number = 8): string {
   return `${level * indentSize}px`;

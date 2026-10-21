@@ -13,17 +13,17 @@ public class AbpNotificationsManagementOptions
     /// </summary>
     public bool IsDynamicNotificationsStoreEnabled { get; set; }
     /// <summary>
-    /// 缓存刷新时间
+    /// Cache refresh time
     /// default: 30 seconds
     /// </summary>
     public TimeSpan NotificationsCacheRefreshInterval { get; set; }
     /// <summary>
-    /// 申请时间戳超时时间
+    /// Application timestamp timeout
     /// default: 2 minutes
     /// </summary>
     public TimeSpan NotificationsCacheStampTimeOut { get; set; }
     /// <summary>
-    /// 时间戳过期时间
+    /// Timestamp expiration time
     /// default: 30 days
     /// </summary>
     public TimeSpan NotificationsCacheStampExpiration { get; set; }
@@ -33,7 +33,7 @@ public class AbpNotificationsManagementOptions
 
         NotificationsCacheRefreshInterval = TimeSpan.FromSeconds(30);
         NotificationsCacheStampTimeOut = TimeSpan.FromMinutes(2);
-        // 30天过期重新刷新缓存
+        // Refresh cache after 30 days expiration
         NotificationsCacheStampExpiration = TimeSpan.FromDays(30);
     }
 }

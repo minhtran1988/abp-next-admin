@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Features.Client
 
-针对客户端的功能验证
+Functional verification for clients
 
-## 功能特性
+## Features
 
-* 提供客户端功能值提供者(ClientFeatureValueProvider)
-* 支持基于客户端ID的功能验证
-* 与ABP框架的功能管理系统无缝集成
+* Provide client feature value provider (ClientFeatureValueProvider)
+* Support functional verification based on client ID
+* Seamlessly integrated with the function management system of the ABP framework
 
-## 配置使用
+## Configuration usage
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpFeaturesClientModule))]
@@ -20,7 +20,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 使用示例
+2. Usage examples
 
 ```csharp
 public class YourService
@@ -34,18 +34,18 @@ public class YourService
 
     public async Task DoSomethingAsync()
     {
-        // 检查客户端是否启用某个功能
+        // Check whether the client has a function enabled
         if (await _featureChecker.IsEnabledAsync("YourFeature"))
         {
-            // 业务逻辑
+            // business logic
         }
     }
 }
 ```
 
-## 更多
+## More
 
-* 本模块主要用于客户端功能验证，通常与LINGYUN.Abp.FeatureManagement.Client模块配合使用
-* 客户端功能值提供者的名称为"C"
+* This module is mainly used for client function verification, usually used in conjunction with the LINGYUN.Abp.FeatureManagement.Client module
+* The name of the client function value provider is "C"
 
-[简体中文](./README.md) | [English](./README.EN.md)
+[Simplified Chinese](./README.md) | [English](./README.EN.md)

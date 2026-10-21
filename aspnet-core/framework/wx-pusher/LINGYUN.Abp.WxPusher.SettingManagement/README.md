@@ -1,31 +1,31 @@
 # LINGYUN.Abp.WxPusher.SettingManagement
 
-WxPusher设置管理模块，提供WxPusher相关设置的管理功能。
+WxPusher settings management module provides management functions for WxPusher related settings.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* 支持WxPusher设置管理
-  * AppToken管理
-  * 安全设置管理
-* 权限控制
-  * 基于ABP权限系统
-  * 细粒度的设置管理权限
-* 多租户支持
-  * 支持全局设置
-  * 支持租户级设置
-* 本地化支持
-  * 支持多语言界面
-  * 支持本地化设置描述
+* Support WxPusher settings management
+  *AppToken management
+  * Security settings management
+* Permission control
+  * Based on ABP permission system
+  * Fine-grained setting management permissions
+*Multi-tenant support
+  * Support global settings
+  *Support tenant-level settings
+* Localization support
+  * Support multi-language interface
+  * Support localized setting description
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.WxPusher.SettingManagement
 ```
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWxPusherSettingManagementModule))]
@@ -35,14 +35,14 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 权限配置
+## Permission configuration
 
-### 1. 权限定义
+### 1. Permission definition
 
-* `WxPusher`: WxPusher权限组
-* `WxPusher.ManageSetting`: 管理WxPusher设置的权限
+* `WxPusher`: WxPusher permission group
+* `WxPusher.ManageSetting`: Permission to manage WxPusher settings
 
-### 2. 授权配置
+### 2. Authorization configuration
 
 ```csharp
 public class YourAuthorizationProvider : AuthorizationProvider
@@ -57,9 +57,9 @@ public class YourAuthorizationProvider : AuthorizationProvider
 }
 ```
 
-## 使用方式
+## Usage
 
-### 1. 获取设置
+### 1. Get settings
 
 ```csharp
 public class YourService
@@ -73,26 +73,26 @@ public class YourService
 
     public async Task GetSettingsAsync()
     {
-        // 获取全局设置
+        // Get global settings
         var globalSettings = await _wxPusherSettingAppService.GetAllForGlobalAsync();
 
-        // 获取当前租户设置
+        // Get current tenant settings
         var tenantSettings = await _wxPusherSettingAppService.GetAllForCurrentTenantAsync();
     }
 }
 ```
 
-### 2. API接口
+### 2. API interface
 
-* `GET /api/setting-management/wxpusher/by-global`: 获取全局设置
-* `GET /api/setting-management/wxpusher/by-current-tenant`: 获取当前租户设置
+* `GET /api/setting-management/wxpusher/by-global`: Get global settings
+* `GET /api/setting-management/wxpusher/by-current-tenant`: Get the current tenant settings
 
-## 注意事项
+## Notes
 
-1. 需要正确配置权限才能管理设置。
-2. AppToken等敏感信息需要妥善保管。
-3. 多租户环境下需要注意设置的作用范围。
+1. Properly configured permissions are required to manage settings.
+2. Sensitive information such as AppToken needs to be properly kept.
+3. In a multi-tenant environment, you need to pay attention to the scope of settings.
 
-## 源码位置
+## Source code location
 
 [LINGYUN.Abp.WxPusher.SettingManagement](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/framework/wx-pusher/LINGYUN.Abp.WxPusher.SettingManagement)

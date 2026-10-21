@@ -54,8 +54,8 @@ public class ConversationChangeNameHandler :
     public async virtual Task HandleEventAsync(EntityCreatedEto<TextChatMessageRecordEto> eventData)
     {
         /*
-         * 业务逻辑: 当用户第一次向智能体发送消息时,系统根据用户消息创建一个额外的智能体
-         * 通过消息摘要生成一个简短有效的问题描述,用作本次对话的名称, 设计灵感: Deepseek
+         *Business logic: When the user sends a message to the agent for the first time, the system creates an additional agent based on the user message
+         * Generate a short and effective problem description through the message summary, which is used as the name of this conversation. Design inspiration: Deepseek
          */
 
         if (!eventData.Entity.ConversationId.HasValue)
@@ -101,7 +101,7 @@ public class ConversationChangeNameHandler :
                 .AsBuilder()
                 .ConfigureOptions(options =>
                 {
-                    // 禁用工具
+                    // disable tool
                     options.Tools = [];
                 })
                 .BuildAIAgent(

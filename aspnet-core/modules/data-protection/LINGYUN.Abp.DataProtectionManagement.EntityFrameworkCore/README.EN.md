@@ -69,4 +69,4 @@ public class YourDbContext : AbpDbContext<YourDbContext>, IDataProtectionManagem
 
 ## Related Links
 
-* [中文文档](./README.md)
+* [Chinese document](./README.md)

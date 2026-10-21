@@ -2,11 +2,11 @@
 public enum PushPlusTopicType
 {
     /// <summary>
-    /// 创建的
+    /// Created
     /// </summary>
     Create = 0,
     /// <summary>
-    /// 加入的
+    /// added
     /// </summary>
     Join = 1
 }

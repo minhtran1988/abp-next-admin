@@ -1,17 +1,17 @@
 # LINGYUN.Abp.Authorization.OrganizationUnits
 
-组织单元权限验证模块，提供基于组织单元的权限验证功能。
+The organizational unit permission verification module provides permission verification functions based on organizational units.
 
-## 功能特性
+## Features
 
-* 支持基于组织单元的权限验证
-* 提供组织单元权限值提供者(OrganizationUnitPermissionValueProvider)
-* 支持多组织单元权限验证
-* 集成ABP权限系统
-* 提供组织单元Claim类型扩展
-* 支持当前用户组织单元查询扩展
+* Support permission verification based on organizational units
+* Provide organization unit permission value provider (OrganizationUnitPermissionValueProvider)
+* Support multi-organizational unit permission verification
+* Integrate ABP permission system
+* Provide organization unit Claim type extension
+* Support current user organizational unit query expansion
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpAuthorizationOrganizationUnitsModule))]
@@ -21,9 +21,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 配置权限提供者
+1. Configure permission provider
    ```csharp
    public override void ConfigureServices(ServiceConfigurationContext context)
    {
@@ -34,7 +34,7 @@ public class YouProjectModule : AbpModule
    }
    ```
 
-2. 获取当前用户的组织单元
+2. Get the organizational unit of the current user
    ```csharp
    public class YourService
    {
@@ -48,26 +48,26 @@ public class YouProjectModule : AbpModule
        public void YourMethod()
        {
            var organizationUnits = _currentUser.FindOrganizationUnits();
-           // 使用组织单元进行业务处理
+           //Use organizational units for business processing
        }
    }
    ```
 
-3. 从ClaimsPrincipal获取组织单元
+3. Get the organizational unit from ClaimsPrincipal
    ```csharp
    public class YourService
    {
        public void YourMethod(ClaimsPrincipal principal)
        {
            var organizationUnits = principal.FindOrganizationUnits();
-           // 使用组织单元进行业务处理
+           //Use organizational units for business processing
        }
    }
    ```
 
-## 更多资源
+## More resources
 
-* [GitHub仓库](https://github.com/colinin/abp-next-admin)
-* [示例应用程序](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/services/LINGYUN.Abp.MicroService.AllInOne)
+* [GitHub repository](https://github.com/colinin/abp-next-admin)
+* [Sample Application](https://github.com/colinin/abp-next-admin/tree/master/aspnet-core/services/LINGYUN.Abp.MicroService.AllInOne)
 
 [English](./README.EN.md)

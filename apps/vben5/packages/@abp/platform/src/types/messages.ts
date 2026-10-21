@@ -3,62 +3,62 @@ import type {
   PagedAndSortedResultRequestDto,
 } from '@abp/core';
 
-/** 消息状态 */
+/** Message status */
 export enum MessageStatus {
-  /** 发送失败 */
+  /** Sending failed */
   Failed = 10,
-  /** 未发送 */
+  /** Not sent */
   Pending = -1,
-  /** 已发送 */
+  /** Sent */
   Sent = 0,
 }
-/** 邮件优先级 */
+/** Email priority */
 export enum MailPriority {
-  /** 高 */
+  /** high */
   High = 2,
-  /** 低 */
+  /** low */
   Low = 1,
-  /** 普通 */
+  /** Normal */
   Normal = 0,
 }
 
 interface MessageDto extends AuditedEntityDto<string> {
-  /** 消息内容 */
+  /** Message content */
   content: string;
-  /** 消息发布者 */
+  /** Message publisher */
   provider?: string;
-  /** 错误原因 */
+  /** Error reason */
   reason?: string;
-  /** 接收方 */
+  /** Receiver */
   receiver: string;
-  /** 发送次数 */
+  /** Number of times sent */
   sendCount: number;
-  /** 发送人 */
+  /** Sender */
   sender?: string;
-  /** 发送时间 */
+  /** Send time */
   sendTime?: Date;
-  /** 状态 */
+  /** status */
   status: MessageStatus;
-  /** 发送人Id */
+  /** Sender Id */
   userId?: string;
 }
-/** 邮件附件 */
+/** Email attachment */
 interface EmailMessageAttachmentDto {
-  /** 附件存储名称 */
+  /** Attachment storage name */
   blobName: string;
-  /** 附件名称 */
+  /** Attachment name */
   name: string;
-  /** 附件大小 */
+  /** Attachment size */
   size: number;
 }
-/** 邮件标头 */
+/** Email headers */
 interface EmailMessageHeaderDto {
-  /** 键名 */
+  /** Key name */
   key: string;
-  /** 键值 */
+  /** key value */
   value: string;
 }
-/** 邮件消息 */
+/** Email message */
 interface EmailMessageDto extends MessageDto {
   attachments: EmailMessageAttachmentDto[];
   cc?: string;

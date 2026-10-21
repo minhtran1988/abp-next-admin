@@ -2,19 +2,19 @@
 
 namespace LINGYUN.Abp.WeChat.Work.Common.Members.Models;
 /// <summary>
-/// 视频号状态
+/// Video account status
 /// </summary>
-[Description("视频号状态")]
+[Description("Video account status")]
 public enum WechatChannelStatus
 {
     /// <summary>
-    /// 已确认
+    /// Confirmed
     /// </summary>
-    [Description("已确认")]
+    [Description("Confirmed")]
     Confirmed = 0,
     /// <summary>
-    /// 待确认
+    /// To be confirmed
     /// </summary>
-    [Description("待确认")]
+    [Description("To be confirmed")]
     UnConfirmed = 1,
 }

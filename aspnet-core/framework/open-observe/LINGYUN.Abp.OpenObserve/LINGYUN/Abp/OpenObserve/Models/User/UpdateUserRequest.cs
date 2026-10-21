@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.User;
 
 /// <summary>
-/// 更新用户请求
+/// Update user request
 /// </summary>
 public class UpdateUserRequest
 {
@@ -16,25 +16,25 @@ public class UpdateUserRequest
     public string? LastName { get; set; }
 
     /// <summary>
-    /// 旧密码
+    /// Old password
     /// </summary>
     /// <remarks>
-    /// 不修改密码时不要传值
+    /// Do not pass the value when the password is not changed.
     /// </remarks>
     [JsonPropertyName("old_password")]
     public string? OldPassword { get; set; }
 
     /// <summary>
-    /// 新密码
+    /// New password
     /// </summary>
     /// <remarks>
-    /// 不修改密码时不要传值
+    /// Do not pass the value when the password is not changed.
     /// </remarks>
     [JsonPropertyName("new_password")]
     public string? NewPassword { get; set; }
 
     /// <summary>
-    /// 角色
+    /// role
     /// </summary>
     [JsonPropertyName("role")]
     public string? Role { get; set; }

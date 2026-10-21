@@ -13,11 +13,11 @@ using Volo.Abp.Specifications;
 
 namespace PackageName.CompanyName.ProjectName.EntityFrameworkCore;
 /// <summary>
-/// 实现基本接口
+/// Implement the basic interface
 /// </summary>
-/// <typeparam name="TEntity">实体类型</typeparam>
-/// <typeparam name="TKey">实体主键类型</typeparam>
-/// <typeparam name="TEntityAuth">实体数据权限类型/typeparam>
+/// <typeparam name="TEntity">Entity type</typeparam>
+/// <typeparam name="TKey">Entity primary key type</typeparam>
+/// <typeparam name="TEntityAuth">Entity data permission type/typeparam>
 public abstract class EfCoreProjectNameDataProtectionRepository<TEntity, TKey, TEntityAuth> :
     EfCoreDataProtectionRepository<IProjectNameDbContext, TEntity, TKey, TEntityAuth>,
     IProjectNameDataProtectionRepository<TEntity, TKey>

@@ -4,11 +4,11 @@ public static class BlobManagementFeatureNames
 {
     public const string GroupName = "AbpBlobManagement";
     /// <summary>
-    /// 启用对象存储管理
+    /// Enable object storage management
     /// </summary>
     public const string Enable = GroupName + ".Enable";
     /// <summary>
-    /// 是否允许未经授权的用户访问公共目录
+    /// Whether to allow unauthorized users to access public directories
     /// </summary>
     public const string PublicAccess = GroupName + ".PublicAccess";
 
@@ -16,39 +16,39 @@ public static class BlobManagementFeatureNames
     {
         public const string Default = GroupName + ".Blob";
         /// <summary>
-        /// 启用Blob
+        /// Enable Blob
         /// </summary>
         public const string Enable = Default + ".Enable";
         /// <summary>
-        /// 生成临时文件下载链接
+        /// Generate temporary file download link
         /// </summary>
         public const string GenerateDownloadUrl = Default + ".GenerateDownloadUrl";
         /// <summary>
-        /// 下载文件功能
+        /// Download file function
         /// </summary>
         public const string DownloadFile = Default + ".DownloadFile";
         /// <summary>
-        /// 下载文件功能限制次数
+        /// Limit the number of download file functions
         /// </summary>
         public const string DownloadLimit = Default + ".DownloadLimit";
         /// <summary>
-        /// 下载文件功能限制次数周期
+        /// Download file function limit number of cycles
         /// </summary>
         public const string DownloadInterval = Default + ".DownloadInterval";
         /// <summary>
-        /// 上传文件功能
+        /// Upload file function
         /// </summary>
         public const string UploadFile = Default + ".UploadFile";
         /// <summary>
-        /// 上传文件功能限制次数
+        /// Limit the number of times to upload files
         /// </summary>
         public const string UploadLimit = Default + ".UploadLimit";
         /// <summary>
-        /// 上传文件功能限制次数周期
+        /// Upload file function limit number of cycles
         /// </summary>
         public const string UploadInterval = Default + ".UploadInterval";
         /// <summary>
-        /// 最大上传文件
+        /// Maximum upload file
         /// </summary>
         public const string MaxUploadFileCount = Default + ".MaxUploadFileCount";
     }

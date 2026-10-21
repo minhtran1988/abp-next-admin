@@ -28,7 +28,7 @@ public class AbpIdentitySessionDynamicClaimsPrincipalContributor : IAbpDynamicCl
             var identitySessionChecker = context.GetRequiredService<IIdentitySessionChecker>();
             if (!await identitySessionChecker.ValidateSessionAsync(context.ClaimsPrincipal))
             {
-                // 用户会话已过期
+                // User session has expired
                 context.ClaimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity());
             }
         }

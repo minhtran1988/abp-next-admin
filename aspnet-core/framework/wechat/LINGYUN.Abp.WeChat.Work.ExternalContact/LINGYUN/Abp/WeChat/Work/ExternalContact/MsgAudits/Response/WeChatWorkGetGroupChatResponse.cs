@@ -5,43 +5,43 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.MsgAudits.Response;
 /// <summary>
-/// 获取会话内容存档内部群信息响应参数
+/// Get the session content archive internal group information response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91782" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91782" />
 /// </remarks>
 public class WeChatWorkGetGroupChatResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// roomid对应的群名称
+    /// The group name corresponding to roomid
     /// </summary>
     [NotNull]
     [JsonProperty("roomname")]
     [JsonPropertyName("roomname")]
     public string RoomName { get; set; } = default!;
     /// <summary>
-    /// roomid对应的群创建者，userid
+    /// The group creator corresponding to roomid, userid
     /// </summary>
     [NotNull]
     [JsonProperty("creator")]
     [JsonPropertyName("creator")]
     public string Creator { get; set; } = default!;
     /// <summary>
-    /// roomid对应的群创建时间
+    /// The group creation time corresponding to roomid
     /// </summary>
     [NotNull]
     [JsonProperty("room_create_time")]
     [JsonPropertyName("room_create_time")]
     public long RoomCreateTime { get; set; }
     /// <summary>
-    /// roomid对应的群公告
+    /// Group announcement corresponding to roomid
     /// </summary>
     [CanBeNull]
     [JsonProperty("notice")]
     [JsonPropertyName("notice")]
     public string? Notice { get; set; }
     /// <summary>
-    /// roomid对应的群成员列表
+    /// List of group members corresponding to roomid
     /// </summary>
     [NotNull]
     [JsonProperty("members")]

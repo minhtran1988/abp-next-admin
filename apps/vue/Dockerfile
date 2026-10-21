@@ -1,12 +1,12 @@
 FROM nginx:latest
 LABEL maintainer="colin.in@foxmail.com"
 
-# 将vue构建后的dist目录中的内容复制到docker容器中nginx默认配置的部署目录
+# Copy the contents of the dist directory after vue is built to the deployment directory of nginx default configuration in the docker container
 COPY ./dist /usr/share/nginx/html
  
-# 将docker容器中默认的配置替换为本地配置
+# Replace the default configuration in the docker container with the local configuration
 COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# 端口映射
+# port mapping
 EXPOSE 80

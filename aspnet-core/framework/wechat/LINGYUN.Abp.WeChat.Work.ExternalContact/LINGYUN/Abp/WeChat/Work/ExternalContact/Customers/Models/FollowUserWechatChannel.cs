@@ -4,19 +4,19 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Customers.Models;
 /// <summary>
-/// 视频号信息
+/// Video number information
 /// </summary>
 public class FollowUserWechatChannel
 {
     /// <summary>
-    /// 视频号名称
+    /// Video account name
     /// </summary>
     [NotNull]
     [JsonProperty("nickname")]
     [JsonPropertyName("nickname")]
     public string NickName { get; set; } = default!;
     /// <summary>
-    /// 视频号添加场景
+    /// Add scene to video number
     /// </summary>
     [NotNull]
     [JsonProperty("source")]

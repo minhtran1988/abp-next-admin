@@ -2,7 +2,7 @@
 
 Webhook identity integration module that provides integration with ABP identity system.
 
-[简体中文](README.md)
+[Simplified Chinese](README.md)
 
 ## Features
 

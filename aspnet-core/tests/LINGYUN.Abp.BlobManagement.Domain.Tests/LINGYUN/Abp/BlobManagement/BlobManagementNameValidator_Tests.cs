@@ -5,13 +5,13 @@ using Xunit;
 namespace LINGYUN.Abp.BlobManagement;
 
 /// <summary>
-/// 名称校验器
+/// Name validator
 /// </summary>
 public class BlobManagementNameValidator_Tests : AbpBlobManagementDomainTestBase
 {
     [Theory]
     [InlineData("file.txt", true)]
-    [InlineData("目录", true)]
+    [InlineData("Directory", true)]
     [InlineData(".hidden", true)]
     [InlineData("a/b", false)]
     [InlineData("a\\b", false)]

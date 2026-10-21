@@ -7,36 +7,36 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Request;
 /// <summary>
-/// 取消日程请求参数
+/// Cancel schedule request parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/97725"/>
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/97725"/>
 /// </remarks>
 public class WeChatWorkDeleteScheduleRequest : WeChatWorkRequest
 {
     /// <summary>
-    /// 日程ID
+    /// Schedule ID
     /// </summary>
     [NotNull]
     [JsonProperty("schedule_id")]
     [JsonPropertyName("schedule_id")]
     public string ScheduleId { get; }
     /// <summary>
-    /// 操作模式。
+    /// Operation mode.
     /// </summary>
     /// <remarks>
-    /// 是重复日程时有效。
+    /// Valid when repeating schedule.
     /// </remarks>
     [CanBeNull]
     [JsonProperty("op_mode")]
     [JsonPropertyName("op_mode")]
     public ScheduleDeleteMode? OpMode { get; private set; }
     /// <summary>
-    /// 操作起始时间。
+    /// Operation start time.
     /// </summary>
     /// <remarks>
-    /// 仅当操作模式是 DeleteThisSchedule 或 DeleteAllFutureSchedules 时有效。
-    /// 该时间必须是重复日程的某一次开始时间。
+    /// Only valid when the operation mode is DeleteThisSchedule or DeleteAllFutureSchedules.
+    /// This time must be a start time of the repeating schedule.
     /// </remarks>
     [CanBeNull]
     [JsonProperty("op_start_time")]
@@ -47,7 +47,7 @@ public class WeChatWorkDeleteScheduleRequest : WeChatWorkRequest
         ScheduleId = Check.NotNullOrWhiteSpace(scheduleId, nameof(scheduleId));
     }
     /// <summary>
-    /// 删除此日程起始时间
+    /// Delete the start time of this schedule
     /// </summary>
     /// <param name="startTime"></param>
     public void DeleteThisSchedule(DateTime startTime)
@@ -56,7 +56,7 @@ public class WeChatWorkDeleteScheduleRequest : WeChatWorkRequest
         OpStartTime = startTime.GetUnixTimeSeconds();
     }
     /// <summary>
-    /// 删除所有日程起始时间
+    /// Delete all schedule start times
     /// </summary>
     /// <param name="startTime"></param>
     public void DeleteAllFutureSchedules(DateTime startTime)

@@ -49,13 +49,13 @@ public class BlobManagementFeatureDefinitionProvider : FeatureDefinitionProvider
             defaultValue: "1000",
             displayName: L("Features:DisplayName:DownloadLimit"),
             description: L("Features:Description:DownloadLimit"),
-            valueType: new FreeTextStringValueType(new NumericValueValidator(0, 100_0000))); // 上限100万次调用
+            valueType: new FreeTextStringValueType(new NumericValueValidator(0, 100_0000))); // The upper limit is 1 million calls
         blobDefaultFeature.CreateChild(
             name: BlobManagementFeatureNames.Blob.DownloadInterval,
             defaultValue: "1",
             displayName: L("Features:DisplayName:DownloadInterval"),
             description: L("Features:Description:DownloadInterval"),
-            valueType: new FreeTextStringValueType(new NumericValueValidator(1, 12))); // 上限12月
+            valueType: new FreeTextStringValueType(new NumericValueValidator(1, 12))); // The upper limit is 12 months
 
         blobDefaultFeature.CreateChild(
             name: BlobManagementFeatureNames.Blob.UploadFile,
@@ -68,13 +68,13 @@ public class BlobManagementFeatureDefinitionProvider : FeatureDefinitionProvider
             defaultValue: "1000",
             displayName: L("Features:DisplayName:UploadLimit"),
             description: L("Features:Description:UploadLimit"),
-            valueType: new FreeTextStringValueType(new NumericValueValidator(0, 100_0000))); // 上限100万次调用
+            valueType: new FreeTextStringValueType(new NumericValueValidator(0, 100_0000))); // The upper limit is 1 million calls
         blobDefaultFeature.CreateChild(
             name: BlobManagementFeatureNames.Blob.UploadInterval,
             defaultValue: "1",
             displayName: L("Features:DisplayName:UploadInterval"),
             description: L("Features:Description:UploadInterval"),
-            valueType: new FreeTextStringValueType(new NumericValueValidator(1, 12))); // 上限12月
+            valueType: new FreeTextStringValueType(new NumericValueValidator(1, 12))); // The upper limit is 12 months
     }
 
     protected ILocalizableString L(string name)

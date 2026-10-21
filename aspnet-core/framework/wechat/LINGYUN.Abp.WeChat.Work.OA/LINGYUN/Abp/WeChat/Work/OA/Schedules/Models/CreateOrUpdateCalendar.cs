@@ -9,35 +9,35 @@ namespace LINGYUN.Abp.WeChat.Work.OA.Schedules.Models;
 public abstract class CreateOrUpdateCalendar
 {
     /// <summary>
-    /// 日历标题。1 ~ 128 字符
+    /// Calendar title. 1 ~ 128 characters
     /// </summary>
     [NotNull]
     [JsonProperty("summary")]
     [JsonPropertyName("summary")]
     public string Summary { get; }
     /// <summary>
-    /// 日历在终端上显示的颜色，RGB颜色编码16进制表示，例如："#0000FF" 表示纯蓝色
+    /// The color of the calendar displayed on the terminal, RGB color coding hexadecimal representation, for example: "#0000FF" represents pure blue
     /// </summary>
     [NotNull]
     [JsonProperty("color")]
     [JsonPropertyName("color")]
     public string Color { get; }
     /// <summary>
-    /// 日历描述。0 ~ 512 字符
+    /// Calendar description. 0 ~ 512 characters
     /// </summary>
     [CanBeNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 日历的管理员userid列表
+    /// Calendar administrator userid list
     /// </summary>
     [CanBeNull]
     [JsonProperty("admins")]
     [JsonPropertyName("admins")]
     public string[]? Admins { get; set; }
     /// <summary>
-    /// 是否将该日历设置为access_token所对应应用的默认日历。
+    /// Whether to set this calendar as the default calendar of the application corresponding to access_token.
     /// </summary>
     [NotNull]
     [JsonProperty("set_as_default")]
@@ -46,7 +46,7 @@ public abstract class CreateOrUpdateCalendar
     [System.Text.Json.Serialization.JsonConverter(typeof(IntToBoolConverter))]
     public bool SetAsDefault { get; set; }
     /// <summary>
-    /// 是否公共日历。0-否；1-是
+    /// Whether the calendar is public. 0-no; 1-yes
     /// </summary>
     [NotNull]
     [JsonProperty("is_public")]
@@ -55,14 +55,14 @@ public abstract class CreateOrUpdateCalendar
     [System.Text.Json.Serialization.JsonConverter(typeof(IntToBoolConverter))]
     public bool IsPublic { get; private set; }
     /// <summary>
-    /// 公开范围。仅当是公共日历时有效
+    /// Public scope. Only valid if it is a public calendar
     /// </summary>
     [CanBeNull]
     [JsonProperty("public_range")]
     [JsonPropertyName("public_range")]
     public CalendarPublicRange? PublicRange { get; private set; }
     /// <summary>
-    /// 是否全员日历。0-否；1-是
+    /// Whether to have a calendar for all employees. 0-no; 1-yes
     /// </summary>
     [NotNull]
     [JsonProperty("is_corp_calendar")]
@@ -71,7 +71,7 @@ public abstract class CreateOrUpdateCalendar
     [System.Text.Json.Serialization.JsonConverter(typeof(IntToBoolConverter))]
     public bool IsCorpCalendar { get; private set; }
     /// <summary>
-    /// 日历通知范围成员列表。最多2000人
+    /// Calendar notification scope member list. Up to 2000 people
     /// </summary>
     [CanBeNull]
     [JsonProperty("shares")]
@@ -84,7 +84,7 @@ public abstract class CreateOrUpdateCalendar
         Description = Check.Length(description, nameof(description), 512);
     }
     /// <summary>
-    /// 设置公开范围
+    /// Set the public scope
     /// </summary>
     /// <param name="publicRange"></param>
     public void WithPublic(CalendarPublicRange publicRange)
@@ -93,7 +93,7 @@ public abstract class CreateOrUpdateCalendar
         PublicRange = publicRange;
     }
     /// <summary>
-    /// 设置全员日历
+    /// Set everyone's calendar
     /// </summary>
     /// <param name="shares"></param>
     public void WithCorpCalendar(CalendarShare[] shares)
@@ -102,7 +102,7 @@ public abstract class CreateOrUpdateCalendar
         Shares = shares;
     }
     /// <summary>
-    /// 验证输入
+    /// Validate input
     /// </summary>
     /// <exception cref="ArgumentException"></exception>
     public void Validate()

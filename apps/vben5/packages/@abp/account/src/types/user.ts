@@ -1,79 +1,79 @@
 interface UserInfo {
   [property: string]: any;
   /**
-   * 邮箱地址
+   * Email address
    */
   email: string;
   /**
-   * 邮件地址是否已验证
+   * Whether the email address has been verified
    */
   emailVerified: string;
   /**
-   * 名称
+   * name
    */
   givenName?: string;
   /**
-   * 用户名
+   * Username
    */
   name: string;
   /**
-   * 手机号是否已验证
+   * Whether the mobile phone number has been verified
    */
   phoneNumberVerified: string;
   /**
-   * 用户名
+   * Username
    */
   preferredUsername: string;
   /**
-   * 角色列表
+   * Role list
    */
   role: string[];
   /**
-   * 用户标识
+   *User ID
    */
   sub: string;
   /**
-   * 用户名
+   * Username
    */
   uniqueName: string;
 }
-/** oauth标准用户信息结构 */
+/** oauth standard user information structure */
 interface OAuthUserInfo {
   [property: string]: any;
   /**
-   * 邮箱地址
+   * Email address
    */
   email: string;
   /**
-   * 邮件地址是否已验证
+   * Whether the email address has been verified
    */
   email_verified: string;
   /**
-   * 名称
+   * name
    */
   given_name: string;
   /**
-   * 用户名
+   * Username
    */
   name: string;
   /**
-   * 手机号是否已验证
+   * Whether the mobile phone number has been verified
    */
   phone_number_verified: string;
   /**
-   * 用户名
+   * Username
    */
   preferred_username: string;
   /**
-   * 角色列表
+   * Role list
    */
   role: string[];
   /**
-   * 用户标识
+   *User ID
    */
   sub: string;
   /**
-   * 用户名
+   * Username
    */
   unique_name: string;
 }

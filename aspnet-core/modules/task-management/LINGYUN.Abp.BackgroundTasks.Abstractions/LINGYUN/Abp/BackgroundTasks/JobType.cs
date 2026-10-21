@@ -1,19 +1,19 @@
 ﻿namespace LINGYUN.Abp.BackgroundTasks;
 /// <summary>
-/// 任务类别
+/// Task category
 /// </summary>
 public enum JobType
 {
     /// <summary>
-    /// 一次性
+    /// Disposable
     /// </summary>
     Once,
     /// <summary>
-    /// 周期性
+    /// Periodicity
     /// </summary>
     Period,
     /// <summary>
-    /// 持续性
+    /// persistence
     /// </summary>
     Persistent
 }

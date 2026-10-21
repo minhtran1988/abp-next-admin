@@ -21,9 +21,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# vite 打包分析产物
+# vite package analysis products
 stats.html
 
 
-# 取消上层忽略
+# Cancel upper layer ignore
 !.vscode/

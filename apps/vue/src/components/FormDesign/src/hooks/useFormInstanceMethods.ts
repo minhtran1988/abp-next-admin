@@ -13,7 +13,7 @@ export function useFormInstanceMethods(
   _formInstance: Ref<AForm | null>,
 ) {
   /**
-   * 绑定props和on中的上下文为parent
+   * Bind the context in props and on to parent
    */
   const bindContext = () => {
     const instance = getCurrentInstance();
@@ -21,13 +21,13 @@ export function useFormInstanceMethods(
     if (!vm) return;
 
     (props.formConfig.schemas as IVFormComponent[]).forEach((item) => {
-      // 绑定 props 中的上下文
+      // Bind the context in props
       forOwn(item.componentProps, (value: any, key) => {
         if (isFunction(value)) {
           item.componentProps![key] = value.bind(vm);
         }
       });
-      // 绑定事件监听（v-on）的上下文
+      // Bind event listening (v-on) context
       forOwn(item.on, (value: any, key) => {
         if (isFunction(value)) {
           item.componentProps![key] = value.bind(vm);
@@ -44,7 +44,7 @@ export function useFormInstanceMethods(
   const { resetFields, validate, clearValidate, validateField } = useForm(formdata, []);
 
   const submit = async () => {
-    //const _result = await validate();
+    // const _result = await validate();
 
     const data = cloneDeep(toRaw(formdata.value));
     emit?.('submit', data);

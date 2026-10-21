@@ -17,7 +17,7 @@ interface RowType {
 
 const gridOptions: VxeGridProps<RowType> = {
   columns: [
-    { title: '序号', type: 'seq', width: 50 },
+    { title: 'serial number', type: 'seq', width: 50 },
     { editRender: { name: 'input' }, field: 'category', title: 'Category' },
     { editRender: { name: 'input' }, field: 'color', title: 'Color' },
     {

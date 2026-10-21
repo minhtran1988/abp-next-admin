@@ -50,9 +50,9 @@ public class LayoutAppService : PlatformApplicationServiceBase, ILayoutAppServic
     {
         var layout = await LayoutRepository.GetAsync(id);
 
-        //if (await LayoutRepository.AnyMenuAsync(layout.Id))
+        // if (await LayoutRepository.AnyMenuAsync(layout.Id))
         //{
-        //    throw new UserFriendlyException($"不能删除存在菜单的布局!");
+        // throw new UserFriendlyException($"Cannot delete the layout of the existing menu!");
         //}
 
         await LayoutRepository.DeleteAsync(layout);

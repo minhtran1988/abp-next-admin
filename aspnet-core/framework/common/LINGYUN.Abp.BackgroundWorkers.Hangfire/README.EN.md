@@ -1,6 +1,6 @@
 # LINGYUN.Abp.BackgroundWorkers.Hangfire
 
-English | [简体中文](README.md)
+English | [Simplified Chinese](README.md)
 
 ## 1. Introduction
 

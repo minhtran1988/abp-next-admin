@@ -77,7 +77,7 @@ const [Form, formApi] = useVbenForm({
           { label: 'DateTime', value: ValueType.DateTime },
           { label: 'Boolean', value: ValueType.Boolean },
           { label: 'Array', value: ValueType.Array },
-          // TODO: Object 暂不支持
+          // TODO: Object is not supported yet
           // { label: 'Object', value: ValueType.Object },
         ],
       },

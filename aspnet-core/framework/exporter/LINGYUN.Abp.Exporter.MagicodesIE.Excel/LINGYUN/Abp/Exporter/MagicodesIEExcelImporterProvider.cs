@@ -42,7 +42,7 @@ public class MagicodesIEExcelImporterProvider :
     {
         using var importHelper = new AbpImportHelper<T>(stream, null);
 
-        // 由于Microsoft.IE.Excel官方此接口未暴露用户配置,做一次转换
+        // Since the official interface of Microsoft.IE.Excel does not expose user configuration, do a conversion
         if (_options.ImportSettingMapping.TryGetValue(typeof(T), out var importSetting))
         {
             importHelper.ConfigureExcelImportSettings(importSetting);

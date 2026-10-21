@@ -4,13 +4,13 @@ outline: deep
 
 # CLI
 
-项目中，提供了一些命令行工具，用于一些常用的操作，代码位于 `scrips` 内。
+In the project, some command line tools are provided for some common operations, and the code is located in `scrips`.
 
 ## vsh
 
-用于一些项目操作，如清理项目、检查项目等。
+Used for some project operations, such as cleaning projects, checking projects, etc.
 
-### 用法
+### Usage
 
 ```bash
 pnpm vsh [command] [options]
@@ -18,91 +18,91 @@ pnpm vsh [command] [options]
 
 ### vsh check-circular
 
-检查整个项目循环引用，如果有循环引用，会在控制台输出循环引用的模块。
+Check the entire project for circular references. If there are circular references, the circularly referenced modules will be output on the console.
 
-#### 用法
+#### Usage
 
 ```bash
 pnpm vsh check-circular
 ```
 
-#### 选项
+#### Options
 
-| 选项       | 说明                                |
+| Options | Description |
 | ---------- | ----------------------------------- |
-| `--staged` | 只检查git暂存区内的文件,默认`false` |
+| `--staged` | Only check files in the git staging area, default `false` |
 
 ### vsh check-dep
 
-检查整个项目依赖情况，并在控制台输出`未使用的依赖`、`未安装的依赖`信息
+Check the dependencies of the entire project and output `unused dependencies` and `uninstalled dependencies` information on the console
 
-#### 用法
+#### Usage
 
 ```bash
 pnpm vsh check-dep
 ```
 
-#### 选项
+#### Options
 
-| 选项             | 说明                                    |
+| Options | Description |
 | ---------------- | --------------------------------------- |
-| `-r,--recursive` | 递归删除整个项目,默认`true`             |
-| `--del-lock`     | 是否删除`pnpm-lock.yaml`文件,默认`true` |
+| `-r,--recursive` | Recursively delete the entire project, default `true` |
+| `--del-lock` | Whether to delete the `pnpm-lock.yaml` file, default `true` |
 
 ### vsh lint
 
-对项目进行lint检查，检查项目中的代码是否符合规范。
+Perform lint check on the project to check whether the code in the project complies with the specifications.
 
-#### 用法
+#### Usage
 
 ```bash
 pnpm vsh lint
 ```
 
-#### 选项
+#### Options
 
-| 选项       | 说明                           |
+| Options | Description |
 | ---------- | ------------------------------ |
-| `--format` | 检查并尝试修复错误,默认`false` |
+| `--format` | Check and try to fix errors, default `false` |
 
 ### vsh publint
 
-对 `Monorepo` 项目进行包规范检查，检查项目中的包是否符合规范。
+Perform package specification checking on the `Monorepo` project to check whether the packages in the project comply with the specification.
 
-#### 用法
+#### Usage
 
 ```bash
 pnpm vsh publint
 ```
 
-#### 选项
+#### Options
 
-| 选项      | 说明                   |
+| Options | Description |
 | --------- | ---------------------- |
-| `--check` | 仅执行检查,默认`false` |
+| `--check` | Only perform checks, default `false` |
 
 ### vsh code-workspace
 
-生成 `vben-admin.code-workspace` 文件，目前不需要手动执行，会在代码提交时自动执行。
+Generate the `vben-admin.code-workspace` file. Currently, there is no need to execute it manually. It will be executed automatically when the code is submitted.
 
-#### 用法
+#### Usage
 
 ```bash
 pnpm vsh code-workspace
 ```
 
-#### 选项
+#### Options
 
-| 选项            | 说明                                   |
+| Options | Description |
 | --------------- | -------------------------------------- |
-| `--auto-commit` | `git commit`时候，自动提交,默认`false` |
-| `--spaces`      | 缩进格式,默认 `2`个缩进                |
+| `--auto-commit` | When `git commit`, commit automatically, default `false` |
+| `--spaces` | Indent format, default `2` indentation |
 
 ## turbo-run
 
-用于快速执行大仓中脚本，并提供选项式交互选择。
+Used to quickly execute scripts in warehouses and provide optional interactive selections.
 
-### 用法
+### Usage
 
 ```bash
 pnpm turbo-run [command]
@@ -110,4 +110,4 @@ pnpm turbo-run [command]
 
 ### turbo-run dev
 
-快速执行`dev`命令，并提供选项式交互选择。
+Quickly execute the `dev` command and provide optional interactive selection.

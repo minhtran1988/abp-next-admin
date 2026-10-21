@@ -3,42 +3,42 @@ namespace LINGYUN.Abp.OpenObserve.Models;
 public static class OpenObserveConstants
 {
     /// <summary>
-    /// 搜索接口默认超时时间(秒)
+    /// Search interface default timeout (seconds)
     /// </summary>
     public const int ZO_QUERY_TIMEOUT = 30;
     /// <summary>
-    /// 默认端点
+    /// Default endpoint
     /// </summary>
     public const string DefaultEndpoint = "http://localhost:5080";
     /// <summary>
-    /// 默认请求超时时间
+    /// Default request timeout
     /// </summary>
     public const int DefaultTimeoutSeconds = 30;
     /// <summary>
-    /// 默认组织名称
+    /// Default organization name
     /// </summary>
     public const string DefaultOrganization = "default";
     /// <summary>
-    /// 元数据组织名称
+    /// Metadata organization name
     /// </summary>
     /// <remarks>
-    /// 集群信息等接口仅对 _meta 组织开放
+    /// Interfaces such as cluster information are only open to the _meta organization
     /// </remarks>
     public const string MetaOrganization = "_meta";
     /// <summary>
-    /// JSON 内容类型
+    /// JSON content type
     /// </summary>
     public const string JsonContentType = "application/json";
     /// <summary>
-    /// NDJSON 内容类型
+    /// NDJSON content type
     /// </summary>
     /// <remarks>
-    /// 用于 _bulk 与 _multi 接口(每行一个 JSON 对象)
+    /// For _bulk and _multi interfaces (one JSON object per line)
     /// </remarks>
     public const string NdJsonContentType = "application/x-ndjson";
 
     /// <summary>
-    /// 数据流类型
+    /// Data stream type
     /// </summary>
     public static class StreamTypes
     {
@@ -48,10 +48,10 @@ public static class OpenObserveConstants
     }
 
     /// <summary>
-    /// _bulk 支持的动作
+    /// Actions supported by _bulk
     /// </summary>
     /// <remarks>
-    /// delete 不被支持
+    /// delete is not supported
     /// </remarks>
     public static class BulkActions
     {
@@ -61,7 +61,7 @@ public static class OpenObserveConstants
     }
 
     /// <summary>
-    /// 默认文件夹
+    /// Default folder
     /// </summary>
     public const string DefaultFolder = "default";
 }

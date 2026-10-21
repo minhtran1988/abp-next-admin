@@ -1,17 +1,17 @@
 # LINGYUN.Abp.FeatureManagement.Client
 
-针对客户端的功能验证管理授权
+Functional verification management authorization for clients
 
-## 功能特性
+## Features
 
-* 提供客户端功能管理提供者(ClientFeatureManagementProvider)
-* 支持客户端功能的权限管理
-* 支持本地化资源管理
-* 与ABP框架的功能管理模块无缝集成
+* Provide client feature management provider (ClientFeatureManagementProvider)
+* Support permission management of client functions
+* Support localized resource management
+* Seamlessly integrated with the function management module of the ABP framework
 
-## 配置使用
+## Configuration usage
 
-1. 添加模块依赖
+1. Add module dependencies
 
 ```csharp
 [DependsOn(typeof(AbpFeatureManagementClientModule))]
@@ -21,12 +21,12 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 权限配置
+2. Permission configuration
 
-模块预定义了以下权限：
-* FeatureManagement.ManageClientFeatures：管理客户端功能的权限
+The module comes predefined with the following permissions:
+* FeatureManagement.ManageClientFeatures: Permission to manage client features
 
-3. 使用示例
+3. Usage examples
 
 ```csharp
 public class YourService
@@ -40,16 +40,16 @@ public class YourService
 
     public async Task SetClientFeatureAsync(string clientId, string featureName, string value)
     {
-        // 设置客户端功能值
+        //Set client function value
         await _featureManager.SetForClientAsync(clientId, featureName, value);
     }
 }
 ```
 
-## 更多
+## More
 
-* 本模块依赖于LINGYUN.Abp.Features.Client模块
-* 支持通过AbpFeatureManagementResource进行本地化配置
-* 提供了针对客户端功能管理的权限控制
+* This module depends on the LINGYUN.Abp.Features.Client module
+* Support localized configuration through AbpFeatureManagementResource
+* Provides permission control for client function management
 
-[简体中文](./README.md) | [English](./README.EN.md)
+[Simplified Chinese](./README.md) | [English](./README.EN.md)

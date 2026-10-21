@@ -3,35 +3,35 @@
 public enum ValueType
 {
     /// <summary>
-    /// 不加入设置管理(配合前端请勿传递设置值)
+    /// Do not join setting management (do not pass setting values when cooperating with the front end)
     /// </summary>
     NoSet = -1,
     /// <summary>
-    /// 字符
+    /// characters
     /// </summary>
     String = 0,
     /// <summary>
-    /// 数字
+    /// Number
     /// </summary>
     Number = 1,
     /// <summary>
-    /// 布尔
+    /// Boolean
     /// </summary>
     Boolean = 2,
     /// <summary>
-    /// 日期
+    /// Date
     /// </summary>
     Date = 3,
     /// <summary>
-    /// 数组
+    /// array
     /// </summary>
     Array = 4,
     /// <summary>
-    /// 选项
+    /// Options
     /// </summary>
     Option = 5,
     /// <summary>
-    /// 对象
+    /// Object
     /// </summary>
     Object = 10
 }

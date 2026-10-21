@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 来源文字颜色
+/// Source text color
 /// </summary>
 public enum DescriptionColor
 {
@@ -14,7 +14,7 @@ public enum DescriptionColor
     Green = 3,
 }
 /// <summary>
-/// 卡片来源样式信息
+/// Card source style information
 /// </summary>
 public class TemplateCardSource
 {
@@ -31,21 +31,21 @@ public class TemplateCardSource
     }
 
     /// <summary>
-    /// 来源图片的url，来源图片的尺寸建议为72*72
+    /// The url of the source image. The recommended size of the source image is 72*72
     /// </summary>
     [CanBeNull]
     [JsonProperty("icon_url")]
     [JsonPropertyName("icon_url")]
     public string IconUrl { get; set; }
     /// <summary>
-    /// 来源图片的描述，建议不超过20个字，（支持id转译）
+    /// The description of the source image is recommended to be no more than 20 words (supports ID translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc")]
     [JsonPropertyName("desc")]
     public string Description { get; set; }
     /// <summary>
-    /// 来源文字的颜色，目前支持：0(默认) 灰色，1 黑色，2 红色，3 绿色
+    /// The color of the source text, currently supported: 0 (default) gray, 1 black, 2 red, 3 green
     /// </summary>
     [CanBeNull]
     [JsonProperty("desc_color")]

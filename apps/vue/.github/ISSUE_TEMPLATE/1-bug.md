@@ -7,9 +7,9 @@ assignees: ''
 ---
 
 <!--
-抱歉，您遇到了一个错误。感谢您抽出宝贵的时间进行举报！
+Sorry, you encountered an error. Thank you for taking the time to report!
 
-请尽可能填写以下模板。
+Please fill out the following template as much as possible.
 
 Ouch, sorry you’ve run into a bug.  Thank for taking the time to report it!
 

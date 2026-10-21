@@ -3,63 +3,63 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcolinin%2Fabp-next-admin%2Fmaster%2Faspnet-core%2Fmodules%2FopenIddict%2FLINGYUN.Abp.OpenIddict.Application%2FLINGYUN.Abp.OpenIddict.Application.csproj)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/LINGYUN.Abp.OpenIddict.Application.svg?style=flat-square)](https://www.nuget.org/packages/LINGYUN.Abp.OpenIddict.Application)
 
-## 简介
+## Introduction
 
-`LINGYUN.Abp.OpenIddict.Application` 是基于 ABP OpenIddict 的应用服务层实现，提供了对 OpenIddict 客户端、授权、令牌和作用域的管理功能。
+`LINGYUN.Abp.OpenIddict.Application` is an application service layer implementation based on ABP OpenIddict, which provides management functions for OpenIddict clients, authorization, tokens and scopes.
 
 [English](./README.EN.md)
 
-## 功能特性
+## Features
 
-* OpenIddict 客户端应用程序管理
-  * 创建、更新、删除客户端应用程序
-  * 管理客户端基本信息（客户端ID、密钥、名称等）
-  * 配置授权类型、响应类型、作用域和重定向URI
-  * 支持客户端属性和要求的自定义配置
+* OpenIddict client application management
+  * Create, update, delete client applications
+  * Manage basic client information (client ID, key, name, etc.)
+  * Configure authorization type, response type, scope and redirect URI
+  * Support custom configuration of client properties and requirements
 
-* OpenIddict 授权管理
-  * 查询和删除授权记录
-  * 按客户端ID、创建时间、状态等条件筛选授权
+* OpenIddict authorization management
+  * Query and delete authorization records
+  * Filter authorization based on client ID, creation time, status, etc.
 
-* OpenIddict 令牌管理
-  * 查询和删除令牌
-  * 按客户端ID、创建时间、过期时间、状态等条件筛选令牌
+* OpenIddict token management
+  * Query and delete tokens
+  * Filter tokens by client ID, creation time, expiration time, status, etc.
 
-* OpenIddict 作用域管理
-  * 创建、更新、删除作用域
-  * 管理作用域基本信息（名称、描述、显示名称等）
-  * 支持多语言显示名称和描述
-  * 配置作用域关联的资源
+* OpenIddict scope management
+  * Create, update, delete scopes
+  * Management scope basic information (name, description, display name, etc.)
+  *Support multi-language display name and description
+  * Configure resources associated with the scope
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.OpenIddict.Application
 ```
 
-## 使用
+## Use
 
-1. 添加 `[DependsOn(typeof(AbpOpenIddictApplicationModule))]` 到你的模块类。
+1. Add `[DependsOn(typeof(AbpOpenIddictApplicationModule))]` to your module class.
 
-2. 配置权限:
+2. Configure permissions:
 
-模块预定义了以下权限:
+The module comes with the following permissions predefined:
 
-* OpenIddict.Applications: 客户端应用管理
-  * OpenIddict.Applications.Create: 创建客户端
-  * OpenIddict.Applications.Update: 更新客户端
-  * OpenIddict.Applications.Delete: 删除客户端
-* OpenIddict.Authorizations: 授权管理
-  * OpenIddict.Authorizations.Delete: 删除授权
-* OpenIddict.Scopes: 作用域管理
-  * OpenIddict.Scopes.Create: 创建作用域
-  * OpenIddict.Scopes.Update: 更新作用域
-  * OpenIddict.Scopes.Delete: 删除作用域
-* OpenIddict.Tokens: 令牌管理
-  * OpenIddict.Tokens.Delete: 删除令牌
+* OpenIddict.Applications: Client application management
+  * OpenIddict.Applications.Create: Create client
+  * OpenIddict.Applications.Update: Update client
+  * OpenIddict.Applications.Delete: Delete the client
+* OpenIddict.Authorizations: Authorization management
+  * OpenIddict.Authorizations.Delete: Delete authorization
+* OpenIddict.Scopes: scope management
+  * OpenIddict.Scopes.Create: Create a scope
+  * OpenIddict.Scopes.Update: Update scope
+  * OpenIddict.Scopes.Delete: delete scope
+* OpenIddict.Tokens: Token management
+  * OpenIddict.Tokens.Delete: Delete tokens
 
-## 注意事项
+## Notes
 
-* 客户端应用程序的 ClientId 在创建后不能修改
-* 删除客户端应用程序会同时删除相关的授权和令牌
-* 作用域名称在创建后不能修改
+* The ClientId of the client application cannot be modified after creation.
+* Deleting the client application will also delete related authorizations and tokens
+* The scope name cannot be modified after creation

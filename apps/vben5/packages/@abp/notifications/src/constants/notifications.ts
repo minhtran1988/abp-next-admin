@@ -1,4 +1,4 @@
 export const NotificationNames = {
-  /** 会话过期通知 */
+  /** Session expiration notification */
   SessionExpiration: 'AbpIdentity.Session.Expiration',
 };

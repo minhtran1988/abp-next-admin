@@ -1,24 +1,24 @@
 ﻿namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知类型
+/// Notification type
 /// </summary>
 public enum NotificationType
 {
     /// <summary>
-    /// 应用（仅对当前租户）
+    /// Apply (only to current tenant)
     /// </summary>
     Application = 0,
     /// <summary>
-    /// 系统通知（全局发布）
+    /// System notification (global release)
     /// </summary>
     System = 10,
     /// <summary>
-    /// 用户（对应用户,受租户控制）
+    /// User (corresponding to user, controlled by tenant)
     /// </summary>
     User = 20,
     /// <summary>
-    /// 服务端回调,用户不应进行处理
+    /// Server callback, user should not process it
     /// </summary>
     ServiceCallback = 30,
 }

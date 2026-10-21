@@ -8,39 +8,39 @@ namespace LINGYUN.Abp.MessageService.Chat;
 public class UserChatFriend : CreationAuditedAggregateRoot<long>, IMultiTenant
 {
     /// <summary>
-    /// 租户
+    /// Tenant
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 用户标识
+    /// User ID
     /// </summary>
     public virtual Guid UserId { get; protected set; }
     /// <summary>
-    /// 好友标识
+    /// Friend ID
     /// </summary>
     public virtual Guid FrientId { get; protected set; }
     /// <summary>
-    /// 系统预置
+    /// System Presets
     /// </summary>
     public virtual bool IsStatic { get; set; }
     /// <summary>
-    /// 已添加黑名单
+    /// Blacklist added
     /// </summary>
     public virtual bool Black { get; set; }
     /// <summary>
-    /// 消息免打扰
+    /// Do not disturb messages
     /// </summary>
     public virtual bool DontDisturb { get; set; }
     /// <summary>
-    /// 特别关注
+    /// Special attention
     /// </summary>
     public virtual bool SpecialFocus { get; set; }
     /// <summary>
-    /// 备注名称
+    /// Remark name
     /// </summary>
     public virtual string? RemarkName { get; set; }
     /// <summary>
-    /// 附加说明
+    /// Additional instructions
     /// </summary>
     public virtual string? Description { get; set; }
 
@@ -69,7 +69,7 @@ public class UserChatFriend : CreationAuditedAggregateRoot<long>, IMultiTenant
     {
         if (Status == UserFriendStatus.NeedValidation && status == UserFriendStatus.Added)
         {
-            // 如果是后续验证通过的需要单独的事件
+            // If subsequent verification passes, a separate event is required
             AddLocalEvent(new UserChatFriendEto
             {
                 TenantId = TenantId,

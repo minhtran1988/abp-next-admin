@@ -5,15 +5,15 @@ using Volo.Abp.EventBus;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 客户群成员退群事件推送
+/// Customer group member withdrawal event push
 /// </summary>
 [EventName("external_chat_del_member")]
 public class ExternalChaDelMemberEvent : ExternalChatChangeMemberEvent
 {
     /// <summary>
-    /// 当是成员退群时有值。表示成员的退群方式<br />
-    /// 0 - 自己退群<br />
-    /// 1 - 群主/群管理员移出<br />
+    /// It has a value when a member leaves the group. Indicates how members leave the group<br />
+    /// 0 - Leave the group by yourself<br />
+    /// 1 - Group owner/administrator removed<br />
     /// </summary>
     [XmlElement("QuitScene")]
     public ExternalChatMemberQuitScene QuitScene { get; set; }

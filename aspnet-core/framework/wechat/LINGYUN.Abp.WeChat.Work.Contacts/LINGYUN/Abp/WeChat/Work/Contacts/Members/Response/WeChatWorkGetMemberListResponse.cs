@@ -5,15 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Contacts.Members.Response;
 /// <summary>
-/// 获取部门成员详情响应参数
+/// Get department member details response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/90201" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/90201" />
 /// </remarks>
 public class WeChatWorkGetMemberListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 成员列表
+    /// Member list
     /// </summary>
     [NotNull]
     [JsonProperty("userlist")]

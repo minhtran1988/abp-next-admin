@@ -11,9 +11,9 @@ export function usePermissionsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 查询权限
+   * Query permissions
    * @param provider
-   * @returns 权限实体数据传输对象
+   * @returns permission entity data transfer object
    */
   function getApi(provider: PermissionProvider): Promise<PermissionResultDto> {
     return request<PermissionResultDto>(
@@ -26,7 +26,7 @@ export function usePermissionsApi() {
   }
 
   /**
-   * 更新权限
+   * Update permissions
    * @param provider
    * @param input
    */
@@ -42,9 +42,9 @@ export function usePermissionsApi() {
   }
 
   /**
-   * 获取已授权对象
-   * @param permissionName 权限名称
-   * @param providerName 授权提供者
+   * Get authorized objects
+   * @param permissionName permission name
+   * @param providerName authorized provider
    * @returns
    */
   function getGrantedByProviderApi(

@@ -1,53 +1,53 @@
 # LINGYUN.Platform
 
-平台管理模块，提供了一套完整的平台管理功能，包括菜单管理、布局管理、数据字典、包管理等功能。
+The platform management module provides a complete set of platform management functions, including menu management, layout management, data dictionary, package management and other functions.
 
-## 功能特性
+## Features
 
-* 菜单管理
-  * 多级菜单结构
-  * 用户菜单定制
-  * 角色菜单权限
-  * 菜单收藏功能
-  * 动态菜单预置
+* Menu management
+  * Multi-level menu structure
+  * User menu customization
+  * Role menu permissions
+  * Menu collection function
+  * Dynamic menu presets
 
-* 布局管理
-  * 布局视图实体
-  * 布局数据关联
-  * 多框架支持
+* Layout management
+  * Layout view entity
+  * Layout data association
+  *Multiple framework support
 
-* 数据字典
-  * 数据字典管理
-  * 数据字典项管理
-  * 数据字典种子数据
+* Data dictionary
+  * Data dictionary management
+  * Data dictionary item management
+  * Data dictionary seed data
 
-* 包管理
-  * 包版本控制
-  * 包文件管理
-  * Blob存储集成
-  * 包过滤规范
+* Package management
+  * Package version control
+  * Package file management
+  * Blob storage integration
+  *Packet filtering specifications
 
-* VueVbenAdmin集成
-  * 主题设置
-  * 布局设置
-  * 菜单设置
-  * 标题栏设置
-  * 多标签页设置
+* VueVbenAdmin integration
+  * Theme settings
+  * Layout settings
+  * Menu settings
+  * Title bar settings
+  *Multi-tab settings
 
-## 项目结构
+## Project structure
 
-* `LINGYUN.Platform.Domain.Shared`: 共享领域层
-* `LINGYUN.Platform.Domain`: 领域层
-* `LINGYUN.Platform.EntityFrameworkCore`: 数据访问层
-* `LINGYUN.Platform.Application.Contracts`: 应用服务契约层
-* `LINGYUN.Platform.Application`: 应用服务实现层
-* `LINGYUN.Platform.HttpApi`: HTTP API层
-* `LINGYUN.Platform.HttpApi.Client`: HTTP API代理层
-* `LINGYUN.Platform.Settings.VueVbenAdmin`: VueVbenAdmin前端框架设置模块
+* `LINGYUN.Platform.Domain.Shared`: shared domain layer
+* `LINGYUN.Platform.Domain`: Domain layer
+* `LINGYUN.Platform.EntityFrameworkCore`: data access layer
+* `LINGYUN.Platform.Application.Contracts`: Application service contract layer
+* `LINGYUN.Platform.Application`: application service implementation layer
+* `LINGYUN.Platform.HttpApi`: HTTP API layer
+* `LINGYUN.Platform.HttpApi.Client`: HTTP API proxy layer
+* `LINGYUN.Platform.Settings.VueVbenAdmin`: VueVbenAdmin front-end framework settings module
 
-## 快速开始
+## Quick start
 
-1. 引用模块
+1. Reference module
 ```csharp
 [DependsOn(
     typeof(PlatformDomainModule),
@@ -61,7 +61,7 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-2. 配置数据库
+2. Configure database
 ```json
 {
   "ConnectionStrings": {
@@ -70,28 +70,28 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-3. 更新数据库
+3. Update database
 ```bash
 dotnet ef database update
 ```
 
-## 注意事项
+## Notes
 
-1. 动态菜单管理
-   * 模块默认已初始化与vue-admin相关的菜单
-   * 可以通过 `IDataSeedContributor` 接口预置菜单数据
-   * 布局(path)和菜单(component)不需要添加 @/ 前缀
+1. Dynamic menu management
+   * The module has initialized the menu related to vue-admin by default
+   * Menu data can be preset through the `IDataSeedContributor` interface
+   * Layout (path) and menu (component) do not need to add @/ prefix
 
-2. 数据库迁移
-   * 请在运行平台服务之前执行数据库迁移
-   * 使用 `dotnet ef database update` 命令更新数据库结构
+2. Database migration
+   * Please perform database migration before running platform services
+   * Use the `dotnet ef database update` command to update the database structure
 
-## 更多信息
+## More information
 
-* [共享领域层](./LINGYUN.Platform.Domain.Shared/README.md)
-* [领域层](./LINGYUN.Platform.Domain/README.md)
-* [数据访问层](./LINGYUN.Platform.EntityFrameworkCore/README.md)
-* [应用服务契约层](./LINGYUN.Platform.Application.Contracts/README.md)
-* [应用服务实现层](./LINGYUN.Platform.Application/README.md)
-* [HTTP API层](./LINGYUN.Platform.HttpApi/README.md)
-* [VueVbenAdmin设置模块](./LINGYUN.Platform.Settings.VueVbenAdmin/README.md)
+* [Shared Domain Layer](./LINGYUN.Platform.Domain.Shared/README.md)
+* [Domain layer](./LINGYUN.Platform.Domain/README.md)
+* [Data Access Layer](./LINGYUN.Platform.EntityFrameworkCore/README.md)
+* [Application Service Contract Layer](./LINGYUN.Platform.Application.Contracts/README.md)
+* [Application service implementation layer](./LINGYUN.Platform.Application/README.md)
+* [HTTP API layer](./LINGYUN.Platform.HttpApi/README.md)
+* [VueVbenAdmin settings module](./LINGYUN.Platform.Settings.VueVbenAdmin/README.md)

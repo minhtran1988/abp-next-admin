@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.MsgAudits.Response;
 /// <summary>
-/// 获取会话内容存档开启成员列表响应参数
+/// Get the session content archive to open the member list response parameters
 /// </summary>
 /// <remarks>
-/// 详情见: <see href="https://developer.work.weixin.qq.com/document/path/91614" />
+/// For details, see: <see href="https://developer.work.weixin.qq.com/document/path/91614" />
 /// </remarks>
 public class WeChatWorkGetPermitUserListResponse : WeChatWorkResponse
 {
     /// <summary>
-    /// 设置在开启范围内的成员的userid列表
+    /// Set the userid list of members in the open range
     /// </summary>
     [NotNull]
     [JsonProperty("ids")]

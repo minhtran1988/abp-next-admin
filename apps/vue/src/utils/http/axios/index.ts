@@ -1,4 +1,4 @@
-// axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
+// The axios configuration can be changed according to the project. You only need to change this file, and other files can be left unchanged.
 // The axios configuration can be changed according to the project, just change the file, other files can be left unchanged
 
 import type { AxiosResponse } from 'axios';
@@ -23,23 +23,23 @@ const urlPrefix = globSetting.urlPrefix;
 const { createMessage, createErrorModal } = useMessage();
 
 /**
- * @description: 数据处理，方便区分多种处理方式
+ * @description: Data processing, easy to distinguish between multiple processing methods
  */
 const transform: AxiosTransform = {
   /**
-   * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误
+   * @description: Process request data. If the data is not in the expected format, an error can be thrown directly
    */
   transformRequestHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
     const { t } = useI18n();
     const { isReturnNativeResponse } = options;
-    // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+    // Whether to return the native response header. For example: use this attribute when you need to obtain the response header.
     if (isReturnNativeResponse) {
       return res;
     }
 
     const { data } = res;
 
-    // 对包装结果处理
+    // Process the packaging results
     if (res.headers['_abpwrapresult'] === 'true') {
       if (!data) {
         // return '[HTTP] Request has no return value';
@@ -66,7 +66,7 @@ const transform: AxiosTransform = {
     return data;
   },
 
-  // 请求之前处理config
+  // Process config before requesting
   beforeRequestHook: (config, options) => {
     const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true, urlPrefix } = options;
 
@@ -82,10 +82,10 @@ const transform: AxiosTransform = {
     formatDate && data && !isString(data) && formatRequestDate(data);
     if (config.method?.toUpperCase() === RequestEnum.GET) {
       if (!isString(params)) {
-        // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
+        // Add a timestamp parameter to the get request to avoid getting data from the cache.
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false));
       } else {
-        // 兼容restful风格
+        // Compatible with restful style
         config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
         config.params = undefined;
       }
@@ -103,8 +103,8 @@ const transform: AxiosTransform = {
           config.headers &&
           config.headers['Content-Type'] !== ContentTypeEnum.FORM_DATA
         ) {
-          // 防止form-data类型数据被清除
-          // 非GET请求如果没有提供data，则将params视为data
+          // Prevent form-data type data from being cleared
+          // For non-GET requests, if no data is provided, params will be treated as data.
           config.data = params;
           config.params = undefined;
         }
@@ -115,7 +115,7 @@ const transform: AxiosTransform = {
           );
         }
       } else {
-        // 兼容restful风格
+        // Compatible with restful style
         config.url = config.url + params;
         config.params = undefined;
       }
@@ -124,11 +124,11 @@ const transform: AxiosTransform = {
   },
 
   /**
-   * @description: 请求拦截器处理
+   * @description: Request interceptor processing
    */
   requestInterceptors: (config, options) => {
     config.headers = config.headers ?? {};
-    // 请求之前处理config
+    // Process config before requesting
     const token = getToken();
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
@@ -147,14 +147,14 @@ const transform: AxiosTransform = {
   },
 
   /**
-   * @description: 响应拦截器处理
+   * @description: response interceptor processing
    */
   responseInterceptors: (res: AxiosResponse<any>) => {
     return res;
   },
 
   /**
-   * @description: 响应错误处理
+   * @description: Response error handling
    */
   responseInterceptorsCatch: (_, error: any) => {
     // const { t } = useI18n();
@@ -186,47 +186,47 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // authenticationScheme: 'Bearer',
         authenticationScheme: 'Bearer',
         timeout: 30 * 1000,
-        // 基础接口地址
+        // Basic interface address
         // baseURL: globSetting.apiUrl,
 
         headers: {
           'Content-Type': ContentTypeEnum.JSON,
-          // 取消后端cookie重定向
+          // Cancel backend cookie redirection
           'X-Request-From': 'vben',
         },
-        // 如果是form-data格式
+        // If it is form-data format
         // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
-        // 数据处理方式
+        // Data processing method
         transform,
         xsrfCookieName: 'XSRF-TOKEN',
         // ASP.NET Core
         xsrfHeaderName: 'RequestVerificationToken',
-        // 配置项，下面的选项都可以在独立的接口请求中覆盖
+        // Configuration items, the following options can be overridden in independent interface requests
         requestOptions: {
-          // 默认将prefix 添加到url
+          // Add prefix to url by default
           joinPrefix: true,
-          // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+          // Whether to return the native response header. For example: use this attribute when you need to obtain the response header.
           isReturnNativeResponse: false,
-          // 需要对返回数据进行处理
+          // Need to process the returned data
           isTransformRequestResult: false,
           isTransformResponse: true,
-          // post请求的时候添加参数到url
+          // Add parameters to url when making post request
           joinParamsToUrl: false,
-          // 格式化提交参数时间
+          // Format submission parameter time
           formatDate: true,
-          // 消息提示类型
+          // Message prompt type
           errorMessageMode: 'message',
-          // 接口地址
+          // Interface address
           apiUrl: globSetting.apiUrl,
-          // 接口拼接地址
+          // Interface splicing address
           urlPrefix: urlPrefix,
-          //  是否加入时间戳
+          // Whether to add timestamp
           joinTime: true,
-          // 忽略重复请求
+          // Ignore duplicate requests
           ignoreCancelToken: true,
-          // 是否携带token
+          // Whether to carry token
           withToken: true,
-          // 是否携带 Accept-Language 标头
+          // Whether to carry the Accept-Language header
           withAcceptLanguage: true,
           retryRequest: {
             isOpenRetry: true,

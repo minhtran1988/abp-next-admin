@@ -28,8 +28,8 @@ namespace LINGYUN.Abp.Localization.Xml
 
             using (CultureHelper.Use("zh-Hans"))
             {
-                _localizer["Hello World"].Value.ShouldBe("世界你好!");
-                _localizer["C# Test"].Value.ShouldBe("C#测试");
+                _localizer["Hello World"].Value.ShouldBe("\u4e16\u754c\u4f60\u597d!");
+                _localizer["C# Test"].Value.ShouldBe("C#\u6d4b\u8bd5");
             }
 
             using (CultureHelper.Use("en"))
@@ -44,7 +44,7 @@ namespace LINGYUN.Abp.Localization.Xml
         {
             using (CultureHelper.Use("zh-Hans"))
             {
-                _localizer["Hello China"].Value.ShouldBe("China 你好!");
+                _localizer["Hello China"].Value.ShouldBe("China \u4f60\u597d!");
             }
 
             using (CultureHelper.Use("en"))
@@ -59,8 +59,8 @@ namespace LINGYUN.Abp.Localization.Xml
             {
                 Texts = new LocalizationText[]
                 {
-                    new LocalizationText("Hello World", "世界你好!"),
-                    new LocalizationText("C# Test", "C#测试")
+                    new LocalizationText("Hello World", "\u4e16\u754c\u4f60\u597d!"),
+                    new LocalizationText("C# Test", "C#\u6d4b\u8bd5")
                 }
             };
 

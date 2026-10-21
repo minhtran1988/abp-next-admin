@@ -11,8 +11,8 @@ export function useEntityChangesApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取包含用户名称的实体变更列表
-   * @param input 参数
+   * Get the entity change list containing the user name
+   * @param input parameter
    */
   function getListWithUsernameApi(
     input: EntityChangeGetWithUsernameInput,

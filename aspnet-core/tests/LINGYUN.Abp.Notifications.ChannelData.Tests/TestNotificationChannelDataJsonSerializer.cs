@@ -4,14 +4,14 @@ using System.Text.Json;
 namespace LINGYUN.Abp.Notifications.ChannelData.Tests;
 
 /// <summary>
-/// 测试用 JSON 实现
+/// Test implemented in JSON
 /// </summary>
 /// <remarks>
-/// 与 <c>AbpNotificationChannelDataJsonSerializer</c> 的职责一致(委托给 JSON 库),
-/// 这里直接使用 <see cref="JsonSerializer"/>,
-/// 以避免框架契约测试依赖 ABP 的完整模块装载。
+/// Consistent with the responsibilities of <c>AbpNotificationChannelDataJsonSerializer</c> (delegated to the JSON library),
+/// Use <see cref="JsonSerializer"/> directly here,
+/// To avoid framework contract tests relying on ABP's full module loading.
 /// <para>
-/// 渠道特有的多态转换器(模板卡片等)在各自渠道的测试项目中断言。
+/// Channel-specific polymorphic converters (template cards, etc.) are asserted in the respective channel's test projects.
 /// </para>
 /// </remarks>
 public class TestNotificationChannelDataJsonSerializer : INotificationChannelDataJsonSerializer

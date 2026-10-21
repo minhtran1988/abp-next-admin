@@ -1,15 +1,15 @@
 # LINGYUN.Abp.Notifications.Core
 
-通知系统的核心模块，提供了通知系统的基础功能和定义。
+The core module of the notification system provides the basic functions and definitions of the notification system.
 
-## 功能特性
+## Features
 
-* 通知定义管理
-* 通知组定义管理
-* 可扩展的通知提供者机制
-* 支持自定义通知定义提供者
+* Notification definition management
+* Notification group definition management
+* Extensible notification provider mechanism
+* Support custom notification definition provider
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpNotificationsCoreModule))]
@@ -19,26 +19,26 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 配置项
+## Configuration items
 
 ```json
 {
   "Notifications": {
-    "DeletedNotifications": [], // 需要删除的通知定义列表
-    "DeletedNotificationGroups": [] // 需要删除的通知组定义列表
+    "DeletedNotifications": [], // List of notification definitions that need to be deleted
+    "DeletedNotificationGroups": [] // List of notification group definitions that need to be deleted
   }
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 实现自定义通知定义提供者
+1. Implement a custom notification definition provider
 ```csharp
 public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
 {
     public override void Define(INotificationDefinitionContext context)
     {
-        // 定义通知
+        // define notification
         context.Add(
             new NotificationDefinition(
                 name: "YourNotification",
@@ -52,7 +52,7 @@ public class YourNotificationDefinitionProvider : NotificationDefinitionProvider
 }
 ```
 
-2. 注册通知定义提供者
+2. Register notification definition provider
 ```csharp
 Configure<AbpNotificationsOptions>(options =>
 {
@@ -60,6 +60,6 @@ Configure<AbpNotificationsOptions>(options =>
 });
 ```
 
-## 更多信息
+## More information
 
-* [ABP文档](https://docs.abp.io)
+* [ABP Documentation](https://docs.abp.io)

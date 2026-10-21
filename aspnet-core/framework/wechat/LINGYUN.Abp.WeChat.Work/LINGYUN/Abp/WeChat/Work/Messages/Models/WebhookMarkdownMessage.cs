@@ -6,12 +6,12 @@ using Volo.Abp;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook Markdown消息体
+/// Webhook Markdown message body
 /// </summary>
 public class WebhookMarkdownMessage
 {
     /// <summary>
-    /// markdown内容，最长不超过4096个字节，必须是utf8编码
+    /// markdown content, up to 4096 bytes, must be utf8 encoded
     /// </summary>
     [NotNull]
     [StringLength(4096)]
@@ -19,9 +19,9 @@ public class WebhookMarkdownMessage
     [JsonPropertyName("content")]
     public string Content { get; set; }
     /// <summary>
-    /// 创建一个Webhook Markdown消息体
+    /// Create a Webhook Markdown message body
     /// </summary>
-    /// <param name="content">markdown内容，最长不超过4096个字节，必须是utf8编码</param>
+    /// <param name="content">markdown content, up to 4096 bytes, must be utf8 encoding</param>
     public WebhookMarkdownMessage(string content)
     {
         Content = Check.NotNullOrWhiteSpace(content, nameof(content), 4096);

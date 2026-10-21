@@ -1,22 +1,22 @@
 # LINGYUN.Abp.Wrapper
 
-包装器模块，用于统一包装API返回结果和异常处理。
+The wrapper module is used to uniformly wrap API return results and exception handling.
 
-## 功能
+## Function
 
-* 统一的返回结果包装
-* 灵活的异常处理机制
-* 支持多种忽略策略
-* 可配置的空结果处理
-* 自定义异常处理器
+* Unified return result packaging
+* Flexible exception handling mechanism
+* Supports multiple ignore strategies
+* Configurable empty result handling
+* Custom exception handler
 
-## 安装
+## Installation
 
 ```bash
 dotnet add package LINGYUN.Abp.Wrapper
 ```
 
-## 配置使用
+## Configuration usage
 
 ```csharp
 [DependsOn(typeof(AbpWrapperModule))]
@@ -26,43 +26,43 @@ public class YouProjectModule : AbpModule
     {
         Configure<AbpWrapperOptions>(options =>
         {
-            // 启用包装器
+            // enable wrapper
             options.IsEnabled = true;
             
-            // 自定义未处理异常的错误代码
+            // Customize the error code for unhandled exceptions
             options.CodeWithUnhandled = "500";
             
-            // 忽略特定前缀的URL
+            // Ignore URLs with specific prefixes
             options.IgnorePrefixUrls.Add("/api/health");
             
-            // 添加自定义异常处理器
+            //Add custom exception handler
             options.AddHandler<CustomException>(new CustomExceptionHandler());
         });
     }
 }
 ```
 
-## 配置项说明
+## Configuration item description
 
-*	AbpWrapperOptions.IsEnabled						是否包装返回结果,默认: false  
-*	AbpWrapperOptions.CodeWithUnhandled				出现未处理异常时的返回错误代码，默认500  
-*	AbpWrapperOptions.CodeWithSuccess				处理成功返回代码，默认0  
-*	AbpWrapperOptions.ErrorWithEmptyResult			请求资源时，如果资源为空是否返回错误消息，默认false    
-*	AbpWrapperOptions.HttpStatusCode				包装后的Http响应代码, 默认: 200
-*	AbpWrapperOptions.CodeWithEmptyResult			当返回空对象时返回错误代码，默认: 404  
-*	AbpWrapperOptions.MessageWithEmptyResult		当返回空对象时返回错误消息, 默认: Not Found  
+* AbpWrapperOptions.IsEnabled Whether to wrap the return result, default: false
+* AbpWrapperOptions.CodeWithUnhandled Return error code when an unhandled exception occurs, default 500
+*AbpWrapperOptions.CodeWithSuccess returns code for successful processing, default 0
+* AbpWrapperOptions.ErrorWithEmptyResult When requesting a resource, whether to return an error message if the resource is empty, default false
+* AbpWrapperOptions.HttpStatusCode wrapped Http response code, default: 200
+* AbpWrapperOptions.CodeWithEmptyResult returns the error code when returning an empty object, default: 404
+* AbpWrapperOptions.MessageWithEmptyResult returns an error message when an empty object is returned, default: Not Found
 
-*	AbpWrapperOptions.IgnorePrefixUrls				指定哪些Url开头的地址不需要处理  
-*	AbpWrapperOptions.IgnoreNamespaces				指定哪些命名空间开头不需要处理  
-*	AbpWrapperOptions.IgnoreControllers				指定哪些控制器不需要处理  
-*	AbpWrapperOptions.IgnoreReturnTypes				指定哪些返回结果类型不需要处理  
-*	AbpWrapperOptions.IgnoreExceptions				指定哪些异常类型不需要处理  
-*	AbpWrapperOptions.IgnoredInterfaces				指定哪些接口不需要处理（默认实现**IWrapDisabled**接口不进行处理）  
+* AbpWrapperOptions.IgnorePrefixUrls specifies which addresses starting with Url do not need to be processed
+* AbpWrapperOptions.IgnoreNamespaces specifies which namespaces do not need to be processed at the beginning
+* AbpWrapperOptions.IgnoreControllers specifies which controllers do not need to be processed
+* AbpWrapperOptions.IgnoreReturnTypes specifies which return result types do not need to be processed
+* AbpWrapperOptions.IgnoreExceptions specifies which exception types do not need to be handled
+* AbpWrapperOptions.IgnoredInterfaces specifies which interfaces do not need to be processed (the default implementation of the **IWrapDisabled** interface is not processed)
 
 
-## 使用示例
+## Usage example
 
-### 1. 基本使用
+### 1. Basic usage
 
 ```csharp
 public class TestController : AbpController
@@ -74,7 +74,7 @@ public class TestController : AbpController
 }
 ```
 
-### 2. 忽略包装
+### 2. Ignore packaging
 
 ```csharp
 [IgnoreWrapResult]
@@ -87,7 +87,7 @@ public class HealthController : AbpController
 }
 ```
 
-### 3. 自定义异常处理
+### 3. Custom exception handling
 
 ```csharp
 public class CustomExceptionHandler : IExceptionWrapHandler
@@ -95,12 +95,12 @@ public class CustomExceptionHandler : IExceptionWrapHandler
     public void Wrap(ExceptionWrapContext context)
     {
         context.WithCode("CUSTOM_ERROR")
-               .WithMessage("发生自定义异常")
+               .WithMessage("A custom exception occurred")
                .WithDetails(context.Exception.Message);
     }
 }
 ```
 
-## 链接
+## Link
 
 * [English document](./README.EN.md)

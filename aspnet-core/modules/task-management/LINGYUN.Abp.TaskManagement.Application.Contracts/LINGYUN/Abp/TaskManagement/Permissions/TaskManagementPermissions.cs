@@ -16,12 +16,12 @@ public static class TaskManagementPermissions
         public const string Start = Default + ".Start";
         public const string Stop = Default + ".Stop";
         /// <summary>
-        /// 是否允许管理系统内置作业
-        /// 通常内置作业是由程序运行中产生，需要控制用户行为
+        /// Whether to allow built-in jobs in the management system
+        /// Usually built-in jobs are generated during program running and need to control user behavior.
         /// </summary>
         public const string ManageSystemJobs = Default + ".ManageSystemJobs";
         /// <summary>
-        /// 管理作业行为
+        /// Manage job behavior
         /// </summary>
         public const string ManageActions = Default + ".ManageActions";
     }

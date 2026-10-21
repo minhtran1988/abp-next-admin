@@ -1,21 +1,21 @@
 # LINGYUN.Abp.IdentityServer.Domain
 
-IdentityServer领域模块，扩展IdentityServer4的领域层功能。
+IdentityServer domain module extends the domain layer functions of IdentityServer4.
 
-## 功能特性
+## Features
 
-* 事件服务扩展
-  * 自定义事件服务实现 - `AbpEventService`
-  * 可配置的事件处理程序 - `IAbpIdentityServerEventServiceHandler`
-  * 默认事件处理程序 - `AbpIdentityServerEventServiceHandler`
-    * 支持失败事件记录
-    * 支持信息事件记录
-    * 支持成功事件记录
-    * 支持错误事件记录
-  * 事件处理程序注册机制
-    * 通过`AbpIdentityServerEventOptions`配置事件处理程序
+* Event service extension
+  * Custom event service implementation - `AbpEventService`
+  * Configurable event handler - `IAbpIdentityServerEventServiceHandler`
+  * Default event handler - `AbpIdentityServerEventServiceHandler`
+    * Support failure event recording
+    * Support information event recording
+    * Support successful event recording
+    * Support error event recording
+  * Event handler registration mechanism
+    * Configure event handlers via `AbpIdentityServerEventOptions`
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -27,43 +27,43 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `Volo.Abp.IdentityServer.AbpIdentityServerDomainModule` - ABP IdentityServer领域模块
+* `Volo.Abp.IdentityServer.AbpIdentityServerDomainModule` - ABP IdentityServer domain module
 
-## 配置使用
+## Configuration usage
 
-### 事件处理程序配置
+### Event handler configuration
 
 ```csharp
 Configure<AbpIdentityServerEventOptions>(options =>
 {
-    // 添加自定义事件处理程序
+    //Add custom event handler
     options.EventServiceHandlers.Add<YourEventServiceHandler>();
 });
 ```
 
-### 事件处理程序实现
+### Event handler implementation
 
 ```csharp
 public class YourEventServiceHandler : IAbpIdentityServerEventServiceHandler
 {
     public virtual bool CanRaiseEventType(EventTypes evtType)
     {
-        // 实现事件类型判断逻辑
+        // Implement event type judgment logic
         return true;
     }
 
     public virtual Task RaiseAsync(Event evt)
     {
-        // 实现事件处理逻辑
+        // Implement event processing logic
         return Task.CompletedTask;
     }
 }
 ```
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [ABP IdentityServer文档](https://docs.abp.io/en/abp/latest/Modules/IdentityServer)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [ABP IdentityServer Documentation](https://docs.abp.io/en/abp/latest/Modules/IdentityServer)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

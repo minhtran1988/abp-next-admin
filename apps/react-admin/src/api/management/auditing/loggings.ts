@@ -5,8 +5,8 @@ import type { LogDto, LogGetListInput } from "#/management/auditing";
 import requestClient from "../../request";
 
 /**
- * 获取系统日志
- * @param id 日志id
+ * Get system logs
+ * @param id log id
  */
 export function getApi(id: string): Promise<LogDto> {
 	return requestClient.get<LogDto>(`/api/auditing/logging/${id}`, {
@@ -15,8 +15,8 @@ export function getApi(id: string): Promise<LogDto> {
 }
 
 /**
- * 获取系统日志分页列表
- * @param input 参数
+ * Get the system log paging list
+ * @param input parameter
  */
 export function getPagedListApi(input: LogGetListInput): Promise<PagedResultDto<LogDto>> {
 	return requestClient.get<PagedResultDto<LogDto>>("/api/auditing/logging", {

@@ -1,31 +1,31 @@
 # LINGYUN.Abp.Dynamic.Queryable.Application
 
-动态查询应用服务模块，提供基于ABP框架的动态查询功能实现。
+The dynamic query application service module provides dynamic query function implementation based on the ABP framework.
 
-## 功能特性
+## Features
 
-* 提供动态查询应用服务基类 `DynamicQueryableAppService<TEntity, TEntityDto>`
-* 自动生成可用字段列表，支持字段本地化
-* 支持字段过滤和忽略
-* 支持枚举类型的选项列表生成
+* Provide dynamic query application service base class `DynamicQueryableAppService<TEntity, TEntityDto>`
+* Automatically generate a list of available fields and support field localization
+* Support field filtering and ignoring
+* Supports option list generation of enumeration types
 
-## 配置使用
+## Configuration usage
 
-1. 安装 `LINGYUN.Abp.Dynamic.Queryable.Application` NuGet包
+1. Install the `LINGYUN.Abp.Dynamic.Queryable.Application` NuGet package
 
-2. 添加 `[DependsOn(typeof(AbpDynamicQueryableApplicationModule))]` 到你的模块类
+2. Add `[DependsOn(typeof(AbpDynamicQueryableApplicationModule))]` to your module class
 
-3. 配置选项（可选）
+3. Configuration options (optional)
 
 ```csharp
 Configure<AbpDynamicQueryableOptions>(options =>
 {
-    // 添加需要忽略的字段
+    //Add fields that need to be ignored
     options.IgnoreFields.Add("FieldName");
 });
 ```
 
-### 实现动态查询服务
+### Implement dynamic query service
 
 ```csharp
 public class MyEntityAppService : DynamicQueryableAppService<MyEntity, MyEntityDto>
@@ -57,7 +57,7 @@ public class MyEntityAppService : DynamicQueryableAppService<MyEntity, MyEntityD
         return ObjectMapper.Map<List<MyEntity>, List<MyEntityDto>>(entities);
     }
 
-    // 自定义需要忽略的字段（可选）
+    // Customize fields to be ignored (optional)
     protected override IEnumerable<string> GetUserDefineIgnoreFields()
     {
         return new[] { "CustomField" };
@@ -65,12 +65,12 @@ public class MyEntityAppService : DynamicQueryableAppService<MyEntity, MyEntityD
 }
 ```
 
-### 配置项说明
+### Configuration item description
 
-* `IgnoreFields` - 需要在查询中忽略的字段列表
-  * 默认包含：Id、TenantId、IsDeleted、DeleterId、DeletionTime等审计字段
+* `IgnoreFields` - list of fields to be ignored in the query
+  * Default includes: Id, TenantId, IsDeleted, DeleterId, DeletionTime and other audit fields
 
-## 相关链接
+## Related links
 
 * [LINGYUN.Linq.Dynamic.Queryable](../LINGYUN.Linq.Dynamic.Queryable/README.md)
 * [LINGYUN.Abp.Dynamic.Queryable.Application.Contracts](../LINGYUN.Abp.Dynamic.Queryable.Application.Contracts/README.md)

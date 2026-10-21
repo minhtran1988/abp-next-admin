@@ -1,26 +1,26 @@
 # LINGYUN.Abp.IdentityServer.HttpApi
 
-IdentityServer HTTP API模块，提供IdentityServer4资源管理的HTTP API接口。
+IdentityServer HTTP API module provides HTTP API interface for IdentityServer4 resource management.
 
-## 功能特性
+## Features
 
-* API控制器
-  * API作用域控制器 - `ApiScopeController`
-    * 创建API作用域 - POST `/api/identity-server/api-scopes`
-    * 删除API作用域 - DELETE `/api/identity-server/api-scopes/{id}`
-    * 获取API作用域 - GET `/api/identity-server/api-scopes/{id}`
-    * 获取API作用域列表 - GET `/api/identity-server/api-scopes`
-    * 更新API作用域 - PUT `/api/identity-server/api-scopes/{id}`
+* API controller
+  * API scope controller - `ApiScopeController`
+    * Create API scope - POST `/api/identity-server/api-scopes`
+    * Delete API scope - DELETE `/api/identity-server/api-scopes/{id}`
+    * Get API scope - GET `/api/identity-server/api-scopes/{id}`
+    * Get the list of API scopes - GET `/api/identity-server/api-scopes`
+    * Update API scope - PUT `/api/identity-server/api-scopes/{id}`
 
-  * API资源控制器 - `ApiResourceController`
-    * 提供API资源的CRUD操作接口
-    * 路由前缀：`/api/identity-server/api-resources`
+  * API resource controller - `ApiResourceController`
+    * Provide CRUD operation interface for API resources
+    * Routing prefix: `/api/identity-server/api-resources`
 
-* 本地化支持
-  * 继承ABP UI资源的本地化配置
-  * 支持多语言
+* Localization support
+  * Inherit the localization configuration of ABP UI resources
+  * Support multiple languages
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(
@@ -32,14 +32,14 @@ public class YourModule : AbpModule
 }
 ```
 
-## 依赖模块
+## Dependent modules
 
-* `AbpIdentityServerApplicationContractsModule` - IdentityServer应用服务契约模块
-* `AbpAspNetCoreMvcModule` - ABP ASP.NET Core MVC模块
+* `AbpIdentityServerApplicationContractsModule` - IdentityServer application service contract module
+* `AbpAspNetCoreMvcModule` - ABP ASP.NET Core MVC module
 
-## 配置使用
+## Configuration usage
 
-### 配置远程服务名称
+### Configure remote service name
 
 ```csharp
 [RemoteService(Name = AbpIdentityServerConsts.RemoteServiceName)]
@@ -51,7 +51,7 @@ public class YourController : AbpControllerBase
 }
 ```
 
-### 添加本地化资源
+### Add localized resources
 
 ```csharp
 Configure<AbpLocalizationOptions>(options =>
@@ -62,8 +62,8 @@ Configure<AbpLocalizationOptions>(options =>
 });
 ```
 
-相关文档:
-* [IdentityServer4文档](https://identityserver4.readthedocs.io/)
-* [ABP ASP.NET Core MVC文档](https://docs.abp.io/en/abp/latest/AspNetCore-MVC)
+Related documents:
+* [IdentityServer4 Documentation](https://identityserver4.readthedocs.io/)
+* [ABP ASP.NET Core MVC Documentation](https://docs.abp.io/en/abp/latest/AspNetCore-MVC)
 
-[查看英文文档](README.EN.md)
+[View English document](README.EN.md)

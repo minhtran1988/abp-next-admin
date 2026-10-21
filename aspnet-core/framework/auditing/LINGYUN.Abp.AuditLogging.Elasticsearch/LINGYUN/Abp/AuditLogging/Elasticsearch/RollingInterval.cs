@@ -1,31 +1,31 @@
 ﻿namespace LINGYUN.Abp.AuditLogging.Elasticsearch;
 /// <summary>
-/// 索引滚动间隔
+/// Index scrolling interval
 /// </summary>
 public enum RollingInterval
 {
     /// <summary>
-    /// 索引名称不会随时间滚动, 索引中不包含时间范围信息
+    /// The index name does not scroll with time, and the index does not contain time range information
     /// </summary>
     Infinite,
     /// <summary>
-    /// 每分钟滚动,索引后缀增加yyyyMMddHHmm
+    /// Rolling every minute, the index suffix increases by yyyyMMddHHmm
     /// </summary>
     Minute,
     /// <summary>
-    /// 每小时滚动,索引后缀增加yyyyMMddHH
+    /// Rolling every hour, the index suffix increases by yyyyMMddHH
     /// </summary>
     Hour,
     /// <summary>
-    /// 每天滚动,索引后缀增加yyyyMMdd
+    /// Rolling every day, the index suffix increases by yyyyMMdd
     /// </summary>
     Day,
     /// <summary>
-    /// 每月滚动,索引后缀增加yyyyMM
+    /// Monthly rolling, the index suffix increases by yyyyMM
     /// </summary>
     Month,
     /// <summary>
-    /// 每年滚动,索引后缀增加yyyy
+    /// Rolling every year, the index suffix increases by yyyy
     /// </summary>
     Year,
 }

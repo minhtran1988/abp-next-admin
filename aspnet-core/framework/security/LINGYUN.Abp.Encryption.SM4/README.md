@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Encryption.SM4
 
-数据加密模块,采用国密SM4算法,使用 **AbpStringEncryptionOptions** 配置无缝切换(密钥长度固定为128位以符合算法要求)  
+Data encryption module, using the National Secret SM4 algorithm, uses **AbpStringEncryptionOptions** to configure seamless switching (the key length is fixed at 128 bits to meet the algorithm requirements)
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp

@@ -66,11 +66,11 @@ export function createFormItemRender() {
             renderOpts,
             params,
             (value: any) => {
-              // 处理 model 值双向绑定
+              // Handle model value two-way binding
               XEUtils.set(data, property, value);
             },
             () => {
-              // 处理 change 事件相关逻辑
+              // Handle change event related logic
               $form.updateStatus({
                 ...params,
                 field: property,

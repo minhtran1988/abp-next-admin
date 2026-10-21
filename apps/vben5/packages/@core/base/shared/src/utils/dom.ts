@@ -8,7 +8,7 @@ export interface VisibleDomRect {
 }
 
 /**
- * 获取元素可见信息
+ * Get the visible information of the element
  * @param element
  */
 export function getElementVisibleRect(
@@ -41,7 +41,7 @@ export function getElementVisibleRect(
   const left = Math.max(rect.left, 0);
   const right = Math.min(rect.right, viewWidth);
 
-  // 如果元素完全不可见，则返回一个空的矩形
+  // If the element is completely invisible, return an empty rectangle
   if (top >= viewHeight || bottom <= 0 || left >= viewWidth || right <= 0) {
     return {
       bottom: 0,
@@ -86,22 +86,22 @@ export function needsScrollbar() {
   const doc = document.documentElement;
   const body = document.body;
 
-  // 检查 body 的 overflow-y 样式
+  // Check the overflow-y style of body
   const overflowY = window.getComputedStyle(body).overflowY;
 
-  // 如果明确设置了需要滚动条的样式
+  // If the style that requires scroll bars is explicitly set
   if (overflowY === 'scroll' || overflowY === 'auto') {
     return doc.scrollHeight > window.innerHeight;
   }
 
-  // 在其他情况下，根据 scrollHeight 和 innerHeight 比较判断
+  // In other cases, judge based on comparison of scrollHeight and innerHeight
   return doc.scrollHeight > window.innerHeight;
 }
 
 export function triggerWindowResize(): void {
-  // 创建一个新的 resize 事件
+  // Create a new resize event
   const resizeEvent = new Event('resize');
 
-  // 触发 window 的 resize 事件
+  // Trigger window's resize event
   window.dispatchEvent(resizeEvent);
 }

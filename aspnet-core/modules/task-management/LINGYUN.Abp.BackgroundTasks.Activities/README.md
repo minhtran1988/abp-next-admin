@@ -1,16 +1,16 @@
 # LINGYUN.Abp.BackgroundTasks.Activities
 
-后台任务（队列）模块行为处理模块    
+Background task (queue) module behavior processing module
 
-## 接口参数  
+## Interface parameters
 
-* IJobActionStore				实现此接口获取作业管理行为  
-* JobActionDefinitionProvider	实现此接口自定义作业行为  
-* JobExecutedProvider			实现此接口扩展作业行为  
+* IJobActionStore implements this interface to obtain job management behavior
+* JobActionDefinitionProvider implements this interface to customize job behavior
+* JobExecutedProvider implements this interface to extend job behavior
 
-## 配置使用
+## Configuration usage
 
-模块按需引用
+Module reference on demand
 
 ```csharp
 [DependsOn(typeof(AbpBackgroundTasksActivitiesModule))]

@@ -11,9 +11,9 @@ import type {
 import requestClient from "../../request";
 
 /**
- * 查询文本列表
- * @param input 参数
- * @returns 文本列表
+ * Query text list
+ * @param input parameter
+ * @returns text list
  */
 export function getListApi(input: GetTextsInput): Promise<ListResultDto<TextDifferenceDto>> {
 	return requestClient.get<ListResultDto<TextDifferenceDto>>("/api/abp/localization/texts", {
@@ -22,9 +22,9 @@ export function getListApi(input: GetTextsInput): Promise<ListResultDto<TextDiff
 }
 
 /**
- * 查询文本
- * @param input 参数
- * @returns 查询的文本
+ * Query text
+ * @param input parameter
+ * @returns query text
  */
 export function getApi(input: GetTextByKeyInput): Promise<TextDto> {
 	return requestClient.get<TextDto>("/api/abp/localization/texts/by-culture-key", {
@@ -33,8 +33,8 @@ export function getApi(input: GetTextByKeyInput): Promise<TextDto> {
 }
 
 /**
- * 设置文本
- * @param input 参数
+ * Set text
+ * @param input parameter
  */
 export function setApi(input: SetTextInput): Promise<void> {
 	return requestClient.put("/api/localization/texts", input);

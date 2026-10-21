@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 数据流列表响应
+/// Data stream list response
 /// </summary>
 public class StreamListResponse
 {

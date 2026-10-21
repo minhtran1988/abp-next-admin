@@ -10,9 +10,9 @@ export function useSubjectStrategysApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取主体数据权限策略
-   * @param input 参数
-   * @returns 数据权限策略配置
+   * Obtain subject data permission policy
+   * @param input parameter
+   * @returns data permission policy configuration
    */
   function getApi(
     input: SubjectStrategyGetInput,
@@ -27,9 +27,9 @@ export function useSubjectStrategysApi() {
   }
 
   /**
-   * 设置主体数据权限策略
-   * @param input 参数
-   * @returns 数据权限策略配置
+   * Set subject data permission policy
+   * @param input parameter
+   * @returns data permission policy configuration
    */
   function setApi(input: SubjectStrategySetInput): Promise<SubjectStrategyDto> {
     return request<SubjectStrategyDto>(

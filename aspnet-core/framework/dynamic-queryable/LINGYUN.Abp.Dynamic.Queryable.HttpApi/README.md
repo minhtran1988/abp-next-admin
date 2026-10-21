@@ -1,20 +1,20 @@
 # LINGYUN.Abp.Dynamic.Queryable.HttpApi
 
-动态查询HTTP API模块，提供基于ABP框架的动态查询HTTP API实现。
+The dynamic query HTTP API module provides dynamic query HTTP API implementation based on the ABP framework.
 
-## 功能特性
+## Features
 
-* 提供动态查询控制器基类 `DynamicQueryableControllerBase<TEntity, TEntityDto>`
-* 自动生成REST API端点
-* 支持动态查询参数的HTTP传输
+* Provide dynamic query controller base class `DynamicQueryableControllerBase<TEntity, TEntityDto>`
+* Automatically generate REST API endpoints
+* Support HTTP transmission of dynamic query parameters
 
-## 配置使用
+## Configuration usage
 
-1. 安装 `LINGYUN.Abp.Dynamic.Queryable.HttpApi` NuGet包
+1. Install the `LINGYUN.Abp.Dynamic.Queryable.HttpApi` NuGet package
 
-2. 添加 `[DependsOn(typeof(AbpDynamicQueryableHttpApiModule))]` 到你的模块类
+2. Add `[DependsOn(typeof(AbpDynamicQueryableHttpApiModule))]` to your module class
 
-### 实现动态查询控制器
+### Implement dynamic query controller
 
 ```csharp
 [Route("api/my-entity")]
@@ -27,12 +27,12 @@ public class MyEntityController : DynamicQueryableControllerBase<MyEntity, MyEnt
 }
 ```
 
-### API端点
+### API endpoint
 
-* GET `/api/my-entity/available-fields` - 获取可用字段列表
-* POST `/api/my-entity/search` - 根据动态条件查询数据
+* GET `/api/my-entity/available-fields` - Get the list of available fields
+* POST `/api/my-entity/search` - Query data based on dynamic conditions
 
-### 查询示例
+### Query example
 
 ```json
 POST /api/my-entity/search
@@ -51,7 +51,7 @@ POST /api/my-entity/search
 }
 ```
 
-## 相关链接
+## Related links
 
 * [LINGYUN.Linq.Dynamic.Queryable](../LINGYUN.Linq.Dynamic.Queryable/README.md)
 * [LINGYUN.Abp.Dynamic.Queryable.Application](../LINGYUN.Abp.Dynamic.Queryable.Application/README.md)

@@ -68,7 +68,7 @@ export function useTabsViewScroll(props: TabsProps) {
     await nextTick();
     scrollToActiveIntoView();
 
-    // 监听大小变化
+    // Monitor size changes
     resizeObserver?.disconnect();
     resizeObserver = new ResizeObserver(
       useDebounceFn((_entries: ResizeObserverEntry[]) => {
@@ -80,7 +80,7 @@ export function useTabsViewScroll(props: TabsProps) {
 
     tabItemCount = props.tabs?.length || 0;
     mutationObserver?.disconnect();
-    // 使用 MutationObserver 仅监听子节点数量变化
+    // Use MutationObserver to only monitor changes in the number of child nodes
     mutationObserver = new MutationObserver(() => {
       const count = viewportEl.querySelectorAll(
         `div[data-tab-item="true"]`,
@@ -96,7 +96,7 @@ export function useTabsViewScroll(props: TabsProps) {
       }
     });
 
-    // 配置为仅监听子节点的添加和移除
+    // Configure to only listen for the addition and removal of child nodes
     mutationObserver.observe(viewportEl, {
       attributes: false,
       childList: true,
@@ -124,7 +124,7 @@ export function useTabsViewScroll(props: TabsProps) {
   }
 
   /**
-   * 计算tabs 宽度，用于判断是否显示左右滚动按钮
+   * Calculate tabs width, used to determine whether to display left and right scroll buttons
    */
   async function calcShowScrollbarButton() {
     if (!scrollViewportEl.value) {
@@ -152,7 +152,7 @@ export function useTabsViewScroll(props: TabsProps) {
   watch(
     () => props.active,
     async () => {
-      // 200为了等待 tab 切换动画完成
+      // 200 to wait for the tab switching animation to complete
       // setTimeout(() => {
       scrollToActiveIntoView();
       // }, 300);

@@ -6,7 +6,7 @@ export function useAbpConfigApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 获取应用程序配置信息
+   * Get application configuration information
    */
   function getConfigApi(options?: {
     includeLocalizationResources?: boolean;

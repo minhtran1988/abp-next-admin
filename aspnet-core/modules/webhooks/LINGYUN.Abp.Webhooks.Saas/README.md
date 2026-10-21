@@ -1,16 +1,16 @@
 # LINGYUN.Abp.Webhooks.Saas
 
-Webhook SaaS集成模块，提供与ABP SaaS系统的集成支持。
+Webhook SaaS integration module provides integration support with the ABP SaaS system.
 
 [English](README.EN.md)
 
-## 功能特性
+## Features
 
-* 与ABP SaaS系统集成
-* 支持多租户Webhook
-* SaaS相关的Webhook事件
+* Integrate with ABP SaaS system
+* Support multi-tenant Webhook
+* SaaS related Webhook events
 
-## 模块引用
+## Module reference
 
 ```csharp
 [DependsOn(typeof(AbpWebhooksSaasModule))]
@@ -20,9 +20,9 @@ public class YouProjectModule : AbpModule
 }
 ```
 
-## 基本用法
+## Basic usage
 
-1. 处理SaaS相关的Webhook
+1. Handle SaaS-related Webhooks
 ```csharp
 public class YourSaasWebhookHandler : IWebhookHandler, ITransientDependency
 {
@@ -30,13 +30,13 @@ public class YourSaasWebhookHandler : IWebhookHandler, ITransientDependency
     {
         if (webhook.WebhookName == "Tenant.Created")
         {
-            // 处理租户创建事件
+            // Handle tenant creation event
         }
     }
 }
 ```
 
-2. 发布SaaS相关的Webhook
+2. Publish SaaS-related Webhooks
 ```csharp
 public class YourService
 {

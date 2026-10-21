@@ -6,18 +6,18 @@ using Volo.Abp.SecurityLog;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 写入 OpenObserve 的安全日志文档
+/// Write the security log document of OpenObserve
 /// </summary>
 /// <remarks>
-/// 继承 <see cref="SecurityLog"/> 并追加 <c>_timestamp</c> 列(由 <see cref="SecurityLog.CreationTime"/> 覆盖)
+/// Inherit <see cref="SecurityLog"/> and append <c>_timestamp</c> column (overridden by <see cref="SecurityLog.CreationTime"/>)
 /// </remarks>
 public class OpenObserveSecurityLog : SecurityLog
 {
     /// <summary>
-    /// OpenObserve 文档时间(微秒)
+    /// OpenObserve document time (microseconds)
     /// </summary>
     /// <remarks>
-    /// 由 <see cref="SecurityLog.CreationTime"/> 覆盖; 为 null 时使用服务端写入时间
+    /// Overridden by <see cref="SecurityLog.CreationTime"/>; when null, use the server-side write time
     /// </remarks>
     [JsonPropertyName("_timestamp")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

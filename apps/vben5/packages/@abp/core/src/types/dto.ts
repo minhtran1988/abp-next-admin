@@ -11,266 +11,266 @@ import type {
   NameValue,
   TimeZone,
 } from './global';
-/** 包装器数据传输对象 */
+/** Wrapper data transfer object */
 interface WrapResult<T> {
   /**
-   * 错误代码
-   * @summary '0' 表示正常
+   * Error code
+   * @summary '0' means normal
    */
   code: string;
-  /** 错误详情 */
+  /** Error details */
   details?: string;
-  /** 错误消息 */
+  /** Error message */
   message: string;
-  /** 返回数据 */
+  /** Return data */
   result: T;
 }
-/** 远程服务验证错误描述 */
+/** Remote service verification error description */
 interface RemoteServiceValidationErrorInfo {
-  /** 字段名称列表 */
+  /** Field name list */
   members: string[];
-  /** 错误消息 */
+  /** Error message */
   message: string;
 }
-/** 远程服务错误描述（仅适用于接口代理） */
+/** Remote service error description (only applicable to interface proxy) */
 interface RemoteServiceErrorInfo {
-  /** 错误代码 */
+  /** Error code */
   code?: string;
-  /** 异常数据 */
+  /** Abnormal data */
   data?: { [key: string]: any };
-  /** 错误详情 */
+  /** Error details */
   details?: string;
-  /** 错误消息 */
+  /** Error message */
   message?: string;
-  /** 验证错误列表 */
+  /** Verification error list */
   validationErrors: RemoteServiceValidationErrorInfo[];
 }
-/** 扩展属性数据传输对象 */
+/** Extended attribute data transfer object */
 interface ExtensibleObject {
-  /** 扩展属性 */
+  /** Extended attributes */
   extraProperties: ExtraPropertyDictionary;
 }
-/** 实体数据传输对象 */
+/** Entity data transfer object */
 interface EntityDto<TPrimaryKey> {
-  /** 实体标识 */
+  /** Entity ID */
   id: TPrimaryKey;
 }
-/** 实体新增属性数据传输对象 */
+/** Entity new attribute data transfer object */
 interface CreationAuditedEntityDto<TPrimaryKey> extends EntityDto<TPrimaryKey> {
-  /** 创建时间 */
+  /** Creation time */
   creationTime: Date;
-  /** 创建人标识 */
+  /** Creator ID */
   creatorId?: string;
 }
-/** 实体新增用户属性数据传输对象 */
+/** Entity adds user attribute data transfer object */
 interface CreationAuditedEntityWithUserDto<
   TPrimaryKey,
   TUserDto,
 > extends CreationAuditedEntityDto<TPrimaryKey> {
-  /** 创建人实体数据传输对象 */
+  /** Creator entity data transfer object */
   creator: TUserDto;
 }
-/** 实体审计属性数据传输对象 */
+/** Entity audit attribute data transfer object */
 interface AuditedEntityDto<
   TPrimaryKey,
 > extends CreationAuditedEntityDto<TPrimaryKey> {
-  /** 上次变更过时间 */
+  /** Last changed time */
   lastModificationTime?: Date;
-  /** 上次变更人 */
+  /** Last change person */
   lastModifierId?: string;
 }
-/** 实体审计用户属性数据传输对象 */
+/** Entity audit user attribute data transfer object */
 interface AuditedEntityWithUserDto<
   TPrimaryKey,
   TUserDto,
 > extends AuditedEntityDto<TPrimaryKey> {
-  /** 创建人实体数据传输对象 */
+  /** Creator entity data transfer object */
   creator: TUserDto;
-  /** 变更人实体数据传输对象 */
+  /** Changer entity data transfer object */
   lastModifier: TUserDto;
 }
-/** 实体审计全属性数据传输对象 */
+/** Entity audit full attribute data transfer object */
 interface FullAuditedEntityDto<
   TPrimaryKey,
 > extends AuditedEntityDto<TPrimaryKey> {
-  /** 删除人标识 */
+  /** Delete person ID */
   deleterId?: string;
-  /** 删除时间 */
+  /** Delete time */
   deletionTime?: Date;
-  /** 是否已删除 */
+  /** Whether it has been deleted */
   isDeleted: boolean;
 }
-/** 实体审计用户全属性数据传输对象 */
+/** Entity audit user full attribute data transmission object */
 interface FullAuditedEntityWithUserDto<TPrimaryKey, TUserDto>
   extends
     AuditedEntityWithUserDto<TPrimaryKey, TUserDto>,
     FullAuditedEntityDto<TPrimaryKey> {
-  /** 删除人实体数据传输对象 */
+  /** Delete person entity data transfer object */
   deleter: TUserDto;
 }
-/** 实体扩展属性数据传输对象 */
+/** Entity extended attribute data transfer object */
 interface ExtensibleEntityDto<TKey> extends EntityDto<TKey>, ExtensibleObject {}
-/** 实体新增扩展属性数据传输对象 */
+/** New extended attribute data transfer object for entities */
 interface ExtensibleCreationAuditedEntityDto<TPrimaryKey>
   extends
     CreationAuditedEntityDto<TPrimaryKey>,
     ExtensibleEntityDto<TPrimaryKey> {}
-/** 实体新增用户扩展属性数据传输对象 */
+/** Entity adds user extended attribute data transfer object */
 interface ExtensibleCreationAuditedEntityWithUserDto<TPrimaryKey, TUserDto>
   extends
     CreationAuditedEntityWithUserDto<TPrimaryKey, TUserDto>,
     ExtensibleEntityDto<TPrimaryKey> {}
-/** 实体审计扩展属性数据传输对象 */
+/** Entity audit extended attribute data transfer object */
 interface ExtensibleAuditedEntityDto<TPrimaryKey>
   extends AuditedEntityDto<TPrimaryKey>, ExtensibleEntityDto<TPrimaryKey> {}
-/** 实体审计用户扩展属性数据传输对象 */
+/** Entity audit user extended attribute data transfer object */
 interface ExtensibleAuditedEntityWithUserDto<TPrimaryKey, TUserDto>
   extends
     AuditedEntityWithUserDto<TPrimaryKey, TUserDto>,
     ExtensibleEntityDto<TPrimaryKey> {}
-/** 实体审计全属性扩展数据传输对象 */
+/** Entity audit full attribute extended data transfer object */
 interface ExtensibleFullAuditedEntityDto<TPrimaryKey>
   extends ExtensibleEntityDto<TPrimaryKey>, FullAuditedEntityDto<TPrimaryKey> {}
-/** 实体审计用户全属性扩展数据传输对象 */
+/** Entity audit user full attribute extended data transfer object */
 interface ExtensibleFullAuditedEntityWithUserDto<TPrimaryKey, TUserDto>
   extends
     ExtensibleEntityDto<TPrimaryKey>,
     FullAuditedEntityWithUserDto<TPrimaryKey, TUserDto> {}
-/** 最大请求数据传输对象 */
+/** Maximum requested data transfer object */
 interface LimitedResultRequestDto {
-  /** 最大返回数据大小 */
+  /** Maximum return data size */
   maxResultCount?: number;
 }
-/** 最大请求扩展数据传输对象 */
+/** Maximum request extended data transfer object */
 interface ExtensibleLimitedResultRequestDto
   extends ExtensibleObject, LimitedResultRequestDto {}
-/** 排序请求数据传输对象 */
+/** Sorting request data transfer object */
 interface SortedResultRequest {
-  /** 排序字段
-   * @summary 升序: 字段名称 + asc；降序: 字段名称 + desc
+  /** Sorting field
+   * @summary Ascending order: field name + asc; Descending order: field name + desc
    * @example fieldA asc
    * @example fieldB desc
    */
   sorting?: string;
 }
-/** 分页请求数据传输对象 */
+/** Paging request data transfer object */
 interface PagedResultRequestDto extends LimitedResultRequestDto {
   /**
-   * 跳过数据大小
-   * @summary 分页时跳过的数据大小，计算方式：（当前页 - 1）* 最大返回结果，不能小于0
+   * Skip data size
+   * @summary The size of data skipped during paging, calculation method: (current page - 1) * The maximum return result, cannot be less than 0
    * @example (pageNum - 1) * pageSize
    */
   skipCount?: number;
 }
-/** 分页排序请求数据传输对象 */
+/** Paging sorting request data transfer object */
 interface PagedAndSortedResultRequestDto
   extends PagedResultRequestDto, SortedResultRequest {}
-/** 分页排序请求扩展数据传输对象 */
+/** Paging sort request extended data transfer object */
 interface ExtensiblePagedAndSortedResultRequestDto
   extends ExtensibleObject, PagedAndSortedResultRequestDto {}
-/** 列表数据传输对象 */
+/** List data transfer object */
 interface ListResultDto<T> {
-  /** 返回项目列表 */
+  /** Return to project list */
   items: T[];
 }
-/** 列表扩展数据传输对象 */
+/** List extension data transfer object */
 interface ExtensibleListResultDto<T>
   extends ExtensibleObject, ListResultDto<T> {}
-/** 分页列表数据传输对象 */
+/** Paging list data transfer object */
 interface PagedResultDto<T> extends ListResultDto<T> {
-  /** 符合条件的最大数量 */
+  /** Maximum number of qualified items */
   totalCount: number;
 }
-/** 分页列表扩展数据传输对象 */
+/** Paginated list extended data transfer object */
 interface ExtensiblePagedResultDto<T>
   extends ExtensibleObject, PagedResultDto<T> {}
-/** 分页列表扩展数据传输对象 */
+/** Paginated list extended data transfer object */
 interface ExtensiblePagedResultRequestDto
   extends ExtensibleObject, PagedResultRequestDto {}
-/** 应用程序本地化资源数据传输对象 */
+/** Application localization resource data transfer object */
 interface ApplicationLocalizationResourceDto {
-  /** 继承资源名称列表 */
+  /** Inherit resource name list */
   baseResources: string[];
-  /** 本地化文本字典列表 */
+  /** Localized text dictionary list */
   texts: Dictionary<string, string>;
 }
-/** 应用程序本地化数据传输对象 */
+/** Application localization data transfer object */
 interface ApplicationLocalizationDto {
-  /** 当前语言环境 */
+  /** Current locale */
   currentCulture: CurrentCulture;
-  /** 资源字典列表 */
+  /** Resource dictionary list */
   resources: Dictionary<string, ApplicationLocalizationResourceDto>;
 }
-/** 应用程序本地化配置数据传输对象 */
+/** Application localization configuration data transfer object */
 interface ApplicationLocalizationConfigurationDto {
-  /** 当前语言环境 */
+  /** Current locale */
   currentCulture: CurrentCulture;
-  /** 默认本地化资源名称 */
+  /**Default localized resource name */
   defaultResourceName: string;
-  /** 多语言文件配置映射（仅后端） */
+  /** Multi-language file configuration mapping (backend only) */
   languageFilesMap: Dictionary<string, NameValue<any>[]>;
-  /** 支持的多语言列表 */
+  /** Supported multi-language list */
   languages: LanguageInfo[];
-  /** 多语言资源映射（仅后端） */
+  /** Multi-language resource mapping (backend only) */
   languagesMap: Dictionary<string, NameValue<any>[]>;
-  /** 本地化资源字典列表 */
+  /** Localized resource dictionary list */
   resources: Dictionary<string, ApplicationLocalizationResourceDto>;
-  /** 本地化资源文本字典列表 */
+  /** Localized resource text dictionary list */
   values: Dictionary<string, Dictionary<string, string>>;
 }
-/** 应用程序授权数据传输对象 */
+/** Application authorization data transfer object */
 interface ApplicationAuthConfigurationDto {
-  /** 已授权字典列表 */
+  /** List of authorized dictionaries */
   grantedPolicies: Dictionary<string, boolean>;
 }
-/** 应用程序设置数据传输对象 */
+/** Application settings data transfer object */
 interface ApplicationSettingConfigurationDto {
-  /** 设置值字典列表 */
+  /** Set value dictionary list */
   values: Dictionary<string, string>;
 }
-/** 应用程序功能数据传输对象 */
+/** Application function data transfer object */
 interface ApplicationFeatureConfigurationDto {
-  /** 功能值字典列表 */
+  /** Function value dictionary list */
   values: Dictionary<string, string>;
 }
-/** 应用程序全局功能数据传输对象 */
+/** Application global function data transfer object */
 interface ApplicationGlobalFeatureConfigurationDto {
-  /** 已启用功能名称列表 */
+  /** Enabled feature name list */
   enabledFeatures: string[];
 }
-/** 应用程序时区数据传输对象 */
+/** Application time zone data transfer object */
 interface TimingDto {
-  /** 时区配置定义 */
+  /** Time zone configuration definition */
   timeZone: TimeZone;
 }
-/** 本地化文本数据对象 */
+/** Localized text data object */
 interface LocalizableStringDto {
-  /** 文本名称 */
+  /** Text name */
   name: string;
-  /** 资源名称 */
+  /** Resource name */
   resource?: string;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyApiGetDto {
   isAvailable: boolean;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyApiCreateDto {
   isAvailable: boolean;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyApiUpdateDto {
   isAvailable: boolean;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyUiTableDto {
   isAvailable: boolean;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyUiFormDto {
   isAvailable: boolean;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyUiLookupDto {
   displayPropertyName: string;
   filterParamName: string;
@@ -278,25 +278,25 @@ interface ExtensionPropertyUiLookupDto {
   url: string;
   valuePropertyName: string;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyApiDto {
   onCreate: ExtensionPropertyApiCreateDto;
   onGet: ExtensionPropertyApiGetDto;
   onUpdate: ExtensionPropertyApiUpdateDto;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyUiDto {
   lookup: ExtensionPropertyUiLookupDto;
   onCreateForm: ExtensionPropertyUiFormDto;
   onEditForm: ExtensionPropertyUiFormDto;
   onTable: ExtensionPropertyUiTableDto;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyAttributeDto {
   config: Dictionary<string, any>;
   typeSimple: string;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionPropertyDto {
   api: ExtensionPropertyApiDto;
   attributes: ExtensionPropertyAttributeDto[];
@@ -307,52 +307,52 @@ interface ExtensionPropertyDto {
   typeSimple: string;
   ui: ExtensionPropertyUiDto;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface EntityExtensionDto {
   configuration: Dictionary<string, any>;
   properties: Dictionary<string, ExtensionPropertyDto>;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ModuleExtensionDto {
   configuration: Dictionary<string, any>;
   entities: Dictionary<string, EntityExtensionDto>;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionEnumFieldDto {
   name: string;
   value: any;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ExtensionEnumDto {
   fields: ExtensionEnumFieldDto[];
   localizationResource: string;
 }
-/** 扩展属性（用于请求代理，忽略） */
+/** Extended attributes (for request proxy, ignored) */
 interface ObjectExtensionsDto {
   enums: Dictionary<string, ExtensionEnumDto>;
   modules: Dictionary<string, ModuleExtensionDto>;
 }
-/** 应用程序配置数据传输对象 */
+/** Application configuration data transfer object */
 interface ApplicationConfigurationDto extends IHasExtraProperties {
-  /** 授权配置 */
+  /** Authorization configuration */
   auth: ApplicationAuthConfigurationDto;
-  /** 时钟配置 */
+  /** Clock configuration */
   clock: Clock;
-  /** 当前租户 */
+  /** Current tenant */
   currentTenant: CurrentTenant;
-  /** 当前用户 */
+  /** Current user */
   currentUser: CurrentUser;
-  /** 功能配置 */
+  /** Function configuration */
   features: ApplicationFeatureConfigurationDto;
-  /** 全局功能配置 */
+  /** Global function configuration */
   globalFeatures: ApplicationGlobalFeatureConfigurationDto;
-  /** 本地化配置 */
+  /** Localization configuration */
   localization: ApplicationLocalizationConfigurationDto;
-  /** 多租户配置 */
+  /** Multi-tenant configuration */
   multiTenancy: MultiTenancyInfo;
-  /** 实体对象扩展配置 */
+  /** Entity object extension configuration */
   objectExtensions: ObjectExtensionsDto;
-  /** 系统设置 */
+  /** System settings */
   setting: ApplicationSettingConfigurationDto;
   // timing: Timing;
 }

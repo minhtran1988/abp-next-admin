@@ -4,118 +4,118 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Search;
 
 /// <summary>
-/// 搜索查询条件
+/// Search query conditions
 /// </summary>
 public class SearchQuery
 {
     /// <summary>
-    /// SQL 查询语句
+    /// SQL query statement
     /// </summary>
     /// <remarks>
-    /// 使用 SQL 过滤数据, 默认按 _timestamp 排序, 可用 order by 覆盖,
-    /// 使用 from/size 做分页
+    /// Use SQL to filter data, sorted by _timestamp by default, and can be overridden by order by.
+    /// Use from/size for paging
     /// </remarks>
     [JsonPropertyName("sql")]
     public string Sql { get; set; }
 
     /// <summary>
-    /// 开始时间(微秒)
+    /// Start time (microseconds)
     /// </summary>
     /// <remarks>
-    /// 必须提供, 否则会全量扫描
+    /// Must be provided, otherwise it will be scanned in full
     /// </remarks>
     [JsonPropertyName("start_time")]
     public long StartTime { get; set; }
 
     /// <summary>
-    /// 结束时间(微秒)
+    /// End time (microseconds)
     /// </summary>
     [JsonPropertyName("end_time")]
     public long EndTime { get; set; }
 
     /// <summary>
-    /// 偏移量
+    /// Offset
     /// </summary>
     [JsonPropertyName("from")]
     public long From { get; set; }
 
     /// <summary>
-    /// 返回条数
+    /// Return the number of items
     /// </summary>
     [JsonPropertyName("size")]
     public long Size { get; set; }
 
     /// <summary>
-    /// 快速模式
+    /// Quick mode
     /// </summary>
     /// <remarks>
-    /// 仅扫描 Interesting Fields, 需服务端开启 ZO_QUICK_MODE_ENABLED
+    /// Only scan Interesting Fields, the server needs to turn on ZO_QUICK_MODE_ENABLED
     /// </remarks>
     [JsonPropertyName("quick_mode")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool QuickMode { get; set; }
 
     /// <summary>
-    /// 查询类型标签
+    /// Query type label
     /// </summary>
     [JsonPropertyName("query_type")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? QueryType { get; set; }
 
     /// <summary>
-    /// 是否统计命中总数
+    /// Whether to count the total number of hits
     /// </summary>
     [JsonPropertyName("track_total_hits")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool TrackTotalHits { get; set; }
 
     /// <summary>
-    /// 是否使用函数
+    /// Whether to use the function
     /// </summary>
     [JsonPropertyName("uses_zo_fn")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool UsesZoFn { get; set; }
 
     /// <summary>
-    /// 应用于结果的函数名称(VRL/JS)
+    /// Function name to apply to the result (VRL/JS)
     /// </summary>
     [JsonPropertyName("query_fn")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? QueryFn { get; set; }
 
     /// <summary>
-    /// 是否跳过 WAL
+    /// Whether to skip WAL
     /// </summary>
     [JsonPropertyName("skip_wal")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool SkipWal { get; set; }
 
     /// <summary>
-    /// 是否流式输出
+    /// Whether to stream output
     /// </summary>
     [JsonPropertyName("streaming_output")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool StreamingOutput { get; set; }
 
     /// <summary>
-    /// 流式标识
+    /// Streaming identifier
     /// </summary>
     [JsonPropertyName("streaming_id")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? StreamingId { get; set; }
 
     /// <summary>
-    /// 直方图间隔(秒)
+    /// Histogram interval (seconds)
     /// </summary>
     [JsonPropertyName("histogram_interval")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public long HistogramInterval { get; set; }
 
     /// <summary>
-    /// 时区
+    /// Time zone
     /// </summary>
     /// <remarks>
-    /// 固定偏移, 如 +08:00, 应用于未指定第三个参数的 histogram() 分桶
+    /// Fixed offset, such as +08:00, applied to histogram() buckets without specifying the third parameter
     /// </remarks>
     [JsonPropertyName("timezone")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -136,7 +136,7 @@ public class SearchQuery
     }
 
     /// <summary>
-    /// 设置时间范围
+    /// Set time range
     /// </summary>
     public virtual SearchQuery WithTimeRange(DateTime startTime, DateTime endTime)
     {
@@ -147,7 +147,7 @@ public class SearchQuery
     }
 
     /// <summary>
-    /// 设置分页
+    /// Set paging
     /// </summary>
     public virtual SearchQuery WithPaging(long from, long size)
     {

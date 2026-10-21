@@ -6,31 +6,31 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Function;
 
 /// <summary>
-/// 测试函数请求
+/// Test function request
 /// </summary>
 /// <remarks>
 /// POST /api/{org_id}/functions/test
-/// 注意: 该接口未出现在 API 文档中, 来自实现源码
+/// Note: This interface does not appear in the API document and comes from the implementation source code
 /// </remarks>
 public class TestFunctionRequest
 {
     /// <summary>
-    /// 函数体
+    /// Function body
     /// </summary>
     [JsonPropertyName("function")]
     public string Function { get; set; } = default!;
 
     /// <summary>
-    /// 用于测试的样例数据
+    /// Sample data for testing
     /// </summary>
     [JsonPropertyName("events")]
     public JsonNode[] Events { get; set; } = [];
 
     /// <summary>
-    /// 函数语言
+    /// Functional language
     /// </summary>
     /// <remarks>
-    /// 不传时由服务端自动识别
+    /// If not transmitted, it will be automatically recognized by the server.
     /// </remarks>
     [JsonPropertyName("trans_type")]
     public FunctionTransType? TransType { get; set; }

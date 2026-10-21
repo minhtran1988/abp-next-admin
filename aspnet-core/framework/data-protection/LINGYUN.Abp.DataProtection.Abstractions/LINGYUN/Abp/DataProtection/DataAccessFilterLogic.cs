@@ -2,18 +2,18 @@
 
 namespace LINGYUN.Abp.DataProtection;
 /// <summary>
-/// 数据过滤连接方式
+/// Data filtering connection method
 /// </summary>
 public enum DataAccessFilterLogic
 {
     /// <summary>
-    /// 且
+    /// and
     /// </summary>
-    [Description("且")]
+    [Description("And")]
     And,
     /// <summary>
-    /// 或
+    /// or
     /// </summary>
-    [Description("或")]
+    [Description("or")]
     Or
 }

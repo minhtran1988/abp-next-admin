@@ -11,9 +11,9 @@
         data-clipboard-action="copy"
         :data-clipboard-text="editorJson"
       >
-        复制数据
+        Copy data
       </a-button>
-      <a-button @click="handleExportJson" type="primary">导出代码</a-button>
+      <a-button @click="handleExportJson" type="primary">Export code</a-button>
     </div>
   </div>
 </template>
@@ -50,21 +50,21 @@
   const { clipboardRef, copiedRef } = useCopyToClipboard();
   const { createMessage } = useMessage();
   const handleCopyJson = () => {
-    // 复制数据
+    // copy data
     const value = props.editorJson;
     if (!value) {
-      createMessage.warning('代码为空！');
+      createMessage.warning('The code is empty!');
       return;
     }
     clipboardRef.value = value;
     if (unref(copiedRef)) {
-      createMessage.warning('复制成功！');
+      createMessage.warning('Copy successfully!');
     }
   };
 </script>
 
 <style lang="less" scoped>
-  // modal复制按钮样式
+  // modal copy button style
   .copy-btn-box {
     padding-top: 8px;
     text-align: center;

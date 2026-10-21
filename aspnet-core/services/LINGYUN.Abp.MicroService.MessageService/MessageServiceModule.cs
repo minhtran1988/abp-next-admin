@@ -114,7 +114,7 @@ namespace LINGYUN.Abp.MicroService.MessageService;
     typeof(AbpWeChatOfficialHandlersModule),
     typeof(AbpIdentityNotificationsModule),
 
-    // 重写模板引擎支持外部本地化
+    // Rewrite the template engine to support external localization
     typeof(AbpTextTemplatingScribanModule),
 
     typeof(AbpCAPEventBusModule),
@@ -184,30 +184,30 @@ public partial class MessageServiceModule : AbpModule
         var env = context.GetEnvironment();
 
         app.UseForwardedHeaders();
-        // 本地化
+        // localization
         app.UseMapRequestLocalization();
-        // http调用链
+        // http call chain
         app.UseCorrelationId();
-        // 虚拟文件系统
+        // virtual file system
         app.MapAbpStaticAssets();
-        // 路由
+        // routing
         app.UseRouting();
-        // 跨域
+        // cross domain
         app.UseCors();
-        // 认证
+        // Authentication
         app.UseAuthentication();
         app.UseJwtTokenMiddleware();
-        // 多租户
+        // Multi-tenant
         app.UseMultiTenancy();
-        // 会话
+        // session
         app.UseDynamicClaims();
-        // 授权
+        // Authorize
         app.UseAuthorization();
         if (env.IsDevelopment())
         {
             // Swagger
             app.UseSwagger();
-            // Swagger可视化界面
+            // Swagger visual interface
             app.UseAbpSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support Message Service API");
@@ -217,10 +217,10 @@ public partial class MessageServiceModule : AbpModule
                 options.OAuthScopes(configuration["AuthServer:Audience"]);
             });
         }
-        // 审计日志
+        // Audit log
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
-        // 路由
+        // routing
         app.UseConfiguredEndpoints();
     }
 }

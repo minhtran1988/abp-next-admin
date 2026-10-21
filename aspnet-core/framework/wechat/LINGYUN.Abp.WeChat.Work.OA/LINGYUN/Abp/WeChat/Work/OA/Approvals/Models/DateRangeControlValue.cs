@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.OA.Approvals.Models;
 /// <summary>
-/// 时长控件值
+/// Duration control value
 /// </summary>
 public class DateRangeControlValue : ControlValue
 {
     /// <summary>
-    /// 时长
+    /// Duration
     /// </summary>
     [NotNull]
     [JsonProperty("date_range")]
@@ -29,28 +29,28 @@ public class DateRangeControlValue : ControlValue
 public class DateRangeValue
 {
     /// <summary>
-    /// 时长粒度：halfday:按天 hour:按小时
+    /// Duration granularity: halfday: by day hour: by hour
     /// </summary>
     [NotNull]
     [JsonProperty("type")]
     [JsonPropertyName("type")]
     public string Type { get; set; } = default!;
     /// <summary>
-    /// 开始时间,unix时间戳。当type 为halfday时，取值只能为固定两个时间点 上午：当天00:00:00点时间戳 下午：当天12:00:00时间戳
+    /// Start time, unix timestamp. When type is halfday, the value can only be two fixed time points: AM: 00:00:00 timestamp of the day PM: 12:00:00 timestamp of the day
     /// </summary>
     [NotNull]
     [JsonProperty("new_begin")]
     [JsonPropertyName("new_begin")]
     public long NewBegin { get; set; } = default!;
     /// <summary>
-    /// 结束时间，unix时间戳。 当type 为halfday时，取值只能为固定两个时间点 上午：当天00:00:00点时间戳 下午：当天12:00:00时间戳
+    /// End time, unix timestamp. When type is halfday, the value can only be two fixed time points: AM: 00:00:00 timestamp of the day PM: 12:00:00 timestamp of the day
     /// </summary>
     [NotNull]
     [JsonProperty("new_end")]
     [JsonPropertyName("new_end")]
     public long NewEnd { get; set; }
     /// <summary>
-    /// 时长范围， 单位秒
+    /// Duration range, unit seconds
     /// </summary>
     [NotNull]
     [JsonProperty("new_duration")]

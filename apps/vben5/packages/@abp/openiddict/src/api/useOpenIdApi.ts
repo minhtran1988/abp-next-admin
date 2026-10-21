@@ -6,8 +6,8 @@ export function useOpenIdApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * openid发现端点
-   * @returns OpenId配置数据
+   * openid discovery endpoint
+   * @returns OpenId configuration data
    */
   function discoveryApi(): Promise<OpenIdConfiguration> {
     return request<OpenIdConfiguration>('/.well-known/openid-configuration', {

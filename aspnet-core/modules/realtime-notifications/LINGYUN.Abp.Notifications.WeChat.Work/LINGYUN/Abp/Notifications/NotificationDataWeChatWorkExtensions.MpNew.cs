@@ -7,10 +7,10 @@ public static partial class NotificationDataWeChatWorkExtensions
     private const string MpNewMessage = Prefix + "mp_new_message";
 
     /// <summary>
-    /// 图文消息
+    /// Graphic message
     /// </summary>
-    /// <param name="notificationData">通知内容</param>
-    /// <param name="mpNewMessagePayload">图文消息（mp）载体</param>
+    /// <param name="notificationData">Notification content</param>
+    /// <param name="mpNewMessagePayload">Picture and text message (mp) carrier</param>
     public static void WithMpNewMessage(
         this NotificationData notificationData,
         MpNewMessagePayload mpNewMessagePayload)
@@ -19,7 +19,7 @@ public static partial class NotificationDataWeChatWorkExtensions
     }
 
     /// <summary>
-    /// 尝试图文消息
+    /// Try graphic messages
     /// </summary>
     /// <param name="notificationData"></param>
     /// <param name="workMiniProgramMessage"></param>

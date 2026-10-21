@@ -1,10 +1,10 @@
-/** 审计日志权限 */
+/** Audit log permissions */
 export const AuditLogPermissions = {
 	Default: "AbpAuditing.AuditLog",
-	/** 删除 */
+	/** Delete */
 	Delete: "AbpAuditing.AuditLog.Delete",
 };
-/** 系统日志权限 */
+/** System log permissions */
 export const SystemLogPermissions = {
 	Default: "AbpAuditing.SystemLog",
 };

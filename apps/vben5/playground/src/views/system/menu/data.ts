@@ -92,10 +92,10 @@ export function useColumns(
         options: [
           {
             code: 'append',
-            text: '新增下级',
+            text: 'Add subordinate',
           },
-          'edit', // 默认的编辑按钮
-          'delete', // 默认的删除按钮
+          'edit', //Default edit button
+          'delete', //Default delete button
         ],
       },
       field: 'operation',

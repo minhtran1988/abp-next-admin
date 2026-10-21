@@ -3,41 +3,41 @@
 namespace LINGYUN.Abp.Location.Amap
 {
     /// <summary>
-    /// 高德地图正地址解析请求参数
+    /// Amap positive address resolution request parameters
     /// </summary>
     public class AmapPositiveHttpRequestParamter
     {
         /// <summary>
-        /// 结构化的地址
-        /// 规则遵循：国家、省份、城市、区县、城镇、乡村、街道、门牌号码、屋邨、大厦，如：北京市朝阳区阜通东大街6号。
-        /// 如果需要解析多个地址的话，请用"|"进行间隔，并且将 batch 参数设置为 true，最多支持 10 个地址进进行"|"分割形式的请求
+        /// Structured address
+        /// Rules to follow: country, province, city, district, town, village, street, house number, housing estate, building, such as: No. 6, Futong East Street, Chaoyang District, Beijing.
+        /// If you need to parse multiple addresses, please use "|" to separate them, and set the batch parameter to true. A maximum of 10 addresses are supported for "|" split requests.
         /// </summary>
         [NotNull]
         public string Address { get; set; }
         /// <summary>
-        /// 城市
-        /// 可选输入内容包括：指定城市的中文（如北京）、指定城市的中文全拼（beijing）、citycode（010）、adcode（110000），不支持县级市。
-        /// 当指定城市查询内容为空时，会进行全国范围内的地址转换检索。
+        /// city
+        /// Optional input content includes: Chinese of the specified city (such as Beijing), Chinese pinyin of the specified city (beijing), citycode (010), adcode (110000), county-level cities are not supported.
+        /// When the specified city query content is empty, a nationwide address conversion search will be performed.
         /// </summary>
         [CanBeNull]
         public string City { get; set; }
         /// <summary>
-        /// 批量查询控制
-        /// batch 参数设置为 true 时进行批量查询操作，最多支持 10 个地址进行批量查询。
-        /// batch 参数设置为 false 时进行单点查询，此时即使传入多个地址也只返回第一个地址的解析查询结果
+        /// Batch query control
+        /// When the batch parameter is set to true, batch query operation is performed, and a maximum of 10 addresses are supported for batch query.
+        /// When the batch parameter is set to false, a single point query is performed. At this time, even if multiple addresses are passed in, only the parsing query result of the first address will be returned.
         /// </summary>
         [CanBeNull]
         public bool Batch { get; set; } = false;
         /// <summary>
-        /// 数字签名
+        /// Digital signature
         /// </summary>
         [CanBeNull]
 
         public string Sig { get; set; }
         /// <summary>
-        /// 返回数据格式类型
-        /// 可选输入内容包括：JSON，XML。设置 JSON 返回结果数据将会以JSON结构构成；
-        /// 如果设置 XML 返回结果数据将以 XML 结构构成。
+        /// Return data format type
+        /// Optional input content includes: JSON, XML. Set JSON. The returned result data will be composed of JSON structure;
+        /// If XML is set, the returned result data will be composed of XML structure.
         /// </summary>
         [CanBeNull]
         public string Output { get; set; } = "JSON";

@@ -18,52 +18,52 @@ import App from './app.vue';
 import { router } from './router';
 
 async function bootstrap(namespace: string) {
-  // 初始化组件适配器
+  // Initialize component adapter
   await initComponentAdapter();
 
-  // 初始化表单组件
+  // Initialize form components
   await initSetupVbenForm();
 
-  // // 设置弹窗的默认配置
+  // //Set the default configuration of the pop-up window
   // setDefaultModalProps({
   //   fullscreenButton: false,
   // });
-  // // 设置抽屉的默认配置
+  // //Set the default configuration of the drawer
   // setDefaultDrawerProps({
   //   zIndex: 2000,
   // });
   const app = createApp(App);
 
-  // 注册Element Plus提供的v-loading指令
+  // Register the v-loading instruction provided by Element Plus
   app.directive('loading', ElLoading.directive);
 
-  // 注册Vben提供的v-loading和v-spinning指令
+  // Register the v-loading and v-spinning instructions provided by Vben
   registerLoadingDirective(app, {
-    loading: false, // Vben提供的v-loading指令和Element Plus提供的v-loading指令二选一即可，此处false表示不注册Vben提供的v-loading指令
+    loading: false, // You can choose between the v-loading instruction provided by Vben and the v-loading instruction provided by Element Plus. False here means not to register the v-loading instruction provided by Vben.
     spinning: 'spinning',
   });
 
-  // 国际化 i18n 配置
+  // Internationalization i18n configuration
   await setupI18n(app);
 
-  // 配置 pinia-tore
+  // Configure pinia-tore
   await initStores(app, { namespace });
 
-  // 安装权限指令
+  // Install permission instructions
   registerAccessDirective(app);
 
-  // 初始化 tippy
+  // Initialize tippy
   const { initTippy } = await import('@vben/common-ui/es/tippy');
   initTippy(app);
 
-  // 配置路由及路由守卫
+  // Configure routing and routing guards
   app.use(router);
 
-  // 配置Motion插件
+  // Configure Motion plug-in
   const { MotionPlugin } = await import('@vben/plugins/motion');
   app.use(MotionPlugin);
 
-  // 动态更新标题
+  // Dynamically update title
   watchEffect(() => {
     if (preferences.app.dynamicTitle) {
       const routeTitle = router.currentRoute.value.meta?.title;

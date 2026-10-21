@@ -21,7 +21,7 @@ export default {
     app.component('DemoPreview', DemoPreview);
     app.use(NolebaseGitChangelogPlugin);
 
-    // 百度统计
+    // Baidu Statistics
     initHmPlugin();
   },
   extends: DefaultTheme,

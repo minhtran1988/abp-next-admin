@@ -6,7 +6,7 @@ namespace LINGYUN.Abp.Sms.Aliyun;
 public interface IDypnsClientFactory
 {
     /// <summary>
-    /// 构建短信认证客户端
+    /// Build SMS authentication client
     /// </summary>
     /// <returns></returns>
     Task<Client> CreateAsync();

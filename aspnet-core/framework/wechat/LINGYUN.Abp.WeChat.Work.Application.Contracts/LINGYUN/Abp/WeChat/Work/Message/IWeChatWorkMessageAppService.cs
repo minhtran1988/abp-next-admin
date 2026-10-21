@@ -3,24 +3,24 @@ using Volo.Abp.Application.Services;
 
 namespace LINGYUN.Abp.WeChat.Work.Message;
 /// <summary>
-/// 企业微信消息接口
+/// Enterprise WeChat messaging interface
 /// </summary>
 public interface IWeChatWorkMessageAppService : IApplicationService
 {
     /// <summary>
-    /// 校验企业微信消息
+    /// Verify enterprise WeChat messages
     /// </summary>
     /// <remarks>
-    /// 参考文档：<see cref="https://developer.work.weixin.qq.com/document/path/90238"/>
+    /// Reference document: <see cref="https://developer.work.weixin.qq.com/document/path/90238"/>
     /// </remarks>
     /// <param name="input"></param>
     /// <returns></returns>
     Task<string> Handle(MessageValidationInput input);
     /// <summary>
-    /// 处理企业微信消息
+    /// Process corporate WeChat messages
     /// </summary>
     /// <remarks>
-    /// 参考文档：<see cref="https://developer.work.weixin.qq.com/document/path/90238"/>
+    /// Reference document: <see cref="https://developer.work.weixin.qq.com/document/path/90238"/>
     /// </remarks>
     /// <param name="input"></param>
     /// <returns></returns>

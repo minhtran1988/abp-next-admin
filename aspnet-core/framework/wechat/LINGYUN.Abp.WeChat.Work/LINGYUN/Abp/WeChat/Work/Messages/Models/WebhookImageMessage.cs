@@ -4,29 +4,29 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// Webhook图片消息体
+/// Webhook image message body
 /// </summary>
 public class WebhookImageMessage
 {
     /// <summary>
-    /// 图片内容的base64编码
+    /// Base64 encoding of image content
     /// </summary>
     [NotNull]
     [JsonProperty("base64")]
     [JsonPropertyName("base64")]
     public string Base64 { get; set; }
     /// <summary>
-    /// 图片的md5
+    /// md5 of image
     /// </summary>
     [NotNull]
     [JsonProperty("md5")]
     [JsonPropertyName("md5")]
     public string Md5 { get; set; }
     /// <summary>
-    /// 创建一个Webhook图片消息体
+    /// Create a Webhook image message body
     /// </summary>
-    /// <param name="base64">图片内容的base64编码</param>
-    /// <param name="md5">图片的md5</param>
+    /// <param name="base64">base64 encoding of image content</param>
+    /// <param name="md5">md5 of the picture</param>
     public WebhookImageMessage(string base64, string md5)
     {
         Base64 = base64;

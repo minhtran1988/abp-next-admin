@@ -12,7 +12,7 @@ public class AbpNotificationsWxPusherTestModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        // 用捕获式假实现替换真实发送, 避免真正调用 WxPusher 接口
+        // Replace the real sending with a capturing fake implementation to avoid actually calling the WxPusher interface
         context.Services.Replace(
             ServiceDescriptor.Singleton<IWxPusherMessageSender, FakeWxPusherMessageSender>());
     }

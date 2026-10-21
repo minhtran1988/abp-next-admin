@@ -1,9 +1,9 @@
 ﻿namespace LINGYUN.Abp.BackgroundTasks;
 /// <summary>
-/// 任务优先级
+/// Task priority
 /// </summary>
 /// <remarks>
-/// 与框架保持一致
+/// Keep consistent with the framework
 /// </remarks>
 public enum JobPriority
 {

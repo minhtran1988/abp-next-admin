@@ -39,7 +39,7 @@ export function checkStatus(
     case 403:
       errMessage = t('sys.api.errMsg403');
       break;
-    // 404请求不存在
+    // 404 request does not exist
     case 404:
       errMessage = t('sys.api.errMsg404');
       break;
@@ -82,7 +82,7 @@ export function checkStatus(
 }
 
 export function checkResponse(response: any): string | undefined {
-  // 会话超时
+  // Session timeout
   if (response?.status === 401) {
     const userStore = useUserStoreWithOut();
     userStore.setToken(undefined);
@@ -92,7 +92,7 @@ export function checkResponse(response: any): string | undefined {
   }
   
   if (!response?.data) {
-    // 都没捕获到则提示默认错误信息
+    // If neither is captured, the default error message will be prompted.
     checkStatus(response, '');
     return undefined;
   }
@@ -103,7 +103,7 @@ export function checkResponse(response: any): string | undefined {
 
   let errorJson = response?.data.error;
 
-  // abp框架抛出异常信息
+  // abp framework throws exception information
   if (response.headers['_abperrorformat'] === 'true') {
     if (errorJson === undefined && response.data.type === 'application/json') {
       const reader = new FileReader();
@@ -123,13 +123,13 @@ export function checkResponse(response: any): string | undefined {
     }
   }
 
-  // oauth错误信息
+  // oauth error message
   if (response?.data.error_description) {
     error(response.data.error_description);
     return response.data;
   }
 
-  // 其他错误
+  // other errors
   if (response?.data.error.details) {
     error(response.data.error.details);
     return response.data.error.details;

@@ -75,17 +75,17 @@ public class DefaultIdentitySessionChecker : IIdentitySessionChecker, ITransient
         if (lastAccessedTime.HasValue &&
             lastAccessedTime.Value < accressedTime.Subtract(SessionCheckOptions.KeepAccessTimeSpan))
         {
-            // 更新缓存中的访问地址以及客户端Ip地址
+            // Update the access address and client IP address in the cache
             identitySessionCacheItem.LastAccessed = accressedTime;
             identitySessionCacheItem.IpAddresses = DeviceInfoProvider.ClientIpAddress;
 
-            // TODO: 暂时移除,否则刷新令牌将无效
-            // 2024-10-10 从令牌中取颁布时间与过期时间计算时间戳,作为默认缓存过期时间
-            //var expirainTime = claimsPrincipal.FindExpirainTime();
-            //var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            //if (expirainTime.HasValue)
+            // TODO: Remove temporarily, otherwise the refresh token will be invalid
+            // 2024-10-10 Get the issuance time and expiration time from the token to calculate the timestamp as the default cache expiration time
+            // var expirainTime = claimsPrincipal.FindExpirainTime();
+            // var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            // if (expirainTime.HasValue)
             //{
-            //    // 2024-10-25 应计算剩余过期时间
+            // // 2024-10-25 should calculate the remaining expiration time
             //    identitySessionCacheItem.ExpiraIn = (expirainTime.Value - timestamp) * 1000;
             //}
 
@@ -93,12 +93,12 @@ public class DefaultIdentitySessionChecker : IIdentitySessionChecker, ITransient
             await IdentitySessionCache.RefreshAsync(sessionId, identitySessionCacheItem, cancellationToken);
         }
 
-        // 避免某些场景频繁去刷新持久化设施
+        // Avoid frequent refreshes of persistence facilities in certain scenarios
         if (lastAccessedTime.HasValue &&
             lastAccessedTime.Value < accressedTime.Subtract(SessionCheckOptions.SessionSyncTimeSpan))
         {
             Logger.LogDebug("Publishes the cache synchronization user session event from {sessionId}.", sessionId);
-            // 发布事件, 使持久化设施从缓存同步
+            // Publish an event to synchronize the persistence facility from the cache
             var eventData = new IdentitySessionChangeAccessedEvent(
                 identitySessionCacheItem.SessionId,
                 identitySessionCacheItem.IpAddresses,

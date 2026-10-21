@@ -19,20 +19,20 @@ const downloadResult = ref('');
 
 function getBlob() {
   downloadFile1().then((res) => {
-    downloadResult.value = `获取Blob成功，长度：${res.size}`;
+    downloadResult.value = `Getting Blob successfully, length: ${res.size}`;
   });
 }
 
 function getResponse() {
   downloadFile2().then((res) => {
-    downloadResult.value = `获取Response成功，headers：${JSON.stringify(res.headers)},长度：${res.data.size}`;
+    downloadResult.value = `Get Response successfully, headers: ${JSON.stringify(res.headers)}, length: ${res.data.size}`;
   });
 }
 </script>
 
 <template>
-  <Page title="文件下载示例">
-    <Card title="根据文件地址下载文件">
+  <Page title="File download example">
+    <Card title="Download file based on file address">
       <Button
         type="primary"
         @click="
@@ -47,7 +47,7 @@ function getResponse() {
       </Button>
     </Card>
 
-    <Card class="my-5" title="根据地址下载图片">
+    <Card class="my-5" title="Download pictures based on address">
       <Button
         type="primary"
         @click="
@@ -62,7 +62,7 @@ function getResponse() {
       </Button>
     </Card>
 
-    <Card class="my-5" title="base64流下载">
+    <Card class="my-5" title="base64 streaming download">
       <Button
         type="primary"
         @click="
@@ -75,7 +75,7 @@ function getResponse() {
         Download Image
       </Button>
     </Card>
-    <Card class="my-5" title="文本下载">
+    <Card class="my-5" title="Text Download">
       <Button
         type="primary"
         @click="
@@ -90,9 +90,9 @@ function getResponse() {
     </Card>
 
     <Card class="my-5" title="Request download">
-      <Button type="primary" @click="getBlob"> 获取Blob </Button>
+      <Button type="primary" @click="getBlob"> Get Blob </Button>
       <Button type="primary" class="ml-4" @click="getResponse">
-        获取Response
+        GetResponse
       </Button>
       <div class="mt-4">{{ downloadResult }}</div>
     </Card>

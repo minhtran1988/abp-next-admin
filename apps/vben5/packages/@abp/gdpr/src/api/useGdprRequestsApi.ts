@@ -8,8 +8,8 @@ export function useGdprRequestsApi() {
   const { cancel, request } = useRequest();
 
   /**
-   * 删除个人数据请求
-   * @param {string} id 请求Id
+   * Request to delete personal data
+   * @param {string} id request ID
    * @returns {void}
    */
   function deleteApi(id: string): Promise<void> {
@@ -19,7 +19,7 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 删除用户账户
+   * Delete user account
    * @returns {Promise<void>}
    */
   function deletePersonalAccountApi(): Promise<void> {
@@ -29,7 +29,7 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 删除用户数据
+   * Delete user data
    * @returns {Promise<void>}
    */
   function deletePersonalDataApi(): Promise<void> {
@@ -39,7 +39,7 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 准备用户数据
+   * Prepare user data
    * @returns {Promise<void>}
    */
   function preparePersonalDataApi(): Promise<void> {
@@ -49,8 +49,8 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 下载用户数据
-   * @returns {Promise<Blob>} 用户数据文件
+   * Download user data
+   * @returns {Promise<Blob>} user data file
    */
   function downloadPersonalDataApi(requestId: string): Promise<Blob> {
     return request<Blob>(
@@ -63,9 +63,9 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 查询个人数据请求
-   * @param {string} id 请求Id
-   * @returns {Promise<GdprRequestDto>} 个人数据请求
+   * Personal data query request
+   * @param {string} id request ID
+   * @returns {Promise<GdprRequestDto>} personal data request
    */
   function getApi(id: string): Promise<GdprRequestDto> {
     return request<GdprRequestDto>(`/api/gdpr/requests/${id}`, {
@@ -74,9 +74,9 @@ export function useGdprRequestsApi() {
   }
 
   /**
-   * 查询个人数据请求分页列表
-   * @param {GdprRequestGetListInput} input 参数
-   * @returns {Promise<PagedResultDto<GdprRequestDto>>} 个人数据请求列表
+   * Query personal data request paged list
+   * @param {GdprRequestGetListInput} input parameter
+   * @returns {Promise<PagedResultDto<GdprRequestDto>>} Personal data request list
    */
   function getPagedListApi(
     input?: GdprRequestGetListInput,

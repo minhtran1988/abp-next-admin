@@ -36,7 +36,7 @@ public class RolePermissionDataSeedContributor : IDataSeedContributor, ITransien
         {
             Logger.LogInformation("Seeding the Users role permissions...");
 
-            // 所有用户都应该具有查询用户权限, 用于IM场景
+            // All users should have query user permissions, used in IM scenarios
             await PermissionDataSeeder.SeedAsync(
                 RolePermissionValueProvider.ProviderName,
                 "Users",

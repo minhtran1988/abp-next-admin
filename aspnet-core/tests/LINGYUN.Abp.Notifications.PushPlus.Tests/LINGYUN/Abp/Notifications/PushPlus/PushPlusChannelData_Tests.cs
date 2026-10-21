@@ -6,11 +6,11 @@ using Xunit;
 namespace LINGYUN.Abp.Notifications.PushPlus;
 
 /// <summary>
-/// PushPlus 渠道数据测试
+/// PushPlus channel data test
 /// </summary>
 /// <remarks>
-/// 统一写法: 先 new 渠道数据 → 通过 <c>IJsonSerializer</c> 序列化写入通知数据 →
-/// 再让渠道实际发布, 断言捕获到的消息参数。
+/// Unified writing method: first new channel data → serialize and write notification data through <c>IJsonSerializer</c> →
+/// Let the channel actually publish and assert the captured message parameters.
 /// </remarks>
 public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
 {
@@ -19,7 +19,7 @@ public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
     private FakePushPlusMessageSender Sender
         => (FakePushPlusMessageSender)GetRequiredService<LINGYUN.Abp.PushPlus.Message.IPushPlusMessageSender>();
 
-    // ---------- 1. 解析渠道数据 ----------
+    // ---------- 1. Parse channel data ----------
 
     [Fact]
     public void Should_Resolve_Both_Optional_Keys()
@@ -40,7 +40,7 @@ public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
     [Fact]
     public void Should_Declare_Payload_When_Only_One_Key_Written()
     {
-        // Presence = AnyDeclaredProperty: 写入任意一个即视为声明
+        // Presence = AnyDeclaredProperty: writing any one is considered a declaration
         var webhookOnly = WriteChannelData(new PushPlusChannelData
         {
             Webhook = "https://example.com/hook"
@@ -77,7 +77,7 @@ public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
             .ShouldBe("https://example.com/HOOK");
     }
 
-    // ---------- 2. 渠道实际发布(端到端) ----------
+    // ---------- 2. Actual release of channel (end-to-end) ----------
 
     [Fact]
     public async Task Should_Send_With_Resolved_Webhook_And_CallbackUrl()
@@ -89,15 +89,15 @@ public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
             Webhook = "https://example.com/from-channel-data",
             CallbackUrl = "https://example.com/callback"
         });
-        data.WriteStandardData("标题", "内容", DateTime.Now, "system");
+        data.WriteStandardData("title", "content", DateTime.Now, "system");
 
         await PublishAsync(data);
 
         Sender.SentMessages.Count.ShouldBe(1);
         Sender.SentMessages[0].Webhook.ShouldBe("https://example.com/from-channel-data");
         Sender.SentMessages[0].CallbackUrl.ShouldBe("https://example.com/callback");
-        Sender.SentMessages[0].Title.ShouldBe("标题");
-        Sender.SentMessages[0].Content.ShouldBe("内容");
+        Sender.SentMessages[0].Title.ShouldBe("title");
+        Sender.SentMessages[0].Content.ShouldBe("content");
     }
 
     [Fact]
@@ -106,7 +106,7 @@ public class PushPlusChannelData_Tests : AbpNotificationsPushPlusTestsBase
         Sender.Clear();
 
         var data = new NotificationData();
-        data.WriteStandardData("标题", "内容", DateTime.Now, "system");
+        data.WriteStandardData("title", "content", DateTime.Now, "system");
 
         await PublishAsync(data);
 

@@ -41,7 +41,7 @@ const BookMarkIcon = createIconifyIcon('material-symbols:bookmark-outline');
 const selectedKeys = ref<string[]>([]);
 
 const formOptions: VbenFormProps = {
-  // 默认展开
+  // Expand by default
   collapsed: false,
   schema: [
     {
@@ -73,9 +73,9 @@ const formOptions: VbenFormProps = {
       label: $t('AbpUi.Search'),
     },
   ],
-  // 控制表单是否显示折叠按钮
+  // Control whether the form displays the fold button
   showCollapseButton: true,
-  // 按下回车时是否提交表单
+  // Whether to submit the form when pressing enter
   submitOnEnter: true,
 };
 
@@ -207,14 +207,14 @@ const [NotificationModal, modalApi] = useVbenModal({
   ),
 });
 
-/** 点击行标记已读 */
+/** Click the line to mark it as read */
 async function onClickRead(row: Notification) {
   modalApi.setData(row);
   modalApi.open();
   await _onRead([row.id], NotificationReadState.Read);
 }
 
-/** 行标记阅读状态 */
+/** Line mark reading status */
 async function onRowRead(row: Notification, info: MenuInfo) {
   switch (info.key) {
     case 'read': {
@@ -226,7 +226,7 @@ async function onRowRead(row: Notification, info: MenuInfo) {
   }
 }
 
-/** 批量标记阅读状态 */
+/** Batch mark reading status */
 async function onBulkRead(info: MenuInfo) {
   switch (info.key) {
     case 'read': {

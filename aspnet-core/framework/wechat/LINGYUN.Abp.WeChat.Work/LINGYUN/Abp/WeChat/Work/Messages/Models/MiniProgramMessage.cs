@@ -5,47 +5,47 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 小程序通知消息
+/// Mini program notification message
 /// </summary>
 public class MiniProgramMessage
 {
     /// <summary>
-    /// 小程序appid，必须是与当前应用关联的小程序
+    /// The applet appid must be the applet associated with the current application
     /// </summary>
     [NotNull]
     [JsonProperty("appid")]
     [JsonPropertyName("appid")]
     public string AppId { get; set; } = default!;
     /// <summary>
-    /// 消息标题，长度限制4-12个汉字（支持id转译）
+    /// Message title, length limit 4-12 Chinese characters (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("title")]
     [JsonPropertyName("title")]
     public string Title { get; set; } = default!;
     /// <summary>
-    /// 点击消息卡片后的小程序页面，最长1024个字节，仅限本小程序内的页面。该字段不填则消息点击后不跳转。
+    /// The mini program page after clicking the message card has a maximum length of 1024 bytes and is limited to pages within this mini program. If this field is not filled in, the message will not jump after being clicked.
     /// </summary>
     [CanBeNull]
     [JsonProperty("page")]
     [JsonPropertyName("page")]
     public string? Page { get; set; }
     /// <summary>
-    /// 消息描述，长度限制4-12个汉字（支持id转译）
+    /// Message description, length limit 4-12 Chinese characters (supports id translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; set; }
     /// <summary>
-    /// 是否放大第一个content_item
+    /// Whether to enlarge the first content_item
     /// </summary>
     [CanBeNull]
     [JsonProperty("emphasis_first_item")]
     [JsonPropertyName("emphasis_first_item")]
     public bool? EmphasisFirstItem { get; set; }
     /// <summary>
-    /// 消息内容键值对，最多允许10个item
+    /// Message content key-value pair, up to 10 items allowed
     /// </summary>
     [CanBeNull]
     [JsonProperty("content_item")]
@@ -72,14 +72,14 @@ public class MiniProgramMessage
 public class MiniProgramContent
 {
     /// <summary>
-    /// 长度10个汉字以内
+    /// Length within 10 Chinese characters
     /// </summary>
     [NotNull]
     [JsonProperty("key")]
     [JsonPropertyName("key")]
     public string Key { get; set; } = default!;
     /// <summary>
-    /// 长度30个汉字以内（支持id转译）
+    /// Length within 30 Chinese characters (supports id translation)
     /// </summary>
     [NotNull]
     [JsonProperty("value")]

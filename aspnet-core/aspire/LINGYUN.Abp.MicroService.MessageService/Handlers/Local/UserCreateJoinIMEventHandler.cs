@@ -22,7 +22,7 @@ namespace LINGYUN.Abp.MicroService.MessageService.Handlers.Local
             _notificationSubscriptionManager = notificationSubscriptionManager;
         }
         /// <summary>
-        /// 接收添加用户事件,初始化IM用户种子
+        /// Receive the add user event and initialize the IM user seed
         /// </summary>
         /// <param name="eventData"></param>
         /// <returns></returns>

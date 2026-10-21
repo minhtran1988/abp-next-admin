@@ -1,42 +1,42 @@
-/** 组织机构 */
+/** Organization */
 export interface OrganizationUnit extends AuditedEntityDto<string> {
-    /** 父节点标识 */
+    /** Parent node identifier */
     parentId?: string;
-    /** 编号 */
+    /** number */
     code: string;
-    /** 显示名称 */
+    /** display name */
     displayName: string;
   }
   
-  /** 组织机构分页查询对象 */
+  /** Organization paging query object */
   export interface GetOrganizationUnitPagedRequest extends PagedAndSortedResultRequestDto {
-    /** 过滤字符 */
+    /** Filter characters */
     filter?: string;
   }
   
-  /** 组织机构创建对象 */
+  /** Organization creation object */
   export interface CreateOrganizationUnit {
-    /** 显示名称 */
+    /** display name */
     displayName: string;
-    /** 父节点标识 */
+    /** Parent node identifier */
     parentId?: string;
   }
   
-  /** 组织机构变更对象 */
+  /** Organizational structure change object */
   export interface UpdateOrganizationUnit {
-    /** 显示名称 */
+    /** display name */
     displayName: string;
   }
   
-  /** 组织机构增加部门对象 */
+  /** Add department objects to the organization */
   export interface OrganizationUnitAddRole {
-    /** 角色标识列表 */
+    /** Role ID list */
     roleIds: string[];
   }
   
-  /** 组织机构增加用户对象 */
+  /** Add user objects to the organization */
   export interface OrganizationUnitAddUser {
-    /** 用户标识列表 */
+    /** User ID list */
     userIds: string[];
   }
   

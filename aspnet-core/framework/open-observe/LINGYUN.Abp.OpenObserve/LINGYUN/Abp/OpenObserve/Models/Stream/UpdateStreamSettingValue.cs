@@ -5,24 +5,24 @@ using System.Text.Json.Serialization;
 namespace LINGYUN.Abp.OpenObserve.Models.Stream;
 
 /// <summary>
-/// 支持 add/set/remove 的设置项
+/// Supports add/set/remove setting items
 /// </summary>
 public class UpdateStreamSettingValue<T>
 {
     /// <summary>
-    /// 覆盖
+    /// Cover
     /// </summary>
     [JsonPropertyName("set")]
     public T[]? Set { get; set; }
 
     /// <summary>
-    /// 追加
+    /// Append
     /// </summary>
     [JsonPropertyName("add")]
     public T[]? Add { get; set; }
 
     /// <summary>
-    /// 移除
+    /// Remove
     /// </summary>
     [JsonPropertyName("remove")]
     public T[]? Remove { get; set; }

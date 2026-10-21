@@ -6,7 +6,7 @@ using Volo.Abp.Http.Modeling;
 
 namespace LINGYUN.Abp.Cli.ServiceProxying.TypeScript;
 
-// axios原生代理生成
+// axios native proxy generation
 public class AxiosHttpApiScriptGenerator : IHttpApiScriptGenerator, ITransientDependency
 {
     public const string Name = "axios";
@@ -83,7 +83,7 @@ public class AxiosHttpApiScriptGenerator : IHttpApiScriptGenerator, ITransientDe
                     apiScriptBuilder.Append(", ");
                 }
 
-                // 需要格式化url
+                // Need to format url
                 var formatUrlPath = string.Concat("{", paramter.Name, "}");
                 if (url.Contains(formatUrlPath))
                 {

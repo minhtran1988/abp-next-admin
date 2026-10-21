@@ -1,45 +1,45 @@
 # LINGYUN.Abp.MultiTenancy.Saas
 
-多租户SaaS管理模块，提供租户管理、版本管理等功能。
+The multi-tenant SaaS management module provides tenant management, version management and other functions.
 
-## 功能特性
+## Features
 
-* 租户管理：创建、编辑、删除租户，管理租户连接字符串
-* 版本管理：创建、编辑、删除版本，管理版本功能
-* 租户过期管理：支持租户过期时间设置、过期预警、过期资源回收
-* 租户功能管理：支持为租户分配功能权限
+* Tenant management: create, edit, delete tenants, manage tenant connection strings
+* Version management: create, edit, delete versions, and manage version functions
+* Tenant expiration management: supports tenant expiration time setting, expiration warning, expired resource recycling
+* Tenant function management: supports assigning function permissions to tenants
 
-## 配置使用
+## Configuration usage
 
-### 模块配置
+### Module configuration
 
 ```json
 {
   "AbpSaas": {
     "Tenants": {
-      "RecycleStrategy": "1",           // 资源回收策略：0-保留，1-回收
-      "ExpirationReminderDays": "15",   // 过期预警天数，范围1-30天
-      "ExpiredRecoveryTime": "15"       // 过期回收时长，范围1-30天
+      "RecycleStrategy": "1", // Resource recycling strategy: 0-retain, 1-recycle
+      "ExpirationReminderDays": "15", // Number of expiration warning days, range 1-30 days
+      "ExpiredRecoveryTime": "15" // Expired recovery time, range 1-30 days
     }
   }
 }
 ```
 
-### 权限配置
+### Permission configuration
 
 * AbpSaas.Editions
-  * AbpSaas.Editions.Create：创建版本
-  * AbpSaas.Editions.Update：更新版本
-  * AbpSaas.Editions.Delete：删除版本
-  * AbpSaas.Editions.ManageFeatures：管理版本功能
+  * AbpSaas.Editions.Create: Create version
+  * AbpSaas.Editions.Update: updated version
+  *AbpSaas.Editions.Delete: Delete editions
+  * AbpSaas.Editions.ManageFeatures: Manage version functions
 
 * AbpSaas.Tenants
-  * AbpSaas.Tenants.Create：创建租户
-  * AbpSaas.Tenants.Update：更新租户
-  * AbpSaas.Tenants.Delete：删除租户
-  * AbpSaas.Tenants.ManageFeatures：管理租户功能
-  * AbpSaas.Tenants.ManageConnectionStrings：管理租户连接字符串
+  * AbpSaas.Tenants.Create: Create tenants
+  * AbpSaas.Tenants.Update: Update tenants
+  *AbpSaas.Tenants.Delete: delete tenant
+  * AbpSaas.Tenants.ManageFeatures: Manage tenant functions
+  * AbpSaas.Tenants.ManageConnectionStrings: Manage tenant connection strings
 
-## 更多
+## More
 
 [English](README.EN.md)

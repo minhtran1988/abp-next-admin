@@ -8,18 +8,18 @@ const [Drawer, drawerApi] = useVbenDrawer({
   onConfirm() {
     console.info('onConfirm');
   },
-  title: '动态修改配置示例',
+  title: 'Dynamic modification configuration example',
 });
 
 function handleUpdateTitle() {
-  drawerApi.setState({ title: '内部动态标题' });
+  drawerApi.setState({ title: 'Internal dynamic title' });
 }
 </script>
 <template>
   <Drawer>
     <div class="flex-col-center">
       <VbenButton class="mb-3" type="primary" @click="handleUpdateTitle()">
-        内部动态修改标题
+        Dynamically modify the title internally
       </VbenButton>
     </div>
   </Drawer>

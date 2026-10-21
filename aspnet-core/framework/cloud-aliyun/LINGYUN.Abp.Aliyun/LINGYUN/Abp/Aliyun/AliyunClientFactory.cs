@@ -11,7 +11,7 @@ using StsClient = AlibabaCloud.SDK.Sts20150401.Client;
 namespace LINGYUN.Abp.Aliyun;
 
 /// <summary>
-/// 阿里云通用客户端构建工厂
+/// Alibaba Cloud Universal Client Build Factory
 /// </summary>
 /// <typeparam name="TClient"></typeparam>
 public abstract class AliyunClientFactory<TClient>
@@ -117,10 +117,10 @@ public abstract class AliyunClientFactory<TClient>
     }
 }
 /// <summary>
-/// 阿里云通用客户端构建工厂
+/// Alibaba Cloud Universal Client Build Factory
 /// </summary>
-/// <typeparam name="TClient">客户端类型</typeparam>
-/// <typeparam name="TConfiguration">客户端参数类型</typeparam>
+/// <typeparam name="TClient">Client type</typeparam>
+/// <typeparam name="TConfiguration">Client parameter type</typeparam>
 public abstract class AliyunClientFactory<TClient, TConfiguration> : AliyunClientFactory<TClient>
 {
     public AliyunClientFactory(

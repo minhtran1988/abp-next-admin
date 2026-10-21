@@ -15,16 +15,16 @@ using Volo.Abp.Timing;
 namespace LINGYUN.Abp.AuditLogging.OpenObserve;
 
 /// <summary>
-/// 安全日志 OpenObserve 管理器
+/// Security log OpenObserve manager
 /// </summary>
 /// <remarks>
-/// OpenObserve 的限制与处理方式参见 <see cref="OpenObserveAuditLoggingManagerBase"/>
+/// For the limitations and processing methods of OpenObserve, please refer to <see cref="OpenObserveAuditLoggingManagerBase"/>
 /// </remarks>
 [Dependency(ReplaceServices = true)]
 public class OpenObserveSecurityLogManager : OpenObserveAuditLoggingManagerBase, ISecurityLogManager, ITransientDependency
 {
     /// <summary>
-    /// 表达式成员名 -> 数据流列名(数据流列名一律小写)
+    /// Expression member name -> Data flow column name (data flow column names must be lowercase)
     /// </summary>
     protected readonly static Dictionary<string, string> MapedFields = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -78,7 +78,7 @@ public class OpenObserveSecurityLogManager : OpenObserveAuditLoggingManagerBase,
     }
 
     /// <summary>
-    /// OpenObserve 不支持删除记录
+    /// OpenObserve does not support deleting records
     /// </summary>
     protected virtual BusinessException CreateDeleteNotSupportedException()
     {
@@ -157,7 +157,7 @@ public class OpenObserveSecurityLogManager : OpenObserveAuditLoggingManagerBase,
     }
 
     /// <summary>
-    /// 由查询参数构建条件
+    /// Construct conditions from query parameters
     /// </summary>
     protected virtual List<Condition> BuildConditions(
         string? applicationName = null,

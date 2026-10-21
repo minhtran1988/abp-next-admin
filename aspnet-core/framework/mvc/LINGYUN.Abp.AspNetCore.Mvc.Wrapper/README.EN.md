@@ -2,7 +2,7 @@
 
 MVC wrapper implementation module for unified wrapping of ASP.NET Core MVC response results.
 
-[简体中文](./README.md)
+[Simplified Chinese](./README.md)
 
 ## Features
 

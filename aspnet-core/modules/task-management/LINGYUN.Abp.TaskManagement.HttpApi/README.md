@@ -1,80 +1,80 @@
 # LINGYUN.Abp.TaskManagement.HttpApi
 
-任务管理模块的HTTP API实现，提供用于管理后台作业的RESTful接口。
+The HTTP API implementation of the task management module provides a RESTful interface for managing background jobs.
 
-## 功能
+## Function
 
-### 后台作业信息API
-- CRUD操作：
-  - 创建新作业
-  - 获取作业详情
-  - 更新作业属性
-  - 删除作业
-- 作业控制操作：
-  - 启动作业
-  - 停止作业
-  - 暂停作业
-  - 恢复作业
-  - 触发作业
-- 批量操作：
-  - 批量启动
-  - 批量停止
-  - 批量暂停
-  - 批量恢复
-  - 批量触发
-  - 批量删除
-- 查询操作：
-  - 获取分页作业列表
-  - 获取作业定义
-  - 过滤和排序作业
+### Background job information API
+- CRUD operations:
+  - Create new job
+  - Get job details
+  - Update job properties
+  - Delete job
+-Job control operations:
+  - Start job
+  - Stop job
+  - Pause job
+  - Resume job
+  - trigger job
+- Batch operations:
+  - Batch startup
+  - Batch stop
+  - Batch pause
+  - Batch recovery
+  - Batch trigger
+  - Batch deletion
+- Query operation:
+  - Get a list of paginated jobs
+  - Get job definition
+  - Filter and sort jobs
 
-### 后台作业行为API
-- 行为管理：
-  - 添加作业行为
-  - 更新行为属性
-  - 删除行为
-  - 获取行为列表
-- 行为定义：
-  - 获取可用行为定义
-  - 查询行为定义
+### Background job behavior API
+- Behavior management:
+  - Add job behavior
+  - Update behavior attributes
+  - Delete behavior
+  - Get a list of actions
+- Behavior definition:
+  - Get available behavior definitions
+  - Query behavior definition
 
-### 后台作业日志API
-- 日志操作：
-  - 获取日志详情
-  - 获取分页日志列表
-  - 删除日志
-- 日志过滤：
-  - 按作业过滤
-  - 按时间范围过滤
-  - 按状态过滤
+### Background job log API
+- Log operations:
+  - Get log details
+  - Get paginated log list
+  - Delete log
+- Log filtering:
+  - Filter by job
+  - Filter by time range
+  - Filter by status
 
-### 授权
-- 基于权限的访问控制：
-  - 创建作业权限
-  - 更新作业权限
-  - 删除作业权限
-  - 触发作业权限
-  - 暂停作业权限
-  - 恢复作业权限
-  - 启动作业权限
-  - 停止作业权限
-  - 删除日志权限
+### Authorization
+- Permission-based access control:
+  -Create job permissions
+  - Update job permissions
+  - Delete job permissions
+  - Trigger job permissions
+  - Suspend job permissions
+  - Restore job permissions
+  - Start job permissions
+  - Stop job permission
+  - Delete log permission
 
-### API特性
-- RESTful接口
-- 基于HTTP方法的操作
-- 基于路由的API版本控制
-- 标准化的响应格式
-- 分页支持
-- 动态过滤和排序
+### API features
+- RESTful interface
+- Operations based on HTTP methods
+- Route-based API version control
+- Standardized response format
+- Pagination support
+- Dynamic filtering and sorting
 
-### 本地化
-- 多语言支持
-- 本地化错误消息
-- 本地化验证消息
+### Localization
+- Multi-language support
+- Localized error messages
+- Localized verification messages
 
-### 集成
-- ABP框架集成
-- MVC集成
-- 动态查询支持
-- 验证支持
+### Integration
+- ABP framework integration
+-MVC integration
+- Dynamic query support
+- Verification support

@@ -4,80 +4,80 @@ import { message } from 'ant-design-vue';
 import { useVbenForm, z } from '#/adapter/form';
 
 const [Form] = useVbenForm({
-  // 所有表单项共用，可单独在表单内覆盖
+  // Common to all form items, they can be overridden individually within the form.
   commonConfig: {
-    // 所有表单项
+    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
-  // 提交函数
+  // Submit function
   handleSubmit: onSubmit,
-  // 垂直布局，label和input在不同行，值为vertical
-  // 水平布局，label和input在同一行
+  // Vertical layout, label and input are on different lines, the value is vertical
+  // Horizontal layout, label and input are on the same line
   scrollToFirstError: true,
   layout: 'horizontal',
   schema: [
     {
-      // 组件需要在 #/adapter.ts内注册，并加上类型
+      // The component needs to be registered in #/adapter.ts and add the type
       component: 'Input',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
-      // 字段名
+      // Field name
       fieldName: 'field1',
-      // 界面显示的label
-      label: '字段1',
+      // Label displayed on the interface
+      label: 'Field 1',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
-      defaultValue: '默认值',
+      defaultValue: 'default value',
       fieldName: 'field2',
-      label: '默认值(必填)',
+      label: 'Default value (required)',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field3',
-      label: '默认值(非必填)',
-      rules: z.string().default('默认值').optional(),
+      label: 'Default value (not required)',
+      rules: z.string().default('default value').optional(),
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field31',
-      label: '自定义信息',
-      rules: z.string().min(1, { message: '最少输入1个字符' }),
+      label: 'custom information',
+      rules: z.string().min(1, { message: 'Enter at least 1 character' }),
     },
     {
       component: 'Input',
-      // 对应组件的参数
+      // Parameters of the corresponding component
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
-      // 字段名
+      // Field name
       fieldName: 'field4',
-      // 界面显示的label
-      label: '邮箱',
-      rules: z.string().email('请输入正确的邮箱'),
+      // Label displayed on the interface
+      label: 'mailbox',
+      rules: z.string().email('Please enter the correct email'),
     },
     {
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'number',
-      label: '数字',
+      label: 'number',
       rules: 'required',
     },
     {
@@ -87,20 +87,20 @@ const [Form] = useVbenForm({
         filterOption: true,
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       defaultValue: undefined,
       fieldName: 'options',
-      label: '下拉选',
+      label: 'drop-down selection',
       rules: 'selectRequired',
     },
     {
@@ -108,17 +108,17 @@ const [Form] = useVbenForm({
       componentProps: {
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'radioGroup',
-      label: '单选组',
+      label: 'radio group',
       rules: 'selectRequired',
     },
     {
@@ -127,17 +127,17 @@ const [Form] = useVbenForm({
         name: 'cname',
         options: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'checkboxGroup',
-      label: '多选组',
+      label: 'Multiple selection group',
       rules: 'selectRequired',
     },
     {
@@ -146,7 +146,7 @@ const [Form] = useVbenForm({
       label: '',
       renderComponentContent: () => {
         return {
-          default: () => ['我已阅读并同意'],
+          default: () => ['I have read and agree'],
         };
       },
       rules: 'selectRequired',
@@ -155,23 +155,23 @@ const [Form] = useVbenForm({
       component: 'DatePicker',
       defaultValue: undefined,
       fieldName: 'datePicker',
-      label: '日期选择框',
+      label: 'Date selection box',
       rules: 'selectRequired',
     },
     {
       component: 'RangePicker',
       defaultValue: undefined,
       fieldName: 'rangePicker',
-      label: '区间选择框',
+      label: 'Interval selection box',
       rules: 'selectRequired',
     },
     {
       component: 'InputPassword',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'password',
-      label: '密码',
+      label: 'password',
       rules: 'required',
     },
   ],

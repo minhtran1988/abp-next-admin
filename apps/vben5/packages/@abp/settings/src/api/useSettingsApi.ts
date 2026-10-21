@@ -7,8 +7,8 @@ import { useRequest } from '@abp/request';
 export function useSettingsApi() {
   const { cancel, request } = useRequest();
   /**
-   * 获取设置
-   * @returns 设置数据传输对象列表
+   * Get settings
+   * @returns Set the data transfer object list
    */
   function getSettingsApi(): Promise<ListResultDto<SettingGroup>> {
     return request<ListResultDto<SettingGroup>>(
@@ -20,8 +20,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 变更设置
-   * @returns 设置数据传输对象列表
+   * Change settings
+   * @returns Set the data transfer object list
    */
   function setSettingsApi(input: SettingsUpdateInput): Promise<void> {
     return request(`/api/v2/setting-management/settings`, {
@@ -31,8 +31,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 获取全局设置
-   * @returns 设置数据传输对象列表
+   * Get global settings
+   * @returns Set the data transfer object list
    */
   function getGlobalSettingsApi(): Promise<ListResultDto<SettingGroup>> {
     return request<ListResultDto<SettingGroup>>(
@@ -44,8 +44,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 设置全局设置
-   * @returns 设置数据传输对象列表
+   * Set global settings
+   * @returns Set the data transfer object list
    */
   function setGlobalSettingsApi(input: SettingsUpdateInput): Promise<void> {
     return request(`/api/setting-management/settings/change-global`, {
@@ -55,8 +55,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 获取租户设置
-   * @returns 设置数据传输对象列表
+   * Get tenant settings
+   * @returns Set the data transfer object list
    */
   function getTenantSettingsApi(): Promise<ListResultDto<SettingGroup>> {
     return request<ListResultDto<SettingGroup>>(
@@ -68,8 +68,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 设置租户设置
-   * @returns 设置数据传输对象列表
+   * Set tenant settings
+   * @returns Set the data transfer object list
    */
   function setTenantSettingsApi(input: SettingsUpdateInput): Promise<void> {
     return request(`/api/setting-management/settings/change-current-tenant`, {
@@ -78,8 +78,8 @@ export function useSettingsApi() {
     });
   }
   /**
-   * 获取用户设置
-   * @returns 设置数据传输对象列表
+   * Get user settings
+   * @returns Set the data transfer object list
    */
   function getUserSettingsApi(): Promise<ListResultDto<SettingGroup>> {
     return request<ListResultDto<SettingGroup>>(
@@ -91,8 +91,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 设置用户设置
-   * @returns 设置数据传输对象列表
+   * Set user settings
+   * @returns Set the data transfer object list
    */
   function setUserSettingsApi(input: SettingsUpdateInput): Promise<void> {
     return request(`/api/v2/setting-management/my-settings`, {
@@ -102,8 +102,8 @@ export function useSettingsApi() {
   }
 
   /**
-   * 发送测试邮件
-   * @param emailAddress 邮件接收方地址
+   * Send test email
+   * @param emailAddress Email recipient address
    */
   const sendTestEmailApi = (emailAddress: string) => {
     return request(`/api/setting-management/settings/send-test-email`, {

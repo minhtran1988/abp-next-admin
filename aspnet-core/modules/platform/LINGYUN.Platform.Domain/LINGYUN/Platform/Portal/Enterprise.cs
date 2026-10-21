@@ -5,20 +5,20 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace LINGYUN.Platform.Portal;
 /// <summary>
-/// 企业信息
+/// Corporate information
 /// </summary>
 public class Enterprise : FullAuditedAggregateRoot<Guid>
 {
     /// <summary>
-    /// 关联租户
+    /// Associated tenants
     /// </summary>
     public virtual Guid? TenantId { get; protected set; }
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public virtual string Name { get; protected set; } = default!;
     /// <summary>
-    /// 英文名称
+    /// English name
     /// </summary>
     public virtual string? EnglishName { get; set; }
     /// <summary>
@@ -26,31 +26,31 @@ public class Enterprise : FullAuditedAggregateRoot<Guid>
     /// </summary>
     public virtual string? Logo { get; set; }
     /// <summary>
-    /// 地址
+    /// address
     /// </summary>
     public virtual string? Address { get; set; }
     /// <summary>
-    /// 法人代表
+    /// Legal representative
     /// </summary>
     public virtual string? LegalMan { get; set; }
     /// <summary>
-    /// 税务登记号
+    /// Tax registration number
     /// </summary>
     public virtual string? TaxCode { get; set; }
     /// <summary>
-    /// 组织机构代码
+    /// Organization code
     /// </summary>
     public virtual string? OrganizationCode { get; protected set; }
     /// <summary>
-    /// 注册代码
+    /// Registration code
     /// </summary>
     public virtual string? RegistrationCode { get; protected set; }
     /// <summary>
-    /// 注册日期
+    /// Registration date
     /// </summary>
     public virtual DateTime? RegistrationDate { get; protected set; }
     /// <summary>
-    /// 过期日期
+    /// Expiration date
     /// </summary>
     public virtual DateTime? ExpirationDate { get; protected set; }
     protected Enterprise() 

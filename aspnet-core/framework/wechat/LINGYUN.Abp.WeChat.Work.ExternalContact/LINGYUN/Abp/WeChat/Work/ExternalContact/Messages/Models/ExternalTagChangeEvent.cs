@@ -3,17 +3,17 @@ using System.Xml.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.ExternalContact.Messages.Models;
 /// <summary>
-/// 企业客户标签变更事件推送
+/// Enterprise customer label change event push
 /// </summary>
 public abstract class ExternalTagChangeEvent : WeChatWorkEventMessage
 {
     /// <summary>
-    /// 变更类型
+    /// Change type
     /// </summary>
     [XmlElement("ChangeType")]
     public string ChangeType { get; set; } = default!;
     /// <summary>
-    /// 标签或标签组所属的规则组id，只回调给“客户联系”应用
+    /// The rule group id to which the label or label group belongs is only called back to the "Customer Contact" application
     /// </summary>
     [XmlElement("StrategyId")]
     public string StrategyId { get; set; } = default!;

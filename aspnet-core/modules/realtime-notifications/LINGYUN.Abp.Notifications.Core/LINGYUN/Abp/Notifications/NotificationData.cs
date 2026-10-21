@@ -7,22 +7,22 @@ using Volo.Abp.EventBus;
 namespace LINGYUN.Abp.Notifications;
 
 /// <summary>
-/// 通知数据
+/// Notification data
 /// </summary>
 /// <remarks>
-/// TODO: 2020-10-29 针对不同语言的用户,如果在发布时期就本地化语言是错误的设计
-/// 把通知的标题和内容设计为 <see cref="LocalizableStringInfo"/> 让客户端自行本地化
+/// TODO: 2020-10-29 For users in different languages, it is a wrong design to localize the language during release.
+/// Design the title and content of the notification as <see cref="LocalizableStringInfo"/> and let the client localize it by itself
 /// </remarks>
 [Serializable]
 [EventName("notifications")]
 public class NotificationData : IHasExtraProperties
 {
     /// <summary>
-    /// 用来标识是否需要本地化的信息
+    /// Information used to identify whether localization is required
     /// </summary>
     public const string LocalizerKey = "L";
     /// <summary>
-    /// 用于本地化文化
+    /// Used for localized culture
     /// </summary>
     public const string CultureKey = "C";
 
@@ -50,7 +50,7 @@ public class NotificationData : IHasExtraProperties
         TrySetData(LocalizerKey, false);
     }
     /// <summary>
-    /// 写入本地化的消息数据
+    /// Write localized message data
     /// </summary>
     /// <param name="title"></param>
     /// <param name="message"></param>
@@ -79,13 +79,13 @@ public class NotificationData : IHasExtraProperties
         return this;
     }
     /// <summary>
-    /// 写入标准数据
+    /// Write standard data
     /// </summary>
-    /// <param name="title">标题</param>
-    /// <param name="message">内容</param>
-    /// <param name="createTime">创建时间</param>
-    /// <param name="formUser">来源用户</param>
-    /// <param name="description">附加说明</param>
+    /// <param name="title">Title</param>
+    /// <param name="message">Content</param>
+    /// <param name="createTime">Creation time</param>
+    /// <param name="formUser">Source user</param>
+    /// <param name="description">Additional instructions</param>
     /// <returns></returns>
     public NotificationData WriteStandardData(string title, string message, DateTime createTime, string formUser, string description = "")
     {
@@ -98,11 +98,11 @@ public class NotificationData : IHasExtraProperties
         return this;
     }
     /// <summary>
-    /// 写入标准数据
+    /// Write standard data
     /// </summary>
-    /// <param name="prefix">数据前缀</param>
-    /// <param name="key">标识</param>
-    /// <param name="value">数据内容</param>
+    /// <param name="prefix">Data prefix</param>
+    /// <param name="key">Identity</param>
+    /// <param name="value">Data content</param>
     /// <returns></returns>
     public NotificationData WriteStandardData(string prefix, string key, object value)
     {
@@ -111,9 +111,9 @@ public class NotificationData : IHasExtraProperties
         return this;
     }
     /// <summary>
-    /// 转换为标准数据
+    /// Convert to standard data
     /// </summary>
-    /// <param name="sourceData">原始数据</param>
+    /// <param name="sourceData">Original data</param>
     /// <returns></returns>
     public static NotificationData ToStandardData(NotificationData sourceData)
     {
@@ -127,10 +127,10 @@ public class NotificationData : IHasExtraProperties
         return data;
     }
     /// <summary>
-    /// 转换为标准数据
+    /// Convert to standard data
     /// </summary>
-    /// <param name="prefix">数据前缀</param>
-    /// <param name="sourceData">原始数据</param>
+    /// <param name="prefix">Data prefix</param>
+    /// <param name="sourceData">Original data</param>
     /// <returns></returns>
     public static NotificationData ToStandardData(string prefix, NotificationData sourceData)
     {
@@ -156,7 +156,7 @@ public class NotificationData : IHasExtraProperties
         this.SetProperty(key, value);
     }
     /// <summary>
-    /// 需要本地化
+    /// Needs localization
     /// </summary>
     /// <returns></returns>
     public bool NeedLocalizer()

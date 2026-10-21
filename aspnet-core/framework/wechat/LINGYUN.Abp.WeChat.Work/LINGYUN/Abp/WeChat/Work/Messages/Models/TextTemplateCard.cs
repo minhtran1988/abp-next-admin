@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace LINGYUN.Abp.WeChat.Work.Messages.Models;
 /// <summary>
-/// 文本模板卡片消息
+/// Text template card message
 /// </summary>
 public class TextTemplateCard : TemplateCard
 {
@@ -18,63 +18,63 @@ public class TextTemplateCard : TemplateCard
     }
 
     /// <summary>
-    /// 卡片来源样式信息，不需要来源样式可不填写
+    /// Card source style information, you don’t need to fill in the source style
     /// </summary>
     [CanBeNull]
     [JsonProperty("source")]
     [JsonPropertyName("source")]
     public TemplateCardSource? Source { get; set; }
     /// <summary>
-    /// 卡片右上角更多操作按钮
+    /// More action buttons in the upper right corner of the card
     /// </summary>
     [CanBeNull]
     [JsonProperty("action_menu")]
     [JsonPropertyName("action_menu")]
     public TemplateCardActionMenu? ActionMenu { get; set; }
     /// <summary>
-    /// 一级标题
+    /// Level 1 title
     /// </summary>
     [CanBeNull]
     [JsonProperty("main_title")]
     [JsonPropertyName("main_title")]
     public TemplateCardMainTitle? MainTitle { get; set; }
     /// <summary>
-    /// 二级普通文本，建议不超过160个字，（支持id转译）
+    /// Second-level ordinary text, it is recommended not to exceed 160 words (supports id translation)
     /// </summary>
     [CanBeNull]
     [JsonProperty("sub_title_text")]
     [JsonPropertyName("sub_title_text")]
     public string? SubTitle { get; set; }
     /// <summary>
-    /// 引用文献样式
+    /// Citation style
     /// </summary>
     [CanBeNull]
     [JsonProperty("quote_area")]
     [JsonPropertyName("quote_area")]
     public TemplateCardQuoteArea? QuoteArea { get; set; }
     /// <summary>
-    /// 关键数据样式
+    /// Key data style
     /// </summary>
     [CanBeNull]
     [JsonProperty("emphasis_content")]
     [JsonPropertyName("emphasis_content")]
     public TemplateCardEmphasisContent? EmphasisContent { get; set; }
     /// <summary>
-    /// 二级标题+文本列表，该字段可为空数组，但有数据的话需确认对应字段是否必填，列表长度不超过6
+    /// Second-level title + text list, this field can be an empty array, but if there is data, you need to confirm whether the corresponding field is required. The length of the list should not exceed 6
     /// </summary>
     [CanBeNull]
     [JsonProperty("horizontal_content_list")]
     [JsonPropertyName("horizontal_content_list")]
     public List<TemplateCardHorizontalContent>? HorizontalContents { get; set; }
     /// <summary>
-    /// 跳转指引样式的列表，该字段可为空数组，但有数据的话需确认对应字段是否必填，列表长度不超过3
+    /// A list of jump guide styles. This field can be an empty array, but if there is data, you need to confirm whether the corresponding field is required. The length of the list should not exceed 3
     /// </summary>
     [CanBeNull]
     [JsonProperty("jump_list")]
     [JsonPropertyName("jump_list")]
     public List<TemplateCardJump>? Jumps { get; set; }
     /// <summary>
-    /// 整体卡片的点击跳转事件，text_notice必填本字段
+    /// Click jump event of the overall card, text_notice must fill in this field
     /// </summary>
     [NotNull]
     [JsonProperty("TemplateCardCardAction")]

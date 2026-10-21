@@ -49,18 +49,18 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
         var count = 10;
         await MockcAsync(count);
 
-        // 延迟等待写入完成
+        // Delay waiting for the write to complete
         await Task.Delay(5000);
 
-        // 异常应该只有3个
+        // There should be only 3 exceptions
         (await _manager.GetCountAsync(
             hasException: true)).ShouldBe(3);
 
-        // 正常可以查询7个
+        // Normally 7 can be queried
         (await _manager.GetCountAsync(
             hasException: false)).ShouldBe(7);
 
-        // POST方法能查到5个
+        // The POST method can find 5
         (await _manager.GetCountAsync(
             httpMethod: "POST")).ShouldBe(5);
 
@@ -74,7 +74,7 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
             startTime: DateTime.Now.AddDays(-3).AddHours(1),
             endTime: DateTime.Now)).ShouldBe(8);
 
-        // 索引5只存在一个
+        // There is only one index 5
         (await _manager.GetCountAsync(
             userName: "_user_5",
             clientId: "_client_5")).ShouldBe(1);
@@ -98,22 +98,22 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
         var count = 10;
         await MockcAsync(count);
 
-        // 延迟等待写入完成
+        // Delay waiting for the write to complete
         await Task.Delay(5000);
 
-        // 请求参数中包含 AAAAA 应该只有3个
+        // There should be only 3 AAAAA in the request parameters
         (await _manager.GetCountAsync(
             new ExpressionSpecification<AuditLog>(x => x.Actions.Any(a => a.Parameters.Contains("AAAAA"))))).ShouldBe(3);
 
-        // 异常应该只有3个
+        // There should be only 3 exceptions
         (await _manager.GetCountAsync(
             new ExpressionSpecification<AuditLog>(x => x.Exceptions != null))).ShouldBe(3);
 
-        // 正常可以查询7个
+        // Normally 7 can be queried
         (await _manager.GetCountAsync(
             new ExpressionSpecification<AuditLog>(x => x.Exceptions == null))).ShouldBe(7);
 
-        // POST方法能查到5个
+        // The POST method can find 5
         (await _manager.GetCountAsync(
             new ExpressionSpecification<AuditLog>(x => x.HttpMethod == "POST"))).ShouldBe(5);
 
@@ -127,7 +127,7 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
             new ExpressionSpecification<AuditLog>(x => x.ExecutionTime >= DateTime.Now.AddDays(-3).AddHours(1) &&
             x.ExecutionTime <= DateTime.Now))).ShouldBe(8);
 
-        // 索引5只存在一个
+        // There is only one index 5
         (await _manager.GetCountAsync(
             new ExpressionSpecification<AuditLog>(x => x.UserName == "_user_5" && x.ClientId == "_client_5"))).ShouldBe(1);
 
@@ -197,10 +197,10 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
     }
 
     /// <summary>
-    /// 删除单条审计日志
+    /// Delete a single audit log
     /// </summary>
     /// <remarks>
-    /// 存储实现不支持删除时可覆写(例如断言抛出的业务异常)
+    /// The storage implementation does not support overwriting when deleting (such as business exceptions thrown by assertions)
     /// </remarks>
     protected virtual Task DeleteAsync(Guid id)
     {
@@ -208,7 +208,7 @@ public abstract class AuditLogManager_Tests<TStartupModule> : AbpIntegratedTest<
     }
 
     /// <summary>
-    /// 批量删除审计日志
+    /// Delete audit logs in batches
     /// </summary>
     protected virtual Task DeleteManyAsync(List<Guid> ids)
     {

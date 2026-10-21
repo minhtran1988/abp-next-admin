@@ -48,7 +48,7 @@ await app.InitializeApplicationAsync();
 app.MapDefaultEndpoints();
 
 app.UseForwardedHeaders();
-// 本地化
+// localization
 app.UseMapRequestLocalization();
 app.UseCorrelationId();
 app.MapAbpStaticAssets();

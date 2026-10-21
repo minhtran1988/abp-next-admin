@@ -28,9 +28,9 @@ public class Cryptography
         return outval;
     }
     /// <summary>
-    /// 解密方法
+    /// Decryption method
     /// </summary>
-    /// <param name="Input">密文</param>
+    /// <param name="Input">Cryptotext</param>
     /// <param name="EncodingAESKey"></param>
     /// <returns></returns>
     /// 
@@ -104,11 +104,11 @@ public class Cryptography
 #else
         var aes = Aes.Create();
 #endif
-        //秘钥的大小，以位为单位
+        // The size of the secret key, in bits
         aes.KeySize = 256;
-        //支持的块大小
+        // Supported block sizes
         aes.BlockSize = 128;
-        //填充模式
+        // fill mode
         aes.Padding = PaddingMode.PKCS7;
         aes.Mode = CipherMode.CBC;
         aes.Key = Key;
@@ -136,12 +136,12 @@ public class Cryptography
 #else
         var aes = Aes.Create();
 #endif
-        //秘钥的大小，以位为单位
+        // The size of the secret key, in bits
         aes.KeySize = 256;
-        //支持的块大小
+        // Supported block sizes
         aes.BlockSize = 128;
-        //填充模式
-        //aes.Padding = PaddingMode.PKCS7;
+        // fill mode
+        // aes.Padding = PaddingMode.PKCS7;
         aes.Padding = PaddingMode.None;
         aes.Mode = CipherMode.CBC;
         aes.Key = Key;
@@ -149,16 +149,16 @@ public class Cryptography
         var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
         byte[] xBuff = null;
 
-        #region 自己进行PKCS7补位，用系统自己带的不行
+        #region You can perform PKCS7 filling by yourself, it won’t work if you use the system’s own one.
         var msg = new byte[Input.Length + 32 - Input.Length % 32];
         Array.Copy(Input, msg, Input.Length);
         var pad = KCS7Encoder(Input.Length);
         Array.Copy(pad, 0, msg, Input.Length, pad.Length);
         #endregion
 
-        #region 注释的也是一种方法，效果一样
-        //ICryptoTransform transform = aes.CreateEncryptor();
-        //byte[] xBuff = transform.TransformFinalBlock(msg, 0, msg.Length);
+        The #region annotation is also a method with the same effect.
+        // ICryptoTransform transform = aes.CreateEncryptor();
+        // byte[] xBuff = transform.TransformFinalBlock(msg, 0, msg.Length);
         #endregion
 
         using (var ms = new MemoryStream())
@@ -177,13 +177,13 @@ public class Cryptography
     private static byte[] KCS7Encoder(int text_length)
     {
         var block_size = 32;
-        // 计算需要填充的位数
+        // Calculate the number of digits to be filled
         var amount_to_pad = block_size - text_length % block_size;
         if (amount_to_pad == 0)
         {
             amount_to_pad = block_size;
         }
-        // 获得补位所用的字符
+        // Get the characters used for complementing
         var pad_chr = chr(amount_to_pad);
         var tmp = "";
         for (var index = 0; index < amount_to_pad; index++)
@@ -193,10 +193,10 @@ public class Cryptography
         return Encoding.UTF8.GetBytes(tmp);
     }
     /**
-     * 将数字转化成ASCII码对应的字符，用于对明文进行补码
+     * Convert numbers into characters corresponding to ASCII code, used to complement plain text
      * 
-     * @param a 需要转化的数字
-     * @return 转化得到的字符
+     * @param a The number to be converted
+     * @return the converted character
      */
     static char chr(int a)
     {

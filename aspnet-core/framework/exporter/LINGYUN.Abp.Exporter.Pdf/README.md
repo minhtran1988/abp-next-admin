@@ -1,8 +1,8 @@
 # LINGYUN.Abp.Exporter.Pdf
 
-Pdf导出模块
+PDF export module
 
-## 配置使用
+## Configuration usage
 
 
 ```csharp
@@ -16,7 +16,7 @@ Pdf导出模块
     }
 ```
 
-> 导出数据
+> Export data
 ```csharp
     public class ExportDemoClass
     {

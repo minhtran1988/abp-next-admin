@@ -1,3 +1,3 @@
 # @vben-core
 
-系统一些比较基础的SDK和UI组件库，该目录后续完善后，可能会迁移出去或者发布到npm，请勿将任何业务逻辑和业务包放在该目录。
+Some basic SDK and UI component libraries of the system may be migrated or released to npm after this directory is subsequently improved. Please do not place any business logic and business packages in this directory.

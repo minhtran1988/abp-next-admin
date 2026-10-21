@@ -2,20 +2,20 @@
 
 namespace LINGYUN.Abp.SystemInfo.Models;
 /// <summary>
-/// 组件
+/// Component
 /// </summary>
 public class ComponentInfoModel
 {
     /// <summary>
-    /// 组件名称
+    /// Component name
     /// </summary>
     public string Name { get; set; }
     /// <summary>
-    /// 组件名称集合
+    /// Collection of component names
     /// </summary>
     public ComponentKeyModel[] Keys { get; set; }
     /// <summary>
-    /// 组件状态集合
+    /// Component state collection
     /// </summary>
     public Dictionary<string, object?> Details { get; set; }
     public ComponentInfoModel(string name, ComponentKeyModel[] keys, Dictionary<string, object?> details)

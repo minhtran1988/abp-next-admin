@@ -2,27 +2,27 @@
 outline: deep
 ---
 
-# Vben Form 表单
+# Vben Form form
 
-框架提供的表单组件，可适配 `Element Plus`、`Ant Design Vue`、`Naive UI` 等框架。
+The form components provided by the framework can be adapted to frameworks such as `Element Plus`, `Ant Design Vue`, and `Naive UI`.
 
-> 如果文档内没有参数说明，可以尝试在在线示例内寻找
+> If there is no parameter description in the document, you can try to find it in the online examples
 
-::: info 写在前面
+::: info is written in front
 
-如果你觉得现有组件的封装不够理想，或者不完全符合你的需求，大可以直接使用原生组件，亦或亲手封装一个适合的组件。框架提供的组件并非束缚，使用与否，完全取决于你的需求与自由。
+If you feel that the encapsulation of existing components is not ideal enough, or does not fully meet your needs, you can use native components directly, or encapsulate a suitable component yourself. The components provided by the framework are not binding. Whether to use them or not depends entirely on your needs and freedom.
 
 :::
 
-## 适配器
+## Adapter
 
-表单底层使用 [vee-validate](https://vee-validate.logaretm.com/v4/) 进行表单验证，所以你可以使用 `vee-validate` 的所有功能。对于不同的 UI 框架，我们提供了适配器，以便更好的适配不同的 UI 框架。
+The underlying form uses [vee-validate](https://vee-validate.logaretm.com/v4/) for form validation, so you can use all the features of `vee-validate`. For different UI frameworks, we provide adapters to better adapt to different UI frameworks.
 
-### 适配器说明
+### Adapter Description
 
-每个应用都有不同的 UI 框架，所以在应用的 `src/adapter/form` 和 `src/adapter/component` 内部，你可以根据自己的需求，进行组件适配。下面是 `Ant Design Vue` 的适配器示例代码，可根据注释查看说明：
+Each application has a different UI framework, so within the application's `src/adapter/form` and `src/adapter/component`, you can adapt components according to your own needs. The following is the adapter sample code of `Ant Design Vue`. You can view the instructions according to the comments:
 
-::: details ant design vue 表单适配器
+::: details ant design vue form adapter
 
 ```ts
 import type {
@@ -37,9 +37,9 @@ import { $t } from '@vben/locales';
 
 setupVbenForm<ComponentType>({
   config: {
-    // ant design vue组件库默认都是 v-model:value
+    //The ant design vue component library defaults to v-model:value
     baseModelPropName: 'value',
-    // 一些组件是 v-model:checked 或者 v-model:fileList
+    // Some components are v-model:checked or v-model:fileList
     modelPropNameMap: {
       Checkbox: 'checked',
       Radio: 'checked',
@@ -48,14 +48,14 @@ setupVbenForm<ComponentType>({
     },
   },
   defineRules: {
-    // 输入项目必填国际化适配
+    //International adaptation is required for input items
     required: (value, _params, ctx) => {
       if (value === undefined || value === null || value.length === 0) {
         return $t('ui.formRules.required', [ctx.label]);
       }
       return true;
     },
-    // 选择项目必填国际化适配
+    // International adaptation is required for selected projects
     selectRequired: (value, _params, ctx) => {
       if (value === undefined || value === null) {
         return $t('ui.formRules.selectRequired', [ctx.label]);
@@ -74,12 +74,12 @@ export type { VbenFormProps };
 
 :::
 
-::: details ant design vue 组件适配器
+::: details ant design vue component adapter
 
 ```ts
 /**
- * 通用组件共同的使用的基础组件，原先放在 adapter/form 内部，限制了使用范围，这里提取出来，方便其他地方使用
- * 可用于 vben-form、vben-modal、vben-drawer 等组件使用,
+ * Basic components commonly used by common components were originally placed inside adapter/form, which limited the scope of use. They are extracted here to facilitate use in other places.
+ * Can be used for vben-form, vben-modal, vben-drawer and other components,
  */
 
 import type { BaseFormComponentType } from '@vben/common-ui';
@@ -147,7 +147,7 @@ const withDefaultPlaceholder = <T extends Component>(
   };
 };
 
-// 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
+// Here you need to adapt according to the business component library. The components that need to be used need to be typed here.
 export type ComponentType =
   | 'AutoComplete'
   | 'Checkbox'
@@ -176,7 +176,7 @@ export type ComponentType =
 
 async function initComponentAdapter() {
   const components: Partial<Record<ComponentType, Component>> = {
-    // 如果你的组件体积比较大，可以使用异步加载
+    // If your component is relatively large, you can use asynchronous loading
     // Button: () =>
     // import('xxx').then((res) => res.Button),
 
@@ -184,7 +184,7 @@ async function initComponentAdapter() {
     Checkbox,
     CheckboxGroup,
     DatePicker,
-    // 自定义默认按钮
+    //Customize the default button
     DefaultButton: (props, { attrs, slots }) => {
       return h(Button, { ...props, attrs, type: 'default' }, slots);
     },
@@ -194,7 +194,7 @@ async function initComponentAdapter() {
     InputNumber: withDefaultPlaceholder(InputNumber, 'input'),
     InputPassword: withDefaultPlaceholder(InputPassword, 'input'),
     Mentions: withDefaultPlaceholder(Mentions, 'input'),
-    // 自定义主要按钮
+    //Customize the main button
     PrimaryButton: (props, { attrs, slots }) => {
       return h(Button, { ...props, attrs, type: 'primary' }, slots);
     },
@@ -211,12 +211,12 @@ async function initComponentAdapter() {
     Upload,
   };
 
-  // 将组件注册到全局共享状态中
+  //Register the component into the global shared state
   globalShareState.setComponents(components);
 
-  // 定义全局共享状态中的消息提示
+  //Define message prompts in global shared state
   globalShareState.defineMessage({
-    // 复制成功消息提示
+    // Copy success message prompt
     copyPreferencesSuccess: (title, content) => {
       notification.success({
         description: content,
@@ -232,63 +232,63 @@ export { initComponentAdapter };
 
 :::
 
-## 基础用法
+## Basic usage
 
 ::: tip README
 
-下方示例代码中的，存在一些国际化、主题色未适配问题，这些问题只在文档内会出现，实际使用并不会有这些问题，可忽略，不必纠结。
+In the sample code below, there are some internationalization and theme color mismatch problems. These problems only appear in the document. These problems will not occur in actual use. They can be ignored and don't worry about it.
 
 :::
 
-使用 `useVbenForm` 创建最基础的表单。
+Use `useVbenForm` to create the most basic form.
 
 <DemoPreview dir="demos/vben-form/basic" />
 
-## 查询表单
+## Query form
 
-查询表单是一种特殊的表单，用于查询数据。查询表单不会触发表单验证，只会触发查询事件。
+A query form is a special form used to query data. Query forms will not trigger form validation, only query events.
 
 <DemoPreview dir="demos/vben-form/query" />
 
-## 表单校验
+## Form validation
 
-表单校验是一个非常重要的功能，可以通过 `rules` 属性进行校验。
+Form validation is a very important function and can be verified through the `rules` attribute.
 
 <DemoPreview dir="demos/vben-form/rules" />
 
-## 表单联动
+## Form linkage
 
-表单联动是一个非常常见的功能，可以通过 `dependencies` 属性进行联动。
+Form linkage is a very common feature and can be linked through the `dependencies` attribute.
 
-_注意_ 需要指定 `dependencies` 的 `triggerFields` 属性，设置由谁的改动来触发，以便表单组件能够正确的联动。
+_Note_ You need to specify the `triggerFields` attribute of `dependencies` to set whose changes will trigger it, so that the form components can be linked correctly.
 
 <DemoPreview dir="demos/vben-form/dynamic" />
 
-## 自定义组件
+## Custom components
 
-如果你的业务组件库没有提供某个组件，你可以自行封装一个组件，然后加到表单内部。
+If your business component library does not provide a component, you can encapsulate a component yourself and add it to the form.
 
 <DemoPreview dir="demos/vben-form/custom" />
 
-## 操作
+## Operation
 
-一些常见的表单操作。
+Some common form operations.
 
 <DemoPreview dir="demos/vben-form/api" />
 
 ## API
 
-`useVbenForm` 返回一个数组，第一个元素是表单组件，第二个元素是表单的方法。
+`useVbenForm` returns an array, the first element is the form component and the second element is the form method.
 
 ```vue
 <script setup lang="ts">
 import { useVbenForm } from '#/adapter/form';
 
-// Form 为弹窗组件
-// formApi 为弹窗的方法
+// Form is a pop-up window component
+// formApi is the pop-up window method
 const [Form, formApi] = useVbenForm({
-  // 属性
-  // 事件
+  //properties
+  // event
 });
 </script>
 
@@ -299,91 +299,91 @@ const [Form, formApi] = useVbenForm({
 
 ### FormApi
 
-useVbenForm 返回的第二个参数，是一个对象，包含了一些表单的方法。
+The second parameter returned by useVbenForm is an object that contains some form methods.
 
-| 方法名 | 描述 | 类型 | 版本号 |
+| Method name | Description | Type | Version number |
 | --- | --- | --- | --- |
-| submitForm | 提交表单 | `(e:Event)=>Promise<Record<string,any>>` | - |
-| validateAndSubmitForm | 提交并校验表单 | `(e:Event)=>Promise<Record<string,any>>` | - |
-| resetForm | 重置表单 | `()=>Promise<void>` | - |
-| setValues | 设置表单值, 默认会过滤不在schema中定义的field, 可通过filterFields形参关闭过滤 | `(fields: Record<string, any>, filterFields?: boolean, shouldValidate?: boolean) => Promise<void>` | - |
-| getValues | 获取表单值 | `(fields:Record<string, any>,shouldValidate: boolean = false)=>Promise<void>` | - |
-| validate | 表单校验 | `()=>Promise<void>` | - |
-| validateField | 校验指定字段 | `(fieldName: string)=>Promise<ValidationResult<unknown>>` | - |
-| isFieldValid | 检查某个字段是否已通过校验 | `(fieldName: string)=>Promise<boolean>` | - |
-| resetValidate | 重置表单校验 | `()=>Promise<void>` | - |
-| updateSchema | 更新formSchema | `(schema:FormSchema[])=>void` | - |
-| setFieldValue | 设置字段值 | `(field: string, value: any, shouldValidate?: boolean)=>Promise<void>` | - |
-| setState | 设置组件状态（props） | `(stateOrFn:\| ((prev: VbenFormProps) => Partial<VbenFormProps>)\| Partial<VbenFormProps>)=>Promise<void>` | - |
-| getState | 获取组件状态（props） | `()=>Promise<VbenFormProps>` | - |
-| form | 表单对象实例，可以操作表单，见 [useForm](https://vee-validate.logaretm.com/v4/api/use-form/) | - | - |
-| getFieldComponentRef | 获取指定字段的组件实例 | `<T=unknown>(fieldName: string)=>T` | >5.5.3 |
-| getFocusedField | 获取当前已获得焦点的字段 | `()=>string\|undefined` | >5.5.3 |
+| submitForm | Submit form | `(e:Event)=>Promise<Record<string,any>>` | - |
+| validateAndSubmitForm | Submit and verify the form | `(e:Event)=>Promise<Record<string,any>>` | - |
+| resetForm | Reset form | `()=>Promise<void>` | - |
+| setValues | Set form values. By default, fields not defined in the schema will be filtered. Filtering can be turned off through the filterFields parameter | `(fields: Record<string, any>, filterFields?: boolean, shouldValidate?: boolean) => Promise<void>` | - |
+| getValues | Get form values | `(fields:Record<string, any>,shouldValidate: boolean = false)=>Promise<void>` | - |
+| validate | form validation | `()=>Promise<void>` | - |
+| validateField | Validate the specified field | `(fieldName: string)=>Promise<ValidationResult<unknown>>` | - |
+| isFieldValid | Check whether a field has passed validation | `(fieldName: string)=>Promise<boolean>` | - |
+| resetValidate | Reset form validation | `()=>Promise<void>` | - |
+| updateSchema | update formSchema | `(schema:FormSchema[])=>void` | - |
+| setFieldValue | Set field value | `(field: string, value: any, shouldValidate?: boolean)=>Promise<void>` | - |
+| setState | Set component state (props) | `(stateOrFn:\| ((prev: VbenFormProps) => Partial<VbenFormProps>)\| Partial<VbenFormProps>)=>Promise<void>` | - |
+| getState | Get component state (props) | `()=>Promise<VbenFormProps>` | - |
+| form | Form object instance, which can operate the form, see [useForm](https://vee-validate.logaretm.com/v4/api/use-form/) | - | - |
+| getFieldComponentRef | Get the component instance of the specified field | `<T=unknown>(fieldName: string)=>T` | >5.5.3 |
+| getFocusedField | Get the currently focused field | `()=>string\|undefined` | >5.5.3 |
 
 ## Props
 
-所有属性都可以传入 `useVbenForm` 的第一个参数中。
+All properties can be passed into the first parameter of `useVbenForm`.
 
-| 属性名 | 描述 | 类型 | 默认值 |
+| Property name | Description | Type | Default value |
 | --- | --- | --- | --- |
-| layout | 表单项布局 | `'horizontal' \| 'vertical'\| 'inline'` | `horizontal` |
-| showCollapseButton | 是否显示折叠按钮 | `boolean` | `false` |
-| wrapperClass | 表单的布局，基于tailwindcss | `any` | - |
-| actionWrapperClass | 表单操作区域class | `any` | - |
-| actionLayout | 表单操作按钮位置 | `'newLine' \| 'rowEnd' \| 'inline'` | `rowEnd` |
-| actionPosition | 表单操作按钮对齐方式 | `'left' \| 'center' \| 'right'` | `right` |
-| handleReset | 表单重置回调 | `(values: Record<string, any>,) => Promise<void> \| void` | - |
-| handleSubmit | 表单提交回调 | `(values: Record<string, any>,) => Promise<void> \| void` | - |
-| handleValuesChange | 表单值变化回调 | `(values: Record<string, any>, fieldsChanged: string[]) => void` | - |
-| handleCollapsedChange | 表单收起展开状态变化回调 | `(collapsed: boolean) => void` | - |
-| actionButtonsReverse | 调换操作按钮位置 | `boolean` | `false` |
-| resetButtonOptions | 重置按钮组件参数 | `ActionButtonOptions` | - |
-| submitButtonOptions | 提交按钮组件参数 | `ActionButtonOptions` | - |
-| showDefaultActions | 是否显示默认操作按钮 | `boolean` | `true` |
-| collapsed | 是否折叠，在`showCollapseButton`为`true`时生效 | `boolean` | `false` |
-| collapseTriggerResize | 折叠时，触发`resize`事件 | `boolean` | `false` |
-| collapsedRows | 折叠时保持的行数 | `number` | `1` |
-| fieldMappingTime | 用于将表单内的数组值映射成 2 个字段 | `[string, [string, string],Nullable<string>\|[string,string]\|((any,string)=>any)?][]` | - |
-| commonConfig | 表单项的通用配置，每个配置都会传递到每个表单项，表单项可覆盖 | `FormCommonConfig` | - |
-| schema | 表单项的每一项配置 | `FormSchema[]` | - |
-| submitOnEnter | 按下回车健时提交表单 | `boolean` | false |
-| submitOnChange | 字段值改变时提交表单(内部防抖，这个属性一般用于表格的搜索表单) | `boolean` | false |
-| compact | 是否紧凑模式(忽略为校验信息所预留的空间) | `boolean` | false |
-| scrollToFirstError | 表单验证失败时是否自动滚动到第一个错误字段 | `boolean` | false |
+| layout | form item layout | `'horizontal' \| 'vertical'\| 'inline'` | `horizontal` |
+| showCollapseButton | Whether to display the collapse button | `boolean` | `false` |
+| wrapperClass | Form layout, based on tailwindcss | `any` | - |
+| actionWrapperClass | form operation area class | `any` | - |
+| actionLayout | Form action button position | `'newLine' \| 'rowEnd' \| 'inline'` | `rowEnd` |
+| actionPosition | Form action button alignment | `'left' \| 'center' \| 'right'` | `right` |
+| handleReset | Form reset callback | `(values: Record<string, any>,) => Promise<void> \| void` | - |
+| handleSubmit | form submission callback | `(values: Record<string, any>,) => Promise<void> \| void` | - |
+| handleValuesChange | form value change callback | `(values: Record<string, any>, fieldsChanged: string[]) => void` | - |
+| handleCollapsedChange | Form collapse and expansion state change callback | `(collapsed: boolean) => void` | - |
+| actionButtonsReverse | Replace the action button position | `boolean` | `false` |
+| resetButtonOptions | Reset button component parameters | `ActionButtonOptions` | - |
+| submitButtonOptions | Submit button component parameters | `ActionButtonOptions` | - |
+| showDefaultActions | Whether to display the default action button | `boolean` | `true` |
+| collapsed | Whether to collapse, effective when `showCollapseButton` is `true` | `boolean` | `false` |
+| collapseTriggerResize | When collapsing, trigger the `resize` event | `boolean` | `false` |
+| collapsedRows | Number of rows to keep when folding | `number` | `1` |
+| fieldMappingTime | Used to map array values in the form into 2 fields | `[string, [string, string],Nullable<string>\|[string,string]\|((any,string)=>any)?][]` | - |
+| commonConfig | Common configuration of form items, each configuration will be passed to each form item, and form items can override | `FormCommonConfig` | - |
+| schema | Each configuration of the form item | `FormSchema[]` | - |
+| submitOnEnter | Submit the form when Enter is pressed | `boolean` | false |
+| submitOnChange | Submit the form when the field value changes (internal anti-shake, this property is generally used for table search forms) | `boolean` | false |
+| compact | Whether to compact mode (ignoring the space reserved for verification information) | `boolean` | false |
+| scrollToFirstError | Whether to automatically scroll to the first error field when form validation fails | `boolean` | false |
 
 ::: tip handleValuesChange
 
-`handleValuesChange` 回调函数的第一个参数`values`装载了表单改变后的当前值对象，第二个参数`fieldsChanged`是一个数组，包含了所有被改变的字段名。注意：第二个参数仅在v5.5.4(不含)以上版本可用，并且传递的是已在schema中定义的字段名。如果你使用了字段映射并且需要检查是哪些字段发生了变化的话，请注意该参数并不会包含映射后的字段名。
+The first parameter `values` of the `handleValuesChange` callback function loads the current value object after the form is changed, and the second parameter `fieldsChanged` is an array containing all changed field names. Note: The second parameter is only available in v5.5.4 (exclusive) and above, and passes the field name defined in the schema. If you are using field mapping and need to check which fields have changed, please note that this parameter does not contain the mapped field name.
 
 :::
 
 ::: tip fieldMappingTime
 
-此属性用于将表单内的数组值映射成 2 个字段，它应当传入一个数组，数组的每一项是一个映射规则，规则的第一个成员是一个字符串，表示需要映射的字段名，第二个成员是一个数组，表示映射后的字段名，第三个成员是一个可选的格式掩码，用于格式化日期时间字段；也可以提供一个格式化函数（参数分别为当前值和当前字段名，返回格式化后的值）。如果明确地将格式掩码设为null，则原值映射而不进行格式化（适用于非日期时间字段）。例如：`[['timeRange', ['startTime', 'endTime'], 'YYYY-MM-DD']]`，`timeRange`应当是一个至少具有2个成员的数组类型的值。Form会将`timeRange`的值前两个值分别按照格式掩码`YYYY-MM-DD`格式化后映射到`startTime`和`endTime`字段上。每一项的第三个参数是一个可选的格式掩码，
+This attribute is used to map the array value in the form into 2 fields. It should be passed in an array. Each item of the array is a mapping rule. The first member of the rule is a string, indicating the field name that needs to be mapped. The second member is an array, indicating the mapped field name. The third member is an optional format mask for formatting the date and time field. You can also provide a formatting function (the parameters are the current value and the current field name, and the formatted value is returned). If the format mask is explicitly set to null, the original value is mapped without formatting (applies to non-datetime fields). For example: `[['timeRange', ['startTime', 'endTime'], 'YYYY-MM-DD']]`, `timeRange` should be an array type value with at least 2 members. Form will format the first two values ​​of `timeRange` according to the format mask `YYYY-MM-DD` and map them to the `startTime` and `endTime` fields. The third parameter of each item is an optional format mask,
 
 :::
 
-### TS 类型说明
+### TS type description
 
 ::: details ActionButtonOptions
 
 ```ts
 export interface ActionButtonOptions {
-  /** 样式 */
+  /** style */
   class?: ClassType;
-  /** 是否禁用 */
+  /** Whether to disable */
   disabled?: boolean;
-  /** 是否加载中 */
+  /** Is loading */
   loading?: boolean;
-  /** 按钮大小 */
+  /** button size */
   size?: ButtonVariantSize;
-  /** 按钮类型 */
+  /** Button type */
   variant?: ButtonVariants;
-  /** 是否显示 */
+  /** Whether to display */
   show?: boolean;
-  /** 按钮文本 */
+  /** Button text */
   content?: string;
-  /** 任意属性 */
+  /** Any attribute */
   [key: string]: any;
 }
 ```
@@ -395,58 +395,58 @@ export interface ActionButtonOptions {
 ```ts
 export interface FormCommonConfig {
   /**
-   * 所有表单项的props
+   * Props for all form items
    */
   componentProps?: ComponentProps;
   /**
-   * 所有表单项的控件样式
+   * Control styles for all form items
    */
   controlClass?: string;
   /**
-   * 在表单项的Label后显示一个冒号
+   * Display a colon after the label of the form item
    */
   colon?: boolean;
   /**
-   * 所有表单项的禁用状态
+   * Disabled state of all form items
    * @default false
    */
   disabled?: boolean;
   /**
-   * 所有表单项的控件样式
+   * Control styles for all form items
    * @default {}
    */
   formFieldProps?: Partial<typeof Field>;
   /**
-   * 所有表单项的栅格布局
+   * Grid layout for all form items
    * @default ""
    */
   formItemClass?: (() => string) | string;
   /**
-   * 隐藏所有表单项label
+   * Hide all form item labels
    * @default false
    */
   hideLabel?: boolean;
   /**
-   * 是否隐藏必填标记
+   * Whether to hide required marks
    * @default false
    */
   hideRequiredMark?: boolean;
   /**
-   * 所有表单项的label样式
+   * Label styles for all form items
    * @default ""
    */
   labelClass?: string;
   /**
-   * 所有表单项的label宽度
+   * Label width of all form items
    */
   labelWidth?: number;
   /**
-   * 所有表单项的model属性名。使用自定义组件时可通过此配置指定组件的model属性名。已经在modelPropNameMap中注册的组件不受此配置影响
+   * The model attribute names of all form items. When using a custom component, you can specify the component's model attribute name through this configuration. Components already registered in modelPropNameMap are not affected by this configuration
    * @default "modelValue"
    */
   modelPropName?: string;
   /**
-   * 所有表单项的wrapper样式
+   * Wrapper styles for all form items
    */
   wrapperClass?: string;
 }
@@ -460,75 +460,75 @@ export interface FormCommonConfig {
 export interface FormSchema<
   T extends BaseFormComponentType = BaseFormComponentType,
 > extends FormCommonConfig {
-  /** 组件 */
+  /** Components */
   component: Component | T;
-  /** 组件参数 */
+  /** Component parameters */
   componentProps?: ComponentProps;
-  /** 默认值 */
+  /** Default value */
   defaultValue?: any;
-  /** 依赖 */
+  /** Dependencies */
   dependencies?: FormItemDependencies;
-  /** 描述 */
+  /** Description */
   description?: string;
-  /** 字段名，也作为自定义插槽的名称 */
+  /** Field name, also used as the name of the custom slot */
   fieldName: string;
-  /** 帮助信息 */
+  /** Help information */
   help?: CustomRenderType;
-  /** 是否隐藏表单项 */
+  /** Whether to hide the form item */
   hide?: boolean;
-  /** 表单的标签（如果是一个string，会用于默认必选规则的消息提示） */
+  /** The label of the form (if it is a string, it will be used for the message prompt of the default required rule) */
   label?: CustomRenderType;
-  /** 自定义组件内部渲染  */
+  /** Custom component internal rendering */
   renderComponentContent?: RenderComponentContentType;
-  /** 字段规则 */
+  /** Field rules */
   rules?: FormSchemaRuleType;
-  /** 后缀 */
+  /** Suffix */
   suffix?: CustomRenderType;
 }
 ```
 
 :::
 
-### 表单联动
+### Form linkage
 
-表单联动需要通过 schema 内的 `dependencies` 属性进行联动，允许您添加字段之间的依赖项，以根据其他字段的值控制字段。
+Form linkage requires linkage through the `dependencies` attribute within the schema, allowing you to add dependencies between fields to control fields based on the values of other fields.
 
 ```ts
 dependencies: {
-  // 触发字段。只有这些字段值变动时，联动才会触发
+  // Trigger field. The linkage will only be triggered when the values of these fields change.
   triggerFields: ['name'],
-  // 动态判断当前字段是否需要显示，不显示则直接销毁
+  // Dynamically determine whether the current field needs to be displayed. If it is not displayed, it will be destroyed directly.
   if(values,formApi){},
-  // 动态判断当前字段是否需要显示，不显示用css隐藏
+  // Dynamically determine whether the current field needs to be displayed. If not displayed, use css to hide it.
   show(values,formApi){},
-  // 动态判断当前字段是否需要禁用
+  // Dynamically determine whether the current field needs to be disabled
   disabled(values,formApi){},
-  // 字段变更时，都会触发该函数
+  // This function will be triggered when the field changes
   trigger(values,formApi){},
-  // 动态rules
+  // dynamic rules
   rules(values,formApi){},
-  // 动态必填
+  //Dynamic required
   required(values,formApi){},
-  // 动态组件参数
+  //Dynamic component parameters
   componentProps(values,formApi){},
 }
 ```
 
-### 表单校验
+### Form verification
 
-表单校验需要通过 schema 内的 `rules` 属性进行配置。
+Form validation needs to be configured through the `rules` attribute in the schema.
 
-rules的值可以是字符串（预定义的校验规则名称），也可以是一个zod的schema。
+The value of rules can be a string (predefined verification rule name) or a zod schema.
 
-#### 预定义的校验规则
+#### Predefined verification rules
 
 ```ts
-// 表示字段必填，默认会根据适配器的required进行国际化
+// Indicates that the field is required. By default, it will be internationalized according to the required adapter.
 {
   rules: 'required';
 }
 
-// 表示字段必填，默认会根据适配器的required进行国际化，用于下拉选择之类
+// Indicates that the field is required. By default, it will be internationalized according to the adapter's required, used for drop-down selection and so on.
 {
   rules: 'selectRequired';
 }
@@ -536,22 +536,22 @@ rules的值可以是字符串（预定义的校验规则名称），也可以是
 
 #### zod
 
-rules也支持 zod 的 schema，可以进行更复杂的校验，zod 的使用请查看 [zod文档](https://zod.dev/)。
+Rules also supports the schema of zod, which can perform more complex verification. For the use of zod, please see [zod documentation](https://zod.dev/).
 
 ```ts
 import { z } from '#/adapter/form';
 
-// 基础类型
+//Basic type
 {
-  rules: z.string().min(1, { message: '请输入字符串' });
+  rules: z.string().min(1, { message: 'Please enter a string' });
 }
 
-// 可选(可以是undefined)，并且携带默认值。注意zod的optional不包括空字符串''
+// Optional (can be undefined) and carries a default value. Note that zod's optional does not include the empty string''
 {
-  rules: z.string().default('默认值').optional();
+  rules: z.string().default('default value').optional();
 }
 
-// 可以是空字符串、undefined或者一个邮箱地址(两种不同的用法)
+// Can be an empty string, undefined or an email address (two different uses)
 {
   rules: z.union([z.string().email().optional(), z.literal('')]);
 }
@@ -560,29 +560,29 @@ import { z } from '#/adapter/form';
   rules: z.string().email().or(z.literal('')).optional();
 }
 
-// 复杂校验
+//Complex verification
 {
   z.string()
-    .min(1, { message: '请输入' })
+    .min(1, { message: 'Please enter' })
     .refine((value) => value === '123', {
-      message: '值必须为123',
+      message: 'Value must be 123',
     });
 }
 ```
 
 ## Slots
 
-可以使用以下插槽在表单中插入自定义的内容
+Custom content can be inserted into the form using the following slots
 
-| 插槽名        | 描述               |
+| slot name | description |
 | ------------- | ------------------ |
-| reset-before  | 重置按钮之前的位置 |
-| submit-before | 提交按钮之前的位置 |
-| expand-before | 展开按钮之前的位置 |
-| expand-after  | 展开按钮之后的位置 |
+| reset-before | Reset the previous position of the button |
+| submit-before | The position before the submit button |
+| expand-before | The position before the expand button |
+| expand-after | The position after the expand button |
 
-::: tip 字段插槽
+::: tip field slot
 
-除了以上内置插槽之外，`schema`属性中每个字段的`fieldName`都可以作为插槽名称，这些字段插槽的优先级高于`component`定义的组件。也就是说，当提供了与`fieldName`同名的插槽时，这些插槽的内容将会作为这些字段的组件，此时`component`的值将会被忽略。
+In addition to the above built-in slots, the `fieldName` of each field in the `schema` attribute can be used as a slot name. These field slots have a higher priority than the components defined by `component`. That is, when slots with the same name as `fieldName` are provided, the contents of these slots will be used as components of these fields, and the value of `component` will be ignored.
 
 :::

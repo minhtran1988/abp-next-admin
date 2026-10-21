@@ -1,4 +1,4 @@
-//审批节点默认属性
+// Default attributes of approval node
 export const APPROVAL_PROPS = {
   assignedType: "ASSIGN_USER",
   mode: "AND",
@@ -34,57 +34,57 @@ export const APPROVAL_PROPS = {
   },
   role:[],
   refuse: {
-    type: 'TO_END', //驳回规则 TO_END  TO_NODE  TO_BEFORE
-    target: '' //驳回到指定ID的节点
+    type: 'TO_END', //Reject rule TO_END TO_NODE TO_BEFORE
+    target: '' //Reject to the node with the specified ID
   },
   formUser: ''
 }
 
-//根节点默认属性
+// Default attributes of root node
 export const ROOT_PROPS = {
   assignedUser: [],
   formPerms:[]
 }
 
-//条件节点默认属性
+// Conditional node default attributes
 export const CONDITION_PROPS = {
-  groupsType:"OR", //条件组逻辑关系 OR、AND
+  groupsType:"OR", //Conditional group logical relationship OR, AND
   groups:[
     {
-      groupType:"AND", //条件组内条件关系 OR、AND
-      cids:[], //条件ID集合
-      conditions:[] //组内子条件
+      groupType:"AND", //Conditional relationship within the condition group OR, AND
+      cids:[], //Conditional ID collection
+      conditions:[] //Sub-conditions within the group
     }
   ],
-  expression: "" //自定义表达式，灵活构建逻辑关系
+  expression: "" //Customized expressions to flexibly construct logical relationships
 }
 
-//抄送节点默认属性
+// Default attributes of CC node
 export const CC_PROPS = {
   shouldAdd: false,
   assignedUser: [],
   formPerms:[]
 }
 
-//触发器节点默认属性
+// Default properties of trigger node
 export const TRIGGER_PROPS = {
   type: 'WEBHOOK',
   http:{
-    method: 'GET', //请求方法 支持GET/POST
-    url: '', //URL地址，可以直接带参数
+    method: 'GET', //Request method supports GET/POST
+    url: '', //URL address, you can directly take parameters
     headers: [ //http header
       {
         name: '',
         isField: true,
-        value: '' //支持表达式 ${xxx} xxx为表单字段名称
+        value: '' //Supports expressions ${xxx} xxx is the name of the form field
       }
     ],
-    contentType: 'FORM', //请求参数类型
-    params:[ //请求参数
+    contentType: 'FORM', //Request parameter type
+    params:[ //Request parameters
       {
         name: '',
-        isField: true, //是表单字段还是自定义
-        value: '' //支持表达式 ${xxx} xxx为表单字段名称
+        isField: true, //Is it a form field or custom?
+        value: '' //Supports expressions ${xxx} xxx is the name of the form field
       }
     ],
     retry: 1,
@@ -99,15 +99,15 @@ export const TRIGGER_PROPS = {
   }
 }
 
-//延时节点默认属性
+// Default properties of delay node
 export const DELAY_PROPS = {
-  type: "FIXED", //延时类型 FIXED:到达当前节点后延时固定时长 、AUTO:延时到 dateTime设置的时间
-  time: 0, //延时时间
-  unit: "M", //时间单位 D天 H小时 M分钟
-  dateTime: "" //如果当天没有超过设置的此时间点，就延时到这个指定的时间，到了就直接跳过不延时
+  type: "FIXED", //Delay type FIXED: Delay for a fixed length of time after reaching the current node, AUTO: Delay to the time set by dateTime
+  time: 0, //delay time
+  unit: "M", //time unit D days H hours M minutes
+  dateTime: "" //If the day does not exceed the set time point, it will be delayed to the specified time. When it arrives, it will be skipped without delay.
 }
 
-//HTTP EndPoint默认属性
+// HTTP EndPoint default properties
 export const HTTPENDPOINT_PROPS = {
   path: '',
   methods: [],

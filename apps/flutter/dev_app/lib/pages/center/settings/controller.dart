@@ -32,13 +32,13 @@ class CenterSettingsController extends GetxController {
     Get.toNamed(route);
   }
 
-  /// 主题索引映射
+  /// Topic index mapping
   final Map<int, ThemeMode> themeModeMap = {
     0: ThemeMode.light,
     1: ThemeMode.dark,
     2: ThemeMode.system,
   };
-  /// 当前主题索引
+  /// Current topic index
   int get themeModeIndex {
     switch (themeService.currentThemeMode) {
       case Brightness.light: return 0;
@@ -47,7 +47,7 @@ class CenterSettingsController extends GetxController {
     }
   }
 
-  /// 切换主题色对话框
+  /// Switch theme color dialog box
   void showThemeModalPicker(BuildContext context) {
     var picker = Picker(
       adapter: PickerDataAdapter(

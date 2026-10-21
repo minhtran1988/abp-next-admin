@@ -3,31 +3,31 @@
 public enum JobStatus
 {
     /// <summary>
-    /// 未知
+    /// Unknown
     /// </summary>
     None = -1,
     /// <summary>
-    /// 已完成
+    /// Completed
     /// </summary>
     Completed = 0,
     /// <summary>
-    /// 队列中
+    /// In queue
     /// </summary>
     Queuing = 5,
     /// <summary>
-    /// 运行中
+    /// Running
     /// </summary>
     Running = 10,
     /// <summary>
-    /// 失败重试
+    /// Retry on failure
     /// </summary>
     FailedRetry = 15,
     /// <summary>
-    /// 已暂停
+    /// Paused
     /// </summary>
     Paused = 20,
     /// <summary>
-    /// 已停止
+    /// Stopped
     /// </summary>
     Stopped = 30
 }

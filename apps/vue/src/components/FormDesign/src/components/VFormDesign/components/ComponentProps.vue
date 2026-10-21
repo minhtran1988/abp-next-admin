@@ -1,17 +1,17 @@
 <!--
- * @Description: 组件属性控件
+ * @Description: Component property control
 -->
 <template>
   <div class="properties-content">
     <div class="properties-body" v-if="formConfig.currentItem">
-      <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择组件" />
+      <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="No component selected" />
 
       <Form label-align="left" layout="vertical">
-        <!--    循环遍历渲染组件属性      -->
+        <!-- Loop through rendering component properties -->
 
         <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
           <FormItem v-for="item in inputOptions" :key="item.name" :label="item.label">
-            <!--     处理数组属性，placeholder       -->
+            <!-- Processing array attributes, placeholder -->
 
             <div v-if="item.children">
               <component
@@ -22,7 +22,7 @@
                 v-model:value="formConfig.currentItem.componentProps[item.name][index]"
               />
             </div>
-            <!--     如果不是数组，则正常处理属性值       -->
+            <!-- If it is not an array, the attribute value is processed normally -->
             <component
               v-else
               class="component-prop"
@@ -31,7 +31,7 @@
               v-model:value="formConfig.currentItem.componentProps[item.name]"
             />
           </FormItem>
-          <FormItem label="控制属性">
+          <FormItem label="Control Properties">
             <Col v-for="item in controlOptions" :key="item.name">
               <Checkbox
                 v-if="showControlAttrs(item.includes)"
@@ -43,7 +43,7 @@
             </Col>
           </FormItem>
         </div>
-        <FormItem label="关联字段">
+        <FormItem label="Associated fields">
           <Select
             mode="multiple"
             v-model:value="formConfig.currentItem['link']"
@@ -52,7 +52,7 @@
         </FormItem>
 
         <FormItem
-          label="选项"
+          label="options"
           v-if="
             [
               'Select',
@@ -69,11 +69,11 @@
           <FormOptions />
         </FormItem>
 
-        <FormItem label="表格" v-if="['Table'].includes(formConfig.currentItem.component)">
+        <FormItem label="Table" v-if="['Table'].includes(formConfig.currentItem.component)">
           <FormOptions />
         </FormItem>
 
-        <FormItem label="栅格" v-if="['Grid'].includes(formConfig.currentItem.component)">
+        <FormItem label="Grid" v-if="['Grid'].includes(formConfig.currentItem.component)">
           <FormOptions />
         </FormItem>
       </Form>
@@ -123,7 +123,7 @@
       Row,
     },
     setup() {
-      // 让compuated属性自动更新
+      // Let computed properties update automatically
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
         if (!includes) return true;
@@ -153,10 +153,10 @@
           baseComponentControlAttrs.forEach((item) => {
             item.category = 'control';
             if (!item.includes) {
-              // 如果属性没有include，所有的控件都适用
+              // If the property is not included, all controls are applicable
               allOptions.value.push(item);
             } else if (item.includes.includes(formConfig.value.currentItem!.component)) {
-              // 如果有include，检查是否包含了当前控件类型
+              // If there is an include, check whether the current control type is included
               allOptions.value.push(item);
             }
           });
@@ -191,13 +191,13 @@
           immediate: true,
         },
       );
-      // 控制性的选项
+      // Control options
       const controlOptions = computed(() => {
         return allOptions.value.filter((item) => {
           return item.category == 'control';
         });
       });
-      // 非控制性选择
+      // uncontrolled selection
       const inputOptions = computed(() => {
         return allOptions.value.filter((item) => {
           return item.category == 'input';

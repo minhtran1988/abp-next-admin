@@ -8,31 +8,31 @@ namespace LINGYUN.Abp.BackgroundTasks.Activities;
 public class JobActionDefinition
 {
     /// <summary>
-    /// 名称
+    /// Name
     /// </summary>
     public string Name { get; }
     /// <summary>
-    /// 类型
+    /// Type
     /// </summary>
     public JobActionType Type { get; }
     /// <summary>
-    /// 显示名称
+    /// Display name
     /// </summary>
     public ILocalizableString DisplayName { get; }
     /// <summary>
-    /// 描述
+    /// Description
     /// </summary>
     public ILocalizableString? Description { get; }
     /// <summary>
-    /// 参数列表
+    /// Parameter list
     /// </summary>
     public IList<JobActionParamter> Paramters { get; }
     /// <summary>
-    /// 通知提供者
+    /// Notify provider
     /// </summary>
     public ITypeList<IJobExecutedProvider> Providers { get; }
     /// <summary>
-    /// 额外属性
+    /// Additional attributes
     /// </summary>
     public Dictionary<string, object> Properties { get; }
     public JobActionDefinition(

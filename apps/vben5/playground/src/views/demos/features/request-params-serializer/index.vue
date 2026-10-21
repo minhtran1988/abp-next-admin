@@ -13,7 +13,7 @@ const paramsSerializer = ref<'brackets' | 'comma' | 'indices' | 'repeat'>(
 );
 const response = ref('');
 const paramsStr = computed(() => {
-  // 写一段代码，从完整的URL中提取参数部分
+  // Write a piece of code to extract the parameter part from the complete URL
   const url = response.value;
   return new URL(url).searchParams.toString();
 });
@@ -26,8 +26,8 @@ watchEffect(() => {
 </script>
 <template>
   <Page
-    title="请求参数序列化"
-    description="不同的后台接口可能对数组类型的GET参数的解析方式不同，我们预置了几种数组序列化方式，通过配置 paramsSerializer 来实现不同的序列化方式"
+    title="Request parameter serialization"
+    description="Different backend interfaces may parse array type GET parameters in different ways. We have preset several array serialization methods and configure paramsSerializer to achieve different serialization methods."
   >
     <Card>
       <RadioGroup v-model:value="paramsSerializer" name="paramsSerializer">
@@ -38,20 +38,20 @@ watchEffect(() => {
       </RadioGroup>
       <div class="mt-4 flex flex-col gap-4">
         <div>
-          <h3>需要提交的参数</h3>
+          <h3>Parameters that need to be submitted</h3>
           <div>{{ JSON.stringify(params, null, 2) }}</div>
         </div>
         <template v-if="response">
           <div>
-            <h3>访问地址</h3>
+            <h3>Access address</h3>
             <pre>{{ response }}</pre>
           </div>
           <div>
-            <h3>参数字符串</h3>
+            <h3>Parameter string</h3>
             <pre>{{ paramsStr }}</pre>
           </div>
           <div>
-            <h3>参数解码</h3>
+            <h3>Parameter decoding</h3>
             <pre>{{ decodeURIComponent(paramsStr) }}</pre>
           </div>
         </template>

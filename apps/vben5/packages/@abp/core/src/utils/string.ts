@@ -1,16 +1,16 @@
 /**
  *
- * @param str 字符串是否为空或空格
+ * @param str Whether the string is empty or space
  */
 export function isNullOrWhiteSpace(str?: string) {
   return str === undefined || str === null || str === '' || str === ' ';
 }
 
 /**
- * 格式化字符串
- * @param formatted 需要处理的字符串
- * @param args 参数列表，可以是数组，也可以是对象
- * @returns 返回格式化的字符串
+ * Format string
+ * @param formatted The string to be processed
+ * @param args parameter list, which can be an array or an object
+ * @returns returns a formatted string
  * @example format('Hello, {0}!', ['World'])
  * @example format('Hello, {name}!', {name: 'World'})
  */
