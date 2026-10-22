@@ -446,7 +446,7 @@ public class IndexNameNormalizer_Tests : AbpAuditLoggingElasticsearchTestBase
             "", " ", "-", "_", "+", "---",
             "audit/log", "audit log", "audit#log",
             new string('a', 1000),
-            "Chinese index name",
+            "\u4e2d\u6587\u7d22\u5f15\u540d",
             "😀😀😀",
             ".", "..",
         };
@@ -467,7 +467,7 @@ public class IndexNameNormalizer_Tests : AbpAuditLoggingElasticsearchTestBase
             "", " ", "-", "_", "+", "---",
             "audit/log", "audit log", "audit#log",
             new string('a', 1000),
-            "Chinese index name",
+            "\u4e2d\u6587\u7d22\u5f15\u540d",
             "😀😀😀",
         };
 

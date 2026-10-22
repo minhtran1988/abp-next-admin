@@ -176,7 +176,7 @@ public class FileSystemBlobProviderSecurity_Tests : AbpBlobManagementFileSystemT
     [InlineData("public")]
     [InlineData("users")]
     [InlineData("my-container")]
-    [InlineData("Object Storage")]
+    [InlineData("\u5bf9\u8c61\u5b58\u50a8")]
     public async Task Should_Allow_Legitimate_Container_Names(string containerName)
     {
         await BlobProvider.CreateContainerAsync(containerName);

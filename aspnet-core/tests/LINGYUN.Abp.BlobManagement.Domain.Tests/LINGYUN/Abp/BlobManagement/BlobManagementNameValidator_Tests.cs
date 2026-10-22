@@ -11,7 +11,7 @@ public class BlobManagementNameValidator_Tests : AbpBlobManagementDomainTestBase
 {
     [Theory]
     [InlineData("file.txt", true)]
-    [InlineData("Directory", true)]
+    [InlineData("\u76ee\u5f55", true)]
     [InlineData(".hidden", true)]
     [InlineData("a/b", false)]
     [InlineData("a\\b", false)]

@@ -39,7 +39,7 @@ public class BlobContainer_Tests : AbpBlobManagementDomainTestBase
     [InlineData("users")]
     [InlineData("my-container")]
     [InlineData("my_container.1")]
-    [InlineData("Object Storage")]
+    [InlineData("\u5bf9\u8c61\u5b58\u50a8")]
     public void Should_Allow_Legitimate_Names(string name)
     {
         var container = new TestBlobContainer();

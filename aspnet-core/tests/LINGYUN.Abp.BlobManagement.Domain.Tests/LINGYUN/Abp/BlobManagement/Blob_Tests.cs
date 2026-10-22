@@ -31,7 +31,7 @@ public class Blob_Tests : AbpBlobManagementDomainTestBase
     [Theory]
     [InlineData("file.txt")]
     [InlineData("file name.txt")]
-    [InlineData("Directory")]
+    [InlineData("\u76ee\u5f55")]
     [InlineData(".hidden")]
     public void Should_Allow_Legitimate_Names(string name)
     {
