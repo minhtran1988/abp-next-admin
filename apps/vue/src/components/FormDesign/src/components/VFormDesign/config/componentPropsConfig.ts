@@ -91,7 +91,7 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
   },
   {
     name: 'bordered',
-    label: 'Whether there is a border',
+    label: 'Show border',
     includes: ['Select', 'ApiSelect', 'Input'],
   },
   {
@@ -174,7 +174,7 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
           value: undefined,
         },
         {
-          label: 'is',
+          label: 'Yes',
           value: true,
         },
         {
@@ -199,7 +199,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'defaultOpen',
-      label: 'Whether to expand the drop-down menu by default',
+      label: 'Expand the drop-down menu by default',
       component: 'Checkbox',
     },
   ],
@@ -378,12 +378,12 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'controls',
-      label: 'Whether to display increase and decrease buttons',
+      label: 'Show increase/decrease buttons',
       component: 'Checkbox',
     },
     {
       name: 'keyboard',
-      label: 'Whether to enable keyboard shortcut behavior',
+      label: 'Enable keyboard shortcuts',
       component: 'Checkbox',
     },
     {
@@ -393,7 +393,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'bordered',
-      label: 'Whether there is a border',
+      label: 'Show border',
       component: 'Checkbox',
     },
   ],
@@ -456,12 +456,12 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'showCount',
-      label: 'Whether to display the word count',
+      label: 'Show word count',
       component: 'Checkbox',
     },
     {
       name: 'readonly',
-      label: 'Whether it is read-only',
+      label: 'Read-only',
       component: 'Checkbox',
     },
     {
@@ -471,7 +471,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'autocomplete',
-      label: 'Whether to automatically complete',
+      label: 'Auto-complete',
       component: 'RadioGroup',
       componentProps: {
         options: [
@@ -483,7 +483,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'autocorrect',
-      label: 'Whether to automatically correct errors',
+      label: 'Auto-correct errors',
       component: 'RadioGroup',
       componentProps: {
         options: [
@@ -510,7 +510,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'autoClearSearchValue',
-      label: 'Whether to clear the search box after selecting the item',
+      label: 'Clear the search box after selection',
       component: 'Checkbox',
     },
     {
@@ -948,7 +948,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'treeLine',
-      label: 'Whether to display line style',
+      label: 'Show line style',
       component: 'Checkbox',
     },
     {
@@ -1079,7 +1079,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'draggable',
-      label: 'Whether the picture is allowed to be dragged',
+      label: 'Allow dragging the picture',
       component: 'Switch',
     },
     {
@@ -1113,7 +1113,7 @@ const componentAttrs: IBaseComponentProps = {
     },
     {
       name: 'bordered',
-      label: 'Whether to display the border',
+      label: 'Show border',
       component: 'Switch',
     },
     {
@@ -1207,7 +1207,7 @@ function deleteProps(list: Omit<IBaseFormAttrs, 'tag'>[], key: string) {
 componentAttrs['StrengthMeter'] = componentAttrs['Input'];
 componentAttrs['StrengthMeter'].push({
   name: 'visibilityToggle',
-  label: 'Whether to display the switch button',
+  label: 'Show switch button',
   component: 'Checkbox',
 });
 

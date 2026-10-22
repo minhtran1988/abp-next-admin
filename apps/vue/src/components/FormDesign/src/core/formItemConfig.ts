@@ -62,7 +62,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'IconPicker',
-    label: 'icon selector',
+    label: 'Icon selector',
     icon: 'line-md:iconify2',
     colProps: { span: 24 },
     field: '',
@@ -78,7 +78,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'AutoComplete',
-    label: 'autocomplete',
+    label: 'Autocomplete',
     icon: 'wpf:password1',
     colProps: { span: 24 },
     field: '',
@@ -98,7 +98,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Divider',
-    label: 'Separating line',
+    label: 'Divider',
     icon: 'radix-icons:divider-horizontal',
     colProps: { span: 24 },
     field: '',
@@ -109,14 +109,14 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Checkbox',
-    label: 'checkbox',
+    label: 'Checkbox',
     icon: 'ant-design:check-circle-outlined',
     colProps: { span: 24 },
     field: '',
   },
   {
     component: 'CheckboxGroup',
-    label: 'checkbox-group',
+    label: 'Checkbox group',
     icon: 'ant-design:check-circle-filled',
     field: '',
     colProps: { span: 24 },
@@ -135,7 +135,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Input',
-    label: 'input box',
+    label: 'Input',
     icon: 'bi:input-cursor-text',
     field: '',
     colProps: { span: 24 },
@@ -145,7 +145,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'InputNumber',
-    label: 'Number input box',
+    label: 'Number input',
     icon: 'ant-design:field-number-outlined',
     field: '',
     colProps: { span: 24 },
@@ -153,7 +153,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'InputTextArea',
-    label: 'text field',
+    label: 'Textarea',
     icon: 'ant-design:file-text-filled',
     field: '',
     colProps: { span: 24 },
@@ -161,7 +161,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Select',
-    label: 'drop-down selection',
+    label: 'Select',
     icon: 'gg:select',
     field: '',
     colProps: { span: 24 },
@@ -181,7 +181,7 @@ export const baseComponents: IVFormComponent[] = [
 
   {
     component: 'Radio',
-    label: 'radio button',
+    label: 'Radio',
     icon: 'ant-design:check-circle-outlined',
     field: '',
     colProps: { span: 24 },
@@ -189,7 +189,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'RadioGroup',
-    label: 'Radio button-group',
+    label: 'Radio group',
     icon: 'carbon:radio-button-checked',
     field: '',
     colProps: { span: 24 },
@@ -208,7 +208,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'DatePicker',
-    label: 'Date selection',
+    label: 'Date picker',
     icon: 'healthicons:i-schedule-school-date-time-outline',
     field: '',
     colProps: { span: 24 },
@@ -216,7 +216,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'RangePicker',
-    label: 'date range',
+    label: 'Date range',
     icon: 'healthicons:i-schedule-school-date-time-outline',
     field: '',
     colProps: { span: 24 },
@@ -226,7 +226,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'MonthPicker',
-    label: 'month selection',
+    label: 'Month picker',
     icon: 'healthicons:i-schedule-school-date-time-outline',
     field: '',
     colProps: { span: 24 },
@@ -236,7 +236,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'TimePicker',
-    label: 'Time selection',
+    label: 'Time picker',
     icon: 'healthicons:i-schedule-school-date-time',
     field: '',
     colProps: { span: 24 },
@@ -244,7 +244,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Slider',
-    label: 'Sliding input bar',
+    label: 'Slider',
     icon: 'vaadin:slider',
     field: '',
     colProps: { span: 24 },
@@ -252,7 +252,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Rate',
-    label: 'rating',
+    label: 'Rate',
     icon: 'ic:outline-star-rate',
     field: '',
     colProps: { span: 24 },
@@ -260,7 +260,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Switch',
-    label: 'switch',
+    label: 'Switch',
     icon: 'entypo:switch',
     field: '',
     colProps: { span: 24 },
@@ -268,7 +268,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'TreeSelect',
-    label: 'Tree selection',
+    label: 'Tree select',
     icon: 'clarity:tree-view-line',
     field: '',
     colProps: { span: 24 },
@@ -293,7 +293,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Upload',
-    label: 'upload',
+    label: 'Upload',
     icon: 'ant-design:upload-outlined',
     field: '',
     colProps: { span: 24 },
@@ -303,7 +303,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Cascader',
-    label: 'cascading selection',
+    label: 'Cascader',
     icon: 'ant-design:check-outlined',
     field: '',
     colProps: { span: 24 },
@@ -328,7 +328,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   // {
   //   component: 'Button',
-  // label: 'button',
+  // label: 'Button',
   //   icon: 'dashicons:button',
   //   field: '',
   //   colProps: { span: 24 },
@@ -337,7 +337,7 @@ export const baseComponents: IVFormComponent[] = [
   // },
   // {
   //   component: 'ColorPicker',
-  // label: 'color picker',
+  // label: 'Color picker',
   //   icon: 'carbon:color-palette',
   //   field: '',
   //   colProps: { span: 24 },
@@ -348,7 +348,7 @@ export const baseComponents: IVFormComponent[] = [
   // },
   {
     component: 'Avatar',
-    label: 'avatar',
+    label: 'Avatar',
     icon: 'radix-icons:avatar',
     field: '',
     colProps: { span: 24 },
@@ -356,7 +356,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Descriptions',
-    label: 'Description list',
+    label: 'Descriptions',
     icon: 'cil:description',
     field: '',
     colProps: { span: 24 },
@@ -375,7 +375,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'slot',
-    label: 'slot',
+    label: 'Slot',
     icon: 'vs:timeslot-question',
     field: '',
     colProps: { span: 24 },
@@ -388,7 +388,7 @@ export const baseComponents: IVFormComponent[] = [
 // https://next.antdv.com/components/transfer-cn
 const transferControl = {
   component: 'Transfer',
-  label: 'shuttle box',
+  label: 'Transfer',
   icon: 'bx:bx-transfer-alt',
   field: '',
   colProps: { span: 24 },
@@ -423,7 +423,7 @@ baseComponents.push(transferControl);
 
 const tableControl = {
   component: 'Table',
-  label: 'table',
+  label: 'Table',
   icon: 'bx:bx-table',
   field: '',
   colProps: { span: 24 },

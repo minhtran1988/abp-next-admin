@@ -354,7 +354,7 @@
     </filter>
     <title>87667-SVG8</title>
     <g>
-      <g id="Group backup" transform="translate(40.000000, 350.000000)">
+      <g id="Group-backup" transform="translate(40.000000, 350.000000)">
         <linearGradient
           id="Shape_1_"
           gradientTransform="matrix(352.3498 0 0 -229.3688 -21376.5684 335815.1875)"
@@ -425,7 +425,7 @@
           </g>
         </g>
         <path
-          id="Shape backup"
+          id="Shape-backup"
           d="M356.1,376L49.6,199c-3.6-2.1-3.6-7.4,0-9.5
 			L339.8,21.9c6.7-3.9,15-3.9,21.7,0l308.6,178.3c3.6,2.1,3.6,7.4,0,9.5L382.1,376C374.1,380.7,364.1,380.7,356.1,376z"
           fill="none"
@@ -510,8 +510,8 @@
           stroke-width="1.0568"
         />
       </g>
-      <g id="Group backup-4" transform="translate(386.000000, 561.000000)">
-        <g id="Group backup-3" transform="translate(0.000000, 69.529529)">
+      <g id="Group-backup-4" transform="translate(386.000000, 561.000000)">
+        <g id="Group-backup-3" transform="translate(0.000000, 69.529529)">
           <g id="Stroke-1">
             <g>
               <linearGradient
@@ -640,7 +640,7 @@
         />
       </g>
       <g id="Group-4" transform="translate(71.000000, 199.000000)">
-        <g id="Shape backup-2">
+        <g id="Shape-backup-2">
           <g>
             <linearGradient
               id="path-19_1_"
@@ -674,7 +674,7 @@
           </g>
         </g>
         <g id="Group-13" transform="translate(45.000000, 0.000000)">
-          <g id="Group backup-17" transform="translate(90.066225, 54.000000)">
+          <g id="Group-backup-17" transform="translate(90.066225, 54.000000)">
             <g>
               <g>
                 <linearGradient
@@ -778,7 +778,7 @@
 									"
             />
           </g>
-          <g id="Group backup-16" transform="translate(45.562914, 134.529801)">
+          <g id="Group-backup-16" transform="translate(45.562914, 134.529801)">
             <g>
               <g>
                 <linearGradient
@@ -882,7 +882,7 @@
 									"
             />
           </g>
-          <g id="Group backup-18" transform="translate(0.000000, 0.271523)">
+          <g id="Group-backup-18" transform="translate(0.000000, 0.271523)">
             <g>
               <g>
                 <linearGradient
@@ -969,7 +969,7 @@
             />
 
             <linearGradient
-              id="rectangular backup_1_"
+              id="rectangular-backup_1_"
               gradientTransform="matrix(48 0 0 -80.5525 820 129428.7578)"
               gradientUnits="userSpaceOnUse"
               x1="-15.625"
@@ -982,10 +982,10 @@
             </linearGradient>
 
             <polygon
-              id="rectangular backup"
+              id="rectangular-backup"
               clip-rule="evenodd"
               enable-background="new    "
-              fill="url(#rectanglebackup_1_)"
+              fill="url(#rectangular-backup_1_)"
               fill-rule="evenodd"
               opacity="0.3"
               points="
@@ -993,7 +993,7 @@
             />
 
             <linearGradient
-              id="rectangular backup-4_1_"
+              id="rectangular-backup-4_1_"
               gradientTransform="matrix(48 0 0 -80.5525 863 129347.75)"
               gradientUnits="userSpaceOnUse"
               x1="-15.625"
@@ -1006,10 +1006,10 @@
             </linearGradient>
 
             <polygon
-              id="rectangular backup-4"
+              id="rectangular-backup-4"
               clip-rule="evenodd"
               enable-background="new    "
-              fill="url(#rectanglebackup-4_1_)"
+              fill="url(#rectangular-backup-4_1_)"
               fill-rule="evenodd"
               opacity="0.3"
               points="
@@ -1082,7 +1082,7 @@
             />
           </g>
           <g transform="translate(0.000000, 32.309947)">
-            <g id="shape combination">
+            <g id="shape-combination">
               <linearGradient
                 id="SVGID_16_"
                 gradientTransform="matrix(252.8605 0 0 -153.121 46628.3242 218334.6719)"
@@ -1151,7 +1151,7 @@
               />
             </g>
           </g>
-          <g id="Stroke-1 backup">
+          <g id="Stroke-1-backup">
             <g>
               <linearGradient
                 id="path-45_1_"
@@ -1184,7 +1184,7 @@
             </g>
           </g>
         </g>
-        <g id="Group-3 backup" transform="translate(24.286045, 0.000000)">
+        <g id="Group-3-backup" transform="translate(24.286045, 0.000000)">
           <g transform="translate(1.000000, 323.847957)">
             <g>
               <linearGradient
@@ -1313,8 +1313,8 @@
           />
         </g>
       </g>
-      <g id="Group-11 backup" transform="translate(329.000000, 539.000000)">
-        <g id="Group-6 backup" transform="translate(0.000000, 4.148936)">
+      <g id="Group-11-backup" transform="translate(329.000000, 539.000000)">
+        <g id="Group-6-backup" transform="translate(0.000000, 4.148936)">
           <g filter="url(#filter-56)">
             <linearGradient
               id="SVGID_19_"
@@ -1409,7 +1409,7 @@
       </g>
 
       <g
-        id="Group backup-9"
+        id="Group-backup-9"
         opacity="0.5"
         transform="translate(488.000000, 172.000000) scale(-1, 1) translate(-488.000000, -172.000000) translate(449.000000, 122.000000)"
       >
@@ -1613,7 +1613,7 @@
           stroke-width="0.5"
         />
       </g>
-      <g id="person backup" transform="translate(364.000000, 134.000000)">
+      <g id="person-backup" transform="translate(364.000000, 134.000000)">
         <path
           id="Path"
           clip-rule="evenodd"
@@ -1934,7 +1934,7 @@
       </g>
 
       <g
-        id="Group-15 backup"
+        id="Group-15-backup"
         transform="translate(524.500000, 179.500000) scale(-1, 1) translate(-524.500000, -179.500000) translate(482.000000, 114.000000)"
       >
         <linearGradient
@@ -2001,7 +2001,7 @@
           fill-rule="evenodd"
         />
       </g>
-      <g id="Group" transform="translate(457.000000, 235.000000)">
+      <g id="Group-2" transform="translate(457.000000, 235.000000)">
         <linearGradient
           id="SVGID_40_"
           gradientTransform="matrix(94.2244 0 0 -135.8154 33551.6523 213971.6875)"
@@ -2068,7 +2068,7 @@
         />
 
         <linearGradient
-          id="Path backup_1_"
+          id="Path-backup_1_"
           gradientTransform="matrix(5.707 0 0 -15.38 2199.9822 23445.7344)"
           gradientUnits="userSpaceOnUse"
           x1="-372.3728"
@@ -2080,9 +2080,9 @@
           <stop offset="1" style="stop-color: #2afadf" />
         </linearGradient>
         <polygon
-          id="Path backup"
+          id="Path-backup"
           clip-rule="evenodd"
-          fill="url(#Path backup_1_)"
+          fill="url(#Path-backup_1_)"
           fill-rule="evenodd"
           points="77.7,133 77.7,121.7
 			72,124.9 72,137 		"
@@ -2149,7 +2149,7 @@
         />
 
         <linearGradient
-          id="Path backup-2_1_"
+          id="Path-backup-2_1_"
           gradientTransform="matrix(5.78 0 0 -28.2102 2214.8997 43745.1641)"
           gradientUnits="userSpaceOnUse"
           x1="-372.1471"
@@ -2161,17 +2161,17 @@
           <stop offset="1" style="stop-color: #2afadf" />
         </linearGradient>
         <path
-          id="Path backup-2"
+          id="Path-backup-2"
           clip-rule="evenodd"
           d="M66.8,140.4
 			c-0.6,0.4-1.2,0.7-1.9,1.1c-1.2,0.7-2.5,1.4-3.8,2.1L61,118.7l5.7-3.3L66.8,140.4z"
-          fill="url(#Path backup-2_1_)"
+          fill="url(#Path-backup-2_1_)"
           fill-rule="evenodd"
         />
       </g>
 
       <g
-        id="group backup"
+        id="group-backup"
         transform="translate(316.500000, 268.500000) scale(-1, 1) translate(-316.500000, -268.500000) translate(269.000000, 180.000000)"
       >
         <linearGradient
@@ -2267,7 +2267,7 @@
               fill-rule="evenodd"
             />
           </g>
-          <g id="Group-2" transform="translate(0.862170, 124.812382)">
+          <g id="Group-2-2" transform="translate(0.862170, 124.812382)">
             <linearGradient
               id="SVGID_49_"
               gradientTransform="matrix(145.0025 0 0 -83.8574 68008.0859 115279.1875)"
@@ -2344,9 +2344,9 @@
               fill-rule="evenodd"
             />
           </g>
-          <g id="Group-2 backup" transform="translate(8.400000, 103.200000)">
+          <g id="Group-2-backup" transform="translate(8.400000, 103.200000)">
             <g
-              id="Path backup-3"
+              id="Path-backup-3"
               enable-background="new    "
               filter="url(#filter-100)"
               opacity="0.6817"
@@ -2523,7 +2523,7 @@
             fill-rule="evenodd"
           />
         </g>
-        <g id="Group backup-8" transform="translate(47.447727, 63.600000)">
+        <g id="Group-backup-8" transform="translate(47.447727, 63.600000)">
           <g
             enable-background="new    "
             filter="url(#filter-106)"
@@ -2601,7 +2601,7 @@
           />
           <g id="Group-10" transform="translate(4.431004, 28.063025)">
             <g id="Group-8">
-              <g id="Shape backup-3" transform="translate(0.000000, -0.000000)">
+              <g id="Shape-backup-3" transform="translate(0.000000, -0.000000)">
                 <g id="mask">
                   <linearGradient
                     id="SVGID_59_"
@@ -2676,7 +2676,7 @@
                   points="6.3,10.9 0,14.6 0,7.3 6.3,3.6 						"
                 />
               </g>
-              <g id="Shape backup-4" transform="translate(9.630049, 5.468450)">
+              <g id="Shape-backup-4" transform="translate(9.630049, 5.468450)">
                 <g>
                   <linearGradient
                     id="SVGID_61_"
@@ -2752,7 +2752,7 @@
                   points="6.3,10.9 0,14.6 0,7.3 6.3,3.6 						"
                 />
               </g>
-              <g id="Shape backup-5" transform="translate(19.201017, 11.077510)">
+              <g id="Shape-backup-5" transform="translate(19.201017, 11.077510)">
                 <g>
                   <linearGradient
                     id="SVGID_63_"
@@ -2829,7 +2829,7 @@
                 />
               </g>
             </g>
-            <g id="Group-8 backup" transform="translate(0.000000, 11.077510)">
+            <g id="Group-8-backup" transform="translate(0.000000, 11.077510)">
               <g transform="translate(0.000000, -0.000000)">
                 <g>
                   <linearGradient
@@ -3310,7 +3310,7 @@
           />
 
           <g
-            id="group-10 backup-4"
+            id="group-10-backup-4"
             transform="translate(53.703560, 51.063025) scale(-1, 1) translate(-53.703560, -51.063025) translate(40.203560, 28.063025)"
           >
             <g>
@@ -3948,7 +3948,7 @@
             />
 
             <ellipse
-              id="oval backup"
+              id="oval-backup"
               clip-rule="evenodd"
               cx="86"
               cy="30.8"
@@ -4020,7 +4020,7 @@
       </g>
 
       <g
-        id="Group backup-11"
+        id="Group-backup-11"
         transform="translate(694.000000, 158.500000) scale(-1, 1) translate(-694.000000, -158.500000) translate(622.000000, 65.000000)"
       >
         <linearGradient
@@ -4393,7 +4393,7 @@
             </mask>
 
             <linearGradient
-              id="rectangular backup-3_1_"
+              id="rectangular-backup-3_1_"
               gradientTransform="matrix(76.2914 0 0 -67.1042 -3730.5828 110741.1094)"
               gradientUnits="userSpaceOnUse"
               x1="49.8816"
@@ -4408,12 +4408,12 @@
             </linearGradient>
 
             <path
-              id="rectangular backup-3"
+              id="rectangular-backup-3"
               clip-rule="evenodd"
               d="
 					M100.1-13.4l29.3,15.6l5.2,15.3C112,43,96.4,54.9,87.8,53.2S69.3,34.5,58.3,2.2c10.3-7,18.4-11.6,24.2-13.7
 					S94.1-14.3,100.1-13.4z"
-              fill="url(#rectanglebackup-3_1_)"
+              fill="url(#rectangular-backup-3_1_)"
               fill-rule="evenodd"
               mask="url(#mask-168_1_)"
             />
@@ -4455,7 +4455,7 @@
             </mask>
 
             <linearGradient
-              id="rectangular backup-2_1_"
+              id="rectangular-backup-2_1_"
               gradientTransform="matrix(76.2914 0 0 -67.1042 -3788.8608 110741.1094)"
               gradientUnits="userSpaceOnUse"
               x1="49.8816"
@@ -4470,11 +4470,11 @@
             </linearGradient>
 
             <path
-              id="rectangular backup-2"
+              id="rectangular-backup-2"
               clip-rule="evenodd"
               d="
 					M41.8-13.4L71.1,2.2l5.2,15.3C53.7,43,38.1,54.9,29.5,53.2S11,34.5,0,2.2c10.3-7,18.4-11.6,24.2-13.7S35.8-14.3,41.8-13.4z"
-              fill="url(#rectanglebackup-2_1_)"
+              fill="url(#rectangular-backup-2_1_)"
               fill-rule="evenodd"
               mask="url(#mask-168_2_)"
             />
@@ -4552,7 +4552,7 @@
             <stop offset="1" style="stop-color: #060071" />
           </linearGradient>
           <path
-            id="Fill-1 backup"
+            id="Fill-1-backup"
             clip-rule="evenodd"
             d="M86.6,18.8
 				c10.3-6,18.6-1.1,18.7,10.7c0,11.6-7.9,25.6-17.9,31.8l-55.2,32l-0.4,0.2c-11.3,6.3-20.3,0.9-20.4-12.1

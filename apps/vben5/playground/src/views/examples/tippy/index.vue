@@ -86,7 +86,7 @@ const [Form] = useVbenForm({
       componentProps: {
         buttonStyle: 'solid',
         options: [
-          { label: 'is', value: true },
+          { label: 'Yes', value: true },
           { label: 'No', value: false },
         ],
         optionType: 'button',
@@ -156,7 +156,7 @@ const [Form] = useVbenForm({
       componentProps: {
         buttonStyle: 'solid',
         options: [
-          { label: 'is', value: true },
+          { label: 'Yes', value: true },
           { label: 'No', value: false },
         ],
         optionType: 'button',
@@ -202,8 +202,8 @@ const [Form] = useVbenForm({
       componentProps: {
         class: 'w-full',
         options: [
-          { label: 'no', value: 'false' },
-          { label: 'is', value: 'true' },
+          { label: 'No', value: 'false' },
+          { label: 'Yes', value: 'true' },
           { label: 'Internal only', value: 'toggle' },
         ],
       },
