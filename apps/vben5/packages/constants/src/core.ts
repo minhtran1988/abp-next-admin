@@ -13,7 +13,7 @@ export interface LanguageOption {
  */
 export const SUPPORT_LANGUAGES: LanguageOption[] = [
   {
-    label: 'Simplified Chinese',
+    label: '\u7b80\u4f53\u4e2d\u6587',
     value: 'zh-CN',
   },
   {

@@ -19,7 +19,7 @@ export const localeSetting: LocaleSetting = {
 // locale list
 export const localeList: DropMenu[] = [
   {
-    text: 'Simplified Chinese',
+    text: '\u7b80\u4f53\u4e2d\u6587',
     event: LOCALE.ZH_CN,
   },
   {

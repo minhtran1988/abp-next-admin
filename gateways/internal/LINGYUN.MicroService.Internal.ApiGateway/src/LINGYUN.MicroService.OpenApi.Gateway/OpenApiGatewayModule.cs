@@ -91,7 +91,7 @@ public class OpenApiGatewayModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "Simplified Chinese"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "\u7b80\u4f53\u4e2d\u6587"));
         });
 
         context.Services.AddAbpSwaggerGenWithOAuth(
