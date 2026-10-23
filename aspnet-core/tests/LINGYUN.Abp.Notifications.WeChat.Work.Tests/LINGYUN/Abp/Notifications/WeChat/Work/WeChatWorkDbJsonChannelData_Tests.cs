@@ -34,8 +34,8 @@ public class WeChatWorkDbJsonChannelData_Tests
     private const string TemplateCardDbJson =
         "{\"wx-work:template_card_message\":\"{" +
         "\\\"main_title\\\":{\\\"title\\\":\\\"Leave application notification\\\",\\\"desc\\\":\\\"Your leave application has been approved\\\"}," +
-        "\\\"sub_title_text\\\":\\\"Please handle the subsequent handover matters in a timely manner\\\"," +
-        "\\\"horizontal_content_list\\\":[{\\\"keyname\\\":\\\"single number\\\",\\\"value\\\":\\\"LV20251001\\\"}]," +
+        "\\\"sub_title_text\\\":\\\"Please handle subsequent handover matters in a timely manner\\\"," +
+        "\\\"horizontal_content_list\\\":[{\\\"keyname\\\":\\\"Order Number\\\",\\\"value\\\":\\\"LV20251001\\\"}]," +
         "\\\"TemplateCardCardAction\\\":{\\\"type\\\":1,\\\"url\\\":\\\"https://example.com/approval/123\\\"}," +
         "\\\"card_type\\\":\\\"template_card\\\"}\"}";
 
@@ -51,7 +51,7 @@ public class WeChatWorkDbJsonChannelData_Tests
 
         // The abstract base class must be reducible to a concrete card type
         var card = payload.TemplateCard.ShouldBeOfType<TextTemplateCard>();
-        card.MainTitle!.Title.ShouldBe("Leave notification");
+        card.MainTitle!.Title.ShouldBe("Leave application notification");
         card.MainTitle!.Description.ShouldBe("Your leave application has been approved");
         card.SubTitle.ShouldBe("Please handle subsequent handover matters in a timely manner");
         card.CardAction.Url.ShouldBe("https://example.com/approval/123");

@@ -4,7 +4,7 @@
     "Rules": [
       {
         "RuleName": "ValidationInputField",
-        "ErrorMessage": "Invalid input field validation!",
+        "ErrorMessage": "Input field validation is invalid!",
         "ErrorType": "Error",
         "Operator": "AndAlso",
         "Rules": [

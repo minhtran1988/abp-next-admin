@@ -69,7 +69,7 @@ namespace LINGYUN.Abp.AspNetCore.Mvc.Results
                 var result = await GetResponseAsObjectAsync<WrapResult<TestResultObject>>("/api/wrap-result-test/exception");
                 result.ShouldNotBeNull();
                 result.Code.ShouldBe("1001");
-                result.Message.ShouldBe("Test the wrapped exception message.");
+                result.Message.ShouldBe("\u6d4b\u8bd5\u5305\u88c5\u540e\u7684\u5f02\u5e38\u6d88\u606f.");
             }
 
             using (CultureHelper.Use("en"))
@@ -89,7 +89,7 @@ namespace LINGYUN.Abp.AspNetCore.Mvc.Results
                 var result = await GetResponseAsObjectAsync<RemoteServiceErrorResponse>("/api/wrap-result-test/not-wrap-exception", System.Net.HttpStatusCode.InternalServerError);
                 result.ShouldNotBeNull();
                 result.Error.ShouldNotBeNull();
-                result.Error.Message.ShouldBe("Sorry, an internal server error occurred during processing your request!");
+                result.Error.Message.ShouldBe("\u5bf9\u4e0d\u8d77,\u5728\u5904\u7406\u4f60\u7684\u8bf7\u6c42\u671f\u95f4,\u4ea7\u751f\u4e86\u4e00\u4e2a\u670d\u52a1\u5668\u5185\u90e8\u9519\u8bef!");
             }
         }
 

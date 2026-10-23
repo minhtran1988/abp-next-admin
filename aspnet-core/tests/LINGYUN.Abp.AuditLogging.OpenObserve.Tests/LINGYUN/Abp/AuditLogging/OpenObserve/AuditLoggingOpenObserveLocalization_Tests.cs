@@ -22,7 +22,7 @@ public class AuditLoggingOpenObserveLocalization_Tests : AbpAuditLoggingOpenObse
         {
             _localizer[AuditLoggingOpenObserveErrorCodes.DeleteNotSupported]
                 .Value
-                .ShouldBe("The current logging facility does not support deleting records!");
+                .ShouldBe("\u5f53\u524d\u65e5\u5fd7\u8bbe\u65bd\u4e0d\u652f\u6301\u5220\u9664\u8bb0\u5f55!");
         }
     }
 }

@@ -116,14 +116,14 @@ public class WeChatWorkWebhookDbJsonChannelData_Tests
         // The real library has both basic notification parameters and channel data.
         var data = RestoreFromDbJson(
             "{\"title\":\"Build failed\",\"message\":\"Build #1234 failed\",\"formUser\":\"ci\"," +
-            "\"wx-work-hook:text\":\"Text\"}");
+            "\"wx-work-hook:text\":\"fallback text\"}");
 
         data.TryGetData("title").ShouldBe("Build failed");
         data.TryGetData("formUser").ShouldBe("ci");
 
         var payload = ChannelDataResolver.Resolve<WeChatWorkWebhookTextChannelData>(data);
         payload.ShouldNotBeNull();
-        payload!.Content.ShouldBe("hidden text");
+        payload!.Content.ShouldBe("fallback text");
     }
 
     // ---------- 4. No misparsing when there is no channel data ----------

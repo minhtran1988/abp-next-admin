@@ -6,7 +6,7 @@
         {
             context.WithCode("1001")
                    .WithMessage("Custom exception handling message")
-                   .WithDetails("Customized exception handling message details");
+                   .WithDetails("Custom exception handling message details");
         }
     }
 }
