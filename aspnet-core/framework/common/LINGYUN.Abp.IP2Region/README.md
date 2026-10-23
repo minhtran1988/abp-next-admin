@@ -125,9 +125,9 @@ Remarks rules are processed uniformly by `LINGYUN.Abp.IP.Location` (other locati
 Configure<AbpIPLocationResolveOptions>(options =>
 {
     //The matched country name is removed from the remarks (only Chinese IP does not display the country)
-    options.RemoveCountry = new[] { "China" };
+    options.RemoveCountry = new[] { "\u4e2d\u56fd" };
     //The matched province name is removed from the remarks
-    // options.RemoveProvince = new[] { "Hong Kong Special Administrative Region" };
+    // options.RemoveProvince = new[] { "\u9999\u6e2f\u7279\u522b\u884c\u653f\u533a" };
 });
 ```
 
@@ -136,15 +136,19 @@ You can also use the configuration section directly (the `LINGYUN.Abp.IP.Locatio
 ```json
 {
   "IPLocation": {
-    "RemoveCountry": [ "China" ]
+    "RemoveCountry": [ "\u4e2d\u56fd" ]
   }
 }
 ```
 
 ```yaml
 # docker-compose environment
-- IPLocation__RemoveCountry__0=China
+- "IPLocation__RemoveCountry__0=\u4e2d\u56fd"
 ```
+
+> The ip2region database returns Chinese country, province and city names. The configuration examples
+> above use `\u4e2d\u56fd` (China) and `\u9999\u6e2f\u7279\u522b\u884c\u653f\u533a` (Hong Kong SAR); the English names
+> in the examples below are shown for readability only.
 
 * When the country name matches `RemoveCountry`, use the province and city in the remarks (such as `Hangzhou City, Zhejiang Province`; when the province and city have the same name, only the city is displayed, such as `Chongqing City`; when there are only provinces, it is `Hong Kong Special Administrative Region`);
 * When the province name matches `RemoveProvince`, only use the city (such as `Hangzhou City`) for remarks;

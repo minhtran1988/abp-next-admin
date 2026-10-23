@@ -60,13 +60,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "OpenID Connect", // Friendly display name
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Identity Authentication",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u8eab\u4efd\u8ba4\u8bc1",
                 [CultureInfo.GetCultureInfo("en")] = "OpenID Connect"
             },
             Description = "Using OpenID Connect protocol for authentication",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to use your identity information to log in",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u4f7f\u7528\u60a8\u7684\u8eab\u4efd\u4fe1\u606f\u8fdb\u884c\u767b\u5f55",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to authenticate you using OpenID Connect"
             }
         });
@@ -78,13 +78,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Profile",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Personal information",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u4e2a\u4eba\u8d44\u6599",
                 [CultureInfo.GetCultureInfo("en")] = "Profile"
             },
             Description = "Access your basic profile information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access basic information such as your name, avatar, etc.",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee\u60a8\u7684\u59d3\u540d\u3001\u5934\u50cf\u7b49\u57fa\u672c\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your basic profile information like name and picture"
             }
         });
@@ -96,13 +96,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "email",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Email",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u7535\u5b50\u90ae\u4ef6",
                 [CultureInfo.GetCultureInfo("en")] = "Email"
             },
             Description = "Access your email address",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your email address",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee\u60a8\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your email address"
             }
         });
@@ -114,13 +114,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Phone number",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Phone number",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u7535\u8bdd\u53f7\u7801",
                 [CultureInfo.GetCultureInfo("en")] = "Phone"
             },
             Description = "Access your phone number",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your phone number",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee\u60a8\u7684\u7535\u8bdd\u53f7\u7801",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your phone number"
             }
         });
@@ -132,13 +132,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Address information",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Address information",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5730\u5740\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Address"
             },
             Description = "Access your address information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your address information",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee\u60a8\u7684\u5730\u5740\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your address information"
             }
         });
@@ -150,13 +150,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Role Information",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Character information",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u89d2\u8272\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Roles"
             },
             Description = "Access your role information",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your role and permission information",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee\u60a8\u7684\u89d2\u8272\u548c\u6743\u9650\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your roles and permissions"
             }
         });
@@ -168,13 +168,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Offline access",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Offline access",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u79bb\u7ebf\u8bbf\u95ee",
                 [CultureInfo.GetCultureInfo("en")] = "Offline Access"
             },
             Description = "Access your information when you are not logged in",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allow applications to access your information when you are not logged in",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u5728\u60a8\u672a\u767b\u5f55\u65f6\u8bbf\u95ee\u60a8\u7684\u4fe1\u606f",
                 [CultureInfo.GetCultureInfo("en")] = "Allow the application to access your information while you are offline"
             }
         });
@@ -188,13 +188,13 @@ public class OpenIddictDataSeederContributor : OpenIddictDataSeedContributorBase
             DisplayName = "Single Applications",
             DisplayNames =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Single application",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5355\u4f53\u5e94\u7528\u7a0b\u5e8f",
                 [CultureInfo.GetCultureInfo("en")] = "Single Applications"
             },
             Description = "Interface authorization for single applications",
             Descriptions =
             {
-                [CultureInfo.GetCultureInfo("zh-Hans")] = "Allows applications to use the interface of a single application",
+                [CultureInfo.GetCultureInfo("zh-Hans")] = "\u5141\u8bb8\u5e94\u7528\u7a0b\u5e8f\u4f7f\u7528\u5355\u4f53\u5e94\u7528\u7a0b\u5e8f\u7684\u63a5\u53e3",
                 [CultureInfo.GetCultureInfo("en")] = "Allow applications to use the interface of monolithic applications"
             },
             Resources =

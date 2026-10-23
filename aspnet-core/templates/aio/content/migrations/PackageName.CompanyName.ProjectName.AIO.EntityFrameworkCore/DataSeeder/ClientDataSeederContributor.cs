@@ -93,7 +93,7 @@ public class ClientDataSeederContributor : IDataSeedContributor, ITransientDepen
                 DisplayName = scope + " access",
                 DisplayNames =
                 {
-                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API application access",
+                    [CultureInfo.GetCultureInfo("zh-Hans")] = "Abp API \u5e94\u7528\u7a0b\u5e8f\u8bbf\u95ee",
                     [CultureInfo.GetCultureInfo("en")] = "Abp API Application Access"
                 },
                 Resources =
